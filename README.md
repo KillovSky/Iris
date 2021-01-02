@@ -1,5 +1,6 @@
 ## Íris, a BOT
 Uma bot em português feita para o grupo Legião Z no WhatsApp, com centenas de comandos que continua crescendo.
+Peço perdão pelos erros que possam aparecer, corrigirei todos o quanto antes, e desculpem se houver sessões não editadas que deveriam estar editadas, fiz o upload na correria.
 
 ## Instalação
 Você precisa ter esse repositorio, é simples, rode os comandos abaixo.
@@ -17,6 +18,9 @@ Para iniciar digite o comando abaixo e espere, após isso, escaneie o QR Code.
 ```bash
 > npm start
 ```
+
+### Ver os comandos
+Digite no seu chat a mensagem /menu.
 
 ## Erros
 Se notar erros, me encontre no grupo abaixo, mande mensagem no WhatsApp, ou reporte no Issues, e claro, se certifique de ter chrome instalado.
