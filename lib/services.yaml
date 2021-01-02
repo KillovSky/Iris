@@ -1,0 +1,130 @@
+﻿smsServices:
+# ----------------
+# TEST "SERVICE"
+# - url: 'https://httpbin.org/post'
+#   method: 'POST'
+#   headers:
+#     Content-Type: 'application/json'
+#   body: '{"phone_number":"<num>"}'
+#   okRes: 'origin'
+#   delay: 5
+# ----------------
+
+- url: 'https://apteka366.ru/login/register/sms/send'
+  method: 'POST'
+  body: 'phone=<num2>'
+  okRes: '{"phone":"'
+  delay: 121
+
+- url: 'https://belkacar.ru/get-confirmation-code'
+  method: 'POST'
+  body: 'phone=<num>'
+  okRes: 'success":true'
+  delay: 61
+
+- url: 'https://drugvokrug.ru/siteActions/processSms.htm'
+  method: 'POST'
+  body: 'cell=<num>'
+  okRes: 'success":true'
+  delay: 7
+
+- url: 'https://api.ennergiia.com/auth/api/development/lor'
+  method: 'POST'
+  headers:
+    Content-Type: 'application/json'
+  body: '{"referrer":"ennergiia","via_sms":true,"phone":"+<num4>"}'
+  okRes: '"code":"200-8"'
+  delay: 121
+
+- url: 'https://fundayshop.com/ru/ru/secured/myaccount/myclubcard/resultClubCard.jsp?type=sendConfirmCode&phoneNumber=+<num13>'
+  method: 'GET'
+  okRes: 'result":"sendConfirmCode'
+  delay: 50
+
+- url: 'https://gorzdrav.org/login/register/sms/send'
+  method: 'POST'
+  body: 'phone=<num2>'
+  okRes: 'phone'
+  delay: 121
+
+- url: 'https://p.grabtaxi.com/api/passenger/v2/profiles/register'
+  method: 'POST'
+  body: 'phoneNumber=<num>&countryCode=ID&name=Alexey&email=alexey173949%40gmail.com&deviceToken=*'
+  okRes: 'phoneNumber'
+  delay: 2
+
+- url: 'https://app-api.kfc.ru/api/v1/common/auth/send-validation-sms'
+  method: 'POST'
+  body: '{"phone":"+<num>"}'
+  okRes: 'success":true'
+  delay: 6
+
+- url: 'https://www.mvideo.ru/internal-rest-api/common/atg/rest/actors/VerificationActor/getCode?pageName=registerPrivateUserPhoneVerification'
+  method: 'POST'
+  body: 'phone=<num>&g-recaptcha-response=&recaptcha=off'
+  okRes: '"success": true'
+  delay: 61
+
+- url: 'https://api.gotinder.com/v2/auth/sms/send?auth_type=sms&locale=ru'
+  method: 'POST'
+  headers:
+    Content-Type: 'application/json'
+  body: '{"phone_number":"<num>"}'
+  okRes: 'sms_sent":true'
+  delay: 21
+
+- url: 'https://api.tinkoff.ru/v1/sign_up'
+  method: 'POST'
+  body: 'phone=%2B<num>'
+  okRes: '"resultCode":"WAITING_CONFIRMATION"'
+  delay: 21
+
+- url: 'https://api-production.viasat.ru/api/v1/auth_codes'
+  method: 'POST'
+  headers:
+    Content-Type: 'application/json'
+  body: '{"msisdn":"+<num>"}'
+  okRes: ''
+  delay: 61
+
+- url: 'https://eda.yandex/api/v1/user/request_authentication_code'
+  method: 'POST'
+  headers:
+    Content-Type: 'application/json'
+  body: '{"phone_number":"<num2>"}'
+  okRes: '"delay"'
+  delay: 61
+
+- url: 'https://youla.ru/web-api/auth/request_code'
+  method: 'POST'
+  body: 'phone=<num>'
+  okRes: '"phone"'
+  delay: 16
+
+- url: 'https://www.citilink.ru/registration/confirm/phone/+<num>/'
+  method: 'POST'
+  body: ''
+  okRes: '"smsRequestToken":'
+  delay: 61
+
+- url: 'http://service.matreshcar.ru/profile/smstoken'
+  method: 'POST'
+  headers:
+    Content-Type: 'application/json'
+  body: '{"PhoneNumber":<num>}'
+  okRes: '"validForSeconds":'
+  delay: 21
+
+- url: 'https://api.chef.yandex/api/v2/auth/sms'
+  method: 'POST'
+  headers:
+    Content-Type: 'application/json'
+  body: '{"phone":"<num2>"}'
+  okRes: '"token":'
+  delay: 61
+
+callServices:
+- url: 'https://findclone.ru/register?phone=+<num>'
+  method: 'GET'
+  okRes: '"pin_size"'
+  delay: 61
