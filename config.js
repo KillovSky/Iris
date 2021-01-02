@@ -305,7 +305,7 @@ module.exports = kconfig = async (kill, message) => {
                 const mediaData = await decryptMedia(message, uaOverride)
                 var uplimg = './lib/media/img/imageupl.jpg'
                 await fs.writeFile(uplimg, mediaData)
-				const sdimg = await imgbbUploader("c7ae2ba54bf9ea69f728b59930a32a08", uplimg)
+				const sdimg = await imgbbUploader("API DO SITE IMGBB", uplimg) // Bote uma api do imgbb pras suas fotos n irem pra minha conta
 				console.log(sdimg.url_viewer)
 				await kill.reply(from, `*OBS!* _Essa link tem duração de 7 dias, após isso a imagem será automaticamente deletada do servidor._\n\n${sdimg.url_viewer}`, id)
 			} else {
@@ -720,7 +720,7 @@ module.exports = kconfig = async (kill, message) => {
             break
 
 
-/*         case 'mp3': // eu censurei o acesso pois as apis estão offlines, e fazer isso evita que usem o comando e te de problemas
+         case 'mp3': // eu censurei o acesso pois as apis estão offlines, e fazer isso evita que usem o comando e te de problemas
             if (args.length == 0) return kill.reply(from, 'Você usou incorretamente.', id)
             axios.get(`http://st4rz.herokuapp.com/api/yta2?url=${body.slice(5)}`)
             .then(async(rest) => {
@@ -785,10 +785,10 @@ module.exports = kconfig = async (kill, message) => {
 					})
 				}
 			})
-            break*/
+            break
 			
 
-/*        case 'play':
+        case 'play':
             if (args.length == 0) return kill.reply(from, 'Você usou incorretamente.', id)
             axios.get(`http://arugaytdl.herokuapp.com/search?q=${body.slice(6)}`)
             .then(async (res) => {
@@ -825,7 +825,7 @@ module.exports = kconfig = async (kill, message) => {
 					})
 				}
 			})
-            break*/
+            break
 			
 
 		case 'qr':
@@ -1164,7 +1164,7 @@ module.exports = kconfig = async (kill, message) => {
 			const spiri = await axios.get(`http://simsumi.herokuapp.com/api?text=${body.slice(5)}&lang=pt`).then(res => {
 				var a = JSON.parse(JSON.stringify(spiri.data))
 				var ms = a.success
-				console.log('Suceso no Request > ' + ms)
+				console.log('Sucesso no Request > ' + ms)
 				sppt.save('./lib/media/tts/resPtm.mp3', ms, function () {
                 kill.sendPtt(from, './lib/media/tts/resPtm.mp3', id)
 				})
@@ -1213,7 +1213,7 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'criador':
-            kill.sendContact(from, '5518998044132@c.us')
+            kill.sendContact(from, '5518998***@c.us')
 			kill.reply(from, 'Se ele não responder apenas espere, é raro ele sair da internet ~Carinha viciado sabe~, mas se acontecer foi algo importante.', id)
             break
 
