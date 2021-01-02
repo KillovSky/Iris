@@ -26,6 +26,7 @@ Peço perdão pelos erros que possam aparecer, corrigirei todos o quanto antes, 
 | Revogar links de grupo|✅|
 | Adicionar/remover pessoas |✅|
 | Tirar ADM |✅|
+| Anti porno/links de grupos |✅|
 | Sticker/Sticker GIF |✅|
 | Stickers sem fundo/Por palavra/Link |✅|
 | Fabrica de meme/Pegar memes |✅|
