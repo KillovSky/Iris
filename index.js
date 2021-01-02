@@ -51,10 +51,10 @@ const start = (kill = new Client()) => {
 		
 
         // Bloqueia ao receber ligações
-        kill.onIncomingCall(( async (call) => {
+        kill.onIncomingCall( async (call) => {
             await kill.sendText(call.peerJid, 'Que pena! Chamadas não são suportadas e atrapalham muito! 😊\nTe bloqueei para evitar novas, contate o meu dono para efetuar o desbloqueio. 👋')
-            kill.contactBlock(call.peerJid))
-			kill.sendContact(from, '5518998044132@c.us') // Você precisa trocar o número aqui pelo seu, evite remover o @c.us, embora eu ache que ainda funcionaria...
+            kill.contactBlock(call.peerJid)
+	    kill.sendContact(from, '5518****@c.us') // Você precisa trocar o número aqui pelo seu, evite remover o @c.us, embora eu ache que ainda funcionaria...
         })
     }
 
