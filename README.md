@@ -20,7 +20,10 @@ Para iniciar digite o comando abaixo e espere, após isso, escaneie o QR Code.
 ```
 
 ### Ver os comandos
-Digite no seu chat a mensagem /menu.
+Digite no seu chat a mensagem:
+```bash
+> /menu
+```
 
 ## Erros
 Se notar erros, me encontre no grupo abaixo, mande mensagem no WhatsApp, ou reporte no Issues, e claro, se certifique de ter chrome instalado.
