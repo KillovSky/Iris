@@ -1,15 +1,18 @@
-# iris
+# Íris, a BOT
 Uma bot em português feita para o grupo Legião Z no WhatsApp, com centenas de comandos.
 
 # Funções
-Há funções desde stickers a criação de Memes, receber hentais ou coisa parecida.
-Irei melhorar esse read-me um dia.
+Há funções desde stickers a criação de Memes, receber hentais ou coisa parecida, além da capacidade de conversar por voz se você obter SimSimi (ou não).
+Irei melhorar esse read-me um dia, a, ela está usando respostas locais adicionadas por membros (/resposta), aguarde que eu crie ou tente criar a que use SimSimi.
 
 # Coisas que você deve fazer!
 Primeiro, edite totalmente as apis, elas estão na Functions.js dentro da pasta lib, e na config.js definido na apitech e no remove.bg, você vai achar comentarios em tudo, é so seguir.
 
 # Agradecimentos
-Um agradecimento a @Aruga-Z e @MhankBarBar, além dos diversos donos de excelentes API's utilizadas nesse BOT.
+- [WA-Automate](https://github.com/open-wa/wa-automate-nodejs)
+- [ArugaZ](https://github.com/ArugaZ/whatsapp-bot)
+- [MhankBarBar](https://github.com/MhankBarBar/whatsapp-bot)
+- Agradeço de coração pelas suas API'S excelentes!
 
 # Exemplo da criação de comandos
 Simples! Use dessa forma abaixo para criar um simples comando de resposta.
