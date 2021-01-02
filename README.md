@@ -1,32 +1,45 @@
-# Íris, a BOT
-Uma bot em português feita para o grupo Legião Z no WhatsApp, com centenas de comandos.
+## Íris, a BOT
+Uma bot em português feita para o grupo Legião Z no WhatsApp, com centenas de comandos que continua crescendo.
 
-# Funções
-Há funções desde stickers a criação de Memes, receber hentais ou coisa parecida, além da capacidade de conversar por voz se você obter SimSimi (ou não).
-Irei melhorar esse read-me um dia, a, ela está usando respostas locais adicionadas por membros (/resposta), aguarde que eu crie ou tente criar a que use SimSimi.
+## Instalação
+Você precisa ter esse repositorio, é simples, rode os comandos abaixo.
 
-# Coisas que você deve fazer!
-Primeiro, edite totalmente as apis, elas estão na Functions.js dentro da pasta lib, e na config.js definido na apitech e no remove.bg, você vai achar comentarios em tudo, é so seguir.
+```bash
+> git clone https://github.com/KillovSky/iris.git
+> cd iris
+> npm i
+> npm install gify-cli gify
+```
 
-# Agradecimentos
+### Iniciar
+Para iniciar digite o comando abaixo e espere, após isso, escaneie o QR Code.
+
+```bash
+> npm start
+```
+
+## Erros
+Se notar erros, me encontre no grupo abaixo, mande mensagem no WhatsApp, ou reporte no Issues, e claro, se certifique de ter chrome instalado.
+No windows baixe no site deles, no linux use os comandos abaixo.
+
+```bash
+> wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+> sudo apt install ./google-chrome-stable_current_amd64.deb
+```
+
+## Mudanças
+Primeiro, edite totalmente as apis, encontradas em:
+
+- API 1 AQUI [this section](https://github.com/KillovSky/iris/blob/master/config.js#L49)
+- API 2 AQUI [this section](https://github.com/KillovSky/iris/blob/master/lib/functions.js#L12)
+- API 3 AQUI [this section](https://github.com/KillovSky/iris/blob/master/lib/functions.js#L33)
+
+## Agradecimentos
 - [WA-Automate](https://github.com/open-wa/wa-automate-nodejs)
 - [ArugaZ](https://github.com/ArugaZ/whatsapp-bot)
 - [MhankBarBar](https://github.com/MhankBarBar/whatsapp-bot)
 - Agradeço de coração pelas suas API'S excelentes!
 
-# Exemplo da criação de comandos
-Simples! Use dessa forma abaixo para criar um simples comando de resposta.
-
-Case 'nome do comando':
-  (Use um if caso tenha um tipo de requisição) como... if (!isOwner) return kill.reply(from, 'Você não é o dono!', id)
-  kill.reply(from, 'Mensagem que queira', id)
-  break
-  
-# Explicação
-Ok, sabemos que eu sou pessimo nisso haha!
-Mas o case define o seu comando, o break o para pra não rodar o codigo todo e bugar ate o proximo break.
-O if especifica uma condiçao, como eu fiz ali, aquela ali diz que precisa ser o dono.
-O kill.reply envia uma resposta a uma mensagem, você pode usar kill.sendText para enviar uma mensagem mais comum.
-O id no final serve pra marcar a pessoa de volta.
-O from, é o grupo atual, se souber a id (comando /ID), pode definir um grupo especifico.
-E a mensagem entre ' ' é o seu conteúdo.
+## Doar e grupo oficial
+- [PicPay] - Como sou menor de idade, não posso ter uma conta em outros locais, minha tag no PicPay é @userlucas123, sua ajuda ajudará muito! ❤️
+- [Grupo] - Não somos grupos de travas. - https://chat.whatsapp.com/H53MdwhtnRf7TGX1VJ2Jje
