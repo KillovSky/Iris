@@ -28,11 +28,12 @@ No windows baixe no site deles, no linux use os comandos abaixo.
 ```
 
 ## Mudanças
-Primeiro, edite totalmente as apis, encontradas em:
+Depois, edite totalmente as apis, encontradas em:
 
-- API 1 AQUI [this section](https://github.com/KillovSky/iris/blob/master/config.js#L49)
-- API 2 AQUI [this section](https://github.com/KillovSky/iris/blob/master/lib/functions.js#L12)
-- API 3 AQUI [this section](https://github.com/KillovSky/iris/blob/master/lib/functions.js#L33)
+- [API 1](https://github.com/KillovSky/iris/blob/master/config.js#L49)
+- [API 2](https://github.com/KillovSky/iris/blob/master/lib/functions.js#L12)
+- [API 3](https://github.com/KillovSky/iris/blob/master/lib/functions.js#L33)
+- Elas são referentes aos sites [RemoveBG](https://www.remove.bg/pt-br) e [API-I-Tech](https://api.i-tech.id/)
 
 ## Agradecimentos
 - [WA-Automate](https://github.com/open-wa/wa-automate-nodejs)
