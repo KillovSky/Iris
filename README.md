@@ -1,4 +1,4 @@
-## Íris, a BOT
+### Íris, a BOT
 Uma bot em português feita para o grupo Legião Z no WhatsApp, com centenas de comandos que continua crescendo.
 Peço perdão pelos erros que possam aparecer, corrigirei todos o quanto antes, e desculpem se houver sessões não editadas que deveriam estar editadas, fiz o upload na correria.
 
@@ -49,7 +49,7 @@ Peço perdão pelos erros que possam aparecer, corrigirei todos o quanto antes, 
 | Informações de Grupo/Perfil |✅|
 | Outros (Lista tem mais de 100) |✅|
 
-## Instalação
+### Instalação
 Você precisa ter esse repositorio, é simples, rode os comandos abaixo.
 
 ```bash
@@ -68,21 +68,30 @@ Para iniciar digite o comando abaixo e espere, após isso, escaneie o QR Code.
 
 ### Ver todos os comandos
 Digite no seu chat a mensagem:
+
 ```bash
 > /menu
 ```
 
+### Crie seus comandos
+Abra sua config.js e ache um lugarzinho em branco bonito, darei um exemplo de resposta simples, va testando como quiser, a outros tipos, você pode ver quais por [aqui](https://docs.openwa.dev/classes/client.html) e na duvida, chame-me por [aqui](https://chat.whatsapp.com/H53MdwhtnRf7TGX1VJ2Jje) ou [aqui](https://wa.me/+5518998044132).
 
-## Erros
+```bash
+case 'Nome do comando sem espaços':
+    await kill.reply(from, 'Sua mensagem', id)
+    break
+ ```
+ 
+### Erros
 Se notar erros, me encontre no grupo abaixo, mande mensagem no WhatsApp, ou reporte no Issues, e claro, se certifique de ter chrome instalado.
-No windows baixe no site deles, no linux use os comandos abaixo.
+No windows baixe por [aqui](https://www.google.com/chrome), no linux use os comandos abaixo.
 
 ```bash
 > wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 > sudo apt install ./google-chrome-stable_current_amd64.deb
 ```
 
-## Mudanças
+### Mudanças
 Depois, edite totalmente as apis, encontradas em:
 
 - [API 1](https://github.com/KillovSky/iris/blob/master/config.js#L49)
@@ -99,6 +108,7 @@ Depois, edite totalmente as apis, encontradas em:
 - [MhankBarBar](https://github.com/MhankBarBar/whatsapp-bot)
 - Agradeço de coração pelas suas API'S excelentes!
 
-## Doar e grupo oficial
-- [PicPay] - Como sou menor de idade, não posso ter uma conta em outros locais, minha tag no PicPay é @userlucas123, sua ajuda ajudará muito! ❤️
-- [Grupo] - Não somos grupos de travas. - https://chat.whatsapp.com/H53MdwhtnRf7TGX1VJ2Jje
+## Doar e Suporte
+- [Doações] - Doe algo pelo PicPay ❤️ - [Doar](https://picpay.me/userlucas123)
+- [Grupo Oficial] - Não somos grupos de travas - [Entrar](https://chat.whatsapp.com/H53MdwhtnRf7TGX1VJ2Jje)
+- [Dono] - Se precisar falar comigo - [Falar](https://wa.me/+5518998044132)
