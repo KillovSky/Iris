@@ -451,7 +451,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 		case 'legiao':
 			if (isGroupMsg) return kill.reply(from, 'Pode ser que esse grupo não permita links, então use esse comando no PV okay?', id)
-			client.sendLinkWithAutoPreview(from, 'https://chat.whatsapp.com/H53MdwhtnRf7TGX1VJ2Jje', 'Que otimo que se interessou pelo Legião Z!\nAi está nosso grupo!', id)
+			kill.sendLinkWithAutoPreview(from, 'https://chat.whatsapp.com/H53MdwhtnRf7TGX1VJ2Jje', 'Que otimo que se interessou pelo Legião Z!\nAi está nosso grupo!', id)
 			break
 			
 			
@@ -1174,7 +1174,7 @@ module.exports = kconfig = async (kill, message) => {
 				})		
 			} else {
 				sppt.save('./lib/media/tts/resPtm.mp3', a, function () {
-					client.sendPtt(from, './lib/media/tts/resPtm.mp3', id)
+					kill.sendPtt(from, './lib/media/tts/resPtm.mp3', id)
 				})
 			}
 			break
