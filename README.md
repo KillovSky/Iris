@@ -7,7 +7,7 @@ Peço perdão pelos erros que possam aparecer, corrigirei todos o quanto antes, 
 | Função |Contém|
 | ------------- | ------------- |
 | Downloads (Redes-Sociais e YouTube) |✅|
-| Conversar por texto e voz localmente/Sim-Simi (ilimitado) |✅|
+| Conversar por texto/voz Sim-Simi/Local (ilimitado) |✅|
 | Busca/fotos de animes |✅|
 | Wikipedia |✅|
 | Brainly |✅|
