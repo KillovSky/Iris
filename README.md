@@ -92,7 +92,7 @@ No windows baixe por [aqui](https://www.google.com/chrome), no linux use os coma
 ```
 
 ### Mudanças
-Depois, edite totalmente as apis, encontradas em:
+Edite as API's encontradas em:
 
 - [API 1](https://github.com/KillovSky/iris/blob/master/config.js#L49)
 - [API 2](https://github.com/KillovSky/iris/blob/master/lib/functions.js#L12)
@@ -100,7 +100,7 @@ Depois, edite totalmente as apis, encontradas em:
 - [API 4](https://github.com/KillovSky/iris/blob/master/config.js#L67)
 - [Número 1](https://github.com/KillovSky/iris/blob/master/config.js#L1217)
 - [Número 2](https://github.com/KillovSky/iris/blob/master/config.js#L67)
-- Elas são referentes aos sites [RemoveBG](https://www.remove.bg/pt-br), [API-I-Tech](https://api.i-tech.id/) e [ImgBB](https://api.imgbb.com/)
+- Elas são referentes aos sites [RemoveBG](https://www.remove.bg/pt-br), [API-I-Tech](https://api.i-tech.id/), [ImgBB](https://api.imgbb.com/) e [AlphaCoders](https://wall.alphacoders.com/api.php)
 
 ## Agradecimentos
 - [WA-Automate](https://github.com/open-wa/wa-automate-nodejs)
