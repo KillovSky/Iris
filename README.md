@@ -7,7 +7,7 @@ Peço perdão pelos erros que possam aparecer, corrigirei todos o quanto antes, 
 | Função |Contém|
 | ------------- | ------------- |
 | Downloads (Redes-Sociais e YouTube) |✅|
-| Conversar por texto e voz localmente (Não Sim-Simi) |✅|
+| Conversar por texto e voz localmente/Sim-Simi (ilimitado) |✅|
 | Busca/fotos de animes |✅|
 | Wikipedia |✅|
 | Brainly |✅|
@@ -109,6 +109,6 @@ Depois, edite totalmente as apis, encontradas em:
 - Agradeço de coração pelas suas API'S excelentes!
 
 ## Doar e Suporte
-- [Doações] - Doe algo pelo PicPay ❤️ - [Doar](https://picpay.me/userlucas123)
+- [Doações] - Ajude-me a criar comandos, doe algo pelo PicPay ❤️ - [Doar](https://picpay.me/userlucas123)
 - [Grupo Oficial] - Não somos grupos de travas - [Entrar](https://chat.whatsapp.com/H53MdwhtnRf7TGX1VJ2Jje)
 - [Dono] - Se precisar falar comigo - [Falar](https://wa.me/+5518998044132)
