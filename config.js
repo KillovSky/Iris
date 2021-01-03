@@ -1161,15 +1161,9 @@ module.exports = kconfig = async (kill, message) => {
 
         case 'speak':
             const sppt = require('node-gtts')('pt-br')
-			const spiri = await axios.get(`http://simsumi.herokuapp.com/api?text=${body.slice(5)}&lang=pt`).then(res => {
-				var a = JSON.parse(JSON.stringify(spiri.data))
-				var ms = a.success
-				console.log('Sucesso no Request > ' + ms)
-				sppt.save('./lib/media/tts/resPtm.mp3', ms, function () {
-                kill.sendPtt(from, './lib/media/tts/resPtm.mp3', id)
-				})
-			})
-			.catch(error => {
+			const spiris = await axios.get(`http://simsumi.herokuapp.com/api?text=${body.slice(7)}&lang=pt`)
+			const a = spiris.data.success
+			if (a == '') {
 				console.log('Request falhou, usando respostas locais...')
 				let rfua = fs.readFileSync('./lib/reply.txt').toString().split('\n')
 				let repy = rfua[Math.floor(Math.random() * rfua.length)]
@@ -1177,24 +1171,27 @@ module.exports = kconfig = async (kill, message) => {
 				console.log(resfl)
 				sppt.save('./lib/media/tts/resPtm.mp3', resfl, function () {
                 kill.sendPtt(from, './lib/media/tts/resPtm.mp3', id)
+				})		
+			} else {
+				sppt.save('./lib/media/tts/resPtm.mp3', a, function () {
+					client.sendPtt(from, './lib/media/tts/resPtm.mp3', id)
 				})
-			})
+			}
 			break
 			
 
         case 'iris':
-			const iris = await axios.get(`http://simsumi.herokuapp.com/api?text=${body.slice(5)}&lang=pt`).then(res => {
-				const b = JSON.parse(JSON.stringify(iris.data))
-				kill.reply(from, b.success, id)
-			})
-			.catch(error => {
+			const iris = await axios.get(`http://simsumi.herokuapp.com/api?text=${body.slice(6)}&lang=pt`)
+			if (iris.data.success == '') {
 				console.log('Request falhou, usando respostas locais...')
 				let rndrl = fs.readFileSync('./lib/reply.txt').toString().split('\n')
 				let repl = rndrl[Math.floor(Math.random() * rndrl.length)]
 				let resmf = repl.replace('%name$', `${name}`).replace('%battery%', `${lvpc}`)
 				console.log(resmf)
 				kill.reply(from, resmf, id)
-			})
+			} else {
+				await kill.reply(from, iris.data.success, id)
+			}
 			break
 
 
