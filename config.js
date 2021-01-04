@@ -1909,7 +1909,7 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'promote':
-			if (isGroupMsg && isGroupAdmins && !isOwner) {
+			if (isGroupMsg && isGroupAdmins) {
 				if (!isBotGroupAdmins) return kill.reply(from, mess.error.Ba, id)
 				if (mentionedJidList.length == 0) return kill.reply(from, 'Você esqueceu de marcar a pessoa que quer tornar administrador.', id)
 				if (mentionedJidList.length >= 2) return kill.reply(from, 'Desculpe, só posso demitir 1 por vez.', id)
@@ -1932,7 +1932,7 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'demote':
-			if (isGroupMsg && isGroupAdmins && !isOwne) {
+			if (isGroupMsg && isGroupAdmins) {
 				if (!isBotGroupAdmins) return kill.reply(from, mess.error.Ba, id)
 				if (mentionedJidList.length == 0) return kill.reply(from, 'Você esqueceu de marcar a pessoa que quer demitir.', id)
 				if (mentionedJidList.length >= 2) return kill.reply(from, 'Desculpe, só posso demitir 1 por vez.', id)
