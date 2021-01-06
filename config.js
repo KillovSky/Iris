@@ -1322,7 +1322,7 @@ module.exports = kconfig = async (kill, message) => {
                 fs.writeFileSync('./lib/welcome.json', JSON.stringify(welkom))
                 kill.reply(from, 'Feito! As funções de Boas-Vindas e Good-Bye foram acionadas.', id)
 			} else if (args[0] == 'off') {
-				let welcom = welcome.indexOf(chatId)
+				let welcom = welkom.indexOf(chatId)
                 welkom.splice(welcom, 1)
                 fs.writeFileSync('./lib/welcome.json', JSON.stringify(welkom))
                 kill.reply(from, 'Entendido! Desativei as opções de Boas-Vindas e Good-Bye.', id)
