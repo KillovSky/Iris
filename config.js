@@ -1853,14 +1853,14 @@ module.exports = kconfig = async (kill, message) => {
 				if (!isBotGroupAdmins) return kill.reply(from, mess.error.Ba, id)
 				if (mentionedJidList.length == 0) return kill.reply(from, 'Você esqueceu de marcar a pessoa que quer tornar administrador.', id)
 				if (mentionedJidList.length >= 2) return kill.reply(from, 'Desculpe, só posso demitir 1 por vez.', id)
-				if (!groupAdmins.includes(mentionedJidList[0])) return kill.reply(from, 'Bom, ele já é um administrador.', id)
+				if (groupAdmins.includes(mentionedJidList[0])) return kill.reply(from, 'Bom, ele já é um administrador.', id)
 				await kill.promoteParticipant(groupId, mentionedJidList[0])
 				await kill.sendTextWithMentions(from, `Promovendo membro comum @${mentionedJidList[0]} a administrador de bar.`)
 		    } else if (isGroupMsg && isOwner) {
 				if (!isBotGroupAdmins) return kill.reply(from, mess.error.Ba, id)
 				if (mentionedJidList.length == 0) return kill.reply(from, 'Você esqueceu de marcar a pessoa que quer tornar administrador.', id)
 				if (mentionedJidList.length >= 2) return kill.reply(from, 'Desculpe, só posso demitir 1 por vez.', id)
-				if (!groupAdmins.includes(mentionedJidList[0])) return kill.reply(from, 'Bom, ele já é um administrador.', id)
+				if (groupAdmins.includes(mentionedJidList[0])) return kill.reply(from, 'Bom, ele já é um administrador.', id)
 				await kill.promoteParticipant(groupId, mentionedJidList[0])
 				await kill.sendTextWithMentions(from, `Promovendo membro comum @${mentionedJidList[0]} a administrador de bar.`)
 			} else if (isGroupMsg) {
