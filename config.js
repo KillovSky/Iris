@@ -46,14 +46,12 @@ module.exports = kconfig = async (kill, message) => {
         const { name, formattedTitle } = chat
         let { pushname, verifiedName, formattedName } = sender
         pushname = pushname || verifiedName || formattedName
-		const techapi = 'INSIRA UMA API DO SITE OPEN API I-TECH' // MUDE ISSO PARA UMA API DO SITE QUE TA ALI
         const double = Math.floor(Math.random() * 2) + 1
         const four = Math.floor(Math.random() * 4) + 1
         const triple = Math.floor(Math.random() * 3) + 1
         const cinco = Math.floor(Math.random() * 5) + 1
         const six = Math.floor(Math.random() * 6) + 1
         const seven = Math.floor(Math.random() * 7) + 1
-        const octo = Math.floor(Math.random() * 8) + 1
 		const lvpc = Math.floor(Math.random() * 101) + 1
         const time = moment(t * 1000).format('DD/MM HH:mm:ss')
 		const processTime = (timestamp, now) => { return moment.duration(now - moment(timestamp * 1000)).asSeconds() }
@@ -64,12 +62,11 @@ module.exports = kconfig = async (kill, message) => {
         const isGroupAdmins = isGroupMsg ? groupAdmins.includes(sender.id) : false
         const isBotGroupAdmins = isGroupMsg ? groupAdmins.includes(botNumber + '@c.us') : false
 		const chats = (type === 'chat') ? body : (type === 'image' || type === 'video') ? caption : ''
-        const ownerNumber = '5518***@c.us' // MUDE ISSO PARA O SEU NUMERO
+        const ownerNumber = '5518***@c.us'
         const isOwner = sender.id === ownerNumber
         global.pollfile = 'poll_Config_'+chat.id+'.json'
         global.voterslistfile = 'poll_voters_Config_'+chat.id+'.json'
 		global.client = kill
-        const isBlocked = blockNumber.includes(sender.id)
 		const isLeg = exsv.includes(chatId)
         const isNsfw = isGroupMsg ? nsfw_.includes(chat.id) : false
         const isUrl = new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)/gi)
@@ -290,7 +287,7 @@ module.exports = kconfig = async (kill, message) => {
 				}
                 var seaimg = './lib/media/img/imagesearch.jpg'
                 await fs.writeFile(seaimg, mediaData)
-				const upimg = await imgbbUploader("c7ae2ba54bf9ea69f728b59930a32a08", seaimg)
+				const upimg = await imgbbUploader("API DA IMGBB", seaimg) // Bote uma api do imgbb pras suas fotos n irem pra minha conta
 				console.log(upimg.url)
 				await sleep(10000)
 				const resimg = await imgsearch(upimg.url, sendres)
@@ -516,34 +513,14 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'randomanime':
-            const matn = Math.floor(Math.random() * 3) + 1
-            if (matn == 1) {
-            const nime = await axios.get(`http://api.i-tech.id/anim/anime?key=${techapi}`)
-			console.log(nime.data)
-			await kill.sendFileFromUrl(from, nime.data.result, ``, `Vejo que você é um homem/mulher de cultura.`, id)
-            } else if (matn == 2) {
             const nime2 = await randomNimek('anime')
 			console.log(nime2.data)
             await kill.sendFileFromUrl(from, nime2, ``, 'Ui Ui...', id)
-            } else if (matn == 3) {
-            const nime3 = await axios.get(`http://api.i-tech.id/anim/anime2?key=${techapi}`)
-			console.log(nime3.data)
-            await kill.sendFileFromUrl(from, nime3.data.result, ``, `Belo anime...`, id)
-			}
             break
 
 
         case 'frase':
-            const quote = Math.floor(Math.random() * 3) + 1
-            if (quote == 1) {
-            const quote1 = await axios.get(`http://api.i-tech.id/anim/quotes?key=${techapi}`)
-			console.log(quote1.data)
-			const quota = quote1.data.quotes
-			kill.reply(from, mess.wait, id)
-			await sleep(5000)
-            translate(quota, 'pt')
-                .then((quoted) => kill.reply(from, `➸ *Frase* : ${quoted}\n➸ *Personagem* : ${quote1.data.character}\n➸ *Anime* : ${quote1.data.anime}`, id))
-            } else if (quote == 2) {
+            if (double == 1) {
             const skya = await get.get('http://mhankbarbars.herokuapp.com/api/quotesnime/random').json() 
             skya_ = skya.data
 			const quot = skya.data.quote
@@ -551,7 +528,7 @@ module.exports = kconfig = async (kill, message) => {
 			await sleep(5000)
             translate(quot, 'pt')
                 .then((quote) => kill.reply(from, `➸ *Frase* : ${quote}\n➸ *Personagem* : ${skya_.chara}\n➸ *Anime* : ${skya_.anime}`, id))
-			} else if (quote == 3) {
+			} else if (double == 2) {
 			const aiquote = await axios.get("http://inspirobot.me/api?generate=true")
             await kill.sendFileFromUrl(from, aiquote.data, 'quote.jpg', '~Não entendi nada, mas vamos seguir o roteiro...~\n\n❤️' , id )
 			}
@@ -570,40 +547,26 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'neko':
-            const nekol = Math.floor(Math.random() * 7) + 1
+            const nekol = Math.floor(Math.random() * 6) + 1
             if (nekol == 1) {
-				const neko1 = await axios.get(`http://api.i-tech.id/anim/neko?key=${techapi}`)
-				await kill.sendFileFromUrl(from, neko1.data.result, ``, `Uma neko as vezes vai bem...`, id)
+				const neko1 = await get.get('http://mhankbarbars.herokuapp.com/api/nekonime').json()
+				await kill.sendFileFromUrl(from, neko1.result, ``, `Que fofa...`, id)
             } else if (nekol == 2) {
-				const neko2 = await axios.get(`http://api.i-tech.id/anim/neko2?key=${techapi}`)
-				await kill.sendFileFromUrl(from, neko2.data.result, ``, `Vejo que você é um homem/mulher de cultura.`, id)
+				const neko2 = await axios.get(`https://nekos.life/api/v2/img/neko`)
+				await kill.sendFileFromUrl(from, neko2.data.url, ``, `Nekooo`, id)
             } else if (nekol == 3) {
-				const neko3 = await get.get('http://mhankbarbars.herokuapp.com/api/nekonime').json()
-				await kill.sendFileFromUrl(from, neko3.result, ``, `Que fofa...`, id)
+				const neko3 = await axios.get(`https://nekos.life/api/v2/img/ngif`)
+				await kill.sendFileFromUrl(from, neko3.data.url, ``, `Nekooo`, id)
             } else if (nekol == 4) {
-				const neko4 = await axios.get(`https://nekos.life/api/v2/img/neko`)
+				const neko4 = await axios.get(`https://nekos.life/api/v2/img/fox_girl`)
 				await kill.sendFileFromUrl(from, neko4.data.url, ``, `Nekooo`, id)
             } else if (nekol == 5) {
-				const neko5 = await axios.get(`https://nekos.life/api/v2/img/ngif`)
-				await kill.sendFileFromUrl(from, neko5.data.url, ``, `Nekooo`, id)
+				const neko5 = await axios.get(`https://nekos.life/api/v2/img/kemonomimi`)
+				await kill.sendFileFromUrl(from, neko5.data.url, ``, `Nekoooo chann`, id)
             } else if (nekol == 6) {
-				const neko6 = await axios.get(`https://nekos.life/api/v2/img/fox_girl`)
-				await kill.sendFileFromUrl(from, neko6.data.url, ``, `Nekooo`, id)
-            } else if (nekol == 7) {
-				const neko7 = await axios.get(`https://nekos.life/api/v2/img/kemonomimi`)
-				await kill.sendFileFromUrl(from, neko7.data.url, ``, `Nekoooo chann`, id)
+				const neko6 = await axios.get(`https://arugaz.herokuapp.com/api/nekonime`)
+				await kill.sendFileFromUrl(from, neko6.data.result, ``, `Nekoooo chann`, id)
 			}
-            break
-
-
-        case 'char':
-            const char = await axios.get(`http://api.i-tech.id/anim/wibu?key=${techapi}`)
-			var chara = char.data.deskripsi
-			console.log(chara)
-			kill.reply(from, mess.wait, id)
-			await sleep(5000)
-			translate(chara, 'pt')
-                .then((reschar) => kill.sendFileFromUrl(from, `${char.data.foto}`, ``, `Nome: ${char.data.nama}\n\nDescrição: ${reschar}\n\nFonte: ${char.data.sumber}`, id))
             break
 
 
@@ -640,26 +603,9 @@ module.exports = kconfig = async (kill, message) => {
 			break
 
 
-        case 'name':
-            if (args.length == 0) return kill.reply(from, 'Faltou um nome!', id)
-            const names = await axios.get(`https://api.i-tech.id/tools/arti?key=${techapi}&nama=${body.slice(6)}`)
-			var sign = names.data.arti
-			kill.reply(from, mess.wait, id)
-			await sleep(5000)
-            translate(sign, 'pt')
-                .then((cado) => kill.reply(from, cado, id))
-			break
-
-
         case 'fox':
-            const fox = await axios.get(`http://api.i-tech.id/tools/foxes?key=${techapi}`)
-			await kill.sendFileFromUrl(from, fox.data.result, ``, 'Que raposa lindinha <3', id)
-			break
-
-
-        case 'goat':
-            const goat = await axios.get(`https://api.i-tech.id/tools/goat?key=${techapi}`)
-			await kill.sendFileFromUrl(from, goat.data.result, ``, 'Nada melhor que um bode...certo?', id)
+            const fox = await axios.get(`https://some-random-api.ml/img/fox`)
+			await kill.sendFileFromUrl(from, fox.data.link, ``, 'Que raposa lindinha <3', id)
 			break
 
 
@@ -672,13 +618,6 @@ module.exports = kconfig = async (kill, message) => {
 			await sleep(5000)
             translate(wikit, 'pt')
                 .then((resulta) => kill.reply(from, resulta, id))
-            break
-
-
-        case 'chord':
-            if (args.length == 0) return kill.reply(from, 'Esqueceu do nome da música?', id)
-            const ch = await axios.get(`https://api.i-tech.id/tools/chord?key=${techapi}&query=${body.slice(7)}`)
-            await kill.reply(from, ch.data.result, id)
             break
 			
 			
@@ -702,12 +641,13 @@ module.exports = kconfig = async (kill, message) => {
 
        case 'ig':
             if (args.length == 0) return kill.reply(from, 'Cade o link né?', id)
-            const iga = await axios.get(`http://api.i-tech.id/dl/igdl?key=${techapi}&link=${body.slice(11)}`)
-			await kill.sendFileFromUrl(from, iga.data.result, ``, 'É um otimo video haha!\n~Mas o que diabos foi isso...~', id)
+            const iga = await axios.get(`https://st4rz.herokuapp.com/api/ig?url=${body.slice(11)}`)
+			await kill.sendFileFromUrl(from, iga.data.result, ``, '~Mas o que diabos foi isso...~', id)
 			.catch(() => {
-						kill.reply(from, 'Essa não! Impediram meu acesso!\nQue desalmados!', id)
-					})
+				kill.reply(from, 'Essa não! Impediram meu acesso!\nQue desalmados!', id)
+			})
             break
+			
 			
 		case 'fb':
 			if (args.length == 0) return kill.reply(from, 'Você esqueceu de inserir um link do facebook?', id)
@@ -2084,26 +2024,14 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'baguette':
-            if (double == 1) {
-            const bag = await axios.get(`http://api.i-tech.id/anim/baguette?key=${techapi}`)
-			console.log(bag.data)
-            await kill.sendFileFromUrl(from, bag.data.result, ``, ``, id)
-            } else if (double == 2) {
             const baguette = await randomNimek('baguette')
-            kill.sendFileFromUrl(from, baguette, ``, '', id)
-			}
+            await kill.sendFileFromUrl(from, baguette, ``, '', id)
             break
 
 
         case 'dva':
-            if (double == 1) {
-            const dva = await axios.get(`http://api.i-tech.id/anim/dva?key=${techapi}`)
-			console.log(dva.data)
-            await kill.sendFileFromUrl(from, dva.data.result, ``, `DVA é muito bonita, só não sei o que ela é...`, id)
-            } else if (double == 2) {
             const dva1 = await randomNimek('dva') 
-            kill.sendFileFromUrl(from, dva1, ``, `Que ~gostosa~ linda!`, id)
-			}
+            await kill.sendFileFromUrl(from, dva1, ``, `Que ~gostosa~ linda!`, id)
             break
 
 
@@ -2402,12 +2330,12 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'ihentai':
-		    const selnum = Math.floor(Math.random() * 7) + 1 
+		    const selnum = Math.floor(Math.random() * 6) + 1 
             if (isGroupMsg) {
                 if (!isNsfw) return kill.reply(from, mess.error.Ac, id)
 				if (selnum == 1) {
-					const hentai1 = await axios.get(`http://api.i-tech.id/anim/hentai?key=${techapi}`)
-					await kill.sendFileFromUrl(from, hentai1.data.result, ``, `Safadenho e.e, bom, espero que goste desse que eu escolhi para você...`, id)
+					const clas = await axios.get('https://nekos.life/api/v2/img/classic')
+					await kill.sendFileFromUrl(from, clas.data.url, ``, '', id)
 				} else if (selnum == 2) {
 					const hentai = await randomNimek('hentai')
 					await kill.sendFileFromUrl(from, hentai, ``, 'Ui ui, hentai essa hora?', id)
@@ -2423,9 +2351,6 @@ module.exports = kconfig = async (kill, message) => {
 				} else if (selnum == 6) {
 					const hentai6 = await axios.get('https://nekos.life/api/v2/img/pussy')
 					await kill.sendFileFromUrl(from, hentai6.data.url, ``, 'Hentaizinho bom...', id)
-				} else if (selnum == 7) {
-					const clas = await axios.get('https://nekos.life/api/v2/img/classic')
-					await kill.sendFileFromUrl(from, clas.data.url, ``, '', id)
 				}
             } else {
 			    if (selnum == 1) {
@@ -2435,8 +2360,8 @@ module.exports = kconfig = async (kill, message) => {
 					const hentai2 = await axios.get('https://nekos.life/api/v2/img/pussy_jpg')
 					await kill.sendFileFromUrl(from, hentai2.data.url, ``, 'Espero que curta o hentai e.e', id)
 				} else if (selnum == 3) {
-					const hentai3 = await axios.get(`http://api.i-tech.id/anim/hentai?key=${techapi}`)
-					await kill.sendFileFromUrl(from, hentai3.data.result, ``, `Safadenho e.e, bom, espero que goste desse que eu escolhi para você...`, id)
+					const clas = await axios.get('https://nekos.life/api/v2/img/classic')
+					await kill.sendFileFromUrl(from, clas.data.url, ``, '', id)
 				} else if (selnum == 4) {
 					const hentai4 = await axios.get('https://nekos.life/api/v2/img/hentai')
 					await kill.sendFileFromUrl(from, hentai4.data.url, ``, 'Hentaizinho bom...', id)
@@ -2446,80 +2371,65 @@ module.exports = kconfig = async (kill, message) => {
 				} else if (selnum == 6) {
 					const hentai6 = await randomNimek('hentai')
 					await kill.sendFileFromUrl(from, hentai6, ``, 'Ui ui, hentai essa hora?', id)
-				} else if (selnum == 7) {
-					const clas = await axios.get('https://nekos.life/api/v2/img/classic')
-					await kill.sendFileFromUrl(from, clas.data.url, ``, '', id)
 				}
 			}
             break
 
 
         case 'yuri':
-            if (double == 1) {
-            const yuri = await axios.get(`https://api.i-tech.id/anim/yuri?key=${techapi}`)
-			console.log(yuri.data)
-            await kill.sendFileFromUrl(from, yuri.data.result, ``, ``, id)
-            } else if (double == 2) {
             const yuri1 = await randomNimek('yuri')
 			console.log(yuri1)
             await kill.sendFileFromUrl(from, yuri1, ``, ``, id)
-			}
             break 
 
 
         case 'randomneko':
             if (isGroupMsg) {
                 if (!isNsfw) return kill.reply(from, mess.error.Ac, id)
-				if (octo == 1) {
-					const nekoh = await axios.get(`https://api.i-tech.id/anim/nsfwneko?key=${techapi}`)
-					await kill.sendFileFromUrl(from, nekoh.data.result, ``, ``, id)
-				} else if (octo == 2) {
-					const nsfwneko = await randomNimek('nsfw')
-					await kill.sendFileFromUrl(from, nsfwneko, ``, '', id)
-				} else if (octo == 3) {
-					const hololwk = await axios.get('https://nekos.life/api/v2/img/hololewd')
-					await kill.sendFileFromUrl(from, hololwk.data.url, ``, 'Neko gostosa...', id)
-				} else if (octo == 4) {
-					const lwkd = await axios.get('https://nekos.life/api/v2/img/lewdk')
-					await kill.sendFileFromUrl(from, lwkd.data.url, ``, '', id)
-				} else if (octo == 5) {
-					const lwkdk = await axios.get('https://nekos.life/api/v2/img/lewdkemo')
-					await kill.sendFileFromUrl(from, lwkdk.data.url, ``, '', id)
-				} else if (octo == 6) {
-					const eron = await axios.get('https://nekos.life/api/v2/img/eron')
-					await kill.sendFileFromUrl(from, eron.data.url, ``, '', id)
-				} else if (octo == 7) {
-					const holoero = await axios.get('https://nekos.life/api/v2/img/holoero')
-					await kill.sendFileFromUrl(from, holoero.data.url, ``, '', id)
-				} else if (octo == 8) {
+				if (seven == 1) {
 					const nekons = await axios.get('https://nekos.life/api/v2/img/nsfw_neko_gif')
 					await kill.sendFileFromUrl(from, nekons.data.url, ``, '', id)
+				} else if (seven == 2) {
+					const nsfwneko = await randomNimek('nsfw')
+					await kill.sendFileFromUrl(from, nsfwneko, ``, '', id)
+				} else if (seven == 3) {
+					const hololwk = await axios.get('https://nekos.life/api/v2/img/hololewd')
+					await kill.sendFileFromUrl(from, hololwk.data.url, ``, 'Neko gostosa...', id)
+				} else if (seven == 4) {
+					const lwkd = await axios.get('https://nekos.life/api/v2/img/lewdk')
+					await kill.sendFileFromUrl(from, lwkd.data.url, ``, '', id)
+				} else if (seven == 5) {
+					const lwkdk = await axios.get('https://nekos.life/api/v2/img/lewdkemo')
+					await kill.sendFileFromUrl(from, lwkdk.data.url, ``, '', id)
+				} else if (seven == 6) {
+					const eron = await axios.get('https://nekos.life/api/v2/img/eron')
+					await kill.sendFileFromUrl(from, eron.data.url, ``, '', id)
+				} else if (seven == 7) {
+					const holoero = await axios.get('https://nekos.life/api/v2/img/holoero')
+					await kill.sendFileFromUrl(from, holoero.data.url, ``, '', id)
 				}
             } else {
-				if (octo == 1) {
-					const nekoh = await axios.get(`https://api.i-tech.id/anim/nsfwneko?key=${techapi}`)
-					await kill.sendFileFromUrl(from, nekoh.data.result, ``, ``, id)
-				} else if (octo == 2) {
-					const nsfwneko = await randomNimek('nsfw')
-					await kill.sendFileFromUrl(from, nsfwneko, ``, '', id)
-				} else if (octo == 3) {
-					const hololwk = await axios.get('https://nekos.life/api/v2/img/hololewd')
-					await kill.sendFileFromUrl(from, hololwk.data.url, ``, 'Neko gostosa...', id)
-				} else if (octo == 4) {
-					const lwkd = await axios.get('https://nekos.life/api/v2/img/lewdk')
-					await kill.sendFileFromUrl(from, lwkd.data.url, ``, '', id)
-				} else if (octo == 5) {
-					const lwkdk = await axios.get('https://nekos.life/api/v2/img/lewdkemo')
-					await kill.sendFileFromUrl(from, lwkdk.data.url, ``, '', id)
-				} else if (octo == 6) {
-					const eron = await axios.get('https://nekos.life/api/v2/img/eron')
-					await kill.sendFileFromUrl(from, eron.data.url, ``, '', id)
-				} else if (octo == 7) {
-					const holoero = await axios.get('https://nekos.life/api/v2/img/holoero')
-					await kill.sendFileFromUrl(from, holoero.data.url, ``, '', id)
-				} else if (octo == 8) {
+				if (seven == 1) {
 					const nekons = await axios.get('https://nekos.life/api/v2/img/nsfw_neko_gif')
 					await kill.sendFileFromUrl(from, nekons.data.url, ``, '', id)
+				} else if (seven == 2) {
+					const nsfwneko = await randomNimek('nsfw')
+					await kill.sendFileFromUrl(from, nsfwneko, ``, '', id)
+				} else if (seven == 3) {
+					const hololwk = await axios.get('https://nekos.life/api/v2/img/hololewd')
+					await kill.sendFileFromUrl(from, hololwk.data.url, ``, 'Neko gostosa...', id)
+				} else if (seven == 4) {
+					const lwkd = await axios.get('https://nekos.life/api/v2/img/lewdk')
+					await kill.sendFileFromUrl(from, lwkd.data.url, ``, '', id)
+				} else if (seven == 5) {
+					const lwkdk = await axios.get('https://nekos.life/api/v2/img/lewdkemo')
+					await kill.sendFileFromUrl(from, lwkdk.data.url, ``, '', id)
+				} else if (seven == 6) {
+					const eron = await axios.get('https://nekos.life/api/v2/img/eron')
+					await kill.sendFileFromUrl(from, eron.data.url, ``, '', id)
+				} else if (seven == 7) {
+					const holoero = await axios.get('https://nekos.life/api/v2/img/holoero')
+					await kill.sendFileFromUrl(from, holoero.data.url, ``, '', id)
 				}
 			}
             break
@@ -2529,19 +2439,15 @@ module.exports = kconfig = async (kill, message) => {
             if (isGroupMsg) {
                 if (!isNsfw) return kill.reply(from, mess.error.Ac, id)
             if (double == 1) {
-				const trap1 = await axios.get(`https://api.i-tech.id/anim/trap?key=${techapi}`)
-				await kill.sendFileFromUrl(from, trap1.data.result, ``, ``, id)
+				const tapr = await axios.get('https://nekos.life/api/v2/img/trap')
+				await kill.sendFileFromUrl(from, tapr.data.url, '', '', id)
             } else if (double == 2) {
 				const trap = await randomNimek('trap')
 				kill.sendFileFromUrl(from, trap, ``, '', id)
-            } else if (double == 2) {
-				const tapr = await axios.get('https://nekos.life/api/v2/img/trap')
-				await kill.sendFileFromUrl(from, tapr.data.url, '', '', id)
 			}
             } else {
-				const trap1 = await axios.get(`https://api.i-tech.id/anim/trap?key=${techapi}`)
-				console.log(trap1.data)
-				await kill.sendFileFromUrl(from, trap1.data.result, ``, ``, id)
+				const tapr = await axios.get('https://nekos.life/api/v2/img/trap')
+				await kill.sendFileFromUrl(from, tapr.data.url, '', '', id)
             }
             break
 
@@ -2619,7 +2525,7 @@ module.exports = kconfig = async (kill, message) => {
         case 'screenshot':
             const _query = body.slice(12)
             if (!_query.match(isUrl)) return kill.reply(from, mess.error.Iv, id)
-            if (args.length == 0) return kill.reply(from, 'Sinto cheiro de ortografia incorreta!', id)
+            if (args.length == 0) return kill.reply(from, 'Sinto cheiro de ortografia incorreta [faltou https:// ?]!', id)
             await ss(_query)
             await sleep(4000)
 			await kill.sendFile(from, './lib/media/img/screenshot.jpeg', 'ss.jpeg', 'Se certifique de evitar usar isso com pornografia.', id)
