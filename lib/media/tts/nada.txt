@@ -1,0 +1,1 @@
+Aqui é onde fica o cache de TTS e Speak
