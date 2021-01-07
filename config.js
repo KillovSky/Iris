@@ -25,7 +25,7 @@ const { owner, donate, down, help, admins, adult, readme, lang } = require('./li
 const { stdout } = require('process')
 const bent = require('bent')
 const { doing } = require('./lib/translate.js')
-const { meme, msgFilter, translate, kill } = require('./lib')
+const { meme, msgFilter, translate, killo } = require('./lib')
 const { uploadImages } = require('./lib/fether')
 const feature = require('./lib/poll')
 const { sobre } = require('./lib/sobre')
@@ -801,7 +801,7 @@ module.exports = kconfig = async (kill, message) => {
                 const quotes = ark.split('|')[0]
                 const qauth = ark.split('|')[1]
                 kill.reply(from, 'Entendido! Aguarde a conclusão do comando.!', id)
-                const quoteimg = await kill.quote(quotes, qauth)
+                const quoteimg = await killo.quote(quotes, qauth)
 				console.log(quoteimg)
                 await kill.sendFileFromUrl(from, quoteimg, '', 'Compreensivel.', id)
                 .catch(() => {
