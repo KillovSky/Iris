@@ -103,6 +103,14 @@ Edite as API's encontradas em:
 - [Número 2](https://github.com/KillovSky/iris/blob/master/config.js#L67)
 - Elas são referentes aos sites [RemoveBG](https://www.remove.bg/pt-br), [ImgBB](https://api.imgbb.com/) e [AlphaCoders](https://wall.alphacoders.com/api.php)
 
+### Brainly
+Depois de terminar a instalação siga esses passos para deixar seu brainly em português:
+
+```
+Abra a brainly.js na pasta iris\node_modules\brainly-scraper\src
+Mude a graphql/id para graphql/pt
+```
+
 ## Agradecimentos
 - [WA-Automate](https://github.com/open-wa/wa-automate-nodejs)
 - [ArugaZ](https://github.com/ArugaZ/whatsapp-bot)
