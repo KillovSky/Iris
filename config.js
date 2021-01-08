@@ -1,5 +1,6 @@
 /*
 * Recodado por Lucas R. e construido em homenagem ao Legião Z.
+* Você pode usar e moldar esse bot MAS NÃO REMOVA os creditos.
 * Evite remover coisas como o Link do legião, obrigado!
 */
 const { decryptMedia } = require('@open-wa/wa-decrypt')
@@ -1757,7 +1758,7 @@ module.exports = kconfig = async (kill, message) => {
 		break 
 		
 		
-	/*case 'gaming':
+	case 'gaming':
 		if (args.length == 0) kill.reply(from, 'Coloca um nome ai!', id)
 		kill.reply(from, mess.wait, id)
 		await kill.sendFileFromUrl(from, `https://docs-jojo.herokuapp.com/api/gaming?text=${body.slice(8)}`, '', '', id)
@@ -1768,7 +1769,142 @@ module.exports = kconfig = async (kill, message) => {
 		if (args.length == 0) kill.reply(from, 'Coloca um nome ai!', id)
 		kill.reply(from, mess.wait, id)
 		await kill.sendFileFromUrl(from, `https://docs-jojo.herokuapp.com/api/epep?text=${body.slice(9)}`, '', '', id)
-		break*/
+		break
+			
+			
+		case 'thunder':
+			if (args.length == 0) kill.reply(from, 'Coloca um nome ai!', id)
+			kill.reply(from, mess.wait, id)
+			await kill.sendFileFromUrl(from, `https://docs-jojo.herokuapp.com/api/thunder?text=${body.slice(9)}`, '', '', id)
+			break
+			
+
+		case 'light':
+			if (args.length == 0) kill.reply(from, 'Coloca um nome ai!', id)
+			kill.reply(from, mess.wait, id)
+			await kill.sendFileFromUrl(from, `https://docs-jojo.herokuapp.com/api/neon_light?text=${body.slice(7)}`, '', '', id)
+			break
+			
+
+		case 'wolf':
+            arkp = body.trim().substring(body.indexOf(' ') + 1)
+            if (args.length >= 2) {
+                kill.reply(from, mess.wait, id)
+                const fisow = arkp.split('|')[0]
+                const twosw = arkp.split('|')[1]
+                await kill.sendFileFromUrl(from, `https://docs-jojo.herokuapp.com/api/wolf?text1=${fisow}&text2=${twosw}`, '', '', id)
+            } else {
+                await kill.reply(from, `Para usar isso, adicione duas frases, separando elas pelo |.`, id)
+            }
+            break
+			
+
+		case 'neon':
+            arkt = body.trim().substring(body.indexOf(' ') + 1)
+            if (args.length >= 3) {
+                kill.reply(from, mess.wait, id)
+                const fisot = arkt.split('|')[0]
+                const twost = arkt.split('|')[1]
+                const trest = arkt.split('|')[1]
+                await kill.sendFileFromUrl(from, `https://docs-jojo.herokuapp.com/api/neon?text1=${fisot}&text2=${twost}&text3=${trest}`, '', '', id)
+            } else {
+                await kill.reply(from, `Para usar isso, adicione três frases, separando elas pelo |.`, id)
+            }
+            break
+			
+
+        case 'porn':
+            if (isGroupMsg) {
+                if (!isNsfw) return kill.reply(from, mess.error.Ac, id)
+            const porn = await axios.get('https://meme-api.herokuapp.com/gimme/porn')
+            kill.sendFileFromUrl(from, porn.data.url, '', porn.data.title, id)
+            } else {
+				const porn = await axios.get('https://meme-api.herokuapp.com/gimme/porn')
+				kill.sendFileFromUrl(from, porn.data.url, '', porn.data.title, id)
+			}
+            break
+			
+			
+        case 'lesbian':
+            if (isGroupMsg) {
+                if (!isNsfw) return kill.reply(from, mess.error.Ac, id)
+            const lesb = await axios.get('https://meme-api.herokuapp.com/gimme/lesbians')
+            kill.sendFileFromUrl(from, lesb.data.url, '', lesb.data.title, id)
+			} else {
+				const lesb = await axios.get('https://meme-api.herokuapp.com/gimme/lesbians')
+				kill.sendFileFromUrl(from, lesb.data.url, '', lesb.data.title, id)
+			}
+            break
+			
+			
+        case 'tits':
+            if (isGroupMsg) {
+                if (!isNsfw) return kill.reply(from, mess.error.Ac, id)
+			if (octo == 1) {
+				const tits = await axios.get('https://meme-api.herokuapp.com/gimme/tits')
+				kill.sendFileFromUrl(from, tits.data.url, '', tits.data.title, id)
+			} else if (octo == 2) {
+				const tits = await axios.get('https://meme-api.herokuapp.com/gimme/BestTits')
+				kill.sendFileFromUrl(from, tits.data.url, '', tits.data.title, id)
+			} else if (octo == 3) {
+				const tits = await axios.get('https://meme-api.herokuapp.com/gimme/boobs')
+				kill.sendFileFromUrl(from, tits.data.url, '', tits.data.title, id)
+			} else if (octo == 4) {
+				const tits = await axios.get('https://meme-api.herokuapp.com/gimme/BiggerThanYouThought')
+				kill.sendFileFromUrl(from, tits.data.url, '', tits.data.title, id)
+			} else if (octo == 5) {
+				const tits = await axios.get('https://meme-api.herokuapp.com/gimme/smallboobs')
+				kill.sendFileFromUrl(from, tits.data.url, '', tits.data.title, id)
+			} else if (octo == 6) {
+				const tits = await axios.get('https://meme-api.herokuapp.com/gimme/TinyTits')
+				kill.sendFileFromUrl(from, tits.data.url, '', tits.data.title, id)
+			} else if (octo == 7) {
+				const tits = await axios.get('https://meme-api.herokuapp.com/gimme/SmallTitsHugeLoad')
+				kill.sendFileFromUrl(from, tits.data.url, '', tits.data.title, id)
+			} else if (octo == 8) {
+				const tits = await axios.get('https://meme-api.herokuapp.com/gimme/amazingtits')
+				kill.sendFileFromUrl(from, tits.data.url, '', tits.data.title, id)
+			}
+            } else {
+				if (octo == 1) {
+					const tits = await axios.get('https://meme-api.herokuapp.com/gimme/tits')
+					kill.sendFileFromUrl(from, tits.data.url, '', tits.data.title, id)
+				} else if (octo == 2) {
+					const tits = await axios.get('https://meme-api.herokuapp.com/gimme/BestTits')
+					kill.sendFileFromUrl(from, tits.data.url, '', tits.data.title, id)
+				} else if (octo == 3) {
+					const tits = await axios.get('https://meme-api.herokuapp.com/gimme/boobs')
+					kill.sendFileFromUrl(from, tits.data.url, '', tits.data.title, id)
+				} else if (octo == 4) {
+					const tits = await axios.get('https://meme-api.herokuapp.com/gimme/BiggerThanYouThought')
+					kill.sendFileFromUrl(from, tits.data.url, '', tits.data.title, id)
+				} else if (octo == 5) {
+					const tits = await axios.get('https://meme-api.herokuapp.com/gimme/smallboobs')
+					kill.sendFileFromUrl(from, tits.data.url, '', tits.data.title, id)
+				} else if (octo == 6) {
+					const tits = await axios.get('https://meme-api.herokuapp.com/gimme/TinyTits')
+					kill.sendFileFromUrl(from, tits.data.url, '', tits.data.title, id)
+				} else if (octo == 7) {
+					const tits = await axios.get('https://meme-api.herokuapp.com/gimme/SmallTitsHugeLoad')
+					kill.sendFileFromUrl(from, tits.data.url, '', tits.data.title, id)
+				} else if (octo == 8) {
+					const tits = await axios.get('https://meme-api.herokuapp.com/gimme/amazingtits')
+					kill.sendFileFromUrl(from, tits.data.url, '', tits.data.title, id)
+				}
+			}
+            break
+			
+			
+        case 'pgay':
+            if (isGroupMsg) {
+                if (!isNsfw) return kill.reply(from, mess.error.Ac, id)
+            const gay = await axios.get('https://meme-api.herokuapp.com/gimme/gayporn')
+            kill.sendFileFromUrl(from, gay.data.url, '', gay.data.title, id)
+            } else {
+				const gay = await axios.get('https://meme-api.herokuapp.com/gimme/gayporn')
+				kill.sendFileFromUrl(from, gay.data.url, '', gay.data.title, id)
+			}
+            break
 		
 		
 	case 'logo':
