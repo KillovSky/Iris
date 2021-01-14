@@ -8,6 +8,7 @@ Por favor NÃO REMOVA os creditos, levei muito tempo e precisei ter muita dedica
 
 | Função |Contém|
 | ------------- | ------------- |
+| Usar CMD/Terminal pelo WhatsAPP |✅|
 | Downloads (Redes-Sociais e YouTube) |✅|
 | Conversar por texto/voz Sim-Simi/Local (ilimitado) |✅|
 | Busca/fotos de animes |✅|
