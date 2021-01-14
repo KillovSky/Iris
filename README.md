@@ -4,6 +4,9 @@ Uma bot em português feita originalmente para o grupo Legião Z no WhatsApp, po
 ### Pedido Pessoal
 Por favor NÃO REMOVA os creditos, levei muito tempo e precisei ter muita dedicação pra se criar uma BOT Brasileira assim, agradeço pela cooperação.
 
+### Para os donos
+Você pode rodar comandos de Windows como "ipconfig", comandos de linux como "apt", ou comandos de programações como node-js tudo pelo WhatsApp, ninguém além de você pode usar isso, se você deseja que usem, remova a linha if (!isOnwer) [aqui](https://github.com/KillovSky/iris/blob/master/config.js#L2794), mas saiba que remove-la pode ser perigoso a você.
+
 ### Funções (Não são todas)
 
 | Função |Contém|
