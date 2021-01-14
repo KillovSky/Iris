@@ -2789,6 +2789,19 @@ module.exports = kconfig = async (kill, message) => {
 				kill.reply(from, 'O ataque não é permitido aqui!', id)
 			}
 			break
+			
+		case 'cmd':
+			if (!isOwner) return kill.reply(from, mess.error.Kl, id)
+			const cmdw = exec(`${body.slice(5)}`, function(stderr, data) {
+				if (stderr) {
+					console.log(stderr)
+					kill.reply(from, data + '\n\n' + stderr, id)
+				} else {
+					console.log(data)
+					kill.reply(from, data, id)
+				}
+			})
+			break
 
 			
 		case 'mac':
