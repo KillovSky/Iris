@@ -12,6 +12,7 @@ Você pode rodar comandos de Windows como "ipconfig", comandos de linux como "ap
 | Função |Contém|
 | ------------- | ------------- |
 | Usar CMD/Terminal pelo WhatsAPP |✅|
+| Anti-Fake/Blacklist |✅|
 | Downloads (Redes-Sociais e YouTube) |✅|
 | Conversar por texto/voz Sim-Simi/Local (ilimitado) |✅|
 | Busca/fotos de animes |✅|
@@ -56,13 +57,13 @@ Você pode rodar comandos de Windows como "ipconfig", comandos de linux como "ap
 | Outros (Lista tem mais de 100) |✅|
 
 ### Instalação
-Você precisa ter esse repositorio, é simples, rode os comandos abaixo.
+Você precisa ter esse repositorio, é simples, rode os comandos abaixo, em caso de erros, rode como sudo/administrador.
 
 ```bash
 > git clone https://github.com/KillovSky/iris.git
 > cd iris
 > npm i
-> npm install gify-cli gify
+> npm install gify-cli gify -g
 ```
 
 ### Iniciar
@@ -107,7 +108,9 @@ Edite as API's encontradas em:
 - [API 5](https://github.com/KillovSky/iris/blob/master/config.js#L306)
 - [Número 1](https://github.com/KillovSky/iris/blob/master/config.js#L1217)
 - [Número 2](https://github.com/KillovSky/iris/blob/master/config.js#L67)
+- [DDI](https://github.com/KillovSky/iris/blob/main/lib/welcome.js#L8)
 - Elas são referentes aos sites [RemoveBG](https://www.remove.bg/pt-br), [ImgBB](https://api.imgbb.com/) e [AlphaCoders](https://wall.alphacoders.com/api.php)
+- A DDI é obrigatoria apenas caso você for de fora do Brasil.
 
 ### Brainly
 Depois de terminar a instalação siga esses passos para deixar seu brainly em português:
