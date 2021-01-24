@@ -803,7 +803,7 @@ module.exports = kconfig = async (kill, message) => {
 				} else if (vyre.endsWith('seconds ago')) {
                     var videore = vyre.replace('seconds ago', 'Segundos atrás')
 				}
-				const size = await axios.get(`http://st4rz.herokuapp.com/api/ytv?url=http://youtu.be/${res.data[0].id}`)
+				const size = await axios.get(`http://st4rz.herokuapp.com/api/ytv?url=http://youtu.be/${res.data.result[0].id}`)
 				const fsize = size.data.filesize.replace(' MB', '').replace('Download  ', 'Impossivel calcular')
 				console.log(fsize)
 				const impo = size.data.filesize.replace('Download  ', 'um peso muito superior que não posso calcular')
@@ -811,8 +811,8 @@ module.exports = kconfig = async (kill, message) => {
 					kill.reply(from, `Desculpe, para evitar banimentos do WhatsApp, o limite de envio de videos é de 16MB, e esse possui ${impo.replace('    ', ' ')}.`, id)
 				} else {
 					await kill.sendFileFromUrl(from, `${res.data.result[0].thumbnail}`, ``, `Titulo: ${res.data.result[0].title}\n\nDuração: ${res.data.result[0].duration} segundos\n\nFoi feito a: ${videore}\n\nVisualizações: ${res.data.result[0].viewCount}\n\nPeso: ${size.data.filesize}\n\nEspero que eu tenha acertado e...agora é so esperar! Mas evite usar novamente até que eu termine emm!`, id)
-					console.log(res.data[0].title)
-					axios.get(`http://st4rz.herokuapp.com/api/ytv2?url=https://youtu.be/${res.data[0].id}`)
+					console.log(res.data.result[0].title)
+					axios.get(`http://st4rz.herokuapp.com/api/ytv2?url=https://youtu.be/${res.data.result[0].id}`)
 					.then(async(rest) => {
 						var mp4 = rest.data.result
 						var tmp4 = rest.data.title
@@ -820,8 +820,9 @@ module.exports = kconfig = async (kill, message) => {
 					})
 				}
 			})
+            break
 			
-
+			
         case 'play':
             if (args.length == 0) return kill.reply(from, 'Você usou incorretamente.', id)
             axios.get(`https://arugaz.my.id/api/media/ytsearch?query=${body.slice(6)}`)
@@ -842,15 +843,15 @@ module.exports = kconfig = async (kill, message) => {
 				} else if (pyre.endsWith('seconds ago')) {
                     var playre = pyre.replace('seconds ago', 'Segundos atrás')
 				}
-				const asize = await axios.get(`http://st4rz.herokuapp.com/api/yta?url=http://youtu.be/${res.data[0].id}`)
+				const asize = await axios.get(`http://st4rz.herokuapp.com/api/yta?url=http://youtu.be/${res.data.result[0].id}`)
 				const afsize = asize.data.filesize.replace(' MB', '')
 				console.log(afsize)
 				if (afsize >= 16.0 || asize.data.filesize.endsWith('GB')) {
 					kill.reply(from, `Desculpe, para evitar banimentos do WhatsApp, o limite de envio de audios é de 16MB, e esse possui ${asize.data.filesize}.`, id)
 				} else {
 					await kill.sendFileFromUrl(from, `${res.data.result[0].thumbnail}`, ``, `Titulo: ${res.data.result[0].title}\n\nDuração: ${res.data.result[0].duration} segundos\n\nFoi feito a: ${playre}\n\nVisualizações: ${res.data.result[0].viewCount}\n\nEspero que eu tenha acertado e...agora é so esperar! Mas evite usar novamente até que eu termine emm!`, id)
-					console.log(res.data[0].title)
-					axios.get(`http://st4rz.herokuapp.com/api/yta2?url=http://youtu.be/${res.data[0].id}`)
+					console.log(res.data.result[0].title)
+					axios.get(`http://st4rz.herokuapp.com/api/yta2?url=http://youtu.be/${res.data.result[0].id}`)
 					.then(async(rest) => {
 						var m3pa = rest.data.result
 						var m3ti = rest.data.title
