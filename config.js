@@ -502,13 +502,13 @@ module.exports = kconfig = async (kill, message) => {
 				const bkls = body.slice(8) + '@c.us'
 				atbk.push(bkls)
 				fs.writeFileSync('./lib/anti.json', JSON.stringify(atbk))
-				await client.reply(from, 'Número adicionado a black-list', id)
+				await kill.reply(from, 'Número adicionado a black-list', id)
 			} else if (isGroupMsg && isOwner) {
 				if (args.length == 0) return kill.reply(from, 'Defina o número.', id)
 				const bkls = body.slice(8) + '@c.us'
 				atbk.push(bkls)
 				fs.writeFileSync('./lib/anti.json', JSON.stringify(atbk))
-				await client.reply(from, 'Número adicionado a black-list', id)
+				await kill.reply(from, 'Número adicionado a black-list', id)
             } else {
                 kill.reply(from, mess.error.Ga, id)
             }
@@ -606,16 +606,15 @@ module.exports = kconfig = async (kill, message) => {
 
         case 'frase':
             if (double == 1) {
-            const skya = await get.get('http://mhankbarbars.herokuapp.com/api/quotesnime/random').json() 
-            skya_ = skya.data
-			const quot = skya.data.quote
-			kill.reply(from, mess.wait, id)
-			await sleep(5000)
-            translate(quot, 'pt')
-                .then((quote) => kill.reply(from, `➸ *Frase* : ${quote}\n➸ *Personagem* : ${skya_.chara}\n➸ *Anime* : ${skya_.anime}`, id))
+				const skya = await axios.get('https://mhankbarbar.tech/api/quotesnime/random').json() 
+				const quot = skya.data.data.quote
+				kill.reply(from, mess.wait, id)
+				await sleep(5000)
+				translate(quot, 'pt')
+					.then((quote) => kill.reply(from, `➸ *Frase* : ${quote}\n➸ *Personagem* : ${skya.data.data.chara}\n➸ *Anime* : ${skya.data.data.anime}`, id))
 			} else if (double == 2) {
-			const aiquote = await axios.get("http://inspirobot.me/api?generate=true")
-            await kill.sendFileFromUrl(from, aiquote.data, 'quote.jpg', '~Não entendi nada, mas vamos seguir o roteiro...~\n\n❤️' , id )
+				const aiquote = await axios.get("http://inspirobot.me/api?generate=true")
+				await kill.sendFileFromUrl(from, aiquote.data, 'quote.jpg', '~Não entendi nada, mas vamos seguir o roteiro...~\n\n❤️' , id )
 			}
             break
 
@@ -632,10 +631,10 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'neko':
-            const nekol = Math.floor(Math.random() * 6) + 1
+            const nekol = Math.floor(Math.random() * 4) + 1
             if (nekol == 1) {
-				const neko1 = await get.get('http://mhankbarbars.herokuapp.com/api/nekonime').json()
-				await kill.sendFileFromUrl(from, neko1.result, ``, `Que fofa...`, id)
+				const neko5 = await axios.get(`https://nekos.life/api/v2/img/kemonomimi`)
+				await kill.sendFileFromUrl(from, neko5.data.url, ``, `Nekoooo chann`, id)
             } else if (nekol == 2) {
 				const neko2 = await axios.get(`https://nekos.life/api/v2/img/neko`)
 				await kill.sendFileFromUrl(from, neko2.data.url, ``, `Nekooo`, id)
@@ -645,12 +644,6 @@ module.exports = kconfig = async (kill, message) => {
             } else if (nekol == 4) {
 				const neko4 = await axios.get(`https://nekos.life/api/v2/img/fox_girl`)
 				await kill.sendFileFromUrl(from, neko4.data.url, ``, `Nekooo`, id)
-            } else if (nekol == 5) {
-				const neko5 = await axios.get(`https://nekos.life/api/v2/img/kemonomimi`)
-				await kill.sendFileFromUrl(from, neko5.data.url, ``, `Nekoooo chann`, id)
-            } else if (nekol == 6) {
-				const neko6 = await axios.get(`https://arugaz.herokuapp.com/api/nekonime`)
-				await kill.sendFileFromUrl(from, neko6.data.result, ``, `Nekoooo chann`, id)
 			}
             break
 
@@ -715,29 +708,47 @@ module.exports = kconfig = async (kill, message) => {
 					})
 			break
 			
-			
-        case 'insta':
+        case 'stalkig':
             if (args.length == 0) return kill.reply(from, 'Cade o username né?', id)
-            const ig = await axios.get(`https://docs-jojo.herokuapp.com/api/stalk?username=${body.slice(7)}`)
-			var insta = ig.data.Biodata
-            await kill.sendFileFromUrl(from, `${ig.data.Profile_pic}`, ``, `Username: ${ig.data.Username}\n\nNome: ${ig.data.Name}\n\nbio: ${insta}\n\nSeguidores: ${ig.data.Jumlah_Followers}\n\nSeguindo: ${ig.data.Jumlah_Following}\n\nPublicações: ${ig.data.Jumlah_Post}`, id)
+            const ig = await axios.get(`http://arugaz.my.id/api/media/stalkig?user=${body.slice(9)}`)
+			var insta = ig.data.result.biography
+            await kill.sendFileFromUrl(from, `${ig.data.result.profile_picture}`, ``, `Username: ${ig.data.result.username}\n\nNome: ${ig.data.result.fullname}\n\nbio: ${insta}\n\nSeguidores: ${ig.data.result.followers}\n\nSeguindo: ${ig.data.followings}`, id)
+            break
+			
+
+        case 'stalktw':
+            if (args.length == 0) return kill.reply(from, 'Cade o username né?', id)
+            const tw = await axios.get(`http://arugaz.my.id/api/media/stalktwitt?user=${body.slice(9)}`)
+			var insta = tw.data.result.biography
+            await kill.sendFileFromUrl(from, `${tw.data.result.profile_picture}`, ``, `Username: ${tw.data.result.username}\n\nNome: ${tw.data.result.fullname}\n\nbio: ${insta}\n\nSeguidores: ${tw.data.result.followers}\n\nSeguindo: ${tw.data.followings}`, id)
+            break
+			
+			
+
+        case 'twitter':
+            if (args.length == 0) return kill.reply(from, 'Cade o link né?', id)
+            const twi = await axios.get(`http://arugaz.my.id/api/media/twvid?url=${body.slice(4)}`)
+			await kill.sendFileFromUrl(from, twi.data.result.videos, ``, 'É um otimo video haha!\n~Mas o que diabos foi isso...~', id)
+			.catch(() => {
+						kill.reply(from, 'Essa não! Impediram meu acesso!\nQue desalmados!', id)
+					})
             break
 
 
-       case 'ig':
+        case 'ig':
             if (args.length == 0) return kill.reply(from, 'Cade o link né?', id)
-            const iga = await axios.get(`https://st4rz.herokuapp.com/api/ig?url=${body.slice(11)}`)
-			await kill.sendFileFromUrl(from, iga.data.result, ``, '~Mas o que diabos foi isso...~', id)
+            const iga = await axios.get(`https://arugaz.my.id/api/media/ig?url=${body.slice(4)}`)
+			await kill.sendFileFromUrl(from, iga.data.result, ``, 'É um otimo video haha!\n~Mas o que diabos foi isso...~', id)
 			.catch(() => {
-				kill.reply(from, 'Essa não! Impediram meu acesso!\nQue desalmados!', id)
-			})
+						kill.reply(from, 'Essa não! Impediram meu acesso!\nQue desalmados!', id)
+					})
             break
 			
 			
 		case 'fb':
 			if (args.length == 0) return kill.reply(from, 'Você esqueceu de inserir um link do facebook?', id)
-            const fb = await axios.get(`http://arugaz.herokuapp.com/api/fb?url=${body.slice(4)}`)
-			const fbdw = fb.data.result.sd
+            const fb = await axios.get(`http://arugaz.my.id/api/media/facebook?url=${body.slice(4)}`)
+			const fbdw = fb.data.result.linkSD
             await kill.sendFileFromUrl(from, fbdw, 'video.mp4', 'Excelente video!\n~Mas o que diabos aconteceu?...~', id)
 			.catch(() => {
 						kill.reply(from, 'Minha nossa, algum tipo de força maligna me impediu de terminar o comando!', id)
@@ -745,7 +756,7 @@ module.exports = kconfig = async (kill, message) => {
             break
 
 
-         case 'mp3': // eu censurei o acesso pois as apis estão offlines, e fazer isso evita que usem o comando e te de problemas
+         case 'mp3':
             if (args.length == 0) return kill.reply(from, 'Você usou incorretamente.', id)
             axios.get(`http://st4rz.herokuapp.com/api/yta2?url=${body.slice(5)}`)
             .then(async(rest) => {
@@ -774,24 +785,23 @@ module.exports = kconfig = async (kill, message) => {
 			
         case 'video':
             if (args.length == 0) return kill.reply(from, 'Você usou incorretamente.', id)
-            axios.get(`http://arugaytdl.herokuapp.com/search?q=${body.slice(7)}`)
+            axios.get(`https://arugaz.my.id/api/media/ytsearch?query=${body.slice(7)}`)
             .then(async (res) => {
-                if (res.data[0].uploadDate.endsWith('years ago')) {
-                    var videore = res.data[0].uploadDate.replace('years ago', 'Anos atrás')
-				} else if (res.data[0].uploadDate.endsWith('hours ago')) {
-                    var videore = res.data[0].uploadDate.replace('hours ago', 'Horas atrás')
-				} else if (res.data[0].uploadDate.endsWith('minutes ago')) {
-                    var videore = res.data[0].uploadDate.replace('minutes ago', 'Minutos atrás')
-				} else if (res.data[0].uploadDate.endsWith('day ago')) {
-                    var videore = res.data[0].uploadDate.replace('day ago', 'Dia atrás')
-				} else if (res.data[0].uploadDate.endsWith('months ago')) {
-                    var videore = res.data[0].uploadDate.replace('months ago', 'Meses atrás')
-				} else if (res.data[0].uploadDate.endsWith('seconds ago')) {
-                    var videore = res.data[0].uploadDate.replace('seconds ago', 'Segundos atrás')
-				} else if (res.data[0].uploadDate.endsWith('undefined')) {
-                    var videore = res.data[0].uploadDate.replace('undefined', 'Indefinido')
-				} else if (res.data[0].uploadDate.endsWith('null')) {
-                    var videore = res.data[0].uploadDate.replace('null', 'Indefinido')
+				const vyre = res.data.result[0].uploadDate
+				if (vyre == '' || vyre == 'null' || vyre == null || vyre == undefined || vyre == 'undefined') {
+					var videore = 'Indefinido'
+				} else if (vyre.endsWith('years ago')) {
+                    var videore = vyre.replace('years ago', 'Anos atrás')
+				} else if (vyre.endsWith('hours ago')) {
+                    var videore = vyre.replace('hours ago', 'Horas atrás')
+				} else if (vyre.endsWith('minutes ago')) {
+                    var videore = vyre.replace('minutes ago', 'Minutos atrás')
+				} else if (vyre.endsWith('day ago')) {
+                    var videore = vyre.replace('day ago', 'Dia atrás')
+				} else if (vyre.endsWith('months ago')) {
+                    var videore = vyre.replace('months ago', 'Meses atrás')
+				} else if (vyre.endsWith('seconds ago')) {
+                    var videore = vyre.replace('seconds ago', 'Segundos atrás')
 				}
 				const size = await axios.get(`http://st4rz.herokuapp.com/api/ytv?url=http://youtu.be/${res.data[0].id}`)
 				const fsize = size.data.filesize.replace(' MB', '').replace('Download  ', 'Impossivel calcular')
@@ -800,7 +810,7 @@ module.exports = kconfig = async (kill, message) => {
 				if (fsize >= 16.0 || size.data.filesize.endsWith('Download  ') || size.data.filesize.endsWith('GB')) {
 					kill.reply(from, `Desculpe, para evitar banimentos do WhatsApp, o limite de envio de videos é de 16MB, e esse possui ${impo.replace('    ', ' ')}.`, id)
 				} else {
-				await kill.sendFileFromUrl(from, `${res.data[0].thumbnail}`, ``, `Titulo: ${res.data[0].title}\n\nDuração: ${res.data[0].duration} segundos\n\nFoi feito a: ${videore}\n\nVisualizações: ${res.data[0].viewCount}\n\nPeso: ${size.data.filesize}\n\nEspero que eu tenha acertado e...agora é so esperar! Mas evite usar novamente até que eu termine emm!`, id)
+					await kill.sendFileFromUrl(from, `${res.data.result[0].thumbnail}`, ``, `Titulo: ${res.data.result[0].title}\n\nDuração: ${res.data.result[0].duration} segundos\n\nFoi feito a: ${videore}\n\nVisualizações: ${res.data.result[0].viewCount}\n\nPeso: ${size.data.filesize}\n\nEspero que eu tenha acertado e...agora é so esperar! Mas evite usar novamente até que eu termine emm!`, id)
 					console.log(res.data[0].title)
 					axios.get(`http://st4rz.herokuapp.com/api/ytv2?url=https://youtu.be/${res.data[0].id}`)
 					.then(async(rest) => {
@@ -810,29 +820,27 @@ module.exports = kconfig = async (kill, message) => {
 					})
 				}
 			})
-            break
 			
 
         case 'play':
             if (args.length == 0) return kill.reply(from, 'Você usou incorretamente.', id)
-            axios.get(`http://arugaytdl.herokuapp.com/search?q=${body.slice(6)}`)
+            axios.get(`https://arugaz.my.id/api/media/ytsearch?query=${body.slice(6)}`)
             .then(async (res) => {
-                if (res.data[0].uploadDate.endsWith('years ago')) {
-                    var playre = res.data[0].uploadDate.replace('years ago', 'Anos atrás')
-				} else if (res.data[0].uploadDate.endsWith('hours ago')) {
-                    var playre = res.data[0].uploadDate.replace('hours ago', 'Horas atrás')
-				} else if (res.data[0].uploadDate.endsWith('minutes ago')) {
-                    var playre = res.data[0].uploadDate.replace('minutes ago', 'Minutos atrás')
-				} else if (res.data[0].uploadDate.endsWith('day ago')) {
-                    var playre = res.data[0].uploadDate.replace('day ago', 'Dia atrás')
-				} else if (res.data[0].uploadDate.endsWith('months ago')) {
-                    var playre = res.data[0].uploadDate.replace('months ago', 'Meses atrás')
-				} else if (res.data[0].uploadDate.endsWith('seconds ago')) {
-                    var playre = res.data[0].uploadDate.replace('seconds ago', 'Segundos atrás')
-				} else if (res.data[0].uploadDate.endsWith('undefined')) {
-                    var videore = res.data[0].uploadDate.replace('undefined', 'Indefinido')
-				} else if (res.data[0].uploadDate.endsWith('null')) {
-                    var videore = res.data[0].uploadDate.replace('null', 'Indefinido')
+				const pyre = res.data.result[0].uploadDate
+				if (pyre == '' || pyre == 'null' || pyre == null || pyre == undefined || pyre == 'undefined') {
+					var playre = 'Indefinido'
+				} else if (pyre.endsWith('years ago')) {
+                    var playre = pyre.replace('years ago', 'Anos atrás')
+				} else if (pyre.endsWith('hours ago')) {
+                    var playre = pyre.replace('hours ago', 'Horas atrás')
+				} else if (pyre.endsWith('minutes ago')) {
+                    var playre = pyre.replace('minutes ago', 'Minutos atrás')
+				} else if (pyre.endsWith('day ago')) {
+                    var playre = pyre.replace('day ago', 'Dia atrás')
+				} else if (pyre.endsWith('months ago')) {
+                    var playre = pyre.replace('months ago', 'Meses atrás')
+				} else if (pyre.endsWith('seconds ago')) {
+                    var playre = pyre.replace('seconds ago', 'Segundos atrás')
 				}
 				const asize = await axios.get(`http://st4rz.herokuapp.com/api/yta?url=http://youtu.be/${res.data[0].id}`)
 				const afsize = asize.data.filesize.replace(' MB', '')
@@ -840,7 +848,7 @@ module.exports = kconfig = async (kill, message) => {
 				if (afsize >= 16.0 || asize.data.filesize.endsWith('GB')) {
 					kill.reply(from, `Desculpe, para evitar banimentos do WhatsApp, o limite de envio de audios é de 16MB, e esse possui ${asize.data.filesize}.`, id)
 				} else {
-					await kill.sendFileFromUrl(from, `${res.data[0].thumbnail}`, ``, `Titulo: ${res.data[0].title}\n\nDuração: ${res.data[0].duration} segundos\n\nFoi feito a: ${playre}\n\nVisualizações: ${res.data[0].viewCount}\n\nEspero que eu tenha acertado e...agora é so esperar! Mas evite usar novamente até que eu termine emm!`, id)
+					await kill.sendFileFromUrl(from, `${res.data.result[0].thumbnail}`, ``, `Titulo: ${res.data.result[0].title}\n\nDuração: ${res.data.result[0].duration} segundos\n\nFoi feito a: ${playre}\n\nVisualizações: ${res.data.result[0].viewCount}\n\nEspero que eu tenha acertado e...agora é so esperar! Mas evite usar novamente até que eu termine emm!`, id)
 					console.log(res.data[0].title)
 					axios.get(`http://st4rz.herokuapp.com/api/yta2?url=http://youtu.be/${res.data[0].id}`)
 					.then(async(rest) => {
@@ -1200,7 +1208,7 @@ module.exports = kconfig = async (kill, message) => {
 					})		
 				} else {
 					sppt.save('./lib/media/tts/resPtm.mp3', a, function () {
-						client.sendPtt(from, './lib/media/tts/resPtm.mp3', id)
+						kill.sendPtt(from, './lib/media/tts/resPtm.mp3', id)
 					})
 				}
 			} catch (error) {
@@ -1452,6 +1460,34 @@ module.exports = kconfig = async (kill, message) => {
 			})
 			break
 			
+			
+      case 'moddroid':
+            if (args.length == 0) return kill.reply(from, 'Bote um nome para buscar!', id)
+            try {
+                const moddroid = await axios.get('https://tobz-api.herokuapp.com/api/moddroid?q=' + body.slice(10)  + '&apikey=BotWeA')
+                if (moddroid.data.error) return kill.reply(from, moddroid.data.error, id)
+                const modo = moddroid.data.result[0]
+                const resmod = `• *Titulo* : ${modo.title}\n\n• *Quem criou* : ${modo.publisher}\n\n• *Peso* : ${modo.size}\n\n• *MOD* : ${modo.mod_info}\n\n• *Versão* : ${modo.latest_version}\n\n• *Gênero* : ${modo.genre}\n\n• *Link* : ${modo.link}\n\n• *Download* : ${modo.download}`
+                kill.sendFileFromUrl(from, modo.image, 'MODDROID.jpg', resmod, id)
+            } catch (err) {
+                console.log(err)
+            }
+            break
+			
+			
+        case 'happymod':
+            if (args.length == 0) return kill.reply(from, 'Bote um nome para buscar!', id)
+            try {
+                const happymod = await axios.get('https://tobz-api.herokuapp.com/api/happymod?q=' + body.slice(10)  + '&apikey=BotWeA')
+                if (happymod.data.error) return kill.reply(from, happymod.data.error, id)
+                const modo = happymod.data.result[0]
+                const resmod = `• *Titulo* : ${modo.title}\n\n• *Compra* : ${modo.purchase}\n\n• *Peso* : ${modo.size}\n\n• *Root* : ${modo.root}\n\n• *Versão* : ${modo.version}\n\n• *Preço* : ${modo.price}\n\n• *Link* : ${modo.link}\n\n• *Download* : ${modo.download}`
+                kill.sendFileFromUrl(from, modo.image, 'HAPPYMOD.jpg', resmod, id)
+            } catch (err) {
+                console.log(err)
+            }
+            break
+			
 
         case 'girl':
     	    var items = ["garota adolescente", "saycay", "alina nikitina", "belle delphine", "teen girl", "teen cute", "japanese girl", "garota bonita oriental", "oriental girl", "korean girl", "chinese girl", "e-girl", "teen egirl", "brazilian teen girl", "pretty teen girl", "korean teen girl", "garota adolescente bonita", "menina adolescente bonita", "egirl", "cute girl"];
@@ -1504,7 +1540,7 @@ module.exports = kconfig = async (kill, message) => {
 					const nuklir = body.split(' ')[1]
 					kill.reply(from, mess.wait, id)
 					const cek = await nhentai.exists(nuklir)
-					if (cek === true)  {
+					if (cek == true)  {
 						try {
 							const api = new API()
 							const pic = await api.getBook(nuklir).then(book => {
@@ -1514,9 +1550,10 @@ module.exports = kconfig = async (kill, message) => {
 							const { title, details, link } = dojin
 							const { parodies, tags, artists, groups, languages, categories } = await details
 							var teks = `*Titulo* : ${title}\n\n*Parodia de* : ${parodies}\n\n*Tags* : ${tags.join(', ')}\n\n*Artistas* : ${artists.join(', ')}\n\n*Grupos* : ${groups.join(', ')}\n\n*Linguagens* : ${languages.join(', ')}\n\n*Categoria* : ${categories}\n\n*Link* : ${link}`
-							kill.sendFileFromUrl(from, pic, 'hentod.jpg', teks, id)
+							await kill.sendFileFromUrl(from, pic, '', teks + '\n\n' + 'Aguarde, estou enviando o hentai, pode demorar varios minutos dependendo da quantidade de paginas.', id)
+							await kill.sendFileFromUrl(from, `https://nhder.herokuapp.com/download/nhentai/${nuklir}/zip`, 'hentai.zip', '', id)
 						} catch (err) {
-                        kill.reply(from, '[❗] Ops! Deu erro no envio!', id)
+							kill.reply(from, '[❗] Ops! Deu erro no envio!', id)
 						}
 					} else {
 						kill.reply(from, '[❗] Aqui diz que não achou resultados...')
@@ -1529,7 +1566,7 @@ module.exports = kconfig = async (kill, message) => {
 					const nuklir = body.split(' ')[1]
 					kill.reply(from, mess.wait, id)
 					const cek = await nhentai.exists(nuklir)
-					if (cek === true)  {
+					if (cek == true)  {
 						try {
 							const api = new API()
 							const pic = await api.getBook(nuklir).then(book => {
@@ -1539,7 +1576,8 @@ module.exports = kconfig = async (kill, message) => {
 							const { title, details, link } = dojin
 							const { parodies, tags, artists, groups, languages, categories } = await details
 							var teks = `*Titulo* : ${title}\n\n*Parodia de* : ${parodies}\n\n*Tags* : ${tags.join(', ')}\n\n*Artistas* : ${artists.join(', ')}\n\n*Grupos* : ${groups.join(', ')}\n\n*Linguagens* : ${languages.join(', ')}\n\n*Categoria* : ${categories}\n\n*Link* : ${link}`
-							kill.sendFileFromUrl(from, pic, 'hentod.jpg', teks, id)
+							await kill.sendFileFromUrl(from, pic, '', teks + '\n\n' + 'Aguarde, estou enviando o hentai, pode demorar varios minutos dependendo da quantidade de paginas.', id)
+							await kill.sendFileFromUrl(from, `https://nhder.herokuapp.com/download/nhentai/${nuklir}/zip`, 'hentai.zip', '', id)
 						} catch (err) {
                         kill.reply(from, '[❗] Ops! Deu erros no envio!', id)
 						}
@@ -1833,26 +1871,25 @@ module.exports = kconfig = async (kill, message) => {
             break
 			
 			
+		case '3d':
+			if (args.length == 0) kill.reply(from, 'Coloca uma mensagem ai!', id)
+			kill.reply(from, mess.wait, id)
+			await kill.sendFileFromUrl(from, `https://docs-jojo.herokuapp.com/api/text3d?text=${body.slice(4)}`, '', '', id)
+			break 
 			
-	case '3d':
-		if (args.length == 0) kill.reply(from, 'Coloca uma mensagem ai!', id)
-		kill.reply(from, mess.wait, id)
-		await kill.sendFileFromUrl(from, `https://docs-jojo.herokuapp.com/api/text3d?text=${body.slice(4)}`, '', '', id)
-		break 
+			
+		case 'gaming':
+			if (args.length == 0) kill.reply(from, 'Coloca um nome ai!', id)
+			kill.reply(from, mess.wait, id)
+			await kill.sendFileFromUrl(from, `https://docs-jojo.herokuapp.com/api/gaming?text=${body.slice(8)}`, '', '', id)
+			break
 		
 		
-	case 'gaming':
-		if (args.length == 0) kill.reply(from, 'Coloca um nome ai!', id)
-		kill.reply(from, mess.wait, id)
-		await kill.sendFileFromUrl(from, `https://docs-jojo.herokuapp.com/api/gaming?text=${body.slice(8)}`, '', '', id)
-		break
-		
-		
-	case 'fogareu':
-		if (args.length == 0) kill.reply(from, 'Coloca um nome ai!', id)
-		kill.reply(from, mess.wait, id)
-		await kill.sendFileFromUrl(from, `https://docs-jojo.herokuapp.com/api/epep?text=${body.slice(9)}`, '', '', id)
-		break
+		case 'fogareu':
+			if (args.length == 0) kill.reply(from, 'Coloca um nome ai!', id)
+			kill.reply(from, mess.wait, id)
+			await kill.sendFileFromUrl(from, `https://docs-jojo.herokuapp.com/api/epep?text=${body.slice(9)}`, '', '', id)
+			break
 			
 			
 		case 'thunder':
@@ -1920,63 +1957,6 @@ module.exports = kconfig = async (kill, message) => {
             break
 			
 			
-        case 'tits':
-            if (isGroupMsg) {
-                if (!isNsfw) return kill.reply(from, mess.error.Ac, id)
-			if (octo == 1) {
-				const tits = await axios.get('https://meme-api.herokuapp.com/gimme/tits')
-				kill.sendFileFromUrl(from, tits.data.url, '', tits.data.title, id)
-			} else if (octo == 2) {
-				const tits = await axios.get('https://meme-api.herokuapp.com/gimme/BestTits')
-				kill.sendFileFromUrl(from, tits.data.url, '', tits.data.title, id)
-			} else if (octo == 3) {
-				const tits = await axios.get('https://meme-api.herokuapp.com/gimme/boobs')
-				kill.sendFileFromUrl(from, tits.data.url, '', tits.data.title, id)
-			} else if (octo == 4) {
-				const tits = await axios.get('https://meme-api.herokuapp.com/gimme/BiggerThanYouThought')
-				kill.sendFileFromUrl(from, tits.data.url, '', tits.data.title, id)
-			} else if (octo == 5) {
-				const tits = await axios.get('https://meme-api.herokuapp.com/gimme/smallboobs')
-				kill.sendFileFromUrl(from, tits.data.url, '', tits.data.title, id)
-			} else if (octo == 6) {
-				const tits = await axios.get('https://meme-api.herokuapp.com/gimme/TinyTits')
-				kill.sendFileFromUrl(from, tits.data.url, '', tits.data.title, id)
-			} else if (octo == 7) {
-				const tits = await axios.get('https://meme-api.herokuapp.com/gimme/SmallTitsHugeLoad')
-				kill.sendFileFromUrl(from, tits.data.url, '', tits.data.title, id)
-			} else if (octo == 8) {
-				const tits = await axios.get('https://meme-api.herokuapp.com/gimme/amazingtits')
-				kill.sendFileFromUrl(from, tits.data.url, '', tits.data.title, id)
-			}
-            } else {
-				if (octo == 1) {
-					const tits = await axios.get('https://meme-api.herokuapp.com/gimme/tits')
-					kill.sendFileFromUrl(from, tits.data.url, '', tits.data.title, id)
-				} else if (octo == 2) {
-					const tits = await axios.get('https://meme-api.herokuapp.com/gimme/BestTits')
-					kill.sendFileFromUrl(from, tits.data.url, '', tits.data.title, id)
-				} else if (octo == 3) {
-					const tits = await axios.get('https://meme-api.herokuapp.com/gimme/boobs')
-					kill.sendFileFromUrl(from, tits.data.url, '', tits.data.title, id)
-				} else if (octo == 4) {
-					const tits = await axios.get('https://meme-api.herokuapp.com/gimme/BiggerThanYouThought')
-					kill.sendFileFromUrl(from, tits.data.url, '', tits.data.title, id)
-				} else if (octo == 5) {
-					const tits = await axios.get('https://meme-api.herokuapp.com/gimme/smallboobs')
-					kill.sendFileFromUrl(from, tits.data.url, '', tits.data.title, id)
-				} else if (octo == 6) {
-					const tits = await axios.get('https://meme-api.herokuapp.com/gimme/TinyTits')
-					kill.sendFileFromUrl(from, tits.data.url, '', tits.data.title, id)
-				} else if (octo == 7) {
-					const tits = await axios.get('https://meme-api.herokuapp.com/gimme/SmallTitsHugeLoad')
-					kill.sendFileFromUrl(from, tits.data.url, '', tits.data.title, id)
-				} else if (octo == 8) {
-					const tits = await axios.get('https://meme-api.herokuapp.com/gimme/amazingtits')
-					kill.sendFileFromUrl(from, tits.data.url, '', tits.data.title, id)
-				}
-			}
-            break
-			
 			
         case 'pgay':
             if (isGroupMsg) {
@@ -1990,14 +1970,14 @@ module.exports = kconfig = async (kill, message) => {
             break
 		
 		
-	case 'logo':
-		if (args.length == 0) kill.reply(from, 'Coloca um nome ai!', id)
-		kill.reply(from, mess.wait, id)
-		await kill.sendFileFromUrl(from, `https://docs-jojo.herokuapp.com/api/blackpink?text=${body.slice(6)}`, '', '', id)
-		break
+		case 'logo':
+			if (args.length == 0) kill.reply(from, 'Coloca um nome ai!', id)
+			kill.reply(from, mess.wait, id)
+			await kill.sendFileFromUrl(from, `https://docs-jojo.herokuapp.com/api/blackpink?text=${body.slice(6)}`, '', '', id)
+			break
 	
 			
-    case 'pornhub':
+		case 'pornhub':
             arkp = body.trim().substring(body.indexOf(' ') + 1)
             if (args.length >= 2) {
                 kill.reply(from, mess.wait, id)
@@ -2132,7 +2112,7 @@ module.exports = kconfig = async (kill, message) => {
             if (!isLink) return kill.reply(from, 'Link errado', id)
             if (tGr.length > 6) return kill.reply(from, 'Já estou no maximo de grupos, desculpe.', id)
             if (check.size < minMem) return kill.reply(from, 'Só posso funcionar em grupos com mais de 30 pessoas.', id)
-            if (check.status === 200) {
+            if (check.status == 200) {
                 await kill.joinGroupViaLink(gplk).then(() => kill.reply(from, 'Entrando no grupo...'))
             } else {
                 kill.reply(from, 'Link invalido', id)
@@ -2168,17 +2148,24 @@ module.exports = kconfig = async (kill, message) => {
 
         case 'enviar':
             const arka = body.trim().substring(body.indexOf(' ') + 1)
-            if (args.length == 0 || args.length == 1) return kill.reply(from, 'Defina o número e então uma mensagem, separando eles por |, por exemplo...\n\n/enviar <numero> | <mensagem>.', id)
-			if (isGroupMsg && isGroupAdmins) {
-				await kill.sendText(`${args[0]}` + '@c.us', `${arka.split('|')[1]}`)
-				await kill.sendText(from, 'Mensagem enviada.')
-		    } else if (isGroupMsg && isOwner) {
-				await kill.sendText(`${args[0]}` + '@c.us', `${arka.split('|')[1]}`)
-				await kill.sendText(from, 'Mensagem enviada.')
-			} else if (isGroupMsg) {
-				await kill.reply(from, mess.error.Ga, id)
+            if (args.length == 0) return kill.reply(from, 'Você precisa definir entre [-gp, -pv ou -help] para usar!', id)
+			const gid = groupId.replace('@g.us', '').replace('c.us', '')
+			if (isGroupMsg) {
+				if (args[0] == '-gp') {
+					await kill.sendText(`${args[1]}` + '@g.us', `_Mensagem >_\n*"${arka.split('|')[1]} "*` + '\n\n_Quem enviou =_ ' + '\n*"' + name + '"*' + '\n\n_Como responder:_')
+					await kill.sendText(`${args[1]}` + '@g.us', `/enviar -gp ${gid} | Coloque sua resposta aqui`)
+					await kill.sendText(from, 'Mensagem enviada.')
+				} else if (args[0] == '-pv') {
+					await kill.sendText(`${args[1]}` + '@c.us', `${arka.split('|')[1]}` + '\n\n_Quem enviou =_ ' + '*' + name + '*' + '\n\n_Como responder:_')
+					await kill.sendText(`${args[1]}` + '@c.us', `/enviar -gp ${gid} | Coloque sua resposta aqui`)
+					await kill.sendText(from, 'Mensagem enviada.')
+				} else if (args[0] == '-help' || args[0] == '-h') {
+					await kill.reply(from, 'Para usar digite o comando e na frente digite -pv para privado, ou -gp para grupos, e na frente deles use o ID, separando a mensagem por |. Exemplo:\n/enviar -gp 5518998****-174362736 | ola?\n\nVocê pode obter as IDs com o comadno /id.', id)
+				} else {
+					await kill.reply(from, 'Para usar digite o comando e na frente digite -pv para privado, ou -gp para grupos, e na frente deles use o ID, separando a mensagem por |. Exemplo:\n/enviar -gp 5518998****-174362736 | ola?\n\nVocê pode obter as IDs com o comadno /id.', id)
+				}
 			} else {
-				await kill.reply(from, mess.error.Gp, id)
+				await kill.reply(from, mess.error.Gp + '\nSe quiser usar entre em um grupo [/legiao].', id)
 			}
             break
 
@@ -2256,16 +2243,13 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'waifu':
-            if (triple == 1) {
+            if (double == 1) {
 				const total = fs.readFileSync('./lib/waifu.json')
 				const parsew = JSON.parse(total)
 				const organi = Math.floor(Math.random() * parsew.length)
 				const finale = parsew[organi]
 				await kill.sendFileFromUrl(from, finale.image, 'waifu.jpg', finale.teks, id)
-            } else if (triple == 2) {
-				const waifu1 = await axios.get(`http://arugaz.herokuapp.com/api/waifu`)
-				kill.sendFileFromUrl(from, waifu1.data.image, ``, `*Nome:* ${waifu1.data.name}\n\n*Descrição > *\n${waifu1.data.desc}`, id)
-            } else if (triple == 3) {
+            } else if (double == 2) {
 				const waifu3 = await axios.get(`https://nekos.life/api/v2/img/waifu`)
 				await kill.sendFileFromUrl(from, waifu3.data.url, '', 'Não sei nada dela...', id)
 			}
@@ -2307,6 +2291,200 @@ module.exports = kconfig = async (kill, message) => {
 				}
 			}
 			break
+			
+			
+        case 'tits':
+            if (isGroupMsg) {
+                if (!isNsfw) return kill.reply(from, mess.error.Ac, id)
+			if (octo == 1) {
+				const tits = await axios.get('https://meme-api.herokuapp.com/gimme/tits')
+				kill.sendFileFromUrl(from, tits.data.url, '', tits.data.title, id)
+			} else if (octo == 2) {
+				const tits = await axios.get('https://meme-api.herokuapp.com/gimme/BestTits')
+				kill.sendFileFromUrl(from, tits.data.url, '', tits.data.title, id)
+			} else if (octo == 3) {
+				const tits = await axios.get('https://meme-api.herokuapp.com/gimme/boobs')
+				kill.sendFileFromUrl(from, tits.data.url, '', tits.data.title, id)
+			} else if (octo == 4) {
+				const tits = await axios.get('https://meme-api.herokuapp.com/gimme/BiggerThanYouThought')
+				kill.sendFileFromUrl(from, tits.data.url, '', tits.data.title, id)
+			} else if (octo == 5) {
+				const tits = await axios.get('https://meme-api.herokuapp.com/gimme/smallboobs')
+				kill.sendFileFromUrl(from, tits.data.url, '', tits.data.title, id)
+			} else if (octo == 6) {
+				const tits = await axios.get('https://meme-api.herokuapp.com/gimme/TinyTits')
+				kill.sendFileFromUrl(from, tits.data.url, '', tits.data.title, id)
+			} else if (octo == 7) {
+				const tits = await axios.get('https://meme-api.herokuapp.com/gimme/SmallTitsHugeLoad')
+				kill.sendFileFromUrl(from, tits.data.url, '', tits.data.title, id)
+			} else if (octo == 8) {
+				const tits = await axios.get('https://meme-api.herokuapp.com/gimme/amazingtits')
+				kill.sendFileFromUrl(from, tits.data.url, '', tits.data.title, id)
+			}
+            } else {
+				if (octo == 1) {
+					const tits = await axios.get('https://meme-api.herokuapp.com/gimme/tits')
+					kill.sendFileFromUrl(from, tits.data.url, '', tits.data.title, id)
+				} else if (octo == 2) {
+					const tits = await axios.get('https://meme-api.herokuapp.com/gimme/BestTits')
+					kill.sendFileFromUrl(from, tits.data.url, '', tits.data.title, id)
+				} else if (octo == 3) {
+					const tits = await axios.get('https://meme-api.herokuapp.com/gimme/boobs')
+					kill.sendFileFromUrl(from, tits.data.url, '', tits.data.title, id)
+				} else if (octo == 4) {
+					const tits = await axios.get('https://meme-api.herokuapp.com/gimme/BiggerThanYouThought')
+					kill.sendFileFromUrl(from, tits.data.url, '', tits.data.title, id)
+				} else if (octo == 5) {
+					const tits = await axios.get('https://meme-api.herokuapp.com/gimme/smallboobs')
+					kill.sendFileFromUrl(from, tits.data.url, '', tits.data.title, id)
+				} else if (octo == 6) {
+					const tits = await axios.get('https://meme-api.herokuapp.com/gimme/TinyTits')
+					kill.sendFileFromUrl(from, tits.data.url, '', tits.data.title, id)
+				} else if (octo == 7) {
+					const tits = await axios.get('https://meme-api.herokuapp.com/gimme/SmallTitsHugeLoad')
+					kill.sendFileFromUrl(from, tits.data.url, '', tits.data.title, id)
+				} else if (octo == 8) {
+					const tits = await axios.get('https://meme-api.herokuapp.com/gimme/amazingtits')
+					kill.sendFileFromUrl(from, tits.data.url, '', tits.data.title, id)
+				}
+			}
+            break
+			
+			
+	    case 'milf':
+            if (isGroupMsg) {
+                if (!isNsfw) return kill.reply(from, mess.error.Ac, id)
+            	if (triple == 1) {
+            		const milf1 = await axios.get('https://meme-api.herokuapp.com/gimme/milf');
+            		let { postlink, title, subreddit, url, nsfw, spoiler } = milf1.data
+            		await kill.sendFileFromUrl(from, `${url}`, '', `${title}`, id)
+            	}else if (triple == 2) {
+            		const milf1 = await axios.get('https://meme-api.herokuapp.com/gimme/milf_pictures');
+            		let { postlink, title, subreddit, url, nsfw, spoiler } = milf1.data
+            		await kill.sendFileFromUrl(from, `${url}`, 'meme.jpg', `${title}`, id)
+            	}else if (triple == 3) {
+            		const tits1 = await axios.get('https://meme-api.herokuapp.com/gimme/best_nsfw_milf');
+            		let { postlink, title, subreddit, url, nsfw, spoiler } = milf1.data
+            		await kill.sendFileFromUrl(from, `${url}`, 'meme.jpg', `${title}`, id)
+            	}	
+            } else {
+            	if (triple == 1) {
+            		const milf1 = await axios.get('https://meme-api.herokuapp.com/gimme/milf');
+            		let { postlink, title, subreddit, url, nsfw, spoiler } = milf1.data
+            		await kill.sendFileFromUrl(from, `${url}`, 'meme.jpg', `${title}`, id)
+            	}else if (triple == 2) {
+            		const milf1 = await axios.get('https://meme-api.herokuapp.com/gimme/milf_pictures');
+            		let { postlink, title, subreddit, url, nsfw, spoiler } = milf1.data
+            		await kill.sendFileFromUrl(from, `${url}`, 'meme.jpg', `${title}`, id)
+            	}else if (triple == 3) {
+            		const milf1 = await axios.get('https://meme-api.herokuapp.com/gimme/best_nsfw_milf');
+            		let { postlink, title, subreddit, url, nsfw, spoiler } = milf1.data
+            		await kill.sendFileFromUrl(from, `${url}`, 'meme.jpg', `${title}`, id)
+            	}	
+            }
+			break
+			
+			
+        case 'bdsm':
+            if (isGroupMsg) {
+                if (!isNsfw) return kill.reply(from, mess.error.Ac, id)
+            	if (triple == 1) {
+            		const bdsm1 = await axios.get('https://meme-api.herokuapp.com/gimme/BDSMPics');
+            		let { postlink, title, subreddit, url, nsfw, spoiler } = bdsm1.data
+            		await kill.sendFileFromUrl(from, `${url}`, '', `${title}`, id)
+            	}else if (triple == 2) {
+            		const bdsm1 = await axios.get('https://meme-api.herokuapp.com/gimme/bdsm');
+            		let { postlink, title, subreddit, url, nsfw, spoiler } = bdsm1.data
+            		await kill.sendFileFromUrl(from, `${url}`, 'meme.jpg', `${title}`, id)
+            	}else if (triple == 3) {
+            		const bdsm1 = await axios.get('https://meme-api.herokuapp.com/gimme/TeenBDSM');
+            		let { postlink, title, subreddit, url, nsfw, spoiler } = bdsm1.data
+            		await kill.sendFileFromUrl(from, `${url}`, 'meme.jpg', `${title}`, id)
+            	}	
+            } else {
+            	if (triple == 1) {
+            		const bdsm1 = await axios.get('https://meme-api.herokuapp.com/gimme/BDSMPics');
+            		let { postlink, title, subreddit, url, nsfw, spoiler } = bdsm1.data
+            		await kill.sendFileFromUrl(from, `${url}`, 'meme.jpg', `${title}`, id)
+            	}else if (triple == 2) {
+            		const bdsm1 = await axios.get('https://meme-api.herokuapp.com/gimme/bdsm');
+            		let { postlink, title, subreddit, url, nsfw, spoiler } = bdsm1.data
+            		await kill.sendFileFromUrl(from, `${url}`, 'meme.jpg', `${title}`, id)
+            	}else if (triple == 3) {
+            		const bdsm1 = await axios.get('https://meme-api.herokuapp.com/gimme/TeenBDSM');
+            		let { postlink, title, subreddit, url, nsfw, spoiler } = bdsm1.data
+            		await kill.sendFileFromUrl(from, `${url}`, 'meme.jpg', `${title}`, id)
+            	}	
+            }
+			break
+
+
+        case 'ass':
+            if (isGroupMsg) {
+                if (!isNsfw) return kill.reply(from, mess.error.Ac, id)
+            	if (triple == 1) {
+            		const bows1 = await axios.get('https://meme-api.herokuapp.com/gimme/LegalTeens');
+            		let { postlink, title, subreddit, url, nsfw, spoiler } = bows1.data
+            		await kill.sendFileFromUrl(from, `${url}`, '', `${title}`, id)
+            	}else if (triple == 2) {
+            		const bows1 = await axios.get('https://meme-api.herokuapp.com/gimme/ass');
+            		let { postlink, title, subreddit, url, nsfw, spoiler } = bows1.data
+            		await kill.sendFileFromUrl(from, `${url}`, 'meme.jpg', `${title}`, id)
+            	}else if (triple == 3) {
+            		const bows1 = await axios.get('https://meme-api.herokuapp.com/gimme/bigasses');
+            		let { postlink, title, subreddit, url, nsfw, spoiler } = bows1.data
+            		await kill.sendFileFromUrl(from, `${url}`, 'meme.jpg', `${title}`, id)
+            	}	
+             } else {
+            	if (triple == 1) {
+            		const bows1 = await axios.get('https://meme-api.herokuapp.com/gimme/LegalTeens');
+            		let { postlink, title, subreddit, url, nsfw, spoiler } = bows1.data
+            		await kill.sendFileFromUrl(from, `${url}`, 'meme.jpg', `${title}`, id)
+            	}else if (triple == 2) {
+            		const bows1 = await axios.get('https://meme-api.herokuapp.com/gimme/ass');
+            		let { postlink, title, subreddit, url, nsfw, spoiler } = bows1.data
+            		await kill.sendFileFromUrl(from, `${url}`, 'meme.jpg', `${title}`, id)
+            	}else if (triple == 3) {
+            		const bows1 = await axios.get('https://meme-api.herokuapp.com/gimme/bigasses');
+            		let { postlink, title, subreddit, url, nsfw, spoiler } = bows1.data
+            		await kill.sendFileFromUrl(from, `${url}`, 'meme.jpg', `${title}`, id)
+            	}	
+            }
+            break		
+	
+			
+        case 'pussy':
+            if (isGroupMsg) {
+                if (!isNsfw) return kill.reply(from, mess.error.Ac, id)
+            	if (triple == 1) {
+            		const bows1 = await axios.get('https://meme-api.herokuapp.com/gimme/pussy');
+            		let { postlink, title, subreddit, url, nsfw, spoiler } = bows1.data
+            		await kill.sendFileFromUrl(from, `${url}`, '', `${title}`, id)
+            	}else if (triple == 2) {
+            		const bows1 = await axios.get('https://meme-api.herokuapp.com/gimme/ass');
+            		let { postlink, title, subreddit, url, nsfw, spoiler } = bows1.data
+            		await kill.sendFileFromUrl(from, `${url}`, 'meme.jpg', `${title}`, id)
+            	}else if (triple == 3) {
+            		const bows1 = await axios.get('https://meme-api.herokuapp.com/gimme/LegalTeens');
+            		let { postlink, title, subreddit, url, nsfw, spoiler } = bows1.data
+            		await kill.sendFileFromUrl(from, `${url}`, 'meme.jpg', `${title}`, id)
+            	}	
+             } else {
+            	if (triple == 1) {
+            		const bows1 = await axios.get('https://meme-api.herokuapp.com/gimme/pussy');
+            		let { postlink, title, subreddit, url, nsfw, spoiler } = bows1.data
+            		await kill.sendFileFromUrl(from, `${url}`, 'meme.jpg', `${title}`, id)
+            	}else if (triple == 2) {
+            		const bows1 = await axios.get('https://meme-api.herokuapp.com/gimme/ass');
+            		let { postlink, title, subreddit, url, nsfw, spoiler } = bows1.data
+            		await kill.sendFileFromUrl(from, `${url}`, 'meme.jpg', `${title}`, id)
+            	}else if (triple == 3) {
+            		const bows1 = await axios.get('https://meme-api.herokuapp.com/gimme/LegalTeens');
+            		let { postlink, title, subreddit, url, nsfw, spoiler } = bows1.data
+            		await kill.sendFileFromUrl(from, `${url}`, 'meme.jpg', `${title}`, id)
+            	}	
+            }
+            break
 			
 
         case 'blowjob':

@@ -6,7 +6,8 @@ const color = require('./lib/color')
 
 // Cria um cliente de inicialização da BOT
 const start = (kill = new Client()) => {
-    console.log(color('\n> DEV OFICIAL ='), color('KillovSky', 'yellow'))
+    console.log(color('\n> DEV OFICIAL ='), color('KillovSky = 5518998044132', 'yellow'))
+	console.log(color('\n> GRUPO OFICIAL ='), color(' https://chat.whatsapp.com/H53MdwhtnRf7TGX1VJ2Jje', 'yellow'))
 	console.log(color('\n>'), color('Inicialização finalizada, os comandos podem ser usados agora...\n', 'red'))
 	
 		// Forçar recarregamento caso obtenha erros

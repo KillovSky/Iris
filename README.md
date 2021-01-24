@@ -7,7 +7,7 @@ Por favor NÃO REMOVA os creditos, levei muito tempo e precisei ter muita dedica
 ### Para os donos
 Você pode rodar comandos de Windows como "ipconfig", comandos de linux como "apt", ou comandos de programações como node-js tudo pelo WhatsApp, ninguém além de você pode usar isso, se você deseja que usem, remova a linha if (!isOnwer) [aqui](https://github.com/KillovSky/iris/blob/master/config.js#L2794), mas saiba que remove-la pode ser perigoso a você.
 
-### Funções (Não são todas)
+### Funções (Não são todas, +130)
 
 | Função |Contém|
 | ------------- | ------------- |
@@ -43,7 +43,7 @@ Você pode rodar comandos de Windows como "ipconfig", comandos de linux como "ap
 | Falar frases em 51 idiomas |✅|
 | Mudar foto do grupo |✅|
 | Marcar todos |✅|
-| Stalkear instagram |✅|
+| Stalkear instagram/twitter |✅|
 | Google/Google Play |✅|
 | Pesquisa por foto |✅|
 | Upload de fotos em nuvem |✅|
