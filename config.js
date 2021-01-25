@@ -498,17 +498,37 @@ module.exports = kconfig = async (kill, message) => {
 			
         case 'bklist':
             if (isGroupMsg && isGroupAdmins) {
-				if (args.length == 0) return kill.reply(from, 'Defina o número.', id)
-				const bkls = body.slice(8) + '@c.us'
-				atbk.push(bkls)
-				fs.writeFileSync('./lib/anti.json', JSON.stringify(atbk))
-				await kill.reply(from, 'Número adicionado a black-list', id)
+				if (args[0] == 'on') {
+					if (args.length == 0) return kill.reply(from, 'Você deve definir [on e off] e em seguida o número da pessoa.', id)
+					const bkls = body.slice(11) + '@c.us'
+					atbk.push(bkls)
+					fs.writeFileSync('./lib/anti.json', JSON.stringify(atbk))
+					await kill.reply(from, 'Número adicionado a black-list', id)
+				} else if (args[0] == 'off') {
+					if (args.length == 0) return kill.reply(from, 'Você deve definir [on e off] e em seguida o número da pessoa.', id)
+					const bkls = body.slice(11) + '@c.us'
+					let blks = atbk.indexOf(bkls)
+					atbk.splice(blks, 1)
+					fs.writeFileSync('./lib/anti.json', JSON.stringify(atbk))
+					await kill.reply(from, 'Número removido da black-list', id)
+				}
 			} else if (isGroupMsg && isOwner) {
-				if (args.length == 0) return kill.reply(from, 'Defina o número.', id)
-				const bkls = body.slice(8) + '@c.us'
-				atbk.push(bkls)
-				fs.writeFileSync('./lib/anti.json', JSON.stringify(atbk))
-				await kill.reply(from, 'Número adicionado a black-list', id)
+				if (args[0] == 'on') {
+					if (args.length == 0) return kill.reply(from, 'Você deve definir [on e off] e em seguida o número da pessoa.', id)
+					const bkls = body.slice(11) + '@c.us'
+					atbk.push(bkls)
+					fs.writeFileSync('./lib/anti.json', JSON.stringify(atbk))
+					await kill.reply(from, 'Número adicionado a black-list', id)
+				} else if (args[0] == 'off') {
+					if (args.length == 0) return kill.reply(from, 'Você deve definir [on e off] e em seguida o número da pessoa.', id)
+					const bkls = body.slice(11) + '@c.us'
+					let blks = atbk.indexOf(bkls)
+					atbk.splice(blks, 1)
+					fs.writeFileSync('./lib/anti.json', JSON.stringify(atbk))
+					await kill.reply(from, 'Número removido da black-list', id)
+				} else {
+					await kill.reply(from, 'Você deve definir [on e off] e em seguida o número da pessoa.', id)
+				}
             } else {
                 kill.reply(from, mess.error.Ga, id)
             }
