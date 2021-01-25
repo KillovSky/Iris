@@ -63,7 +63,7 @@ module.exports = kconfig = async (kill, message) => {
         const blockNumber = await kill.getBlockedIds()
         const groupId = isGroupMsg ? chat.groupMetadata.id : ''
         const groupAdmins = isGroupMsg ? await kill.getGroupAdmins(groupId) : ''
-        const isGroupAdmins = isGroupMsg ? groupAdmins.includes(sender.id) : false
+        const isGroupAdmins = isGroupMsg ? groupAdmins.includes(sender.id) : true
         const isBotGroupAdmins = isGroupMsg ? groupAdmins.includes(botNumber + '@c.us') : false
 		const chats = (type === 'chat') ? body : (type === 'image' || type === 'video') ? caption : ''
         const ownerNumber = '55189****@c.us'
