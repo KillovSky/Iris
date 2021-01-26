@@ -1781,6 +1781,22 @@ module.exports = kconfig = async (kill, message) => {
             await kill.sendTextWithMentions(from, `O carinho que criou o grupo foi o @${Owner_}`)
             break
 			
+
+		case 'maps':
+            if (args.length == 0) return kill.reply(from, `Bota um nome de lugar ai`, id)
+            const mapz = body.slice(6)
+            try {
+				const mapz2 = await axios.get('https://mnazria.herokuapp.com/api/maps?search=' + mapz)
+				const { gambar } = mapz2.data
+				const pictk = await bent("buffer")(gambar)
+				const base64 = `data:image/jpg;base64,${pictk.toString("base64")}`
+				kill.sendImage(from, base64, 'maps.jpg', `*Foto do mapa de ${mapz}*`)
+            } catch (err) {
+				console.error(err.message)
+				await kill.reply(from, 'Deu erro em algo aqui, desculpe.', id)
+			}
+			break
+			
 			
 		case 'sip':
 			if (args.length == 1) {
@@ -1884,11 +1900,11 @@ module.exports = kconfig = async (kill, message) => {
             if (!isGroupMsg) return kill.reply(from, mess.error.Gp, id)
             if (!isBotGroupAdmins) return kill.reply(from, mess.error.Ba, id)
 	        if (args.length !== 1) return kill.reply(from, 'Você precisa especificar o número de telefone.', id)
-                try {
-                    await kill.addParticipant(from,`${args[0]}@c.us`)
-                } catch {
-                    kill.reply(from, mess.error.Ad, id)
-                }
+            try {
+                await kill.addParticipant(from,`${args[0]}@c.us`)
+            } catch {
+                kill.reply(from, mess.error.Ad, id)
+            }
             break
 			
 			
@@ -2127,7 +2143,7 @@ module.exports = kconfig = async (kill, message) => {
             if (args.length == 0) return kill.reply(from, 'Sei la, tem algo errado nisso ai!', id)
             const gplk = body.slice(6)
             const tGr = await kill.getAllGroups()
-            const minMem = 30
+            const minMem = 30 // PRECISA TER ISSO DE MEMBRO PRA ENTRAR
             const isLink = gplk.match(/(https:\/\/chat.whatsapp.com)/gi)
             const check = await kill.inviteInfo(gplk)
             if (!isLink) return kill.reply(from, 'Link errado', id)
@@ -2181,9 +2197,9 @@ module.exports = kconfig = async (kill, message) => {
 					await kill.sendText(`${args[1]}` + '@c.us', `/enviar -gp ${gid} | Coloque sua resposta aqui`)
 					await kill.sendText(from, 'Mensagem enviada.')
 				} else if (args[0] == '-help' || args[0] == '-h') {
-					await kill.reply(from, 'Para usar digite o comando e na frente digite -pv para privado, ou -gp para grupos, e na frente deles use o ID, separando a mensagem por |. Exemplo:\n/enviar -gp 5518998****-174362736 | ola?\n\nVocê pode obter as IDs com o comadno /id.', id)
+					await kill.reply(from, 'Para usar digite o comando e na frente digite -pv para privado, ou -gp para grupos, e na frente deles use o ID, separando a mensagem por |. Exemplo:\n/enviar -gp 5518998****-174362736 | ola?\n\nVocê pode obter as IDs com o comando /id, e lembre-se de usar sem o @c.us e @g.us.', id)
 				} else {
-					await kill.reply(from, 'Para usar digite o comando e na frente digite -pv para privado, ou -gp para grupos, e na frente deles use o ID, separando a mensagem por |. Exemplo:\n/enviar -gp 5518998****-174362736 | ola?\n\nVocê pode obter as IDs com o comadno /id.', id)
+					await kill.reply(from, 'Para usar digite o comando e na frente digite -pv para privado, ou -gp para grupos, e na frente deles use o ID, separando a mensagem por |. Exemplo:\n/enviar -gp 5518998****-174362736 | ola?\n\nVocê pode obter as IDs com o comando /id, e lembre-se de usar sem o @c.us e @g.us.', id)
 				}
 			} else {
 				await kill.reply(from, mess.error.Gp + '\nSe quiser usar entre em um grupo [/legiao].', id)
