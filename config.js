@@ -68,7 +68,7 @@ module.exports = kconfig = async (kill, message) => {
 		const chats = (type === 'chat') ? body : (type === 'image' || type === 'video') ? caption : ''
         const ownerNumber = '55189****@c.us'
         const isOwn = sender.id
-	const isOwner = isOwn.includes(ownerNumber)
+		const isOwner = isOwn.includes(ownerNumber)
         global.pollfile = 'poll_Config_'+chat.id+'.json'
         global.voterslistfile = 'poll_voters_Config_'+chat.id+'.json'
 		global.client = kill
@@ -88,6 +88,7 @@ module.exports = kconfig = async (kill, message) => {
         const uaOverride = process.env.UserAgent
         const isQuotedImage = quotedMsg && quotedMsg.type === 'image'
 		const isQuotedVideo = quotedMsg && quotedMsg.type === 'video'
+		const chief = chat.groupMetadata.owner
 		
 		
         const mess = {
@@ -1469,6 +1470,13 @@ module.exports = kconfig = async (kill, message) => {
             break
 			
 			
+       case 'clima':
+       		if (args.length == 0) return kill.reply(from, 'Insira o nome da sua cidade.', id)
+       		const clima = await axios.get(`https://pt.wttr.in/${body.slice(7)}?format=Cidade%20=%20%l+\n\nCondição%20=%20%C+%c+\n\nTemperatura%20=%20%t+\n\nUmidade%20=%20%h\n\nVento%20=%20%w\n\nLua agora%20=%20%m\n\nNascer%20do%20Sol%20=%20%S\n\nPor%20do%20Sol%20=%20%s`)
+            await kill.sendFileFromUrl(from, `https://wttr.in/${body.slice(7)}.png`, '', `A foto acima contém uma previsão de 2 dias, a mensagem abaixo é o clima agora.\n\n${clima.data}`, id)
+            break
+			
+			
         case 'boy':
     	    var hite = ["eboy", "garoto", "homem", "men", "garoto oriental", "japanese men", "pretty guy", "homem bonito"];
     	    var hesc = hite[Math.floor(Math.random() * hite.length)];
@@ -1776,9 +1784,9 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
         case 'ownergroup':
-            if (!isGroupMsg) return kill.reply(from, 'Apenas grupos', id)
+            if (!isGroupMsg) return kill.reply(from, mess.error.Gp, id)
             const Owner_ = chat.groupMetadata.owner
-            await kill.sendTextWithMentions(from, `O carinho que criou o grupo foi o @${Owner_}`)
+            await kill.sendTextWithMentions(from, `@${Owner_} foi quem criou esse cabaré.`)
             break
 			
 
@@ -2049,18 +2057,22 @@ module.exports = kconfig = async (kill, message) => {
 
         case 'kick':
 			if (isGroupMsg && isGroupAdmins) {
-				if (!isBotGroupAdmins) return kill.reply(from, 'Pra isso eu preciso ser parte dos Administradores.', id)
+				if (!isBotGroupAdmins) return kill.reply(from, mess.error.Ba, id)
 				if (mentionedJidList.length === 0) return kill.reply(from, 'Você digitou o comando de forma muito errada, arrume e envie certo.', id)
-				await kill.sendTextWithMentions(from, `Banindo membro comum:\n${mentionedJidList.map(x => `@${x.replace('@c.us', '')}`).join('\n')}`)
+				await kill.sendTextWithMentions(from, `Expulsando bebado(a) ${mentionedJidList.map(x => `@${x.replace('@c.us', '')}`).join('\n')} do cabaré...`)
 				for (let i = 0; i < mentionedJidList.length; i++) {
+					if (chief.includes(mentionedJidList[i])) return kill.reply(from, 'Sabemos o quão bebado(a) ele(a) é, mas não dá pra expulsar a pessoa que criou o cabaré.', id)
+					if (ownerNumber.includes(mentionedJidList[i])) return kill.reply(from, 'Infelizmente, ele é um bebado VIP, não posso expulsar.', id)
 					if (groupAdmins.includes(mentionedJidList[i])) return kill.reply(from, mess.error.Ki, id)
 					await kill.removeParticipant(groupId, mentionedJidList[i])
 				}
 			} else if (isGroupMsg && isOwner) {
-				if (!isBotGroupAdmins) return kill.reply(from, 'Pra isso eu preciso ser parte dos Administradores.', id)
+				if (!isBotGroupAdmins) return kill.reply(from, mess.error.Ba, id)
 				if (mentionedJidList.length === 0) return kill.reply(from, 'Você digitou o comando de forma muito errada, arrume e envie certo.', id)
-				await kill.sendTextWithMentions(from, `Banindo membro comum:\n${mentionedJidList.map(x => `@${x.replace('@c.us', '')}`).join('\n')}`)
+				await kill.sendTextWithMentions(from, `Expulsando bebado(a) ${mentionedJidList.map(x => `@${x.replace('@c.us', '')}`).join('\n')} do cabaré...`)
 				for (let i = 0; i < mentionedJidList.length; i++) {
+					if (chief.includes(mentionedJidList[i])) return kill.reply(from, 'Sabemos o quão bebado(a) ele(a) é, mas não dá pra expulsar a pessoa que criou o cabaré.', id)
+					if (ownerNumber.includes(mentionedJidList[i])) return kill.reply(from, 'Infelizmente, ele é um bebado VIP, não posso expulsar.', id)
 					if (groupAdmins.includes(mentionedJidList[i])) return kill.reply(from, mess.error.Ki, id)
 					await kill.removeParticipant(groupId, mentionedJidList[i])
 				}
