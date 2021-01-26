@@ -1755,6 +1755,41 @@ module.exports = kconfig = async (kill, message) => {
             }
             kill.reply(from, 'Broadcast Sucedida!', id)
             break
+			
+        case 'ptt':
+            if (quotedMsgObj) {
+                let encryptMedia
+                let replyOnReply = await kill.getMessageById(quotedMsgObj.id)
+                let obj = replyOnReply.quotedMsgObj
+                if (/ptt|audio/.test(quotedMsgObj.type)) {
+                    encryptMedia = quotedMsgObj
+                    if (encryptMedia.animated) encryptMedia.mimetype = ''
+                } else if (obj && /ptt|audio/.test(obj.type)) {
+                    encryptMedia = obj
+                } else return
+                const _mimetype = encryptMedia.mimetype
+                const mediaData = await decryptMedia(encryptMedia)
+                await kill.sendPtt(from, `data:${_mimetype};base64,${mediaData.toString('base64')}`, '', id)
+            } else kill.reply(from, 'Use isso em audios!', id)
+            break
+			
+			
+        case 'get':
+            if (quotedMsgObj) {
+                let encryptMedia
+                let replyOnReply = await kill.getMessageById(quotedMsgObj.id)
+                let obj = replyOnReply.quotedMsgObj
+                if (/ptt|audio|video|image|document|sticker/.test(quotedMsgObj.type)) {
+                    encryptMedia = quotedMsgObj
+                    if (encryptMedia.animated) encryptMedia.mimetype = ''
+                } else if (obj && /ptt|audio|video|image/.test(obj.type)) {
+                    encryptMedia = obj
+                } else return
+                const _mimetype = encryptMedia.mimetype
+                const mediaData = await decryptMedia(encryptMedia)
+                await kill.sendFile(from, `data:${_mimetype};base64,${mediaData.toString('base64')}`, '', 'S2', encryptMedia.id)
+            } else kill.reply(from, 'Tem mesmo um arquivo nisso?', id)
+            break
 
 
         case 'adms':
