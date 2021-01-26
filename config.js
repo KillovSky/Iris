@@ -720,13 +720,23 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
         case 'nasa':
-            const nasa = await axios.get(`https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY`)
-			console.log(nasa.data)
-			await kill.sendFileFromUrl(from, `${nasa.data.url}`, '', `Titulo: ${nasa.data.title}\n\nData: ${nasa.data.date}\n\nAutor: ${nasa.data.copyright}\n\nMateria: ${nasa.data.explanation}`, id)
-			.catch(() => {
-						kill.reply(from, `Titulo: ${nasa.data.title}\n\nData: ${nasa.data.date}\n\nAutor: ${nasa.data.copyright}\n\nMateria: ${nasa.data.explanation}\n\nURL: ${nasa.data.url}`, id)
-					})
+        	if (args[0] == '-data') {
+            	const nasa = await axios.get(`https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&date=${args[1]}`)
+				console.log(nasa.data.title)
+				const explic = nasa.data.explanation
+				await sleep(4000)
+            	translate(explic, 'pt')
+            	.then((result) => kill.sendFileFromUrl(from, `${nasa.data.url}`, '', `Titulo: ${nasa.data.title}\n\nData: ${nasa.data.date}\n\nMateria: ${result}`, id))
+			} else {
+            	const nasa = await axios.get(`https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY`)
+				console.log(nasa.data.title)
+				const explic = nasa.data.explanation
+				await sleep(4000)
+            	translate(explic, 'pt')
+            	.then((result) => kill.sendFileFromUrl(from, `${nasa.data.url}`, '', `Titulo: ${nasa.data.title}\n\nData: ${nasa.data.date}\n\nMateria: ${result}`, id))
+			}
 			break
+			
 			
         case 'stalkig':
             if (args.length == 0) return kill.reply(from, 'Cade o username né?', id)
@@ -1471,7 +1481,7 @@ module.exports = kconfig = async (kill, message) => {
 			
        case 'clima':
        		if (args.length == 0) return kill.reply(from, 'Insira o nome da sua cidade.', id)
-       		const clima = await axios.get(`https://pt.wttr.in/${body.slice(7)}?format=Cidade%20=%20%l+\n\nCondição%20=%20%C+%c+\n\nTemperatura%20=%20%t+\n\nUmidade%20=%20%h\n\nVento%20=%20%w\n\nLua agora%20=%20%m\n\nNascer%20do%20Sol%20=%20%S\n\nPor%20do%20Sol%20=%20%s`)
+       		const clima = await axios.get(`https://pt.wttr.in/${body.slice(7)}?format=Cidade%20=%20%l+\n\nEstado%20=%20%C+%c+\n\nTemperatura%20=%20%t+\n\nUmidade%20=%20%h\n\nVento%20=%20%w\n\nLua agora%20=%20%m\n\nNascer%20do%20Sol%20=%20%S\n\nPor%20do%20Sol%20=%20%s`)
             await kill.sendFileFromUrl(from, `https://wttr.in/${body.slice(7)}.png`, '', `A foto acima contém uma previsão de 2 dias, a mensagem abaixo é o clima agora.\n\n${clima.data}`, id)
             break
 			
