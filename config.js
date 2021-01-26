@@ -88,7 +88,6 @@ module.exports = kconfig = async (kill, message) => {
         const uaOverride = process.env.UserAgent
         const isQuotedImage = quotedMsg && quotedMsg.type === 'image'
 		const isQuotedVideo = quotedMsg && quotedMsg.type === 'video'
-		const chief = chat.groupMetadata.owner
 		
 		
         const mess = {
@@ -2056,6 +2055,7 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'kick':
+			const chief = chat.groupMetadata.owner
 			if (isGroupMsg && isGroupAdmins) {
 				if (!isBotGroupAdmins) return kill.reply(from, mess.error.Ba, id)
 				if (mentionedJidList.length === 0) return kill.reply(from, 'Você digitou o comando de forma muito errada, arrume e envie certo.', id)
