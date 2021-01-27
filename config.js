@@ -511,6 +511,8 @@ module.exports = kconfig = async (kill, message) => {
 					atbk.splice(blks, 1)
 					fs.writeFileSync('./lib/anti.json', JSON.stringify(atbk))
 					await kill.reply(from, 'Número removido da black-list', id)
+				} else {
+					await kill.reply(from, 'Você deve definir [on e off] e em seguida o número da pessoa.', id)
 				}
 			} else if (isGroupMsg && isOwner) {
 				if (args[0] == 'on') {
