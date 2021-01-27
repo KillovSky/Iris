@@ -22,7 +22,7 @@ const { spawn, exec, execFile } = require('child_process')
 const nhentai = require('nhentai-js')
 const { API } = require('nhentai-api')
 const { randomNimek, sleep, wall, tulis, ss } = require('./lib/functions')
-const { owner, donate, down, help, admins, adult, readme, lang } = require('./lib/help')
+const { owner, donate, down, help, admins, adult, readme, lang, convh } = require('./lib/help')
 const { stdout } = require('process')
 const bent = require('bent')
 const { doing } = require('./lib/translate.js')
@@ -3173,6 +3173,30 @@ module.exports = kconfig = async (kill, message) => {
 			console.log(`{body.slice(5)}`)
 			const macre = maclk.data
 			await kill.reply(from, `O telefone é da ${macre}.`, id)
+			break
+			
+		case 'converter':
+		case 'conv':
+			if (args.length == 0) return kill.reply(from, 'Digite o modo de conversão e em seguida a temperatura, para mais detalhes digite /conv -h.', id)
+			const regmh = args[1].match(/^[0-9]+$/)
+			if (!regmh) return kill.reply(from, 'Digite apenas números após a sigla!', id)
+			if (args[0] == '-help' || args[0] == '-h') {
+				await kill.reply(from, convh, id)
+			} else if (args[0] == '-f') {
+				const cels = args[1] / 5 * 9 + 32
+				await kill.reply(from, `*${args[1]}* graus C° - Celsius equivalem a ${cels} graus F° - Fahrenheit.`, id)
+			} else if (args[0] == '-c') {
+				const fahf = 5 * (args[1] - 32) / 9
+				await kill.reply(from, `*${args[1]}* _graus F° - Fahrenheit equivalem a_ *${fahf}* _graus C° - Celsius._`, id)
+			} else if (args[0] == '-m') {
+				const ktom = args[1] * 0.62137
+				await kill.reply(from, `*${args[1]}* _Quilômetros equivalem a_ *${ktom}* _Milhas._`, id)
+			} else if (args[0] == '-q') {
+				const mtok = args[1] / 0.62137
+				await kill.reply(from, `*${args[1]}* _Milhas equivalem a_ *${mtok}* _Quilômetros._`, id)
+			} else {
+				await kill.reply(from, convh, id)
+			}
 			break
 		
 
