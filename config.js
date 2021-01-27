@@ -3177,27 +3177,37 @@ module.exports = kconfig = async (kill, message) => {
 			
 		case 'converter':
 		case 'conv':
-			if (args.length == 0) return kill.reply(from, 'Digite o modo de conversão e em seguida a temperatura, para mais detalhes digite /conv -h.', id)
-			const regmh = args[1].match(/^[0-9]+$/)
-			if (!regmh) return kill.reply(from, 'Digite apenas números após a sigla!', id)
-			if (args[0] == '-help' || args[0] == '-h') {
-				await kill.reply(from, convh, id)
-			} else if (args[0] == '-f') {
-				const cels = args[1] / 5 * 9 + 32
-				await kill.reply(from, `*${args[1]}* graus C° - Celsius equivalem a ${cels} graus F° - Fahrenheit.`, id)
-			} else if (args[0] == '-c') {
-				const fahf = 5 * (args[1] - 32) / 9
-				await kill.reply(from, `*${args[1]}* _graus F° - Fahrenheit equivalem a_ *${fahf}* _graus C° - Celsius._`, id)
-			} else if (args[0] == '-m') {
-				const ktom = args[1] * 0.62137
-				await kill.reply(from, `*${args[1]}* _Quilômetros equivalem a_ *${ktom}* _Milhas._`, id)
-			} else if (args[0] == '-q') {
-				const mtok = args[1] / 0.62137
-				await kill.reply(from, `*${args[1]}* _Milhas equivalem a_ *${mtok}* _Quilômetros._`, id)
-			} else {
-				await kill.reply(from, convh, id)
+			if (args == 0) return kill.reply(from, 'Digite o modo de conversão e em seguida a temperatura, para mais detalhes digite /conv -h.', id)
+			if (args[0] == '-help' || args[0] == '-h') return kill.reply(from, convh, id)
+			try {
+				if (args[0] == '-f') {
+					let regmh = args[1].match(/^[0-9]+$/)
+					if (!regmh) return kill.reply(from, 'Digite apenas números após a sigla!', id)
+					const cels = args[1] / 5 * 9 + 32
+					await kill.reply(from, `*${args[1]}* graus C° - Celsius equivalem a ${cels} graus F° - Fahrenheit.`, id)
+				} else if (args[0] == '-c') {
+					let regmh = args[1].match(/^[0-9]+$/)
+					if (!regmh) return kill.reply(from, 'Digite apenas números após a sigla!', id)
+					const fahf = 5 * (args[1] - 32) / 9
+					await kill.reply(from, `*${args[1]}* _graus F° - Fahrenheit equivalem a_ *${fahf}* _graus C° - Celsius._`, id)
+				} else if (args[0] == '-m') {
+					let regmh = args[1].match(/^[0-9]+$/)
+					if (!regmh) return kill.reply(from, 'Digite apenas números após a sigla!', id)
+					const ktom = args[1] * 0.62137
+					await kill.reply(from, `*${args[1]}* _Quilômetros equivalem a_ *${ktom}* _Milhas._`, id)
+				} else if (args[0] == '-q') {
+					let regmh = args[1].match(/^[0-9]+$/)
+					if (!regmh) return kill.reply(from, 'Digite apenas números após a sigla!', id)
+					const mtok = args[1] / 0.62137
+					await kill.reply(from, `*${args[1]}* _Milhas equivalem a_ *${mtok}* _Quilômetros._`, id)
+				} else {
+					await kill.reply(from, convh, id)
+				}
+			} catch (error) {
+				await kill.reply(from, convh + '\n\nCertifique-se de botar o valor da conversão.', id)
 			}
 			break
+
 		
 
         }
