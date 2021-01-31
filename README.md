@@ -1,5 +1,5 @@
 ### Íris, a BOT
-Uma bot em português feita originalmente para o grupo Legião Z no WhatsApp, possui mais de 100 comandos e continua em crescimento.
+Uma bot em português feita originalmente para o grupo Legião Z no WhatsApp, possui mais de 100 comandos e continua em crescimento (Somente PC).
 
 ### Pedido Pessoal
 Por favor NÃO REMOVA os creditos, levei muito tempo e precisei ter muita dedicação pra se criar uma BOT Brasileira assim, agradeço pela cooperação.

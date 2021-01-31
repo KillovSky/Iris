@@ -787,30 +787,43 @@ module.exports = kconfig = async (kill, message) => {
 			.then((result) => kill.reply(from, result, id))
 			break
 			
+			
 		case 'sporn':
-            if (isGroupMsg) {
-                if (!isNsfw) return kill.reply(from, mess.error.Ac, id)
-			if (args.length == 0) return kill.reply(from, 'Insira um termo de busca!', id)
-			const xvide = await axios.get(`https://mnazria.herokuapp.com/api/porn?search=${body.slice(7)}`)
-			const rexvi = xvide.data.result[0]
-			await kill.sendFileFromUrl(from, `${rexvi.image}`, '', `Titulo: ${rexvi.title}\n\nAutor: ${rexvi.actors}\n\nDuração: ${rexvi.duration}\n\nLink: ${rexvi.url}`, id)
-			.catch((error) => {
-				kill.reply(from, 'Minha nossa, algum tipo de força maligna me impediu de terminar o comando!', id)
-			})
+            try {
+				if (isGroupMsg) {
+					if (!isNsfw) return kill.reply(from, mess.error.Ac, id)
+					if (args.length == 0) return kill.reply(from, 'Insira um termo de busca!', id)
+					const xvide = await axios.get(`https://mnazria.herokuapp.com/api/porn?search=${body.slice(7)}`)
+					const rexvi = xvide.data.result[0]
+					await kill.sendFileFromUrl(from, `${rexvi.image}`, '', `Titulo: ${rexvi.title}\n\nAutor: ${rexvi.actors}\n\nDuração: ${rexvi.duration}\n\nLink: ${rexvi.url}`, id)
+				} else {
+					if (args.length == 0) return kill.reply(from, 'Insira um termo de busca!', id)
+					const xvide = await axios.get(`https://mnazria.herokuapp.com/api/porn?search=${body.slice(7)}`)
+					const rexvi = xvide.data.result[0]
+					await kill.sendFileFromUrl(from, `${rexvi.image}`, '', `Titulo: ${rexvi.title}\n\nAutor: ${rexvi.actors}\n\nDuração: ${rexvi.duration}\n\nLink: ${rexvi.url}`, id)
+				}
+			} catch (error) {
+				kill.reply(from, 'Falhei na busca do porno!', id)
 			}
             break
 			
 			
 		case 'xvideos':
-            if (isGroupMsg) {
-                if (!isNsfw) return kill.reply(from, mess.error.Ac, id)
-			if (args.length == 0) return kill.reply(from, 'Você esqueceu de inserir um link do xvideos?', id)
-            const xv = await axios.get(`https://mnazria.herokuapp.com/api/porndownloadxvideos?url=${body.slice(9)}`)
-			const xvidw = xv.data.mp4
-            await kill.sendFileFromUrl(from, xvidw, 'video.mp4', 'Hmmm safadinho', id)
-			.catch((error) => {
-				kill.reply(from, 'Minha nossa, algum tipo de força maligna me impediu de terminar o comando!', id)
-			})
+            try {
+				if (isGroupMsg) {
+					if (!isNsfw) return kill.reply(from, mess.error.Ac, id)
+					if (args.length == 0) return kill.reply(from, 'Você esqueceu de inserir um link do xvideos?', id)
+					const xv = await axios.get(`https://mnazria.herokuapp.com/api/porndownloadxvideos?url=${body.slice(9)}`)
+					const xvidw = xv.data.mp4
+					await kill.sendFileFromUrl(from, xvidw, 'video.mp4', 'Hmmm safadinho', id)
+				} else {
+					if (args.length == 0) return kill.reply(from, 'Você esqueceu de inserir um link do xvideos?', id)
+					const xv = await axios.get(`https://mnazria.herokuapp.com/api/porndownloadxvideos?url=${body.slice(9)}`)
+					const xvidw = xv.data.mp4
+					await kill.sendFileFromUrl(from, xvidw, 'video.mp4', 'Hmmm safadinho', id)
+				}
+			} catch (error) {
+				kill.reply(from, 'Falhei no download do porno!', id)
 			}
             break
 			
