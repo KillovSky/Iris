@@ -777,14 +777,52 @@ module.exports = kconfig = async (kill, message) => {
             break
 			
 			
+		case 'fatos':
+			var anifac = ["dog", "cat", "bird", "panda", "fox", "koala"];
+			var tsani = anifac[Math.floor(Math.random() * anifac.length)];
+			const animl = await axios.get(`https://some-random-api.ml/facts/${tsani}`)
+			const fatdat = animl.data.fact
+			console.log(fatdat)
+            translate(fatdat, 'pt')
+			.then((result) => kill.reply(from, result, id))
+			break
+			
+		case 'sporn':
+            if (isGroupMsg) {
+                if (!isNsfw) return kill.reply(from, mess.error.Ac, id)
+			if (args.length == 0) return kill.reply(from, 'Insira um termo de busca!', id)
+			const xvide = await axios.get(`https://mnazria.herokuapp.com/api/porn?search=${body.slice(7)}`)
+			const rexvi = xvide.data.result[0]
+			await kill.sendFileFromUrl(from, `${rexvi.image}`, '', `Titulo: ${rexvi.title}\n\nAutor: ${rexvi.actors}\n\nDuração: ${rexvi.duration}\n\nLink: ${rexvi.url}`, id)
+			.catch((error) => {
+				kill.reply(from, 'Minha nossa, algum tipo de força maligna me impediu de terminar o comando!', id)
+			})
+			}
+            break
+			
+			
+		case 'xvideos':
+            if (isGroupMsg) {
+                if (!isNsfw) return kill.reply(from, mess.error.Ac, id)
+			if (args.length == 0) return kill.reply(from, 'Você esqueceu de inserir um link do xvideos?', id)
+            const xv = await axios.get(`https://mnazria.herokuapp.com/api/porndownloadxvideos?url=${body.slice(9)}`)
+			const xvidw = xv.data.mp4
+            await kill.sendFileFromUrl(from, xvidw, 'video.mp4', 'Hmmm safadinho', id)
+			.catch((error) => {
+				kill.reply(from, 'Minha nossa, algum tipo de força maligna me impediu de terminar o comando!', id)
+			})
+			}
+            break
+			
+			
 		case 'fb':
 			if (args.length == 0) return kill.reply(from, 'Você esqueceu de inserir um link do facebook?', id)
-            const fb = await axios.get(`http://arugaz.my.id/api/media/facebook?url=${body.slice(4)}`)
-			const fbdw = fb.data.result.linkSD
+            const fb = await axios.get(`https://mnazria.herokuapp.com/api/fbdownloadervideo?url=${body.slice(4)}`)
+			const fbdw = fb.data.resultSD
             await kill.sendFileFromUrl(from, fbdw, 'video.mp4', 'Excelente video!\n~Mas o que diabos aconteceu?...~', id)
-			.catch(() => {
-						kill.reply(from, 'Minha nossa, algum tipo de força maligna me impediu de terminar o comando!', id)
-					})
+			.catch((error) => {
+				kill.reply(from, 'Minha nossa, algum tipo de força maligna me impediu de terminar o comando!', id)
+			})
             break
 
 
@@ -2827,19 +2865,28 @@ module.exports = kconfig = async (kill, message) => {
 			break
 			
 			
-	case 'gadometro':
-		await kill.reply(from, 'Aguarde, estou medindo sua porcentagem e tipo de gado!!', id)
-		await sleep(10000)
-		gaak = body.trim().split(' ')
-		var chifre = ["ultra extreme gado", "Gado-Master", "Gado-Rei", "Gado", "Escravo-ceta", "Escravo-ceta Maximo", "Gacorno?", "Jogador De Forno Livre<3", "Mestre Do Frifai<3<3", "Gado-Manso", "Gado-Conformado", "Gado-Incubado", "Gado Deus", "Mestre dos Gados", "TPTDPBCT=Topa Tudo Por Buceta KKKJ", "Gado Comum", "Mini-Pedro", "Mini Gadinho", "Gado Iniciante", "Gado Basico", "Gado Intermediario", "Gado Avançado", "Gado Proffisional", "Gado Mestre", "Gado Chifrudo", "Corno Conformado", "Corno HiperChifrudo", "Chifrudo Deus", "Mestre dos Chifrudos"]
-		var gado = chifre[Math.floor(Math.random() * chifre.length)]
-		var lvpc2 = Math.floor(Math.random() * 101) + 1
-		if (args.length == 1) {
-		await kill.sendTextWithMentions(from, gaak[1] + ' é ' + lvpc2 + '% ' + gado + 'KKKKJ.')
-		} else {
-		await kill.reply(from, `Você é ` + lvpc2 + '% ' + gado + 'KKKKJ.', id)
-		}
-		break		
+		case 'gadometro':
+		case 'gado':
+			gaak = body.trim().split(' ')
+			var chifre = ["ultra extreme gado", "Gado-Master", "Gado-Rei", "Gado", "Escravo-ceta", "Escravo-ceta Maximo", "Gacorno?", "Jogador De Forno Livre<3", "Mestre Do Frifai<3<3", "Gado-Manso", "Gado-Conformado", "Gado-Incubado", "Gado Deus", "Mestre dos Gados", "TPTDPBCT=Topa Tudo Por Buceta KKKJ", "Gado Comum", "Mini-Pedro", "Mini Gadinho", "Gado Iniciante", "Gado Basico", "Gado Intermediario", "Gado Avançado", "Gado Proffisional", "Gado Mestre", "Gado Chifrudo", "Corno Conformado", "Corno HiperChifrudo", "Chifrudo Deus", "Mestre dos Chifrudos"]
+			var gado = chifre[Math.floor(Math.random() * chifre.length)]
+			if (args.length == 1) {
+				await kill.sendTextWithMentions(from, gaak[1] + ' é ' + lvpc + '% ' + gado + 'KKKKJ.')
+			} else {
+				await kill.reply(from, `Você é ` + lvpc + '% ' + gado + ' KKKKJ.', id)
+			}
+			break
+			
+		case 'gamemode':
+			if (args.length == 0) return kill.reply(from, 'Você esqueceu de colocar se quer ativado [1  ou c ou creative], ou desativado [0 ou s ou survival].', id)
+			if (args[0] == '1' || args[0] == 'c' || args[0] == 'creative') {
+				kill.sendTextWithMentions(from, `O modo de jogo de "@${sender.id}" foi definido para criativo.`)
+			} else if (args[0] == '0' || args[0] == 's' || args[0] == 'survival') {
+				kill.sendTextWithMentions(from, `O modo de jogo de "@${sender.id}" foi definido para sobrevivencia.`)
+			} else {
+				kill.reply(from, 'Você esqueceu de colocar se quer ativado [1  ou c ou creative], ou desativado [0 ou s ou survival].', id)
+			}
+            break
 
 
         case 'ihentai':
