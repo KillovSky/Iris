@@ -2825,6 +2825,21 @@ module.exports = kconfig = async (kill, message) => {
 				await kill.sendFileFromUrl(from, pezin.data.url, '', '', id)
 			}
 			break
+			
+			
+	case 'gadometro':
+		await kill.reply(from, 'Aguarde, estou medindo sua porcentagem e tipo de gado!!', id)
+		await sleep(10000)
+		gaak = body.trim().split(' ')
+		var chifre = ["ultra extreme gado", "Gado-Master", "Gado-Rei", "Gado", "Escravo-ceta", "Escravo-ceta Maximo", "Gacorno?", "Jogador De Forno Livre<3", "Mestre Do Frifai<3<3", "Gado-Manso", "Gado-Conformado", "Gado-Incubado", "Gado Deus", "Mestre dos Gados", "TPTDPBCT=Topa Tudo Por Buceta KKKJ", "Gado Comum", "Mini-Pedro", "Mini Gadinho", "Gado Iniciante", "Gado Basico", "Gado Intermediario", "Gado Avançado", "Gado Proffisional", "Gado Mestre", "Gado Chifrudo", "Corno Conformado", "Corno HiperChifrudo", "Chifrudo Deus", "Mestre dos Chifrudos"]
+		var gado = chifre[Math.floor(Math.random() * chifre.length)]
+		var lvpc2 = Math.floor(Math.random() * 101) + 1
+		if (args.length == 1) {
+		await kill.sendTextWithMentions(from, gaak[1] + ' é ' + lvpc2 + '% ' + gado + 'KKKKJ.')
+		} else {
+		await kill.reply(from, `Você é ` + lvpc2 + '% ' + gado + 'KKKKJ.', id)
+		}
+		break		
 
 
         case 'ihentai':
