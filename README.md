@@ -107,7 +107,7 @@ Edite as API's encontradas em:
 - [Número 1](https://github.com/KillovSky/iris/blob/master/config.js#L1377)
 - [Número 2](https://github.com/KillovSky/iris/blob/master/config.js#L70)
 - [DDI](https://github.com/KillovSky/iris/blob/main/lib/welcome.js#L8)
-- [Bomber](https://github.com/KillovSky/iris/blob/master/config.js#L1377)
+- [Bomber](https://github.com/KillovSky/iris/blob/master/config.js#L3260)
 - Elas são referentes aos sites [RemoveBG](https://www.remove.bg/pt-br), [ImgBB](https://api.imgbb.com/) e [AlphaCoders](https://wall.alphacoders.com/api.php)
 - A DDI é obrigatoria apenas caso você for de fora do Brasil, o Bomb apenas se você usar Linux.
 - Sempre leia a aba de discussões do github para saber mais.
