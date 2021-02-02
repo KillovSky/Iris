@@ -37,7 +37,7 @@ const start = (kill = new Client()) => {
 		// Funções para caso seja adicionada em um grupo
         kill.onAddedToGroup(((chat) => {
             let totalMem = chat.groupMetadata.participants.length
-            if (totalMem < 20) { 
+            if (totalMem < 20) { // Total de membros necessarios pra bot ficar
             	kill.sendText(chat.id, `Um novo grupo, Eba! 😃\nUma pena que vocês não tem o requisito, que é ter pelo menos [20] membros. Você possui ${totalMem}, junte mais pessoas! 😉`).then(() => kill.leaveGroup(chat.id))
             } else {
                 kill.sendText(chat.groupMetadata.id, `Oi! 🌟\nFui requisitada como BOT para esse grupo, e estarei a disposição de vocês! 🤖\nSe quiserem ver minhas funcões usem /menu!`)

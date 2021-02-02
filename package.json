@@ -14,6 +14,7 @@
     "@open-wa/wa-automate": "^3.1.16",
     "@open-wa/wa-decrypt": "^2.0.1",
     "@vitalets/google-translate-api": "^4.0.0",
+    "aki-api": "^5.2.1",
     "axios": "^0.21.1",
     "bent": "^7.3.12",
     "brainly-scraper": "^1.0.3",

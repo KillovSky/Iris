@@ -5,7 +5,7 @@ Uma bot em português feita originalmente para o grupo Legião Z no WhatsApp, po
 Por favor NÃO REMOVA os creditos, levei muito tempo e precisei ter muita dedicação pra se criar uma BOT Brasileira assim, agradeço pela cooperação.
 
 ### Para os donos
-Você pode rodar comandos de Windows como "ipconfig", comandos de linux como "apt", ou comandos de programações como node-js tudo pelo WhatsApp, ninguém além de você pode usar isso, se você deseja que usem, remova a linha if (!isOnwer) [aqui](https://github.com/KillovSky/iris/blob/master/config.js#L2794), mas saiba que remove-la pode ser perigoso a você.
+Você pode rodar comandos de Windows como "ipconfig", comandos de linux como "apt", ou comandos de programações como python -c tudo pelo WhatsApp, ninguém além de você pode usar isso, se você deseja que usem, remova a linha if (!isOnwer) [aqui](https://github.com/KillovSky/iris/blob/master/config.js#L3265), mas saiba que remove-la pode ser perigoso a você.
 
 ### Funções (Não são todas, +130)
 
@@ -19,7 +19,6 @@ Você pode rodar comandos de Windows como "ipconfig", comandos de linux como "ap
 | Wikipedia |✅|
 | Brainly |✅|
 | Nasa |✅|
-| Letras de músicas/Acordes |✅|
 | Buscar anime por foto |✅|
 | Stickers em imagem |✅|
 | Ataques SMS |✅|
@@ -54,7 +53,7 @@ Você pode rodar comandos de Windows como "ipconfig", comandos de linux como "ap
 | Votações (Urna) |✅|
 | Foto de garotas, macacos, etc |✅|
 | Informações de Grupo/Perfil |✅|
-| Outros (Lista tem mais de 100) |✅|
+| Outros (Lista tem mais de 130) |✅|
 
 ### Instalação
 Você precisa ter esse repositorio, é simples, rode os comandos abaixo, em caso de erros, rode como sudo/administrador.
@@ -103,13 +102,15 @@ Edite as API's encontradas em:
 
 - [API 1](https://github.com/KillovSky/iris/blob/master/lib/functions.js#L12)
 - [API 2](https://github.com/KillovSky/iris/blob/master/lib/functions.js#L33)
-- [API 3](https://github.com/KillovSky/iris/blob/master/config.js#L295)
-- [API 4](https://github.com/KillovSky/iris/blob/master/config.js#L310)
-- [Número 1](https://github.com/KillovSky/iris/blob/master/config.js#L1267)
-- [Número 2](https://github.com/KillovSky/iris/blob/master/config.js#L69)
+- [API 3](https://github.com/KillovSky/iris/blob/master/config.js#L296)
+- [API 4](https://github.com/KillovSky/iris/blob/master/config.js#L311)
+- [Número 1](https://github.com/KillovSky/iris/blob/master/config.js#L1377)
+- [Número 2](https://github.com/KillovSky/iris/blob/master/config.js#L70)
 - [DDI](https://github.com/KillovSky/iris/blob/main/lib/welcome.js#L8)
+- [Bomber](https://github.com/KillovSky/iris/blob/master/config.js#L1377)
 - Elas são referentes aos sites [RemoveBG](https://www.remove.bg/pt-br), [ImgBB](https://api.imgbb.com/) e [AlphaCoders](https://wall.alphacoders.com/api.php)
-- A DDI é obrigatoria apenas caso você for de fora do Brasil.
+- A DDI é obrigatoria apenas caso você for de fora do Brasil, o Bomb apenas se você usar Linux.
+- Sempre leia a aba de discussões do github para saber mais.
 
 ### Brainly
 Depois de terminar a instalação siga esses passos para deixar seu brainly em português:

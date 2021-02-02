@@ -17,6 +17,7 @@ const moment = require('moment-timezone')
 moment.tz.setDefault('America/Sao_Paulo').locale('pt_BR')
 const get = require('got')
 const request = require('request')
+const { Aki } = require('aki-api')
 const color = require('./lib/color')
 const { spawn, exec, execFile } = require('child_process')
 const nhentai = require('nhentai-js')
@@ -1304,6 +1305,40 @@ module.exports = kconfig = async (kill, message) => {
 					sppt.save('./lib/media/tts/resPtm.mp3', resfl, function () {
 					kill.sendPtt(from, './lib/media/tts/resPtm.mp3', id)
 					})
+			}
+			break
+			
+			
+        case 'curiosidade':
+			const rcurio = fs.readFileSync('./lib/curiosidades.txt').toString().split('\n')
+			const rsidd = rcurio[Math.floor(Math.random() * rcurio.length)]
+			console.log(rsidd)
+			await kill.reply(from, rsidd, id)
+			break
+			
+			
+        case 'trecho':
+			const rcit = fs.readFileSync('./lib/frases.txt').toString().split('\n')
+			const racon = rcit[Math.floor(Math.random() * rcit.length)]
+			console.log(racon)
+			await kill.reply(from, racon, id)
+			break
+			
+			
+		case 'akinator':
+			const region = 'pt';
+			if (args[0] == '-r') {
+				let akinm = args[1].match(/^[0-9]+$/)
+				if (!akinm) return kill.reply(from, 'Responda apenas com 0 ou 1!\n0 = Sim\n1 = Não', id)
+				const aki = new Aki(region);
+				await aki.start();
+				const myAnswer = `${args[1]}`
+				await aki.step(myAnswer);
+				await kill.reply(from, `Questão: ${aki.question}\n\nProgresso: ${aki.progress}\n\nResponda com /akinator -r [0 ou 1], 0 = sim, 1 = não.`, id)
+			} else {
+				const aki = new Aki(region);
+				await aki.start()
+				await kill.reply(from, `Questão: ${aki.question}\n\nResponda com /akinator -r [0 ou 1], 0 = sim, 1 = não.`, id)
 			}
 			break
 			
@@ -3031,6 +3066,13 @@ module.exports = kconfig = async (kill, message) => {
             break
 			
 			
+		case 'valor':
+			if (args.length == 0) return kill.reply(from, 'Para usar digite o comando e em seguida o valor e tipo.\n\nExemplo: /valor 1USD (Junto mesmo.)\n\nDigite :help para ver a lista de moedas que podem ser usadas.\n\n/valor :help', id)
+			const money = await axios.get(`https://brl.rate.sx/${args[0]}`)
+			await kill.reply(from, `*${args[0]}* _vale no Brasil_ *${money.data}* _reais._`, id)
+			break
+			
+			
         case 'dog': 
 		    if (double == 1) {
 				const list = await axios.get('http://shibe.online/api/shibes')
@@ -3166,6 +3208,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
         case 'date':
+        case 'data':
 			const timeda = moment(t * 1000).format('DD/MM/YY HH:mm:ss')
 			await kill.reply(from, 'Agora são exatamente\n"' + timeda + '"', id)
 			break
@@ -3214,7 +3257,7 @@ module.exports = kconfig = async (kill, message) => {
 				const alvo = `@${body.slice(6)}`
 				await kill.sendTextWithMentions(from, 'Beleza! Pedido recebido e iniciado, o alvo \"' + alvo + '\" será atacado dentro de alguns segundos!', id)
 				if (!isGroupAdmins) return kill.reply(from, mess.error.Ga, id)
-				const atk = execFile('./lib/bomb.exe', [`${body.slice(6)}`, '3', '1', '0'], function(err, data) {
+				const atk = execFile('./lib/bomb.exe', [`${body.slice(6)}`, '3', '1', '0'], function(err, data) { // o bomb esta configurado para Windows, se estiver no linux troque bomb.exe para lbomb, ficando ./lib/lbomb
 				if(err) {
 				console.log('O programa fechou, isso indica um erro ou fechamento manual.')
 				kill.reply(from, 'O ataque foi cancelado manualmente ou obteve erros na execução.', id)
@@ -3222,7 +3265,7 @@ module.exports = kconfig = async (kill, message) => {
 				})
 			} else {
 				console.log('erro')   
-				kill.reply(from, 'O ataque não é permitido aqui!', id)
+				kill.reply(from, 'Você deve ativar o uso aqui com /exclusive on.', id)
 			}
 			break
 			
@@ -3249,6 +3292,7 @@ module.exports = kconfig = async (kill, message) => {
 			const macre = maclk.data
 			await kill.reply(from, `O telefone é da ${macre}.`, id)
 			break
+			
 			
 		case 'converter':
 		case 'conv':
