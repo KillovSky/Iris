@@ -120,6 +120,9 @@ Abra a brainly.js na pasta iris\node_modules\brainly-scraper\src
 Mude a graphql/id para graphql/pt
 ```
 
+### Computer-Freaker/Axios
+Para fixar o funcionamento da API da Computer-Freaker, que é responsavel por diversos comandos (hug, hentai, dva, baguette...), siga os passos desse [Mini-Tutorial](https://github.com/KillovSky/iris/discussions/10).
+
 ## Agradecimentos
 - [WA-Automate](https://github.com/open-wa/wa-automate-nodejs)
 - [ArugaZ](https://github.com/ArugaZ/whatsapp-bot)
