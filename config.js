@@ -16,6 +16,7 @@ const imgbbUploader = require('imgbb-uploader')
 const moment = require('moment-timezone')
 moment.tz.setDefault('America/Sao_Paulo').locale('pt_BR')
 const get = require('got')
+const sinesp = require('sinesp-api')
 const request = require('request')
 const { Aki } = require('aki-api')
 const color = require('./lib/color')
@@ -24,6 +25,7 @@ const nhentai = require('nhentai-js')
 const { API } = require('nhentai-api')
 const { randomNimek, sleep, wall, tulis, ss } = require('./lib/functions')
 const { owner, donate, down, help, admins, adult, readme, lang, convh } = require('./lib/help')
+const { coins } = require('./lib/coins')
 const { stdout } = require('process')
 const bent = require('bent')
 const { doing } = require('./lib/translate.js')
@@ -882,7 +884,7 @@ module.exports = kconfig = async (kill, message) => {
             break
 
 
-         case 'mp3':
+        case 'mp3':
 			if (mute) return console.log('Ignorando comando [Silence]')
             if (args.length == 0) return kill.reply(from, 'Você usou incorretamente.', id)
             axios.get(`http://st4rz.herokuapp.com/api/yta2?url=${body.slice(5)}`)
@@ -911,53 +913,12 @@ module.exports = kconfig = async (kill, message) => {
                 })
 			break
 			
-        case 'video':
-			if (mute) return console.log('Ignorando comando [Silence]')
-            if (args.length == 0) return kill.reply(from, 'Você usou incorretamente.', id)
-            axios.get(`https://arugaz.my.id/api/media/ytsearch?query=${body.slice(7)}`)
-            .then(async (res) => {
-				const vyre = res.data.result[0].uploadDate
-				if (vyre == '' || vyre == 'null' || vyre == null || vyre == undefined || vyre == 'undefined') {
-					var videore = 'Indefinido'
-				} else if (vyre.endsWith('years ago')) {
-                    var videore = vyre.replace('years ago', 'Anos atrás')
-				} else if (vyre.endsWith('hours ago')) {
-                    var videore = vyre.replace('hours ago', 'Horas atrás')
-				} else if (vyre.endsWith('minutes ago')) {
-                    var videore = vyre.replace('minutes ago', 'Minutos atrás')
-				} else if (vyre.endsWith('day ago')) {
-                    var videore = vyre.replace('day ago', 'Dia atrás')
-				} else if (vyre.endsWith('months ago')) {
-                    var videore = vyre.replace('months ago', 'Meses atrás')
-				} else if (vyre.endsWith('seconds ago')) {
-                    var videore = vyre.replace('seconds ago', 'Segundos atrás')
-				}
-				const size = await axios.get(`http://st4rz.herokuapp.com/api/ytv?url=http://youtu.be/${res.data.result[0].id}`)
-				const fsize = size.data.filesize.replace(' MB', '').replace('Download  ', 'Impossivel calcular')
-				console.log(fsize)
-				const impo = size.data.filesize.replace('Download  ', 'um peso muito superior que não posso calcular')
-				if (fsize >= 16.0 || size.data.filesize.endsWith('Download  ') || size.data.filesize.endsWith('GB')) {
-					kill.reply(from, `Desculpe, para evitar banimentos do WhatsApp, o limite de envio de videos é de 16MB, e esse possui ${impo.replace('    ', ' ')}.`, id)
-				} else {
-					await kill.sendFileFromUrl(from, `${res.data.result[0].thumbnail}`, ``, `Titulo: ${res.data.result[0].title}\n\nDuração: ${res.data.result[0].duration} segundos\n\nFoi feito a: ${videore}\n\nVisualizações: ${res.data.result[0].viewCount}\n\nPeso: ${size.data.filesize}\n\nEspero que eu tenha acertado e...agora é so esperar! Mas evite usar novamente até que eu termine emm!`, id)
-					console.log(res.data.result[0].title)
-					axios.get(`http://st4rz.herokuapp.com/api/ytv2?url=https://youtu.be/${res.data.result[0].id}`)
-					.then(async(rest) => {
-						var mp4 = rest.data.result
-						var tmp4 = rest.data.title
-						await kill.sendFileFromUrl(from, mp4, `video.mp4`, tmp4, id)
-					})
-				}
-			})
-            break
-			
-			
         case 'play':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute) return console.log('Comando ignorado.')
             if (args.length == 0) return kill.reply(from, 'Você usou incorretamente.', id)
-            axios.get(`https://arugaz.my.id/api/media/ytsearch?query=${body.slice(6)}`)
+            axios.get(`https://api.zeks.xyz/api/yts?q=${body.slice(6)}&apikey=apivinz`)
             .then(async (res) => {
-				const pyre = res.data.result[0].uploadDate
+				const pyre = res.data.result[0].video.upload_date
 				if (pyre == '' || pyre == 'null' || pyre == null || pyre == undefined || pyre == 'undefined') {
 					var playre = 'Indefinido'
 				} else if (pyre.endsWith('years ago')) {
@@ -973,19 +934,60 @@ module.exports = kconfig = async (kill, message) => {
 				} else if (pyre.endsWith('seconds ago')) {
                     var playre = pyre.replace('seconds ago', 'Segundos atrás')
 				}
-				const asize = await axios.get(`http://st4rz.herokuapp.com/api/yta?url=http://youtu.be/${res.data.result[0].id}`)
+				const asize = await axios.get(`http://st4rz.herokuapp.com/api/yta?url=http://youtu.be/${res.data.result[0].video.id}`)
 				const afsize = asize.data.filesize.replace(' MB', '')
 				console.log(afsize)
 				if (afsize >= 16.0 || asize.data.filesize.endsWith('GB')) {
 					kill.reply(from, `Desculpe, para evitar banimentos do WhatsApp, o limite de envio de audios é de 16MB, e esse possui ${asize.data.filesize}.`, id)
 				} else {
-					await kill.sendFileFromUrl(from, `${res.data.result[0].thumbnail}`, ``, `Titulo: ${res.data.result[0].title}\n\nDuração: ${res.data.result[0].duration} segundos\n\nFoi feito a: ${playre}\n\nVisualizações: ${res.data.result[0].viewCount}\n\nEspero que eu tenha acertado e...agora é so esperar! Mas evite usar novamente até que eu termine emm!`, id)
-					console.log(res.data.result[0].title)
-					axios.get(`http://st4rz.herokuapp.com/api/yta2?url=http://youtu.be/${res.data.result[0].id}`)
+					await kill.sendFileFromUrl(from, `${res.data.result[0].video.thumbnail_src}`, ``, `Titulo: ${res.data.result[0].video.title}\n\nLink: ${res.data.result[0].video.url}\n\nDuração: ${res.data.result[0].video.duration} minutos\n\nFoi feito a: ${playre}\n\nVisualizações: ${res.data.result[0].video.views}\n\nEspero que eu tenha acertado e...agora é so esperar, não use novamente até que eu termine esse!`, id)
+					console.log(res.data.result[0].video.title)
+					axios.get(`http://st4rz.herokuapp.com/api/yta2?url=http://youtu.be/${res.data.result[0].video.id}`)
 					.then(async(rest) => {
 						var m3pa = rest.data.result
 						var m3ti = rest.data.title
 						await kill.sendFileFromUrl(from, m3pa, '', '', id)
+					})
+				}
+			})
+            break
+			
+			
+        case 'video':
+			if (mute) return console.log('Comando ignorado.')
+            if (args.length == 0) return kill.reply(from, 'Você usou incorretamente.', id)
+            axios.get(`https://api.zeks.xyz/api/yts?q=${body.slice(6)}&apikey=apivinz`)
+            .then(async (res) => {
+				const vyre = res.data.result[0].video.upload_date
+				if (vyre == '' || vyre == 'null' || vyre == null || vyre == undefined || vyre == 'undefined') {
+					var videore = 'Indefinido'
+				} else if (vyre.endsWith('years ago')) {
+                    var videore = vyre.replace('years ago', 'Anos atrás')
+				} else if (vyre.endsWith('hours ago')) {
+                    var videore = vyre.replace('hours ago', 'Horas atrás')
+				} else if (vyre.endsWith('minutes ago')) {
+                    var videore = vyre.replace('minutes ago', 'Minutos atrás')
+				} else if (vyre.endsWith('day ago')) {
+                    var videore = vyre.replace('day ago', 'Dia atrás')
+				} else if (vyre.endsWith('months ago')) {
+                    var videore = vyre.replace('months ago', 'Meses atrás')
+				} else if (vyre.endsWith('seconds ago')) {
+                    var videore = vyre.replace('seconds ago', 'Segundos atrás')
+				}
+				const size = await axios.get(`http://st4rz.herokuapp.com/api/ytv?url=http://youtu.be/${res.data.result[0].video.id}`)
+				const fsize = size.data.filesize.replace(' MB', '').replace('Download  ', 'Impossivel calcular')
+				console.log(fsize)
+				const impo = size.data.filesize.replace('Download  ', 'um peso muito superior que não posso calcular')
+				if (fsize >= 16.0 || size.data.filesize.endsWith('Download  ') || size.data.filesize.endsWith('GB')) {
+					kill.reply(from, `Desculpe, para evitar banimentos do WhatsApp, o limite de envio de videos é de 16MB, e esse possui ${impo.replace('    ', ' ')}.`, id)
+				} else {
+					await kill.sendFileFromUrl(from, `${res.data.result[0].video.thumbnail_src}`, ``, `Titulo: ${res.data.result[0].video.title}\n\nLink: ${res.data.result[0].video.url}\n\nDuração: ${res.data.result[0].video.duration} minutos\n\nFoi feito a: ${playre}\n\nVisualizações: ${res.data.result[0].video.views}\n\nEspero que eu tenha acertado e...agora é so esperar, não use novamente até que eu termine esse!`, id)
+					console.log(res.data.result[0].title)
+					axios.get(`http://st4rz.herokuapp.com/api/ytv2?url=https://youtu.be/${res.data.result[0].video.id}`)
+					.then(async(rest) => {
+						var mp4 = rest.data.result
+						var tmp4 = rest.data.title
+						await kill.sendFileFromUrl(from, mp4, `video.mp4`, tmp4, id)
 					})
 				}
 			})
@@ -1381,7 +1383,6 @@ module.exports = kconfig = async (kill, message) => {
 			
 
         case 'criador':
-			if (mute) return console.log('Ignorando comando [Silence]')
             kill.sendContact(from, '5518998***@c.us')
 			kill.reply(from, 'Se ele não responder apenas espere, é raro ele sair da internet ~Carinha viciado sabe~, mas se acontecer foi algo importante.', id)
             break
@@ -1449,9 +1450,7 @@ module.exports = kconfig = async (kill, message) => {
 
         case 'donate':
 		case 'doar':
-			if (mute) return console.log('Ignorando comando [Silence]')
             kill.sendText(from, donate, id)
-            kill.sendContact(from, '5518998044132@c.us')
             break
 
 
@@ -2052,7 +2051,7 @@ module.exports = kconfig = async (kill, message) => {
 			if (mute) return console.log('Ignorando comando [Silence]')
 			if (args.length == 1) {
 				const cep = await axios.get(`https://viacep.com.br/ws/${body.slice(6)}/json/`)
-				await kill.reply(from, `✪ CEP: ${cep.data.cep}\n\n✪ Logradouro: ${cep.data.logradouro}\n\n✪ Complemento: ${cep.data.complemento}\n\n✪ Bairro: ${cep.data.bairro}\n\n✪ Estado: ${cep.data.localidade}\n\n✪ DDD: ${cep.data.ddd}\n\n✪ Sigla do Estado: ${cep.data.uf}\n\n✪ Código IBGE: ${cep.data.ibge}\n\n✪ Código GIA: ${cep.data.gia}\n\n✪ Código Siafi: ${cep.data.siafi}\n\nBusca de CEP feita por Íris - KillovSky.`, id)
+				await kill.reply(from, `✪ CEP: ${cep.data.cep}\n\n✪ Logradouro: ${cep.data.logradouro}\n\n✪ Complemento: ${cep.data.complemento}\n\n✪ Bairro: ${cep.data.bairro}\n\n✪ Estado: ${cep.data.localidade}\n\n✪ DDD: ${cep.data.ddd}\n\n✪ Sigla do Estado: ${cep.data.uf}\n\n✪ Código IBGE: ${cep.data.ibge}\n\n✪ Código GIA: ${cep.data.gia}\n\n✪ Código Siafi: ${cep.data.siafi}.`, id)
             } else {
 				await kill.reply(from, 'Especifique um CEP.', id)
             }
@@ -2455,6 +2454,19 @@ module.exports = kconfig = async (kill, message) => {
             kill.sendFile(from, sesPic, 'session.png', 'Neh...', id)
             break
 			
+			
+		case 'placa':
+			if (mute) return console.log('Comando ignorado.')
+			if (args.length == 0) return kill.reply(from, 'Coloque uma placa para puxar.', id)
+			if (!isGroupMsg) return kill.reply(from, mess.error.Gp, id)
+			sinesp.search(`${args[0]}`).then(async (dados) => {
+				await kill.reply(from, `Placa: ${dados.placa}\n\nSituação: ${dados.situacao}\n\nModelo: ${dados.modelo}\n\nMarca: ${dados.marca}\n\nCor: ${dados.cor}\n\nAno: ${dados.ano}\n\nAno do modelo: ${dados.anoModelo}\n\nEstado: ${dados.uf}\n\nMunicipio: ${dados.municipio}\n\nChassi: ${dados.chassi}.`, id)
+			}).catch(async (err) => {
+				console.log(err);
+				await kill.reply(from, 'Placa não encontrada.', id)
+			})
+			break
+			
 
         case 'enviar':
 			if (mute) return console.log('Ignorando comando [Silence]')
@@ -2717,11 +2729,11 @@ module.exports = kconfig = async (kill, message) => {
             		const bdsm1 = await axios.get('https://meme-api.herokuapp.com/gimme/BDSMPics');
             		let { postlink, title, subreddit, url, nsfw, spoiler } = bdsm1.data
             		await kill.sendFileFromUrl(from, `${url}`, '', `${title}`, id)
-            	}else if (triple == 2) {
+            	} else if (triple == 2) {
             		const bdsm1 = await axios.get('https://meme-api.herokuapp.com/gimme/bdsm');
             		let { postlink, title, subreddit, url, nsfw, spoiler } = bdsm1.data
             		await kill.sendFileFromUrl(from, `${url}`, 'meme.jpg', `${title}`, id)
-            	}else if (triple == 3) {
+            	} else if (triple == 3) {
             		const bdsm1 = await axios.get('https://meme-api.herokuapp.com/gimme/TeenBDSM');
             		let { postlink, title, subreddit, url, nsfw, spoiler } = bdsm1.data
             		await kill.sendFileFromUrl(from, `${url}`, 'meme.jpg', `${title}`, id)
@@ -2731,11 +2743,11 @@ module.exports = kconfig = async (kill, message) => {
             		const bdsm1 = await axios.get('https://meme-api.herokuapp.com/gimme/BDSMPics');
             		let { postlink, title, subreddit, url, nsfw, spoiler } = bdsm1.data
             		await kill.sendFileFromUrl(from, `${url}`, 'meme.jpg', `${title}`, id)
-            	}else if (triple == 2) {
+            	} else if (triple == 2) {
             		const bdsm1 = await axios.get('https://meme-api.herokuapp.com/gimme/bdsm');
             		let { postlink, title, subreddit, url, nsfw, spoiler } = bdsm1.data
             		await kill.sendFileFromUrl(from, `${url}`, 'meme.jpg', `${title}`, id)
-            	}else if (triple == 3) {
+            	} else if (triple == 3) {
             		const bdsm1 = await axios.get('https://meme-api.herokuapp.com/gimme/TeenBDSM');
             		let { postlink, title, subreddit, url, nsfw, spoiler } = bdsm1.data
             		await kill.sendFileFromUrl(from, `${url}`, 'meme.jpg', `${title}`, id)
@@ -2752,11 +2764,11 @@ module.exports = kconfig = async (kill, message) => {
             		const bows1 = await axios.get('https://meme-api.herokuapp.com/gimme/LegalTeens');
             		let { postlink, title, subreddit, url, nsfw, spoiler } = bows1.data
             		await kill.sendFileFromUrl(from, `${url}`, '', `${title}`, id)
-            	}else if (triple == 2) {
+            	} else if (triple == 2) {
             		const bows1 = await axios.get('https://meme-api.herokuapp.com/gimme/ass');
             		let { postlink, title, subreddit, url, nsfw, spoiler } = bows1.data
             		await kill.sendFileFromUrl(from, `${url}`, 'meme.jpg', `${title}`, id)
-            	}else if (triple == 3) {
+            	} else if (triple == 3) {
             		const bows1 = await axios.get('https://meme-api.herokuapp.com/gimme/bigasses');
             		let { postlink, title, subreddit, url, nsfw, spoiler } = bows1.data
             		await kill.sendFileFromUrl(from, `${url}`, 'meme.jpg', `${title}`, id)
@@ -2766,11 +2778,11 @@ module.exports = kconfig = async (kill, message) => {
             		const bows1 = await axios.get('https://meme-api.herokuapp.com/gimme/LegalTeens');
             		let { postlink, title, subreddit, url, nsfw, spoiler } = bows1.data
             		await kill.sendFileFromUrl(from, `${url}`, 'meme.jpg', `${title}`, id)
-            	}else if (triple == 2) {
+            	} else if (triple == 2) {
             		const bows1 = await axios.get('https://meme-api.herokuapp.com/gimme/ass');
             		let { postlink, title, subreddit, url, nsfw, spoiler } = bows1.data
             		await kill.sendFileFromUrl(from, `${url}`, 'meme.jpg', `${title}`, id)
-            	}else if (triple == 3) {
+            	} else if (triple == 3) {
             		const bows1 = await axios.get('https://meme-api.herokuapp.com/gimme/bigasses');
             		let { postlink, title, subreddit, url, nsfw, spoiler } = bows1.data
             		await kill.sendFileFromUrl(from, `${url}`, 'meme.jpg', `${title}`, id)
@@ -2787,11 +2799,11 @@ module.exports = kconfig = async (kill, message) => {
             		const bows1 = await axios.get('https://meme-api.herokuapp.com/gimme/pussy');
             		let { postlink, title, subreddit, url, nsfw, spoiler } = bows1.data
             		await kill.sendFileFromUrl(from, `${url}`, '', `${title}`, id)
-            	}else if (triple == 2) {
+            	} else if (triple == 2) {
             		const bows1 = await axios.get('https://meme-api.herokuapp.com/gimme/ass');
             		let { postlink, title, subreddit, url, nsfw, spoiler } = bows1.data
             		await kill.sendFileFromUrl(from, `${url}`, 'meme.jpg', `${title}`, id)
-            	}else if (triple == 3) {
+            	} else if (triple == 3) {
             		const bows1 = await axios.get('https://meme-api.herokuapp.com/gimme/LegalTeens');
             		let { postlink, title, subreddit, url, nsfw, spoiler } = bows1.data
             		await kill.sendFileFromUrl(from, `${url}`, 'meme.jpg', `${title}`, id)
@@ -2801,11 +2813,11 @@ module.exports = kconfig = async (kill, message) => {
             		const bows1 = await axios.get('https://meme-api.herokuapp.com/gimme/pussy');
             		let { postlink, title, subreddit, url, nsfw, spoiler } = bows1.data
             		await kill.sendFileFromUrl(from, `${url}`, 'meme.jpg', `${title}`, id)
-            	}else if (triple == 2) {
+            	} else if (triple == 2) {
             		const bows1 = await axios.get('https://meme-api.herokuapp.com/gimme/ass');
             		let { postlink, title, subreddit, url, nsfw, spoiler } = bows1.data
             		await kill.sendFileFromUrl(from, `${url}`, 'meme.jpg', `${title}`, id)
-            	}else if (triple == 3) {
+            	} else if (triple == 3) {
             		const bows1 = await axios.get('https://meme-api.herokuapp.com/gimme/LegalTeens');
             		let { postlink, title, subreddit, url, nsfw, spoiler } = bows1.data
             		await kill.sendFileFromUrl(from, `${url}`, 'meme.jpg', `${title}`, id)
@@ -3230,7 +3242,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 		case 'valor':
 			if (mute) return console.log('Ignorando comando [Silence]')
-			if (args.length == 0) return kill.reply(from, 'Para usar digite o comando e em seguida o valor e tipo.\n\nExemplo: /valor 1USD (Junto mesmo.)\n\nDigite :help para ver a lista de moedas que podem ser usadas.\n\n/valor :help', id)
+			if (args.length == 0) return kill.reply(from, 'Para usar digite o comando e em seguida o valor e tipo.\n\nExemplo: /valor 1USD (Junto mesmo.)\n\nDigite /coins para ver a lista de moedas que podem ser usadas [É uma lista enormeeeeee].', id)
 			const money = await axios.get(`https://brl.rate.sx/${args[0]}`)
 			await kill.reply(from, `*${args[0]}* _vale no Brasil_ *${money.data}* _reais._`, id)
 			break
@@ -3544,6 +3556,23 @@ module.exports = kconfig = async (kill, message) => {
                 kill.reply(from, mess.error.Ga, id)
             }
             break
+			
+			
+		case 'scnpj':
+			if (mute) return console.log('Ignorando comando [Silence]')
+			if (args.length == 1) {
+				const cnpj = await axios.get(`https://www.receitaws.com.br/v1/cnpj/${body.slice(7)}`)
+				if (cnpj.data.status == 'ERROR') return kill.reply(from, cnpj.data.message, id)
+				await kill.reply(from, `✪ CNPJ: ${cnpj.data.cnpj}\n\n✪ Tipo: ${cnpj.data.tipo}\n\n✪ Nome: ${cnpj.data.nome}\n\n✪ Região: ${cnpj.data.uf}\n\n✪ Telefone: ${cnpj.data.telefone}\n\n✪ Situação: ${cnpj.data.situacao}\n\n✪ Bairro: ${cnpj.data.bairro}\n\n✪ Logradouro: ${cnpj.data.logradouro}\n\n✪ CEP: ${cnpj.data.cep}\n\n✪ Casa N°: ${cnpj.data.numero}\n\n✪ Municipio: ${cnpj.data.municipio}\n\n✪ Abertura: ${cnpj.data.abertura}\n\n✪ Fantasia: ${cnpj.data.fantasia}\n\n✪ Jurisdição: ${cnpj.data.natureza_juridica}`, id)
+            } else {
+				await kill.reply(from, 'Especifique um CNPJ sem os traços e pontos.', id)
+            }
+			break
+			
+			
+		case 'coins':
+			await kill.reply(from, coins, id)
+			break
 
         }
     } catch (err) {
