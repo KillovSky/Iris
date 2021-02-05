@@ -44,7 +44,7 @@
     "request": "^2.88.2",
     "resize-base64": "^1.0.12",
     "sinesp-api": "^2.1.1",
-    "simple-play-store-search": "^1.0.2",
+    "simple-play-store-search": "^1.0.2"
   },
   "directories": {
     "lib": "lib"
