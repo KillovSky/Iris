@@ -78,9 +78,9 @@ module.exports = kconfig = async (kill, message) => {
 		global.client = kill
 		const isLeg = exsv.includes(chatId)
 		const mute = slce.includes(chatId)
+		const pvmte = slce.includes(sender.id)
         const isNsfw = isGroupMsg ? nsfw_.includes(chat.id) : false
         const isUrl = new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)/gi)
-
 
         // Bot Prefix
         const prefix = '/'
@@ -170,7 +170,7 @@ module.exports = kconfig = async (kill, message) => {
 
         case 'sticker':
         case 'stiker':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (isMedia && type === 'image') {
                 const mediaData = await decryptMedia(message, uaOverride)
 				sharp(mediaData)
@@ -210,7 +210,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 
 		case 'ttp':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			if (args.length == 0) return kill.reply(from, 'Cadê a frase né?', id)
 			axios.get(`https://st4rz.herokuapp.com/api/ttp?kata=${body.slice(5)}`)
 			.then(res => {
@@ -220,13 +220,13 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
 		case 'about':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			await kill.sendFile(from, './lib/media/img/iris.png', 'iris.png', sobre, id)
 			break
 
 			
         case 'stickernobg':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			if (isMedia) {
                 try {
                     var mediaData = await decryptMedia(message, uaOverride)
@@ -248,7 +248,7 @@ module.exports = kconfig = async (kill, message) => {
         case 'stickergif':
         case 'stikergif':
         case 'gif':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (isMedia) {
                 if (mimetype === 'video/mp4' && message.duration < 15 || mimetype === 'image/gif' && message.duration < 15) {
                     var mediaData = await decryptMedia(message, uaOverride)
@@ -288,7 +288,7 @@ module.exports = kconfig = async (kill, message) => {
 	
 
 		case 'simg':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (isMedia && type === 'image') {
                 const mediaData = await decryptMedia(message, uaOverride)
 				kill.reply(from, 'Aguarde, leva mais de 20 segundos.\n\n *NÃO USE NOVAMENTE* até eu terminar, caso contrario, as funções todas serão bloqueadas por IP.', id)
@@ -311,7 +311,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 
 		case 'upimg':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (isMedia && type === 'image') {
                 const mediaData = await decryptMedia(message, uaOverride)
                 var uplimg = './lib/media/img/imageupl.jpg'
@@ -326,7 +326,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
         case 'makesticker':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (args.length == 0) return kill.reply(from, 'Faltou algo para usar de referência!', id)
             const stkm = await fetch(`http://api.fdci.se/rep.php?gambar=${body.slice(7)}`)
 			const stimg = await stkm.json()
@@ -341,7 +341,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 		case 'morte':
 		case 'death':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (args.length == 0) return kill.reply(from, 'Coloque um nome, apenas um, nada de sobrenome ou nomes inteiros, ainda mais por sua segurança!', id)
 			const predea = await axios.get(`https://api.agify.io/?name=${args[0]}`)
 			await kill.reply(from, `Pessoas com este nome "${predea.data.name}" tendem a morrer aos ${predea.data.age} anos de idade.`, id)
@@ -349,7 +349,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
 	    case 'oculto':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (!isGroupMsg) return kill.reply(from, 'Apenas grupos!', id)
             const eur = await kill.getGroupMembers(groupId)
             const surpresa = eur[Math.floor(Math.random() * eur.length)]
@@ -363,7 +363,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 		case 'gender':
 		case 'genero':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (args.length == 0) return kill.reply(from, 'Coloque um nome, apenas um, nada de sobrenome ou nomes inteiros, ainda mais por sua segurança!', id)
 			const seanl = await axios.get(`https://api.genderize.io/?name=${args[0]}`)
 			const gender = seanl.data.gender.replace('female', 'mulheres').replace('male', 'homens')
@@ -385,7 +385,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
 		case 'math':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (args.length == 0) return kill.reply(from, 'Você não especificou uma conta matematica.', id)
             const mtk = body.slice(6)
             if (typeof math.evaluate(mtk) !== "number") {
@@ -397,7 +397,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
 		case 'inverter':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (args.length == 0) return kill.reply(from, 'Você não especificou uma frase para ser invertida.', id)
 			const inver = body.slice(10).split('').reverse().join('')
 			await kill.reply(from, inver, id)
@@ -405,7 +405,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
 		case 'contar':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (args.length == 0) return kill.reply(from, 'Isso possui 0 letras, afinal, não há texto.', id)
 			const count = body.slice(8).length
 			await kill.reply(from, `O texto possui ${count} letras.`, id)
@@ -413,7 +413,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
         case 'giphy':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			gark = body.trim().split(/ +/).slice(1)
 			const link = gark.length !== 0 ? gark[0] : ''
             if (gark.length !== 1) return kill.reply(from, `Ownn, você esqueceu de inserir o link?`, id)
@@ -441,20 +441,20 @@ module.exports = kconfig = async (kill, message) => {
 
 
 		case 'msg':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (args.length == 0) return kill.reply(from, 'Você esqueceu de inserir uma mensagem... e.e', id)
 			await kill.sendText(from, `${body.slice(5)}`)
 			break
 			
 			
 		case 'id':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			if (!isGroupMsg) return kill.reply(from, mess.error.Gp, id)
 			kill.reply(from, `A ID desse grupo é ${groupId}`, id)
 			break
 			
         case 'fake':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			if (isGroupMsg && isGroupAdmins) {
 				if (args.length !== 1) return kill.reply(from, 'Você esqueceu de colocar se quer ativado [on], ou desativado [off].', id)
 				if (args[0] == 'on') {
@@ -486,7 +486,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
         case 'blacklist':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (isGroupMsg && isGroupAdmins) {
 				if (args.length !== 1) return kill.reply(from, 'Defina entre on e off!', id)
 				if (args[0] == 'on') {
@@ -518,7 +518,7 @@ module.exports = kconfig = async (kill, message) => {
 		
 			
         case 'bklist':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (isGroupMsg && isGroupAdmins) {
 				if (args[0] == 'on') {
 					if (args.length == 0) return kill.reply(from, 'Você deve definir [on e off] e em seguida o número da pessoa.', id)
@@ -560,7 +560,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
 		case 'onlyadms':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			onar = body.trim().split(/ +/).slice(1)
 			if (!isGroupMsg) return kill.reply(from, mess.error.Gp, id)
             if (!isGroupAdmins) return kill.reply(from, mess.error.Ga, id)
@@ -577,14 +577,14 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
 		case 'legiao':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			if (isGroupMsg) return kill.reply(from, 'Pode ser que esse grupo não permita links, então use esse comando no PV okay?', id)
 			kill.sendLinkWithAutoPreview(from, 'https://chat.whatsapp.com/H53MdwhtnRf7TGX1VJ2Jje', 'Que otimo que se interessou pelo Legião Z!\nAi está nosso grupo!', id)
 			break
 			
 			
 		case 'revoke':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			if (!isGroupMsg) return kill.reply(from, mess.error.Gp, id)
             if (!isGroupAdmins) return kill.reply(from, mess.error.Ga, id)
             if (!isBotGroupAdmins) return kill.reply(from, mess.error.Ba, id)
@@ -593,7 +593,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
         case 'slogan':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (args.length == 0) return kill.reply(from, 'Cade a frase?', id)
             const slog = await axios.get(`http://api.haipbis.xyz/randomcooltext?text=${body.slice(8)}`)
 			await kill.sendFileFromUrl(from, slog.data.image, slog.data.text, 'Elegante não é?', id)
@@ -601,7 +601,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
 		case 'setimage':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			if (!isGroupMsg) return kill.reply(from, mess.error.Gp, id)
             if (!isGroupAdmins) return kill.reply(from, mess.error.Ga, id)
             if (!isBotGroupAdmins) return kill.reply(from, mess.error.Ba, id)
@@ -637,7 +637,7 @@ module.exports = kconfig = async (kill, message) => {
 
 			
 		case 'img':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (quotedMsg && quotedMsg.type == 'sticker') {
                 const mediaData = await decryptMedia(quotedMsg)
                 kill.reply(from, `Só esperar, pode levar um tempinho...`, id)
@@ -648,7 +648,7 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'randomanime':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             const nime2 = await randomNimek('anime')
 			console.log(nime2.data)
             await kill.sendFileFromUrl(from, nime2, ``, 'Ui Ui...', id)
@@ -656,7 +656,7 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'frase':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (double == 1) {
 				const skya = await axios.get('https://mhankbarbar.tech/api/quotesnime/random').json() 
 				const quot = skya.data.data.quote
@@ -672,7 +672,7 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'make':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (args.length == 0) return kill.reply(from, `Você precisa inserir uma frase após o comando.`, id)
             const nulisq = body.slice(6)
             const nulisp = await tulis(nulisq)
@@ -684,7 +684,7 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'neko':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             const nekol = Math.floor(Math.random() * 4) + 1
             if (nekol == 1) {
 				const neko5 = await axios.get(`https://nekos.life/api/v2/img/kemonomimi`)
@@ -703,7 +703,7 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'image':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (args.length == 0) return kill.reply(from, 'Faltou um nome!', id)
             const linp = await fetch(`http://api.fdci.se/rep.php?gambar=${body.slice(7)}`)
 			const pint = await linp.json()
@@ -717,7 +717,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
         case 'yaoi':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             const yam = await fetch(`http://api.fdci.se/rep.php?gambar=yaoi`)
 			const yaoi = await yam.json()
             let flyaoi = yaoi[Math.floor(Math.random() * yaoi.length) + 1]
@@ -738,14 +738,14 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'fox':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             const fox = await axios.get(`https://some-random-api.ml/img/fox`)
 			await kill.sendFileFromUrl(from, fox.data.link, ``, 'Que raposa lindinha <3', id)
 			break
 
 
         case 'wiki':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (args.length == 0) return kill.reply(from, 'Por favor, escreva corretamente.', id)
             const wiki = await axios.get(`https://docs-jojo.herokuapp.com/api/wiki?q=${body.slice(6)}`)
 			var wikit = wiki.data.result
@@ -758,7 +758,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
         case 'nasa':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
         	if (args[0] == '-data') {
             	const nasa = await axios.get(`https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&date=${args[1]}`)
 				console.log(nasa.data.title)
@@ -778,7 +778,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
         case 'stalkig':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (args.length == 0) return kill.reply(from, 'Cade o username né?', id)
             const ig = await axios.get(`http://arugaz.my.id/api/media/stalkig?user=${body.slice(9)}`)
 			var insta = ig.data.result.biography
@@ -787,7 +787,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 
         case 'stalktw':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (args.length == 0) return kill.reply(from, 'Cade o username né?', id)
             const tw = await axios.get(`http://arugaz.my.id/api/media/stalktwitt?user=${body.slice(9)}`)
 			var insta = tw.data.result.biography
@@ -797,7 +797,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 
         case 'twitter':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (args.length == 0) return kill.reply(from, 'Cade o link né?', id)
             const twi = await axios.get(`http://arugaz.my.id/api/media/twvid?url=${body.slice(4)}`)
 			await kill.sendFileFromUrl(from, twi.data.result.videos, ``, 'É um otimo video haha!\n~Mas o que diabos foi isso...~', id)
@@ -808,7 +808,7 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'ig':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (args.length == 0) return kill.reply(from, 'Cade o link né?', id)
             const iga = await axios.get(`https://arugaz.my.id/api/media/ig?url=${body.slice(4)}`)
 			await kill.sendFileFromUrl(from, iga.data.result, ``, 'É um otimo video haha!\n~Mas o que diabos foi isso...~', id)
@@ -819,7 +819,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
 		case 'fatos':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			var anifac = ["dog", "cat", "bird", "panda", "fox", "koala"];
 			var tsani = anifac[Math.floor(Math.random() * anifac.length)];
 			const animl = await axios.get(`https://some-random-api.ml/facts/${tsani}`)
@@ -831,7 +831,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
 		case 'sporn':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             try {
 				if (isGroupMsg) {
 					if (!isNsfw) return kill.reply(from, mess.error.Ac, id)
@@ -852,7 +852,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
 		case 'xvideos':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             try {
 				if (isGroupMsg) {
 					if (!isNsfw) return kill.reply(from, mess.error.Ac, id)
@@ -873,7 +873,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
 		case 'fb':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			if (args.length == 0) return kill.reply(from, 'Você esqueceu de inserir um link do facebook?', id)
             const fb = await axios.get(`https://mnazria.herokuapp.com/api/fbdownloadervideo?url=${body.slice(4)}`)
 			const fbdw = fb.data.resultSD
@@ -885,7 +885,7 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'mp3':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (args.length == 0) return kill.reply(from, 'Você usou incorretamente.', id)
             axios.get(`http://st4rz.herokuapp.com/api/yta2?url=${body.slice(5)}`)
             .then(async(rest) => {
@@ -900,7 +900,7 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'mp4':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (args.length == 0) return kill.reply(from, 'Você usou incorretamente.', id)
             axios.get(`http://st4rz.herokuapp.com/api/ytv2?url=${body.slice(5)}`)
             .then(async(rest) => {
@@ -914,7 +914,7 @@ module.exports = kconfig = async (kill, message) => {
 			break
 			
         case 'play':
-			if (mute) return console.log('Comando ignorado.')
+			if (mute || pvmte) return console.log('Comando ignorado.')
             if (args.length == 0) return kill.reply(from, 'Você usou incorretamente.', id)
             axios.get(`https://api.zeks.xyz/api/yts?q=${body.slice(6)}&apikey=apivinz`)
             .then(async (res) => {
@@ -954,7 +954,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
         case 'video':
-			if (mute) return console.log('Comando ignorado.')
+			if (mute || pvmte) return console.log('Comando ignorado.')
             if (args.length == 0) return kill.reply(from, 'Você usou incorretamente.', id)
             axios.get(`https://api.zeks.xyz/api/yts?q=${body.slice(6)}&apikey=apivinz`)
             .then(async (res) => {
@@ -995,14 +995,14 @@ module.exports = kconfig = async (kill, message) => {
 			
 
 		case 'qr':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			const qrco = body.slice(4)
 			await kill.sendFileFromUrl(from, `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${qrco}`, '', 'Sua mensagem foi inserida nesse QRCode, aproveite.\n\nBy KillovSky - Íris.', id)
 			break
 
 
 		case 'send':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			if (args.length == 0) return kill.reply(from, 'Você esqueceu de por um link de imagem haha!', id)
 			const file = body.slice(6)
 			if (file.endsWith('.jpg')) {
@@ -1022,7 +1022,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
         case 'quote':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 		    arks = body.trim().split(/ +/).slice(1)
             ark = body.trim().substring(body.indexOf(' ') + 1)
             if (arks.length >= 1) {
@@ -1042,7 +1042,7 @@ module.exports = kconfig = async (kill, message) => {
 
 
        case 'translate':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (args.length != 1) return kill.reply(from, `Isso é pequeno demais para ser traduzido...`, id)
             if (!quotedMsg) return kill.reply(from, `Você esqueceu de marcar a mensagem para tradução.`, id)
             const quoteText = quotedMsg.type == 'chat' ? quotedMsg.body : quotedMsg.type == 'image' ? quotedMsg.caption : ''
@@ -1318,13 +1318,13 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'idiomas':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             kill.sendText(from, lang, id)
             break
 			
 			
 		case 'resposta':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			if (args.length == 0) return kill.reply(from, 'Faltou a frase para ser adicionada.', id)
 			fs.appendFile('./lib/reply.txt', `\n${body.slice(10)}`)
 			await kill.reply(from, 'Frase adicionada a Íris.', id)
@@ -1332,7 +1332,7 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'speak':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			const sppt = require('node-gtts')('pt-br')
 			try {
 				const spiris = await axios.get(`http://simsumi.herokuapp.com/api?text=${body.slice(7)}&lang=pt`)
@@ -1365,7 +1365,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
         case 'curiosidade':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			const rcurio = fs.readFileSync('./lib/curiosidades.txt').toString().split('\n')
 			const rsidd = rcurio[Math.floor(Math.random() * rcurio.length)]
 			console.log(rsidd)
@@ -1374,7 +1374,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
         case 'trecho':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			const rcit = fs.readFileSync('./lib/frases.txt').toString().split('\n')
 			const racon = rcit[Math.floor(Math.random() * rcit.length)]
 			console.log(racon)
@@ -1389,7 +1389,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
 		case 'akinator':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			const region = 'pt';
 			if (args[0] == '-r') {
 				let akinm = args[1].match(/^[0-9]+$/)
@@ -1408,7 +1408,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 
         case 'iris':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			try {
 				const iris = await axios.get(`http://simsumi.herokuapp.com/api?text=${body.slice(6)}&lang=pt`)
 				if (iris.data.success == '') {
@@ -1433,7 +1433,7 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'wallpaper':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (args.length == 0) return kill.reply(from, 'Você precisa me dizer do que quer seu wallpaper!', id)
             const quere = body.slice(6)
             const wallp = await wall(quere)
@@ -1443,7 +1443,7 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'ping':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             kill.sendText(from, `Pong!\n_Minha velocidade é de ${processTime(t, moment())} segundos._`)
             break
 
@@ -1455,14 +1455,14 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'roll':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             const dice = Math.floor(Math.random() * 6) + 1
             await kill.sendStickerfromUrl(from, 'https://www.random.org/dice/dice' + dice + '.png')
             break
 
 
         case 'flip':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             const side = Math.floor(Math.random() * 2) + 1
             if (side == 1) {
                kill.sendStickerfromUrl(from, 'https://i.ibb.co/LJjkVK5/heads.png')
@@ -1473,7 +1473,7 @@ module.exports = kconfig = async (kill, message) => {
 
 
        case 'poll':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             feature.getpoll(kill, message, pollfile, voterslistfile)
             break    
 
@@ -1484,7 +1484,7 @@ module.exports = kconfig = async (kill, message) => {
 
 
        case 'newpoll':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             feature.adminpollreset(kill, message, message.body.slice(9), pollfile, voterslistfile)
             break
 
@@ -1495,7 +1495,7 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'nsfw':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
        	    const isGroupOwner = sender.id === chat.groupMetadata.owner
             if (args.length !== 1) return kill.reply(from, 'Defina enable ou disable', id)
 			if (isGroupMsg && isGroupOwner) {
@@ -1531,7 +1531,7 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'welcome':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			if (!isGroupMsg) return kill.reply(from, mess.error.Gp, id)
 			if (!isOwner) return kill.reply(from, mess.error.Kl, id)
             if (args.length !== 1) return kill.reply(from, 'Você esqueceu de colocar se quer ativado [on], ou desativado [off].', id)
@@ -1551,7 +1551,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
 		case 'macaco':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			var item = ["macaco", "gorila", "chimpanzé", "orangotango", "babuino"]
     	    var esco = item[Math.floor(Math.random() * item.length)]
 			console.log(esco)
@@ -1566,14 +1566,14 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
 		case 'ball':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			const ball = await axios.get('https://nekos.life/api/v2/img/8ball')
 			await kill.sendFileFromUrl(from, ball.data.url, '', '', id)
 			break
 			
 			
 		case 'cafune':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			if (double == 1) {
 				const cfne = await axios.get('https://nekos.life/api/v2/img/pat')
 				await kill.sendFileFromUrl(from, cfne.data.url, '', '', id)
@@ -1585,35 +1585,35 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
 		case 'quack':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			const patu = await axios.get('https://nekos.life/api/v2/img/goose')
 			await kill.sendFileFromUrl(from, patu.data.url, '', '', id)
 			break
 			
 
 		case 'poke':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			const teco = await axios.get('https://nekos.life/api/v2/img/poke')
 			await kill.sendFileFromUrl(from, teco.data.url, '', '', id)
 			break
 			
 
 		case 'cocegas':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			const cocegas = await axios.get('https://nekos.life/api/v2/img/tickle')
 			await kill.sendFileFromUrl(from, cocegas.data.url, '', '', id)
 			break
 			
 			
 		case 'feed':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			const feed = await axios.get('https://nekos.life/api/v2/img/tickle')
 			await kill.sendFileFromUrl(from, feed.data.url, '', '', id)
 			break
 			
 			
 		case 'baka':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			const baka = await axios.get('https://nekos.life/api/v2/img/baka')
 			await kill.sendFileFromUrl(from, baka.data.url, '', '', id)
 			break
@@ -1621,14 +1621,14 @@ module.exports = kconfig = async (kill, message) => {
 			
 		case 'lizard':
 		case 'lagarto':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			const lizard = await axios.get('https://nekos.life/api/v2/img/lizard')
 			await kill.sendFileFromUrl(from, lizard.data.url, '', '', id)
 			break
 			
 
         case 'google':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (args.length == 0) return kill.reply(from, `Digite algo para buscar.`, id)
 		    const googleQuery = body.slice(8)
             google({ 'query': googleQuery }).then(results => {
@@ -1644,7 +1644,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
        case 'clima':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
        		if (args.length == 0) return kill.reply(from, 'Insira o nome da sua cidade.', id)
             try {
 				const clima = await axios.get(`https://pt.wttr.in/${body.slice(7)}?format=Cidade%20=%20%l+\n\nEstado%20=%20%C+%c+\n\nTemperatura%20=%20%t+\n\nUmidade%20=%20%h\n\nVento%20=%20%w\n\nLua agora%20=%20%m\n\nNascer%20do%20Sol%20=%20%S\n\nPor%20do%20Sol%20=%20%s`)
@@ -1656,7 +1656,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
         case 'boy':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
     	    var hite = ["eboy", "garoto", "homem", "men", "garoto oriental", "japanese men", "pretty guy", "homem bonito"];
     	    var hesc = hite[Math.floor(Math.random() * hite.length)];
 			var men = "https://api.fdci.se/rep.php?gambar=" + hesc;
@@ -1670,7 +1670,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
       case 'moddroid':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (args.length == 0) return kill.reply(from, 'Bote um nome para buscar!', id)
             try {
                 const moddroid = await axios.get('https://tobz-api.herokuapp.com/api/moddroid?q=' + body.slice(10)  + '&apikey=BotWeA')
@@ -1685,7 +1685,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
         case 'happymod':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (args.length == 0) return kill.reply(from, 'Bote um nome para buscar!', id)
             try {
                 const happymod = await axios.get('https://tobz-api.herokuapp.com/api/happymod?q=' + body.slice(10)  + '&apikey=BotWeA')
@@ -1700,7 +1700,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 
         case 'girl':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
     	    var items = ["garota adolescente", "saycay", "alina nikitina", "belle delphine", "teen girl", "teen cute", "japanese girl", "garota bonita oriental", "oriental girl", "korean girl", "chinese girl", "e-girl", "teen egirl", "brazilian teen girl", "pretty teen girl", "korean teen girl", "garota adolescente bonita", "menina adolescente bonita", "egirl", "cute girl"];
     	    var cewe = items[Math.floor(Math.random() * items.length)];
 			console.log(cewe)
@@ -1715,7 +1715,7 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'anime':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 		    if (args.length == 0) return kill.reply(from, 'Especifique o nome de um anime!', id)
             const keyword = message.body.replace('/anime', '')
             try {
@@ -1746,7 +1746,7 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'nh':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (isGroupMsg) {
                 if (!isNsfw) return kill.reply(from, mess.error.Ac, id)
 				if (args.length == 1) {
@@ -1805,7 +1805,7 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'profile':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (isGroupMsg) {
 				if (!quotedMsg) {
 					var pic = await kill.getProfilePicFromServer(author)
@@ -1818,25 +1818,27 @@ module.exports = kconfig = async (kill, message) => {
 					} else {
 						var pfp = pic
 					} 
-					await kill.sendFileFromUrl(from, pfp, 'pfp.jpg', `*Dados do seu perfil..* ✨️ \n\n 🔖️ *Qual sua Usertag? ${namae}*\n\n💌️ *Frase do recado?*\n${status}\n\n 👑️ *Você é administrador? ${adm}*`)
+					await kill.sendFileFromUrl(from, pfp, 'pfo.jpg', `*Dados do seu perfil..* ✨️ \n\n 🔖️ *Qual sua Usertag? ${namae}*\n\n👑️ *Administrador? ${adm}*\n\n💌️ *Frase do recado?*\n${status}`)
 			    } else if (quotedMsg) {
 					var qmid = quotedMsgObj.sender.id
+					var namae = quotedMsgObj.sender.pushname
 					var pic = await kill.getProfilePicFromServer(qmid)
 					var sts = await kill.getStatus(qmid)
+					var adm = groupAdmins.includes(qmid)
 					const { status } = sts
 					if (pic == undefined) {
 						var pfp = errorurl 
 					} else {
 						var pfp = pic
 					}
-					await kill.sendFileFromUrl(from, pfp, 'pfo.jpg', `${status}`)
+					await kill.sendFileFromUrl(from, pfp, 'pfo.jpg', `*Dados do seu perfil..* ✨️ \n\n 🔖️ *Qual sua Usertag? ${namae}*\n\n👑️ *Administrador? ${adm}*\n\n💌️ *Frase do recado?*\n${status}`)
 				}
 			}
             break
 
 
         case 'brainly':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (args.length >= 2){
                 let tanya = body.slice(9)
                 let jum = Number(tanya.split('.')[1]) || 2
@@ -1860,7 +1862,7 @@ module.exports = kconfig = async (kill, message) => {
 
 
 		case 'store':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			if (args.length == 0) return kill.reply(from, 'Especifique um nome de aplicativo que deseja pesquisar.', id)
 			kill.reply(from, mess.wait, id)
 			await sleep(5000)
@@ -1871,7 +1873,7 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'search':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (isMedia && type === 'image' || quotedMsg && quotedMsg.type === 'image') {
                 if (isMedia) {
                     var mediaData = await decryptMedia(message, uaOverride)
@@ -1914,7 +1916,7 @@ module.exports = kconfig = async (kill, message) => {
             break
 
         case 'link':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (!isBotGroupAdmins) return kill.reply(from, mess.error.Ba, id)
             if (isGroupMsg) {
                 const inviteLink = await kill.getGroupInviteLink(groupId);
@@ -1926,7 +1928,7 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'broad':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (!isOwner) return kill.reply(from, 'Somente o meu criador tem acesso a este comando.', id)
             let msg = body.slice(6)
             const chatz = await kill.getAllChatIds()
@@ -1938,7 +1940,7 @@ module.exports = kconfig = async (kill, message) => {
             break
 			
         case 'ptt':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (quotedMsgObj) {
                 let encryptMedia
                 let replyOnReply = await kill.getMessageById(quotedMsgObj.id)
@@ -1957,7 +1959,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
         case 'get':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (quotedMsgObj) {
                 let encryptMedia
                 let replyOnReply = await kill.getMessageById(quotedMsgObj.id)
@@ -1976,7 +1978,7 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'adms':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			if (!isGroupMsg) return kill.reply(from, mess.error.Gp, id)
             let mimin = ''
             for (let admon of groupAdmins) {
@@ -2012,7 +2014,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
         case 'ownergroup':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (!isGroupMsg) return kill.reply(from, mess.error.Gp, id)
             const Owner_ = chat.groupMetadata.owner
             await kill.sendTextWithMentions(from, `@${Owner_} foi quem criou esse cabaré.`)
@@ -2020,7 +2022,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 
 		case 'maps':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (args.length == 0) return kill.reply(from, `Bota um nome de lugar ai`, id)
             const mapz = body.slice(6)
             try {
@@ -2037,7 +2039,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
 		case 'sip':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			if (args.length == 1) {
 				const ip = await axios.get(`http://ipwhois.app/json/${body.slice(5)}`)
 				await kill.sendLinkWithAutoPreview(from, `http://www.google.com/maps/place/${ip.data.latitude},${ip.data.longitude}`, `\n✪ IP: ${ip.data.ip}\n\n✪ Tipo: ${ip.data.type}\n\n✪ Região: ${ip.data.region}\n\n✪ Cidade: ${ip.data.city}\n\n✪ Latitude: ${ip.data.latitude}\n\n✪ Longitude: ${ip.data.longitude}\n\n✪ Provedor: ${ip.data.isp}\n\n✪ Continente: ${ip.data.continent}\n\n✪ Sigla do continente: ${ip.data.continent_code}\n\n✪ País: ${ip.data.country}\n\n✪ Sigla do País: ${ip.data.country_code}\n\n✪ Capital do País: ${ip.data.country_capital}\n\n✪ DDI: ${ip.data.country_phone}\n\n✪ Países Vizinhos: ${ip.data.country_neighbours}\n\n✪ Fuso Horário: ${ip.data.timezone} ${ip.data.timezone_name} ${ip.data.timezone_gmt}\n\n✪ Moeda: ${ip.data.currency}\n\n✪ Sigla da Moeda: ${ip.data.currency_code}\n\nBusca de IP realizada por Íris - KillovSky!`, id)
@@ -2048,7 +2050,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
 		case 'scep':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			if (args.length == 1) {
 				const cep = await axios.get(`https://viacep.com.br/ws/${body.slice(6)}/json/`)
 				await kill.reply(from, `✪ CEP: ${cep.data.cep}\n\n✪ Logradouro: ${cep.data.logradouro}\n\n✪ Complemento: ${cep.data.complemento}\n\n✪ Bairro: ${cep.data.bairro}\n\n✪ Estado: ${cep.data.localidade}\n\n✪ DDD: ${cep.data.ddd}\n\n✪ Sigla do Estado: ${cep.data.uf}\n\n✪ Código IBGE: ${cep.data.ibge}\n\n✪ Código GIA: ${cep.data.gia}\n\n✪ Código Siafi: ${cep.data.siafi}.`, id)
@@ -2059,7 +2061,7 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'everyone':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			if (isGroupMsg && isGroupAdmins) {
 				const groupMem = await kill.getGroupMembers(groupId)
 				let hehe = `═✪〘 Olá! Todos marcados! 〙✪═\n═✪〘 Assunto: ${body.slice(10)} 〙✪═\n\n`
@@ -2089,7 +2091,7 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'random':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			if (!isGroupMsg) return kill.reply(from, mess.error.Gp, id)
             const memran = await kill.getGroupMembers(groupId)
             const randme = memran[Math.floor(Math.random() * memran.length)]
@@ -2100,7 +2102,7 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'kickall':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             const isdonogroup = sender.id === chat.groupMetadata.owner
 			if (!isGroupMsg) return kill.reply(from, mess.error.Gp, id)
             if (!isdonogroup) return kill.reply(from, 'Apenas o dono do grupo pode usar isso.', id)
@@ -2118,7 +2120,7 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'leaveall':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (!isOwner) return kill.reply(from, 'Somente o meu criador tem acesso a este comando.', id)
             const allChats = await kill.getAllChatIds()
             const allGroups = await kill.getAllGroups()
@@ -2131,7 +2133,7 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'clearall':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (!isOwner) return kill.reply(from, 'Somente o meu criador tem acesso a este comando.', id)
             const allChatz = await kill.getAllChats()
             for (let dchat of allChatz) {
@@ -2142,7 +2144,7 @@ module.exports = kconfig = async (kill, message) => {
 
 
 	    case 'add':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (!isGroupMsg) return kill.reply(from, mess.error.Gp, id)
             if (!isBotGroupAdmins) return kill.reply(from, mess.error.Ba, id)
 	        if (args.length !== 1) return kill.reply(from, 'Você precisa especificar o número de telefone.', id)
@@ -2155,7 +2157,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
 		case '3d':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			if (args.length == 0) kill.reply(from, 'Coloca uma mensagem ai!', id)
 			kill.reply(from, mess.wait, id)
 			await kill.sendFileFromUrl(from, `https://docs-jojo.herokuapp.com/api/text3d?text=${body.slice(4)}`, '', '', id)
@@ -2163,7 +2165,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
 		case 'gaming':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			if (args.length == 0) kill.reply(from, 'Coloca um nome ai!', id)
 			kill.reply(from, mess.wait, id)
 			await kill.sendFileFromUrl(from, `https://docs-jojo.herokuapp.com/api/gaming?text=${body.slice(8)}`, '', '', id)
@@ -2171,7 +2173,7 @@ module.exports = kconfig = async (kill, message) => {
 		
 		
 		case 'fogareu':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			if (args.length == 0) kill.reply(from, 'Coloca um nome ai!', id)
 			kill.reply(from, mess.wait, id)
 			await kill.sendFileFromUrl(from, `https://docs-jojo.herokuapp.com/api/epep?text=${body.slice(9)}`, '', '', id)
@@ -2179,7 +2181,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
 		case 'thunder':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			if (args.length == 0) kill.reply(from, 'Coloca um nome ai!', id)
 			kill.reply(from, mess.wait, id)
 			await kill.sendFileFromUrl(from, `https://docs-jojo.herokuapp.com/api/thunder?text=${body.slice(9)}`, '', '', id)
@@ -2187,7 +2189,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 
 		case 'light':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			if (args.length == 0) kill.reply(from, 'Coloca um nome ai!', id)
 			kill.reply(from, mess.wait, id)
 			await kill.sendFileFromUrl(from, `https://docs-jojo.herokuapp.com/api/neon_light?text=${body.slice(7)}`, '', '', id)
@@ -2195,7 +2197,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 
 		case 'wolf':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             arkp = body.trim().substring(body.indexOf(' ') + 1)
             if (args.length >= 2) {
                 kill.reply(from, mess.wait, id)
@@ -2209,7 +2211,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 
 		case 'neon':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             arkt = body.trim().substring(body.indexOf(' ') + 1)
             if (args.length >= 3) {
                 kill.reply(from, mess.wait, id)
@@ -2224,7 +2226,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 
         case 'porn':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (isGroupMsg) {
                 if (!isNsfw) return kill.reply(from, mess.error.Ac, id)
             const porn = await axios.get('https://meme-api.herokuapp.com/gimme/porn')
@@ -2237,7 +2239,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
         case 'lesbian':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (isGroupMsg) {
                 if (!isNsfw) return kill.reply(from, mess.error.Ac, id)
             const lesb = await axios.get('https://meme-api.herokuapp.com/gimme/lesbians')
@@ -2251,7 +2253,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
         case 'pgay':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (isGroupMsg) {
                 if (!isNsfw) return kill.reply(from, mess.error.Ac, id)
             const gay = await axios.get('https://meme-api.herokuapp.com/gimme/gayporn')
@@ -2264,7 +2266,7 @@ module.exports = kconfig = async (kill, message) => {
 		
 		
 		case 'logo':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			if (args.length == 0) kill.reply(from, 'Coloca um nome ai!', id)
 			kill.reply(from, mess.wait, id)
 			await kill.sendFileFromUrl(from, `https://docs-jojo.herokuapp.com/api/blackpink?text=${body.slice(6)}`, '', '', id)
@@ -2272,7 +2274,7 @@ module.exports = kconfig = async (kill, message) => {
 	
 			
 		case 'pornhub':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             arkp = body.trim().substring(body.indexOf(' ') + 1)
             if (args.length >= 2) {
                 kill.reply(from, mess.wait, id)
@@ -2288,7 +2290,7 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'meme':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             ark = body.trim().substring(body.indexOf(' ') + 1)
             if ((isMedia || isQuotedImage) && args.length >= 2) {
                 const top = ark.split('|')[0]
@@ -2304,30 +2306,67 @@ module.exports = kconfig = async (kill, message) => {
                 await kill.reply(from, `Seu uso está incorreto baka ~idiota~ O.O\nUso correto = /meme frase-de-cima | frase-de-baixo.\nA frase de baixo é opcional, se não quiser deixe em branco, mas use o | ainda assim.`, id)
             }
             break
+			
+			
+		case 'unban':		
+		case 'unkick':
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
+			if (isGroupMsg && isGroupAdmins) {
+				if (!isBotGroupAdmins) return kill.reply(from, mess.error.Ba, id)
+				if (!quotedMsg) return kill.reply(from, 'Marque a mensagem de quem foi banido.', id) 
+				const unbanq = quotedMsgObj.sender.id
+				await kill.sendTextWithMentions(from, `Desfazendo ban do @${unbanq} e permitindo entrada dele no cabaré...`)
+				await kill.addParticipant(groupId, unbanq)
+			} else if (isGroupMsg && isOwner) {
+				if (!isBotGroupAdmins) return kill.reply(from, mess.error.Ba, id)
+				if (!quotedMsg) return kill.reply(from, 'Marque a mensagem de quem foi banido.', id) 
+				const unbanq = quotedMsgObj.sender.id
+				await kill.sendTextWithMentions(from, `Desfazendo ban do @${unbanq} e permitindo entrada dele no cabaré...`)
+				await kill.addParticipant(groupId, unbanq)
+			} else if (isGroupMsg) {
+				await kill.reply(from, 'Desculpe, somente os administradores podem usar esse comando...', id)
+			} else {
+				await kill.reply(from, 'Esse comando apenas pode ser usado em grupos!', id)
+			}
+            break
 
 
         case 'kick':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			const chief = chat.groupMetadata.owner
 			if (isGroupMsg && isGroupAdmins) {
 				if (!isBotGroupAdmins) return kill.reply(from, mess.error.Ba, id)
-				if (mentionedJidList.length === 0) return kill.reply(from, 'Você digitou o comando de forma muito errada, arrume e envie certo.', id)
-				await kill.sendTextWithMentions(from, `Expulsando bebado(a) ${mentionedJidList.map(x => `@${x.replace('@c.us', '')}`).join('\n')} do cabaré...`)
-				for (let i = 0; i < mentionedJidList.length; i++) {
-					if (chief.includes(mentionedJidList[i])) return kill.reply(from, 'Sabemos o quão bebado(a) ele(a) é, mas não dá pra expulsar a pessoa que criou o cabaré.', id)
-					if (ownerNumber.includes(mentionedJidList[i])) return kill.reply(from, 'Infelizmente, ele é um bebado VIP, não posso expulsar.', id)
-					if (groupAdmins.includes(mentionedJidList[i])) return kill.reply(from, mess.error.Ki, id)
-					await kill.removeParticipant(groupId, mentionedJidList[i])
+				if (quotedMsg) {
+					const negquo = quotedMsgObj.sender.id
+					if (chief.includes(negquo)) return kill.reply(from, 'Sabemos o quão bebado(a) ele(a) é, mas não dá pra expulsar a pessoa que criou o cabaré.', id)
+					await kill.sendTextWithMentions(from, `Expulsando bebado(a) @${negquo} do cabaré...`)
+					await kill.removeParticipant(groupId, negquo)
+				} else {
+					if (mentionedJidList.length == 0) return kill.reply(from, 'Você digitou o comando de forma muito errada, arrume e envie certo.', id)
+					await kill.sendTextWithMentions(from, `Expulsando bebado(a) ${mentionedJidList.map(x => `@${x.replace('@c.us', '')}`).join('\n')} do cabaré...`)
+					for (let i = 0; i < mentionedJidList.length; i++) {
+						if (chief.includes(mentionedJidList[i])) return kill.reply(from, 'Sabemos o quão bebado(a) ele(a) é, mas não dá pra expulsar a pessoa que criou o cabaré.', id)
+						if (ownerNumber.includes(mentionedJidList[i])) return kill.reply(from, 'Infelizmente, ele é um bebado VIP, não posso expulsar.', id)
+						if (groupAdmins.includes(mentionedJidList[i])) return kill.reply(from, mess.error.Kl, id)
+						await kill.removeParticipant(groupId, mentionedJidList[i])
+					}
 				}
 			} else if (isGroupMsg && isOwner) {
 				if (!isBotGroupAdmins) return kill.reply(from, mess.error.Ba, id)
-				if (mentionedJidList.length === 0) return kill.reply(from, 'Você digitou o comando de forma muito errada, arrume e envie certo.', id)
-				await kill.sendTextWithMentions(from, `Expulsando bebado(a) ${mentionedJidList.map(x => `@${x.replace('@c.us', '')}`).join('\n')} do cabaré...`)
-				for (let i = 0; i < mentionedJidList.length; i++) {
-					if (chief.includes(mentionedJidList[i])) return kill.reply(from, 'Sabemos o quão bebado(a) ele(a) é, mas não dá pra expulsar a pessoa que criou o cabaré.', id)
-					if (ownerNumber.includes(mentionedJidList[i])) return kill.reply(from, 'Infelizmente, ele é um bebado VIP, não posso expulsar.', id)
-					if (groupAdmins.includes(mentionedJidList[i])) return kill.reply(from, mess.error.Ki, id)
-					await kill.removeParticipant(groupId, mentionedJidList[i])
+				if (quotedMsg) {
+					const negquo = quotedMsgObj.sender.id
+					if (chief.includes(negquo)) return kill.reply(from, 'Sabemos o quão bebado(a) ele(a) é, mas não dá pra expulsar a pessoa que criou o cabaré.', id)
+					await kill.sendTextWithMentions(from, `Expulsando bebado(a) @${negquo} do cabaré...`)
+					await kill.removeParticipant(groupId, negquo)
+				} else {
+					if (mentionedJidList.length == 0) return kill.reply(from, 'Você digitou o comando de forma muito errada, arrume e envie certo.', id)
+					await kill.sendTextWithMentions(from, `Expulsando bebado(a) ${mentionedJidList.map(x => `@${x.replace('@c.us', '')}`).join('\n')} do cabaré...`)
+					for (let i = 0; i < mentionedJidList.length; i++) {
+						if (chief.includes(mentionedJidList[i])) return kill.reply(from, 'Sabemos o quão bebado(a) ele(a) é, mas não dá pra expulsar a pessoa que criou o cabaré.', id)
+						if (ownerNumber.includes(mentionedJidList[i])) return kill.reply(from, 'Infelizmente, ele é um bebado VIP, não posso expulsar.', id)
+						if (groupAdmins.includes(mentionedJidList[i])) return kill.reply(from, mess.error.Kl, id)
+						await kill.removeParticipant(groupId, mentionedJidList[i])
+					}
 				}
 			} else if (isGroupMsg) {
 				await kill.reply(from, 'Desculpe, somente os administradores podem usar esse comando...', id)
@@ -2338,7 +2377,7 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'leave':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			if (isGroupMsg && isGroupAdmins) {
 				await kill.sendText(from,'Terei que sair mas tomará que voltemos a nós ver em breve! <3').then(() => kill.leaveGroup(groupId))
 			} else if (isGroupMsg && isOwner) {
@@ -2352,21 +2391,35 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'promote':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			if (isGroupMsg && isGroupAdmins) {
 				if (!isBotGroupAdmins) return kill.reply(from, mess.error.Ba, id)
-				if (mentionedJidList.length == 0) return kill.reply(from, 'Você esqueceu de marcar a pessoa que quer tornar administrador.', id)
-				if (mentionedJidList.length >= 2) return kill.reply(from, 'Desculpe, só posso demitir 1 por vez.', id)
-				if (groupAdmins.includes(mentionedJidList[0])) return kill.reply(from, 'Bom, ele já é um administrador.', id)
-				await kill.promoteParticipant(groupId, mentionedJidList[0])
-				await kill.sendTextWithMentions(from, `Promovendo membro comum @${mentionedJidList[0]} a administrador de bar.`)
+				if (quotedMsg) {
+					const proquo = quotedMsgObj.sender.id
+					if (groupAdmins.includes(proquo)) return kill.reply(from, 'Bom, ele já é um administrador.', id)
+					await kill.sendTextWithMentions(from, `Promovendo membro comum @${proquo} a administrador de bar.`)
+					await kill.promoteParticipant(groupId, proquo)
+				} else {
+					if (mentionedJidList.length == 0) return kill.reply(from, 'Você esqueceu de marcar a pessoa que quer tornar administrador.', id)
+					if (mentionedJidList.length >= 2) return kill.reply(from, 'Desculpe, só posso demitir 1 por vez.', id)
+					if (groupAdmins.includes(mentionedJidList[0])) return kill.reply(from, 'Bom, ele já é um administrador.', id)
+					await kill.promoteParticipant(groupId, mentionedJidList[0])
+					await kill.sendTextWithMentions(from, `Promovendo membro comum @${mentionedJidList[0]} a administrador de bar.`)
+				}
 		    } else if (isGroupMsg && isOwner) {
 				if (!isBotGroupAdmins) return kill.reply(from, mess.error.Ba, id)
-				if (mentionedJidList.length == 0) return kill.reply(from, 'Você esqueceu de marcar a pessoa que quer tornar administrador.', id)
-				if (mentionedJidList.length >= 2) return kill.reply(from, 'Desculpe, só posso demitir 1 por vez.', id)
-				if (groupAdmins.includes(mentionedJidList[0])) return kill.reply(from, 'Bom, ele já é um administrador.', id)
-				await kill.promoteParticipant(groupId, mentionedJidList[0])
-				await kill.sendTextWithMentions(from, `Promovendo membro comum @${mentionedJidList[0]} a administrador de bar.`)
+				if (quotedMsg) {
+					const proquo = quotedMsgObj.sender.id
+					if (groupAdmins.includes(proquo)) return kill.reply(from, 'Bom, ele já é um administrador.', id)
+					await kill.sendTextWithMentions(from, `Promovendo membro comum @${proquo} a administrador de bar.`)
+					await kill.promoteParticipant(groupId, proquo)
+				} else {
+					if (mentionedJidList.length == 0) return kill.reply(from, 'Você esqueceu de marcar a pessoa que quer tornar administrador.', id)
+					if (mentionedJidList.length >= 2) return kill.reply(from, 'Desculpe, só posso demitir 1 por vez.', id)
+					if (groupAdmins.includes(mentionedJidList[0])) return kill.reply(from, 'Bom, ele já é um administrador.', id)
+					await kill.promoteParticipant(groupId, mentionedJidList[0])
+					await kill.sendTextWithMentions(from, `Promovendo membro comum @${mentionedJidList[0]} a administrador de bar.`)
+				}
 			} else if (isGroupMsg) {
 				await kill.reply(from, 'Desculpe, somente os administradores podem usar esse comando...', id)
 			} else {
@@ -2376,21 +2429,35 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'demote':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			if (isGroupMsg && isGroupAdmins) {
 				if (!isBotGroupAdmins) return kill.reply(from, mess.error.Ba, id)
-				if (mentionedJidList.length == 0) return kill.reply(from, 'Você esqueceu de marcar a pessoa que quer demitir.', id)
-				if (mentionedJidList.length >= 2) return kill.reply(from, 'Desculpe, só posso demitir 1 por vez.', id)
-				if (!groupAdmins.includes(mentionedJidList[0])) return kill.reply(from, 'Bom, ele não é um administrador.', id)
-				await kill.demoteParticipant(groupId, mentionedJidList[0])
-				await kill.sendTextWithMentions(from, `Demitindo administrador do bar @${mentionedJidList[0]}.`)
+				if (quotedMsg) {
+					const demquo = quotedMsgObj.sender.id
+					if (!groupAdmins.includes(demquo)) return kill.reply(from, 'Bom, ele não é um administrador.', id)
+					await kill.sendTextWithMentions(from, `Demitindo administrador do bar @${demquo}.`)
+					await kill.demoteParticipant(groupId, demquo)
+				} else {
+					if (mentionedJidList.length == 0) return kill.reply(from, 'Você esqueceu de marcar a pessoa que quer demitir.', id)
+					if (mentionedJidList.length >= 2) return kill.reply(from, 'Desculpe, só posso demitir 1 por vez.', id)
+					if (!groupAdmins.includes(mentionedJidList[0])) return kill.reply(from, 'Bom, ele não é um administrador.', id)
+					await kill.sendTextWithMentions(from, `Demitindo administrador do bar @${mentionedJidList[0]}.`)
+					await kill.demoteParticipant(groupId, mentionedJidList[0])
+				}
 		    } else if (isGroupMsg && isOwner) {
 				if (!isBotGroupAdmins) return kill.reply(from, mess.error.Ba, id)
-				if (mentionedJidList.length == 0) return kill.reply(from, 'Você esqueceu de marcar a pessoa que quer demitir.', id)
-				if (mentionedJidList.length >= 2) return kill.reply(from, 'Desculpe, só posso demitir 1 por vez.', id)
-				if (!groupAdmins.includes(mentionedJidList[0])) return kill.reply(from, 'Bom, ele não é um administrador.', id)
-				await kill.sendTextWithMentions(from, `Demitindo administrador do bar @${mentionedJidList[0]}.`)
-				await kill.demoteParticipant(groupId, mentionedJidList[0])
+				if (quotedMsg) {
+					const demquo = quotedMsgObj.sender.id
+					if (!groupAdmins.includes(demquo)) return kill.reply(from, 'Bom, ele não é um administrador.', id)
+					await kill.sendTextWithMentions(from, `Demitindo administrador do bar @${demquo}.`)
+					await kill.demoteParticipant(groupId, demquo)
+				} else {
+					if (mentionedJidList.length == 0) return kill.reply(from, 'Você esqueceu de marcar a pessoa que quer demitir.', id)
+					if (mentionedJidList.length >= 2) return kill.reply(from, 'Desculpe, só posso demitir 1 por vez.', id)
+					if (!groupAdmins.includes(mentionedJidList[0])) return kill.reply(from, 'Bom, ele não é um administrador.', id)
+					await kill.sendTextWithMentions(from, `Demitindo administrador do bar @${mentionedJidList[0]}.`)
+					await kill.demoteParticipant(groupId, mentionedJidList[0])
+				}
 			} else if (isGroupMsg) {
 				await kill.reply(from, 'Desculpe, somente os administradores podem demitir pela Íris.', id)
 			} else {
@@ -2400,7 +2467,7 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'botstat':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             const loadedMsg = await kill.getAmountOfLoadedMessages()
             const chatIds = await kill.getAllChatIds()
             const groups = await kill.getAllGroups()
@@ -2409,7 +2476,7 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'join':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (args.length == 0) return kill.reply(from, 'Sei la, tem algo errado nisso ai!', id)
             const gplk = body.slice(6)
             const tGr = await kill.getAllGroups()
@@ -2429,7 +2496,7 @@ module.exports = kconfig = async (kill, message) => {
 
         case 'delete':
         case 'del':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			if (isGroupMsg && isGroupAdmins) {
 				if (!quotedMsg) return kill.reply(from, 'Você precisa marcar a mensagem que deseja deletar, obviamente, uma minha.', id)
 				if (!quotedMsgObj.fromMe) return kill.reply(from, 'Só posso deletar minhas mensagens!', id)
@@ -2448,7 +2515,7 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'tela':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (!isOwner) return kill.reply(from, 'Esse comando é apenas para meu criador', id)
             const sesPic = await kill.getSnapshot()
             kill.sendFile(from, sesPic, 'session.png', 'Neh...', id)
@@ -2456,7 +2523,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
 		case 'placa':
-			if (mute) return console.log('Comando ignorado.')
+			if (mute || pvmte) return console.log('Comando ignorado.')
 			if (args.length == 0) return kill.reply(from, 'Coloque uma placa para puxar.', id)
 			if (!isGroupMsg) return kill.reply(from, mess.error.Gp, id)
 			sinesp.search(`${args[0]}`).then(async (dados) => {
@@ -2469,7 +2536,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 
         case 'enviar':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             const arka = body.trim().substring(body.indexOf(' ') + 1)
             if (args.length == 0) return kill.reply(from, 'Você precisa definir entre [-gp, -pv ou -help] para usar!', id)
 			const gid = groupId.replace('@g.us', '').replace('c.us', '')
@@ -2494,7 +2561,7 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'blocks':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (!isOwner) return kill.reply(from, 'Somente o meu criador tem acesso a este comando.', id)
             let hih = `Lista de bloqueados\nTotal : ${blockNumber.length}\n`
             for (let i of blockNumber) {
@@ -2505,7 +2572,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
         case 'encerrar':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (!isOwner) return kill.reply(from, 'Somente o meu criador tem acesso a este comando.', id)
 			kill.reply(from, 'Pedido recebido!\nIrei me desligar em 5 segundos.', id)
 		    await sleep(5000)
@@ -2514,21 +2581,21 @@ module.exports = kconfig = async (kill, message) => {
 
 
 /*        case 'loli':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             const loli = await get.get('http://mhankbarbars.herokuapp.com/api/randomloli').json()
             kill.sendFileFromUrl(from, loli.result, 'loli.jpeg', 'Vejo que você é um homem/mulher de cultura.', id)
             break*/
 			
 			
         case 'loli':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			const onefive = Math.floor(Math.random() * 145) + 1
 			kill.sendFileFromUrl(from, `https://media.publit.io/file/Twintails/${onefive}.jpg`, 'loli.jpg', 'Vejo que você é um homem/mulher de cultura.', id)
             break
 			
 
         case 'hug':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (double == 1) {
             const hug1 = await axios.get(`https://nekos.life/api/v2/img/hug`)
             await kill.sendFileFromUrl(from, hug1.data.url, ``, `Abraço fofinho...`, id)
@@ -2540,7 +2607,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
         case 'exclusive':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (!isGroupMsg) return kill.reply(from, 'Só grupos!', id)
 			if (!isOwner) return kill.reply(from, 'Esse comando é apenas para meu criador', id)
             if (args.length !== 1) return kill.reply(from, 'Defina entre on e off!', id)
@@ -2560,21 +2627,21 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'baguette':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             const baguette = await randomNimek('baguette')
             await kill.sendFileFromUrl(from, baguette, ``, '', id)
             break
 
 
         case 'dva':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             const dva1 = await randomNimek('dva') 
             await kill.sendFileFromUrl(from, dva1, ``, `Que ~gostosa~ linda!`, id)
             break
 
 
         case 'waifu':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (double == 1) {
 				const total = fs.readFileSync('./lib/waifu.json')
 				const parsew = JSON.parse(total)
@@ -2589,7 +2656,7 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'husb':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             const diti = fs.readFileSync('./lib/husbu.json')
             const ditiJsin = JSON.parse(diti)
             const rindIndix = Math.floor(Math.random() * ditiJsin.length)
@@ -2599,7 +2666,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
         case 'iecchi':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (isGroupMsg) {
                 if (!isNsfw) return kill.reply(from, mess.error.Ac, id)
 				if (triple == 1) {
@@ -2628,7 +2695,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
         case 'tits':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (isGroupMsg) {
                 if (!isNsfw) return kill.reply(from, mess.error.Ac, id)
 			if (octo == 1) {
@@ -2687,7 +2754,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
 	    case 'milf':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (isGroupMsg) {
                 if (!isNsfw) return kill.reply(from, mess.error.Ac, id)
             	if (triple == 1) {
@@ -2722,7 +2789,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
         case 'bdsm':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (isGroupMsg) {
                 if (!isNsfw) return kill.reply(from, mess.error.Ac, id)
             	if (triple == 1) {
@@ -2757,7 +2824,7 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'ass':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (isGroupMsg) {
                 if (!isNsfw) return kill.reply(from, mess.error.Ac, id)
             	if (triple == 1) {
@@ -2792,7 +2859,7 @@ module.exports = kconfig = async (kill, message) => {
 	
 			
         case 'pussy':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (isGroupMsg) {
                 if (!isNsfw) return kill.reply(from, mess.error.Ac, id)
             	if (triple == 1) {
@@ -2828,7 +2895,7 @@ module.exports = kconfig = async (kill, message) => {
 
         case 'blowjob':
         case 'boquete':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (isGroupMsg) {
                 if (!isNsfw) return kill.reply(from, mess.error.Ac, id)
 				if (double == 1) {
@@ -2846,7 +2913,7 @@ module.exports = kconfig = async (kill, message) => {
 
 			
         case 'feet':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (isGroupMsg) {
                 if (!isNsfw) return kill.reply(from, mess.error.Ac, id)
 				if (double == 1) {
@@ -2869,7 +2936,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
         case 'hard':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (isGroupMsg) {
                 if (!isNsfw) return kill.reply(from, mess.error.Ac, id)
 				const hard = await axios.get('https://nekos.life/api/v2/img/spank')
@@ -2882,7 +2949,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
         case 'boobs':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (isGroupMsg) {
                 if (!isNsfw) return kill.reply(from, mess.error.Ac, id)
 				if (double == 1) {
@@ -2905,7 +2972,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 
         case 'lick':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (isGroupMsg) {
                 if (!isNsfw) return kill.reply(from, mess.error.Ac, id)
 				if (double == 1) {
@@ -2928,7 +2995,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
         case 'femdom':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (isGroupMsg) {
                 if (!isNsfw) return kill.reply(from, mess.error.Ac, id)
 				if (triple == 1) {
@@ -2957,7 +3024,7 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'futanari':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (isGroupMsg) {
                 if (!isNsfw) return kill.reply(from, mess.error.Ac, id)
 				const futanari = await axios.get('https://nekos.life/api/v2/img/futanari')
@@ -2970,7 +3037,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
         case 'masturb':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (isGroupMsg) {
                 if (!isNsfw) return kill.reply(from, mess.error.Ac, id)
 				if (triple == 1) {
@@ -2999,7 +3066,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
         case 'anal':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (isGroupMsg) {
 				if (!isNsfw) return kill.reply(from, mess.error.Ac, id)
 				if (double == 1) {
@@ -3022,7 +3089,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
 		case 'randomloli':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (isGroupMsg) {
 				if (!isNsfw) return kill.reply(from, mess.error.Ac, id)
 				const loliz = await axios.get('https://nekos.life/api/v2/img/keta')
@@ -3035,7 +3102,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
         case 'nsfwicon':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (isGroupMsg) {
 				if (!isNsfw) return kill.reply(from, mess.error.Ac, id)
 				const icon = await axios.get('https://nekos.life/api/v2/img/nsfw_avatar')
@@ -3048,28 +3115,28 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
 		case 'truth':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			const memean = await axios.get('https://nekos.life/api/v2/img/gecg')
 			await kill.sendFileFromUrl(from, memean.data.url, '', '', id)
 			break
 			
 
 		case 'icon':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			const avatarz = await axios.get('https://nekos.life/api/v2/img/avatar')
 			await kill.sendFileFromUrl(from, avatarz.data.url, '', '', id)
 			break
 			
 			
 		case 'face':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			const gasm = await axios.get('https://nekos.life/api/v2/img/gasm')
 			await kill.sendFileFromUrl(from, gasm.data.url, '', '', id)
 			break
 			
 
 		case 'pezinho':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (isGroupMsg) {
                 if (!isNsfw) return kill.reply(from, mess.error.Ac, id)
 				const pezin = await axios.get('https://nekos.life/api/v2/img/feet')
@@ -3083,7 +3150,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 		case 'gadometro':
 		case 'gado':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			gaak = body.trim().split(' ')
 			var chifre = ["ultra extreme gado", "Gado-Master", "Gado-Rei", "Gado", "Escravo-ceta", "Escravo-ceta Maximo", "Gacorno?", "Jogador De Forno Livre<3", "Mestre Do Frifai<3<3", "Gado-Manso", "Gado-Conformado", "Gado-Incubado", "Gado Deus", "Mestre dos Gados", "TPTDPBCT=Topa Tudo Por Buceta KKKJ", "Gado Comum", "Mini-Pedro", "Mini Gadinho", "Gado Iniciante", "Gado Basico", "Gado Intermediario", "Gado Avançado", "Gado Proffisional", "Gado Mestre", "Gado Chifrudo", "Corno Conformado", "Corno HiperChifrudo", "Chifrudo Deus", "Mestre dos Chifrudos"]
 			var gado = chifre[Math.floor(Math.random() * chifre.length)]
@@ -3095,7 +3162,7 @@ module.exports = kconfig = async (kill, message) => {
 			break
 			
 		case 'gamemode':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			if (args.length == 0) return kill.reply(from, 'Você esqueceu de colocar se quer ativado [1  ou c ou creative], ou desativado [0 ou s ou survival].', id)
 			if (args[0] == '1' || args[0] == 'c' || args[0] == 'creative') {
 				kill.sendTextWithMentions(from, `O modo de jogo de "@${sender.id}" foi definido para criativo.`)
@@ -3108,7 +3175,7 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'ihentai':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 		    const selnum = Math.floor(Math.random() * 6) + 1 
             if (isGroupMsg) {
                 if (!isNsfw) return kill.reply(from, mess.error.Ac, id)
@@ -3156,7 +3223,7 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'yuri':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             const yuri1 = await randomNimek('yuri')
 			console.log(yuri1)
             await kill.sendFileFromUrl(from, yuri1, ``, ``, id)
@@ -3164,7 +3231,7 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'randomneko':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (isGroupMsg) {
                 if (!isNsfw) return kill.reply(from, mess.error.Ac, id)
 				if (seven == 1) {
@@ -3217,7 +3284,7 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'trap':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (isGroupMsg) {
                 if (!isNsfw) return kill.reply(from, mess.error.Ac, id)
             if (double == 1) {
@@ -3241,7 +3308,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
 		case 'valor':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			if (args.length == 0) return kill.reply(from, 'Para usar digite o comando e em seguida o valor e tipo.\n\nExemplo: /valor 1USD (Junto mesmo.)\n\nDigite /coins para ver a lista de moedas que podem ser usadas [É uma lista enormeeeeee].', id)
 			const money = await axios.get(`https://brl.rate.sx/${args[0]}`)
 			await kill.reply(from, `*${args[0]}* _vale no Brasil_ *${money.data}* _reais._`, id)
@@ -3273,7 +3340,7 @@ module.exports = kconfig = async (kill, message) => {
 
 
 		case 'rolette':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (double == 1) {
             await kill.reply(from, 'Bang, ela disparou e você morreu, é game over.', id)
             } else if (double == 2) {
@@ -3283,14 +3350,14 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
 		case 'kisu':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			const kisu = await axios.get('https://nekos.life/api/v2/img/kiss')
 			await kill.sendFileFromUrl(from, kisu.data.url, '', '', id)
 			break
 			
 			
 		case 'tapa':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			const tapi = await axios.get('https://nekos.life/api/v2/img/slap')
 			await kill.sendFileFromUrl(from, tapi.data.url, '', '', id)
 			break
@@ -3298,7 +3365,7 @@ module.exports = kconfig = async (kill, message) => {
 
         case 'gato':
         case 'cat':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			if (double == 1) {
 				q2 = Math.floor(Math.random() * 900) + 300;
 				q3 = Math.floor(Math.random() * 900) + 300;
@@ -3311,14 +3378,14 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'pokemon':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             q7 = Math.floor(Math.random() * 890) + 1;
             await kill.sendFileFromUrl(from, 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/' + q7 + '.png', 'Pokemon.png', '', id)
             break		
 
 
         case 'screenshot':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             const _query = body.slice(12)
             if (!_query.match(isUrl)) return kill.reply(from, mess.error.Iv, id)
             if (args.length == 0) return kill.reply(from, 'Sinto cheiro de ortografia incorreta [faltou https:// ?]!', id)
@@ -3330,7 +3397,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
 		case 'ship':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             lvak = body.trim().split(' ')
 			if (args.length == 2) {
 				await kill.sendTextWithMentions(from, '❤️ ' + lvak[1] + ' tem um chance de ' + lvpc + '% de namorar ' + lvak[2] + '. 👩‍❤️‍👨')
@@ -3341,7 +3408,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 
         case 'gay':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             gaak = body.trim().split(' ')
     	    var lgbt = ["lésbica", "gay", "bissexual", "transgenero", "queer", "intersexual", "pedro-sexual", "negrosexual", "helicoptero sexual", "ageneros", "androgino", "assexual", "macaco-sexual", "dedo-sexual", "Sexo-Inexplicavel", "predio-sexual", "sexual-não-sexual", "pansexual", "kink", "incestuoso", "comedor-de-casadas", "unicornio-sexual", "maniaco-sexual"]
     	    var guei = lgbt[Math.floor(Math.random() * lgbt.length)]
@@ -3354,14 +3421,14 @@ module.exports = kconfig = async (kill, message) => {
 			
 
 		case 'chance':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			if (args.length == 0) return kill.reply(from, 'Defina algo para analisar.', id)
 			await kill.reply(from, `_De acordo com meus calculos super avançados de ~macaco femea~ robô "cuie" a chance de..._ \n\n*"${body.slice(8)}"*\n\n_...ser realidade é de_ *${lvpc}%.*`, id)
 			break
 
 
         case 'kiss':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             arqa = body.trim().split(' ')
 			if (args.length == 1) {
 				const persona = author.replace('@c.us', '')
@@ -3378,7 +3445,7 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'slap':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             arq = body.trim().split(' ')
             const person = author.replace('@c.us', '')
             await kill.sendGiphyAsSticker(from, 'https://media.giphy.com/media/S8507sBJm1598XnsgD/source.gif')
@@ -3387,7 +3454,7 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'getmeme':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             const response = await axios.get('https://meme-api.herokuapp.com/gimme/memesbrasil');
             const { postlink, title, subreddit, url, nsfw, spoiler } = response.data
             kill.sendFileFromUrl(from, `${url}`, 'meme.jpg', `${title}`, id)
@@ -3396,14 +3463,14 @@ module.exports = kconfig = async (kill, message) => {
 			
         case 'date':
         case 'data':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			const timeda = moment(t * 1000).format('DD/MM/YY HH:mm:ss')
 			await kill.reply(from, 'Agora são exatamente\n"' + timeda + '"', id)
 			break
 		
 
         case 'menu':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			const timed = moment(t * 1000).format('DD/MM/YY HH:mm:ss')
 			const allin = `Olá usuário "@${sender.id}"!\n\nLevei ${processTime(t, moment())} segundos para te responder.\n\nAgora são exatas "${timed}".\nAbaixo estão minhas funções.\n`
             kill.sendTextWithMentions(from, allin + help, id)
@@ -3412,7 +3479,7 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'admins':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			if (!isGroupMsg) return kill.reply(from, mess.error.Gp, id)
             if (!isGroupAdmins) return kill.reply(from, mess.error.Ga, id)
             await kill.sendText(from, admins, id)
@@ -3420,32 +3487,32 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'adult':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             kill.sendText(from, adult, id)
             break
 			
 
         case 'kill':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (!isOwner) return kill.reply(from, mess.error.Kl, id)
             kill.sendText(from, owner, id)
             break
 
 
         case 'down':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             kill.sendText(from, down, id)
             break
 
 
         case 'readme':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             kill.reply(from, readme, id)
             break
 			
 		
 		case 'bomb':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 		    const bleg = JSON.parse(fs.readFileSync('./lib/exclusive.json'))
 			const biao = bleg.includes(chat.id)
 			if (biao) {
@@ -3465,7 +3532,7 @@ module.exports = kconfig = async (kill, message) => {
 			break
 			
 		case 'cmd':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			if (!isOwner) return kill.reply(from, mess.error.Kl, id)
 			const cmdw = exec(`${body.slice(5)}`, function(stderr, data) {
 				if (stderr) {
@@ -3480,7 +3547,7 @@ module.exports = kconfig = async (kill, message) => {
 
 			
 		case 'mac':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			if (args.length == 0) return kill.reply(from, 'Desculpe, mas você precisa especificar qual MAC deseja puxar.', id)
 			await kill.reply(from, 'Aguarde, essa operação leva cerca de 6 segundos por conta da limitação de tempo.', id)
 			await sleep(3000)
@@ -3493,7 +3560,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 		case 'converter':
 		case 'conv':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			if (args == 0) return kill.reply(from, 'Digite o modo de conversão e em seguida a temperatura, para mais detalhes digite /conv -h.', id)
 			if (args[0] == '-help' || args[0] == '-h') return kill.reply(from, convh, id)
 			try {
@@ -3559,7 +3626,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
 		case 'scnpj':
-			if (mute) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			if (args.length == 1) {
 				const cnpj = await axios.get(`https://www.receitaws.com.br/v1/cnpj/${body.slice(7)}`)
 				if (cnpj.data.status == 'ERROR') return kill.reply(from, cnpj.data.message, id)
@@ -3572,6 +3639,30 @@ module.exports = kconfig = async (kill, message) => {
 			
 		case 'coins':
 			await kill.reply(from, coins, id)
+			break
+			
+			
+        case 'mutepv':
+            if (isOwner) {
+				if (args[0] == 'on') {
+					if (args.length == 0) return kill.reply(from, 'Você deve definir [on e off] e em seguida o número da pessoa sem - ou +.', id)
+					const pvmt = body.slice(11) + '@c.us'
+					slce.push(pvmt)
+					fs.writeFileSync('./lib/config/silence.json', JSON.stringify(slce))
+					await kill.reply(from, 'Ele não poderá usar a iris.', id)
+				} else if (args[0] == 'off') {
+					if (args.length == 0) return kill.reply(from, 'Você deve definir [on e off] e em seguida o número da pessoa sem - ou +.', id)
+					const pvmt = body.slice(11) + '@c.us'
+					let pvtnm = slce.indexOf(pvmt)
+					slce.splice(pvtnm, 1)
+					fs.writeFileSync('./lib/config/silence.json', JSON.stringify(slce))
+					await kill.reply(from, 'Ele poderá usar a iris novamente.', id)
+				} else {
+					await kill.reply(from, 'Você deve definir [on e off] e em seguida o número da pessoa sem - ou +.', id)
+				}
+			} else {
+				await kill.reply(from, mess.error.Kl)
+			}
 			break
 
         }

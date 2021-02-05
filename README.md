@@ -5,7 +5,7 @@ Uma bot em português feita originalmente para o grupo Legião Z no WhatsApp, po
 Por favor NÃO REMOVA os creditos, levei muito tempo e precisei ter muita dedicação pra se criar uma BOT Brasileira assim, agradeço pela cooperação.
 
 ### Para os donos
-Você pode rodar comandos de Windows como "ipconfig", comandos de linux como "apt", ou comandos de programações como python -c tudo pelo WhatsApp, ninguém além de você pode usar isso, se você deseja que usem, remova a linha if (!isOnwer) [aqui](https://github.com/KillovSky/iris/blob/master/config.js#L3469), mas saiba que remove-la pode ser perigoso a você.
+Você pode rodar comandos de Windows como "ipconfig", comandos de linux como "apt", ou comandos de programações como python -c tudo pelo WhatsApp, ninguém além de você pode usar isso, se você deseja que usem, remova a linha if (!isOnwer) [aqui](https://github.com/KillovSky/iris/blob/master/config.js#L3537), mas saiba que remove-la pode ser perigoso a você.
 
 ### Funções (Não são todas, +130)
 
@@ -109,7 +109,7 @@ Edite as API's encontradas em: (Se estiver incorreta avise ou procure)
 - [Número 1](https://github.com/KillovSky/iris/blob/master/config.js#L1386)
 - [Número 2](https://github.com/KillovSky/iris/blob/master/config.js#L73)
 - [DDI](https://github.com/KillovSky/iris/blob/main/lib/welcome.js#L8)
-- [Bomber](https://github.com/KillovSky/iris/blob/master/config.js#L3455)
+- [Bomber](https://github.com/KillovSky/iris/blob/master/config.js#L3522)
 - Elas são referentes aos sites [RemoveBG](https://www.remove.bg/pt-br), [ImgBB](https://api.imgbb.com/) e [AlphaCoders](https://wall.alphacoders.com/api.php)
 - A DDI é obrigatoria apenas caso você for de fora do Brasil, o Bomb apenas se você usar Linux.
 - Sempre leia a aba de discussões do github para saber mais.
