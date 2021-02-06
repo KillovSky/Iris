@@ -81,6 +81,7 @@ module.exports = kconfig = async (kill, message) => {
 		const pvmte = slce.includes(sender.id)
         const isNsfw = isGroupMsg ? nsfw_.includes(chat.id) : false
         const isUrl = new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)/gi)
+		
 
         // Bot Prefix
         const prefix = '/'
@@ -152,12 +153,15 @@ module.exports = kconfig = async (kill, message) => {
 		}
 		
 		
-        // MENSAGENS
+        // MENSAGEM PV
         if (!isCmd && !isGroupMsg) { return console.log('> MENSAGEM AS', color(moment(t * 1000).format('DD/MM/YY HH:mm:ss'), 'yellow'), 'de', color(pushname)) }
+		// MENSAGEM GP
         if (!isCmd && isGroupMsg) { return console.log('> MENSAGEM AS', color(moment(t * 1000).format('DD/MM/YY HH:mm:ss'), 'yellow'), 'de', color(pushname), 'em', color(name || formattedTitle)) }
+		
 		
 		// COMANDOS
         if (isCmd && !isGroupMsg) { console.log(color(`> COMANDO "/${command} [${args.length}]" AS`), color(moment(t * 1000).format('DD/MM/YY HH:mm:ss'), 'yellow'), 'de', color(pushname)) }
+		// COMANDOS GP
         if (isCmd && isGroupMsg) { console.log(color(`> COMANDO "/${command} [${args.length}]" AS`), color(moment(t * 1000).format('DD/MM/YY HH:mm:ss'), 'yellow'), 'de', color(pushname), 'em', color(name || formattedTitle)) }
 		
 
@@ -778,11 +782,12 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
         case 'stalkig':
-			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
-            if (args.length == 0) return kill.reply(from, 'Cade o username né?', id)
-            const ig = await axios.get(`http://arugaz.my.id/api/media/stalkig?user=${body.slice(9)}`)
-			var insta = ig.data.result.biography
-            await kill.sendFileFromUrl(from, `${ig.data.result.profile_picture}`, ``, `Username: ${ig.data.result.username}\n\nNome: ${ig.data.result.fullname}\n\nbio: ${insta}\n\nSeguidores: ${ig.data.result.followers}\n\nSeguindo: ${ig.data.followings}`, id)
+			if (mute || pvmte) return console.log('Comando ignorado.')
+            if (args.length == 0) return kill.reply(from, 'Defina o nome de um perfil para a busca.', id)
+            const ig = await axios.get(`https://docs-jojo.herokuapp.com/api/stalk?username=${body.slice(9)}`)
+			const stkig = JSON.stringify(ig.data)
+			if (stkig == '{}') return kill.reply(from, 'Usuario não localizado.', id)
+			await kill.sendFileFromUrl(from, `${ig.data.graphql.user.profile_pic_url}`, ``, `✪ Username: ${ig.data.graphql.user.username}\n\n✪ Biografia: ${ig.data.graphql.user.biography}\n\n✪ Seguidores: ${ig.data.graphql.user.edge_followed_by.count}\n\n✪ Seguindo: ${ig.data.graphql.user.edge_follow.count}\n\n✪ Verificada: ${ig.data.graphql.user.is_verified}`, id)
             break
 			
 
@@ -793,7 +798,6 @@ module.exports = kconfig = async (kill, message) => {
 			var insta = tw.data.result.biography
             await kill.sendFileFromUrl(from, `${tw.data.result.profile_picture}`, ``, `Username: ${tw.data.result.username}\n\nNome: ${tw.data.result.fullname}\n\nbio: ${insta}\n\nSeguidores: ${tw.data.result.followers}\n\nSeguindo: ${tw.data.followings}`, id)
             break
-			
 			
 
         case 'twitter':
@@ -913,12 +917,13 @@ module.exports = kconfig = async (kill, message) => {
                 })
 			break
 			
+			
         case 'play':
 			if (mute || pvmte) return console.log('Comando ignorado.')
             if (args.length == 0) return kill.reply(from, 'Você usou incorretamente.', id)
-            axios.get(`https://api.zeks.xyz/api/yts?q=${body.slice(6)}&apikey=apivinz`)
+            axios.get(`https://docs-jojo.herokuapp.com/api/yt-search?q=${body.slice(6)}`)
             .then(async (res) => {
-				const pyre = res.data.result[0].video.upload_date
+				const pyre = res.data.result.result[0].publishedTime
 				if (pyre == '' || pyre == 'null' || pyre == null || pyre == undefined || pyre == 'undefined') {
 					var playre = 'Indefinido'
 				} else if (pyre.endsWith('years ago')) {
@@ -934,15 +939,14 @@ module.exports = kconfig = async (kill, message) => {
 				} else if (pyre.endsWith('seconds ago')) {
                     var playre = pyre.replace('seconds ago', 'Segundos atrás')
 				}
-				const asize = await axios.get(`http://st4rz.herokuapp.com/api/yta?url=http://youtu.be/${res.data.result[0].video.id}`)
+				const asize = await axios.get(`http://st4rz.herokuapp.com/api/yta?url=http://youtu.be/${res.data.result.result[0].id}`)
 				const afsize = asize.data.filesize.replace(' MB', '')
 				console.log(afsize)
 				if (afsize >= 16.0 || asize.data.filesize.endsWith('GB')) {
 					kill.reply(from, `Desculpe, para evitar banimentos do WhatsApp, o limite de envio de audios é de 16MB, e esse possui ${asize.data.filesize}.`, id)
 				} else {
-					await kill.sendFileFromUrl(from, `${res.data.result[0].video.thumbnail_src}`, ``, `Titulo: ${res.data.result[0].video.title}\n\nLink: ${res.data.result[0].video.url}\n\nDuração: ${res.data.result[0].video.duration} minutos\n\nFoi feito a: ${playre}\n\nVisualizações: ${res.data.result[0].video.views}\n\nEspero que eu tenha acertado e...agora é so esperar, não use novamente até que eu termine esse!`, id)
-					console.log(res.data.result[0].video.title)
-					axios.get(`http://st4rz.herokuapp.com/api/yta2?url=http://youtu.be/${res.data.result[0].video.id}`)
+					await kill.sendFileFromUrl(from, `${res.data.result.result[0].thumbnails[0].url}`, ``, `Titulo: ${res.data.result.result[0].title}\n\nLink: https://youtu.be/${res.data.result.result[0].id}\n\nDuração: ${res.data.result.result[0].duration} minutos\n\nFoi feito a: ${playre}\n\nVisualizações: ${res.data.result.result[0].viewCount.text}\n\nEspero que eu tenha acertado e...agora é so esperar, não use novamente até que eu termine esse!`, id)
+					axios.get(`http://st4rz.herokuapp.com/api/yta2?url=http://youtu.be/${res.data.result.result[0].id}`)
 					.then(async(rest) => {
 						var m3pa = rest.data.result
 						var m3ti = rest.data.title
@@ -956,9 +960,9 @@ module.exports = kconfig = async (kill, message) => {
         case 'video':
 			if (mute || pvmte) return console.log('Comando ignorado.')
             if (args.length == 0) return kill.reply(from, 'Você usou incorretamente.', id)
-            axios.get(`https://api.zeks.xyz/api/yts?q=${body.slice(6)}&apikey=apivinz`)
+            axios.get(`https://docs-jojo.herokuapp.com/api/yt-search?q=${body.slice(6)}`)
             .then(async (res) => {
-				const vyre = res.data.result[0].video.upload_date
+				const vyre = res.data.result.result[0].publishedTime
 				if (vyre == '' || vyre == 'null' || vyre == null || vyre == undefined || vyre == 'undefined') {
 					var videore = 'Indefinido'
 				} else if (vyre.endsWith('years ago')) {
@@ -974,20 +978,17 @@ module.exports = kconfig = async (kill, message) => {
 				} else if (vyre.endsWith('seconds ago')) {
                     var videore = vyre.replace('seconds ago', 'Segundos atrás')
 				}
-				const size = await axios.get(`http://st4rz.herokuapp.com/api/ytv?url=http://youtu.be/${res.data.result[0].video.id}`)
+				const size = await axios.get(`http://st4rz.herokuapp.com/api/ytv?url=http://youtu.be/${res.data.result.result[0].id}}`)
 				const fsize = size.data.filesize.replace(' MB', '').replace('Download  ', 'Impossivel calcular')
 				console.log(fsize)
 				const impo = size.data.filesize.replace('Download  ', 'um peso muito superior que não posso calcular')
 				if (fsize >= 16.0 || size.data.filesize.endsWith('Download  ') || size.data.filesize.endsWith('GB')) {
 					kill.reply(from, `Desculpe, para evitar banimentos do WhatsApp, o limite de envio de videos é de 16MB, e esse possui ${impo.replace('    ', ' ')}.`, id)
 				} else {
-					await kill.sendFileFromUrl(from, `${res.data.result[0].video.thumbnail_src}`, ``, `Titulo: ${res.data.result[0].video.title}\n\nLink: ${res.data.result[0].video.url}\n\nDuração: ${res.data.result[0].video.duration} minutos\n\nFoi feito a: ${playre}\n\nVisualizações: ${res.data.result[0].video.views}\n\nEspero que eu tenha acertado e...agora é so esperar, não use novamente até que eu termine esse!`, id)
-					console.log(res.data.result[0].title)
-					axios.get(`http://st4rz.herokuapp.com/api/ytv2?url=https://youtu.be/${res.data.result[0].video.id}`)
+					await kill.sendFileFromUrl(from, `${res.data.result.result[0].thumbnails[0].url}`, ``, `Titulo: ${res.data.result.result[0].title}\n\nLink: https://youtu.be/${res.data.result.result[0].id}\n\nDuração: ${res.data.result.result[0].duration} minutos\n\nFoi feito a: ${videore}\n\nVisualizações: ${res.data.result.result[0].viewCount.text}\n\nEspero que eu tenha acertado e...agora é so esperar, não use novamente até que eu termine esse!`, id)
+					axios.get(`http://st4rz.herokuapp.com/api/ytv2?url=https://youtu.be/${res.data.result.result[0].id}`)
 					.then(async(rest) => {
-						var mp4 = rest.data.result
-						var tmp4 = rest.data.title
-						await kill.sendFileFromUrl(from, mp4, `video.mp4`, tmp4, id)
+						await kill.sendFileFromUrl(from, `${rest.data.result}`, ``, ``, id)
 					})
 				}
 			})
@@ -3648,14 +3649,14 @@ module.exports = kconfig = async (kill, message) => {
 					if (args.length == 0) return kill.reply(from, 'Você deve definir [on e off] e em seguida o número da pessoa sem - ou +.', id)
 					const pvmt = body.slice(11) + '@c.us'
 					slce.push(pvmt)
-					fs.writeFileSync('./lib/config/silence.json', JSON.stringify(slce))
+					fs.writeFileSync('./lib/silence.json', JSON.stringify(slce))
 					await kill.reply(from, 'Ele não poderá usar a iris.', id)
 				} else if (args[0] == 'off') {
 					if (args.length == 0) return kill.reply(from, 'Você deve definir [on e off] e em seguida o número da pessoa sem - ou +.', id)
 					const pvmt = body.slice(11) + '@c.us'
 					let pvtnm = slce.indexOf(pvmt)
 					slce.splice(pvtnm, 1)
-					fs.writeFileSync('./lib/config/silence.json', JSON.stringify(slce))
+					fs.writeFileSync('./lib/silence.json', JSON.stringify(slce))
 					await kill.reply(from, 'Ele poderá usar a iris novamente.', id)
 				} else {
 					await kill.reply(from, 'Você deve definir [on e off] e em seguida o número da pessoa sem - ou +.', id)
@@ -3664,6 +3665,7 @@ module.exports = kconfig = async (kill, message) => {
 				await kill.reply(from, mess.error.Kl)
 			}
 			break
+			
 
         }
     } catch (err) {
