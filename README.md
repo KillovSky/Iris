@@ -3,15 +3,6 @@ Uma bot em português feita para PC, originalmente para o grupo Legião Z no Wha
 
 ### Usar apenas no Telefone
 No celular é dificilimo que você consiga usar, portanto, use o site [Goorm](https://ide.goorm.io) para criar sua BOT pelo telefone.
- 
-### Bugs
-Se notar erros fale comigo pelos meios no final da pagina ou reporte no Issues, e claro, se certifique de ter chrome instalado e ler a aba [Discussions](https://github.com/KillovSky/iris/discussions), lá eu coloco soluções.
-No windows baixe por [aqui](https://www.google.com/chrome), no linux use os comandos abaixo.
-
-```bash
-> wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-> sudo apt install ./google-chrome-stable_current_amd64.deb
-```
 
 ### Pedido Pessoal
 Por favor NÃO REMOVA os creditos, levei muito tempo e precisei ter muita dedicação pra se criar uma BOT Brasileira assim, agradeço pela cooperação.
@@ -127,6 +118,15 @@ Mude a graphql/id para graphql/pt
 
 ### Computer-Freaker/Axios
 Para fixar o funcionamento da API da Computer-Freaker, que é responsavel por diversos comandos (hug, hentai, dva, baguette...), siga os passos desse [Mini-Tutorial](https://github.com/KillovSky/iris/discussions/10).
+
+### Bugs
+Se notar erros fale comigo pelos meios no final da pagina ou reporte no Issues, e claro, se certifique de ter chrome instalado e ler a aba [Discussions](https://github.com/KillovSky/iris/discussions), lá eu coloco soluções.
+Baixe Chrome por [aqui](https://www.google.com/chrome), no linux use os comandos abaixo.
+
+```bash
+> wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+> sudo apt install ./google-chrome-stable_current_amd64.deb
+```
 
 ## Agradecimentos ao:
 - [Open-WA](https://github.com/open-wa)
