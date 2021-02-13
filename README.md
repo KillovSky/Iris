@@ -1,5 +1,17 @@
 ### Íris, a BOT
-Uma bot em português feita originalmente para o grupo Legião Z no WhatsApp, possui mais de 100 comandos e continua em crescimento (Somente PC).
+Uma bot em português feita para PC, originalmente para o grupo Legião Z no WhatsApp, possui mais de 150 comandos e continua em crescimento.
+
+### Usar apenas no Telefone
+No celular é dificilimo que você consiga usar, portanto, use o site [Goorm](https://ide.goorm.io) para criar sua BOT pelo telefone.
+ 
+### Bugs
+Se notar erros fale comigo pelos meios no final da pagina ou reporte no Issues, e claro, se certifique de ter chrome instalado e ler a aba [Discussions](https://github.com/KillovSky/iris/discussions), lá eu coloco soluções.
+No windows baixe por [aqui](https://www.google.com/chrome), no linux use os comandos abaixo.
+
+```bash
+> wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+> sudo apt install ./google-chrome-stable_current_amd64.deb
+```
 
 ### Pedido Pessoal
 Por favor NÃO REMOVA os creditos, levei muito tempo e precisei ter muita dedicação pra se criar uma BOT Brasileira assim, agradeço pela cooperação.
@@ -89,15 +101,6 @@ case 'Nome do comando sem espaços':
     await kill.reply(from, 'Sua mensagem', id)
     break
  ```
- 
-### Erros
-Se notar erros, me encontre no grupo abaixo, mande mensagem no WhatsApp, ou reporte no Issues, e claro, se certifique de ter chrome instalado.
-No windows baixe por [aqui](https://www.google.com/chrome), no linux use os comandos abaixo.
-
-```bash
-> wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-> sudo apt install ./google-chrome-stable_current_amd64.deb
-```
 
 ### Mudanças
 Edite as API's encontradas em: (Se estiver incorreta avise ou procure)
