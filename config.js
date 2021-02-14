@@ -66,11 +66,13 @@ module.exports = kconfig = async (kill, message) => {
         const botNumber = await kill.getHostNumber()
         const blockNumber = await kill.getBlockedIds()
 		const ownerNumber = config.owner
+        const usuario = sender.id
+		const isOwner = usuario.includes(ownerNumber)
         const groupId = isGroupMsg ? chat.groupMetadata.id : ''
         const groupAdmins = isGroupMsg ? await kill.getGroupAdmins(groupId) : ''
         const isGroupAdmins = isGroupMsg ? groupAdmins.includes(sender.id) : false
         const isBotGroupAdmins = isGroupMsg ? groupAdmins.includes(botNumber + '@c.us') : false
-        const isNsfw = isGroupMsg ? nsfwC.includes(chat.id) : false
+        const isNsfw = isGroupMsg ? nsfw_.includes(chat.id) : false
         const autoSticker = isGroupMsg ? atstk.includes(groupId) : false
         const chats = (type === 'chat') ? body : ((type === 'image' || type === 'video')) ? caption : ''
         body = (type === 'chat' && body.startsWith(prefix)) ? body : (((type === 'image' || type === 'video') && caption) && caption.startsWith(prefix)) ? caption : ''
@@ -82,7 +84,6 @@ module.exports = kconfig = async (kill, message) => {
         const isCmd = body.startsWith(prefix)
         const url = args.length !== 0 ? args[0] : ''
         const uaOverride = process.env.UserAgent
-        const isOwner = sender.id === ownerNumber
         const isBlocked = blockNumber.includes(sender.id)
         const isLeg = exsv.includes(chatId)
 		const mute = slce.includes(chatId)
@@ -203,9 +204,11 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'sticker':
+        case 'fig':
+        case 'figurinha':
         case 'stiker':
 			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
-            if (isMedia && type === 'image') {
+            if (isMedia && isImage) {
                 const mediaData = await decryptMedia(message, uaOverride)
 				sharp(mediaData)
 				.resize(512, 512, {
@@ -217,7 +220,7 @@ module.exports = kconfig = async (kill, message) => {
 					let resizedBase64 = `data:${mimetype};base64,${resizedImageData}`;
 					await kill.sendImageAsSticker(from, resizedBase64)
 				})
-            } else if (quotedMsg && quotedMsg.type == 'image') {
+            } else if (isQuotedImage) {
                 const mediaData = await decryptMedia(quotedMsg, uaOverride)
 				sharp(mediaData)
 				.resize(512, 512, {
@@ -251,6 +254,27 @@ module.exports = kconfig = async (kill, message) => {
 				kill.sendImageAsSticker(from, res.data.result)
 			})
 			break
+			
+			
+        case 'wasted':
+            if (isMedia && type === 'image' || isQuotedImage) {
+                const wastedmd = isQuotedImage ? quotedMsg : message
+                const wstddt = await decryptMedia(wastedmd, uaOverride)
+                await kill.reply(from, mess.wait, id)
+				const options = {
+					apiKey: config.imgbb,
+					imagePath: './lib/media/img/wasted.jpg',
+					expiration: 1800
+				}
+                var wstdimg = './lib/media/img/wasted.jpg'
+                await fs.writeFile(wstdimg, wstddt)
+				const wasteup = await imgbbUploader(options)
+				console.log(wasteup.url)
+                await kill.sendFileFromUrl(from, `https://some-random-api.ml/canvas/wasted?avatar=${wasteup.url}`, 'Wasted.jpg', 'Alguém viu essa pessoa por aqui?', id)
+            } else {
+                await kill.reply(from, 'Você não está usando isso com uma foto...', id)
+            }
+            break
 			
 			
 		case 'about':
@@ -301,10 +325,11 @@ module.exports = kconfig = async (kill, message) => {
 	
 
 		case 'simg':
-			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
-            if (isMedia && type === 'image') {
-                const mediaData = await decryptMedia(message, uaOverride)
-				kill.reply(from, 'Aguarde, leva mais de 20 segundos.\n\n *NÃO USE NOVAMENTE* até eu terminar, caso contrario, as funções todas serão bloqueadas por IP.', id)
+			if (mute || pvmte) return console.log('Comando ignorado [Silence]')
+            if (isMedia && type === 'image' || isQuotedImage) {
+                const shimgoh = isQuotedImage ? quotedMsg : message
+                const mediaData = await decryptMedia(shimgoh, uaOverride)
+				kill.reply(from, 'Aguarde, leva mais de 20 segundos.', id)
 				const sendres = (results) => {
 					const ttile = results[0].title.replace('<span>', '').replace('</span>', '')
 					const ttscig = results[1].title.replace('<span>', '').replace('</span>', '')
@@ -313,7 +338,12 @@ module.exports = kconfig = async (kill, message) => {
 				}
                 var seaimg = './lib/media/img/imagesearch.jpg'
                 await fs.writeFile(seaimg, mediaData)
-				const upimg = await imgbbUploader(config.imgbb, seaimg)
+				let options = {
+					apiKey: config.imgbb,
+					imagePath: './lib/media/img/imagesearch.jpg',
+					expiration: 1800
+				}
+				const upimg = await imgbbUploader(options)
 				console.log(upimg.url)
 				await sleep(10000)
 				const resimg = await imgsearch(upimg.url, sendres)
@@ -324,12 +354,18 @@ module.exports = kconfig = async (kill, message) => {
 			
 
 		case 'upimg':
-			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
-            if (isMedia && type === 'image') {
-                const mediaData = await decryptMedia(message, uaOverride)
+			if (mute || pvmte) return console.log('Comando ignorado [Silence]')
+            if (isMedia && type === 'image' || isQuotedImage) {
+                const upimgoh = isQuotedImage ? quotedMsg : message
+                const mediaData = await decryptMedia(upimgoh, uaOverride)
                 var uplimg = './lib/media/img/imageupl.jpg'
                 await fs.writeFile(uplimg, mediaData)
-				const sdimg = await imgbbUploader(config.imgbb, uplimg)
+				let options = {
+					apiKey: config.imgbb,
+					imagePath: './lib/media/img/imageupl.jpg',
+					expiration: 604800
+				}
+				const sdimg = await imgbbUploader(options)
 				console.log(sdimg.url_viewer)
 				await kill.reply(from, `*OBS!* _Essa link tem duração de 7 dias, após isso a imagem será automaticamente deletada do servidor._\n\n${sdimg.url_viewer}`, id)
 			} else {
