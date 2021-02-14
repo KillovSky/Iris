@@ -1,7 +1,7 @@
 const fs = require('fs-extra') // Modulo de operações em disco
 
 module.exports = options = (headless, start) => {
-/*    const chromePath = {
+    const chromePath = {
         win32: 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', // Windows 32 bit
         win64: 'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe', //Windows 64 bit
         linuxChrome: '/usr/bin/google-chrome-stable', // Linux - Chrome
@@ -22,17 +22,17 @@ module.exports = options = (headless, start) => {
     } else {
         console.error(new Error('Chrome não localizado!'))
         process.exit(1)
-    } // Checa se o navegador existe, se não existir instale Google Chrome*/
+    } // Checa se o navegador existe, se não existir instale Google Chrome
 	
-	// Se quiser usar chrome retire a * / e a / * e entao retire o // do executablePath e useChrome abaixo
+	// Se quiser parar de usar chrome coloque a * / antes da chromepath e a / * apos o fim da else acima, e entao bote o // no executablePath e useChrome abaixo
 	
     const options = {
         headless: headless,
         autoRefresh: true,
         restartOnCrash: start,
         cacheEnabled: false,
-        //executablePath: execPath,
-        //useChrome: true,
+        executablePath: execPath,
+        useChrome: true,
         killProcessOnBrowserClose: true,
         throwErrorOnTosBlock: false,
         chromiumArgs: [
