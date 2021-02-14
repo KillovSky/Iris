@@ -1,8 +1,10 @@
 /*
-* Recodado por Lucas R. e construido em homenagem ao Legião Z.
-* Você pode usar e moldar esse bot MAS NÃO REMOVA os creditos.
-* Evite remover coisas como o Link do legião, obrigado!
+* Recodado por Lucas R.
+* Legião Z é o melhor, to famoso pessoal!
+* Reprodução autorizada MAS sem remover os creditos do criador deste BOT!
 */
+
+// MODULOS
 const { decryptMedia } = require('@open-wa/wa-decrypt')
 const fs = require('fs-extra')
 const axios = require('axios')
@@ -14,78 +16,66 @@ const isPorn = require('is-porn')
 const imgsearch = require('node-reverse-image-search')
 const imgbbUploader = require('imgbb-uploader')
 const moment = require('moment-timezone')
-moment.tz.setDefault('America/Sao_Paulo').locale('pt_BR')
 const get = require('got')
 const sinesp = require('sinesp-api')
-const request = require('request')
 const { Aki } = require('aki-api')
-const color = require('./lib/color')
+const request = require('request')
 const { spawn, exec, execFile } = require('child_process')
 const nhentai = require('nhentai-js')
 const { API } = require('nhentai-api')
-const { randomNimek, sleep, wall, tulis, ss } = require('./lib/functions')
+const { removeBackgroundFromImageBase64 } = require('remove.bg')
+const fetch = require('node-fetch')
+
+// UTILIDADES
+const color = require('./lib/color')
+const { randomNimek, sleep, wall, tulis, ss, isUrl } = require('./lib/functions')
 const { owner, donate, down, help, admins, adult, readme, lang, convh } = require('./lib/help')
-const { coins } = require('./lib/coins')
 const { stdout } = require('process')
 const bent = require('bent')
 const { doing } = require('./lib/translate.js')
-const { meme, msgFilter, translate, killo } = require('./lib')
+const { meme, msgFilter, translate, killo, ngtts } = require('./lib')
 const { uploadImages } = require('./lib/fether')
 const feature = require('./lib/poll')
 const { sobre } = require('./lib/sobre')
 const BrainlySearch = require('./lib/brainly')
-const { removeBackgroundFromImageBase64 } = require('remove.bg')
-const fetch = require('node-fetch');
-const nsfw_ = JSON.parse(fs.readFileSync('./lib/NSFW.json'))
-const welkom = JSON.parse(fs.readFileSync('./lib/welcome.json'))
-const exsv = JSON.parse(fs.readFileSync('./lib/exclusive.json'))
-const faki = JSON.parse(fs.readFileSync('./lib/fake.json'))
-const bklist = JSON.parse(fs.readFileSync('./lib/blacklist.json'))
-const atbk = JSON.parse(fs.readFileSync('./lib/anti.json'))
-const slce = JSON.parse(fs.readFileSync('./lib/silence.json'))
-const errorurl = 'https://steamuserimages-a.akamaihd.net/ugc/954087817129084207/5B7E46EE484181A676C02DFCAD48ECB1C74BC423/?imw=512&&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false'
-const errorurl2 = 'https://steamuserimages-a.akamaihd.net/ugc/954087817129084207/5B7E46EE484181A676C02DFCAD48ECB1C74BC423/?imw=512&&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false'
+const { coins } = require('./lib/coins')
+moment.tz.setDefault('America/Sao_Paulo').locale('pt_BR')
+const config = require('./lib/config/config.json')
 
+// JSON'S 
+const nsfwC = JSON.parse(fs.readFileSync('./lib/config/NSFW.json'))
+const wlcome = JSON.parse(fs.readFileSync('./lib/config/welcome.json'))
+const exsv = JSON.parse(fs.readFileSync('./lib/config/exclusive.json'))
+const bklist = JSON.parse(fs.readFileSync('./lib/config/blacklist.json'))
+const atbk = JSON.parse(fs.readFileSync('./lib/config/anti.json'))
+const faki = JSON.parse(fs.readFileSync('./lib/config/fake.json'))
+const slce = JSON.parse(fs.readFileSync('./lib/config/silence.json'))
+const atstk = JSON.parse(fs.readFileSync('./lib/config/sticker.json'))
 
 module.exports = kconfig = async (kill, message) => {
     try {
+        // Prefix
+        const prefix = '/'
+
+		// PARAMETROS
 		const { type, id, from, t, sender, author, isGroupMsg, chat, chatId, caption, isMedia, mimetype, quotedMsg, quotedMsgObj, mentionedJidList } = message
-        let { body } = message
-        const { name, formattedTitle } = chat
-        let { pushname, verifiedName, formattedName } = sender
-        pushname = pushname || verifiedName || formattedName
-        const double = Math.floor(Math.random() * 2) + 1
-        const four = Math.floor(Math.random() * 4) + 1
-        const triple = Math.floor(Math.random() * 3) + 1
-        const cinco = Math.floor(Math.random() * 5) + 1
-        const six = Math.floor(Math.random() * 6) + 1
-        const seven = Math.floor(Math.random() * 7) + 1
-		const lvpc = Math.floor(Math.random() * 101) + 1
-        const time = moment(t * 1000).format('DD/MM HH:mm:ss')
-		const processTime = (timestamp, now) => { return moment.duration(now - moment(timestamp * 1000)).asSeconds() }
-        const botNumber = await kill.getHostNumber()
+		let { body } = message
+		const { name, formattedTitle } = chat
+		let { pushname, verifiedName, formattedName } = sender
+		pushname = pushname || verifiedName || formattedName
+        const botNumber = await kill.getHostNumber() + '@c.us'
         const blockNumber = await kill.getBlockedIds()
+		const ownerNumber = config.owner
         const groupId = isGroupMsg ? chat.groupMetadata.id : ''
         const groupAdmins = isGroupMsg ? await kill.getGroupAdmins(groupId) : ''
         const isGroupAdmins = isGroupMsg ? groupAdmins.includes(sender.id) : false
         const isBotGroupAdmins = isGroupMsg ? groupAdmins.includes(botNumber + '@c.us') : false
-		const chats = (type === 'chat') ? body : (type === 'image' || type === 'video') ? caption : ''
-        const ownerNumber = '55189****@c.us'
-        const isOwn = sender.id
-		const isOwner = isOwn.includes(ownerNumber)
-        global.pollfile = 'poll_Config_'+chat.id+'.json'
-        global.voterslistfile = 'poll_voters_Config_'+chat.id+'.json'
-		global.client = kill
-		const isLeg = exsv.includes(chatId)
-		const mute = slce.includes(chatId)
-		const pvmte = slce.includes(sender.id)
-        const isNsfw = isGroupMsg ? nsfw_.includes(chat.id) : false
-        const isUrl = new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)/gi)
-		
-
-        // Bot Prefix
-        const prefix = '/'
-        body = (type === 'chat' && body.startsWith(prefix)) ? body : ((type === 'image' && caption || type === 'video' && caption) && caption.startsWith(prefix)) ? caption : ''
+        const isNsfw = isGroupMsg ? nsfwC.includes(chat.id) : false
+        const autoSticker = isGroupMsg ? atstk.includes(groupId) : false
+        const chats = (type === 'chat') ? body : ((type === 'image' || type === 'video')) ? caption : ''
+        body = (type === 'chat' && body.startsWith(prefix)) ? body : (((type === 'image' || type === 'video') && caption) && caption.startsWith(prefix)) ? caption : ''
+        const time = moment(t * 1000).format('DD/MM HH:mm:ss')
+		const processTime = (timestamp, now) => { return moment.duration(now - moment(timestamp * 1000)).asSeconds() }
         const command = body.slice(1).trim().split(/ +/).shift().toLowerCase()
 		const arg = body.trim().substring(body.indexOf(' ') + 1)
         const args = body.trim().split(/ +/).slice(1)
@@ -94,6 +84,28 @@ module.exports = kconfig = async (kill, message) => {
         const uaOverride = process.env.UserAgent
         const isQuotedImage = quotedMsg && quotedMsg.type === 'image'
 		const isQuotedVideo = quotedMsg && quotedMsg.type === 'video'
+        const isOwner = sender.id === ownerNumber
+        const isBlocked = blockNumber.includes(sender.id)
+        const isLeg = isGroupMsg ? exsv.includes(groupId) : false
+		const mute = slce.includes(chatId)
+		const pvmte = slce.includes(sender.id)
+        const isImage = type === 'image'
+        const isVideo = type === 'video'
+        global.pollfile = 'poll_Config_'+chat.id+'.json'
+        global.voterslistfile = 'poll_voters_Config_'+chat.id+'.json'
+		global.client = kill
+		
+		// OUTRAS
+        const double = Math.floor(Math.random() * 2) + 1
+        const four = Math.floor(Math.random() * 4) + 1
+        const triple = Math.floor(Math.random() * 3) + 1
+        const cinco = Math.floor(Math.random() * 5) + 1
+        const six = Math.floor(Math.random() * 6) + 1
+        const seven = Math.floor(Math.random() * 7) + 1
+        const octo = Math.floor(Math.random() * 8) + 1
+		const lvpc = Math.floor(Math.random() * 100) + 1
+		const errorurl = 'https://steamuserimages-a.akamaihd.net/ugc/954087817129084207/5B7E46EE484181A676C02DFCAD48ECB1C74BC423/?imw=512&&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false'
+		const errorurl2 = 'https://steamuserimages-a.akamaihd.net/ugc/954087817129084207/5B7E46EE484181A676C02DFCAD48ECB1C74BC423/?imw=512&&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false'
 		
 		
         const mess = {
@@ -113,60 +125,76 @@ module.exports = kconfig = async (kill, message) => {
         }
 	
 
-		// ANTI GRUPOS && ANTI PORNO
-        if (isGroupMsg && isLeg && !isGroupAdmins && !isOwner){
+        // ANTI LINK DE GRUPO
+        if (isGroupMsg && !isGroupAdmins && isBotGroupAdmins && isLeg && !isOwner) {
 			try {
-				if (chats.match(/(https:\/\/chat.whatsapp.com)/gi)) {
-					const check = await kill.inviteInfo(chats);
-					if (check == 200) {
-						kill.removeParticipant(groupId, sender.id)
-						console.log('Era link real então removi o ' + sender.id)
+				if (chats.match(new RegExp(/(https:\/\/chat.whatsapp.com)/gi))) {
+					const gplka = await kill.inviteInfo(chats)
+					if (gplka == '200') {
+						console.log(color('[BAN]', 'red'), color('Link de grupo detectado, removendo participante...', 'yellow'))
+						await kill.removeParticipant(groupId, sender.id)
 					} else {
-						console.log('O link não representa ameaças...')
+						console.log(color('[ALERTA]', 'yellow'), color('Link de grupo invalido recebido...', 'yellow'))
 					}
-				} else if (chats.match(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/gi)) {
-					const chatpn = chats.match(/\bhttps?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/gi)
-					const flnrl = new URL(chatpn)
-					console.log('Verificando se há pornografia no link recebido...\n' + flnrl)
-					isPorn(flnrl.hostname, function(error, status) {
-						if (status == true) {
-							kill.removeParticipant(groupId, sender.id)
-							console.log('Tinha pornografia então removi o ' + sender.id)
+				}
+			} catch (error) {
+				return
+			}
+		}
+
+        // Anti Porno
+        if (isGroupMsg && !isGroupAdmins && isBotGroupAdmins && isLeg && !isOwner) {
+			try {
+				if (isUrl(chats)) {
+					const inilkn = new URL(isUrl(chats))
+					console.log(color('[LINK]', 'yellow'), 'Link recebido:', inilkn.hostname)
+					isPorn(inilkn.hostname, async (err, status) => {
+						if (err) return console.error(err)
+						if (status) {
+							console.log(color('[NSFW]', 'red'), color('O link contém pornografia dentro, removendo participante...', 'yellow'))
+							await kill.removeParticipant(groupId, sender.id)
+						} else {
+							console.log(('[SAFE]'), color('O link recebido é seguro.'))
 						}
 					})
 				}
-			} catch (error) { return console.log('Não consegui ler uma das imagens ou documentos, mas não se preocupe, isso é comum.') }
+			} catch (error) {
+				return
+			}
 		}
 		
 
-        // ANTI FLOOD PRIVADO
-        if (isCmd && msgFilter.isFiltered(from) && !isGroupMsg) {
-        await kill.reply(from, 'EI! Espere 10 segundos antes de usar outros comandos!', id)
-		return console.log(color('FLOOD AS', 'red'), color(moment(t * 1000).format('DD/MM/YY HH:mm:ss'), 'yellow'), color(`${command} [${args.length}]`), 'de', color(pushname))
-		}
+        // Auto-sticker
+        if (isGroupMsg && autoSticker && isMedia && isImage && !isCmd) {
+            const mediaData = await decryptMedia(message, uaOverride)
+            const imageBase64 = `data:${mimetype};base64,${mediaData.toString('base64')}`
+            await kill.sendImageAsSticker(from, imageBase64)
+        }
 		
+
+        // ANTI FLOOD PRIVADO
+        if (isCmd && msgFilter.isFiltered(from) && !isGroupMsg) { return console.log(color('FLOOD AS', 'red'), color(moment(t * 1000).format('DD/MM/YY HH:mm:ss'), 'yellow'), color(`${command} [${args.length}]`), 'de', color(pushname)) }
 		
 		// ANTI FLOOD GRUPOS
-        if (isCmd && msgFilter.isFiltered(from) && isGroupMsg) {
-		await kill.reply(from, 'EI! Espere 10 segundos antes de usar outros comandos!', id)
-		return console.log(color('FLOOD AS', 'red'), color(moment(t * 1000).format('DD/MM/YY HH:mm:ss'), 'yellow'), color(`${command} [${args.length}]`), 'de', color(pushname), 'em', color(name || formattedTitle))
-		}
+        if (isCmd && msgFilter.isFiltered(from) && isGroupMsg) { return console.log(color('FLOOD AS', 'red'), color(moment(t * 1000).format('DD/MM/YY HH:mm:ss'), 'yellow'), color(`${command} [${args.length}]`), 'de', color(pushname), 'em', color(name || formattedTitle)) }
 		
 		
         // MENSAGEM PV
         if (!isCmd && !isGroupMsg) { return console.log('> MENSAGEM AS', color(moment(t * 1000).format('DD/MM/YY HH:mm:ss'), 'yellow'), 'de', color(pushname)) }
+		
 		// MENSAGEM GP
         if (!isCmd && isGroupMsg) { return console.log('> MENSAGEM AS', color(moment(t * 1000).format('DD/MM/YY HH:mm:ss'), 'yellow'), 'de', color(pushname), 'em', color(name || formattedTitle)) }
 		
 		
 		// COMANDOS
-        if (isCmd && !isGroupMsg) { console.log(color(`> COMANDO "/${command} [${args.length}]" AS`), color(moment(t * 1000).format('DD/MM/YY HH:mm:ss'), 'yellow'), 'de', color(pushname)) }
+        if (isCmd && !isGroupMsg) { console.log(color(`> COMANDO "${command} [${args.length}]" AS`), color(moment(t * 1000).format('DD/MM/YY HH:mm:ss'), 'yellow'), 'de', color(pushname)) }
+		
 		// COMANDOS GP
-        if (isCmd && isGroupMsg) { console.log(color(`> COMANDO "/${command} [${args.length}]" AS`), color(moment(t * 1000).format('DD/MM/YY HH:mm:ss'), 'yellow'), 'de', color(pushname), 'em', color(name || formattedTitle)) }
+        if (isCmd && isGroupMsg) { console.log(color(`> COMANDO "${command} [${args.length}]" AS`), color(moment(t * 1000).format('DD/MM/YY HH:mm:ss'), 'yellow'), 'de', color(pushname), 'em', color(name || formattedTitle)) }
 		
 
         // Impede SPAM
-        msgFilter.addFilter(from)
+        if (isCmd && !isOwner) msgFilter.addFilter(from)
 	
 
         switch(command) {
@@ -237,7 +265,7 @@ module.exports = kconfig = async (kill, message) => {
                     var imageBase64 = `data:${mimetype};base64,${mediaData.toString('base64')}`
                     var base64img = imageBase64
                     var outFile = './lib/media/img/noBg.png'
-                    var result = await removeBackgroundFromImageBase64({ base64img, apiKey: 'API DO SITE REMOVE.BG', size: 'auto', type: 'auto', outFile }) // bota sua propria api ai, cuidado no limite mensal
+                    var result = await removeBackgroundFromImageBase64({ base64img, apiKey: config.nobg, size: 'auto', type: 'auto', outFile })
                     await fs.writeFile(outFile, result.base64img)
                     await kill.sendImageAsSticker(from, `data:${mimetype};base64,${result.base64img}`)
 					await kill.reply(from, 'Certifique-se de evitar usar isso quando não precisar,', id)
@@ -304,7 +332,7 @@ module.exports = kconfig = async (kill, message) => {
 				}
                 var seaimg = './lib/media/img/imagesearch.jpg'
                 await fs.writeFile(seaimg, mediaData)
-				const upimg = await imgbbUploader("API DA IMGBB", seaimg) // Bote uma api do imgbb pras suas fotos n irem pra minha conta
+				const upimg = await imgbbUploader(config.imgbb, seaimg)
 				console.log(upimg.url)
 				await sleep(10000)
 				const resimg = await imgsearch(upimg.url, sendres)
@@ -320,7 +348,7 @@ module.exports = kconfig = async (kill, message) => {
                 const mediaData = await decryptMedia(message, uaOverride)
                 var uplimg = './lib/media/img/imageupl.jpg'
                 await fs.writeFile(uplimg, mediaData)
-				const sdimg = await imgbbUploader("API DO SITE IMGBB", uplimg) // Bote uma api do imgbb pras suas fotos n irem pra minha conta
+				const sdimg = await imgbbUploader(config.imgbb, uplimg)
 				console.log(sdimg.url_viewer)
 				await kill.reply(from, `*OBS!* _Essa link tem duração de 7 dias, após isso a imagem será automaticamente deletada do servidor._\n\n${sdimg.url_viewer}`, id)
 			} else {
@@ -463,24 +491,24 @@ module.exports = kconfig = async (kill, message) => {
 				if (args.length !== 1) return kill.reply(from, 'Você esqueceu de colocar se quer ativado [on], ou desativado [off].', id)
 				if (args[0] == 'on') {
 					faki.push(chatId)
-					fs.writeFileSync('./lib/fake.json', JSON.stringify(faki))
+					fs.writeFileSync('./lib/config/fake.json', JSON.stringify(faki))
 					kill.reply(from, 'Anti-Fakes habilitado.', id)
 				} else if (args[0] == 'off') {
 					let yath = faki.indexOf(chatId)
 					faki.splice(yath, 1)
-					fs.writeFileSync('./lib/fake.json', JSON.stringify(faki))
+					fs.writeFileSync('./lib/config/fake.json', JSON.stringify(faki))
 					kill.reply(from, 'Anti-fakes desabilitado.', id)
 				}
 			} else if (isGroupMsg && isOwner) {
 				if (args.length !== 1) return kill.reply(from, 'Você esqueceu de colocar se quer ativado [on], ou desativado [off].', id)
 				if (args[0] == 'on') {
 					faki.push(chatId)
-					fs.writeFileSync('./lib/fake.json', JSON.stringify(faki))
+					fs.writeFileSync('./lib/config/fake.json', JSON.stringify(faki))
 					kill.reply(from, 'Anti-Fakes habilitado.', id)
 				} else if (args[0] == 'off') {
 					let yath = faki.indexOf(chatId)
 					faki.splice(yath, 1)
-					fs.writeFileSync('./lib/fake.json', JSON.stringify(faki))
+					fs.writeFileSync('./lib/config/fake.json', JSON.stringify(faki))
 					kill.reply(from, 'Anti-fakes desabilitado.', id)
 				}
             } else {
@@ -495,24 +523,24 @@ module.exports = kconfig = async (kill, message) => {
 				if (args.length !== 1) return kill.reply(from, 'Defina entre on e off!', id)
 				if (args[0] == 'on') {
 					bklist.push(chatId)
-					fs.writeFileSync('./lib/blacklist.json', JSON.stringify(bklist))
+					fs.writeFileSync('./lib/config/blacklist.json', JSON.stringify(bklist))
 					kill.reply(from, 'Anti números acionado.\nUse /bklist (Número) para adicionar números.', id)
 				} else if (args[0] == 'off') {
 					let exclu = bklist.indexOf(chatId)
 					bklist.splice(exclu, 1)
-					fs.writeFileSync('./lib/blacklist.json', JSON.stringify(bklist))
+					fs.writeFileSync('./lib/config/blacklist.json', JSON.stringify(bklist))
 					kill.reply(from, 'Anti números offline.', id)
 				}
 			} else if (isGroupMsg && isOwner) {
 				if (args.length !== 1) return kill.reply(from, 'Defina entre on e off!', id)
 				if (args[0] == 'on') {
 					bklist.push(chatId)
-					fs.writeFileSync('./lib/blacklist.json', JSON.stringify(bklist))
+					fs.writeFileSync('./lib/config/blacklist.json', JSON.stringify(bklist))
 					kill.reply(from, 'Anti números acionado.\nUse /bklist (Número) para adicionar números.', id)
 				} else if (args[0] == 'off') {
 					let exclu = bklist.indexOf(chatId)
 					bklist.splice(exclu, 1)
-					fs.writeFileSync('./lib/blacklist.json', JSON.stringify(bklist))
+					fs.writeFileSync('./lib/config/blacklist.json', JSON.stringify(bklist))
 					kill.reply(from, 'Anti números offline.', id)
 				}
             } else {
@@ -528,14 +556,14 @@ module.exports = kconfig = async (kill, message) => {
 					if (args.length == 0) return kill.reply(from, 'Você deve definir [on e off] e em seguida o número da pessoa.', id)
 					const bkls = body.slice(11) + '@c.us'
 					atbk.push(bkls)
-					fs.writeFileSync('./lib/anti.json', JSON.stringify(atbk))
+					fs.writeFileSync('./lib/config/anti.json', JSON.stringify(atbk))
 					await kill.reply(from, 'Número adicionado a black-list', id)
 				} else if (args[0] == 'off') {
 					if (args.length == 0) return kill.reply(from, 'Você deve definir [on e off] e em seguida o número da pessoa.', id)
 					const bkls = body.slice(11) + '@c.us'
 					let blks = atbk.indexOf(bkls)
 					atbk.splice(blks, 1)
-					fs.writeFileSync('./lib/anti.json', JSON.stringify(atbk))
+					fs.writeFileSync('./lib/config/anti.json', JSON.stringify(atbk))
 					await kill.reply(from, 'Número removido da black-list', id)
 				} else {
 					await kill.reply(from, 'Você deve definir [on e off] e em seguida o número da pessoa.', id)
@@ -545,14 +573,14 @@ module.exports = kconfig = async (kill, message) => {
 					if (args.length == 0) return kill.reply(from, 'Você deve definir [on e off] e em seguida o número da pessoa.', id)
 					const bkls = body.slice(11) + '@c.us'
 					atbk.push(bkls)
-					fs.writeFileSync('./lib/anti.json', JSON.stringify(atbk))
+					fs.writeFileSync('./lib/config/anti.json', JSON.stringify(atbk))
 					await kill.reply(from, 'Número adicionado a black-list', id)
 				} else if (args[0] == 'off') {
 					if (args.length == 0) return kill.reply(from, 'Você deve definir [on e off] e em seguida o número da pessoa.', id)
 					const bkls = body.slice(11) + '@c.us'
 					let blks = atbk.indexOf(bkls)
 					atbk.splice(blks, 1)
-					fs.writeFileSync('./lib/anti.json', JSON.stringify(atbk))
+					fs.writeFileSync('./lib/config/anti.json', JSON.stringify(atbk))
 					await kill.reply(from, 'Número removido da black-list', id)
 				} else {
 					await kill.reply(from, 'Você deve definir [on e off] e em seguida o número da pessoa.', id)
@@ -648,7 +676,7 @@ module.exports = kconfig = async (kill, message) => {
                 const stickerImage = `data:${quotedMsg.mimetype};base64,${mediaData.toString('base64')}`
                 await kill.sendFile(from, stickerImage, '', 'Aproveite, aqui está sua foto! :D', id)
 			} else if (!quotedMsg) return kill.reply(from, `Desculpe, isso é somente para stickers...`, id)
-			break	
+			break
 
 
         case 'randomanime':
@@ -1327,7 +1355,7 @@ module.exports = kconfig = async (kill, message) => {
 		case 'resposta':
 			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			if (args.length == 0) return kill.reply(from, 'Faltou a frase para ser adicionada.', id)
-			fs.appendFile('./lib/reply.txt', `\n${body.slice(10)}`)
+			fs.appendFile('./lib/config/reply.txt', `\n${body.slice(10)}`)
 			await kill.reply(from, 'Frase adicionada a Íris.', id)
 			break
 
@@ -1340,7 +1368,7 @@ module.exports = kconfig = async (kill, message) => {
 				const a = spiris.data.success
 				if (a == '') {
 					console.log('Request falhou, usando respostas locais...')
-					let rfua = fs.readFileSync('./lib/reply.txt').toString().split('\n')
+					let rfua = fs.readFileSync('./lib/config/reply.txt').toString().split('\n')
 					let repy = rfua[Math.floor(Math.random() * rfua.length)]
 					let resfl = repy.replace('%name$', '${name}').replace('%battery%', '${lvpc}')
 					console.log(resfl)
@@ -1354,7 +1382,7 @@ module.exports = kconfig = async (kill, message) => {
 				}
 			} catch (error) {
 					console.log('Request falhou, usando respostas locais...')
-					let rfua = fs.readFileSync('./lib/reply.txt').toString().split('\n')
+					let rfua = fs.readFileSync('./lib/config/reply.txt').toString().split('\n')
 					let repy = rfua[Math.floor(Math.random() * rfua.length)]
 					let resfl = repy.replace('%name$', '${name}').replace('%battery%', '${lvpc}')
 					console.log(resfl)
@@ -1367,7 +1395,7 @@ module.exports = kconfig = async (kill, message) => {
 			
         case 'curiosidade':
 			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
-			const rcurio = fs.readFileSync('./lib/curiosidades.txt').toString().split('\n')
+			const rcurio = fs.readFileSync('./lib/config/curiosidades.txt').toString().split('\n')
 			const rsidd = rcurio[Math.floor(Math.random() * rcurio.length)]
 			console.log(rsidd)
 			await kill.reply(from, rsidd, id)
@@ -1376,7 +1404,7 @@ module.exports = kconfig = async (kill, message) => {
 			
         case 'trecho':
 			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
-			const rcit = fs.readFileSync('./lib/frases.txt').toString().split('\n')
+			const rcit = fs.readFileSync('./lib/config/frases.txt').toString().split('\n')
 			const racon = rcit[Math.floor(Math.random() * rcit.length)]
 			console.log(racon)
 			await kill.reply(from, racon, id)
@@ -1384,7 +1412,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 
         case 'criador':
-            kill.sendContact(from, '5518998***@c.us')
+            kill.sendContact(from, config.owner)
 			kill.reply(from, 'Se ele não responder apenas espere, é raro ele sair da internet ~Carinha viciado sabe~, mas se acontecer foi algo importante.', id)
             break
 			
@@ -1414,7 +1442,7 @@ module.exports = kconfig = async (kill, message) => {
 				const iris = await axios.get(`http://simsumi.herokuapp.com/api?text=${body.slice(6)}&lang=pt`)
 				if (iris.data.success == '') {
 					console.log('Request falhou, usando respostas locais...')
-					let rndrl = fs.readFileSync('./lib/reply.txt').toString().split('\n')
+					let rndrl = fs.readFileSync('./lib/config/reply.txt').toString().split('\n')
 					let repl = rndrl[Math.floor(Math.random() * rndrl.length)]
 					let resmf = repl.replace('%name$', `${name}`).replace('%battery%', `${lvpc}`)
 					console.log(resmf)
@@ -1424,7 +1452,7 @@ module.exports = kconfig = async (kill, message) => {
 				}
 			} catch (error) {
 					console.log('Request falhou, usando respostas locais...')
-					let rndrl = fs.readFileSync('./lib/reply.txt').toString().split('\n')
+					let rndrl = fs.readFileSync('./lib/config/reply.txt').toString().split('\n')
 					let repl = rndrl[Math.floor(Math.random() * rndrl.length)]
 					let resmf = repl.replace('%name$', `${name}`).replace('%battery%', `${lvpc}`)
 					console.log(resmf)
@@ -1502,11 +1530,11 @@ module.exports = kconfig = async (kill, message) => {
 			if (isGroupMsg && isGroupOwner) {
 				if (args[0].toLowerCase() == 'enable') {
 					nsfw_.push(chat.id)
-					fs.writeFileSync('./lib/NSFW.json', JSON.stringify(nsfw_))
+					fs.writeFileSync('./lib/config/NSFW.json', JSON.stringify(nsfw_))
 					kill.reply(from, 'Comandos NSFW ativados neste grupo!', id)
 				} else if (args[0].toLowerCase() == 'disable') {
 					nsfw_.splice(chat.id, 1)
-					fs.writeFileSync('./lib/NSFW.json', JSON.stringify(nsfw_))
+					fs.writeFileSync('./lib/config/NSFW.json', JSON.stringify(nsfw_))
 					kill.reply(from, 'Comandos nsfw desativamos para este grupo.', id)
 				} else {
 					kill.reply(from, 'Defina enable ou disable', id)
@@ -1514,11 +1542,11 @@ module.exports = kconfig = async (kill, message) => {
 			} else if (isGroupMsg && isOwner) {
 				if (args[0].toLowerCase() == 'enable') {
 					nsfw_.push(chat.id)
-					fs.writeFileSync('./lib/NSFW.json', JSON.stringify(nsfw_))
+					fs.writeFileSync('./lib/config/NSFW.json', JSON.stringify(nsfw_))
 					kill.reply(from, 'Comandos NSFW ativados neste grupo!', id)
 				} else if (args[0].toLowerCase() == 'disable') {
 					nsfw_.splice(chat.id, 1)
-					fs.writeFileSync('./lib/NSFW.json', JSON.stringify(nsfw_))
+					fs.writeFileSync('./lib/config/NSFW.json', JSON.stringify(nsfw_))
 					kill.reply(from, 'Comandos nsfw desativamos para este grupo.', id)
 				} else {
 					kill.reply(from, 'Defina enable ou disable', id)
@@ -1538,12 +1566,12 @@ module.exports = kconfig = async (kill, message) => {
             if (args.length !== 1) return kill.reply(from, 'Você esqueceu de colocar se quer ativado [on], ou desativado [off].', id)
 			if (args[0] == 'on') {
                 welkom.push(chat.id)
-                fs.writeFileSync('./lib/welcome.json', JSON.stringify(welkom))
+                fs.writeFileSync('./lib/config/welcome.json', JSON.stringify(welkom))
                 kill.reply(from, 'Feito! As funções de Boas-Vindas e Good-Bye foram acionadas.', id)
 			} else if (args[0] == 'off') {
 				let welcom = welkom.indexOf(chatId)
                 welkom.splice(welcom, 1)
-                fs.writeFileSync('./lib/welcome.json', JSON.stringify(welkom))
+                fs.writeFileSync('./lib/config/welcome.json', JSON.stringify(welkom))
                 kill.reply(from, 'Entendido! Desativei as opções de Boas-Vindas e Good-Bye.', id)
             } else {
                 kill.reply(from, 'Você esqueceu de colocar se quer ativado [on], ou desativado [off].', id)
@@ -2614,12 +2642,12 @@ module.exports = kconfig = async (kill, message) => {
             if (args.length !== 1) return kill.reply(from, 'Defina entre on e off!', id)
 			if (args[0] == 'on') {
                 exsv.push(chatId)
-                fs.writeFileSync('./lib/exclusive.json', JSON.stringify(exsv))
+                fs.writeFileSync('./lib/config/exclusive.json', JSON.stringify(exsv))
                 kill.reply(from, 'Os comandos exclusivos do Legião foram habilitados.', id)
 			} else if (args[0] == 'off') {
 				let exclu = exsv.indexOf(chatId)
                 exsv.splice(exclu, 1)
-                fs.writeFileSync('./lib/exclusive.json', JSON.stringify(exsv))
+                fs.writeFileSync('./lib/config/exclusive.json', JSON.stringify(exsv))
                 kill.reply(from, 'Os comandos exclusivos do Legião foram desabilitados.', id)
             } else {
                 kill.reply(from, 'Defina on ou off!', id)
@@ -2644,7 +2672,7 @@ module.exports = kconfig = async (kill, message) => {
         case 'waifu':
 			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (double == 1) {
-				const total = fs.readFileSync('./lib/waifu.json')
+				const total = fs.readFileSync('./lib/config/waifu.json')
 				const parsew = JSON.parse(total)
 				const organi = Math.floor(Math.random() * parsew.length)
 				const finale = parsew[organi]
@@ -2658,7 +2686,7 @@ module.exports = kconfig = async (kill, message) => {
 
         case 'husb':
 			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
-            const diti = fs.readFileSync('./lib/husbu.json')
+            const diti = fs.readFileSync('./lib/config/husbu.json')
             const ditiJsin = JSON.parse(diti)
             const rindIndix = Math.floor(Math.random() * ditiJsin.length)
             const rindKiy = ditiJsin[rindIndix]
@@ -3514,13 +3542,13 @@ module.exports = kconfig = async (kill, message) => {
 		
 		case 'bomb':
 			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
-		    const bleg = JSON.parse(fs.readFileSync('./lib/exclusive.json'))
+		    const bleg = JSON.parse(fs.readFileSync('./lib/config/exclusive.json'))
 			const biao = bleg.includes(chat.id)
 			if (biao) {
 				const alvo = `@${body.slice(6)}`
 				await kill.sendTextWithMentions(from, 'Beleza! Pedido recebido e iniciado, o alvo \"' + alvo + '\" será atacado dentro de alguns segundos!', id)
 				if (!isGroupAdmins) return kill.reply(from, mess.error.Ga, id)
-				const atk = execFile('./lib/bomb.exe', [`${body.slice(6)}`, '3', '1', '0'], function(err, data) { // o bomb esta configurado para Windows, se estiver no linux troque bomb.exe para lbomb, ficando ./lib/lbomb
+				const atk = execFile('./lib/bomb/bomb.exe', [`${body.slice(6)}`, '3', '1', '0'], function(err, data) { // o bomb esta configurado para Windows, se estiver no linux troque bomb.exe para lbomb, ficando ./lib/bomb/lbomb
 				if(err) {
 				console.log('O programa fechou, isso indica um erro ou fechamento manual.')
 				kill.reply(from, 'O ataque foi cancelado manualmente ou obteve erros na execução.', id)
@@ -3600,24 +3628,24 @@ module.exports = kconfig = async (kill, message) => {
 				if (args.length !== 1) return kill.reply(from, 'Você esqueceu de colocar se quer ativado [on], ou desativado [off].', id)
 				if (args[0] == 'on') {
 					slce.push(chat.id)
-					fs.writeFileSync('./lib/silence.json', JSON.stringify(slce))
+					fs.writeFileSync('./lib/config/silence.json', JSON.stringify(slce))
 					kill.reply(from, 'Esse grupo não poderá mais usar os comandos.', id)
 				} else if (args[0] == 'off') {
 					let ince = slce.indexOf(chatId)
 					slce.splice(ince, 1)
-					fs.writeFileSync('./lib/silence.json', JSON.stringify(slce))
+					fs.writeFileSync('./lib/config/silence.json', JSON.stringify(slce))
 					kill.reply(from, 'Esse grupo poderá usar os comandos novamente.', id)
 				}
 			} else if (isGroupMsg && isOwner) {
 				if (args.length !== 1) return kill.reply(from, 'Você esqueceu de colocar se quer ativado [on], ou desativado [off].', id)
 				if (args[0] == 'on') {
 					slce.push(chat.id)
-					fs.writeFileSync('./lib/silence.json', JSON.stringify(slce))
+					fs.writeFileSync('./lib/config/silence.json', JSON.stringify(slce))
 					kill.reply(from, 'Esse grupo não poderá mais usar os comandos.', id)
 				} else if (args[0] == 'off') {
 					let ince = slce.indexOf(chatId)
 					slce.splice(ince, 1)
-					fs.writeFileSync('./lib/silence.json', JSON.stringify(slce))
+					fs.writeFileSync('./lib/config/silence.json', JSON.stringify(slce))
 					kill.reply(from, 'Esse grupo poderá usar os comandos novamente.', id)
 				}
             } else {
@@ -3649,14 +3677,14 @@ module.exports = kconfig = async (kill, message) => {
 					if (args.length == 0) return kill.reply(from, 'Você deve definir [on e off] e em seguida o número da pessoa sem - ou +.', id)
 					const pvmt = body.slice(11) + '@c.us'
 					slce.push(pvmt)
-					fs.writeFileSync('./lib/silence.json', JSON.stringify(slce))
+					fs.writeFileSync('./lib/config/silence.json', JSON.stringify(slce))
 					await kill.reply(from, 'Ele não poderá usar a iris.', id)
 				} else if (args[0] == 'off') {
 					if (args.length == 0) return kill.reply(from, 'Você deve definir [on e off] e em seguida o número da pessoa sem - ou +.', id)
 					const pvmt = body.slice(11) + '@c.us'
 					let pvtnm = slce.indexOf(pvmt)
 					slce.splice(pvtnm, 1)
-					fs.writeFileSync('./lib/silence.json', JSON.stringify(slce))
+					fs.writeFileSync('./lib/config/silence.json', JSON.stringify(slce))
 					await kill.reply(from, 'Ele poderá usar a iris novamente.', id)
 				} else {
 					await kill.reply(from, 'Você deve definir [on e off] e em seguida o número da pessoa sem - ou +.', id)
@@ -3666,6 +3694,23 @@ module.exports = kconfig = async (kill, message) => {
 			}
 			break
 			
+			
+        case 'autosticker':
+			if (mute || pvmte) return console.log('Comando ignorado [Silence]')
+            if (!isGroupMsg) return await kill.reply(from, mess.error.Gp, id)
+            if (!isGroupAdmins) return await kill.reply(from, mess.error.Ga, id)
+            if (args[0] == 'on') {
+                atstk.push(groupId)
+                fs.writeFileSync('./lib/config/sticker.json', JSON.stringify(atstk))
+                await kill.reply(from, 'O Auto-Sticker foi ativado, todas as imagens serão enviadas serão convertidas em sticker.', id)
+            } else if (args[0] == 'off') {
+                atstk.splice(groupId, 1)
+                fs.writeFileSync('./lib/config/sticker.json', JSON.stringify(atstk))
+                await kill.reply(from, 'Auto-Sticker desativado, as imagens não serão automaticamente convertidas em sticker.', id)
+            } else {
+                await kill.reply(from, 'Defina entre [on] e [off].', id)
+            }
+			break
 
         }
     } catch (err) {

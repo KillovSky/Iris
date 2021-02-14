@@ -3,6 +3,7 @@ const welcome = require('./lib/welcome') // Ou de modulos que usei
 const kconfig = require('./config')
 const options = require('./options')
 const color = require('./lib/color')
+const config = require('./lib/config/config.json')
 
 // Cria um cliente de inicialização da BOT
 const start = (kill = new Client()) => {
@@ -13,7 +14,7 @@ const start = (kill = new Client()) => {
 		// Forçar recarregamento caso obtenha erros
 		kill.onStateChanged((state) => {
 			console.log('[Estado da Íris]', state)
-			if (state === 'CONFLICT' || state === 'UNLAUNCHED') kill.forceRefocus()
+			if (state === 'UNPAIRED' || state === 'CONFLICT' || state === 'UNLAUNCHED') kill.forceRefocus()
 		})
 	
 		
@@ -21,7 +22,7 @@ const start = (kill = new Client()) => {
         kill.onMessage((async (message) => {
             kill.getAmountOfLoadedMessages()
             .then((msg) => {
-                if (msg >= 500) {
+                if (msg >= 2000) {
                     kill.cutMsgCache()
                 }
             })
@@ -29,26 +30,30 @@ const start = (kill = new Client()) => {
         }))
 		
 		// Configuração do welcome
-        kill.onGlobalParicipantsChanged((async (heuh) => {
+        kill.onGlobalParicipantsChanged(async (heuh) => {
             await welcome(kill, heuh)
-            }))
+            })
         
 		
 		// Funções para caso seja adicionada em um grupo
-        kill.onAddedToGroup(((chat) => {
+        kill.onAddedToGroup(async (chat) => {
+			const wlcmsg = 'Oi! 🌟\nFui requisitada como BOT para esse grupo, e estarei a disposição de vocês! 🤖\nSe quiserem ver minhas funcões usem /menu!'
+			const lmtgru = await kill.getAllGroups()
             let totalMem = chat.groupMetadata.participants.length
-            if (totalMem < 20) { // Total de membros necessarios pra bot ficar
-            	kill.sendText(chat.id, `Um novo grupo, Eba! 😃\nUma pena que vocês não tem o requisito, que é ter pelo menos [20] membros. Você possui ${totalMem}, junte mais pessoas! 😉`).then(() => kill.leaveGroup(chat.id))
+			if (chat.groupMetadata.participants.includes(config.owner)) {
+				await kill.sendText(chat.id, wlcmsg)
+			} else if (gc.length > config.memberLimit) {
+            	await kill.sendText(chat.id, `Um novo grupo, Eba! 😃\nUma pena que vocês não tem o requisito, que é ter pelo menos ${config.memberLimit} membros. Você possui ${totalMem}, junte mais pessoas! 😉`)
+				await kill.leaveGroup(chat.id)
+				await kill.deleteChat(chat.id)
+			} else if (lmtgruc.length > config.gpLimit) {
+				await kill.sendText(chat.id, `Desculpe, estamos no maximo de grupos!\nAtualmente estamos em ${lmtgru.length}/${config.gpLimit}`)
+				await kill.leaveGroup(chat.id)
+				await kill.deleteChat(chat.id)
             } else {
-                kill.sendText(chat.groupMetadata.id, `Oi! 🌟\nFui requisitada como BOT para esse grupo, e estarei a disposição de vocês! 🤖\nSe quiserem ver minhas funcões usem /menu!`)
+                kill.sendText(chat.id, wlcmsg)
             }
-        }))
-		
-		
-		// analise de mensagens
-		kill.onAnyMessage((lise) => { 
-			messageLog(lise.fromMe, lise.type)
-		})
+        })
 		
 
         // Bloqueia na call

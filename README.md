@@ -96,12 +96,14 @@ case 'Nome do comando sem espaços':
 ### Mudanças
 Edite as API's encontradas em: (Se estiver incorreta avise ou procure)
 
-- [API 1](https://github.com/KillovSky/iris/blob/master/lib/functions.js#L12)
-- [API 2](https://github.com/KillovSky/iris/blob/master/lib/functions.js#L33)
-- [API 3](https://github.com/KillovSky/iris/blob/master/config.js#L303)
-- [API 4](https://github.com/KillovSky/iris/blob/master/config.js#L319)
-- [Número 1](https://github.com/KillovSky/iris/blob/master/config.js#L1387)
-- [Número 2](https://github.com/KillovSky/iris/blob/master/config.js#L73)
+- [API 1](https://github.com/KillovSky/iris/blob/master/lib/config/config.json#5)
+- [API 2](https://github.com/KillovSky/iris/blob/master/lib/config/config.json#6)
+- [API 3 & 4](https://github.com/KillovSky/iris/blob/master/lib/config/config.json#4)
+- [API 5](https://github.com/KillovSky/iris/blob/master/lib/config/config.json#7)
+- [Limite de Membros](https://github.com/KillovSky/iris/blob/master/lib/config/config.json#9)
+- [Limite de Grupos](https://github.com/KillovSky/iris/blob/master/lib/config/config.json#8)
+- [Prefix](https://github.com/KillovSky/iris/blob/master/lib/config/config.json#3)
+- [Número 1 & 2](https://github.com/KillovSky/iris/blob/master/lib/config/config.json#2)
 - [DDI](https://github.com/KillovSky/iris/blob/main/lib/welcome.js#L8)
 - [Bomber](https://github.com/KillovSky/iris/blob/master/config.js#L3523)
 - Elas são referentes aos sites [RemoveBG](https://www.remove.bg/pt-br), [ImgBB](https://api.imgbb.com/) e [AlphaCoders](https://wall.alphacoders.com/api.php)
@@ -134,6 +136,7 @@ Baixe Chrome por [aqui](https://www.google.com/chrome), no linux use os comandos
 - [MhankBarBar](https://github.com/MhankBarBar)
 - [Tio das Trevas](https://github.com/TioDasTrevas)
 - [Jon](https://github.com/Jonn001)
+- [SlavyanDesu](https://github.com/SlavyanDesu)
 - Agradeço de coração a todos vocês!
 
 ## Doar e Suporte
