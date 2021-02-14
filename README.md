@@ -67,7 +67,6 @@ Você precisa ter esse repositorio, é simples, rode os comandos abaixo, em caso
 > git clone https://github.com/KillovSky/iris.git
 > cd iris
 > npm i
-> npm install gify-cli gify -g
 ```
 
 ### Iniciar

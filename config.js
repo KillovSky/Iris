@@ -43,8 +43,8 @@ moment.tz.setDefault('America/Sao_Paulo').locale('pt_BR')
 const config = require('./lib/config/config.json')
 
 // JSON'S 
-const nsfwC = JSON.parse(fs.readFileSync('./lib/config/NSFW.json'))
-const wlcome = JSON.parse(fs.readFileSync('./lib/config/welcome.json'))
+const nsfw_ = JSON.parse(fs.readFileSync('./lib/config/NSFW.json'))
+const welkom = JSON.parse(fs.readFileSync('./lib/config/welcome.json'))
 const exsv = JSON.parse(fs.readFileSync('./lib/config/exclusive.json'))
 const bklist = JSON.parse(fs.readFileSync('./lib/config/blacklist.json'))
 const atbk = JSON.parse(fs.readFileSync('./lib/config/anti.json'))
@@ -63,7 +63,7 @@ module.exports = kconfig = async (kill, message) => {
 		const { name, formattedTitle } = chat
 		let { pushname, verifiedName, formattedName } = sender
 		pushname = pushname || verifiedName || formattedName
-        const botNumber = await kill.getHostNumber() + '@c.us'
+        const botNumber = await kill.getHostNumber()
         const blockNumber = await kill.getBlockedIds()
 		const ownerNumber = config.owner
         const groupId = isGroupMsg ? chat.groupMetadata.id : ''
@@ -82,13 +82,15 @@ module.exports = kconfig = async (kill, message) => {
         const isCmd = body.startsWith(prefix)
         const url = args.length !== 0 ? args[0] : ''
         const uaOverride = process.env.UserAgent
-        const isQuotedImage = quotedMsg && quotedMsg.type === 'image'
-		const isQuotedVideo = quotedMsg && quotedMsg.type === 'video'
         const isOwner = sender.id === ownerNumber
         const isBlocked = blockNumber.includes(sender.id)
-        const isLeg = isGroupMsg ? exsv.includes(groupId) : false
+        const isLeg = exsv.includes(chatId)
 		const mute = slce.includes(chatId)
 		const pvmte = slce.includes(sender.id)
+        const isQuotedImage = quotedMsg && quotedMsg.type === 'image'
+        const isQuotedVideo = quotedMsg && quotedMsg.type === 'video'
+        const isQuotedSticker = quotedMsg && quotedMsg.type === 'sticker'
+        const isQuotedGif = quotedMsg && quotedMsg.mimetype === 'image/gif'
         const isImage = type === 'image'
         const isVideo = type === 'video'
         global.pollfile = 'poll_Config_'+chat.id+'.json'
@@ -109,9 +111,9 @@ module.exports = kconfig = async (kill, message) => {
 		
 		
         const mess = {
-            wait: 'Pode me esperar um pouquinho? Realizar esse tipo de comando leva certo tempo.',
+            wait: 'Ok amore, espere um pouquinho...',
             error: {
-                St: 'Você usou errado haha!\nPara usar isso, envie ou marque uma foto com essa mensagem.',
+                St: 'Você usou errado haha!\nPara usar isso, envie ou marque uma foto com essa mensagem, se for um gif, use o comando /gif.',
                 Ki: 'Para remover administradores, você precisa primeiro remover o ADM deles.',
                 Ad: 'Erros! Não pude adicionar, pode ser por limitação de adicionar ou erros meus.',
                 Go: 'Oras, apenas o dono de um grupo pode usar esse tipo de comando.',
@@ -278,43 +280,22 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'stickergif':
-        case 'stikergif':
+        case 'gifsticker':
         case 'gif':
 			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
-            if (isMedia) {
-                if (mimetype === 'video/mp4' && message.duration < 15 || mimetype === 'image/gif' && message.duration < 15) {
-                    var mediaData = await decryptMedia(message, uaOverride)
-                    kill.reply(from, mess.wait, id)
-                    var filename = `./lib/media/stickergif.${mimetype.split('/')[1]}`
-                    await fs.writeFileSync(filename, mediaData)
-                    await exec(`gify ${filename} ./lib/media/stickergf.gif --fps=15 --scale=256:256`, async function (error, stdout, stderr) {
-                        var gif = await fs.readFileSync('./lib/media/stickergf.gif', { encoding: "base64" })
-                        await kill.sendImageAsSticker(from, `data:image/gif;base64,${gif.toString('base64')}`)
-                        .catch(() => {
-                            kill.reply(from, 'Aff! A conversão obteve erros, talvez seja o tamanho do gif ou seu peso.', id)
-                        })
-                    })
-                } else {
-                    kill.reply(from, `Caso receba isso considere 2 motivos.\n\n1 - Isso não é um gif ou video.\n\n2 - O gif ou video tem mais de 15 segundos, passando do limite que posso converter`, id)
+            if (isMedia && type === 'video' || mimetype === 'image/gif' || isQuotedVideo || isQuotedGif) {
+                await kill.reply(from, mess.wait, id)
+                try {
+                    const encryptMedia = isQuotedGif || isQuotedVideo ? quotedMsg : message
+                    const mediaData = await decryptMedia(encryptMedia, uaOverride)
+                    const gifSticker = `data:${mimetype};base64,${mediaData.toString('base64')}`
+                    await kill.sendMp4AsSticker(from, gifSticker, { fps: 30, startTime: '00:00:00.0', endTime : '00:00:05.0', loop: 0 })
+                } catch (err) {
+                    console.error(err)
+                    await kill.reply(from, 'Desculpe, obtive alguns erros ao fazer seu sticker.', id)
                 }
-            } else if (quotedMsg) {
-                if (quotedMsg.mimetype == 'video/mp4' && quotedMsg.duration < 15 || quotedMsg.mimetype == 'image/gif' && quotedMsg.duration < 15) {
-                    var mediaData = await decryptMedia(quotedMsg, uaOverride)
-                    kill.reply(from, mess.wait, id)
-                    var filename = `./lib/media/stickergif.${quotedMsg.mimetype.split('/')[1]}`
-                    await fs.writeFileSync(filename, mediaData)
-                    await exec(`gify ${filename} ./lib/media/stickergf.gif --fps=15 --scale=256:256`, async function (error, stdout, stderr) {
-                        var gif = await fs.readFileSync('./lib/media/stickergf.gif', { encoding: "base64" })
-                        await kill.sendImageAsSticker(from, `data:image/gif;base64,${gif.toString('base64')}`)
-                        .catch(() => {
-                            kill.reply(from, 'Aff! A conversão obteve erros, talvez seja o tamanho do gif ou seu peso.', id)
-                        })
-                    })
-                } else {
-                    kill.reply(from, `Caso receba isso considere 2 motivos.\n\n1 - Isso não é um gif ou video.\n\n2 - O gif ou video tem mais de 15 segundos, passando do limite que posso converter.`, id)
-                }
-			} else {
-                kill.reply(from, mess.error.St, id)
+            } else {
+                await kill.reply(from, 'Isso somente pode ser usado com videos e gifs.', id)
             }
             break
 	
@@ -670,14 +651,20 @@ module.exports = kconfig = async (kill, message) => {
 			
 		case 'img':
 			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
-            if (quotedMsg && quotedMsg.type == 'sticker') {
-                const mediaData = await decryptMedia(quotedMsg)
-                kill.reply(from, `Só esperar, pode levar um tempinho...`, id)
-                const stickerImage = `data:${quotedMsg.mimetype};base64,${mediaData.toString('base64')}`
-                await kill.sendFile(from, stickerImage, '', 'Aproveite, aqui está sua foto! :D', id)
-			} else if (!quotedMsg) return kill.reply(from, `Desculpe, isso é somente para stickers...`, id)
+            if (isQuotedSticker) {
+                await kill.reply(from, mess.wait, id)
+                try {
+                    const mediaData = await decryptMedia(quotedMsg, uaOverride)
+                    const stickerImg = `data:${quotedMsg.mimetype};base64,${mediaData.toString('base64')}`
+                    await kill.sendFile(from, stickerImg, '', '', id)
+                } catch (err) {
+                    console.error(err)
+                    await kill.reply(from, 'Desculpe, aconteceu algum erro ao converter...', id)
+                }
+            } else {
+                await kill.reply(from, 'Isso não é um sticker certo?', id)
+            }
 			break
-
 
         case 'randomanime':
 			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
