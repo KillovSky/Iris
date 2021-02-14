@@ -55,7 +55,7 @@ const atstk = JSON.parse(fs.readFileSync('./lib/config/sticker.json'))
 module.exports = kconfig = async (kill, message) => {
     try {
         // Prefix
-        const prefix = '/'
+        const prefix = config.prefix
 
 		// PARAMETROS
 		const { type, id, from, t, sender, author, isGroupMsg, chat, chatId, caption, isMedia, mimetype, quotedMsg, quotedMsgObj, mentionedJidList } = message
