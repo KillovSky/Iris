@@ -5,16 +5,17 @@ Uma bot em português feita para PC, originalmente para o grupo Legião Z no Wha
 No celular é dificilimo que você consiga usar, portanto, use o site [Goorm](https://ide.goorm.io) para criar sua BOT pelo telefone.
 
 ### Pedido Pessoal
-Por favor NÃO REMOVA os creditos, levei muito tempo e precisei ter muita dedicação pra se criar uma BOT Brasileira assim, agradeço pela cooperação.
+- Por favor NÃO REMOVA os creditos, levei muito tempo e precisei ter muita dedicação pra se criar uma BOT Brasileira assim, agradeço pela cooperação.
 
 ### Para os donos
-Você pode rodar comandos de Windows como "ipconfig", comandos de linux como "apt", ou comandos de programações como python -c tudo pelo WhatsApp, ninguém além de você pode usar isso, se você deseja que usem, remova a linha if (!isOnwer) [aqui](https://github.com/KillovSky/iris/blob/master/config.js#L3537), mas saiba que remove-la pode ser perigoso a você.
+Você pode rodar comandos de Windows como "ipconfig", comandos de linux como "apt", ou comandos de programações como python -c tudo pelo WhatsApp, ninguém além de você pode usar isso, se você deseja que usem, remova a linha if (!isOnwer) [aqui](https://github.com/KillovSky/iris/blob/master/config.js#L3235), mas saiba que remove-la pode ser perigoso a você.
 
 ### Funções (Não são todas, +130)
 
 | Função |Contém|
 | ------------- | ------------- |
 | Pausar BOT |✅|
+| Bloquear/Desbloquear pessoas |✅|
 | Puxar alguns dados |✅|
 | Usar CMD/Terminal pelo WhatsAPP |✅|
 | Anti-Fake/Blacklist |✅|
@@ -60,6 +61,25 @@ Você pode rodar comandos de Windows como "ipconfig", comandos de linux como "ap
 | Informações de Grupo/Perfil |✅|
 | Outros (Lista tem mais de 130) |✅|
 
+### Requisitos
+
+- [NodeJS](https://nodejs.org) - Recomendo a LTS.
+- [Git](https://git-scm.com) - Opcional (Se não usar Git Clone).
+- [Ffmpeg](https://ffmpeg.org) - Para o comando de GIF.
+Se desejar, pode tentar instalar o ffmpeg usando o npm, siga o codigo abaixo:
+
+```bash
+> npm i fluent-ffmpeg -g
+```
+
+Para a instalação do git, node e ffmpeg em Linux, use o comando abaixo:
+
+```bash
+> sudo apt install nodejs git ffmpeg -y
+```
+
+Caso você obtenha erros com a versão do node no repositorio de seu Linux, use o [Node Source](https://github.com/nodesource/distributions), lembre-se de usar a LTS (14).
+
 ### Instalação
 Você precisa ter esse repositorio, é simples, rode os comandos abaixo, em caso de erros, rode como sudo/administrador.
 
@@ -104,7 +124,7 @@ Edite as API's encontradas em: (Se estiver incorreta avise ou procure)
 - [Prefix](https://github.com/KillovSky/iris/blob/master/lib/config/config.json#3)
 - [Número 1 & 2](https://github.com/KillovSky/iris/blob/master/lib/config/config.json#2)
 - [DDI](https://github.com/KillovSky/iris/blob/main/lib/welcome.js#L8)
-- [Bomber](https://github.com/KillovSky/iris/blob/master/config.js#L3523)
+- [Bomber](https://github.com/KillovSky/iris/blob/master/config.js#L3221)
 - Elas são referentes aos sites [RemoveBG](https://www.remove.bg/pt-br), [ImgBB](https://api.imgbb.com/) e [AlphaCoders](https://wall.alphacoders.com/api.php)
 - A DDI é obrigatoria apenas caso você for de fora do Brasil, o Bomb apenas se você usar Linux.
 - Sempre leia a aba de discussões do github para saber mais.

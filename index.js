@@ -9,7 +9,7 @@ const config = require('./lib/config/config.json')
 const start = (kill = new Client()) => {
     console.log(color('\n> DEV OFICIAL ='), color(' KillovSky > https://wa.me/+5518998044132', 'yellow'))
 	console.log(color('\n> GRUPO OFICIAL ='), color(' https://chat.whatsapp.com/H53MdwhtnRf7TGX1VJ2Jje', 'yellow'))
-	console.log(color('\n>'), color('Inicialização finalizada, os comandos podem ser usados agora...\n', 'red'))
+	console.log(color('\n>'), color('Inicialização finalizada, os comandos podem ser usados agora...', 'red'))
 	
 		// Forçar recarregamento caso obtenha erros
 		kill.onStateChanged((state) => {
@@ -32,7 +32,7 @@ const start = (kill = new Client()) => {
 		// Configuração do welcome
         kill.onGlobalParicipantsChanged(async (heuh) => {
             await welcome(kill, heuh)
-            })
+        })
         
 		
 		// Funções para caso seja adicionada em um grupo
@@ -57,10 +57,10 @@ const start = (kill = new Client()) => {
 		
 
         // Bloqueia na call
-        kill.onIncomingCall(( async (call) => {
-            await kill.sendText(call.peerJid, 'Que pena! Chamadas não são suportadas e atrapalham muito! 😊\nTe bloqueei para evitar novas, contate o dono para efetuar o desbloqueio. 👋')
-            .then(() => kill.contactBlock(call.peerJid)) // se quiser, pode inserir seu numero acima na sendText com wa.me ou apenas o numero, ou pode mudar pra kill.sendTextWithMentions pra enviar te marcando
-        }))
+        kill.onIncomingCall(async (call) => {
+            await kill.sendText(call.peerJid, `Que pena! Chamadas não são suportadas e atrapalham muito! 😊\nTe bloqueei para evitar novas, contate o dono wa.me/${config.owner.replace('c.us', '')} para efetuar o desbloqueio. 👋`)
+            await kill.contactBlock(call.peerJid)
+        })
     }
 
 create(options(true, start))

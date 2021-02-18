@@ -1,6 +1,6 @@
 {
   "name": "iris",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "private": "true",
   "description": "Inteligência artificial do Legião Z!",
   "main": "index.js",
@@ -11,7 +11,7 @@
   "author": "KillovSky",
   "license": "Apache-2.0",
   "dependencies": {
-    "@open-wa/wa-automate": "^3.4.1",
+    "@open-wa/wa-automate": "^3.5.0",
     "@open-wa/wa-decrypt": "^3.0.1",
     "@vitalets/google-translate-api": "^4.0.0",
     "aki-api": "^5.2.1",
@@ -21,7 +21,7 @@
     "chalk": "^4.1.0",
     "debug": "^4.3.2",
     "domexception": "^2.0.1",
-    "emoji-regex": "^9.0.0",
+    "emoji-regex": "^9.2.1",
     "fluent-ffmpeg": "^2.1.2",
     "fs-extra": "^9.1.0",
     "google-it": "^1.6.1",
@@ -41,9 +41,9 @@
     "remove.bg": "^1.3.0",
     "request": "^2.88.2",
     "resize-base64": "^1.0.12",
-    "sinesp-api": "^3.0.0",
     "sharp": "^0.27.1",
-    "simple-play-store-search": "^1.0.2"
+    "simple-play-store-search": "^1.0.2",
+    "sinesp-api": "^3.0.0"
   },
   "directories": {
     "lib": "lib"

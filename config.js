@@ -114,14 +114,14 @@ module.exports = kconfig = async (kill, message) => {
         const mess = {
             wait: 'Ok amore, espere um pouquinho...',
             error: {
-                St: 'Você usou errado haha!\nPara usar isso, envie ou marque uma foto com essa mensagem, se for um gif, use o comando /gif.',
+                St: `Você usou errado haha!\nPara usar isso, envie ou marque uma foto com essa mensagem, se for um gif, use o comando ${prefix}gif.`,
                 Ki: 'Para remover administradores, você precisa primeiro remover o ADM deles.',
                 Ad: 'Erros! Não pude adicionar, pode ser por limitação de adicionar ou erros meus.',
                 Go: 'Oras, apenas o dono de um grupo pode usar esse tipo de comando.',
 				Kl: 'Opa! Isso é apenas meu criador, você não pode acessar.',
 				Ga: 'Apenas Administradores podem usar, então trate de virar um haha!',
 				Gp: 'Desculpe, mas isso é um comando para grupos.',
-				Ac: 'Somente grupos que permitem conteúdo +18 podem usar comandos assim, se você é o dono e quer isso, use /nsfw enable, ou use no PV.',
+				Ac: `Somente grupos que permitem conteúdo +18 podem usar comandos assim, se você é o dono e quer isso, use ${prefix}nsfw enable, ou use no PV.`,
 				Ba: 'Caro administrador, se quiser que eu use esses comandos, precisa me deixar ser uma ademira!',
                 Iv: 'Esse link está correto? Ele me parece errado...'
             }
@@ -133,7 +133,7 @@ module.exports = kconfig = async (kill, message) => {
 			try {
 				if (chats.match(new RegExp(/(https:\/\/chat.whatsapp.com)/gi))) {
 					const gplka = await kill.inviteInfo(chats)
-					if (gplka == '200') {
+					if (gplka) {
 						console.log(color('[BAN]', 'red'), color('Link de grupo detectado, removendo participante...', 'yellow'))
 						await kill.removeParticipant(groupId, sender.id)
 					} else {
@@ -233,15 +233,15 @@ module.exports = kconfig = async (kill, message) => {
 					await kill.sendImageAsSticker(from, resizedBase64)
 				})
             } else if (args.length == 1) {
-                const url = args[1]
-                if (url.match(isUrl)) {
+                const url = args[0]
+                if (isUrl(url)) {
                     await kill.sendStickerfromUrl(from, url, { method: 'get' })
                         .catch(err => console.log('Erro: ', err))
                 } else {
-                    kill.reply(from, mess.error.Iv, id)
+					kill.reply(from, mess.error.Iv, id)
                 }
             } else {
-                    kill.reply(from, mess.error.St, id)
+                kill.reply(from, mess.error.St, id)
             }
             break
 			
@@ -316,7 +316,7 @@ module.exports = kconfig = async (kill, message) => {
                     await kill.sendMp4AsSticker(from, gifSticker, { fps: 30, startTime: '00:00:00.0', endTime : '00:00:05.0', loop: 0 })
                 } catch (err) {
                     console.error(err)
-                    await kill.reply(from, 'Desculpe, obtive alguns erros ao fazer seu sticker.', id)
+                    await kill.reply(from, 'Esse sticker obteve erros, é provavel que seja o seu peso, o maximo é de 1MB.', id)
                 }
             } else {
                 await kill.reply(from, 'Isso somente pode ser usado com videos e gifs.', id)
@@ -504,19 +504,7 @@ module.exports = kconfig = async (kill, message) => {
 			
         case 'fake':
 			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
-			if (isGroupMsg && isGroupAdmins) {
-				if (args.length !== 1) return kill.reply(from, 'Você esqueceu de colocar se quer ativado [on], ou desativado [off].', id)
-				if (args[0] == 'on') {
-					faki.push(chatId)
-					fs.writeFileSync('./lib/config/fake.json', JSON.stringify(faki))
-					kill.reply(from, 'Anti-Fakes habilitado.', id)
-				} else if (args[0] == 'off') {
-					let yath = faki.indexOf(chatId)
-					faki.splice(yath, 1)
-					fs.writeFileSync('./lib/config/fake.json', JSON.stringify(faki))
-					kill.reply(from, 'Anti-fakes desabilitado.', id)
-				}
-			} else if (isGroupMsg && isOwner) {
+			if (isGroupMsg && isGroupAdmins || isGroupMsg && isOwner) {
 				if (args.length !== 1) return kill.reply(from, 'Você esqueceu de colocar se quer ativado [on], ou desativado [off].', id)
 				if (args[0] == 'on') {
 					faki.push(chatId)
@@ -535,30 +523,18 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
         case 'blacklist':
-			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
-            if (isGroupMsg && isGroupAdmins) {
+			if (mute || pvmte) return console.log('Comando ignorado [Silence]')
+            if (isGroupMsg && isGroupAdmins || isGroupMsg && isOwner) {
 				if (args.length !== 1) return kill.reply(from, 'Defina entre on e off!', id)
 				if (args[0] == 'on') {
 					bklist.push(chatId)
 					fs.writeFileSync('./lib/config/blacklist.json', JSON.stringify(bklist))
-					kill.reply(from, 'Anti números acionado.\nUse /bklist (Número) para adicionar números.', id)
+					kill.reply(from, `Banimento automatico ativado, agora os números que estiverem na blacklist serão banidos ao entrar no grupo.`, id)
 				} else if (args[0] == 'off') {
 					let exclu = bklist.indexOf(chatId)
 					bklist.splice(exclu, 1)
 					fs.writeFileSync('./lib/config/blacklist.json', JSON.stringify(bklist))
-					kill.reply(from, 'Anti números offline.', id)
-				}
-			} else if (isGroupMsg && isOwner) {
-				if (args.length !== 1) return kill.reply(from, 'Defina entre on e off!', id)
-				if (args[0] == 'on') {
-					bklist.push(chatId)
-					fs.writeFileSync('./lib/config/blacklist.json', JSON.stringify(bklist))
-					kill.reply(from, 'Anti números acionado.\nUse /bklist (Número) para adicionar números.', id)
-				} else if (args[0] == 'off') {
-					let exclu = bklist.indexOf(chatId)
-					bklist.splice(exclu, 1)
-					fs.writeFileSync('./lib/config/blacklist.json', JSON.stringify(bklist))
-					kill.reply(from, 'Anti números offline.', id)
+					kill.reply(from, 'O auto banimento foi desativado, agora os números na blacklist podem entrar sem tomar ban.', id)
 				}
             } else {
                 kill.reply(from, mess.error.Ga, id)
@@ -568,37 +544,20 @@ module.exports = kconfig = async (kill, message) => {
 			
         case 'bklist':
 			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
-            if (isGroupMsg && isGroupAdmins) {
+            if (isGroupMsg && isGroupAdmins || isGroupMsg && isOwner) {
 				if (args[0] == 'on') {
 					if (args.length == 0) return kill.reply(from, 'Você deve definir [on e off] e em seguida o número da pessoa.', id)
 					const bkls = body.slice(11) + '@c.us'
 					atbk.push(bkls)
 					fs.writeFileSync('./lib/config/anti.json', JSON.stringify(atbk))
-					await kill.reply(from, 'Número adicionado a black-list', id)
+					await kill.reply(from, 'Ele não poderá entrar no grupo agora.', id)
 				} else if (args[0] == 'off') {
 					if (args.length == 0) return kill.reply(from, 'Você deve definir [on e off] e em seguida o número da pessoa.', id)
 					const bkls = body.slice(11) + '@c.us'
 					let blks = atbk.indexOf(bkls)
 					atbk.splice(blks, 1)
 					fs.writeFileSync('./lib/config/anti.json', JSON.stringify(atbk))
-					await kill.reply(from, 'Número removido da black-list', id)
-				} else {
-					await kill.reply(from, 'Você deve definir [on e off] e em seguida o número da pessoa.', id)
-				}
-			} else if (isGroupMsg && isOwner) {
-				if (args[0] == 'on') {
-					if (args.length == 0) return kill.reply(from, 'Você deve definir [on e off] e em seguida o número da pessoa.', id)
-					const bkls = body.slice(11) + '@c.us'
-					atbk.push(bkls)
-					fs.writeFileSync('./lib/config/anti.json', JSON.stringify(atbk))
-					await kill.reply(from, 'Número adicionado a black-list', id)
-				} else if (args[0] == 'off') {
-					if (args.length == 0) return kill.reply(from, 'Você deve definir [on e off] e em seguida o número da pessoa.', id)
-					const bkls = body.slice(11) + '@c.us'
-					let blks = atbk.indexOf(bkls)
-					atbk.splice(blks, 1)
-					fs.writeFileSync('./lib/config/anti.json', JSON.stringify(atbk))
-					await kill.reply(from, 'Número removido da black-list', id)
+					await kill.reply(from, 'Agora esse número pode entrar no grupo sem ser banido.', id)
 				} else {
 					await kill.reply(from, 'Você deve definir [on e off] e em seguida o número da pessoa.', id)
 				}
@@ -628,7 +587,7 @@ module.exports = kconfig = async (kill, message) => {
 		case 'legiao':
 			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			if (isGroupMsg) return kill.reply(from, 'Pode ser que esse grupo não permita links, então use esse comando no PV okay?', id)
-			kill.sendLinkWithAutoPreview(from, 'https://chat.whatsapp.com/H53MdwhtnRf7TGX1VJ2Jje', 'Que otimo que se interessou pelo Legião Z!\nAi está nosso grupo!', id)
+			await kill.sendLinkWithAutoPreview(from, 'https://chat.whatsapp.com/H53MdwhtnRf7TGX1VJ2Jje', 'Que otimo que se interessou pelo Legião Z!\nAi está nosso grupo!', id)
 			break
 			
 			
@@ -650,7 +609,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
 		case 'setimage':
-			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Comando ignorado [Silence]')
 			if (!isGroupMsg) return kill.reply(from, mess.error.Gp, id)
             if (!isGroupAdmins) return kill.reply(from, mess.error.Ga, id)
             if (!isBotGroupAdmins) return kill.reply(from, mess.error.Ba, id)
@@ -682,7 +641,7 @@ module.exports = kconfig = async (kill, message) => {
 			} else {
 				kill.reply(from, `Acho que você esta usando errado em!`)
 			}
-			break
+			break	
 
 			
 		case 'img':
@@ -1049,7 +1008,7 @@ module.exports = kconfig = async (kill, message) => {
 		case 'qr':
 			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			const qrco = body.slice(4)
-			await kill.sendFileFromUrl(from, `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${qrco}`, '', 'Sua mensagem foi inserida nesse QRCode, aproveite.\n\nBy KillovSky - Íris.', id)
+			await kill.sendFileFromUrl(from, `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${qrco}`, '', 'Sua mensagem foi inserida nesse QRCode, aproveite.', id)
 			break
 
 
@@ -1106,266 +1065,17 @@ module.exports = kconfig = async (kill, message) => {
             break
 
 
-        case 'tts': // Esse é enormeeeee, fazer o que, sou baiano pra jogar noutro js
+        case 'tts':
+			if (mute || pvmte) return console.log('Comando ignorado [Silence]')
             if (args.length == 1) return kill.reply(from, 'Compreensivel, mas não usavel, você esqueceu de definir idioma e frase.')
-            const ttsId = require('node-gtts')('id')
-            const ttsEn = require('node-gtts')('en')
-			const ttsJp = require('node-gtts')('ja')
-            const ttsAr = require('node-gtts')('ar')
-            const ttsAf = require('node-gtts')('af')
-            const ttsSq = require('node-gtts')('sq')
-			const ttsHy = require('node-gtts')('hy')
-            const ttsCa = require('node-gtts')('ca')
-			const ttsZh = require('node-gtts')('zh')
-			const ttsCn = require('node-gtts')('zh-cn')
-			const ttsTw = require('node-gtts')('zh-tw')
-			const ttsYu = require('node-gtts')('zh-yue')
-			const ttsHr = require('node-gtts')('hr')
-			const ttsCs = require('node-gtts')('cs')
-            const ttsDa = require('node-gtts')('da')
-            const ttsNl = require('node-gtts')('nl')
-			const ttsAu = require('node-gtts')('en-au')
-            const ttsUk = require('node-gtts')('en-uk')
-			const ttsUs = require('node-gtts')('en-us')
-			const ttsEo = require('node-gtts')('eo')
-			const ttsFi = require('node-gtts')('fi')
-			const ttsFr = require('node-gtts')('fr')
-			const ttsEl = require('node-gtts')('el')
-			const ttsHt = require('node-gtts')('ht')
-            const ttsHi = require('node-gtts')('hi')
-            const ttsHu = require('node-gtts')('hu')
-			const ttsIs = require('node-gtts')('is')
-            const ttsIt = require('node-gtts')('it')
-            const ttsKo = require('node-gtts')('ko')
-            const ttsLa = require('node-gtts')('la')
-			const ttsLv = require('node-gtts')('lv')
-            const ttsMk = require('node-gtts')('mk')
-			const ttsNo = require('node-gtts')('no')
-			const ttsPl = require('node-gtts')('pl')
-			const ttsRo = require('node-gtts')('ro')
-			const ttsSr = require('node-gtts')('sr')
-			const ttsSk = require('node-gtts')('sk')
-			const ttsEs = require('node-gtts')('es')
-            const ttsSp = require('node-gtts')('es-es')
-            const ttsSu = require('node-gtts')('es-us')
-			const ttsSw = require('node-gtts')('sw')
-            const ttsSv = require('node-gtts')('sv')
-			const ttsTa = require('node-gtts')('ta')
-			const ttsTh = require('node-gtts')('th')
-			const ttsTr = require('node-gtts')('tr')
-			const ttsVi = require('node-gtts')('vi')
-			const ttsCy = require('node-gtts')('cy')
-            const ttsDe = require('node-gtts')('de')
-            const ttsBr = require('node-gtts')('pt-br')
-			const ttsPt = require('node-gtts')('pt')
-            const ttsRu = require('node-gtts')('ru')
             const dataText = body.slice(8)
-            if (dataText === '') return kill.reply(from, 'Ora ora, temos um baka! Você esqueceu de colocar a frase pra falar.', id)
-            if (dataText.length > 500) return kill.reply(from, 'Desculpa, mas o limite são 500 letras...', id)
             var dataBhs = body.slice(5, 7)
-			if (dataBhs == 'id') {
-                ttsId.save('./lib/media/tts/resId.mp3', dataText, function () {
-                    kill.sendPtt(from, './lib/media/tts/resId.mp3', id)
-                })
-            } else if (dataBhs == 'en') {
-                ttsEn.save('./lib/media/tts/resEn.mp3', dataText, function () {
-                    kill.sendPtt(from, './lib/media/tts/resEn.mp3', id)
-                })
-            } else if (dataBhs == 'jp') {
-                ttsJp.save('./lib/media/tts/resJp.mp3', dataText, function () {
-                    kill.sendPtt(from, './lib/media/tts/resJp.mp3', id)
-                })
-            } else if (dataBhs == 'de') {
-                ttsDe.save('./lib/media/tts/resDe.mp3', dataText, function () {
-                    kill.sendPtt(from, './lib/media/tts/resDe.mp3', id)
-                })
-            } else if (dataBhs == 'br') {
-                ttsBr.save('./lib/media/tts/resBr.mp3', dataText, function () {
-                    kill.sendPtt(from, './lib/media/tts/resBr.mp3', id)
-                })
-            } else if (dataBhs == 'ru') {
-                ttsRu.save('./lib/media/tts/resRu.mp3', dataText, function () {
-                    kill.sendPtt(from, './lib/media/tts/resRu.mp3', id)
-                })
-			} else if (dataBhs == 'ar') {
-                ttsAr.save('./lib/media/tts/resAr.mp3', dataText, function () {
-                    kill.sendPtt(from, './lib/media/tts/resAr.mp3', id)
-                })
-            } else if (dataBhs == 'pt') {
-                ttsPt.save('./lib/media/tts/resPt.mp3', dataText, function () {
-                    kill.sendPtt(from, './lib/media/tts/resPt.mp3', id)
-                })
-            } else if (dataBhs == 'af') {
-                ttsAf.save('./lib/media/tts/resAf.mp3', dataText, function () {
-                    kill.sendPtt(from, './lib/media/tts/resAf.mp3', id)
-                })
-            } else if (dataBhs == 'sq') {
-                ttsSq.save('./lib/media/tts/resSq.mp3', dataText, function () {
-                    kill.sendPtt(from, './lib/media/tts/resSq.mp3', id)
-                })
-            } else if (dataBhs == 'hy') {
-                ttsHy.save('./lib/media/tts/resHy.mp3', dataText, function () {
-                    kill.sendPtt(from, './lib/media/tts/resHy.mp3', id)
-                })
-            } else if (dataBhs == 'ca') {
-                ttsCa.save('./lib/media/tts/resCa.mp3', dataText, function () {
-                    kill.sendPtt(from, './lib/media/tts/resCa.mp3', id)
-                })
-            } else if (dataBhs == 'zh') {
-                ttsZh.save('./lib/media/tts/resZh.mp3', dataText, function () {
-                    kill.sendPtt(from, './lib/media/tts/resZh.mp3', id)
-                })		
-            } else if (dataBhs == 'cn') {
-                ttsCn.save('./lib/media/tts/resCn.mp3', dataText, function () {
-                    kill.sendPtt(from, './lib/media/tts/resCn.mp3', id)
-                })
-            } else if (dataBhs == 'tw') {
-                ttsTw.save('./lib/media/tts/resTw.mp3', dataText, function () {
-                    kill.sendPtt(from, './lib/media/tts/resTw.mp3', id)
-                })
-            } else if (dataBhs == 'yu') {
-                ttsYu.save('./lib/media/tts/resYue.mp3', dataText, function () {
-                    kill.sendPtt(from, './lib/media/tts/resYue.mp3', id)
-                })
-			} else if (dataBhs == 'hr') {
-                ttsHr.save('./lib/media/tts/resHr.mp3', dataText, function () {
-                    kill.sendPtt(from, './lib/media/tts/resHr.mp3', id)
-                })
-            } else if (dataBhs == 'cs') {
-                ttsCs.save('./lib/media/tts/resCs.mp3', dataText, function () {
-                    kill.sendPtt(from, './lib/media/tts/resCs.mp3', id)
-                })
-            } else if (dataBhs == 'da') {
-                ttsDa.save('./lib/media/tts/resDa.mp3', dataText, function () {
-                    kill.sendPtt(from, './lib/media/tts/resDa.mp3', id)
-                })
-            } else if (dataBhs == 'nl') {
-                ttsNl.save('./lib/media/tts/resNl.mp3', dataText, function () {
-                    kill.sendPtt(from, './lib/media/tts/resNl.mp3', id)
-                })
-            } else if (dataBhs == 'au') {
-                ttsAu.save('./lib/media/tts/resAu.mp3', dataText, function () {
-                    kill.sendPtt(from, './lib/media/tts/resAu.mp3', id)
-                })
-            } else if (dataBhs == 'uk') {
-                ttsUk.save('./lib/media/tts/resUk.mp3', dataText, function () {
-                    kill.sendPtt(from, './lib/media/tts/resUk.mp3', id)
-                })
-            } else if (dataBhs == 'us') {
-                ttsUs.save('./lib/media/tts/resUs.mp3', dataText, function () {
-                    kill.sendPtt(from, './lib/media/tts/resUs.mp3', id)
-                })
-            } else if (dataBhs == 'eo') {
-                ttsEo.save('./lib/media/tts/resEo.mp3', dataText, function () {
-                    kill.sendPtt(from, './lib/media/tts/resEo.mp3', id)
-                })
-            } else if (dataBhs == 'fi') {
-                ttsFi.save('./lib/media/tts/resFi.mp3', dataText, function () {
-                    kill.sendPtt(from, './lib/media/tts/resFi.mp3', id)
-                })
-            } else if (dataBhs == 'fr') {
-                ttsFr.save('./lib/media/tts/resFr.mp3', dataText, function () {
-                    kill.sendPtt(from, './lib/media/tts/resFr.mp3', id)
-                })
-            } else if (dataBhs == 'el') {
-                ttsEl.save('./lib/media/tts/resEl.mp3', dataText, function () {
-                    kill.sendPtt(from, './lib/media/tts/resEl.mp3', id)
-                })
-            } else if (dataBhs == 'ht') {
-                ttsHt.save('./lib/media/tts/resJp.mp3', dataText, function () {
-                    kill.sendPtt(from, './lib/media/tts/resHt.mp3', id)
-                })
-            } else if (dataBhs == 'hi') {
-                ttsHi.save('./lib/media/tts/resHi.mp3', dataText, function () {
-                    kill.sendPtt(from, './lib/media/tts/resHi.mp3', id)
-                })
-            } else if (dataBhs == 'hu') {
-                ttsHu.save('./lib/media/tts/resHu.mp3', dataText, function () {
-                    kill.sendPtt(from, './lib/media/tts/resHu.mp3', id)
-                })
-            } else if (dataBhs == 'is') {
-                ttsIs.save('./lib/media/tts/resIs.mp3', dataText, function () {
-                    kill.sendPtt(from, './lib/media/tts/resIs.mp3', id)
-                })
-			} else if (dataBhs == 'it') {
-                ttsIt.save('./lib/media/tts/resIt.mp3', dataText, function () {
-                    kill.sendPtt(from, './lib/media/tts/resIt.mp3', id)
-                })
-            } else if (dataBhs == 'ko') {
-                ttsKo.save('./lib/media/tts/resKo.mp3', dataText, function () {
-                    kill.sendPtt(from, './lib/media/tts/resKo.mp3', id)
-                })
-            } else if (dataBhs == 'la') {
-                ttsLa.save('./lib/media/tts/resLa.mp3', dataText, function () {
-                    kill.sendPtt(from, './lib/media/tts/resLa.mp3', id)
-                })
-            } else if (dataBhs == 'lv') {
-                ttsLv.save('./lib/media/tts/resLv.mp3', dataText, function () {
-                    kill.sendPtt(from, './lib/media/tts/resLv.mp3', id)
-                })
-            } else if (dataBhs == 'mk') {
-                ttsMk.save('./lib/media/tts/resMk.mp3', dataText, function () {
-                    kill.sendPtt(from, './lib/media/tts/resMk.mp3', id)
-                })
-            } else if (dataBhs == 'no') {
-                ttsNo.save('./lib/media/tts/resNo.mp3', dataText, function () {
-                    kill.sendPtt(from, './lib/media/tts/resNo.mp3', id)
-                })
-            } else if (dataBhs == 'pl') {
-                ttsPl.save('./lib/media/tts/resPl.mp3', dataText, function () {
-                    kill.sendPtt(from, './lib/media/tts/resPl.mp3', id)
-                })		
-            } else if (dataBhs == 'ro') {
-                ttsRo.save('./lib/media/tts/resRo.mp3', dataText, function () {
-                    kill.sendPtt(from, './lib/media/tts/resRo.mp3', id)
-                })
-            } else if (dataBhs == 'sr') {
-                ttsSr.save('./lib/media/tts/resSr.mp3', dataText, function () {
-                    kill.sendPtt(from, './lib/media/tts/resSr.mp3', id)
-                })
-            } else if (dataBhs == 'sk') {
-                ttsSk.save('./lib/media/tts/resSk.mp3', dataText, function () {
-                    kill.sendPtt(from, './lib/media/tts/resSk.mp3', id)
-                })
-			} else if (dataBhs == 'es') {
-                ttsEs.save('./lib/media/tts/resEs.mp3', dataText, function () {
-                    kill.sendPtt(from, './lib/media/tts/resEs.mp3', id)
-                })
-            } else if (dataBhs == 'sp') {
-                ttsSp.save('./lib/media/tts/resSp.mp3', dataText, function () {
-                    kill.sendPtt(from, './lib/media/tts/resSp.mp3', id)
-                })
-            } else if (dataBhs == 'su') {
-                ttsSu.save('./lib/media/tts/resSu.mp3', dataText, function () {
-                    kill.sendPtt(from, './lib/media/tts/resSu.mp3', id)
-                })
-            } else if (dataBhs == 'sw') {
-                ttsSw.save('./lib/media/tts/resSw.mp3', dataText, function () {
-                    kill.sendPtt(from, './lib/media/tts/resSk.mp3', id)
-                })
-            } else if (dataBhs == 'sv') {
-                ttsSv.save('./lib/media/tts/resSv.mp3', dataText, function () {
-                    kill.sendPtt(from, './lib/media/tts/resSv.mp3', id)
-                })
-            } else if (dataBhs == 'ta') {
-                ttsTa.save('./lib/media/tts/resTa.mp3', dataText, function () {
-                    kill.sendPtt(from, './lib/media/tts/resTa.mp3', id)
-                })
-            } else if (dataBhs == 'tr') {
-                ttsTr.save('./lib/media/tts/resTr.mp3', dataText, function () {
-                    kill.sendPtt(from, './lib/media/tts/resTr.mp3', id)
-                })
-            } else if (dataBhs == 'vi') {
-                ttsVi.save('./lib/media/tts/resVi.mp3', dataText, function () {
-                    kill.sendPtt(from, './lib/media/tts/resVi.mp3', id)
-                })
-            } else if (dataBhs == 'cy') {
-                ttsCy.save('./lib/media/tts/resCy.mp3', dataText, function () {
-                    kill.sendPtt(from, './lib/media/tts/resCy.mp3', id)
-                })
-            } else {
-                kill.reply(from, `Hmm, '${body.slice(5, 7)}' não é um idioma compativel, para idiomas compativeis digite /idiomas.`, id)
-            }
+			if (dataText.length == '' || dataText.length > 500) return kill.reply(from, 'Você deve colocar o idioma e o texto e lembrar-se que o texto não pode passar de 500 letras.', id)
+			const sppts = await ngtts(dataBhs, dataText)
+			console.log(sppts)
+			if (sppts == 'Error') return kill.reply(from, `Hmm, '${dataBhs}' não é um idioma compativel, para idiomas compativeis digite ${prefix}idiomas.`, id)
+			await sleep(3000)
+			await kill.sendPtt(from, `./lib/media/tts/res${sppts}.mp3`, id)
             break
 
 
@@ -1550,7 +1260,7 @@ module.exports = kconfig = async (kill, message) => {
 			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
        	    const isGroupOwner = sender.id === chat.groupMetadata.owner
             if (args.length !== 1) return kill.reply(from, 'Defina enable ou disable', id)
-			if (isGroupMsg && isGroupOwner) {
+			if (isGroupMsg && isGroupOwner || isGroupMsg && isOwner) {
 				if (args[0].toLowerCase() == 'enable') {
 					nsfw_.push(chat.id)
 					fs.writeFileSync('./lib/config/NSFW.json', JSON.stringify(nsfw_))
@@ -1558,19 +1268,7 @@ module.exports = kconfig = async (kill, message) => {
 				} else if (args[0].toLowerCase() == 'disable') {
 					nsfw_.splice(chat.id, 1)
 					fs.writeFileSync('./lib/config/NSFW.json', JSON.stringify(nsfw_))
-					kill.reply(from, 'Comandos nsfw desativamos para este grupo.', id)
-				} else {
-					kill.reply(from, 'Defina enable ou disable', id)
-				}
-			} else if (isGroupMsg && isOwner) {
-				if (args[0].toLowerCase() == 'enable') {
-					nsfw_.push(chat.id)
-					fs.writeFileSync('./lib/config/NSFW.json', JSON.stringify(nsfw_))
-					kill.reply(from, 'Comandos NSFW ativados neste grupo!', id)
-				} else if (args[0].toLowerCase() == 'disable') {
-					nsfw_.splice(chat.id, 1)
-					fs.writeFileSync('./lib/config/NSFW.json', JSON.stringify(nsfw_))
-					kill.reply(from, 'Comandos nsfw desativamos para este grupo.', id)
+					kill.reply(from, 'Comandos NSFW desativamos para este grupo.', id)
 				} else {
 					kill.reply(from, 'Defina enable ou disable', id)
 				}
@@ -1844,7 +1542,7 @@ module.exports = kconfig = async (kill, message) => {
 							await kill.sendFileFromUrl(from, pic, '', teks + '\n\n' + 'Aguarde, estou enviando o hentai, pode demorar varios minutos dependendo da quantidade de paginas.', id)
 							await kill.sendFileFromUrl(from, `https://nhder.herokuapp.com/download/nhentai/${nuklir}/zip`, 'hentai.zip', '', id)
 						} catch (err) {
-                        kill.reply(from, '[❗] Ops! Deu erros no envio!', id)
+							kill.reply(from, '[❗] Ops! Deu erros no envio!', id)
 						}
 					} else {
 						kill.reply(from, '[❗] Aqui diz que não achou resultados...')
@@ -1980,16 +1678,41 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'broad':
-			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
-            if (!isOwner) return kill.reply(from, 'Somente o meu criador tem acesso a este comando.', id)
-            let msg = body.slice(6)
-            const chatz = await kill.getAllChatIds()
-            for (let ids of chatz) {
-                var cvk = await kill.getChatById(ids)
-                if (!cvk.isReadOnly) await kill.sendText(ids, `[Transmissão do dono da Íris]\n\n${msg}`)
-            }
-            kill.reply(from, 'Broadcast Sucedida!', id)
+			if (mute || pvmte) return console.log('Comando ignorado [Silence]')
+            if (!isOwner) return kill.reply(from, mess.error.Kl, id)
+			const hdgsh = 'Para usar isso, digite o comando, em seguida defina se quer todos[-all], grupos[-gp] e em seguida a sua mensagem de transmissão, devido a motivos desconhecidos para mim, não consegui criar a de apenas contatos.'
+			if (args.length == 0) return kill.reply(from, hdgsh, id)
+			const chatz = await kill.getAllChatIds()
+			if (args[0] == '-all') {
+				let msg = body.slice(12)
+				for (let ids of chatz) {
+					var cvk = await kill.getChatById(ids)
+					if (!cvk.isReadOnly) {
+						await kill.sendText(ids, `[Transmissão do dono da Íris]\n\n${msg}`)
+					} else {
+						console.log("Ignorei um grupo/privado pois estava fechado.")
+					}
+				}
+				kill.reply(from, 'Broadcast Sucedida!', id)
+			} else if (args[0] == '-gp') {
+				let msg = body.slice(11)
+				for (let bclst of chatz) {
+					var notgps = bclst.endsWith('@c.us')
+					if (!notgps) {
+						var bkgps = await kill.getChatById(bclst)
+						if (!bkgps.isReadOnly) {
+							await kill.sendText(bclst, `[Transmissão do dono da Íris]\n\n${msg}`)
+						} else {
+							console.log("Ignorei um grupo/privado pois estava fechado.")
+						}
+					} else return
+				}
+				kill.reply(from, 'Broadcast Sucedida!', id)
+			} else {
+				await kill.reply(from, hdgsh, id)
+			}
             break
+			
 			
         case 'ptt':
 			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
@@ -2114,17 +1837,7 @@ module.exports = kconfig = async (kill, message) => {
 
         case 'everyone':
 			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
-			if (isGroupMsg && isGroupAdmins) {
-				const groupMem = await kill.getGroupMembers(groupId)
-				let hehe = `═✪〘 Olá! Todos marcados! 〙✪═\n═✪〘 Assunto: ${body.slice(10)} 〙✪═\n\n`
-				for (let i = 0; i < groupMem.length; i++) {
-					hehe += '- '
-					hehe += ` @${groupMem[i].id.replace(/@c.us/g, '')}\n`
-				}
-				hehe += '\n═✪〘 Obrigada & Amo vocês <3 〙✪═'
-				await sleep(2000)
-				await kill.sendTextWithMentions(from, hehe, id)
-			} else if (isGroupMsg && isOwner) {
+			if (isGroupMsg && isGroupAdmins || isGroupMsg && isOwner) {
 				const groupMem = await kill.getGroupMembers(groupId)
 				let hehe = `═✪〘 Olá! Todos marcados! 〙✪═\n═✪〘 Assunto: ${body.slice(10)} 〙✪═\n\n`
 				for (let i = 0; i < groupMem.length; i++) {
@@ -2157,8 +1870,8 @@ module.exports = kconfig = async (kill, message) => {
 			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             const isdonogroup = sender.id === chat.groupMetadata.owner
 			if (!isGroupMsg) return kill.reply(from, mess.error.Gp, id)
-            if (!isdonogroup) return kill.reply(from, 'Apenas o dono do grupo pode usar isso.', id)
-            if (!isBotGroupAdmins) return kill.reply(from, 'Preciso ser uma ademira', id)
+            if (!isdonogroup) return kill.reply(from, mess.error.Go, id)
+            if (!isBotGroupAdmins) return kill.reply(from, mess.error.Ba, id)
             const allMem = await kill.getGroupMembers(groupId)
             for (let i = 0; i < allMem.length; i++) {
                 if (groupAdmins.includes(allMem[i].id)) {
@@ -2167,17 +1880,16 @@ module.exports = kconfig = async (kill, message) => {
                     await kill.removeParticipant(groupId, allMem[i].id)
                 }
             }
-            kill.reply(from, 'Todos banidos', id)
+            kill.reply(from, 'Todos foram banidos!', id)
             break
 
 
         case 'leaveall':
 			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
-            if (!isOwner) return kill.reply(from, 'Somente o meu criador tem acesso a este comando.', id)
-            const allChats = await kill.getAllChatIds()
+            if (!isOwner) return kill.reply(from, mess.error.Ki, id)
             const allGroups = await kill.getAllGroups()
             for (let gclist of allGroups) {
-                await kill.sendText(gclist.contact.id, `Voltamos em breve, ou não haha : ${allChats.length}`)
+                await kill.sendText(gclist.contact.id, `Infelizmente, tenho que sair, espero que voltemos a nós ver.`)
                 await kill.leaveGroup(gclist.contact.id)
             }
             kill.reply(from, 'Feito, sai de todos os grupos.', id)
@@ -2186,7 +1898,7 @@ module.exports = kconfig = async (kill, message) => {
 
         case 'clearall':
 			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
-            if (!isOwner) return kill.reply(from, 'Somente o meu criador tem acesso a este comando.', id)
+            if (!isOwner) return kill.reply(from, mess.error.Kl, id)
             const allChatz = await kill.getAllChats()
             for (let dchat of allChatz) {
                 await kill.deleteChat(dchat.id)
@@ -2363,13 +2075,7 @@ module.exports = kconfig = async (kill, message) => {
 		case 'unban':		
 		case 'unkick':
 			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
-			if (isGroupMsg && isGroupAdmins) {
-				if (!isBotGroupAdmins) return kill.reply(from, mess.error.Ba, id)
-				if (!quotedMsg) return kill.reply(from, 'Marque a mensagem de quem foi banido.', id) 
-				const unbanq = quotedMsgObj.sender.id
-				await kill.sendTextWithMentions(from, `Desfazendo ban do @${unbanq} e permitindo entrada dele no cabaré...`)
-				await kill.addParticipant(groupId, unbanq)
-			} else if (isGroupMsg && isOwner) {
+			if (isGroupMsg && isGroupAdmins || isGroupMsg && isOwner) {
 				if (!isBotGroupAdmins) return kill.reply(from, mess.error.Ba, id)
 				if (!quotedMsg) return kill.reply(from, 'Marque a mensagem de quem foi banido.', id) 
 				const unbanq = quotedMsgObj.sender.id
@@ -2386,24 +2092,7 @@ module.exports = kconfig = async (kill, message) => {
         case 'kick':
 			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
 			const chief = chat.groupMetadata.owner
-			if (isGroupMsg && isGroupAdmins) {
-				if (!isBotGroupAdmins) return kill.reply(from, mess.error.Ba, id)
-				if (quotedMsg) {
-					const negquo = quotedMsgObj.sender.id
-					if (chief.includes(negquo)) return kill.reply(from, 'Sabemos o quão bebado(a) ele(a) é, mas não dá pra expulsar a pessoa que criou o cabaré.', id)
-					await kill.sendTextWithMentions(from, `Expulsando bebado(a) @${negquo} do cabaré...`)
-					await kill.removeParticipant(groupId, negquo)
-				} else {
-					if (mentionedJidList.length == 0) return kill.reply(from, 'Você digitou o comando de forma muito errada, arrume e envie certo.', id)
-					await kill.sendTextWithMentions(from, `Expulsando bebado(a) ${mentionedJidList.map(x => `@${x.replace('@c.us', '')}`).join('\n')} do cabaré...`)
-					for (let i = 0; i < mentionedJidList.length; i++) {
-						if (chief.includes(mentionedJidList[i])) return kill.reply(from, 'Sabemos o quão bebado(a) ele(a) é, mas não dá pra expulsar a pessoa que criou o cabaré.', id)
-						if (ownerNumber.includes(mentionedJidList[i])) return kill.reply(from, 'Infelizmente, ele é um bebado VIP, não posso expulsar.', id)
-						if (groupAdmins.includes(mentionedJidList[i])) return kill.reply(from, mess.error.Kl, id)
-						await kill.removeParticipant(groupId, mentionedJidList[i])
-					}
-				}
-			} else if (isGroupMsg && isOwner) {
+			if (isGroupMsg && isGroupAdmins || isGroupMsg && isOwner) {
 				if (!isBotGroupAdmins) return kill.reply(from, mess.error.Ba, id)
 				if (quotedMsg) {
 					const negquo = quotedMsgObj.sender.id
@@ -2430,9 +2119,7 @@ module.exports = kconfig = async (kill, message) => {
 
         case 'leave':
 			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
-			if (isGroupMsg && isGroupAdmins) {
-				await kill.sendText(from,'Terei que sair mas tomará que voltemos a nós ver em breve! <3').then(() => kill.leaveGroup(groupId))
-			} else if (isGroupMsg && isOwner) {
+			if (isGroupMsg && isGroupAdmins || isGroupMsg && isOwner) {
 				await kill.sendText(from,'Terei que sair mas tomará que voltemos a nós ver em breve! <3').then(() => kill.leaveGroup(groupId))
 			} else if (isGroupMsg) {
 				await kill.reply(from, 'Desculpe, somente os administradores e meu dono podem usar esse comando...', id)
@@ -2444,21 +2131,7 @@ module.exports = kconfig = async (kill, message) => {
 
         case 'promote':
 			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
-			if (isGroupMsg && isGroupAdmins) {
-				if (!isBotGroupAdmins) return kill.reply(from, mess.error.Ba, id)
-				if (quotedMsg) {
-					const proquo = quotedMsgObj.sender.id
-					if (groupAdmins.includes(proquo)) return kill.reply(from, 'Bom, ele já é um administrador.', id)
-					await kill.sendTextWithMentions(from, `Promovendo membro comum @${proquo} a administrador de bar.`)
-					await kill.promoteParticipant(groupId, proquo)
-				} else {
-					if (mentionedJidList.length == 0) return kill.reply(from, 'Você esqueceu de marcar a pessoa que quer tornar administrador.', id)
-					if (mentionedJidList.length >= 2) return kill.reply(from, 'Desculpe, só posso demitir 1 por vez.', id)
-					if (groupAdmins.includes(mentionedJidList[0])) return kill.reply(from, 'Bom, ele já é um administrador.', id)
-					await kill.promoteParticipant(groupId, mentionedJidList[0])
-					await kill.sendTextWithMentions(from, `Promovendo membro comum @${mentionedJidList[0]} a administrador de bar.`)
-				}
-		    } else if (isGroupMsg && isOwner) {
+			if (isGroupMsg && isGroupAdmins || isGroupMsg && isOwner) {
 				if (!isBotGroupAdmins) return kill.reply(from, mess.error.Ba, id)
 				if (quotedMsg) {
 					const proquo = quotedMsgObj.sender.id
@@ -2482,21 +2155,7 @@ module.exports = kconfig = async (kill, message) => {
 
         case 'demote':
 			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
-			if (isGroupMsg && isGroupAdmins) {
-				if (!isBotGroupAdmins) return kill.reply(from, mess.error.Ba, id)
-				if (quotedMsg) {
-					const demquo = quotedMsgObj.sender.id
-					if (!groupAdmins.includes(demquo)) return kill.reply(from, 'Bom, ele não é um administrador.', id)
-					await kill.sendTextWithMentions(from, `Demitindo administrador do bar @${demquo}.`)
-					await kill.demoteParticipant(groupId, demquo)
-				} else {
-					if (mentionedJidList.length == 0) return kill.reply(from, 'Você esqueceu de marcar a pessoa que quer demitir.', id)
-					if (mentionedJidList.length >= 2) return kill.reply(from, 'Desculpe, só posso demitir 1 por vez.', id)
-					if (!groupAdmins.includes(mentionedJidList[0])) return kill.reply(from, 'Bom, ele não é um administrador.', id)
-					await kill.sendTextWithMentions(from, `Demitindo administrador do bar @${mentionedJidList[0]}.`)
-					await kill.demoteParticipant(groupId, mentionedJidList[0])
-				}
-		    } else if (isGroupMsg && isOwner) {
+			if (isGroupMsg && isGroupAdmins || isGroupMsg && isOwner) {
 				if (!isBotGroupAdmins) return kill.reply(from, mess.error.Ba, id)
 				if (quotedMsg) {
 					const demquo = quotedMsgObj.sender.id
@@ -2511,9 +2170,9 @@ module.exports = kconfig = async (kill, message) => {
 					await kill.demoteParticipant(groupId, mentionedJidList[0])
 				}
 			} else if (isGroupMsg) {
-				await kill.reply(from, 'Desculpe, somente os administradores podem demitir pela Íris.', id)
+				await kill.reply(from, mess.error.Ga, id)
 			} else {
-				await kill.reply(from, 'Esse comando apenas pode ser usado em grupos!', id)
+				await kill.reply(from, mess.error.Gp, id)
 			}
             break
 
@@ -2529,15 +2188,14 @@ module.exports = kconfig = async (kill, message) => {
 
         case 'join':
 			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
-            if (args.length == 0) return kill.reply(from, 'Sei la, tem algo errado nisso ai!', id)
+            if (args.length == 0) return kill.reply(from, 'Coloque o link após o comando.', id)
             const gplk = body.slice(6)
             const tGr = await kill.getAllGroups()
-            const minMem = 30 // PRECISA TER ISSO DE MEMBRO PRA ENTRAR
             const isLink = gplk.match(/(https:\/\/chat.whatsapp.com)/gi)
             const check = await kill.inviteInfo(gplk)
             if (!isLink) return kill.reply(from, 'Link errado', id)
-            if (tGr.length > 6) return kill.reply(from, 'Já estou no maximo de grupos, desculpe.', id)
-            if (check.size < minMem) return kill.reply(from, 'Só posso funcionar em grupos com mais de 30 pessoas.', id)
+            if (tGr.length > config.memberLimit) return kill.reply(from, 'Já estou no maximo de grupos, desculpe.', id)
+            if (check.size < config.memberLimit) return kill.reply(from, 'Só posso funcionar em grupos com mais de 30 pessoas.', id)
             if (check.status == 200) {
                 await kill.joinGroupViaLink(gplk).then(() => kill.reply(from, 'Entrando no grupo...'))
             } else {
@@ -2549,11 +2207,7 @@ module.exports = kconfig = async (kill, message) => {
         case 'delete':
         case 'del':
 			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
-			if (isGroupMsg && isGroupAdmins) {
-				if (!quotedMsg) return kill.reply(from, 'Você precisa marcar a mensagem que deseja deletar, obviamente, uma minha.', id)
-				if (!quotedMsgObj.fromMe) return kill.reply(from, 'Só posso deletar minhas mensagens!', id)
-				await kill.deleteMessage(quotedMsgObj.chatId, quotedMsgObj.id, false)
-		    } else if (isGroupMsg && isOwner) {
+			if (isGroupMsg && isGroupAdmins || isGroupMsg && isOwner) {
 				if (!quotedMsg) return kill.reply(from, 'Você precisa marcar a mensagem que deseja deletar, obviamente, uma minha.', id)
 				if (!quotedMsgObj.fromMe) return kill.reply(from, 'Só posso deletar minhas mensagens!', id)
 				await kill.deleteMessage(quotedMsgObj.chatId, quotedMsgObj.id, false)
@@ -2591,28 +2245,42 @@ module.exports = kconfig = async (kill, message) => {
 			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             const arka = body.trim().substring(body.indexOf(' ') + 1)
             if (args.length == 0) return kill.reply(from, 'Você precisa definir entre [-gp, -pv ou -help] para usar!', id)
-			const gid = groupId.replace('@g.us', '').replace('c.us', '')
+			const gid = groupId.replace('@g.us', '')
+			const pvid = sender.id.replace('@c.us', '')
+			const sdnhlp = `Para usar digite o comando e na frente digite -pv para privado, ou -gp para grupos, e na frente deles use o ID, separando a mensagem por |. Exemplo:\n${prefix}enviar -gp 5518998****-174362736 | ola?\n\nVocê pode obter as IDs com o comando ${prefix}allid.`
 			if (isGroupMsg) {
 				if (args[0] == '-gp') {
-					await kill.sendText(`${args[1]}` + '@g.us', `_Mensagem >_\n*"${arka.split('|')[1]} "*` + '\n\n_Quem enviou =_ ' + '\n*"' + name + '"*' + '\n\n_Como responder:_')
-					await kill.sendText(`${args[1]}` + '@g.us', `/enviar -gp ${gid} | Coloque sua resposta aqui`)
+					kill.sendText(`${args[1]}` + '@g.us', `_Mensagem >_\n*"${arka.split('|')[1]} "*` + '\n\n_Quem enviou =_ ' + '\n*"' + name + '"*' + '\n\n_Como responder:_')
+					await kill.sendText(`${args[1]}` + '@g.us', `${prefix}enviar -gp ${gid} | Coloque sua resposta aqui`)
 					await kill.sendText(from, 'Mensagem enviada.')
 				} else if (args[0] == '-pv') {
-					await kill.sendText(`${args[1]}` + '@c.us', `${arka.split('|')[1]}` + '\n\n_Quem enviou =_ ' + '*' + name + '*' + '\n\n_Como responder:_')
-					await kill.sendText(`${args[1]}` + '@c.us', `/enviar -gp ${gid} | Coloque sua resposta aqui`)
+					kill.sendText(`${args[1]}` + '@c.us', `${arka.split('|')[1]}` + '\n\n_Quem enviou =_ ' + '*' + name + '*' + '\n\n_Como responder:_')
+					kill.sendText(`${args[1]}` + '@c.us', `${prefix}enviar -gp ${gid} | Coloque sua resposta aqui`)
 					await kill.sendText(from, 'Mensagem enviada.')
 				} else if (args[0] == '-help' || args[0] == '-h') {
-					await kill.reply(from, 'Para usar digite o comando e na frente digite -pv para privado, ou -gp para grupos, e na frente deles use o ID, separando a mensagem por |. Exemplo:\n/enviar -gp 5518998****-174362736 | ola?\n\nVocê pode obter as IDs com o comando /id, e lembre-se de usar sem o @c.us e @g.us.', id)
+					await kill.reply(from, sdnhlp, id)
 				} else {
-					await kill.reply(from, 'Para usar digite o comando e na frente digite -pv para privado, ou -gp para grupos, e na frente deles use o ID, separando a mensagem por |. Exemplo:\n/enviar -gp 5518998****-174362736 | ola?\n\nVocê pode obter as IDs com o comando /id, e lembre-se de usar sem o @c.us e @g.us.', id)
+					await kill.reply(from, sdnhlp, id)
 				}
 			} else {
-				await kill.reply(from, mess.error.Gp + '\nSe quiser usar entre em um grupo [/legiao].', id)
+				if (args[0] == '-gp') {
+					kill.sendText(`${args[1]}` + '@g.us', `_Mensagem >_\n*"${arka.split('|')[1]} "*` + '\n\n_Quem enviou =_ ' + '\n*"' + pushname + '"*' + '\n\n_Como responder:_')
+					kill.sendText(`${args[1]}` + '@g.us', `${prefix}enviar -gp ${pvid} | Coloque sua resposta aqui`)
+					await kill.sendText(from, 'Mensagem enviada.')
+				} else if (args[0] == '-pv') {
+					kill.sendText(`${args[1]}` + '@c.us', `${arka.split('|')[1]}` + '\n\n_Quem enviou =_ ' + '*' + pushname + '*' + '\n\n_Como responder:_')
+					kill.sendText(`${args[1]}` + '@c.us', `${prefix}enviar -gp ${pvid} | Coloque sua resposta aqui`)
+					await kill.sendText(from, 'Mensagem enviada.')
+				} else if (args[0] == '-help' || args[0] == '-h') {
+					await kill.reply(from, sdnhlp, id)
+				} else {
+					await kill.reply(from, sdnhlp, id)
+				}
 			}
             break
 
 
-        case 'blocks':
+        case 'blocklist':
 			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (!isOwner) return kill.reply(from, 'Somente o meu criador tem acesso a este comando.', id)
             let hih = `Lista de bloqueados\nTotal : ${blockNumber.length}\n`
@@ -2630,13 +2298,6 @@ module.exports = kconfig = async (kill, message) => {
 		    await sleep(5000)
 			await kill.kill()
             break
-
-
-/*        case 'loli':
-			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
-            const loli = await get.get('http://mhankbarbars.herokuapp.com/api/randomloli').json()
-            kill.sendFileFromUrl(from, loli.result, 'loli.jpeg', 'Vejo que você é um homem/mulher de cultura.', id)
-            break*/
 			
 			
         case 'loli':
@@ -2660,18 +2321,18 @@ module.exports = kconfig = async (kill, message) => {
 			
         case 'exclusive':
 			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
-            if (!isGroupMsg) return kill.reply(from, 'Só grupos!', id)
+            if (!isGroupMsg) return kill.reply(from, mess.error.Gp, id)
 			if (!isOwner) return kill.reply(from, 'Esse comando é apenas para meu criador', id)
             if (args.length !== 1) return kill.reply(from, 'Defina entre on e off!', id)
 			if (args[0] == 'on') {
                 exsv.push(chatId)
                 fs.writeFileSync('./lib/config/exclusive.json', JSON.stringify(exsv))
-                kill.reply(from, 'Os comandos exclusivos do Legião foram habilitados.', id)
+                kill.reply(from, 'Os comandos exclusivos (Bomb, Anti-Porn/Link...) foram habilitados.', id)
 			} else if (args[0] == 'off') {
 				let exclu = exsv.indexOf(chatId)
                 exsv.splice(exclu, 1)
                 fs.writeFileSync('./lib/config/exclusive.json', JSON.stringify(exsv))
-                kill.reply(from, 'Os comandos exclusivos do Legião foram desabilitados.', id)
+                kill.reply(from, 'Os comandos exclusivos (Bomb, Anti-Porn/Link...) foram desabilitados.', id)
             } else {
                 kill.reply(from, 'Defina on ou off!', id)
             }
@@ -3361,7 +3022,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 		case 'valor':
 			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
-			if (args.length == 0) return kill.reply(from, 'Para usar digite o comando e em seguida o valor e tipo.\n\nExemplo: /valor 1USD (Junto mesmo.)\n\nDigite /coins para ver a lista de moedas que podem ser usadas [É uma lista enormeeeeee].', id)
+			if (args.length == 0) return kill.reply(from, `Para usar digite o comando e em seguida o valor e tipo.\n\nExemplo: ${prefix}valor 1USD (Tudo junto mesmo)\n\nDigite ${prefix}coins para ver a lista de moedas que podem ser usadas [É uma lista enormeeeeee].`, id)
 			const money = await axios.get(`https://brl.rate.sx/${args[0]}`)
 			await kill.reply(from, `*${args[0]}* _vale no Brasil_ *${money.data}* _reais._`, id)
 			break
@@ -3437,10 +3098,10 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'screenshot':
-			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
+			if (mute || pvmte) return console.log('Comando ignorado [Silence]')
             const _query = body.slice(12)
-            if (!_query.match(isUrl)) return kill.reply(from, mess.error.Iv, id)
-            if (args.length == 0) return kill.reply(from, 'Sinto cheiro de ortografia incorreta [faltou https:// ?]!', id)
+            if (!isUrl(_query)) return kill.reply(from, mess.error.Iv, id)
+            if (args.length == 0) return kill.reply(from, 'Sinto cheiro de ortografia incorreta!', id)
             await ss(_query)
             await sleep(4000)
 			await kill.sendFile(from, './lib/media/img/screenshot.jpeg', 'ss.jpeg', 'Se certifique de evitar usar isso com pornografia.', id)
@@ -3486,9 +3147,9 @@ module.exports = kconfig = async (kill, message) => {
 				const persona = author.replace('@c.us', '')
 				kill.sendTextWithMentions(from, 'Minha nossa! @' + persona + ' deu um beijo em ' + arqa[1] + ' !')
 				if (double == 1) {
-				await kill.sendGiphyAsSticker(from, 'https://media.giphy.com/media/vUrwEOLtBUnJe/giphy.gif')
+					await kill.sendGiphyAsSticker(from, 'https://media.giphy.com/media/vUrwEOLtBUnJe/giphy.gif')
 				} else {
-				await kill.sendGiphyAsSticker(from, 'https://media.giphy.com/media/1wmtU5YhqqDKg/giphy.gif')
+					await kill.sendGiphyAsSticker(from, 'https://media.giphy.com/media/1wmtU5YhqqDKg/giphy.gif')
 				}
 			} else {
 				await kill.reply(from, 'Marque ~apenas uma~ a pessoa quem você quer beijar hihihi', id)
@@ -3526,7 +3187,7 @@ module.exports = kconfig = async (kill, message) => {
 			const timed = moment(t * 1000).format('DD/MM/YY HH:mm:ss')
 			const allin = `Olá usuário "@${sender.id}"!\n\nLevei ${processTime(t, moment())} segundos para te responder.\n\nAgora são exatas "${timed}".\nAbaixo estão minhas funções.\n`
             kill.sendTextWithMentions(from, allin + help, id)
-            kill.reply(from, 'De outros comandos temos...\n\n*/Admins* _é para administradores._\n\n*/Kill* _é apenas para meu dono._\n\n*/Adult* _é o menu de comandos adultos._\n\n*/Down* _é o menu de download de músicas e videos._', id)
+            kill.reply(from, `De outros comandos temos...\n\n*${prefix}Admins* _é para administradores._\n\n*${prefix}Kill* _é apenas para meu dono._\n\n*${prefix}Adult* _é o menu de comandos adultos._\n\n*${prefix}Down* _é o menu de download de músicas e videos._`, id)
             break
 
 
@@ -3564,24 +3225,23 @@ module.exports = kconfig = async (kill, message) => {
 			
 		
 		case 'bomb':
-			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
-		    const bleg = JSON.parse(fs.readFileSync('./lib/config/exclusive.json'))
-			const biao = bleg.includes(chat.id)
-			if (biao) {
-				const alvo = `@${body.slice(6)}`
-				await kill.sendTextWithMentions(from, 'Beleza! Pedido recebido e iniciado, o alvo \"' + alvo + '\" será atacado dentro de alguns segundos!', id)
-				if (!isGroupAdmins) return kill.reply(from, mess.error.Ga, id)
-				const atk = execFile('./lib/bomb/bomb.exe', [`${body.slice(6)}`, '3', '1', '0'], function(err, data) { // o bomb esta configurado para Windows, se estiver no linux troque bomb.exe para lbomb, ficando ./lib/bomb/lbomb
-				if(err) {
-				console.log('O programa fechou, isso indica um erro ou fechamento manual.')
-				kill.reply(from, 'O ataque foi cancelado manualmente ou obteve erros na execução.', id)
-				}
+			if (mute || pvmte) return console.log('Comando ignorado [Silence]')
+			if (isLeg && isGroupAdmins || isOwner) {
+				const alvo = `${body.slice(6)}`
+				let nmral = alvo.match(/^[0-9]+$/)
+				if (!nmral) return kill.reply(from, `A forma correta de usar isso é inserir apenas números sem traços, letras ou +, como por exemplo...\n${prefix}bomb 5511998877665\nEvite usar em inocentes.`, id)
+				await kill.sendTextWithMentions(from, `Beleza! Pedido recebido e iniciado, o "@${alvo}" será atacado dentro de alguns segundos!`, id)
+				const atk = execFile('./lib/bomb/bomb.exe', [`${alvo}`, '3', '1', '0'], function(err, data) { // o bomb esta configurado para Windows, se estiver no linux troque bomb.exe para lbomb, ficando ./lib/bomb/lbomb
+					if (err) {
+					kill.reply(from, 'O programa fechou, isso indica um erro, fechamento manual ou termino do ataque', id)
+					}
 				})
 			} else {
 				console.log('erro')   
-				kill.reply(from, 'Você deve ativar o uso aqui com /exclusive on.', id)
+				kill.reply(from, 'Ou você não é administrador, ou estamos no PV.', id)
 			}
 			break
+			
 			
 		case 'cmd':
 			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
@@ -3613,7 +3273,7 @@ module.exports = kconfig = async (kill, message) => {
 		case 'converter':
 		case 'conv':
 			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
-			if (args == 0) return kill.reply(from, 'Digite o modo de conversão e em seguida a temperatura, para mais detalhes digite /conv -h.', id)
+			if (args == 0) return kill.reply(from, `Digite o modo de conversão e em seguida a temperatura, para mais detalhes digite ${prefix}conv -h.`, id)
 			if (args[0] == '-help' || args[0] == '-h') return kill.reply(from, convh, id)
 			try {
 				if (args[0] == '-f') {
@@ -3647,19 +3307,7 @@ module.exports = kconfig = async (kill, message) => {
 
         case 'mute':
         case 'silence':
-			if (isGroupMsg && isGroupAdmins) {
-				if (args.length !== 1) return kill.reply(from, 'Você esqueceu de colocar se quer ativado [on], ou desativado [off].', id)
-				if (args[0] == 'on') {
-					slce.push(chat.id)
-					fs.writeFileSync('./lib/config/silence.json', JSON.stringify(slce))
-					kill.reply(from, 'Esse grupo não poderá mais usar os comandos.', id)
-				} else if (args[0] == 'off') {
-					let ince = slce.indexOf(chatId)
-					slce.splice(ince, 1)
-					fs.writeFileSync('./lib/config/silence.json', JSON.stringify(slce))
-					kill.reply(from, 'Esse grupo poderá usar os comandos novamente.', id)
-				}
-			} else if (isGroupMsg && isOwner) {
+			if (isGroupMsg && isGroupAdmins || isGroupMsg && isOwner) {
 				if (args.length !== 1) return kill.reply(from, 'Você esqueceu de colocar se quer ativado [on], ou desativado [off].', id)
 				if (args[0] == 'on') {
 					slce.push(chat.id)
@@ -3690,7 +3338,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
 		case 'coins':
-			await kill.reply(from, coins, id)
+			kill.reply(from, coins, id)
 			break
 			
 			
@@ -3733,6 +3381,48 @@ module.exports = kconfig = async (kill, message) => {
             } else {
                 await kill.reply(from, 'Defina entre [on] e [off].', id)
             }
+			break
+			
+			
+		case 'unblock':
+			if (isOwner) {
+				if (isGroupMsg && quotedMsg) {
+					const unblokea = quotedMsgObj.sender.id
+					await kill.contactUnblock(`${unblokea}`)
+					await kill.sendTextWithMentions(from, `Prontinho! O @${unblokea} foi desbloqueado do meu WhatsApp.`)
+				} else {
+					await kill.contactUnblock(`${args[0]}@c.us`)
+					await kill.sendTextWithMentions(from, `Prontinho! O @${args[0]} foi desbloqueado do meu WhatsApp.`)
+				}
+			} else {
+				await kill.reply(from, mess.error.Kl, id)
+			}
+			break
+			
+		
+		case 'block':
+			if (isOwner) {
+				if (isGroupMsg && quotedMsg) {
+					const blokea = quotedMsgObj.sender.id
+					await kill.contactBlock(`${blokea}`)
+					await kill.sendTextWithMentions(from, `Feito! O @${blokea} foi bloqueado do meu WhatsApp.`)
+				} else {
+					await kill.contactBlock(`${args[0]}@c.us`)
+					await kill.sendTextWithMentions(from, `Prontinho! O @${args[0]} foi desbloqueado do meu WhatsApp.`)
+				}
+			} else {
+				await kill.reply(from, mess.error.Kl, id)
+			}
+			break
+			
+			
+		case 'allid':
+			const gpids = await kill.getAllGroups()
+			let idmsgp = ''
+			for (let ids of gpids) {
+				idmsgp += `➸ ${ids.contact.name} =\n${ids.contact.id.replace(/@g.us/g,'')}\n\n`
+            }
+			await kill.reply(from, 'Atualmente esses são meus grupos:\n\n' + idmsgp, id)
 			break
 
         }
