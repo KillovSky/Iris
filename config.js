@@ -42,7 +42,7 @@ const { coins } = require('./lib/coins')
 moment.tz.setDefault('America/Sao_Paulo').locale('pt_BR')
 const config = require('./lib/config/config.json')
 const region = 'pt'
-const aki = new Aki(region)
+var aki = new Aki(region)
 aki.start()
 
 // JSON'S 
@@ -1155,20 +1155,26 @@ module.exports = kconfig = async (kill, message) => {
 			
 		case 'akinator':
 			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
-			if (args[0] == '-r') {
-				let akinm = args[1].match(/^[0-9]+$/)
-				if (!akinm) return kill.reply(from, 'Responda apenas com 0 ou 1!\n0 = Sim\n1 = Não', id)
-				const myAnswer = `${args[1]}`
-				await aki.step(myAnswer);
-				if (aki.progress >= 70 || aki.currentStep >= 78) {
-					await aki.win()
-					var akiwon = aki.answers[0]
-					await kill.sendFileFromUrl(from, `${akiwon.absolute_picture_path}`, '', `✪ Palpite: ${akiwon.name}\n\n✪ De: ${akiwon.description}\n\n✪ Ranking: ${akiwon.ranking}\n\n✪ Pseudo-Nome: ${akiwon.pseudo}\n\n✪ Quantidade de Palpites: ${aki.guessCount}`, id)
+			try {
+				if (args[0] == '-r') {
+					let akinm = args[1].match(/^[0-9]+$/)
+					if (!akinm) return kill.reply(from, 'Responda apenas com 0 ou 1!\n0 = Sim\n1 = Não', id)
+					const myAnswer = `${args[1]}`
+					await aki.step(myAnswer);
+					if (aki.progress >= 70 || aki.currentStep >= 78) {
+						await aki.win()
+						var akiwon = aki.answers[0]
+						await kill.sendFileFromUrl(from, `${akiwon.absolute_picture_path}`, '', `✪ Palpite: ${akiwon.name}\n\n✪ De: ${akiwon.description}\n\n✪ Ranking: ${akiwon.ranking}\n\n✪ Pseudo-Nome: ${akiwon.pseudo}\n\n✪ Quantidade de Palpites: ${aki.guessCount}`, id)
+					} else {
+						await kill.reply(from, `Questão: ${aki.question}\n\nProgresso: ${aki.progress}\n\nResponda com ${prefix}akinator -r [0 ou 1], 0 = sim, 1 = não.`, id)
+					}
 				} else {
-					await kill.reply(from, `Questão: ${aki.question}\n\nProgresso: ${aki.progress}\n\nResponda com ${prefix}akinator -r [0 ou 1], 0 = sim, 1 = não.`, id)
+					await kill.reply(from, `Questão: ${aki.question}\n\nResponda com ${prefix}akinator -r [0 ou 1], 0 = sim, 1 = não.`, id)
 				}
-			} else {
-				await kill.reply(from, `Questão: ${aki.question}\n\nResponda com ${prefix}akinator -r [0 ou 1], 0 = sim, 1 = não.`, id)
+			} catch (error) {
+				await kill.reply(from, 'A sessão de jogo expirou, tentarei atualizar, se não funcionar, reinicie o BOT.', id)
+				new Aki(region)
+				await aki.start()
 			}
 			break
 			

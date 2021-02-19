@@ -2,13 +2,13 @@
 Uma bot em português feita para PC, originalmente para o grupo Legião Z no WhatsApp, possui mais de 150 comandos e continua em crescimento.
 
 ### Usar apenas no Telefone
-No celular é dificilimo que você consiga usar, portanto, use o site [Goorm](https://ide.goorm.io) para criar sua BOT pelo telefone.
+No celular é dificílimo que você consiga usar, portanto, use o site [Goorm](https://ide.goorm.io) para criar sua BOT pelo telefone.
 
 ### Pedido Pessoal
 - Por favor NÃO REMOVA os creditos, levei muito tempo e precisei ter muita dedicação pra se criar uma BOT Brasileira assim, agradeço pela cooperação.
 
 ### Para os donos
-Você pode rodar comandos de Windows como "ipconfig", comandos de linux como "apt", ou comandos de programações como python -c tudo pelo WhatsApp, ninguém além de você pode usar isso, se você deseja que usem, remova a linha if (!isOnwer) [aqui](https://github.com/KillovSky/iris/blob/master/config.js#L3235), mas saiba que remove-la pode ser perigoso a você.
+Você pode rodar comandos de Windows como "ipconfig", comandos de linux como "apt", ou comandos de programações como python -c tudo pelo WhatsApp, ninguém além de você pode usar isso, se você deseja que usem, remova a linha if (!isOnwer) [aqui](https://github.com/KillovSky/iris/blob/master/config.js#L3258), mas saiba que remove-la pode ser perigoso a você.
 
 ### Funções (Não são todas, +130)
 
@@ -78,10 +78,10 @@ Para a instalação do git, node e ffmpeg em Linux, use o comando abaixo:
 > sudo apt install nodejs git ffmpeg -y
 ```
 
-Caso você obtenha erros com a versão do node no repositorio de seu Linux, use o [Node Source](https://github.com/nodesource/distributions), lembre-se de usar a LTS (14).
+Caso você obtenha erros com a versão do node no repositório de seu Linux, use o [Node Source](https://github.com/nodesource/distributions), lembre-se de usar a LTS (14).
 
 ### Instalação
-Você precisa ter esse repositorio, é simples, rode os comandos abaixo, em caso de erros, rode como sudo/administrador.
+Você precisa ter esse repositório, é simples, rode os comandos abaixo, em caso de erros, rode como sudo/administrador.
 
 ```bash
 > git clone https://github.com/KillovSky/iris.git
@@ -124,7 +124,7 @@ Edite as API's encontradas em: (Se estiver incorreta avise ou procure)
 - [Prefix](https://github.com/KillovSky/iris/blob/master/lib/config/config.json#3)
 - [Número 1 & 2](https://github.com/KillovSky/iris/blob/master/lib/config/config.json#2)
 - [DDI](https://github.com/KillovSky/iris/blob/main/lib/welcome.js#L8)
-- [Bomber](https://github.com/KillovSky/iris/blob/master/config.js#L3221)
+- [Bomber](https://github.com/KillovSky/iris/blob/master/config.js#L3244)
 - Elas são referentes aos sites [RemoveBG](https://www.remove.bg/pt-br), [ImgBB](https://api.imgbb.com/) e [AlphaCoders](https://wall.alphacoders.com/api.php)
 - A DDI é obrigatoria apenas caso você for de fora do Brasil, o Bomb apenas se você usar Linux.
 - Sempre leia a aba de discussões do github para saber mais.
@@ -141,7 +141,7 @@ Mude a graphql/id para graphql/pt
 Para fixar o funcionamento da API da Computer-Freaker, que é responsavel por diversos comandos (hug, hentai, dva, baguette...), siga os passos desse [Mini-Tutorial](https://github.com/KillovSky/iris/discussions/10).
 
 ### Bugs
-Se notar erros fale comigo pelos meios no final da pagina ou reporte no Issues, e claro, se certifique de ter chrome instalado e ler a aba [Discussions](https://github.com/KillovSky/iris/discussions), lá eu coloco soluções.
+Se notar erros leia a [Discussions](https://github.com/KillovSky/iris/discussions), se ela não resolver, fale comigo pelos meios no final da pagina ou reporte no Issues, e claro, se certifique de ter instalado chrome.
 Baixe Chrome por [aqui](https://www.google.com/chrome), no linux use os comandos abaixo.
 
 ```bash
