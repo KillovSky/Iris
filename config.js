@@ -41,6 +41,9 @@ const BrainlySearch = require('./lib/brainly')
 const { coins } = require('./lib/coins')
 moment.tz.setDefault('America/Sao_Paulo').locale('pt_BR')
 const config = require('./lib/config/config.json')
+const region = 'pt'
+const aki = new Aki(region)
+aki.start()
 
 // JSON'S 
 const nsfw_ = JSON.parse(fs.readFileSync('./lib/config/NSFW.json'))
@@ -377,7 +380,7 @@ module.exports = kconfig = async (kill, message) => {
         case 'makesticker':
 			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (args.length == 0) return kill.reply(from, 'Faltou algo para usar de referência!', id)
-            const stkm = await fetch(`http://api.fdci.se/rep.php?gambar=${body.slice(7)}`)
+            const stkm = await fetch(`https://api.fdci.se/sosmed/rep.php?gambar=${body.slice(7)}`)
 			const stimg = await stkm.json()
             let stkfm = stimg[Math.floor(Math.random() * stimg.length) + 1]
 			console.log(stkfm)
@@ -719,7 +722,7 @@ module.exports = kconfig = async (kill, message) => {
         case 'image':
 			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
             if (args.length == 0) return kill.reply(from, 'Faltou um nome!', id)
-            const linp = await fetch(`http://api.fdci.se/rep.php?gambar=${body.slice(7)}`)
+            const linp = await fetch(`https://api.fdci.se/sosmed/rep.php?gambar=${body.slice(7)}`)
 			const pint = await linp.json()
             let erest = pint[Math.floor(Math.random() * pint.length) + 1]
 			console.log(erest)
@@ -732,7 +735,7 @@ module.exports = kconfig = async (kill, message) => {
 			
         case 'yaoi':
 			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
-            const yam = await fetch(`http://api.fdci.se/rep.php?gambar=yaoi`)
+            const yam = await fetch(`https://api.fdci.se/sosmed/rep.php?gambar=yaoi`)
 			const yaoi = await yam.json()
             let flyaoi = yaoi[Math.floor(Math.random() * yaoi.length) + 1]
             await kill.sendFileFromUrl(from, flyaoi, '', 'Tururu...', id)
@@ -1152,19 +1155,20 @@ module.exports = kconfig = async (kill, message) => {
 			
 		case 'akinator':
 			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
-			const region = 'pt';
 			if (args[0] == '-r') {
 				let akinm = args[1].match(/^[0-9]+$/)
 				if (!akinm) return kill.reply(from, 'Responda apenas com 0 ou 1!\n0 = Sim\n1 = Não', id)
-				const aki = new Aki(region);
-				await aki.start();
 				const myAnswer = `${args[1]}`
 				await aki.step(myAnswer);
-				await kill.reply(from, `Questão: ${aki.question}\n\nProgresso: ${aki.progress}\n\nResponda com /akinator -r [0 ou 1], 0 = sim, 1 = não.`, id)
+				if (aki.progress >= 70 || aki.currentStep >= 78) {
+					await aki.win()
+					var akiwon = aki.answers[0]
+					await kill.sendFileFromUrl(from, `${akiwon.absolute_picture_path}`, '', `✪ Palpite: ${akiwon.name}\n\n✪ De: ${akiwon.description}\n\n✪ Ranking: ${akiwon.ranking}\n\n✪ Pseudo-Nome: ${akiwon.pseudo}\n\n✪ Quantidade de Palpites: ${aki.guessCount}`, id)
+				} else {
+					await kill.reply(from, `Questão: ${aki.question}\n\nProgresso: ${aki.progress}\n\nResponda com ${prefix}akinator -r [0 ou 1], 0 = sim, 1 = não.`, id)
+				}
 			} else {
-				const aki = new Aki(region);
-				await aki.start()
-				await kill.reply(from, `Questão: ${aki.question}\n\nResponda com /akinator -r [0 ou 1], 0 = sim, 1 = não.`, id)
+				await kill.reply(from, `Questão: ${aki.question}\n\nResponda com ${prefix}akinator -r [0 ou 1], 0 = sim, 1 = não.`, id)
 			}
 			break
 			
@@ -1305,7 +1309,7 @@ module.exports = kconfig = async (kill, message) => {
 			var item = ["macaco", "gorila", "chimpanzé", "orangotango", "babuino"]
     	    var esco = item[Math.floor(Math.random() * item.length)]
 			console.log(esco)
-			var maca = "https://api.fdci.se/rep.php?gambar=" + esco
+			var maca = "https://api.fdci.se/sosmed/rep.php?gambar=" + esco
 			axios.get(maca)
 			    .then((result) => {
 				var mon = JSON.parse(JSON.stringify(result.data))
@@ -1409,7 +1413,7 @@ module.exports = kconfig = async (kill, message) => {
 			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
     	    var hite = ["eboy", "garoto", "homem", "men", "garoto oriental", "japanese men", "pretty guy", "homem bonito"];
     	    var hesc = hite[Math.floor(Math.random() * hite.length)];
-			var men = "https://api.fdci.se/rep.php?gambar=" + hesc;
+			var men = "https://api.fdci.se/sosmed/rep.php?gambar=" + hesc;
 			axios.get(men)
             	.then((result) => {
 				var h = JSON.parse(JSON.stringify(result.data));
@@ -1454,7 +1458,7 @@ module.exports = kconfig = async (kill, message) => {
     	    var items = ["garota adolescente", "saycay", "alina nikitina", "belle delphine", "teen girl", "teen cute", "japanese girl", "garota bonita oriental", "oriental girl", "korean girl", "chinese girl", "e-girl", "teen egirl", "brazilian teen girl", "pretty teen girl", "korean teen girl", "garota adolescente bonita", "menina adolescente bonita", "egirl", "cute girl"];
     	    var cewe = items[Math.floor(Math.random() * items.length)];
 			console.log(cewe)
-			var girl = "https://api.fdci.se/rep.php?gambar=" + cewe;
+			var girl = "https://api.fdci.se/sosmed/rep.php?gambar=" + cewe;
 			axios.get(girl)
             	.then((result) => {
 				var b = JSON.parse(JSON.stringify(result.data));
@@ -2252,11 +2256,11 @@ module.exports = kconfig = async (kill, message) => {
 				if (args[0] == '-gp') {
 					kill.sendText(`${args[1]}` + '@g.us', `_Mensagem >_\n*"${arka.split('|')[1]} "*` + '\n\n_Quem enviou =_ ' + '\n*"' + name + '"*' + '\n\n_Como responder:_')
 					await kill.sendText(`${args[1]}` + '@g.us', `${prefix}enviar -gp ${gid} | Coloque sua resposta aqui`)
-					await kill.sendText(from, 'Mensagem enviada.')
+					await kill.reply(from, 'Sua mensagem foi enviada.', id)
 				} else if (args[0] == '-pv') {
 					kill.sendText(`${args[1]}` + '@c.us', `${arka.split('|')[1]}` + '\n\n_Quem enviou =_ ' + '*' + name + '*' + '\n\n_Como responder:_')
 					kill.sendText(`${args[1]}` + '@c.us', `${prefix}enviar -gp ${gid} | Coloque sua resposta aqui`)
-					await kill.sendText(from, 'Mensagem enviada.')
+					await kill.reply(from, 'Sua mensagem foi enviada.', id)
 				} else if (args[0] == '-help' || args[0] == '-h') {
 					await kill.reply(from, sdnhlp, id)
 				} else {
