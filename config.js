@@ -1,7 +1,6 @@
 /*
-* Recodado por Lucas R.
-* Legião Z é o melhor, to famoso pessoal!
-* Reprodução autorizada MAS sem remover os creditos do criador deste BOT!
+* Construído por Lucas R. - KillovSky para Legião Z
+* Reprodução autorizada MAS sem remover os créditos do criador deste BOT!
 */
 
 // MODULOS
@@ -41,7 +40,7 @@ const BrainlySearch = require('./lib/brainly')
 const { coins } = require('./lib/coins')
 moment.tz.setDefault('America/Sao_Paulo').locale('pt_BR')
 const config = require('./lib/config/config.json')
-const region = 'pt'
+const region = config.akilang
 var aki = new Aki(region)
 aki.start()
 
@@ -1216,7 +1215,7 @@ module.exports = kconfig = async (kill, message) => {
 
         case 'ping':
 			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
-            kill.sendText(from, `Pong!\n_Minha velocidade é de ${processTime(t, moment())} segundos._`)
+            await kill.sendText(from, `Pong!\n_Minha velocidade é de ${processTime(t, moment())} segundos._`)
             break
 
 
@@ -1268,9 +1267,8 @@ module.exports = kconfig = async (kill, message) => {
 
         case 'nsfw':
 			if (mute || pvmte) return console.log('Ignorando comando [Silence]')
-       	    const isGroupOwner = sender.id === chat.groupMetadata.owner
             if (args.length !== 1) return kill.reply(from, 'Defina enable ou disable', id)
-			if (isGroupMsg && isGroupOwner || isGroupMsg && isOwner) {
+			if (isGroupMsg && isGroupAdmins || isGroupMsg && isOwner) {
 				if (args[0].toLowerCase() == 'enable') {
 					nsfw_.push(chat.id)
 					fs.writeFileSync('./lib/config/NSFW.json', JSON.stringify(nsfw_))
@@ -1283,9 +1281,9 @@ module.exports = kconfig = async (kill, message) => {
 					kill.reply(from, 'Defina enable ou disable', id)
 				}
 			} else if (isGroupMsg) {
-				await kill.reply(from, 'Desculpe, somente os administradores podem usar esse comando...', id)
+				kill.reply(from, mess.error.Ga, id)
 			} else {
-				await kill.reply(from, 'Esse comando apenas pode ser usado em grupos!', id)
+				kill.reply(from, mess.error.Gp, id)
 			}
             break
 

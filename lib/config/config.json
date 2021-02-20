@@ -1,5 +1,6 @@
 {
     "owner": "551899*****@c.us",
+    "ddi": "55",
     "prefix": "/",
     "imgbb": "api-key do imgbb",
 	"wallac": "api-key do alpha-coders",
@@ -7,4 +8,5 @@
 	"nobg": "api nobg",
 	"gpLimit": "5",
 	"memberLimit": "20"
+	"akilang": "pt"
 }
