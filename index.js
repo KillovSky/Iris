@@ -3,6 +3,7 @@ const fs = require('fs-extra')
 const kconfig = require('./config')
 const options = require('./options')
 const color = require('./lib/color')
+const { sleep } = require('./lib/functions')
 const config = require('./lib/config/config.json')
 const welkom = JSON.parse(fs.readFileSync('./lib/config/welcome.json'))
 const bklist = JSON.parse(fs.readFileSync('./lib/config/anti.json'))
@@ -34,7 +35,7 @@ const start = (kill = new Client()) => {
 		
 		// Configuração do welcome
 		kill.onGlobalParticipantsChanged(async (event) => {
-			const ddi = '55'
+			const ddi = config.ddi
 			const isWelkom = welkom.includes(event.chat)
 			const isFake = fks.includes(event.chat)
 			const fake = event.who.startsWith(ddi)
@@ -79,7 +80,7 @@ const start = (kill = new Client()) => {
 				await kill.leaveGroup(chat.id)
 				await kill.deleteChat(chat.id)
 			} else if (lmtgruc.length > config.gpLimit) {
-				await kill.sendText(chat.id, `Desculpe, estamos no maximo de grupos!\nAtualmente estamos em ${lmtgru.length}/${config.gpLimit}`)
+				await kill.sendText(chat.id, `Desculpe, estamos no máximo de grupos!\nAtualmente estamos em ${lmtgru.length}/${config.gpLimit}`)
 				await kill.leaveGroup(chat.id)
 				await kill.deleteChat(chat.id)
             } else {

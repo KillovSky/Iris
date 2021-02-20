@@ -1,4 +1,5 @@
 const fs = require('fs-extra') // Modulo de operações em disco
+// SE VOCE OBTIVER PROBLEMAS, REMOVA A // DO USE CHROME
 
 module.exports = options = (headless, start) => {
     const options = {
@@ -8,7 +9,7 @@ module.exports = options = (headless, start) => {
         authTimeout: 0,
         restartOnCrash: start,
         cacheEnabled: false,
-        useChrome: true,
+        //useChrome: true,
         killProcessOnBrowserClose: true,
         throwErrorOnTosBlock: false,
         chromiumArgs: [
