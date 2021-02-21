@@ -40,6 +40,8 @@ const BrainlySearch = require('./lib/brainly')
 const { coins } = require('./lib/coins')
 moment.tz.setDefault('America/Sao_Paulo').locale('pt_BR')
 const config = require('./lib/config/config.json')
+
+// Akinator Start
 const region = config.akilang
 var aki = new Aki(region)
 aki.start()
@@ -55,19 +57,22 @@ const slce = JSON.parse(fs.readFileSync('./lib/config/silence.json'))
 const atstk = JSON.parse(fs.readFileSync('./lib/config/sticker.json'))
 
 module.exports = kconfig = async (kill, message) => {
+	
+	// Isso possibilita receber os alertas no WhatsApp
+	const { type, id, from, t, sender, author, isGroupMsg, chat, chatId, caption, isMedia, mimetype, quotedMsg, quotedMsgObj, mentionedJidList } = message
+	let { body } = message
+	const ownerNumber = config.owner
+	
+    // Prefix
+    const prefix = config.prefix
+	
     try {
-        // Prefix
-        const prefix = config.prefix
-
 		// PARAMETROS
-		const { type, id, from, t, sender, author, isGroupMsg, chat, chatId, caption, isMedia, mimetype, quotedMsg, quotedMsgObj, mentionedJidList } = message
-		let { body } = message
 		const { name, formattedTitle } = chat
 		let { pushname, verifiedName, formattedName } = sender
 		pushname = pushname || verifiedName || formattedName
         const botNumber = await kill.getHostNumber()
         const blockNumber = await kill.getBlockedIds()
-		const ownerNumber = config.owner
         const usuario = sender.id
 		const isOwner = usuario.includes(ownerNumber)
         const groupId = isGroupMsg ? chat.groupMetadata.id : ''
@@ -98,7 +103,6 @@ module.exports = kconfig = async (kill, message) => {
         const isVideo = type === 'video'
         global.pollfile = 'poll_Config_'+chat.id+'.json'
         global.voterslistfile = 'poll_voters_Config_'+chat.id+'.json'
-		global.client = kill
 		
 		// OUTRAS
         const double = Math.floor(Math.random() * 2) + 1
@@ -173,7 +177,7 @@ module.exports = kconfig = async (kill, message) => {
 		if (isGroupMsg && isCmd && !isOwner && !isGroupAdmins && mute) return console.log(color('[SILENCE]', 'red'), color(`Ignorando comando de ${name} pois ele está mutado...`, 'yellow'))
 
 		// IGNORA BLOQUEADOS
-		if (isBlocked && isCmd) return console.log(color('[BLOCK]', 'red'), color(`Ignorando comando de ${pushname} por ele estar bloqueado...`, 'yellow'))
+		if (isBlocked && !isOwner && isCmd) return console.log(color('[BLOCK]', 'red'), color(`Ignorando comando de ${pushname} por ele estar bloqueado...`, 'yellow'))
 
         // Auto-sticker
         if (isGroupMsg && autoSticker && isMedia && isImage && !isCmd) {
@@ -3243,6 +3247,22 @@ module.exports = kconfig = async (kill, message) => {
 			await kill.reply(from, 'Atualmente esses são meus grupos:\n\n' + idmsgp, id)
 			break
 			
+			
+		case 'help':
+			if (args.length == 0) return kill.reply(from, 'Defina seu problema a ser enviado ao grupo responsável pela Íris.', id)
+			const hpgp = groupId.replace('@g.us', '')
+			const hppv = sender.id.replace('@c.us', '')
+			if (isGroupMsg) {
+				await kill.sendText(ownerNumber, `⚠️ _Requisição de suporte feita pelo_ *${name}*, _a pedido de_ *${pushname}* _do número_ wa.me/${sender.id.replace('@c.us', '')}.\n\n_Motivo:_ ${body.slice(6)}`)
+				await kill.sendText(ownerNumber, `${prefix}enviar -gp ${hpgp} | Responda com a solução`)
+			} else {
+				await kill.sendText(ownerNumber, `⚠️ _Requisição de suporte feita pelo_ *${pushname}* _do número_ wa.me/${sender.id.replace('@c.us', '')}.\n\n_Motivo:_ ${body.slice(6)}`)
+				await kill.sendText(ownerNumber, `${prefix}enviar -pv ${hppv} | Responda com a solução`)
+			}
+			await kill.reply(from, 'Agradecemos por informar um de nossos erros, fique atento que quando vermos iremos responder!', id)
+			break
+			
+			
         default:
             if (isCmd) {
                 await kill.reply(from, `⚠️ O comando ${prefix}${command} não existe, reveja nossa lista em ${prefix}menu para continuar.`, id)
@@ -3252,5 +3272,7 @@ module.exports = kconfig = async (kill, message) => {
         }
     } catch (err) {
         console.log(color('[ERRO]', 'red'), err)
+		//kill.sendText(ownerNumber, `_Olá, caro dono(a)!_\n_Obtive erros ao executar o comando..._\n\n*${prefix}${body.slice(1)}*\n\n_Peço que corrija por gentileza para podermos usar sem preocupações._\n_Agradecida, Íris._\n\n_Qual erro?_\n\n*${err}*`)
+		kill.reply(from, `⚠️ _Ops, por algum motivo obtive erros com esse comando, por favor evite usa-lo novamente e se possível contate os responsáveis com o comando ${prefix}help._`, id)
     }
 }
