@@ -1,20 +1,30 @@
-### Íris, a BOT
-Uma bot em português feita para PC, originalmente para o grupo Legião Z no WhatsApp, possui mais de 150 comandos e continua em crescimento.
+### Projeto Íris
+Uma bot em português feita para PC, originalmente para o grupo Legião Z no WhatsApp, possui mais de 150 comandos e continua em crescimento e melhorias frequentes.
 
 ### Usar apenas no Telefone
-No celular é dificílimo que você consiga usar, portanto, use o site [Goorm](https://ide.goorm.io) para criar sua BOT pelo telefone.
+No celular é dificílimo que você consiga usar, portanto, use o site [Goorm](https://ide.goorm.io) para criar sua BOT pelo telefone, mas saiba que ele irá te desconectar frequentemente, se você possui PC, é muito melhor usa-lo do que usar o Goorm.
 
 ### Pedido Pessoal
 - Por favor NÃO REMOVA os creditos, levei muito tempo e precisei ter muita dedicação pra se criar uma BOT Brasileira assim, agradeço pela cooperação.
 
-### Para os donos
-Você pode rodar comandos de Windows como "ipconfig", comandos de linux como "apt", ou comandos de programações como python -c tudo pelo WhatsApp, ninguém além de você pode usar isso, se você deseja que usem, remova a linha if (!isOnwer) [aqui](https://github.com/KillovSky/iris/blob/main/config.js#L3074), mas saiba que remove-la pode ser perigoso a você.
+### Erros & Bugs
+Se notar erros leia a [Discussions](https://github.com/KillovSky/iris/discussions), se ela não resolver, fale comigo pelos meios no final da pagina ou reporte no Issues, e claro, se certifique de ter instalado chrome e de ler TUDO que estiver escrito abaixo.
+Baixe Chrome no Windows por [aqui](https://www.google.com/chrome), no linux use os comandos abaixo.
 
-### Funções (Não são todas, +130)
+```bash
+> wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+> sudo apt install ./google-chrome-stable_current_amd64.deb
+```
+
+### Para os donos
+Você pode rodar comandos de Windows como "ipconfig", comandos de linux como "apt", ou comandos de programações como python -c tudo pelo WhatsApp, ninguém além de você pode usar isso, se você deseja que usem, remova a linha if (!isOnwer) [aqui](https://github.com/KillovSky/iris/blob/main/config.js#L3155), mas saiba que remove-la pode ser perigoso a você.
+
+### Funções (Não são todas, +150)
 
 | Função |Contém|
 | ------------- | ------------- |
 | Pausar BOT |✅|
+| XP, Ranking, Level |✅|
 | Bloquear/Desbloquear pessoas |✅|
 | Puxar alguns dados |✅|
 | Usar CMD/Terminal pelo WhatsAPP |✅|
@@ -124,7 +134,7 @@ Edite as API's encontradas em: (Se estiver incorreta avise ou procure)
 - [Prefix](https://github.com/KillovSky/iris/blob/main/lib/config/config.json#4)
 - [Número 1 & 2](https://github.com/KillovSky/iris/blob/main/lib/config/config.json#2)
 - [DDI](https://github.com/KillovSky/iris/blob/main/lib/config/config.json#3)
-- [Bomber](https://github.com/KillovSky/iris/blob/main/config.js#L3061)
+- [Bomber](https://github.com/KillovSky/iris/blob/main/config.js#L3142)
 - [Akinator](https://github.com/KillovSky/iris/blob/main/lib/config/config.json#11)
 - Elas são referentes aos sites [RemoveBG](https://www.remove.bg/pt-br), [ImgBB](https://api.imgbb.com/) e [AlphaCoders](https://wall.alphacoders.com/api.php)
 - A DDI e Akinator são obrigatórios apenas caso você for de fora do Brasil, o Bomb apenas se você usar Linux.
@@ -141,16 +151,7 @@ Mude a graphql/id para graphql/pt
 Para fixar o funcionamento da API da Computer-Freaker, que é responsavel por diversos comandos (hug, hentai, dva, baguette...), siga os passos desse [Mini-Tutorial](https://github.com/KillovSky/iris/discussions/10).
 
 ### Alertas no WhatsApp
-Para receber também as mensagem de erros da Íris pelo WhatsApp, remova a "//" da linha [Catch](https://github.com/KillovSky/iris/blob/main/config.js#L3275).
-
-### Bugs
-Se notar erros leia a [Discussions](https://github.com/KillovSky/iris/discussions), se ela não resolver, fale comigo pelos meios no final da pagina ou reporte no Issues, e claro, se certifique de ter instalado chrome.
-Baixe Chrome por [aqui](https://www.google.com/chrome), no linux use os comandos abaixo.
-
-```bash
-> wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-> sudo apt install ./google-chrome-stable_current_amd64.deb
-```
+Para receber também as mensagem de erros da Íris pelo WhatsApp, remova a "//" da linha [Catch](https://github.com/KillovSky/iris/blob/main/config.js#L3474).
 
 ## Agradecimentos ao:
 - [Open-WA](https://github.com/open-wa)
