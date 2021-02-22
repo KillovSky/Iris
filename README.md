@@ -5,7 +5,7 @@ Uma bot em português feita para PC, originalmente para o grupo Legião Z no Wha
 No celular é dificílimo que você consiga usar, portanto, use o site [Goorm](https://ide.goorm.io) para criar sua BOT pelo telefone, mas saiba que ele irá te desconectar frequentemente, se você possui PC, é muito melhor usa-lo do que usar o Goorm.
 
 ### Pedido Pessoal
-- Por favor NÃO REMOVA os creditos, levei muito tempo e precisei ter muita dedicação pra se criar uma BOT Brasileira assim, agradeço pela cooperação.
+- Por favor NÃO REMOVA os créditos, levei muito tempo e precisei ter muita dedicação pra se criar uma BOT Brasileira assim, agradeço pela cooperação.
 
 ### Erros & Bugs
 Se notar erros leia a [Discussions](https://github.com/KillovSky/iris/discussions), se ela não resolver, fale comigo pelos meios no final da pagina ou reporte no Issues, e claro, se certifique de ter instalado chrome e de ler TUDO que estiver escrito abaixo.
@@ -32,7 +32,7 @@ Você pode rodar comandos de Windows como "ipconfig", comandos de linux como "ap
 | Downloads (Redes-Sociais e YouTube) |✅|
 | Conversar por texto/voz Sim-Simi/Local (ilimitado) |✅|
 | Busca/fotos de animes |✅|
-| Wikipedia |✅|
+| Wikipédia |✅|
 | Brainly |✅|
 | Nasa |✅|
 | Buscar anime por foto |✅|
@@ -76,7 +76,7 @@ Você pode rodar comandos de Windows como "ipconfig", comandos de linux como "ap
 - [NodeJS](https://nodejs.org) - Recomendo a LTS.
 - [Git](https://git-scm.com) - Opcional (Se não usar Git Clone).
 - [Ffmpeg](https://ffmpeg.org) - Para o comando de GIF.
-Se desejar, pode tentar instalar o ffmpeg usando o npm, siga o codigo abaixo:
+Se desejar, pode tentar instalar o ffmpeg usando o npm, siga o código abaixo:
 
 ```bash
 > npm i fluent-ffmpeg -g
@@ -114,7 +114,7 @@ Digite no seu chat a mensagem:
 ```
 
 ### Crie seus comandos
-Abra sua config.js e ache um lugarzinho em branco bonito, darei um exemplo de resposta simples, va testando como quiser, a outros tipos, você pode ver quais por [aqui](https://docs.openwa.dev/classes/client.html) e na duvida, chame-me por [aqui](https://chat.whatsapp.com/H53MdwhtnRf7TGX1VJ2Jje) ou [aqui](https://wa.me/+5518998044132).
+Abra sua config.js e ache um lugarzinho em branco bonito, darei um exemplo de resposta simples, vá testando como quiser, outros tipos, você pode ver quais por [aqui](https://docs.openwa.dev/classes/client.html), se obtiver dificuldades, de uma olhada na base que coloquei [aqui](https://github.com/KillovSky/iris/blob/main/config.js#L3464), basta que você remova a "/*" e a "*/" para utilizar a base em suas criações, e na duvida, chame-me por [aqui](https://chat.whatsapp.com/H53MdwhtnRf7TGX1VJ2Jje) ou [aqui](https://wa.me/+5518998044132).
 
 ```bash
 case 'Nome do comando sem espaços':
@@ -148,10 +148,10 @@ Mude a graphql/id para graphql/pt
 ```
 
 ### Computer-Freaker/Axios
-Para fixar o funcionamento da API da Computer-Freaker, que é responsavel por diversos comandos (hug, hentai, dva, baguette...), siga os passos desse [Mini-Tutorial](https://github.com/KillovSky/iris/discussions/10).
+Para fixar o funcionamento da API da Computer-Freaker, que é responsável por diversos comandos (hug, hentai, dva, baguette...), siga os passos desse [Mini-Tutorial](https://github.com/KillovSky/iris/discussions/10).
 
 ### Alertas no WhatsApp
-Para receber também as mensagem de erros da Íris pelo WhatsApp, remova a "//" da linha [Catch](https://github.com/KillovSky/iris/blob/main/config.js#L3474).
+Para receber também as mensagem de erros da Íris pelo WhatsApp, remova a "//" da linha [Catch](https://github.com/KillovSky/iris/blob/main/config.js#L3478).
 
 ## Agradecimentos ao:
 - [Open-WA](https://github.com/open-wa)

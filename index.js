@@ -12,7 +12,7 @@ const fks = JSON.parse(fs.readFileSync('./lib/config/fake.json'))
 
 // Cria um cliente de inicialização da BOT
 const start = (kill = new Client()) => {
-    console.log(color('\n[DEV]', 'red'), color('- +55 18 99804-4132 <-> https://chat.whatsapp.com/H53MdwhtnRf7TGX1VJ2Jje'))
+    console.log(color('\n[DEV]', 'red'), color('- Lucas R. - KillovSky <-> +55 18 99804-4132 <-> https://chat.whatsapp.com/H53MdwhtnRf7TGX1VJ2Jje'))
 	console.log(color('[Íris]', 'red'), color('Minha inicialização foi concluída, você pode usar agora...\n'))
 	
 		// Forçar recarregamento caso obtenha erros
@@ -20,7 +20,6 @@ const start = (kill = new Client()) => {
 			console.log('[Estado da Íris]', state)
 			if (state === 'UNPAIRED' || state === 'CONFLICT' || state === 'UNLAUNCHED') kill.forceRefocus()
 		})
-	
 		
         // Le as mensagens e limpa cache
         kill.onMessage((async (message) => {
@@ -70,7 +69,7 @@ const start = (kill = new Client()) => {
 		
 		// Funções para caso seja adicionada em um grupo
         kill.onAddedToGroup(async (chat) => {
-			const wlcmsg = 'Oi! 🌟\nFui requisitada como BOT para esse grupo, e estarei a disposição de vocês! 🤖\nSe quiserem ver minhas funcões usem /menu!'
+			const wlcmsg = `Oi! 🌟\nFui requisitada como BOT para esse grupo, e estarei a disposição de vocês! 🤖\nSe quiserem ver minhas funcões usem ${config.prefix}menu!`
 			const lmtgru = await kill.getAllGroups()
             let totalMem = chat.groupMetadata.participants.length
 			if (chat.groupMetadata.participants.includes(config.owner)) {

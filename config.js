@@ -1571,7 +1571,7 @@ module.exports = kconfig = async (kill, message) => {
 					} else {
 						var pfp = pic
 					} 
-					await kill.sendFileFromUrl(from, pfp, 'pfo.jpg', `*Dados do seu perfil..* ✨️ \n\n 🔖️ *Qual sua Usertag? ${namae}*\n\n👑️ *Administrador? ${adm}*\n\n📵 *Bloqueado? ${bloqk}*\n\n💌️ *Frase do recado?*\n${status}\n\n️📈 *Level:* ${peoLevel}\n\n🕹️ *XP:* ${peoXp} / ${ineedxp}\n\n🌐 *Patente:* ${patente}`)
+					await kill.sendFileFromUrl(from, pfp, 'pfo.jpg', `*Dados do seu perfil..* ✨️ \n\n 🔖️ *Qual sua Usertag? ${namae}*\n\n👑️ *Administrador? ${adm}*\n\n📵 *Bloqueado? ${bloqk}*\n\n💌️ *Frase do recado?*\n${status}\n\n️📈 *Level: ${peoLevel}*\n\n🕹️ *XP: ${peoXp} / ${ineedxp}*\n\n🌐 *Patente: ${patente}*`)
 			    } else if (quotedMsg) {
 					var qmid = quotedMsgObj.sender.id
 					var namae = quotedMsgObj.sender.pushname
@@ -1588,7 +1588,7 @@ module.exports = kconfig = async (kill, message) => {
 					} else {
 						var pfp = pic
 					}
-					await kill.sendFileFromUrl(from, pfp, 'pfo.jpg', `*Dados do seu perfil..* ✨️ \n\n 🔖️ *Qual sua Usertag? ${namae}*\n\n👑️ *Administrador? ${adm}*\n\n📵 *Bloqueado? ${bloqk}*\n\n💌️ *Frase do recado?*\n${status}\n\n️📈 *Level:* ${peoLevel}\n\n🕹️ *XP:* ${peoXp} / ${ineedxp}\n\n🌐 *Patente:* ${patente}`)
+					await kill.sendFileFromUrl(from, pfp, 'pfo.jpg', `*Dados do seu perfil..* ✨️ \n\n 🔖️ *Qual sua Usertag? ${namae}*\n\n👑️ *Administrador? ${adm}*\n\n📵 *Bloqueado? ${bloqk}*\n\n💌️ *Frase do recado?*\n${status}\n\n️📈 *Level: ${peoLevel}*\n\n🕹️ *XP: ${peoXp} / ${ineedxp}*\n\n🌐 *Patente: ${patente}*`)
 				}
 			}
 			break
@@ -3100,7 +3100,7 @@ module.exports = kconfig = async (kill, message) => {
 			const uneedxp = 5 * Math.pow(uzrlvl, 2) + 50 * uzrlvl + 100
 			const timed = moment(t * 1000).format('DD/MM/YY HH:mm:ss')
 			const allin = `======================\n_Olá_ *"${pushname}"*!\n_Dia:_ *${timed}*\n_Meu Ping:_ *${processTime(t, moment())}* _segundos_\n_Level:_ *${uzrlvl}*\nXP: *${uzrXp}* / *${uneedxp}*\nPatente: *${patente}*\n======================\n\n`
-            kill.sendTextWithMentions(from, allin + help, id)
+            kill.reply(from, allin + help, id)
             kill.reply(from, `De outros comandos temos...\n\n*${prefix}Admins* _é para administradores._\n\n*${prefix}Kill* _é apenas para meu dono._\n\n*${prefix}Adult* _é o menu de comandos adultos._\n\n*${prefix}Down* _é o menu de download de músicas e videos._\n\n_Se quiser ganhar XP, converse e use a BOT._`, id)
             break
 
@@ -3460,6 +3460,10 @@ module.exports = kconfig = async (kill, message) => {
                 await kill.reply(from, 'Puts, não temos nem 10 "jogadores" ainda, experimente novamente quando obtermos!', id)
             }
             break
+			
+		/*case 'Nome do comando sem espaços':
+			await kill.reply(from, 'Sua mensagem', id)
+			break*/
 			
 			
         default:
