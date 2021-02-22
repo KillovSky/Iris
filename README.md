@@ -114,13 +114,7 @@ Digite no seu chat a mensagem:
 ```
 
 ### Crie seus comandos
-Abra sua config.js e ache um lugarzinho em branco bonito, darei um exemplo de resposta simples, vá testando como quiser, outros tipos, você pode ver quais por [aqui](https://docs.openwa.dev/classes/client.html), se obtiver dificuldades, de uma olhada na base que coloquei [aqui](https://github.com/KillovSky/iris/blob/main/config.js#L3464), basta que você remova a "/*" e a "*/" para utilizar a base em suas criações, e na duvida, chame-me por [aqui](https://chat.whatsapp.com/H53MdwhtnRf7TGX1VJ2Jje) ou [aqui](https://wa.me/+5518998044132).
-
-```bash
-case 'Nome do comando sem espaços':
-    await kill.reply(from, 'Sua mensagem', id)
-    break
- ```
+Há uma base simples para suas criações por [aqui](https://github.com/KillovSky/iris/blob/main/config.js#L3464), basta que você remova a "/\*" e a "\*/" para utilizá-la, se precisar de outros tipos, você pode ver sobre eles por [aqui](https://docs.openwa.dev/classes/client.html), se obtiver dificuldades, chame-me por [aqui](https://chat.whatsapp.com/H53MdwhtnRf7TGX1VJ2Jje) ou [aqui](https://wa.me/+5518998044132).
 
 ### Mudanças
 Edite as API's encontradas em: (Se estiver incorreta avise ou procure)
@@ -139,7 +133,7 @@ Edite as API's encontradas em: (Se estiver incorreta avise ou procure)
 - Elas são referentes aos sites [RemoveBG](https://www.remove.bg/pt-br), [ImgBB](https://api.imgbb.com/) e [AlphaCoders](https://wall.alphacoders.com/api.php)
 - A DDI e Akinator são obrigatórios apenas caso você for de fora do Brasil, o Bomb apenas se você usar Linux.
 
-### Brainly
+### Brainly Português
 Depois de terminar a instalação siga esses passos para deixar seu brainly em português:
 
 ```
@@ -153,7 +147,7 @@ Para fixar o funcionamento da API da Computer-Freaker, que é responsável por d
 ### Alertas no WhatsApp
 Para receber também as mensagem de erros da Íris pelo WhatsApp, remova a "//" da linha [Catch](https://github.com/KillovSky/iris/blob/main/config.js#L3478).
 
-## Agradecimentos ao:
+## Agradecimentos a:
 - [Open-WA](https://github.com/open-wa)
 - [ArugaZ](https://github.com/ArugaZ)
 - [MhankBarBar](https://github.com/MhankBarBar)
