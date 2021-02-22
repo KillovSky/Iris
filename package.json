@@ -1,6 +1,6 @@
 {
   "name": "iris",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "private": "true",
   "description": "Inteligência artificial do Legião Z!",
   "main": "index.js",
@@ -18,6 +18,7 @@
     "axios": "^0.21.1",
     "bent": "^7.3.12",
     "brainly-scraper": "^1.0.3",
+	"canvacord": "^5.0.8",
     "chalk": "^4.1.0",
     "debug": "^4.3.2",
     "domexception": "^2.0.1",

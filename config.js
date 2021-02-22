@@ -19,6 +19,7 @@ const get = require('got')
 const sinesp = require('sinesp-api')
 const { Aki } = require('aki-api')
 const request = require('request')
+const canvas = require('canvacord')
 const { spawn, exec, execFile } = require('child_process')
 const nhentai = require('nhentai-js')
 const { API } = require('nhentai-api')
@@ -32,7 +33,7 @@ const { owner, donate, down, help, admins, adult, readme, lang, convh } = requir
 const { stdout } = require('process')
 const bent = require('bent')
 const { doing } = require('./lib/translate.js')
-const { meme, msgFilter, translate, killo, ngtts } = require('./lib')
+const { rank, meme, msgFilter, translate, ngtts, killo } = require('./lib')
 const { uploadImages } = require('./lib/fether')
 const feature = require('./lib/poll')
 const { sobre } = require('./lib/sobre')
@@ -51,6 +52,8 @@ const nsfw_ = JSON.parse(fs.readFileSync('./lib/config/NSFW.json'))
 const welkom = JSON.parse(fs.readFileSync('./lib/config/welcome.json'))
 const exsv = JSON.parse(fs.readFileSync('./lib/config/exclusive.json'))
 const bklist = JSON.parse(fs.readFileSync('./lib/config/blacklist.json'))
+const xp = JSON.parse(fs.readFileSync('./lib/config/xp.json'))
+const nivel = JSON.parse(fs.readFileSync('./lib/config/level.json'))
 const atbk = JSON.parse(fs.readFileSync('./lib/config/anti.json'))
 const faki = JSON.parse(fs.readFileSync('./lib/config/fake.json'))
 const slce = JSON.parse(fs.readFileSync('./lib/config/silence.json'))
@@ -93,6 +96,7 @@ module.exports = kconfig = async (kill, message) => {
         const uaOverride = process.env.UserAgent
         const isBlocked = blockNumber.includes(sender.id)
         const isLeg = exsv.includes(chatId)
+        const isxp = xp.includes(chatId)
 		const mute = slce.includes(chatId)
 		const pvmte = slce.includes(sender.id)
         const isQuotedImage = quotedMsg && quotedMsg.type === 'image'
@@ -115,6 +119,7 @@ module.exports = kconfig = async (kill, message) => {
 		const lvpc = Math.floor(Math.random() * 100) + 1
 		const errorurl = 'https://steamuserimages-a.akamaihd.net/ugc/954087817129084207/5B7E46EE484181A676C02DFCAD48ECB1C74BC423/?imw=512&&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false'
 		const errorurl2 = 'https://steamuserimages-a.akamaihd.net/ugc/954087817129084207/5B7E46EE484181A676C02DFCAD48ECB1C74BC423/?imw=512&&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false'
+		const errorImg = 'https://i.ibb.co/jRCpLfn/user.png'
 		
         const mess = {
             wait: 'Ok amore, espere um pouquinho...',
@@ -129,6 +134,74 @@ module.exports = kconfig = async (kill, message) => {
 				Ac: `Somente grupos que permitem conteúdo +18 podem usar comandos assim, se você é o dono e quer isso, use ${prefix}nsfw enable, ou use no PV.`,
 				Ba: 'Caro administrador, se quiser que eu use esses comandos, precisa me deixar ser uma ademira!',
                 Iv: 'Esse link está correto? Ele me parece errado...'
+            }
+        }
+		
+		// Sobe patente por nivel, mude pro que quiser dentro das aspas
+        const check = rank.getLevel(sender.id, nivel)
+		var patente = 'Bronze I'
+		if (check >= 5) {
+			patente = 'Bronze II'
+		} else if (check >= 10) {
+			patente = 'Bronze III'
+		} else if (check >= 15) {
+			patente = 'Bronze IV'
+		} else if (check >= 20) {
+			patente = 'Bronze V'
+		} else if (check >= 25) {
+			patente = 'Prata I'
+		} else if (check >= 30) {
+			patente = 'Prata II'
+		} else if (check >= 35) {
+			patente = 'Prata III'
+		} else if (check >= 40) {
+			patente = 'Prata IV'
+		} else if (check >= 45) {
+			patente = 'Prata V'
+		} else if (check >= 50) {
+			patente = 'Ouro I'
+		} else if (check >= 55) {
+			patente = 'Ouro II'
+		} else if (check >= 60) {
+			patente = 'Ouro III'
+		} else if (check >= 65) {
+			patente = 'Ouro IV'
+		} else if (check >= 70) {
+			patente = 'Ouro V'
+		} else if (check >= 75) {
+			patente = 'Diamante I'
+		} else if (check >= 80) {
+			patente = 'Diamante II'
+		} else if (check >= 85) {
+			patente = 'Diamante III'
+		} else if (check >= 90) {
+			patente = 'Diamante IV'
+		} else if (check >= 95) {
+			patente = 'Diamante V'
+		} else if (check >= 100) {
+			patente = 'Mestre'
+		} else if (check >= 500) {
+			patente = 'Semi-Deus'
+		} else if (check >= 1000) {
+			patente = 'Deus'
+		}
+
+        // Sistema do XP - Agradecimentos Bocchi - Slavyan
+        if (isGroupMsg && isxp && !rank.isWin(usuario) && !isBlocked) {
+            try {
+                rank.wait(usuario)
+                const levelAtual = rank.getLevel(usuario, nivel)
+                const xpAtual = Math.floor(Math.random() * (15 - 25 + 1) + 15)
+                const neededXp = 5 * Math.pow(levelAtual, 2) + 50 * levelAtual + 100
+                rank.addXp(sender.id, xpAtual, nivel)
+                if (neededXp <= rank.getXp(usuario, nivel)) {
+                    rank.addLevel(usuario, 1, nivel)
+                    const userLevel = rank.getLevel(usuario, nivel)
+                    const takeXp = 5 * Math.pow(userLevel, 2) + 50 * userLevel + 100
+                    await kill.reply(from, `*「 NOVO NIVEL 」*\n\n➸ *Nome*: ${pushname}\n➸ *XP*: ${rank.getXp(usuario, nivel)} / ${takeXp}\n➸ *Level*: ${levelAtual} -> ${rank.getLevel(usuario, nivel)} 🆙 \n➸ *Patente*: *${patente}*\n\n*Parabéns, converse mais pra subir sua patente e XP!* 🎉`, id)
+                }
+            } catch (err) {
+                console.error(err)
             }
         }
 
@@ -1484,33 +1557,41 @@ module.exports = kconfig = async (kill, message) => {
         case 'profile':
             if (isGroupMsg) {
 				if (!quotedMsg) {
+					const peoXp = rank.getXp(usuario, nivel)
+					const peoLevel = rank.getLevel(usuario, nivel)
+					const ineedxp = 5 * Math.pow(peoLevel, 2) + 50 * peoLevel + 100
 					var pic = await kill.getProfilePicFromServer(author)
 					var namae = pushname
 					var sts = await kill.getStatus(author)
-					var adm = isGroupAdmins
+					var adm = isGroupAdmins ? 'Sim' : 'Não'
+					var bloqk = isBlocked ? 'Sim' : 'Não'
 					const { status } = sts
 					if (pic == undefined) {
 						var pfp = errorurl 
 					} else {
 						var pfp = pic
 					} 
-					await kill.sendFileFromUrl(from, pfp, 'pfo.jpg', `*Dados do seu perfil..* ✨️ \n\n 🔖️ *Qual sua Usertag? ${namae}*\n\n👑️ *Administrador? ${adm}*\n\n💌️ *Frase do recado?*\n${status}`)
+					await kill.sendFileFromUrl(from, pfp, 'pfo.jpg', `*Dados do seu perfil..* ✨️ \n\n 🔖️ *Qual sua Usertag? ${namae}*\n\n👑️ *Administrador? ${adm}*\n\n📵 *Bloqueado? ${bloqk}*\n\n💌️ *Frase do recado?*\n${status}\n\n️📈 *Level:* ${peoLevel}\n\n🕹️ *XP:* ${peoXp} / ${ineedxp}\n\n🌐 *Patente:* ${patente}`)
 			    } else if (quotedMsg) {
 					var qmid = quotedMsgObj.sender.id
 					var namae = quotedMsgObj.sender.pushname
 					var pic = await kill.getProfilePicFromServer(qmid)
 					var sts = await kill.getStatus(qmid)
-					var adm = groupAdmins.includes(qmid)
+					var adm = groupAdmins.includes(qmid) ? 'Sim' : 'Não'
+					var bloqk = isBlocked ? 'Sim' : 'Não'
+					const peoXp = rank.getXp(qmid, nivel)
+					const peoLevel = rank.getLevel(qmid, nivel)
+					const ineedxp = 5 * Math.pow(peoLevel, 2) + 50 * peoLevel + 100
 					const { status } = sts
 					if (pic == undefined) {
 						var pfp = errorurl 
 					} else {
 						var pfp = pic
 					}
-					await kill.sendFileFromUrl(from, pfp, 'pfo.jpg', `*Dados do seu perfil..* ✨️ \n\n 🔖️ *Qual sua Usertag? ${namae}*\n\n👑️ *Administrador? ${adm}*\n\n💌️ *Frase do recado?*\n${status}`)
+					await kill.sendFileFromUrl(from, pfp, 'pfo.jpg', `*Dados do seu perfil..* ✨️ \n\n 🔖️ *Qual sua Usertag? ${namae}*\n\n👑️ *Administrador? ${adm}*\n\n📵 *Bloqueado? ${bloqk}*\n\n💌️ *Frase do recado?*\n${status}\n\n️📈 *Level:* ${peoLevel}\n\n🕹️ *XP:* ${peoXp} / ${ineedxp}\n\n🌐 *Patente:* ${patente}`)
 				}
 			}
-            break
+			break
 
 
         case 'brainly':
@@ -1984,28 +2065,25 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'kick':
-			const chief = chat.groupMetadata.owner
 			if (isGroupMsg && isGroupAdmins || isGroupMsg && isOwner) {
 				if (!isBotGroupAdmins) return kill.reply(from, mess.error.Ba, id)
 				if (quotedMsg) {
 					const negquo = quotedMsgObj.sender.id
-					if (chief.includes(negquo)) return kill.reply(from, 'Sabemos o quão bebado(a) ele(a) é, mas não dá pra expulsar a pessoa que criou o cabaré.', id)
-					await kill.sendTextWithMentions(from, `Expulsando bebado(a) @${negquo} do cabaré...`)
+					await kill.sendTextWithMentions(from, `Expulsando bêbado(a) @${negquo} do cabaré...`)
 					await kill.removeParticipant(groupId, negquo)
 				} else {
 					if (mentionedJidList.length == 0) return kill.reply(from, 'Você digitou o comando de forma muito errada, arrume e envie certo.', id)
-					await kill.sendTextWithMentions(from, `Expulsando bebado(a) ${mentionedJidList.map(x => `@${x.replace('@c.us', '')}`).join('\n')} do cabaré...`)
+					await kill.sendTextWithMentions(from, `Expulsando bêbado(a) ${mentionedJidList.map(x => `@${x.replace('@c.us', '')}`).join('\n')} do cabaré...`)
 					for (let i = 0; i < mentionedJidList.length; i++) {
-						if (chief.includes(mentionedJidList[i])) return kill.reply(from, 'Sabemos o quão bebado(a) ele(a) é, mas não dá pra expulsar a pessoa que criou o cabaré.', id)
-						if (ownerNumber.includes(mentionedJidList[i])) return kill.reply(from, 'Infelizmente, ele é um bebado VIP, não posso expulsar.', id)
+						if (ownerNumber.includes(mentionedJidList[i])) return kill.reply(from, 'Infelizmente, ele é um bêbado VIP, não posso expulsar.', id)
 						if (groupAdmins.includes(mentionedJidList[i])) return kill.reply(from, mess.error.Kl, id)
 						await kill.removeParticipant(groupId, mentionedJidList[i])
 					}
 				}
 			} else if (isGroupMsg) {
-				await kill.reply(from, 'Desculpe, somente os administradores podem usar esse comando...', id)
+				await kill.reply(from, mess.error.Ga, id)
 			} else {
-				await kill.reply(from, 'Esse comando apenas pode ser usado em grupos!', id)
+				await kill.reply(from, mess.error.Gp, id)
 			}
             break
 
@@ -2016,7 +2094,7 @@ module.exports = kconfig = async (kill, message) => {
 			} else if (isGroupMsg) {
 				await kill.reply(from, 'Desculpe, somente os administradores e meu dono podem usar esse comando...', id)
 			} else {
-				await kill.reply(from, 'Esse comando apenas pode ser usado em grupos!', id)
+				await kill.reply(from, mess.error.Gp, id)
 			}
             break
 
@@ -2037,9 +2115,9 @@ module.exports = kconfig = async (kill, message) => {
 					await kill.sendTextWithMentions(from, `Promovendo membro comum @${mentionedJidList[0]} a administrador de bar.`)
 				}
 			} else if (isGroupMsg) {
-				await kill.reply(from, 'Desculpe, somente os administradores podem usar esse comando...', id)
+				await kill.reply(from, mess.error.Ga, id)
 			} else {
-				await kill.reply(from, 'Esse comando apenas pode ser usado em grupos!', id)
+				await kill.reply(from, mess.error.Gp, id)
 			}
             break
 
@@ -3017,10 +3095,13 @@ module.exports = kconfig = async (kill, message) => {
 		
 
         case 'menu':
+			const uzrXp = rank.getXp(usuario, nivel)
+			const uzrlvl = rank.getLevel(usuario, nivel)
+			const uneedxp = 5 * Math.pow(uzrlvl, 2) + 50 * uzrlvl + 100
 			const timed = moment(t * 1000).format('DD/MM/YY HH:mm:ss')
-			const allin = `Olá usuário "@${sender.id}"!\n\nLevei ${processTime(t, moment())} segundos para te responder.\n\nAgora são exatas "${timed}".\nAbaixo estão minhas funções.\n`
+			const allin = `======================\n_Olá_ *"${pushname}"*!\n_Dia:_ *${timed}*\n_Meu Ping:_ *${processTime(t, moment())}* _segundos_\n_Level:_ *${uzrlvl}*\nXP: *${uzrXp}* / *${uneedxp}*\nPatente: *${patente}*\n======================\n\n`
             kill.sendTextWithMentions(from, allin + help, id)
-            kill.reply(from, `De outros comandos temos...\n\n*${prefix}Admins* _é para administradores._\n\n*${prefix}Kill* _é apenas para meu dono._\n\n*${prefix}Adult* _é o menu de comandos adultos._\n\n*${prefix}Down* _é o menu de download de músicas e videos._`, id)
+            kill.reply(from, `De outros comandos temos...\n\n*${prefix}Admins* _é para administradores._\n\n*${prefix}Kill* _é apenas para meu dono._\n\n*${prefix}Adult* _é o menu de comandos adultos._\n\n*${prefix}Down* _é o menu de download de músicas e videos._\n\n_Se quiser ganhar XP, converse e use a BOT._`, id)
             break
 
 
@@ -3261,6 +3342,124 @@ module.exports = kconfig = async (kill, message) => {
 			}
 			await kill.reply(from, 'Agradecemos por informar um de nossos erros, fique atento que quando vermos iremos responder!', id)
 			break
+			
+			
+        case 'rank':
+            if (isGroupMsg && isGroupAdmins || isGroupMsg && isOwner) {
+				if (args.length !== 1) return kill.reply(from, 'Defina entre on e off!', id)
+				if (args[0] == 'on') {
+					xp.push(groupId)
+					fs.writeFileSync('./lib/config/xp.json', JSON.stringify(xp))
+					kill.reply(from, `Esse grupo agora faz parte do sistema de XP.`, id)
+				} else if (args[0] == 'off') {
+					xp.splice(groupId, 1)
+					fs.writeFileSync('./lib/config/xp.json', JSON.stringify(xp))
+					kill.reply(from, 'Esse grupo não fará mais parte do sistema de XP.', id)
+				}
+            } else {
+                kill.reply(from, mess.error.Ga, id)
+            }
+            break
+			
+			
+        case 'level':
+            if (!isxp) return await kill.reply(from, 'Para usar isso ative o sistema de XP.', id)
+            if (!isGroupMsg) return await kill.reply(from, mess.error.Gp, id)
+            const userLevel = rank.getLevel(usuario, nivel)
+            const userXp = rank.getXp(usuario, nivel)
+            const ppLink = await kill.getProfilePicFromServer(usuario)
+            if (ppLink === undefined) {
+                var pepe = errorImg
+            } else {
+                pepe = ppLink
+            }
+            const requiredXp = 5 * Math.pow(userLevel, 2) + 50 * userLevel + 100
+            const ranq = new canvas.Rank()
+                .setAvatar(pepe)
+                .setLevel(userLevel)
+                .setLevelColor('#ffa200', '#ffa200')
+                .setRank(Number(rank.getRank(usuario, nivel)))
+                .setCurrentXP(userXp)
+                .setOverlay('#000000', 100, false)
+                .setRequiredXP(requiredXp)
+                .setProgressBar('#ffa200', 'COLOR')
+                .setBackground('COLOR', '#000000')
+                .setUsername(pushname)
+                .setDiscriminator(sender.id.substring(6, 10))
+				ranq.build()
+                .then(async (buffer) => {
+                    canvas.write(buffer, `${sender.id}_card.png`)
+                    await kill.sendFile(from, `${usuario}_card.png`, `${usuario}_card.png`, '', id)
+                    fs.unlinkSync(`${usuario}_card.png`)
+                })
+                .catch(async (err) => {
+                    console.error(err)
+                    await kill.reply(from, 'Erro na criação de imagem do Rank.', id)
+                })
+            break
+			
+
+		case 'players':
+            if (!isGroupMsg) return kill.reply(from. mess.error.Gp, id)
+            const cklvl = nivel
+            nivel.sort((a, b) => (a.xp < b.xp) ? 1 : -1)
+            let board = '-----[ *RANKS* ]----\n\n'
+            try {
+                for (let i = 0; i < 10; i++) {
+					var role = 'Bronze I'
+					if (cklvl[i].level >= 5) {
+						role = 'Bronze II'
+					} else if (cklvl[i].level >= 10) {
+						role = 'Bronze III'
+					} else if (cklvl[i].level >= 15) {
+						role = 'Bronze IV'
+					} else if (cklvl[i].level >= 20) {
+						role = 'Bronze V'
+					} else if (cklvl[i].level >= 25) {
+						role = 'Prata I'
+					} else if (cklvl[i].level >= 30) {
+						role = 'Prata II'
+					} else if (cklvl[i].level >= 35) {
+						role = 'Prata III'
+					} else if (cklvl[i].level >= 40) {
+						role = 'Prata IV]'
+					} else if (cklvl[i].level >= 45) {
+						role = 'Prata V'
+					} else if (cklvl[i].level >= 50) {
+						role = 'Ouro I'
+					} else if (cklvl[i].level >= 55) {
+						role = 'Ouro II'
+					} else if (cklvl[i].level >= 60) {
+						role = 'Ouro III'
+					} else if (cklvl[i].level >= 65) {
+						role = 'Ouro IV'
+					} else if (cklvl[i].level >= 70) {
+						role = 'Ouro V'
+					} else if (cklvl[i].level >= 75) {
+						role = 'Diamante I'
+					} else if (cklvl[i].level >= 80) {
+						role = 'Diamante II'
+					} else if (cklvl[i].level >= 85) {
+						role = 'Diamante III'
+					} else if (cklvl[i].level >= 90) {
+						role = 'Diamante IV'
+					} else if (cklvl[i].level >= 95) {
+						role = 'Diamante V]'
+					} else if (cklvl[i].level >= 100) {
+						role = 'Mestre'
+					} else if (cklvl[i].level >= 500) {
+						role = 'Semi-Deus'
+					} else if (cklvl[i].level >= 1000) {
+						role = 'Deus'
+					}
+                board += `${i + 1}. wa.me/${nivel[i].id.replace('@c.us', '')}\n➸ *XP*: ${nivel[i].xp}\n➸ *Level*: ${nivel[i].level}\n➸ *Patente*: ${role}\n\n`
+                }
+                await kill.reply(from, board, id)
+            } catch (err) {
+                console.error(err)
+                await kill.reply(from, 'Puts, não temos nem 10 "jogadores" ainda, experimente novamente quando obtermos!', id)
+            }
+            break
 			
 			
         default:
