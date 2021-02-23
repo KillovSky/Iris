@@ -3420,60 +3420,88 @@ module.exports = kconfig = async (kill, message) => {
             let board = '-----[ *RANKS* ]----\n\n'
             try {
                 for (let i = 0; i < 10; i++) {
-					var role = 'Bronze I'
-					if (cklvl[i].level >= 5) {
+					var role = 'Cobre'
+					if (cklvl[i].level <= 4) {
+						role = 'Bronze I'
+					} else if (cklvl[i].level <= 10) {
 						role = 'Bronze II'
-					} else if (cklvl[i].level >= 10) {
+					} else if (cklvl[i].level <= 15) {
 						role = 'Bronze III'
-					} else if (cklvl[i].level >= 15) {
+					} else if (cklvl[i].level <= 20) {
 						role = 'Bronze IV'
-					} else if (cklvl[i].level >= 20) {
+					} else if (cklvl[i].level <= 25) {
 						role = 'Bronze V'
-					} else if (cklvl[i].level >= 25) {
+					} else if (cklvl[i].level <= 30) {
 						role = 'Prata I'
-					} else if (cklvl[i].level >= 30) {
+					} else if (cklvl[i].level <= 35) {
 						role = 'Prata II'
-					} else if (cklvl[i].level >= 35) {
+					} else if (cklvl[i].level <= 40) {
 						role = 'Prata III'
-					} else if (cklvl[i].level >= 40) {
-						role = 'Prata IV]'
-					} else if (cklvl[i].level >= 45) {
+					} else if (cklvl[i].level <= 45) {
+						role = 'Prata IV'
+					} else if (cklvl[i].level <= 50) {
 						role = 'Prata V'
-					} else if (cklvl[i].level >= 50) {
+					} else if (cklvl[i].level <= 55) {
 						role = 'Ouro I'
-					} else if (cklvl[i].level >= 55) {
+					} else if (cklvl[i].level <= 60) {
 						role = 'Ouro II'
-					} else if (cklvl[i].level >= 60) {
+					} else if (cklvl[i].level <= 65) {
 						role = 'Ouro III'
-					} else if (cklvl[i].level >= 65) {
+					} else if (cklvl[i].level <= 70) {
 						role = 'Ouro IV'
-					} else if (cklvl[i].level >= 70) {
+					} else if (cklvl[i].level <= 75) {
 						role = 'Ouro V'
-					} else if (cklvl[i].level >= 75) {
+					} else if (cklvl[i].level <= 80) {
 						role = 'Diamante I'
-					} else if (cklvl[i].level >= 80) {
+					} else if (cklvl[i].level <= 85) {
 						role = 'Diamante II'
-					} else if (cklvl[i].level >= 85) {
+					} else if (cklvl[i].level <= 90) {
 						role = 'Diamante III'
-					} else if (cklvl[i].level >= 90) {
+					} else if (cklvl[i].level <= 95) {
 						role = 'Diamante IV'
-					} else if (cklvl[i].level >= 95) {
-						role = 'Diamante V]'
-					} else if (cklvl[i].level >= 100) {
-						role = 'Mestre'
-					} else if (cklvl[i].level >= 500) {
+					} else if (cklvl[i].level <= 100) {
+						role = 'Diamante V'
+					} else if (cklvl[i].level <= 200) {
+						role = 'Diamante Mestre'
+					} else if (cklvl[i].level <= 300) {
+						role = 'Elite'
+					} else if (cklvl[i].level <= 400) {
+						role = 'Global'
+					} else if (cklvl[i].level <= 500) {
+						role = 'Herói'
+					} else if (cklvl[i].level <= 600) {
+						role = 'Lendário'
+					} else if (cklvl[i].level <= 700) {
 						role = 'Semi-Deus'
-					} else if (cklvl[i].level >= 1000) {
-						role = 'Deus'
+					} else if (cklvl[i].level <= 800) {
+						role = 'Arcanjo'
+					} else if (cklvl[i].level <= 900) {
+						role = 'Demoníaco'
+					} else if (cklvl[i].level <= 1000 || cklvl[i].level >= 1000) {
+						role = 'Divindade'
 					}
-                board += `${i + 1}. wa.me/${nivel[i].id.replace('@c.us', '')}\n➸ *XP*: ${nivel[i].xp}\n➸ *Level*: ${nivel[i].level}\n➸ *Patente*: ${role}\n\n`
+                board += `${i + 1}. @${nivel[i].id.replace('@c.us', '')}\n➸ *XP*: ${nivel[i].xp}\n➸ *Level*: ${nivel[i].level}\n➸ *Patente*: ${role}\n\n`
                 }
-                await kill.reply(from, board, id)
+                await kill.sendTextWithMentions(from, board, id)
             } catch (err) {
                 console.error(err)
                 await kill.reply(from, 'Puts, não temos nem 10 "jogadores" ainda, experimente novamente quando obtermos!', id)
             }
             break
+			
+        case 'give':
+            if (!isOwner) return kill.reply(from, mess.error.Kl, id)
+            if (args.length !== 2) return kill.reply(from, 'Você precisar marcar a pessoa e a quantidade XP a ser adicionada.', id)
+            if (mentionedJidList.length !== 0) {
+                for (let give of mentionedJidList) {
+                    rank.addXp(give, Number(args[1]), nivel)
+                    await kill.sendTextWithMentions(from, `Adicionado ${args[1]} de XP para @${give}.`, id)
+                }
+            } else {
+                rank.addXp(args[0] + '@c.us', Number(args[1]), nivel)
+                await kill.sendTextWithMentions(from, `Adicionado ${args[1]} de XP para @${args[0]}.`, id)
+            }
+			break
 			
 		/*case 'Nome do comando sem espaços':
 			await kill.reply(from, 'Sua mensagem', id)

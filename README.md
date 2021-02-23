@@ -17,7 +17,7 @@ Baixe Chrome no Windows por [aqui](https://www.google.com/chrome), no linux use 
 ```
 
 ### Para os donos
-Você pode rodar comandos de Windows como "ipconfig", comandos de linux como "apt", ou comandos de programações como python -c tudo pelo WhatsApp, ninguém além de você pode usar isso, se você deseja que usem, remova a linha if (!isOnwer) [aqui](https://github.com/KillovSky/iris/blob/main/config.js#L3155), mas saiba que remove-la pode ser perigoso a você.
+Você pode rodar comandos de Windows como "ipconfig", comandos de linux como "apt", ou comandos de programações como python -c tudo pelo WhatsApp, ninguém além de você pode usar isso, se você deseja que usem, remova a linha if (!isOnwer) [aqui](https://github.com/KillovSky/iris/blob/main/config.js#L3169), mas saiba que remove-la pode ser perigoso a você.
 
 ### Funções (Não são todas, +150)
 
@@ -128,7 +128,7 @@ Edite as API's encontradas em: (Se estiver incorreta avise ou procure)
 - [Prefix](https://github.com/KillovSky/iris/blob/main/lib/config/config.json#4)
 - [Número 1 & 2](https://github.com/KillovSky/iris/blob/main/lib/config/config.json#2)
 - [DDI](https://github.com/KillovSky/iris/blob/main/lib/config/config.json#3)
-- [Bomber](https://github.com/KillovSky/iris/blob/main/config.js#L3142)
+- [Bomber](https://github.com/KillovSky/iris/blob/main/config.js#L3156)
 - [Akinator](https://github.com/KillovSky/iris/blob/main/lib/config/config.json#11)
 - Elas são referentes aos sites [RemoveBG](https://www.remove.bg/pt-br), [ImgBB](https://api.imgbb.com/) e [AlphaCoders](https://wall.alphacoders.com/api.php)
 - A DDI e Akinator são obrigatórios apenas caso você for de fora do Brasil, o Bomb apenas se você usar Linux.
@@ -145,7 +145,7 @@ Mude a graphql/id para graphql/pt
 Para fixar o funcionamento da API da Computer-Freaker, que é responsável por diversos comandos (hug, hentai, dva, baguette...), siga os passos desse [Mini-Tutorial](https://github.com/KillovSky/iris/discussions/10).
 
 ### Alertas no WhatsApp
-Para receber também as mensagem de erros da Íris pelo WhatsApp, remova a "//" da linha [Catch](https://github.com/KillovSky/iris/blob/main/config.js#L3478).
+Para receber também as mensagem de erros da Íris pelo WhatsApp, remova a "//" da linha [Catch](https://github.com/KillovSky/iris/blob/main/config.js#L3520).
 
 ## Agradecimentos a:
 - [Open-WA](https://github.com/open-wa)
