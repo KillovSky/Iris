@@ -303,9 +303,11 @@ module.exports = kconfig = async (kill, message) => {
             if (isMedia && isImage) {
                 const mediaData = await decryptMedia(message, uaOverride)
 				sharp(mediaData)
-				.resize(512, 512, {
-					fit: sharp.fit.contain
-				})
+				.resize({
+                    width: 512,
+                    height: 512,
+                    fit: 'fill'
+                })
 				.toBuffer()
 				.then(async (resizedImageBuffer) => {
 					let resizedImageData = resizedImageBuffer.toString('base64');
@@ -315,9 +317,11 @@ module.exports = kconfig = async (kill, message) => {
             } else if (isQuotedImage) {
                 const mediaData = await decryptMedia(quotedMsg, uaOverride)
 				sharp(mediaData)
-				.resize(512, 512, {
-					fit: sharp.fit.contain
-				})
+				.resize({
+                    width: 512,
+                    height: 512,
+                    fit: 'fill'
+                })
 				.toBuffer()
 				.then(async (resizedImageBuffer) => {
 					let resizedImageData = resizedImageBuffer.toString('base64');
@@ -335,8 +339,8 @@ module.exports = kconfig = async (kill, message) => {
             } else {
                 kill.reply(from, mess.error.St, id)
             }
-            break
-			
+			break
+
 
 		case 'ttp':
 			if (args.length == 0) return kill.reply(from, 'Cadê a frase né?', id)
@@ -3560,6 +3564,17 @@ module.exports = kconfig = async (kill, message) => {
 			} else {
 				kill.reply(from, `Que pena! Não foi dessa vez, você recebeu um...\n\n ${cassin1} - ${cassin2} - ${cassin3}\n\nE infelizmente não obteve nenhum XP.`, id)
 			}
+			break
+			
+		case 'marcar':
+			await kill.sendTextWithMentions(from, `@${sender.id.replace('@c.us', '')}`, id)
+			break
+			
+		case 'nivel':
+			const uzerlvl = rank.getLevel(usuario, nivel)
+		    const theuzlvl = rank.getLevel(usuario, nivel)
+            const thexpnde = 5 * Math.pow(theuzlvl, 2) + 50 * theuzlvl + 100
+            await kill.reply(from, `*「 NIVEL 」*\n\n➸ *Nome*: ${pushname}\n➸ *XP*: ${rank.getXp(usuario, nivel)} / ${thexpnde}\n➸ *Level*: ${uzerlvl} \n➸ *Patente*: *${patente}*\n\n*Parabéns pelo nível e converse mais (sem floodar) pra subir sua patente e XP!* 🎉`, id)
 			break
 			
 		/*case 'Nome do comando sem espaços':
