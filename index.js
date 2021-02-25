@@ -5,6 +5,7 @@ const options = require('./options')
 const color = require('./lib/color')
 const { sleep } = require('./lib/functions')
 const config = require('./lib/config/config.json')
+const canvas = require('discord-canvas')
 const welkom = JSON.parse(fs.readFileSync('./lib/config/welcome.json'))
 const bklist = JSON.parse(fs.readFileSync('./lib/config/anti.json'))
 const anti = JSON.parse(fs.readFileSync('./lib/config/blacklist.json'))
@@ -35,11 +36,15 @@ const start = (kill = new Client()) => {
 		// Configuração do welcome
 		kill.onGlobalParticipantsChanged(async (event) => {
 			const ddi = config.ddi
+			const personr = event.who
 			const isWelkom = welkom.includes(event.chat)
 			const isFake = fks.includes(event.chat)
-			const fake = event.who.startsWith(ddi)
+			const fake = personr.startsWith(ddi)
 			const isAnti = anti.includes(event.chat)
 			const fuck = bklist.includes(event.who)
+			const eChat = await kill.getContact(event.who)
+			let { pushname, verifiedName, formattedName } = eChat
+			pushname = pushname || verifiedName || formattedName
 			const gChat = await kill.getChatById(event.chat)
 			const { contact, groupMetadata, name } = gChat
 			try {
@@ -53,13 +58,43 @@ const start = (kill = new Client()) => {
 						await sleep(4000)
 						await kill.removeParticipant(event.chat, event.who)
 					} else if (isWelkom) {
-						await kill.sendTextWithMentions(event.chat, `Olá @${event.who.replace('@c.us', '')}! 🥰 \n\nSeja bem vindo ao ${name} 😎 \n\nDesejamos que se divirta e obviamente que siga nossas regras! ✅ \n\nCaso precise, chame um Administrador ou digite ${config.prefix}menu. 👨🏻‍💻`)
+						var profile = await kill.getProfilePicFromServer(event.who)
+						if (profile == '' || profile == undefined) profile = 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTQcODjk7AcA4wb_9OLzoeAdpGwmkJqOYxEBA&usqp=CAU'
+						console.log(event.who + ' canvas welcome')
+						const welcomer = await new canvas.Welcome()
+							.setUsername(pushname)
+							.setDiscriminator(event.who.substring(6, 10))
+							.setMemberCount(groupMetadata.participants.length)
+							.setGuildName(name)
+							.setAvatar(profile)
+							.setColor('border', '#00100C')
+							.setColor('username-box', '#00100C')
+							.setColor('discriminator-box', '#00100C')
+							.setColor('message-box', '#00100C')
+							.setColor('title', '#00FFFF')
+							.setBackground('https://images.pexels.com/photos/624015/pexels-photo-624015.jpeg')
+							.toAttachment()
+						const base64 = `data:image/png;base64,${welcomer.toBuffer().toString('base64')}`
+						await kill.sendFile(event.chat, base64, 'welcome.png', `Olá ${pushname}! 🥰 \n\nSeja bem vindo ao ${name} 😎 \n\nDesejamos que se divirta e obviamente que siga nossas regras! ✅ \n\nCaso precise, chame um Administrador ou digite ${config.prefix}menu. 👨🏻‍💻`)
 					}
 				} else if (event.action == 'remove' && isWelkom) {
 					var profile = await kill.getProfilePicFromServer(event.who)
 					if (profile == '' || profile == undefined) profile = 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTQcODjk7AcA4wb_9OLzoeAdpGwmkJqOYxEBA&usqp=CAU'
-					await kill.sendFileFromUrl(event.chat, profile, 'profile.jpg', '')
-					await kill.sendTextWithMentions(event.chat, `Mais um membro ~gado~ saiu, sentiremos falta do @${event.who.replace('@c.us', '')} ... \nF. ~Agora temos -1 gado pra colheita, shit!~`)
+					const bye = await new canvas.Goodbye()
+						.setUsername(pushname)
+						.setDiscriminator(event.who.substring(6, 10))
+						.setMemberCount(groupMetadata.participants.length)
+						.setGuildName(name)
+						.setAvatar(profile)
+						.setColor('border', '#00100C')
+						.setColor('username-box', '#00100C')
+						.setColor('discriminator-box', '#00100C')
+						.setColor('message-box', '#00100C')
+						.setColor('title', '#00FFFF')
+						.setBackground('https://images.pexels.com/photos/624015/pexels-photo-624015.jpeg')
+						.toAttachment()
+					const base64 = `data:image/png;base64,${bye.toBuffer().toString('base64')}`
+					await kill.sendFile(event.chat, base64, 'welcome.png', `Mais um membro ~gado~ saiu, sentiremos falta do ${pushname} ... \nF. ~Agora temos -1 gado pra colheita, shit!~`)
 				}
 			} catch (err) {
 				console.log(err)

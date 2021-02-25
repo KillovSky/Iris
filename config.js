@@ -1314,20 +1314,25 @@ module.exports = kconfig = async (kill, message) => {
 
         case 'welcome':
 			if (!isGroupMsg) return kill.reply(from, mess.error.Gp, id)
-			if (!isOwner) return kill.reply(from, mess.error.Kl, id)
-            if (args.length !== 1) return kill.reply(from, 'Você esqueceu de colocar se quer ativado [on], ou desativado [off].', id)
-			if (args[0] == 'on') {
-                welkom.push(chat.id)
-                fs.writeFileSync('./lib/config/welcome.json', JSON.stringify(welkom))
-                kill.reply(from, 'Feito! As funções de Boas-Vindas e Good-Bye foram acionadas.', id)
-			} else if (args[0] == 'off') {
-				let welcom = welkom.indexOf(chatId)
-                welkom.splice(welcom, 1)
-                fs.writeFileSync('./lib/config/welcome.json', JSON.stringify(welkom))
-                kill.reply(from, 'Entendido! Desativei as opções de Boas-Vindas e Good-Bye.', id)
-            } else {
-                kill.reply(from, 'Você esqueceu de colocar se quer ativado [on], ou desativado [off].', id)
-            }
+			if (isGroupMsg && isGroupAdmins || isGroupMsg && isOwner) {
+				if (args.length !== 1) return kill.reply(from, 'Você esqueceu de colocar se quer ativado [on], ou desativado [off].', id)
+				if (args[0] == 'on') {
+					welkom.push(chat.id)
+					fs.writeFileSync('./lib/config/welcome.json', JSON.stringify(welkom))
+					kill.reply(from, 'Feito! As funções de Boas-Vindas e Good-Bye foram acionadas.', id)
+				} else if (args[0] == 'off') {
+					let welcom = welkom.indexOf(chatId)
+					welkom.splice(welcom, 1)
+					fs.writeFileSync('./lib/config/welcome.json', JSON.stringify(welkom))
+					kill.reply(from, 'Entendido! Desativei as opções de Boas-Vindas e Good-Bye.', id)
+				} else {
+					kill.reply(from, 'Você esqueceu de colocar se quer ativado [on], ou desativado [off].', id)
+				}
+			} else if (isGroupMsg) {
+				kill.reply(from, mess.error.Ga, id)
+			} else {
+				kill.reply(from, mess.error.Gp, id)
+			}
             break
 			
 			
@@ -2100,45 +2105,6 @@ module.exports = kconfig = async (kill, message) => {
 				await kill.reply(from, mess.error.Gp, id)
 			}
             break
-			
-			
-			case 'softban':
-			if (isGroupMsg && isGroupAdmins || isGroupMsg && isOwner) {
-				if (!isBotGroupAdmins) return kill.reply(from, mess.error.Ba, id)
-				if (quotedMsg) {
-					const bgmcomum = quotedMsgObj.sender.id
-					await kill.sendTextWithMentions(from, `Ihhhh @${bgmcomum}, parece que vc irritou algum ADM, daqui a pouco te coloco de volta`)
-					await kill.removeParticipant(groupId, bgmcomum)
-
-					setTimeout(() => {
-						 kill.reply(from, 'O corno esta voltando', id)
-						 kill.addParticipant(groupId, bgmcomum)
-						 kill.sendTextWithMentions(from, `@${bgmcomum}, ja esfriou a cabeça? Espero que sim!`)
-					}, 1800000) //30 minutos em milissegundos
-
-				} else {
-					if (mentionedJidList.length == 0) return kill.reply(from, 'Você digitou o comando de forma muito errada, arrume e envie certo.', id)
-					await kill.sendTextWithMentions(from, `Ihhhh ${mentionedJidList.map(x => `@${x.replace('@c.us', '')}`).join('\n')}, parece que vc irritou algum ADM, daqui a pouco te coloco de volta`)
-					for (let i = 0; i < mentionedJidList.length; i++) {
-						if (ownerNumber.includes(mentionedJidList[i])) return kill.reply(from, 'Infelizmente, ele é um bêbado VIP, não posso expulsar.', id)
-						if (groupAdmins.includes(mentionedJidList[i])) return kill.reply(from, mess.error.Kl, id)
-						await kill.removeParticipant(groupId, mentionedJidList[i])
-
-						setTimeout(() => {
-							 kill.reply(from, 'O corno esta voltando', id)
-							 kill.addParticipant(groupId, mentionedJidList[i])
-							 kill.sendTextWithMentions(from, `@${mentionedJidList[i]}, ja esfriou a cabeça? Espero que sim!`)
-						}, 1800000) //30 minutos em milissegundos
-
-					}
-				}
-			} else if (isGroupMsg) {
-				await kill.reply(from, mess.error.Ga, id)
-			} else {
-				await kill.reply(from, mess.error.Gp, id)
-			}
-            break
-			
 
 
         case 'leave':
@@ -3528,6 +3494,7 @@ module.exports = kconfig = async (kill, message) => {
             }
             break
 			
+			
         case 'give':
             if (!isOwner) return kill.reply(from, mess.error.Kl, id)
             if (args.length !== 2) return kill.reply(from, 'Você precisar marcar a pessoa e a quantidade XP a ser adicionada.', id)
@@ -3540,6 +3507,59 @@ module.exports = kconfig = async (kill, message) => {
                 rank.addXp(args[0] + '@c.us', Number(args[1]), nivel)
                 await kill.sendTextWithMentions(from, `Adicionado ${args[1]} de XP para @${args[0]}.`, id)
             }
+			break
+			
+			// Por Leonardo, #18, Melhorias minhas para caso envie a mensagem antes de adicionar.
+		case 'softban':
+			if (isGroupMsg && isGroupAdmins || isGroupMsg && isOwner) {
+				if (!isBotGroupAdmins) return kill.reply(from, mess.error.Ba, id)
+				if (quotedMsg) {
+					const bgmcomum = quotedMsgObj.sender.id
+					await kill.sendTextWithMentions(from, `Ihhhh @${bgmcomum}, parece que vc irritou algum ADM, daqui a pouco te coloco de volta!`)
+					await kill.removeParticipant(groupId, bgmcomum)
+					setTimeout(() => {
+						kill.reply(from, 'Está na hora de voltar o nosso querido ~corno~ membro.', id)
+						kill.addParticipant(groupId, bgmcomum)
+					}, 1800000) //30 minutos em milissegundos
+					await sleep(1810000)
+					await kill.sendTextWithMentions(from, `@${bgmcomum}, espero que você tenha repensado suas ações e se acalmado.`)
+				} else {
+					if (mentionedJidList.length == 0) return kill.reply(from, 'Você digitou o comando de forma muito errada, arrume e envie certo.', id)
+					await kill.sendTextWithMentions(from, `Ihhhh ${mentionedJidList.map(x => `@${x.replace('@c.us', '')}`).join('\n')}, parece que vc irritou algum ADM, daqui a pouco te coloco de volta`)
+					for (let i = 0; i < mentionedJidList.length; i++) {
+						if (ownerNumber.includes(mentionedJidList[i])) return kill.reply(from, 'Infelizmente, ele é um bêbado VIP, não posso expulsar.', id)
+						if (groupAdmins.includes(mentionedJidList[i])) return kill.reply(from, mess.error.Kl, id)
+						await kill.removeParticipant(groupId, mentionedJidList[i])
+						setTimeout(() => {
+							kill.reply(from, 'Está na hora de voltar o nosso querido ~corno~ membro.', id)
+							kill.addParticipant(groupId, mentionedJidList[i])
+						}, 1800000) //30 minutos em milissegundos
+						await sleep(1810000)
+						await kill.sendTextWithMentions(from, `@${mentionedJidList[i]}, espero que você tenha repensado suas ações e se acalmado.`)
+					}
+				}
+			} else if (isGroupMsg) {
+				await kill.reply(from, mess.error.Ga, id)
+			} else {
+				await kill.reply(from, mess.error.Gp, id)
+			}
+            break
+			
+		case 'cassino':
+			if (!isGroupMsg) return kill.reply(from, mess.error.Gp, id)
+			var cassin = ['🍒', '🎃', '🍐']
+            const cassin1 = cassin[Math.floor(Math.random() * cassin.length)]
+            const cassin2 = cassin[Math.floor(Math.random() * cassin.length)]
+            const cassin3 = cassin[Math.floor(Math.random() * cassin.length)]
+			var cassinend = cassin1 + cassin2 + cassin3
+			console.log(cassinend)
+			if (cassinend == '🍒🍒🍒' || cassinend == '🎃🎃🎃' || cassinend == '🍐🍐🍐') {
+				const randxp = Math.floor(Math.random() * (15 - 25 + 1) + 100)
+				kill.reply(from, `Ganhou, Ganhou, Ganhou! A resposta do cassino foi de...\n\n ${cassin1} - ${cassin2} - ${cassin3}\n\nVocê ganhou ${randxp} XP!`, id)
+                rank.addXp(sender.id, randxp, nivel)
+			} else {
+				kill.reply(from, `Que pena! Não foi dessa vez, você recebeu um...\n\n ${cassin1} - ${cassin2} - ${cassin3}\n\nE infelizmente não obteve nenhum XP.`, id)
+			}
 			break
 			
 		/*case 'Nome do comando sem espaços':
