@@ -2100,6 +2100,45 @@ module.exports = kconfig = async (kill, message) => {
 				await kill.reply(from, mess.error.Gp, id)
 			}
             break
+			
+			
+			case 'softban':
+			if (isGroupMsg && isGroupAdmins || isGroupMsg && isOwner) {
+				if (!isBotGroupAdmins) return kill.reply(from, mess.error.Ba, id)
+				if (quotedMsg) {
+					const bgmcomum = quotedMsgObj.sender.id
+					await kill.sendTextWithMentions(from, `Ihhhh @${bgmcomum}, parece que vc irritou algum ADM, daqui a pouco te coloco de volta`)
+					await kill.removeParticipant(groupId, bgmcomum)
+
+					setTimeout(() => {
+						 kill.reply(from, 'O corno esta voltando', id)
+						 kill.addParticipant(groupId, bgmcomum)
+						 kill.sendTextWithMentions(from, `@${bgmcomum}, ja esfriou a cabeça? Espero que sim!`)
+					}, 1800000) //30 minutos em milissegundos
+
+				} else {
+					if (mentionedJidList.length == 0) return kill.reply(from, 'Você digitou o comando de forma muito errada, arrume e envie certo.', id)
+					await kill.sendTextWithMentions(from, `Ihhhh ${mentionedJidList.map(x => `@${x.replace('@c.us', '')}`).join('\n')}, parece que vc irritou algum ADM, daqui a pouco te coloco de volta`)
+					for (let i = 0; i < mentionedJidList.length; i++) {
+						if (ownerNumber.includes(mentionedJidList[i])) return kill.reply(from, 'Infelizmente, ele é um bêbado VIP, não posso expulsar.', id)
+						if (groupAdmins.includes(mentionedJidList[i])) return kill.reply(from, mess.error.Kl, id)
+						await kill.removeParticipant(groupId, mentionedJidList[i])
+
+						setTimeout(() => {
+							 kill.reply(from, 'O corno esta voltando', id)
+							 kill.addParticipant(groupId, mentionedJidList[i])
+							 kill.sendTextWithMentions(from, `@${mentionedJidList[i]}, ja esfriou a cabeça? Espero que sim!`)
+						}, 1800000) //30 minutos em milissegundos
+
+					}
+				}
+			} else if (isGroupMsg) {
+				await kill.reply(from, mess.error.Ga, id)
+			} else {
+				await kill.reply(from, mess.error.Gp, id)
+			}
+            break
+			
 
 
         case 'leave':
