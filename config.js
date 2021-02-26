@@ -25,6 +25,7 @@ const nhentai = require('nhentai-js')
 const { API } = require('nhentai-api')
 const { removeBackgroundFromImageBase64 } = require('remove.bg')
 const fetch = require('node-fetch')
+const ms = require('parse-ms')
 
 // UTILIDADES
 const color = require('./lib/color')
@@ -33,7 +34,7 @@ const { owner, donate, down, help, admins, adult, readme, lang, convh } = requir
 const { stdout } = require('process')
 const bent = require('bent')
 const { doing } = require('./lib/translate.js')
-const { rank, meme, msgFilter, translate, ngtts, killo } = require('./lib')
+const { rank, diario, meme, msgFilter, translate, ngtts, killo } = require('./lib')
 const { uploadImages } = require('./lib/fether')
 const feature = require('./lib/poll')
 const { sobre } = require('./lib/sobre')
@@ -42,10 +43,11 @@ const { coins } = require('./lib/coins')
 moment.tz.setDefault('America/Sao_Paulo').locale('pt_BR')
 const config = require('./lib/config/config.json')
 
-// Akinator Start
+// AKINATOR & OUTROS
 const region = config.akilang
 var aki = new Aki(region)
 aki.start()
+const cd = 4.32e+7
 
 // JSON'S 
 const nsfw_ = JSON.parse(fs.readFileSync('./lib/config/NSFW.json'))
@@ -55,6 +57,7 @@ const bklist = JSON.parse(fs.readFileSync('./lib/config/blacklist.json'))
 const xp = JSON.parse(fs.readFileSync('./lib/config/xp.json'))
 const nivel = JSON.parse(fs.readFileSync('./lib/config/level.json'))
 const atbk = JSON.parse(fs.readFileSync('./lib/config/anti.json'))
+const daily = JSON.parse(fs.readFileSync('./lib/config/diario.json'))
 const faki = JSON.parse(fs.readFileSync('./lib/config/fake.json'))
 const slce = JSON.parse(fs.readFileSync('./lib/config/silence.json'))
 const atstk = JSON.parse(fs.readFileSync('./lib/config/sticker.json'))
@@ -3551,18 +3554,25 @@ module.exports = kconfig = async (kill, message) => {
 			
 		case 'cassino':
 			if (!isGroupMsg) return kill.reply(from, mess.error.Gp, id)
-			var cassin = ['🍒', '🎃', '🍐']
-            const cassin1 = cassin[Math.floor(Math.random() * cassin.length)]
-            const cassin2 = cassin[Math.floor(Math.random() * cassin.length)]
-            const cassin3 = cassin[Math.floor(Math.random() * cassin.length)]
-			var cassinend = cassin1 + cassin2 + cassin3
-			console.log(cassinend)
-			if (cassinend == '🍒🍒🍒' || cassinend == '🎃🎃🎃' || cassinend == '🍐🍐🍐') {
-				const randxp = Math.floor(Math.random() * (15 - 25 + 1) + 100)
-				kill.reply(from, `Ganhou, Ganhou, Ganhou! A resposta do cassino foi de...\n\n ${cassin1} - ${cassin2} - ${cassin3}\n\nVocê ganhou ${randxp} XP!`, id)
-                rank.addXp(sender.id, randxp, nivel)
+            const limitcs = diario.getLimit(sender.id, daily)
+            if (limitcs !== undefined && cd - (Date.now() - limitcs) > 0) {
+                const time = ms(cd - (Date.now() - limitcs))
+                 await kill.reply(from, 'Opa! Você já jogou isso hoje, para jogar novamente venha amanhã!', id)
 			} else {
-				kill.reply(from, `Que pena! Não foi dessa vez, você recebeu um...\n\n ${cassin1} - ${cassin2} - ${cassin3}\n\nE infelizmente não obteve nenhum XP.`, id)
+				var cassin = ['🍒', '🎃', '🍐']
+				const cassin1 = cassin[Math.floor(Math.random() * cassin.length)]
+				const cassin2 = cassin[Math.floor(Math.random() * cassin.length)]
+				const cassin3 = cassin[Math.floor(Math.random() * cassin.length)]
+				var cassinend = cassin1 + cassin2 + cassin3
+				console.log(cassinend)
+				if (cassinend == '🍒🍒🍒' || cassinend == '🎃🎃🎃' || cassinend == '🍐🍐🍐') {
+					const randxp = Math.floor(Math.random() * (15 - 25 + 1) + 500)
+					kill.reply(from, `Ganhou, Ganhou, Ganhou! A resposta do cassino foi de...\n\n ${cassin1} - ${cassin2} - ${cassin3}\n\nVocê ganhou ${randxp} XP!`, id)
+					rank.addXp(sender.id, randxp, nivel)
+				} else {
+					kill.reply(from, `Que pena! Não foi dessa vez, você recebeu um...\n\n ${cassin1} - ${cassin2} - ${cassin3}\n\nE infelizmente não obteve nenhum XP.`, id)
+				}
+				diario.addLimit(sender.id, daily)
 			}
 			break
 			
