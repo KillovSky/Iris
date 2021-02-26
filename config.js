@@ -3587,6 +3587,36 @@ module.exports = kconfig = async (kill, message) => {
             await kill.reply(from, `*「 NIVEL 」*\n\n➸ *Nome*: ${pushname}\n➸ *XP*: ${rank.getXp(usuario, nivel)} / ${thexpnde}\n➸ *Level*: ${uzerlvl} \n➸ *Patente*: *${patente}*\n\n*Parabéns pelo nível e converse mais (sem floodar) pra subir sua patente e XP!* 🎉`, id)
 			break
 			
+		case 'letra':
+			if (args.length == 0) return kill.reply(from, 'Insira o nome da sua música.', id)
+			try {
+				const liric = await axios.get(`https://some-random-api.ml/lyrics?title=${body.slice(7)}`)
+				await kill.sendFileFromUrl(from, liric.data.thumbnail.genius, '', `*Titulo:*\n\n${liric.data.title}\n\n*Letra:*\n\n${liric.data.lyrics}`, id)
+			} catch (error) {
+				kill.reply(from, 'Desculpe, não achei sua música...', id)
+			}
+			break
+			
+        case 'reedit':
+			if (args.length == 0) return kill.reply(from, 'Insira o nome do subreedit que deseja obter uma publicação!', id)
+			try {
+				const reed = await axios.get(`https://meme-api.herokuapp.com/gimme/${body.slice(8)}`)
+				if (reed.data.nsfw == false || !isGroupMsg) {
+					await kill.sendFileFromUrl(from, reed.data.url, '', reed.data.title, id)
+				} else {
+					if (isGroupMsg) {
+						if (!isNsfw) {
+							kill.reply(from, 'Esse subreedit contém pornografia, portanto, como esse grupo não permite, eu não mandarei nada.', id)
+						} else  {
+							await kill.sendFileFromUrl(from, reed.data.url, '', reed.data.title, id)
+						}
+					}
+				}
+			} catch (error) {
+				kill.reply(from, 'Essa subreedit não parece existir ou obtive erros com a mesma...', id)
+			}
+			break
+			
 		/*case 'Nome do comando sem espaços':
 			await kill.reply(from, 'Sua mensagem', id)
 			break*/

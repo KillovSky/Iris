@@ -1,5 +1,5 @@
 ### Projeto Íris
-Uma bot em português feita para PC, originalmente para o grupo Legião Z no WhatsApp, possui mais de 150 comandos e continua em crescimento e melhorias frequentes.
+Uma bot em português feita para PC, originalmente para o grupo Legião Z no WhatsApp, possui mais de 200 comandos e continua em crescimento e melhorias frequentes.
 
 ### Usar apenas no Telefone
 No celular é dificílimo que você consiga usar, portanto, use o site [Goorm](https://ide.goorm.io) para criar sua BOT pelo telefone, mas saiba que ele irá te desconectar frequentemente, se você possui PC, é muito melhor usa-lo do que usar o Goorm.
@@ -19,57 +19,35 @@ Baixe Chrome no Windows por [aqui](https://www.google.com/chrome), no linux use 
 ### Para os donos
 Você pode rodar comandos de Windows como "ipconfig", comandos de linux como "apt", ou comandos de programações como python -c tudo pelo WhatsApp, ninguém além de você pode usar isso, se você deseja que usem, remova a linha if (!isOnwer) [aqui](https://github.com/KillovSky/iris/blob/main/config.js#L3181), mas saiba que remove-la pode ser perigoso a você.
 
-### Funções (Não são todas, +150)
+### Funções (200)
 
 | Função |Contém|
 | ------------- | ------------- |
-| Pausar BOT |✅|
-| XP, Ranking, Level |✅|
+| Administrar Grupos |✅|
+| Anti Porno/Link de Chat |✅|
+| Ataques SMS/CALL |✅|
+| Bem Vindo/Adeus/Anti-Fake/Blacklist |✅|
 | Bloquear/Desbloquear pessoas |✅|
-| Puxar alguns dados |✅|
-| Usar CMD/Terminal pelo WhatsAPP |✅|
-| Anti-Fake/Blacklist |✅|
-| Downloads (Redes-Sociais e YouTube) |✅|
+| Buscar Anime/Letra de Música/Twitter/Instagram |✅|
+| Mandar mensagens a outros grupos |✅|
 | Conversar por texto/voz Sim-Simi/Local (ilimitado) |✅|
-| Busca/fotos de animes |✅|
-| Wikipédia |✅|
-| Brainly |✅|
-| Nasa |✅|
-| Buscar anime por foto |✅|
-| Stickers em imagem |✅|
-| Ataques SMS |✅|
-| Mandar mensagens a outro PV (por comando) |✅|
-| Comandos de zoeira |✅|
-| Prints de tela e sites |✅|
-| Geração de textos |✅|
-| Mensagem para Todos |✅|
-| Sair de tudo |✅|
-| Deletar todas as mensagens |✅|
-| Revogar links de grupo|✅|
-| Adicionar/remover pessoas |✅|
-| Tirar ADM |✅|
-| Anti porno/links de grupos |✅|
-| Sticker/Sticker GIF |✅|
-| Stickers sem fundo/Por palavra/Link |✅|
-| Fabrica de meme/Pegar memes |✅|
-| Busca de pinterest |✅|
-| Construção de "diario" em foto |✅|
-| Silenciar grupo para administradores |✅|
-| Falar frases em 51 idiomas |✅|
-| Mudar foto do grupo |✅|
-| Marcar todos |✅|
-| Stalkear instagram/twitter |✅|
-| Google/Google Play |✅|
-| Pesquisa por foto |✅|
-| Upload de fotos em nuvem |✅|
-| Tradutor |✅|
-| Boas Vindas e Adeus |✅|
-| Deletar mensagens do bot |✅|
-| Remover todos |✅|
-| Votações (Urna) |✅|
-| Foto de garotas, macacos, etc |✅|
+| Deletar Mensagens do BOT |✅|
+| Downloads (Redes-Sociais e YouTube) |✅|
+| Falar 51 idiomas/Tradutor |✅|
+| Geração de Textos/Diário |✅|
+| Google/Google Play/Pinterest |✅|
 | Informações de Grupo/Perfil |✅|
-| Outros (Lista tem mais de 130) |✅|
+| Marcar todos/Remover Todos |✅|
+| Memes/Fazer Memes |✅|
+| Nasa, Brainly, Wikipédia |✅|
+| Pausar/Sair de Tudo/Transmissão/Apagar Tudo |✅|
+| Pesquisa Fotos/Dados |✅|
+| Printar Tela/Sites |✅||
+| Sticker de GIF/Sem-Fundo/Link/Palavras |✅|
+| Uploads de Fotos |✅|
+| Usar CMD/Terminal pelo WhatsApp |✅|
+| XP/Ranking/Level/Votações |✅|
+| Outras |✅|
 
 ### Requisitos
 
@@ -114,7 +92,7 @@ Digite no seu chat a mensagem:
 ```
 
 ### Crie seus comandos
-Há uma base simples para suas criações por [aqui](https://github.com/KillovSky/iris/blob/main/config.js#L3590), basta que você remova a "/\*" e a "\*/" para utilizá-la, se precisar de outros tipos, você pode ver sobre eles por [aqui](https://docs.openwa.dev/classes/client.html), se obtiver dificuldades, chame-me por [aqui](https://chat.whatsapp.com/H53MdwhtnRf7TGX1VJ2Jje) ou [aqui](https://wa.me/+5518998044132).
+Há uma base simples para suas criações por [aqui](https://github.com/KillovSky/iris/blob/main/config.js#L3600), basta que você remova a "/\*" e a "\*/" para utilizá-la, se precisar de outros tipos, você pode ver sobre eles por [aqui](https://docs.openwa.dev/classes/client.html), se obtiver dificuldades, chame-me por [aqui](https://chat.whatsapp.com/H53MdwhtnRf7TGX1VJ2Jje) ou [aqui](https://wa.me/+5518998044132).
 
 ### Mudanças
 Edite as API's encontradas em: (Se estiver incorreta avise ou procure)
@@ -145,7 +123,7 @@ Mude a graphql/id para graphql/pt
 Para fixar o funcionamento da API da Computer-Freaker, que é responsável por diversos comandos (hug, hentai, dva, baguette...), siga os passos desse [Mini-Tutorial](https://github.com/KillovSky/iris/discussions/10).
 
 ### Alertas no WhatsApp
-Para receber também as mensagem de erros da Íris pelo WhatsApp, remova a "//" da linha [Catch](https://github.com/KillovSky/iris/blob/main/config.js#L3604).
+Para receber também as mensagem de erros da Íris pelo WhatsApp, remova a "//" da linha [Catch](https://github.com/KillovSky/iris/blob/main/config.js#L3614).
 
 ### Agradecimentos:
 - [Open-WA](https://github.com/open-wa)
