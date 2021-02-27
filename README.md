@@ -119,6 +119,15 @@ Abra a brainly.js na pasta iris\node_modules\brainly-scraper\src
 Mude a graphql/id para graphql/pt
 ```
 
+### Bem-vindo/Adeus em Português
+Após a instalação dos módulos siga esses passos para deixar seu bem-vindo(Welcome) e adeus(Goodbye) em português:
+
+```
+Abra a pasta iris\node_modules\discord-canvas\src\greetings
+Abra a Welcome e localize a linha "this.textTitle" e "this.textMessage"
+Mude o "Welcome" e "Welcome in" para o que quiser e repita o mesmo processo na Goodbye
+```
+
 ### Computer-Freaker/Axios
 Para fixar o funcionamento da API da Computer-Freaker, que é responsável por diversos comandos (hug, hentai, dva, baguette...), siga os passos desse [Mini-Tutorial](https://github.com/KillovSky/iris/discussions/10).
 
