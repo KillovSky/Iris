@@ -1140,32 +1140,26 @@ module.exports = kconfig = async (kill, message) => {
 
         case 'speak':
 			const sppt = require('node-gtts')('pt-br')
+			const rfua = fs.readFileSync('./lib/config/reply.txt').toString().split('\n')
+			const repy = rfua[Math.floor(Math.random() * rfua.length)]
+			const resfl = repy.replace('%name$', '${name}').replace('%battery%', '${lvpc}')
 			try {
 				const spiris = await axios.get(`http://simsumi.herokuapp.com/api?text=${body.slice(7)}&lang=pt`)
 				const a = spiris.data.success
-				if (a == '') {
-					console.log('Request falhou, usando respostas locais...')
-					let rfua = fs.readFileSync('./lib/config/reply.txt').toString().split('\n')
-					let repy = rfua[Math.floor(Math.random() * rfua.length)]
-					let resfl = repy.replace('%name$', '${name}').replace('%battery%', '${lvpc}')
-					console.log(resfl)
+				if (a == '' || a == 'Limit 50 queries per hour.') {
 					sppt.save('./lib/media/tts/resPtm.mp3', resfl, function () {
-					kill.sendPtt(from, './lib/media/tts/resPtm.mp3', id)
-					})		
+						kill.sendPtt(from, './lib/media/tts/resPtm.mp3', id)
+					})
 				} else {
 					sppt.save('./lib/media/tts/resPtm.mp3', a, function () {
 						kill.sendPtt(from, './lib/media/tts/resPtm.mp3', id)
+						fs.appendFile('./lib/config/reply.txt', `\n${a}`)
 					})
 				}
 			} catch (error) {
-					console.log('Request falhou, usando respostas locais...')
-					let rfua = fs.readFileSync('./lib/config/reply.txt').toString().split('\n')
-					let repy = rfua[Math.floor(Math.random() * rfua.length)]
-					let resfl = repy.replace('%name$', '${name}').replace('%battery%', '${lvpc}')
-					console.log(resfl)
-					sppt.save('./lib/media/tts/resPtm.mp3', resfl, function () {
+				sppt.save('./lib/media/tts/resPtm.mp3', resfl, function () {
 					kill.sendPtt(from, './lib/media/tts/resPtm.mp3', id)
-					})
+				})
 			}
 			break
 			
@@ -1187,8 +1181,8 @@ module.exports = kconfig = async (kill, message) => {
 			
 
         case 'criador':
-            kill.sendContact(from, config.owner)
-			kill.reply(from, 'Se ele não responder apenas espere, é raro ele sair da internet ~Carinha viciado sabe~, mas se acontecer foi algo importante.', id)
+            //kill.sendContact(from, config.owner)
+			kill.reply(from, `wa.me/${config.owner.replace('@c.us', '')}\n\nSe ele não responder apenas espere, é raro ele sair da internet ~Carinha viciado sabe~, mas se acontecer foi algo importante.`, id)
             break
 			
 			
@@ -1218,25 +1212,19 @@ module.exports = kconfig = async (kill, message) => {
 			
 
         case 'iris':
+			const rndrl = fs.readFileSync('./lib/config/reply.txt').toString().split('\n')
+			const repl = rndrl[Math.floor(Math.random() * rndrl.length)]
+			const resmf = repl.replace('%name$', `${name}`).replace('%battery%', `${lvpc}`)
 			try {
 				const iris = await axios.get(`http://simsumi.herokuapp.com/api?text=${body.slice(6)}&lang=pt`)
-				if (iris.data.success == '') {
-					console.log('Request falhou, usando respostas locais...')
-					let rndrl = fs.readFileSync('./lib/config/reply.txt').toString().split('\n')
-					let repl = rndrl[Math.floor(Math.random() * rndrl.length)]
-					let resmf = repl.replace('%name$', `${name}`).replace('%battery%', `${lvpc}`)
-					console.log(resmf)
+				if (iris.data.success == '' || iris.data.success == 'Limit 50 queries per hour.') {
 					kill.reply(from, resmf, id)
 				} else {
 					await kill.reply(from, iris.data.success, id)
+					fs.appendFile('./lib/config/reply.txt', `\n${iris.data.success}`)
 				}
 			} catch (error) {
-					console.log('Request falhou, usando respostas locais...')
-					let rndrl = fs.readFileSync('./lib/config/reply.txt').toString().split('\n')
-					let repl = rndrl[Math.floor(Math.random() * rndrl.length)]
-					let resmf = repl.replace('%name$', `${name}`).replace('%battery%', `${lvpc}`)
-					console.log(resmf)
-					kill.reply(from, resmf, id)
+				kill.reply(from, resmf, id)
 			}
 			break
 
