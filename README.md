@@ -17,9 +17,9 @@ Baixe Chrome no Windows por [aqui](https://www.google.com/chrome), no linux use 
 ```
 
 ### Para os donos
-Você pode rodar comandos de Windows como "ipconfig", comandos de linux como "apt", ou comandos de programações como python -c tudo pelo WhatsApp, ninguém além de você pode usar isso, se você deseja que usem, remova a linha if (!isOnwer) [aqui](https://github.com/KillovSky/iris/blob/main/config.js#L3181), mas saiba que remove-la pode ser perigoso a você.
+Você pode rodar comandos de Windows como "ipconfig", comandos de linux como "apt", ou comandos de programações como python -c tudo pelo WhatsApp, ninguém além de você pode usar isso, se você deseja que usem, remova a linha if (!isOnwer) [aqui](https://github.com/KillovSky/iris/blob/main/config.js#L3153), mas saiba que removê-la pode ser perigoso a você.
 
-### Funções (200)
+### Funções (+200)
 
 | Função |Contém|
 | ------------- | ------------- |
@@ -92,23 +92,24 @@ Digite no seu chat a mensagem:
 ```
 
 ### Crie seus comandos
-Há uma base simples para suas criações por [aqui](https://github.com/KillovSky/iris/blob/main/config.js#L3600), basta que você remova a "/\*" e a "\*/" para utilizá-la, se precisar de outros tipos, você pode ver sobre eles por [aqui](https://docs.openwa.dev/classes/client.html), se obtiver dificuldades, chame-me por [aqui](https://chat.whatsapp.com/H53MdwhtnRf7TGX1VJ2Jje) ou [aqui](https://wa.me/+5518998044132).
+Há uma base simples para suas criações por [aqui](https://github.com/KillovSky/iris/blob/main/config.js#L3633), basta que você remova a "/\*" e a "\*/" para utilizá-la, se precisar de outros tipos, você pode ver sobre eles por [aqui](https://docs.openwa.dev/classes/client.html), se obtiver dificuldades, chame-me por [aqui](https://chat.whatsapp.com/H53MdwhtnRf7TGX1VJ2Jje) ou [aqui](https://wa.me/+5518998044132).
 
 ### Mudanças
 Edite as API's encontradas em: (Se estiver incorreta avise ou procure)
 
-- [API 1](https://github.com/KillovSky/iris/blob/main/lib/config/config.json#5)
-- [API 2](https://github.com/KillovSky/iris/blob/main/lib/config/config.json#6)
-- [API 3 & 4](https://github.com/KillovSky/iris/blob/main/lib/config/config.json#4)
-- [API 5](https://github.com/KillovSky/iris/blob/main/lib/config/config.json#7)
-- [Limite de Membros](https://github.com/KillovSky/iris/blob/main/lib/config/config.json#9)
-- [Limite de Grupos](https://github.com/KillovSky/iris/blob/main/lib/config/config.json#8)
+- [API 1 & 2 - ImgBB](https://github.com/KillovSky/iris/blob/main/lib/config/config.json#5)
+- [API 2 - AlphaCoders](https://github.com/KillovSky/iris/blob/main/lib/config/config.json#6)
+- [API 3 - API-Flash](https://github.com/KillovSky/iris/blob/main/lib/config/config.json#7)
+- [API 4 - RemoveBG](https://github.com/KillovSky/iris/blob/main/lib/config/config.json#8)
+- [API 5 - WallHaven](https://github.com/KillovSky/iris/blob/main/lib/config/config.json#12)
+- [Limite de Membros](https://github.com/KillovSky/iris/blob/main/lib/config/config.json#10)
+- [Limite de Grupos](https://github.com/KillovSky/iris/blob/main/lib/config/config.json#9)
 - [Prefix](https://github.com/KillovSky/iris/blob/main/lib/config/config.json#4)
 - [Número 1 & 2](https://github.com/KillovSky/iris/blob/main/lib/config/config.json#2)
 - [DDI](https://github.com/KillovSky/iris/blob/main/lib/config/config.json#3)
-- [Bomber](https://github.com/KillovSky/iris/blob/main/config.js#L3168)
+- [Bomber](https://github.com/KillovSky/iris/blob/main/config.js#L3140)
 - [Akinator](https://github.com/KillovSky/iris/blob/main/lib/config/config.json#11)
-- Elas são referentes aos sites [RemoveBG](https://www.remove.bg/pt-br), [ImgBB](https://api.imgbb.com/) e [AlphaCoders](https://wall.alphacoders.com/api.php)
+- Elas são referentes aos sites [RemoveBG](https://www.remove.bg/pt-br), [ImgBB](https://api.imgbb.com/), [AlphaCoders](https://wall.alphacoders.com/api.php) e [WallHaven](https://wallhaven.cc/settings/account).
 - A DDI e Akinator são obrigatórios apenas caso você for de fora do Brasil, o Bomb apenas se você usar Linux.
 
 ### Brainly Português
@@ -132,7 +133,7 @@ Mude o "Welcome" e "Welcome in" para o que quiser e repita o mesmo processo na G
 Para fixar o funcionamento da API da Computer-Freaker, que é responsável por diversos comandos (hug, hentai, dva, baguette...), siga os passos desse [Mini-Tutorial](https://github.com/KillovSky/iris/discussions/10).
 
 ### Alertas no WhatsApp
-Para receber também as mensagem de erros da Íris pelo WhatsApp, remova a "//" da linha [Catch](https://github.com/KillovSky/iris/blob/main/config.js#L3614).
+Para receber também as mensagem de erros da Íris pelo WhatsApp, remova a "//" da linha [Catch](https://github.com/KillovSky/iris/blob/main/config.js#L3647).
 
 ### Agradecimentos:
 - [Open-WA](https://github.com/open-wa)

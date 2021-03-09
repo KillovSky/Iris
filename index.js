@@ -6,10 +6,6 @@ const color = require('./lib/color')
 const { sleep } = require('./lib/functions')
 const config = require('./lib/config/config.json')
 const canvas = require('discord-canvas')
-const welkom = JSON.parse(fs.readFileSync('./lib/config/welcome.json'))
-const bklist = JSON.parse(fs.readFileSync('./lib/config/anti.json'))
-const anti = JSON.parse(fs.readFileSync('./lib/config/blacklist.json'))
-const fks = JSON.parse(fs.readFileSync('./lib/config/fake.json'))
 
 // Cria um cliente de inicialização da BOT
 const start = (kill = new Client()) => {
@@ -35,6 +31,10 @@ const start = (kill = new Client()) => {
 		
 		// Configuração do welcome
 		kill.onGlobalParticipantsChanged(async (event) => {
+			const welkom = JSON.parse(fs.readFileSync('./lib/config/welcome.json'))
+			const bklist = JSON.parse(fs.readFileSync('./lib/config/anti.json'))
+			const anti = JSON.parse(fs.readFileSync('./lib/config/blacklist.json'))
+			const fks = JSON.parse(fs.readFileSync('./lib/config/fake.json'))
 			const ddi = config.ddi
 			const personr = event.who
 			const isWelkom = welkom.includes(event.chat)
