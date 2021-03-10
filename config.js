@@ -33,7 +33,7 @@ const removeAccents = require('remove-accents')
 // UTILIDADES
 const color = require('./lib/color')
 const { randomNimek, sleep, wall, tulis, ss, isUrl } = require('./lib/functions')
-const { owner, donate, down, help, admins, adult, readme, lang, convh } = require('./lib/help')
+const { owner, donate, down, help, admins, adult, readme, lang, convh, paises } = require('./lib/help')
 const { stdout } = require('process')
 const bent = require('bent')
 const { doing } = require('./lib/translate.js')
@@ -277,7 +277,14 @@ module.exports = kconfig = async (kill, message) => {
         if (isGroupMsg && autoSticker && isMedia && isImage && !isCmd) {
             const mediaData = await decryptMedia(message, uaOverride)
             const imageBase64 = `data:${mimetype};base64,${mediaData.toString('base64')}`
-            await kill.sendImageAsSticker(from, imageBase64)
+            await kill.sendImageAsSticker(from, imageBase64, { author: '🎁 https://bit.ly/30t4jJV ☆', pack: '🔰 Iris/Legião Z ⚜️', keepScale: true })
+        }
+		
+        // Auto-sticker de videos
+        if (isGroupMsg && autoSticker && isMedia && isVideo && !isCmd) {
+            const mediaData = await decryptMedia(message, uaOverride)
+            const videoBase64 = `data:${mimetype};base64,${mediaData.toString('base64')}`
+            await kill.sendMp4AsSticker(from, videoBase64, null, { stickerMetadata: true, pack: '🔰 Iris/Legião Z ⚜️', author: '🎁 https://bit.ly/30t4jJV ☆', fps: 30, startTime: '00:00:00.0', endTime : '00:00:05.0', crop: false, loop: 0 })
         }
 
         // ANTI FLOOD PRIVADO
@@ -308,37 +315,17 @@ module.exports = kconfig = async (kill, message) => {
         case 'figurinha':
         case 'stiker':
             if (isMedia && isImage) {
-                const mediaData = await decryptMedia(message, uaOverride)
-				sharp(mediaData)
-				.resize({
-                    width: 512,
-                    height: 512,
-                    fit: 'fill'
-                })
-				.toBuffer()
-				.then(async (resizedImageBuffer) => {
-					let resizedImageData = resizedImageBuffer.toString('base64');
-					let resizedBase64 = `data:${mimetype};base64,${resizedImageData}`;
-					await kill.sendImageAsSticker(from, resizedBase64)
-				})
+				const mediaData = await decryptMedia(message, uaOverride)
+				const imageBase64 = `data:${mimetype};base64,${mediaData.toString('base64')}`
+				await kill.sendImageAsSticker(from, imageBase64, { author: '🎁 https://bit.ly/30t4jJV ☆', pack: '🔰 Iris/Legião Z ⚜️', keepScale: true })
             } else if (isQuotedImage) {
                 const mediaData = await decryptMedia(quotedMsg, uaOverride)
-				sharp(mediaData)
-				.resize({
-                    width: 512,
-                    height: 512,
-                    fit: 'fill'
-                })
-				.toBuffer()
-				.then(async (resizedImageBuffer) => {
-					let resizedImageData = resizedImageBuffer.toString('base64');
-					let resizedBase64 = `data:${quotedMsg.mimetype};base64,${resizedImageData}`;
-					await kill.sendImageAsSticker(from, resizedBase64)
-				})
+				const imageBase64 = `data:${quotedMsg.mimetype};base64,${mediaData.toString('base64')}`
+				await kill.sendImageAsSticker(from, imageBase64, { author: '🎁 https://bit.ly/30t4jJV ☆', pack: '🔰 Iris/Legião Z ⚜️', keepScale: true })
             } else if (args.length == 1) {
                 const url = args[0]
                 if (isUrl(url)) {
-                    await kill.sendStickerfromUrl(from, url, { method: 'get' })
+                    await kill.sendStickerfromUrl(from, url, { method: 'get' }, { author: '🎁 https://bit.ly/30t4jJV ☆', pack: '🔰 Iris/Legião Z ⚜️', keepScale: true })
                         .catch(err => console.log('Erro: ', err))
                 } else {
 					kill.reply(from, mess.error.Iv, id)
@@ -346,14 +333,14 @@ module.exports = kconfig = async (kill, message) => {
             } else {
                 kill.reply(from, mess.error.St, id)
             }
-			break
+            break
 
 
 		case 'ttp':
 			if (args.length == 0) return kill.reply(from, 'Cadê a frase né?', id)
 			axios.get(`https://st4rz.herokuapp.com/api/ttp?kata=${body.slice(5)}`)
 			.then(res => {
-				kill.sendImageAsSticker(from, res.data.result)
+				kill.sendImageAsSticker(from, res.data.result, { author: '🎁 https://bit.ly/30t4jJV ☆', pack: '🔰 Iris/Legião Z ⚜️', keepScale: true })
 			})
 			break
 			
@@ -393,7 +380,7 @@ module.exports = kconfig = async (kill, message) => {
                     var outFile = './lib/media/img/noBg.png'
                     var result = await removeBackgroundFromImageBase64({ base64img, apiKey: config.nobg, size: 'auto', type: 'auto', outFile })
                     await fs.writeFile(outFile, result.base64img)
-                    await kill.sendImageAsSticker(from, `data:${mimetype};base64,${result.base64img}`)
+                    await kill.sendImageAsSticker(from, `data:${mimetype};base64,${result.base64img}`, { author: '🎁 https://bit.ly/30t4jJV ☆', pack: '🔰 Iris/Legião Z ⚜️', keepScale: true })
 					await kill.reply(from, 'Certifique-se de evitar usar isso quando não precisar,', id)
                 } catch(err) {
                     console.log(err)
@@ -412,7 +399,7 @@ module.exports = kconfig = async (kill, message) => {
                     const encryptMedia = isQuotedGif || isQuotedVideo ? quotedMsg : message
                     const mediaData = await decryptMedia(encryptMedia, uaOverride)
                     const gifSticker = `data:${mimetype};base64,${mediaData.toString('base64')}`
-                    await kill.sendMp4AsSticker(from, gifSticker, { fps: 30, startTime: '00:00:00.0', endTime : '00:00:05.0', loop: 0 })
+                    await kill.sendMp4AsSticker(from, gifSticker, null, { stickerMetadata: true, pack: '🔰 Iris/Legião Z ⚜️', author: '🎁 https://bit.ly/30t4jJV ☆', fps: 30, startTime: '00:00:00.0', endTime : '00:00:05.0', crop: false, loop: 0 })
                 } catch (err) {
                     console.error(err)
                     await kill.reply(from, 'Esse sticker obteve erros, é provavel que seja o seu peso, o maximo é de 1MB.', id)
@@ -477,7 +464,7 @@ module.exports = kconfig = async (kill, message) => {
 			const stimg = await stkm.json()
             let stkfm = stimg[Math.floor(Math.random() * stimg.length) + 1]
 			console.log(stkfm)
-            await kill.sendStickerfromUrl(from, stkfm)
+            await kill.sendStickerfromUrl(from, stkfm, { method: 'get' }, { author: '🎁 https://bit.ly/30t4jJV ☆', pack: '🔰 Iris/Legião Z ⚜️', keepScale: true })
 			.catch(() => {
                 kill.reply(from, 'Nenhuma imagem recebida ou servidor offline, tente mais tarde.', id)
             })
@@ -1234,16 +1221,16 @@ module.exports = kconfig = async (kill, message) => {
 
         case 'roll':
             const dice = Math.floor(Math.random() * 6) + 1
-            await kill.sendStickerfromUrl(from, 'https://www.random.org/dice/dice' + dice + '.png')
+            await kill.sendStickerfromUrl(from, 'https://www.random.org/dice/dice' + dice + '.png', { method: 'get' }, { author: '🎁 https://bit.ly/30t4jJV ☆', pack: '🔰 Iris/Legião Z ⚜️', keepScale: true })
             break
 
 
         case 'flip':
             const side = Math.floor(Math.random() * 2) + 1
             if (side == 1) {
-               kill.sendStickerfromUrl(from, 'https://i.ibb.co/LJjkVK5/heads.png')
+               kill.sendStickerfromUrl(from, 'https://i.ibb.co/LJjkVK5/heads.png', { method: 'get' }, { author: '🎁 https://bit.ly/30t4jJV ☆', pack: '🔰 Iris/Legião Z ⚜️', keepScale: true })
             } else {
-               kill.sendStickerfromUrl(from, 'https://i.ibb.co/wNnZ4QD/tails.png')
+               kill.sendStickerfromUrl(from, 'https://i.ibb.co/wNnZ4QD/tails.png', { method: 'get' }, { author: '🎁 https://bit.ly/30t4jJV ☆', pack: '🔰 Iris/Legião Z ⚜️', keepScale: true })
             }
             break
 
@@ -1810,9 +1797,10 @@ module.exports = kconfig = async (kill, message) => {
 		case 'sip':
 			if (args.length == 1) {
 				const ip = await axios.get(`http://ipwhois.app/json/${body.slice(5)}`)
-				await kill.sendLinkWithAutoPreview(from, `http://www.google.com/maps/place/${ip.data.latitude},${ip.data.longitude}`, `\n✪ IP: ${ip.data.ip}\n\n✪ Tipo: ${ip.data.type}\n\n✪ Região: ${ip.data.region}\n\n✪ Cidade: ${ip.data.city}\n\n✪ Latitude: ${ip.data.latitude}\n\n✪ Longitude: ${ip.data.longitude}\n\n✪ Provedor: ${ip.data.isp}\n\n✪ Continente: ${ip.data.continent}\n\n✪ Sigla do continente: ${ip.data.continent_code}\n\n✪ País: ${ip.data.country}\n\n✪ Sigla do País: ${ip.data.country_code}\n\n✪ Capital do País: ${ip.data.country_capital}\n\n✪ DDI: ${ip.data.country_phone}\n\n✪ Países Vizinhos: ${ip.data.country_neighbours}\n\n✪ Fuso Horário: ${ip.data.timezone} ${ip.data.timezone_name} ${ip.data.timezone_gmt}\n\n✪ Moeda: ${ip.data.currency}\n\n✪ Sigla da Moeda: ${ip.data.currency_code}\n\nBusca de IP realizada por Íris - KillovSky!`, id)
+				await kill.sendLocation(from, `${ip.data.latitude}`, `${ip.data.longitude}`, '')
+				await kill.reply(from, `✪ IP: ${ip.data.ip}\n\n✪ Tipo: ${ip.data.type}\n\n✪ Região: ${ip.data.region}\n\n✪ Cidade: ${ip.data.city}\n\n✪ Latitude: ${ip.data.latitude}\n\n✪ Longitude: ${ip.data.longitude}\n\n✪ Provedor: ${ip.data.isp}\n\n✪ Continente: ${ip.data.continent}\n\n✪ Sigla do continente: ${ip.data.continent_code}\n\n✪ País: ${ip.data.country}\n\n✪ Sigla do País: ${ip.data.country_code}\n\n✪ Capital do País: ${ip.data.country_capital}\n\n✪ DDI: ${ip.data.country_phone}\n\n✪ Países Vizinhos: ${ip.data.country_neighbours}\n\n✪ Fuso Horário: ${ip.data.timezone} ${ip.data.timezone_name} ${ip.data.timezone_gmt}\n\n✪ Moeda: ${ip.data.currency}\n\n✪ Sigla da Moeda: ${ip.data.currency_code}\n\n✪ Google Maps: http://www.google.com/maps/place/${ip.data.latitude},${ip.data.longitude}`, id)
             } else {
-				await kill.reply(from, 'Especifique um IP de tipo IPV4.', id)
+				kill.reply(from, 'Especifique um IP de tipo IPV4.', id)
             }
 			break
 			
@@ -1888,7 +1876,7 @@ module.exports = kconfig = async (kill, message) => {
             if (!isOwner) return kill.reply(from, mess.error.Kl, id)
             const allChatz = await kill.getAllChats()
             for (let dchat of allChatz) {
-                await kill.deleteChat(dchat.id)
+                await kill.clearChat(dchat.id)
             }
             kill.reply(from, 'Limpei todos os Chats!', id)
             break
@@ -2945,8 +2933,11 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
 		case 'valor':
-			if (args.length == 0) return kill.reply(from, `Para usar digite o comando e em seguida o valor e tipo.\n\nExemplo: ${prefix}valor 1USD (Tudo junto mesmo)\n\nDigite ${prefix}coins para ver a lista de moedas que podem ser usadas [É uma lista enormeeeeee].`, id)
+			const moneyerr = `Para usar digite o comando e em seguida o valor e tipo.\n\nExemplo: ${prefix}valor 1USD (Tudo junto mesmo)\n\nDigite ${prefix}coins para ver a lista de moedas que podem ser usadas [É uma lista enormeeeeee].`
+			if (args.length !== 1) return kill.reply(from, moneyerr, id)
 			const money = await axios.get(`https://brl.rate.sx/${args[0]}`)
+			const chkmy = money.data
+			if (isNaN(chkmy)) return kill.reply(from, moneyerr, id)
 			await kill.reply(from, `*${args[0]}* _vale no Brasil_ *${money.data}* _reais._`, id)
 			break
 			
@@ -2977,7 +2968,7 @@ module.exports = kconfig = async (kill, message) => {
 
 		case 'rolette':
             if (double == 1) {
-            await kill.reply(from, 'Bang, ela disparou e você morreu, é game over.', id)
+				await kill.reply(from, 'Bang, ela disparou e você morreu, é game over.', id)
             } else if (double == 2) {
 				await kill.reply(from, 'Você continua vivo, passe a vez.', id)
 			}
@@ -3274,11 +3265,11 @@ module.exports = kconfig = async (kill, message) => {
             if (args[0] == 'on') {
                 atstk.push(groupId)
                 fs.writeFileSync('./lib/config/sticker.json', JSON.stringify(atstk))
-                await kill.reply(from, 'O Auto-Sticker foi ativado, todas as imagens serão enviadas serão convertidas em sticker.', id)
+                await kill.reply(from, 'O Auto-Sticker foi ativado, todas as imagens e videos enviadas serão convertidas em sticker.', id)
             } else if (args[0] == 'off') {
                 atstk.splice(groupId, 1)
                 fs.writeFileSync('./lib/config/sticker.json', JSON.stringify(atstk))
-                await kill.reply(from, 'Auto-Sticker desativado, as imagens não serão automaticamente convertidas em sticker.', id)
+                await kill.reply(from, 'Auto-Sticker desativado, as imagens e videos não serão automaticamente convertidas em sticker.', id)
             } else {
                 await kill.reply(from, 'Defina entre [on] e [off].', id)
             }
@@ -3538,7 +3529,7 @@ module.exports = kconfig = async (kill, message) => {
 				var cassinend = cassin1 + cassin2 + cassin3
 				console.log(cassinend)
 				if (cassinend == '🍒🍒🍒' || cassinend == '🎃🎃🎃' || cassinend == '🍐🍐🍐') {
-					const randxp = Math.floor(Math.random() * (15 - 25 + 1) + 500)
+					const randxp = Math.floor(Math.random() * 500)
 					kill.reply(from, `Ganhou, Ganhou, Ganhou! A resposta do cassino foi de...\n\n ${cassin1} - ${cassin2} - ${cassin3}\n\nVocê ganhou ${randxp} XP!`, id)
 					rank.addXp(sender.id, randxp, nivel)
 				} else {
@@ -3589,7 +3580,7 @@ module.exports = kconfig = async (kill, message) => {
 			}
 			break
 			
-			
+		// Base Jon	
 		case 'wallhaven':
             if (args.length == 0) return kill.reply(from, `Para utilizar, digite ${prefix}wallhaven [Tema] e envie.`, id)
 			kill.reply(from, mess.wait, id)
@@ -3629,6 +3620,43 @@ module.exports = kconfig = async (kill, message) => {
 				kill.reply(from, 'Tenha certeza de usar isso apenas com letras comuns e sem acentos.', id)
 			}
 			break
+			
+			
+		case 'covid':
+			const coviderr = `Para buscar o número de casos, use o nome do País em inglês e sem acentos, para uma lista dos países use ${prefix}paises.`
+			if (args.lenght == 0) return kill.reply(from, coviderr, id)
+			const covidnb = await axios.get(`https://coronavirus-19-api.herokuapp.com/countries/${body.slice(7)}`)
+			if (covidnb.data == 'Country not found') return kill.reply(from, coviderr, id)
+			await kill.reply(from, `*✪ Casos no ${covidnb.data.country} >* ${covidnb.data.cases}\n\n*✪ Casos hoje >* ${covidnb.data.todayCases}\n\n*✪ Mortes >* ${covidnb.data.deaths}\n\n*✪ Mortes hoje >* ${covidnb.data.todayDeaths}\n\n*✪ Recuperados >* ${covidnb.data.recovered}\n\n*✪ Ativos >* ${covidnb.data.active}\n\n*✪ Casos criticos >* ${covidnb.data.critical}\n\n*✪ Testes totais >* ${covidnb.data.totalTests}`, id)
+			break
+			
+		
+		case 'paises':
+			kill.reply(from, paises, id)
+			break
+			
+			
+		case 'email':
+            arkm = body.trim().substring(body.indexOf(' ') + 1)
+			const mailerr = 'O email pode ter sido enviado e eu errei em algo ou ele pode ter obtido um erro ao enviar.'
+			if (args.length == 0) return kill.reply(from, `Para mandar um email use ${prefix}email <email da pessoa> | <Assunto> | <Texto>`, id)
+			try {
+				const emailsd = arkm.split('|')[0]
+				const assuml = arkm.split('|')[1]
+				const textoma = arkm.split('|')[2]
+				const mails = await axios.get(`https://videfikri.com/api/spamemail/?email=${emailsd}&subjek=${assuml}&pesan=${textoma}`)
+				const mailres = mails.data.result
+				if (mailres.status == '200') {
+					await kill.reply(from, `*Email enviado!*\n\n*Para*: ${mailres.target}\n\n*Assunto:* ${mailres.subjek}\n\n*Conteudo:* ${mailres.pesan}`, id)
+				} else {
+					kill.reply(from, mailerr, id)
+				}
+			} catch (error) {
+				kill.reply(from, mailerr, id)
+				console.log(color('[EMAIL]', 'red'), error)
+			}
+			break
+			
 			
 		/*case 'Nome do comando sem espaços':
 			await kill.reply(from, 'Sua mensagem', id)
