@@ -3579,8 +3579,8 @@ module.exports = kconfig = async (kill, message) => {
 			if (checkxpc <= 5000) return kill.reply(from, `Você não possui licença para jogar, obtenha uma quando tiver 5000 XP.\n\nSeu XP: ${checkxpc}`, id)
 			if (args.length !== 1) return kill.reply(from, 'Especifique a quantidade de XP para apostar.', id)
 			if (Number(args[0]) >= checkxpc || Number(args[0]) >= 501) return kill.reply(from, `Você não pode apostar uma quantidade de XP maior do que a você tem, e nosso limite de apostas é de 500 XP por vez!\n\nSeu XP: ${checkxpc}`, id)
-			const ncasxp = Number(-args[1])
-			const pcasxp = lvpc + Number(args[1])
+			const ncasxp = Number(-args[0])
+			const pcasxp = lvpc + Number(args[0])
             const limitcs = diario.getLimit(sender.id, daily)
             if (limitcs !== undefined && cd - (Date.now() - limitcs) > 0) {
                 const time = ms(cd - (Date.now() - limitcs))
