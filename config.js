@@ -3004,7 +3004,7 @@ module.exports = kconfig = async (kill, message) => {
 		case 'rolette':
 		case 'roleta':
 			const checkxpr = rank.getXp(usuario, nivel)
-			if (checkxpr <= 5000) return kill.reply(from, `Você não possui licença para jogar, obtenha uma quando tiver 5000 XP.\n\nSeu XP: ${checkxp}`, id)
+			if (checkxpr <= 5000) return kill.reply(from, `Você não possui licença para jogar, obtenha uma quando tiver 5000 XP.\n\nSeu XP: ${checkxpr}`, id)
 			if (args.length !== 1) return kill.reply(from, 'Especifique a quantidade XP para apostar.', id)
 			if (Number(args[0]) >= checkxpr || Number(args[0]) >= '501') return kill.reply(from, `Você não pode apostar uma quantidade de XP maior do que a você tem, e nosso limite de apostas é de 500 XP por vez!\n\nSeu XP: ${checkxpr}`, id)
 			const nrolxp = Number(-args[0])
@@ -3720,6 +3720,26 @@ module.exports = kconfig = async (kill, message) => {
 				console.log(color('[EMAIL]', 'red'), error)
 			}
 			break
+			
+		case 'gtav':
+            if (isMedia && type === 'image' || isQuotedImage) {
+                const gtavmd = isQuotedImage ? quotedMsg : message
+                const gtaddt = await decryptMedia(gtavmd, uaOverride)
+                await kill.reply(from, mess.wait, id)
+				const options = {
+					apiKey: config.imgbb,
+					imagePath: './lib/media/img/gtav.jpg',
+					expiration: 1800
+				}
+                var gtadimg = './lib/media/img/gtav.jpg'
+                await fs.writeFile(gtadimg, gtaddt)
+				const gtavup = await imgbbUploader(options)
+				console.log(gtavup.url)
+                await kill.sendFileFromUrl(from, `https://videfikri.com/api/textmaker/gtavposter/?urlgbr=${gtavup.url}`, 'Gtav.jpg', 'SAIU NOVA VERSÃO DO GTA V DE PS2!', id)
+            } else {
+                await kill.reply(from, 'Use isso com uma imagem apenas.', id)
+            }
+            break
 			
 			
 		/*case 'Nome do comando sem espaços':
