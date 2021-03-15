@@ -10,7 +10,7 @@ const fs = require('fs-extra')
 const axios = require('axios')
 const sharp = require('sharp')
 const math = require('mathjs')
-const search = require("simple-play-store-search")
+const { search } = require("simple-play-store-search")
 const google = require('google-it')
 const isPorn = require('is-porn')
 const imgsearch = require('node-reverse-image-search')
@@ -48,9 +48,10 @@ const config = require('./lib/config/config.json')
 
 // AKINATOR & OUTROS
 const region = config.akilang
-var aki = new Aki(region)
-aki.start()
-const cd = 4.32e+7
+const aki = new Aki(region)
+const playaki = async () => { await aki.start() }
+playaki()
+const cd = 0.18e+7
 
 // JSON'S 
 const nsfw_ = JSON.parse(fs.readFileSync('./lib/config/NSFW.json'))
@@ -335,7 +336,6 @@ module.exports = kconfig = async (kill, message) => {
             }
             break
 
-
 		case 'ttp':
 			if (args.length == 0) return kill.reply(from, 'Cadê a frase né?', id)
 			axios.get(`https://st4rz.herokuapp.com/api/ttp?kata=${body.slice(5)}`)
@@ -343,7 +343,6 @@ module.exports = kconfig = async (kill, message) => {
 				kill.sendImageAsSticker(from, res.data.result, { author: '🎁 https://bit.ly/30t4jJV ☆', pack: '🔰 Iris/Legião Z ⚜️', keepScale: true })
 			})
 			break
-			
 			
         case 'wasted':
             if (isMedia && type === 'image' || isQuotedImage) {
@@ -365,11 +364,10 @@ module.exports = kconfig = async (kill, message) => {
             }
             break
 			
-			
+		// LEMBRE-SE, REMOVER CRÈDITO È CRIME E PROIBIDO
 		case 'about':
 			await kill.sendFile(from, './lib/media/img/iris.png', 'iris.png', sobre, id)
 			break
-
 			
         case 'stickernobg':
 			if (isMedia) {
@@ -480,7 +478,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
 	    case 'oculto':
-            if (!isGroupMsg) return kill.reply(from, 'Apenas grupos!', id)
+            if (!isGroupMsg) return kill.reply(from, mess.error.Gp, id)
             const eur = await kill.getGroupMembers(groupId)
             const surpresa = eur[Math.floor(Math.random() * eur.length)]
 			console.log(surpresa.id)
@@ -501,6 +499,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
         case 'detector':
+            if (!isGroupMsg) return kill.reply(from, mess.error.Gp, id)
 			await kill.reply(from, 'Calculando foto dos participantes do grupo...', id)
             await sleep(3000)
             const eu = await kill.getGroupMembers(groupId)
@@ -508,8 +507,7 @@ module.exports = kconfig = async (kill, message) => {
 			console.log(gostosa.id)
             await kill.sendTextWithMentions(from, `*ＤＥＴＥＣＴＯＲ   ＤＥ  ＧＯＳＴＯＳＡＳ👩‍⚕️*\n\n*pi pi pi pi*  \n*pipipipi🚨🚨🚨pipipipi🚨🚨🚨pipipipi🚨🚨🚨pipi*\n\n@${gostosa.id.replace(/@c.us/g, '')} *PARADA(O) AÍ🖐*\n\n*VOCÊ ACABA DE RECEBER DUAS MULTAS*\n\n*1 por não dar bom dia,boa tarde,boa noite e outra por ser muito*\n\n*gostosa(o)*\n\n*valor da multa:*\n*FOTO DA TETINHA NO PV kkkkk*`)
             await sleep(2000)
-            break			
-
+            break
 			
 			
 		case 'math':
@@ -652,10 +650,10 @@ module.exports = kconfig = async (kill, message) => {
 			}
 			break
 			
-			
+		 // LEMBRE-SE, REMOVER CREDITO E CRIME E PROIBIDO	
 		case 'legiao':
-			if (isGroupMsg) return kill.reply(from, 'Pode ser que esse grupo não permita links, então use esse comando no PV okay?', id)
-			await kill.sendLinkWithAutoPreview(from, 'https://chat.whatsapp.com/H53MdwhtnRf7TGX1VJ2Jje', 'Que otimo que se interessou pelo Legião Z!\nAi está nosso grupo!', id)
+			if (isGroupMsg) return kill.reply(from, 'Interessado pelo grupo da pessoa que me criou? Use isso no PV!', id)
+			await kill.sendLinkWithAutoPreview(from, 'https://chat.whatsapp.com/H53MdwhtnRf7TGX1VJ2Jje', '', id)
 			break
 			
 			
@@ -801,8 +799,8 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'life': 
-            const dia = await axios.get(`https://docs-jojo.herokuapp.com/api/fml`)
-			var acon = dia.data.result.fml
+            const dia = await axios.get(`https://api.zeks.xyz/api/fml`)
+			var acon = dia.data.result
             await sleep(5000)
             translate(acon, 'pt')
                 .then((lfts) => kill.reply(from, lfts, id))
@@ -948,7 +946,7 @@ module.exports = kconfig = async (kill, message) => {
         case 'mp3':
             if (args.length == 0) return kill.reply(from, 'Falta definir o Link para isso!', id)
 			try {
-				const ytmp3d = await axios.get(`http://st4rz.herokuapp.com/api/yta2?url=${body.slice(5)}`)
+				const ytmp3d = await axios.get(`http://st4rz.herokuapp.com/api/yta2?url=${args[0]}`)
 				await kill.sendFileFromUrl(from, `${ytmp3d.data.result}`, `${ytmp3d.data.title}.${ytmp3d.data.ext}`, `${ytmp3d.data.title}`, id)
 			} catch (error) {
 				kill.reply(from, 'Ah, não consegui enviar, pode ser que o servidor esteja com problemas ou não consigo mandar esse audio.', id)
@@ -960,8 +958,8 @@ module.exports = kconfig = async (kill, message) => {
         case 'mp4':
             if (args.length == 0) return kill.reply(from, 'Falta definir o Link para isso!', id)
 			try {
-				const ytmp4d = await axios.get(`http://st4rz.herokuapp.com/api/ytv2?url=${body.slice(5)}`)
-				await kill.sendFileFromUrl(from, `${rest.data.result}`, `${rest.data.title}.${rest.data.ext}`, `${rest.data.title}`, id)
+				const ytmp4d = await axios.get(`http://st4rz.herokuapp.com/api/ytv2?url=${args[0]}`)
+				await kill.sendFileFromUrl(from, `${ytmp4d.data.result}`, `${ytmp4d.data.title}.${ytmp4d.data.ext}`, `${ytmp4d.data.title}`, id)
 			} catch (error) {
 				kill.reply(from, 'Ah, não consegui enviar, pode ser que o servidor esteja com problemas ou não consigo mandar esse video.', id)
 				console.log(error)
@@ -1116,7 +1114,7 @@ module.exports = kconfig = async (kill, message) => {
 			try {
 				const spiris = await axios.get(`http://simsumi.herokuapp.com/api?text=${body.slice(7)}&lang=pt`)
 				const a = spiris.data.success
-				if (a == '' || a == 'Limit 50 queries per hour.') {
+				if (a == '' || a == null || a == 'Limit 50 queries per hour.') {
 					sppt.save('./lib/media/tts/resPtm.mp3', resfl, function () {
 						kill.sendPtt(from, './lib/media/tts/resPtm.mp3', id)
 					})
@@ -1157,26 +1155,31 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
 		case 'akinator':
+		case 'aki':
 			try {
 				if (args[0] == '-r') {
 					let akinm = args[1].match(/^[0-9]+$/)
 					if (!akinm) return kill.reply(from, 'Responda apenas com 0 ou 1!\n0 = Sim\n1 = Não', id)
 					const myAnswer = `${args[1]}`
 					await aki.step(myAnswer);
-					if (aki.progress >= 70 || aki.currentStep >= 78) {
+					if (aki.progress >= 90 || aki.currentStep >= 90) {
 						await aki.win()
 						var akiwon = aki.answers[0]
-						await kill.sendFileFromUrl(from, `${akiwon.absolute_picture_path}`, '', `✪ Palpite: ${akiwon.name}\n\n✪ De: ${akiwon.description}\n\n✪ Ranking: ${akiwon.ranking}\n\n✪ Pseudo-Nome: ${akiwon.pseudo}\n\n✪ Quantidade de Palpites: ${aki.guessCount}`, id)
+						await kill.sendFileFromUrl(from, `${akiwon.absolute_picture_path}`, '', `✪ Palpite: ${akiwon.name}\n\n✪ De: ${akiwon.description}\n\n✪ Ranking: ${akiwon.ranking}\n\n✪ Pseudo-Nome: ${akiwon.pseudo}\n\n✪ Quantidade de Palpites: ${aki.guessCount}\n\nSe não for essa continue jogando para bater a quantidade de tentativas!`, id)
 					} else {
-						await kill.reply(from, `Questão: ${aki.question}\n\nProgresso: ${aki.progress}\n\nResponda com ${prefix}akinator -r [0 ou 1], 0 = sim, 1 = não.`, id)
+						await kill.reply(from, `Questão: ${aki.question}\n\nResponda com ${prefix}akinator -r [0 ou 1], 0 = sim, 1 = não.`, id)
 					}
+				} else if (args[0] == '-back' || args[0] == '-new') {
+					await aki.back()
+					await kill.reply(from, `Questão: ${aki.question}\n\nProgresso: ${aki.progress}\n\nResponda com ${prefix}akinator -r [0 ou 1], 0 = sim, 1 = não.\n\nSe o progresso estiver em 0, poderá jogar, caso contrario, digite mais vezes para chegar a 0 e então jogue, ou continue com o progresso atual de outra pessoa.`, id)
 				} else {
-					await kill.reply(from, `Questão: ${aki.question}\n\nResponda com ${prefix}akinator -r [0 ou 1], 0 = sim, 1 = não.`, id)
+					await kill.reply(from, `Questão: ${aki.question}\n\nProgresso: ${aki.progress}\n\nResponda com ${prefix}akinator -r [0 ou 1], 0 = sim, 1 = não.`, id)
 				}
 			} catch (error) {
-				await kill.reply(from, 'A sessão de jogo expirou, tentarei atualizar, se não funcionar, reinicie o BOT.', id)
-				new Aki(region)
-				await aki.start()
+				await kill.reply(from, 'Um segundinho, criarei uma nova sessão de jogo pra gente!', id)
+				playaki()
+				await kill.reply(from, `Questão: ${aki.question}\n\nResponda com ${prefix}akinator -r [0 ou 1], 0 = sim, 1 = não.`, id)
+				console.log(error)
 			}
 			break
 			
@@ -1187,7 +1190,7 @@ module.exports = kconfig = async (kill, message) => {
 			const resmf = repl.replace('%name$', `${name}`).replace('%battery%', `${lvpc}`)
 			try {
 				const iris = await axios.get(`http://simsumi.herokuapp.com/api?text=${body.slice(6)}&lang=pt`)
-				if (iris.data.success == '' || iris.data.success == 'Limit 50 queries per hour.') {
+				if (iris.data.success == '' || iris.data.success == null || iris.data.success == 'Limit 50 queries per hour.') {
 					kill.reply(from, resmf, id)
 				} else {
 					await kill.reply(from, iris.data.success, id)
@@ -1211,8 +1214,9 @@ module.exports = kconfig = async (kill, message) => {
         case 'ping':
             await kill.sendText(from, `Pong!\n_Minha velocidade é de ${processTime(t, moment())} segundos._`)
             break
+			
 
-
+		// LEMBRE-SE, REMOVER CRÈDITO È CRIME E PROIBIDO
         case 'donate':
 		case 'doar':
             kill.sendText(from, donate, id)
@@ -1226,12 +1230,43 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'flip':
+			const checkxp = rank.getXp(usuario, nivel)
+			if (checkxp <= 5000) return kill.reply(from, `Você não possui licença para jogar, obtenha uma quando tiver 5000 XP.\n\nSeu XP: ${checkxp}`, id)
             const side = Math.floor(Math.random() * 2) + 1
-            if (side == 1) {
-               kill.sendStickerfromUrl(from, 'https://i.ibb.co/LJjkVK5/heads.png', { method: 'get' }, { author: '🎁 https://bit.ly/30t4jJV ☆', pack: '🔰 Iris/Legião Z ⚜️', keepScale: true })
-            } else {
-               kill.sendStickerfromUrl(from, 'https://i.ibb.co/wNnZ4QD/tails.png', { method: 'get' }, { author: '🎁 https://bit.ly/30t4jJV ☆', pack: '🔰 Iris/Legião Z ⚜️', keepScale: true })
-            }
+			if (args.length !== 2) return kill.reply(from, 'Especifique se deseja apostar em cara ou coroa e a quantidade XP a apostar.', id)
+			if (Number(args[1]) >= checkxp || Number(args[1]) >= 501) return kill.reply(from, `Você não pode apostar uma quantidade de XP maior do que a você tem, e nosso limite de apostas é de 500 XP por vez!\n\nSeu XP: ${checkxp}`, id)
+			const nflipxp = Number(-args[1])
+			const pflipxp = lvpc + Number(args[1])
+			const limitfp = diario.getLimit(sender.id, daily)
+            if (limitfp !== undefined && cd - (Date.now() - limitfp) > 0) {
+                const time = ms(cd - (Date.now() - limitfp))
+                await kill.reply(from, 'Ora ora, você já não possui tentativas disponiveis, tente novamente em 30 minutos.', id)
+			} else {
+				if (args[0] == 'cara' || args[0] == 'coroa') {
+					if (side == 1) {
+						await kill.sendStickerfromUrl(from, 'https://i.ibb.co/LJjkVK5/heads.png', { method: 'get' }, { author: '🎁 https://bit.ly/30t4jJV ☆', pack: '🔰 Iris/Legião Z ⚜️', keepScale: true })
+						if (args[0] == 'cara') {
+							kill.reply(from, `O resultado foi de "Cara", você ganhou ${pflipxp} XP.`, id)
+							rank.addXp(sender.id, pflipxp, nivel)
+						} else {
+							kill.reply(from, `Que pena! O resultado foi de "Cara", você perdeu ${nflipxp} XP.`, id)
+							rank.addXp(sender.id, nflipxp, nivel)
+						}
+					} else {
+						await kill.sendStickerfromUrl(from, 'https://i.ibb.co/wNnZ4QD/tails.png', { method: 'get' }, { author: '🎁 https://bit.ly/30t4jJV ☆', pack: '🔰 Iris/Legião Z ⚜️', keepScale: true })
+						if (args[0] == 'coroa') {
+							kill.reply(from, `O resultado foi de "Coroa", você ganhou ${pflipxp} XP.`, id)
+							rank.addXp(sender.id, pflipxp, nivel)
+						} else if (args[0] == 'cara') {
+							kill.reply(from, `Que pena! O resultado foi de "Coroa", você perdeu ${nflipxp} XP.`, id)
+							rank.addXp(sender.id, nflipxp, nivel)
+						}
+					}
+				} else {
+					kill.reply(from, 'Aposte apenas em "Cara" ou "Coroa".', id)
+				}
+				diario.addLimit(sender.id, daily)
+			}
             break
 
 
@@ -2967,10 +3002,26 @@ module.exports = kconfig = async (kill, message) => {
 
 
 		case 'rolette':
-            if (double == 1) {
-				await kill.reply(from, 'Bang, ela disparou e você morreu, é game over.', id)
-            } else if (double == 2) {
-				await kill.reply(from, 'Você continua vivo, passe a vez.', id)
+		case 'roleta':
+			const checkxpr = rank.getXp(usuario, nivel)
+			if (checkxpr <= 5000) return kill.reply(from, `Você não possui licença para jogar, obtenha uma quando tiver 5000 XP.\n\nSeu XP: ${checkxp}`, id)
+			if (args.length !== 1) return kill.reply(from, 'Especifique a quantidade XP para apostar.', id)
+			if (Number(args[0]) >= checkxpr || Number(args[0]) >= '501') return kill.reply(from, `Você não pode apostar uma quantidade de XP maior do que a você tem, e nosso limite de apostas é de 500 XP por vez!\n\nSeu XP: ${checkxpr}`, id)
+			const nrolxp = Number(-args[0])
+			const prolxp = lvpc + Number(args[0])
+			const limitrl = diario.getLimit(sender.id, daily)
+            if (limitrl !== undefined && cd - (Date.now() - limitrl) > 0) {
+                const time = ms(cd - (Date.now() - limitrl))
+                await kill.reply(from, 'Ora ora, você já não possui tentativas disponiveis, tente novamente em 30 minutos.', id)
+			} else {
+				if (double == 1) {
+					kill.reply(from, `Bang, você perdeu na roleta-russa, causando uma perca de ${nrolxp} em seu XP.`, id)
+					rank.addXp(sender.id, nrolxp, nivel)
+				} else if (double == 2) {
+					kill.reply(from, `Salvo! Você não levou um tiro e ganhou ${prolxp} XP.`, id)
+					rank.addXp(sender.id, prolxp, nivel)
+				}
+				diario.addLimit(sender.id, daily)
 			}
 			break
 			
@@ -3026,18 +3077,21 @@ module.exports = kconfig = async (kill, message) => {
             }
 			break	
 			
-
+		// se quiser por mais pra zoar, abra o arquivo lgbt e adicione 1 por linha
         case 'gay':
+        case 'lgbt':
             gaak = body.trim().split(' ')
-    	    var lgbt = ["lésbica", "gay", "bissexual", "transgenero", "queer", "intersexual", "pedro-sexual", "negrosexual", "helicoptero sexual", "ageneros", "androgino", "assexual", "macaco-sexual", "dedo-sexual", "Sexo-Inexplicavel", "predio-sexual", "sexual-não-sexual", "pansexual", "kink", "incestuoso", "comedor-de-casadas", "unicornio-sexual", "maniaco-sexual"]
+    	    var lgbt = fs.readFileSync('./lib/config/lgbt.txt').toString().split('\n')
     	    var guei = lgbt[Math.floor(Math.random() * lgbt.length)]
-			if (args.length == 1) {
-				await kill.sendTextWithMentions(from, gaak[1] + ' é ' + lvpc + '% ' + guei + '.')
+    	    var twgui = lgbt[Math.floor(Math.random() * lgbt.length)]
+			var lvrq = 100 - lvpc
+			if (args.length == 1 && isGroupMsg) {
+				await kill.sendTextWithMentions(from, `${gaak[1]} é ${lvpc}% ${guei} e ${lvrq}% ${twgui}.`)
             } else {
-				await kill.reply(from, `Você é ` + lvpc + '% ' + guei + '.', id)
+				await kill.reply(from, `Você é ${lvpc}% ${guei} e ${lvrq}% ${twgui}.`, id)
             }
 			break
-			
+
 
 		case 'chance':
 			if (args.length == 0) return kill.reply(from, 'Defina algo para analisar.', id)
@@ -3084,13 +3138,18 @@ module.exports = kconfig = async (kill, message) => {
 		
 
         case 'menu':
-			const uzrXp = rank.getXp(usuario, nivel)
-			const uzrlvl = rank.getLevel(usuario, nivel)
-			const uneedxp = 5 * Math.pow(uzrlvl, 2) + 50 * uzrlvl + 100
-			const timed = moment(t * 1000).format('DD/MM/YY HH:mm:ss')
-			const allin = `======================\n_Olá_ *"${pushname}"*!\n_Dia:_ *${timed}*\n_Meu Ping:_ *${processTime(t, moment())}* _segundos_\n_Level:_ *${uzrlvl}*\nXP: *${uzrXp}* / *${uneedxp}*\nPatente: *${patente}*\n======================\n\n`
-            kill.reply(from, allin + help, id)
-            kill.reply(from, `De outros comandos temos...\n\n*${prefix}Admins* _é para administradores._\n\n*${prefix}Kill* _é apenas para meu dono._\n\n*${prefix}Adult* _é o menu de comandos adultos._\n\n*${prefix}Down* _é o menu de download de músicas e videos._\n\n_Se quiser ganhar XP, converse e use a BOT._`, id)
+			if (isGroupMsg && isxp) {
+				const uzrXp = rank.getXp(usuario, nivel)
+				const uzrlvl = rank.getLevel(usuario, nivel)
+				const uneedxp = 5 * Math.pow(uzrlvl, 2) + 50 * uzrlvl + 100
+				const timed = moment(t * 1000).format('DD/MM/YY HH:mm:ss')
+				const allin = `======================\n_Olá_ *"${pushname}"*!\n_Dia:_ *${timed}*\n_Meu Ping:_ *${processTime(t, moment())}* _segundos_\n_Level:_ *${uzrlvl}*\nXP: *${uzrXp}* / *${uneedxp}*\nPatente: *${patente}*\n======================\n\n`
+				kill.reply(from, allin + help, id)
+				kill.reply(from, `De outros comandos temos...\n\n*${prefix}Admins* _é para administradores._\n\n*${prefix}Kill* _é apenas para meu dono._\n\n*${prefix}Adult* _é o menu de comandos adultos._\n\n*${prefix}Down* _é o menu de download de músicas e videos._\n\n_Se quiser seu XP, converse e use a BOT._`, id)
+			} else {
+				kill.reply(from, help, id)
+				kill.reply(from, `De outros comandos temos...\n\n*${prefix}Admins* _é para administradores._\n\n*${prefix}Kill* _é apenas para meu dono._\n\n*${prefix}Adult* _é o menu de comandos adultos._\n\n*${prefix}Down* _é o menu de download de músicas e videos._\n\n_Se quiser obter XP, ative o uso dele, converse e use a BOT._`, id)
+			}
             break
 
 
@@ -3116,7 +3175,7 @@ module.exports = kconfig = async (kill, message) => {
             kill.sendText(from, down, id)
             break
 
-
+		// LEMBRE-SE, REMOVER CRÈDITO È CRIME E PROIBIDO
         case 'readme':
             kill.reply(from, readme, id)
             break
@@ -3516,11 +3575,16 @@ module.exports = kconfig = async (kill, message) => {
             break
 			
 		case 'cassino':
-			if (!isGroupMsg) return kill.reply(from, mess.error.Gp, id)
+			const checkxpc = rank.getXp(usuario, nivel)
+			if (checkxpc <= 5000) return kill.reply(from, `Você não possui licença para jogar, obtenha uma quando tiver 5000 XP.\n\nSeu XP: ${checkxpc}`, id)
+			if (args.length !== 1) return kill.reply(from, 'Especifique a quantidade de XP para apostar.', id)
+			if (Number(args[0]) >= checkxpc || Number(args[0]) >= 501) return kill.reply(from, `Você não pode apostar uma quantidade de XP maior do que a você tem, e nosso limite de apostas é de 500 XP por vez!\n\nSeu XP: ${checkxpc}`, id)
+			const ncasxp = Number(-args[1])
+			const pcasxp = lvpc + Number(args[1])
             const limitcs = diario.getLimit(sender.id, daily)
             if (limitcs !== undefined && cd - (Date.now() - limitcs) > 0) {
                 const time = ms(cd - (Date.now() - limitcs))
-                 await kill.reply(from, 'Opa! Você já jogou isso hoje, para jogar novamente venha amanhã!', id)
+                 await kill.reply(from, 'Ora ora, você já não possui tentativas disponiveis, tente novamente em 30 minutos.', id)
 			} else {
 				var cassin = ['🍒', '🎃', '🍐']
 				const cassin1 = cassin[Math.floor(Math.random() * cassin.length)]
@@ -3529,11 +3593,11 @@ module.exports = kconfig = async (kill, message) => {
 				var cassinend = cassin1 + cassin2 + cassin3
 				console.log(cassinend)
 				if (cassinend == '🍒🍒🍒' || cassinend == '🎃🎃🎃' || cassinend == '🍐🍐🍐') {
-					const randxp = Math.floor(Math.random() * 500)
-					kill.reply(from, `Ganhou, Ganhou, Ganhou! A resposta do cassino foi de...\n\n ${cassin1} - ${cassin2} - ${cassin3}\n\nVocê ganhou ${randxp} XP!`, id)
-					rank.addXp(sender.id, randxp, nivel)
+					kill.reply(from, `Ganhou, Ganhou, Ganhou! A resposta do cassino foi de...\n\n ${cassin1} - ${cassin2} - ${cassin3}\n\nVocê ganhou ${pcasxp} XP!`, id)
+					rank.addXp(sender.id, pcasxp, nivel)
 				} else {
-					kill.reply(from, `Que pena! Não foi dessa vez, você recebeu um...\n\n ${cassin1} - ${cassin2} - ${cassin3}\n\nE infelizmente não obteve nenhum XP.`, id)
+					kill.reply(from, `Que pena! Não foi dessa vez, você recebeu um...\n\n ${cassin1} - ${cassin2} - ${cassin3}\n\nVocê perdeu ${ncasxp} XP!`, id)
+					rank.addXp(sender.id, ncasxp, nivel)
 				}
 				diario.addLimit(sender.id, daily)
 			}
