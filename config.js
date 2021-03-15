@@ -3580,7 +3580,7 @@ module.exports = kconfig = async (kill, message) => {
 			if (args.length !== 1) return kill.reply(from, 'Especifique a quantidade de XP para apostar.', id)
 			if (Number(args[0]) >= checkxpc || Number(args[0]) >= 501) return kill.reply(from, `Você não pode apostar uma quantidade de XP maior do que a você tem, e nosso limite de apostas é de 500 XP por vez!\n\nSeu XP: ${checkxpc}`, id)
 			const ncasxp = Number(-args[0])
-			const pcasxp = lvpc + Number(args[0])
+			const pcasxp = Number(lvpc + args[0])
             const limitcs = diario.getLimit(sender.id, daily)
             if (limitcs !== undefined && cd - (Date.now() - limitcs) > 0) {
                 const time = ms(cd - (Date.now() - limitcs))
@@ -3741,6 +3741,34 @@ module.exports = kconfig = async (kill, message) => {
             }
             break
 			
+		case 'reverter':
+		case 'rev':
+            if (isMedia && type === 'image' || isQuotedImage) {
+                const revimg = isQuotedImage ? quotedMsg : message
+                const revigb = await decryptMedia(revimg, uaOverride)
+                await kill.reply(from, mess.wait, id)
+				const options = {
+					apiKey: config.imgbb,
+					imagePath: './lib/media/img/rev.jpg',
+					expiration: 1800
+				}
+                var revdimg = './lib/media/img/rev.jpg'
+                await fs.writeFile(revdimg, revigb)
+				const remvup = await imgbbUploader(options)
+				console.log(remvup.url)
+                await kill.sendFileFromUrl(from, `https://some-random-api.ml/canvas/invert?avatar=${remvup.url}`, 'rev.jpg', 'Mãe, Pai, estou daltônica!', id)
+            } else {
+                await kill.reply(from, 'Use isso com uma imagem apenas.', id)
+            }
+            break
+			
+		case 'encurtar':
+		case 'tinyurl':
+			if (args.length == 0) return kill.reply(from, 'Insira o comando e em seguida o link para encurtar.', id)
+			const tinurl = await axios.get(`https://tinyurl.com/api-create.php?url=${args[0]}`)
+			if (tinurl.data == 'Error') return kill.reply(from, 'Você está mesmo usando isso com uma URL?\nO servidor me retornou um erro.', id)
+			await kill.reply(from, `Aproveite a URL encurtada e sem propagandas!\n${tinurl.data}`, id)
+			break
 			
 		/*case 'Nome do comando sem espaços':
 			await kill.reply(from, 'Sua mensagem', id)
