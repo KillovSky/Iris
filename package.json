@@ -1,6 +1,6 @@
 {
   "name": "iris",
-  "version": "2.6.2",
+  "version": "2.7.0",
   "private": "true",
   "description": "Inteligência artificial do Legião Z!",
   "main": "index.js",

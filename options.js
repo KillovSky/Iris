@@ -1,5 +1,5 @@
 const fs = require('fs-extra') // Modulo de operações em disco
-// SE VOCE OBTIVER PROBLEMAS, REMOVA A // DO USE CHROME
+// SE VOCE OBTIVER PROBLEMAS, REMOVA A // DO USE CHROME, ESPECIALMENTE NOS COMANDOS DE VIDEO
 
 module.exports = options = (headless, start) => {
     const options = {

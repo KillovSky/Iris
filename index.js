@@ -22,7 +22,7 @@ const start = (kill = new Client()) => {
         kill.onMessage((async (message) => {
             kill.getAmountOfLoadedMessages()
             .then((msg) => {
-                if (msg >= 3000) {
+                if (msg >= 1000) {
                     kill.cutMsgCache()
                 }
             })
@@ -35,8 +35,10 @@ const start = (kill = new Client()) => {
 			const bklist = JSON.parse(fs.readFileSync('./lib/config/anti.json'))
 			const anti = JSON.parse(fs.readFileSync('./lib/config/blacklist.json'))
 			const fks = JSON.parse(fs.readFileSync('./lib/config/fake.json'))
-			const ddi = config.ddi
 			const personr = event.who
+			const numebot = await kill.getHostNumber() + '@c.us'
+			const isMyBot = personr.includes(numebot)
+			const ddi = config.ddi
 			const isWelkom = welkom.includes(event.chat)
 			const isFake = fks.includes(event.chat)
 			const fake = personr.startsWith(ddi)
@@ -49,17 +51,17 @@ const start = (kill = new Client()) => {
 			const { contact, groupMetadata, name } = gChat
 			try {
 				if (event.action == 'add') {
-					if (isAnti && fuck) {
+					if (isAnti && fuck && !isMyBot) {
 						await kill.sendText(event.chat, `E TU TA AQUI MENÓ?! TU TA AQUI DNV MENÓ??`)
 						await sleep(2000)
 						await kill.removeParticipant(event.chat, event.who)
 						console.log(color('[BLACKLIST]', 'red'), color(`${pushname} - (${event.who.replace('@c.us', '')}) foi banido do ${name} por ter sido colocado na blacklist...`, 'yellow'))
-					} else if (isFake && !fake) {
+					} else if (isFake && !fake && !isMyBot) {
 						await kill.sendTextWithMentions(event.chat, `Olá @${event.who.replace('@c.us', '')}, como parte do nosso sistema de segurança, números de fora do Brasil são banidos, se você não for alguém mal e quiser estar no grupo pacificamente, por favor contate os administradores 😉.\n\nHello @${event.who.replace('@c.us', '')}, as part of our security system, numbers outside Brazil are banned, if you are not someone bad and want to be in the group peacefully, please contact the administrators 😉.\n\nHalo @${event.who.replace('@c.us', '')}, sebagai bagian dari sistem keamanan kami, nomor di luar Brasil dilarang, jika Anda bukan orang jahat dan ingin berada di grup dengan damai, silakan hubungi administrator 😉.\n\nHola @${event.who.replace('@c.us', '')}, como parte de nuestro sistema de seguridad, los números fuera de Brasil están prohibidos, si no eres alguien malo y quieres estar en el grupo pacíficamente, por favor contacte a los administradores 😉.`)
 						await sleep(4000)
 						await kill.removeParticipant(event.chat, event.who)
 						console.log(color('[FAKE]', 'red'), color(`${pushname} - (${event.who.replace('@c.us', '')}) foi banido do ${name} por usar número falso ou ser de fora do país...`, 'yellow'))
-					} else if (isWelkom) {
+					} else if (isWelkom && !isMyBot) {
 						var profile = await kill.getProfilePicFromServer(event.who)
 						if (profile == '' || profile == undefined) profile = 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTQcODjk7AcA4wb_9OLzoeAdpGwmkJqOYxEBA&usqp=CAU'
 						const welcomer = await new canvas.Welcome()
@@ -79,7 +81,7 @@ const start = (kill = new Client()) => {
 						await kill.sendFile(event.chat, base64, 'welcome.png', `Olá ${pushname}! 🥰 \n\nSeja bem vindo ao ${name} 😎 \n\nDesejamos que se divirta e obviamente que siga nossas regras! ✅ \n\nCaso precise, chame um Administrador ou digite ${config.prefix}menu. 👨🏻‍💻`)
 						console.log(color('[ENTROU]', 'red'), color(`${pushname} - (${event.who.replace('@c.us', '')}) entrou no grupo ${name}...`, 'yellow'))
 					}
-				} else if (event.action == 'remove' && isWelkom) {
+				} else if (event.action == 'remove' && isWelkom && !isMyBot) {
 					var profile = await kill.getProfilePicFromServer(event.who)
 					if (profile == '' || profile == undefined) profile = 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTQcODjk7AcA4wb_9OLzoeAdpGwmkJqOYxEBA&usqp=CAU'
 					const bye = await new canvas.Goodbye()
