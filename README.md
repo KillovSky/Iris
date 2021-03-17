@@ -2,22 +2,19 @@
 Uma bot em português feita para PC, originalmente para o grupo Legião Z no WhatsApp, possui mais de 200 comandos e continua em crescimento e melhorias frequentes.
 
 ### Usar apenas no Telefone
-No celular é dificílimo que você consiga usar por Termux, portanto, use o site [Goorm](https://ide.goorm.io) ou a Google Cloud-Shell(https://cloud.google.com/shell) para criar sua BOT pelo telefone, mas saiba que eles irão te desconectar frequentemente, se você possui PC, é muito melhor ir por ele.
+No celular é dificílimo que você consiga usar por Termux, portanto, use o site [Goorm](https://ide.goorm.io) ou a [Google Cloud-Shell](https://cloud.google.com/shell) para criar sua BOT pelo telefone, mas saiba que eles irão te desconectar frequentemente, se você possui PC, é muito melhor ir por ele.
 
 ### Pedido Pessoal
-Por favor NÃO REMOVA os créditos, levei muito tempo e precisei ter muita dedicação pra se criar uma BOT Brasileira assim, agradeço pela cooperação.
+Esse software funciona sob a licença [MIT](http://escolhaumalicenca.com.br/licencas/mit/), sendo proibido a exclusão dos créditos de quem criou, considerem também que levei muito tempo nisso, então por favor não removam os créditos do programa que demorei para fazer.
 
 ### Erros & Bugs
-Se notar erros leia a [Discussions](https://github.com/KillovSky/iris/discussions), se ela não resolver, fale comigo pelos meios no final da pagina ou reporte no Issues, e claro, se certifique de ter instalado chrome e de ler TUDO que estiver escrito abaixo.
+Se notar erros leia a [Discussions](https://github.com/KillovSky/iris/discussions), se ela não resolver, fale comigo pelos meios no final da pagina ou reporte no [Issues](https://github.com/KillovSky/iris/issues), e claro, se certifique de ter instalado chrome e de ler TUDO que estiver escrito abaixo.
 Baixe Chrome no Windows por [aqui](https://www.google.com/chrome), no linux use os comandos abaixo.
 
 ```bash
 > wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 > sudo apt install ./google-chrome-stable_current_amd64.deb
 ```
-
-### Para os donos
-Você pode rodar comandos de Windows como "ipconfig", comandos de linux como "apt", ou comandos de programações como python -c tudo pelo WhatsApp, ninguém além de você pode usar isso, se você deseja que usem, remova a linha if (!isOnwer) [aqui](https://github.com/KillovSky/iris/blob/main/config.js#L2650), mas saiba que removê-la pode ser perigoso a você.
 
 ### Funções (+200)
 
@@ -78,25 +75,8 @@ Você precisa ter esse repositório, é simples, rode os comandos abaixo, em cas
 > npm i
 ```
 
-### Iniciar
-Para iniciar digite o comando abaixo e espere, após isso, escaneie o QR Code.
-
-```bash
-> npm start
-```
-
-### Ver todos os comandos
-Digite no seu chat a mensagem:
-
-```bash
-> /menu
-```
-
-### Crie seus comandos
-Há uma base simples para suas criações por [aqui](https://github.com/KillovSky/iris/blob/main/config.js#L3229), basta que você remova a "/\*" e a "\*/" para utilizá-la, se precisar de outros tipos, você pode ver sobre eles por [aqui](https://docs.openwa.dev/classes/client.html), se obtiver dificuldades, chame-me por [aqui](https://chat.whatsapp.com/H53MdwhtnRf7TGX1VJ2Jje) ou [aqui](https://wa.me/+5518998044132).
-
-### Mudanças
-Edite as API's encontradas em: (Se estiver incorreta avise ou procure)
+### Mudanças Obrigatórias
+Edite as API's encontradas em:
 
 - [API 1 - ImgBB](https://github.com/KillovSky/iris/blob/main/lib/config/config.json#5)
 - [API 2 - AlphaCoders](https://github.com/KillovSky/iris/blob/main/lib/config/config.json#6)
@@ -108,10 +88,27 @@ Edite as API's encontradas em: (Se estiver incorreta avise ou procure)
 - [Prefix](https://github.com/KillovSky/iris/blob/main/lib/config/config.json#4)
 - [Número](https://github.com/KillovSky/iris/blob/main/lib/config/config.json#2)
 - [DDI](https://github.com/KillovSky/iris/blob/main/lib/config/config.json#3)
-- [Bomber](https://github.com/KillovSky/iris/blob/main/config.js#L2637)
+- [Bomber](https://github.com/KillovSky/iris/blob/main/config.js#L2644)
 - [Akinator](https://github.com/KillovSky/iris/blob/main/lib/config/config.json#11)
 - Elas são referentes aos sites [RemoveBG](https://www.remove.bg/pt-br), [ImgBB](https://api.imgbb.com/), [AlphaCoders](https://wall.alphacoders.com/api.php) e [WallHaven](https://wallhaven.cc/settings/account).
 - A DDI e Akinator são obrigatórios apenas caso você for de fora do Brasil, o Bomb apenas se você usar Linux.
+
+### Iniciar
+Após a edição dos arquivos necessários, rode o comando abaixo e espere iniciar, após isso, escaneie o QR Code.
+
+```bash
+> npm start
+```
+
+### Ver todos os comandos
+Digite no seu chat a mensagem, se você editou sua prefix, troque a '/' para o caractere que você utilizará.
+
+```bash
+> /menu
+```
+
+### Crie seus comandos
+Há uma base simples para suas criações por [aqui](https://github.com/KillovSky/iris/blob/main/config.js#L3235), basta que você remova a "/\*" e a "\*/" para utilizá-la, se precisar de outros tipos, você pode ver sobre eles por [aqui](https://docs.openwa.dev/classes/api_client.client.html), se obtiver dificuldades, chame-me por [aqui](https://chat.whatsapp.com/H53MdwhtnRf7TGX1VJ2Jje) ou [aqui](https://wa.me/+5518998044132).
 
 ### Brainly Português
 Depois de terminar a instalação siga esses passos para deixar seu brainly em português:
@@ -131,10 +128,10 @@ Mude o "Welcome" e "Welcome in" para o que quiser e repita o mesmo processo na G
 ```
 
 ### Computer-Freaker/Axios
-Para fixar o funcionamento da API da Computer-Freaker, que é responsável por diversos comandos (hug, hentai, dva, baguette...), siga os passos desse [Mini-Tutorial](https://github.com/KillovSky/iris/discussions/10).
+Para fixar o funcionamento da API da Computer-Freaker(Baguette, Yuri, Hug...) e de alguns problemas no módulo Axios, siga os passos desse [Mini-Tutorial](https://github.com/KillovSky/iris/discussions/10).
 
 ### Alertas no WhatsApp
-Para receber também as mensagem de erros da Íris pelo WhatsApp, remova a "//" da linha [Catch](https://github.com/KillovSky/iris/blob/main/config.js#L3243).
+Para receber também as mensagem de erros da Íris pelo WhatsApp, remova a "//" da linha [Catch](https://github.com/KillovSky/iris/blob/main/config.js#L3249).
 
 ### Agradecimentos:
 - [Open-WA](https://github.com/open-wa)

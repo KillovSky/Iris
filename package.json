@@ -1,6 +1,6 @@
 {
   "name": "iris",
-  "version": "2.7.0",
+  "version": "2.8.0",
   "private": "true",
   "description": "Inteligência artificial do Legião Z!",
   "main": "index.js",
@@ -9,7 +9,7 @@
     "test": "echo \"Erro ao iniciar\" && exit 1"
   },
   "author": "KillovSky",
-  "license": "Apache-2.0",
+  "license": "MIT",
   "dependencies": {
     "@open-wa/wa-automate": "^3.9.1",
     "@open-wa/wa-decrypt": "^3.0.1",

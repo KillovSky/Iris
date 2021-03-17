@@ -1,6 +1,6 @@
 /*
 * Construído por Lucas R. - KillovSky para Legião Z e distribuido mundialmente em certo ponto.
-* Reprodução, edição e outros estão autorizados MAS SEM REMOVER OS CRÉDITOS do criador deste BOT, resultando na quebra da licença do mesmo.
+* Reprodução, edição e outros estão autorizados MAS SEM REMOVER OS CRÉDITOS do criador deste BOT, resultando na quebra da licença do mesmo, leia mais em http://escolhaumalicenca.com.br/licencas/mit/
 * E desculpe pelos comandos que estão em "inglês" como o "groupinfo", amo o inglês e acho bonito dessa forma, então os programo com nome em inglês mesmo.
 */
 
@@ -585,7 +585,7 @@ module.exports = kconfig = async (kill, message) => {
 					await kill.reply(from, 'O auto banimento foi desativado, agora os números na blacklist podem entrar sem tomar ban.', id)
 				}
             } else {
-                kill.reply(from, mess.error.Ga, id)
+                await kill.reply(from, mess.error.Ga, id)
             }
             break	
 		
@@ -1124,13 +1124,13 @@ module.exports = kconfig = async (kill, message) => {
 
         case 'flip':
 			const checkxp = rank.getXp(usuario, nivel)
-			if (checkxp <= 1000) return kill.reply(from, `Você não possui licença para jogar, obtenha uma quando tiver 5000 XP.\n\nSeu XP: ${checkxp}`, id)
+			if (checkxp <= 1000) return kill.reply(from, `Você não possui licença para jogar, obtenha uma quando tiver 1000 XP.\n\nSeu XP: ${checkxp}`, id)
             const side = Math.floor(Math.random() * 2) + 1
 			if (args.length !== 2) return kill.reply(from, 'Especifique se deseja apostar em cara ou coroa e a quantidade XP a apostar.', id)
 			if (Number(args[1]) >= checkxp || Number(args[1]) >= 501) return kill.reply(from, `Você não pode apostar uma quantidade de XP maior do que a você tem, e nosso limite de apostas é de 500 XP por vez!\n\nSeu XP: ${checkxp}`, id)
 			if (isNaN(args[1])) return kill.reply(from, 'Para apostar use apenas números, nada de inserir letras, a menos que queira perder todo o XP que tenha.', id)
 			const nflipxp = Number(-args[1])
-			const pflipxp = lvpc + Number(args[1])
+			const pflipxp = Number(lvpc + args[1])
 			const limitfp = diario.getLimit(sender.id, daily)
             if (limitfp !== undefined && cd - (Date.now() - limitfp) > 0) {
                 const time = ms(cd - (Date.now() - limitfp))
@@ -2463,12 +2463,12 @@ module.exports = kconfig = async (kill, message) => {
 		case 'rolette':
 		case 'roleta':
 			const checkxpr = rank.getXp(usuario, nivel)
-			if (checkxpr <= 1000) return kill.reply(from, `Você não possui licença para jogar, obtenha uma quando tiver 5000 XP.\n\nSeu XP: ${checkxpr}`, id)
+			if (checkxpr <= 1000) return kill.reply(from, `Você não possui licença para jogar, obtenha uma quando tiver 1000 XP.\n\nSeu XP: ${checkxpr}`, id)
 			if (args.length !== 1) return kill.reply(from, 'Especifique a quantidade XP para apostar.', id)
 			if (Number(args[0]) >= checkxpr || Number(args[0]) >= '501') return kill.reply(from, `Você não pode apostar uma quantidade de XP maior do que a você tem, e nosso limite de apostas é de 500 XP por vez!\n\nSeu XP: ${checkxpr}`, id)
 			if (isNaN(args[0])) return kill.reply(from, 'Para apostar use apenas números, nada de inserir letras, a menos que queira perder todo o XP que tenha.', id)
 			const nrolxp = Number(-args[0])
-			const prolxp = lvpc + Number(args[0])
+			const prolxp = Number(lvpc + args[0])
 			const limitrl = diario.getLimit(sender.id, daily)
             if (limitrl !== undefined && cd - (Date.now() - limitrl) > 0) {
                 const time = ms(cd - (Date.now() - limitrl))
@@ -2529,8 +2529,13 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
 		case 'ship':
-			if (args.length !== 2) return kill.reply(from, 'Faltou marcar o casal de pombinhos!', id)
-			await kill.sendTextWithMentions(from, '❤️ ' + arqs[1] + ' tem um chance de ' + lvpc + '% de namorar ' + arqs[2] + '. 👩‍❤️‍👨')
+			if (isGroupMsg && args.length == 2 && mentionedJidList.length !== 0) { 
+				await kill.sendTextWithMentions(from, '❤️ ' + arqs[1] + ' tem um chance de ' + lvpc + '% de namorar ' + arqs[2] + '. 👩‍❤️‍👨')
+			} else if (args.length == 1) {
+				await kill.reply(from, '❤️ você tem um chance de ' + lvpc + '% de namorar ${arqs[1]}. 👩‍❤️‍👨')
+			} else {
+				await kill.reply(from, 'Marque o casal de pombinhos ou insira o nome da sua crush!', id)
+			}
 			break	
 			
 		// se quiser por mais pra zoar, abra o arquivo lgbt e adicione 1 por linha
@@ -2540,7 +2545,7 @@ module.exports = kconfig = async (kill, message) => {
     	    var guei = lgbt[Math.floor(Math.random() * lgbt.length)]
     	    var twgui = lgbt[Math.floor(Math.random() * lgbt.length)]
 			var lvrq = 100 - lvpc
-			if (args.length == 1 && isGroupMsg) {
+			if (isGroupMsg && args.length == 1 && mentionedJidList.length !== 0) { 
 				await kill.sendTextWithMentions(from, `${arqs[1]} é ${lvpc}% ${guei} e ${lvrq}% ${twgui}.`)
             } else {
 				await kill.reply(from, `Você é ${lvpc}% ${guei} e ${lvrq}% ${twgui}.`, id)
@@ -2555,16 +2560,18 @@ module.exports = kconfig = async (kill, message) => {
 
 
         case 'kiss':
-			if (args.length !== 1) return kill.reply(from, 'Marque ~apenas uma~ a pessoa quem você quer beijar hihihi', id)
-			await kill.sendGiphyAsSticker(from, 'https://media.giphy.com/media/1wmtU5YhqqDKg/giphy.gif')
-			await kill.sendTextWithMentions(from, `Minha nossa! @${author.replace('@c.us', '')} deu um beijo em ${arqs[1]}!`)
+			if (isGroupMsg && args.length == 1 && mentionedJidList.length !== 0) {
+				await kill.sendGiphyAsSticker(from, 'https://media.giphy.com/media/1wmtU5YhqqDKg/giphy.gif')
+				await kill.sendTextWithMentions(from, `Minha nossa! @${author.replace('@c.us', '')} deu um beijo em ${arqs[1]}!`)
+			} else return await kill.reply(from, 'Beije sua consagrada apenas em um grupo e marcando só uma morena.', id)
 			break
 
 
         case 'slap':
-			if (args.length !== 1) return kill.reply(from, 'Marque ~apenas uma~ a pessoa que merece um tapinha!', id)
-            await kill.sendGiphyAsSticker(from, 'https://media.giphy.com/media/S8507sBJm1598XnsgD/source.gif')
-			await kill.sendTextWithMentions(from, `@${author.replace('@c.us', '')} deu um tapasso em ${arqs[1]}!`)
+			if (isGroupMsg && args.length == 1 && mentionedJidList.length !== 0) {
+				await kill.sendGiphyAsSticker(from, 'https://media.giphy.com/media/S8507sBJm1598XnsgD/source.gif')
+				await kill.sendTextWithMentions(from, `@${author.replace('@c.us', '')} deu um tapasso em ${arqs[1]}!`)
+			} else return await kill.reply(from, 'Dê um tapasso nos seus inimigos apenas em um grupo e marcando apenas uma pessoa.', id)
             break
 
 
@@ -3019,7 +3026,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 		case 'cassino':
 			const checkxpc = rank.getXp(usuario, nivel)
-			if (checkxpc <= 1000) return kill.reply(from, `Você não possui licença para jogar, obtenha uma quando tiver 5000 XP.\n\nSeu XP: ${checkxpc}`, id)
+			if (checkxpc <= 1000) return kill.reply(from, `Você não possui licença para jogar, obtenha uma quando tiver 1000 XP.\n\nSeu XP: ${checkxpc}`, id)
 			if (args.length !== 1) return kill.reply(from, 'Especifique a quantidade de XP para apostar.', id)
 			if (Number(args[0]) >= checkxpc || Number(args[0]) >= 501) return kill.reply(from, `Você não pode apostar uma quantidade de XP maior do que a você tem, e nosso limite de apostas é de 500 XP por vez!\n\nSeu XP: ${checkxpc}`, id)
 			if (isNaN(args[0])) return kill.reply(from, 'Para apostar use apenas números, nada de inserir letras, a menos que queira perder todo o XP que tenha.', id)
