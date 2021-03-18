@@ -1131,10 +1131,12 @@ module.exports = kconfig = async (kill, message) => {
 			const checkxpr = rank.getXp(user, nivel)
 			if (checkxpr <= 1000) return kill.reply(from, `Você não possui licença para jogar, obtenha uma quando tiver 1000 XP.\n\nSeu XP: ${checkxpr}`, id)
 			if (args.length !== 1) return kill.reply(from, 'Especifique a quantidade XP para apostar.', id)
-			if (Number(args[0]) >= checkxpr || Number(args[0]) >= '501') return kill.reply(from, `Você não pode apostar uma quantidade de XP maior do que a você tem, e nosso limite de apostas é de 500 XP por vez!\n\nSeu XP: ${checkxpr}`, id)
 			if (isNaN(args[0])) return kill.reply(from, 'Para apostar use apenas números, nada de inserir letras, a menos que queira perder todo o XP que tenha.', id)
-			const nrolxp = Number(-args[0])
-			const prolxp = Math.floor(Math.random() * 200) + Number(args[0]);
+			if (Number(args[0]) >= checkxpr || Number(args[0]) >= '501') return kill.reply(from, `Você não pode apostar uma quantidade de XP maior do que a você tem, e nosso limite de apostas é de 500 XP por vez!\n\nSeu XP: ${checkxpr}`, id)
+			var nrolxp = Math.floor(Math.random() * -100) - Number(args[0]);
+			if (nrolxp > 700 || nrolxp < -700) nrolxp = Math.floor(Math.random() * -100) - 300
+			var prolxp = Math.floor(Math.random() * 200) + Number(args[0]);
+			if (prolxp > 700) prolxp = Math.floor(Math.random() * 100) + 500;
 			const limitrl = diario.getLimit(user, daily)
             if (limitrl !== undefined && cd - (Date.now() - limitrl) > 0) {
                 const time = ms(cd - (Date.now() - limitrl))
@@ -1157,10 +1159,12 @@ module.exports = kconfig = async (kill, message) => {
 			if (checkxp <= 1000) return kill.reply(from, `Você não possui licença para jogar, obtenha uma quando tiver 1000 XP.\n\nSeu XP: ${checkxp}`, id)
             const side = Math.floor(Math.random() * 2) + 1
 			if (args.length !== 2) return kill.reply(from, 'Especifique se deseja apostar em cara ou coroa e a quantidade XP a apostar.', id)
-			if (Number(args[1]) >= checkxp || Number(args[1]) >= 501) return kill.reply(from, `Você não pode apostar uma quantidade de XP maior do que a você tem, e nosso limite de apostas é de 500 XP por vez!\n\nSeu XP: ${checkxp}`, id)
 			if (isNaN(args[1])) return kill.reply(from, 'Para apostar use apenas números, nada de inserir letras, a menos que queira perder todo o XP que tenha.', id)
-			const nflipxp = Number(-args[1])
-			const pflipxp = Math.floor(Math.random() * 200) + Number(args[1]);
+			if (Number(args[1]) >= checkxp || Number(args[1]) >= 501) return kill.reply(from, `Você não pode apostar uma quantidade de XP maior do que a você tem, e nosso limite de apostas é de 500 XP por vez!\n\nSeu XP: ${checkxp}`, id)
+			var nflipxp = Math.floor(Math.random() * -100) - Number(args[1]);
+			if (nflipxp > 700 || nflipxp < -700) nflipxp = Math.floor(Math.random() * -100) - 300
+			var pflipxp = Math.floor(Math.random() * 200) + Number(args[1]);
+			if (pflipxp > 700) pflipxp = Math.floor(Math.random() * 100) + 500;
 			const limitfp = diario.getLimit(user, daily)
             if (limitfp !== undefined && cd - (Date.now() - limitfp) > 0) {
                 const time = ms(cd - (Date.now() - limitfp))
@@ -1198,10 +1202,12 @@ module.exports = kconfig = async (kill, message) => {
 			const checkxpc = rank.getXp(user, nivel)
 			if (checkxpc <= 1000) return kill.reply(from, `Você não possui licença para jogar, obtenha uma quando tiver 1000 XP.\n\nSeu XP: ${checkxpc}`, id)
 			if (args.length !== 1) return kill.reply(from, 'Especifique a quantidade de XP para apostar.', id)
-			if (Number(args[0]) >= checkxpc || Number(args[0]) >= 501) return kill.reply(from, `Você não pode apostar uma quantidade de XP maior do que a você tem, e nosso limite de apostas é de 500 XP por vez!\n\nSeu XP: ${checkxpc}`, id)
 			if (isNaN(args[0])) return kill.reply(from, 'Para apostar use apenas números, nada de inserir letras, a menos que queira perder todo o XP que tenha.', id)
-			const ncasxp = Number(-args[0])
-			const pcasxp = Math.floor(Math.random() * 200) + Number(args[0]);
+			if (Number(args[0]) >= checkxpc || Number(args[0]) >= 501) return kill.reply(from, `Você não pode apostar uma quantidade de XP maior do que a você tem, e nosso limite de apostas é de 500 XP por vez!\n\nSeu XP: ${checkxpc}`, id)
+			var ncasxp = Math.floor(Math.random() * -100) - Number(args[0]);
+			if (ncasxp > 700 || ncasxp < -700) ncasxp = Math.floor(Math.random() * -100) - 300
+			var pcasxp = Math.floor(Math.random() * 200) + Number(args[0]);
+			if (pcasxp > 700) pcasxp = Math.floor(Math.random() * 100) + 500;
             const limitcs = diario.getLimit(user, daily)
             if (limitcs !== undefined && cd - (Date.now() - limitcs) > 0) {
 				const time = ms(cd - (Date.now() - limitcs))
@@ -1727,7 +1733,7 @@ module.exports = kconfig = async (kill, message) => {
                  var pfp = grouppic 
             }
             await kill.sendFileFromUrl(from, pfp, 'group.png', ``, id)
-			await kill.sendTextWithMentions(from, `*${groupname}*\n\n*🌐️ Membros > ${totalMem}*\n\n*💌️ Boas Vindas/Adeus > ${welgrp}*\n\n*🌙 Exclusivos >  ${lzex}*\n\n*🎮 XP > ${xpgp}*\n\n*👤 Anti-Fakes > ${fakegp}*\n\n*🔏 Black-List > ${bklistgp}*\n\n*🔕 Silenciado > ${slcegp}*\n\n*🎥 Auto-Stickers > ${autostk}*\n\n*🔞 Contéudo adulto > ${ngrp}*\n\n*📃️ Descrição ↓*\n ${desc}\n\n*🌙 Dono >* @${gpOwner}\n\n*☀️ Administradores ↓*\n${admgp}`, id)
+			await kill.sendTextWithMentions(from, `*${groupname}*\n\n*🌐️ Membros > ${totalMem}*\n\n*💌️ Boas Vindas/Adeus > ${welgrp}*\n\n*🌙 Exclusivos >  ${lzex}*\n\n*🎮 XP > ${xpgp}*\n\n*👤 Anti-Fakes > ${fakegp}*\n\n*🔏 Black-List > ${bklistgp}*\n\n*🔕 Silenciado > ${slcegp}*\n\n*🎥 Auto-Stickers > ${autostk}*\n\n*🔞 Contéudo adulto > ${ngrp}*\n\n*📃️ Descrição ↓*\n ${desc}\n\n*🌙 Dono >* @${gpOwner}\n\n*☀️ Administradores ↓*\n${admgp}`)
 			break
 			
 			
@@ -1778,7 +1784,7 @@ module.exports = kconfig = async (kill, message) => {
 				}
 				hehe += '\n═✪〘 Obrigada & Amo vocês <3 〙✪═'
 				await sleep(2000)
-				await kill.sendTextWithMentions(from, hehe, id)
+				await kill.sendTextWithMentions(from, hehe)
 			} else if (isGroupMsg) {
 				await kill.reply(from, 'Desculpe, somente os administradores podem usar esse comando...', id)
 			} else {
@@ -2170,7 +2176,7 @@ module.exports = kconfig = async (kill, message) => {
             for (let i of blockNumber) {
                 hih += `➸ @${i.replace(/@c.us/g,'')}\n`
             }
-            await kill.sendTextWithMentions(from, hih, id)
+            await kill.sendTextWithMentions(from, hih)
             break
 			
 			
@@ -2683,27 +2689,6 @@ module.exports = kconfig = async (kill, message) => {
             break
 			
 			
-		case 'bomb':
-			const bomberr = `A forma correta de usar isso é inserir apenas números sem traços, letras ou +, como por exemplo...\n${prefix}bomb 5511998877665\nEvite usar em inocentes e certifique-se de ser um Administrador.`
-			if (args.length == 1 && isLeg && isGroupAdmins || args.length == 1 && isOwner) {
-				if (isNaN(args[0])) return kill.reply(from, bomberr, id)
-				if (args[0].includes(`${ownerNumber.replace('@c.us', '')}`) || args[0].includes(`${botNumber.replace('@c.us', '')}`)) {
-					await kill.sendText(ownerNumber, `O ${pushname} do número wa.me/${user.replace('@c.us', '')} tentou usar o Bomb em mim ou você.`, id)
-					return await kill.reply(from, 'Ah é? Pois saiba que meu dono vai ficar sabendo do que você tentou fazer!', id)
-				}
-				await kill.sendTextWithMentions(from, `Beleza! Pedido recebido e iniciado, o "@${args[0]}" será atacado dentro de alguns segundos!`, id)
-				const atk = execFile('./lib/bomb/bomb.exe', [`${args[0]}`, '3', '1', '0'], async function(err, data) { // o bomb esta configurado para Windows, se estiver no linux troque bomb.exe para lbomb, ficando ./lib/bomb/lbomb
-					if (err) {
-						await kill.reply(from, 'O programa fechou, isso indica um erro, fechamento manual ou termino do ataque', id)
-					}
-				})
-			} else {
-				console.log('erro')   
-				await kill.reply(from, bomberr, id)
-			}
-			break
-			
-			
 		case 'cmd':
 			if (!isOwner) return kill.reply(from, mess.error.Kl, id)
 			await kill.reply(from, 'Esse comando pode demorar e enviar respostas gigantes nos casos de "apt install" ou programas que demoram em sua execução.', id)
@@ -3016,7 +3001,7 @@ module.exports = kconfig = async (kill, message) => {
 					}
                 board += `${i + 1}. @${nivel[i].id.replace('@c.us', '')}\n➸ *XP*: ${nivel[i].xp}\n➸ *Level*: ${nivel[i].level}\n➸ *Patente*: ${role}\n\n`
                 }
-                await kill.sendTextWithMentions(from, board, id)
+                await kill.sendTextWithMentions(from, board)
             } catch (err) {
                 console.error(err)
                 await kill.reply(from, 'Puts, não temos nem 10 "jogadores" ainda, experimente novamente quando obtermos!', id)
@@ -3031,11 +3016,11 @@ module.exports = kconfig = async (kill, message) => {
             if (mentionedJidList.length !== 0) {
                 for (let give of mentionedJidList) {
                     rank.addXp(give, Number(args[1]), nivel)
-                    await kill.sendTextWithMentions(from, `Adicionado ${args[1]} de XP para @${give}.`, id)
+                    await kill.sendTextWithMentions(from, `Adicionado ${args[1]} de XP para @${give}.`)
                 }
             } else {
                 rank.addXp(args[0] + '@c.us', Number(args[1]), nivel)
-                await kill.sendTextWithMentions(from, `Adicionado ${args[1]} de XP para @${args[0]}.`, id)
+                await kill.sendTextWithMentions(from, `Adicionado ${args[1]} de XP para @${args[0]}.`)
             }
 			break
 			
@@ -3254,6 +3239,27 @@ module.exports = kconfig = async (kill, message) => {
 			} catch (error) {
 				await kill.reply(from, signoerr, id)
 				console.log(error)
+			}
+			break
+			
+			
+		case 'bomb':
+			const bomberr = `A forma correta de usar isso é inserir apenas números sem traços, letras ou +, como por exemplo...\n${prefix}bomb 5511998877665\nEvite usar em inocentes e certifique-se de ser um Administrador.`
+			if (args.length == 1 && isLeg && isGroupAdmins || args.length == 1 && isOwner) {
+				if (isNaN(args[0])) return kill.reply(from, bomberr, id)
+				if (args[0].includes(`${ownerNumber.replace('@c.us', '')}`) || args[0].includes(`${botNumber.replace('@c.us', '')}`)) {
+					await kill.sendText(ownerNumber, `O ${pushname} do número wa.me/${user.replace('@c.us', '')} tentou usar o Bomb em mim ou você.`)
+					return await kill.reply(from, 'Ah é? Pois saiba que meu dono vai ficar sabendo do que você tentou fazer!', id)
+				}
+				await kill.sendTextWithMentions(from, `Beleza! Pedido recebido e iniciado, o "@${args[0]}" será atacado dentro de alguns segundos!`)
+				const atk = execFile('./lib/bomb/bomb.exe', [`${args[0]}`, '3', '1', '0'], async function(err, data) { // o bomb esta configurado para Windows, se estiver no linux troque bomb.exe para lbomb, ficando ./lib/bomb/lbomb
+					if (err) {
+						await kill.reply(from, 'O programa fechou, isso indica um erro, fechamento manual ou termino do ataque', id)
+					}
+				})
+			} else {
+				console.log('erro')   
+				await kill.reply(from, bomberr, id)
 			}
 			break
 			
