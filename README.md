@@ -108,13 +108,13 @@ Digite no seu chat a mensagem, se você editou sua prefix, troque a '/' para o c
 ```
 
 ### Crie seus comandos
-Há uma base simples para suas criações por [aqui](https://github.com/KillovSky/iris/blob/main/config.js#L3378), basta que você remova a "/\*" e a "\*/" para utilizá-la, se precisar de outros tipos, você pode ver sobre eles por [aqui](https://docs.openwa.dev/classes/api_client.client.html), se obtiver dificuldades, chame-me por [aqui](https://chat.whatsapp.com/H53MdwhtnRf7TGX1VJ2Jje) ou [aqui](https://wa.me/+5518998044132).
+Há uma base simples para suas criações por [aqui](https://github.com/KillovSky/iris/blob/main/config.js#L3405), basta que você remova a "/\*" e a "\*/" para utilizá-la, se precisar de outros tipos, você pode ver sobre eles por [aqui](https://docs.openwa.dev/classes/api_client.client.html), se obtiver dificuldades, chame-me por [aqui](https://chat.whatsapp.com/H53MdwhtnRf7TGX1VJ2Jje) ou [aqui](https://wa.me/+5518998044132).
 
 ### Computer-Freaker/Axios
 Para fixar o funcionamento da API da Computer-Freaker(Baguette, Yuri, Hug...) e de alguns problemas no módulo Axios, siga os passos desse [Mini-Tutorial](https://github.com/KillovSky/iris/discussions/10).
 
 ### Alertas no WhatsApp
-Para receber também as mensagem de erros da Íris pelo WhatsApp, remova a "//" da linha [Catch](https://github.com/KillovSky/iris/blob/main/config.js#L3391).
+Para receber também as mensagem de erros da Íris pelo WhatsApp, remova a "//" da linha [Catch](https://github.com/KillovSky/iris/blob/main/config.js#L3418).
 
 ### Agradecimentos:
 - [Open-WA](https://github.com/open-wa)

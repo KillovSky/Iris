@@ -1,12 +1,12 @@
 {
   "name": "iris",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "private": "true",
   "description": "A bot oficial do Legião Z!",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-	"test": "echo → Para iniciar digite \"npm start\" ou \"node index.js.\"! && exit 1"
+    "test": "echo → Para iniciar digite \"npm start\" ou \"node index.js.\"! && exit 1"
   },
   "author": "KillovSky",
   "repository": {
@@ -20,7 +20,7 @@
   "license": "MIT",
   "dependencies": {
     "@dada513/wikipedia-search": "^1.0.1",
-    "@open-wa/wa-automate": "^3.10.12",
+    "@open-wa/wa-automate": "^3.10.13",
     "@open-wa/wa-decrypt": "^3.1.0",
     "@vitalets/google-translate-api": "^4.0.0",
     "aki-api": "^5.2.1",

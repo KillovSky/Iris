@@ -258,9 +258,7 @@ module.exports = kconfig = async (kill, message) => {
 		}
 		
 		// Ative para banir quem mandar todos os tipos de links (Ative removendo a /* e */)
-		/*if (isGroupMsg && !isGroupAdmins && isBotGroupAdmins && isLeg && !isOwner) {
-			if (isUrl(chats)) { await kill.removeParticipant(groupId, user) }
-		}*/
+		/*if (isGroupMsg && !isGroupAdmins && isBotGroupAdmins && isLeg && !isOwner && isUrl(chats)) { await kill.removeParticipant(groupId, user) }*/
 		
 		// Anti Imagens pornograficas, tirar o isCmd quebra diversos comandos de imagens
 		if (isGroupMsg && !isGroupAdmins && isBotGroupAdmins && !isOwner && isLeg && isMedia && isImage && !isCmd) {
@@ -429,8 +427,7 @@ module.exports = kconfig = async (kill, message) => {
                 await kill.reply(from, mess.wait(), id)
 				const encryptMedia = isQuotedGif || isQuotedVideo ? quotedMsg : message
 				const mediaData = await decryptMedia(encryptMedia, uaOverride)
-				const gifSticker = `data:${mimetype};base64,${mediaData.toString('base64')}`
-				await kill.sendMp4AsSticker(from, gifSticker, null, { stickerMetadata: true, pack: '🔰 Iris/Legião Z ⚜️', author: '🎁 https://bit.ly/30t4jJV ☆', fps: 10, startTime: '00:00:00.0', endTime : '00:00:05.0', crop: true, loop: 0 })
+				await kill.sendMp4AsSticker(from, mediaData, null, { stickerMetadata: true, pack: '🔰 Iris/Legião Z ⚜️', author: '🎁 https://bit.ly/30t4jJV ☆', fps: 10, startTime: '00:00:00.0', endTime : '00:00:05.0', crop: true, loop: 0 })
 				.catch(() => { kill.reply(from, mess.gifail(), id) })
             } else return kill.reply(from, mess.onlyvgif(), id)
             break
@@ -2677,11 +2674,12 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
         case 'menu':
+			const theMsg = getMsg(user, msgcount)
 			const uzrXp = getXp(user, nivel)
 			const uzrlvl = getLevel(user, nivel)
 			const uneedxp = 5 * Math.pow(uzrlvl, 2) + 50 * uzrlvl + 100
 			const mping = processTime(t, moment())
-			await kill.sendText(from, mess.menu(pushname, time, mping, uzrlvl, uzrXp, uneedxp, patente))
+			await kill.sendText(from, mess.menu(pushname, time, theMsg, uzrXp, uneedxp, uzrlvl, mping, patente))
             break
 			
 			
@@ -2743,10 +2741,11 @@ module.exports = kconfig = async (kill, message) => {
             await kill.sendText(from, mess.maker())
             break
 			
-		// LEMBRE-SE, REMOVER CRÈDITO È CRIME E PROIBIDO
+		// LEMBRE-SE, REMOVER CRÈDITO È CRIME E PROIBIDO!
         case 'termos':
 			await kill.sendFile(from, './lib/media/img/licenca.png', 'licenca.png', mess.tos(), id)
             break
+		// NÃO REMOVA ESSA PARTE!
 			
 			
 		case 'cmd':
@@ -2987,8 +2986,32 @@ module.exports = kconfig = async (kill, message) => {
 			msgcount.sort((a, b) => (a.msg < b.msg) ? 1 : -1)
             let active = '-----[ *RANKING DOS ATIVOS* ]----\n\n'
             try {
-                for (let i = 0; i < 10; i++) { active += `${i + 1}. @${msgcount[i].id.replace('@c.us', '')}\n➸ *Mensagens*: ${msgcount[i].msg}\n\n` }
-                await kill.sendTextWithMentions(from, active)
+                for (let i = 0; i < 10; i++) {
+					const aRandVar = await kill.getContact(msgcount[i].id)
+					var getPushname = aRandVar.pushname
+					if (getPushname == null) getPushname = 'wa.me/' + msgcount[i].id.replace('@c.us', '')
+					active += `${i + 1} → *${getPushname}*\n➸ *Mensagens*: ${msgcount[i].msg}\n\n`
+				}
+                await kill.sendText(from, active)
+            } catch (err) { await kill.reply(from, mess.tenpeo(), id) }
+            break
+			
+			
+		case 'geral':
+            if (!isGroupMsg) return kill.reply(from, mess.sogrupo(), id)
+            let geralRank = `-----[ *RANKING ${name}* ]----\n\n`
+            try {
+                for (let i = 0; i < groupMembers.length; i++) {
+					const bRandV = await kill.getContact(groupMembers[i].id)
+					const msgCount = getMsg(groupMembers[i].id, msgcount)
+					const levelCount = getLevel(groupMembers[i].id, nivel)
+					const xpCount = getXp(groupMembers[i].id, nivel)
+					const xpToUp = 5 * Math.pow(levelCount, 2) + 50 * levelCount + 100
+					var getUserName = bRandV.pushname
+					if (getUserName == null) getUserName = 'wa.me/' + groupMembers[i].id.replace('@c.us', '')
+					geralRank += `${i + 1} → *${getUserName}*\n➸ *Mensagens*: ${msgCount}\n➸ *XP*: ${xpCount} / ${xpToUp}\n➸ *Level*: ${levelCount}\n\n`
+				}
+                await kill.sendText(from, geralRank)
             } catch (err) { await kill.reply(from, mess.tenpeo(), id) }
             break
 			
@@ -3060,9 +3083,12 @@ module.exports = kconfig = async (kill, message) => {
 					} else if (nivel[i].level <= 1000 || nivel[i].level >= 1000) {
 						role = 'Divindade'
 					}
-					board += `${i + 1}. @${nivel[i].id.replace('@c.us', '')}\n➸ *Mensagens*: ${msgcount[i].msg}\n➸ *XP*: ${nivel[i].xp}\n➸ *Level*: ${nivel[i].level}\n➸ *Patente*: ${role}\n\n`
+					var aRandNe = await kill.getContact(nivel[i].id)
+					var getTheName = aRandNe.pushname
+					if (getTheName == null) getTheName = 'wa.me/' + nivel[i].id.replace('@c.us', '')
+					board += `${i + 1} → *${getTheName}*\n➸ *Mensagens*: ${msgcount[i].msg}\n➸ *XP*: ${nivel[i].xp}\n➸ *Level*: ${nivel[i].level}\n➸ *Patente*: ${role}\n\n`
                 }
-                await kill.sendTextWithMentions(from, board)
+                await kill.sendText(from, board)
             } catch (err) { await kill.reply(from, mess.tenpeo(), id) }
             break
 			
@@ -3374,7 +3400,8 @@ module.exports = kconfig = async (kill, message) => {
 			})
 			break
 			
-			
+		// Para usar a base remova o /* e o */ e bote um nome dentro das aspas da case e em seguida sua mensagem dentro das aspas na frente do from
+		
 		/*case 'Nome do comando sem espaços':
 			await kill.reply(from, 'Sua mensagem', id)
 			break*/
