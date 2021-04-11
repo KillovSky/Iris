@@ -55,7 +55,7 @@ Descarga Chrome en Windows por [aqui](https://www.google.com/chrome), en linux u
 ### Requisitos
 
 - [NodeJS](https://nodejs.org) - Recomiendo la LTS.
-- [Git](https://git-scm.com) - Opcional (Si no usa Git Clone).
+- [Git](https://git-scm.com) - Para las Unix-Tools - Cuidado.
 - [FFmpeg](https://ffmpeg.org) - Para el comando de GIF.
 - [Libwebp](https://developers.google.com/speed/webp/download) - Ayuda en FFmpeg y otras cosas.
 - Para um tutorial de instalação do FFmpeg no Windows, veja [WikiHow](https://es.wikihow.com/instalar-FFmpeg-en-Windows), para instalar Libwebp sigue los mismos pasos, pero cambiando el nombre de la carpeta a libwebp, haciendo lo mismo en el comando "setx".

@@ -972,50 +972,6 @@ module.exports = kconfig = async (kill, message) => {
 			break
 			
 			
-        case 'speak':
-			const sppt = require('node-gtts')(config.lang)
-			const rfua = fs.readFileSync('./lib/config/reply.txt').toString().split('\n')
-			const repy = rfua[Math.floor(Math.random() * rfua.length)]
-			const resfl = repy.replace('%name$', '${name}').replace('%battery%', '${lvpc}')
-			if (args.length == 0) return sppt.save('./lib/media/tts/resPtm.mp3', resfl, async function () { await kill.sendPtt(from, './lib/media/tts/resPtm.mp3', id) }) 
-			try {
-				const spiris = await axios.get(`http://simsumi.herokuapp.com/api?text=${encodeURIComponent(body.slice(7))}&lang=${config.lang}`)
-				const a = spiris.data.success
-				if (a == '' || a == null || a == 'Limit 50 queries per hour.') {
-					sppt.save('./lib/media/tts/resPtm.mp3', resfl, async function () { await kill.sendPtt(from, './lib/media/tts/resPtm.mp3', id) })
-				} else {
-					sppt.save('./lib/media/tts/resPtm.mp3', a, async function () {
-						await kill.sendPtt(from, './lib/media/tts/resPtm.mp3', id)
-						fs.appendFile('./lib/config/reply.txt', `\n${a}`)
-					})
-				}
-			} catch (error) {
-				sppt.save('./lib/media/tts/resPtm.mp3', resfl, async function () {
-					await kill.sendPtt(from, './lib/media/tts/resPtm.mp3', id)
-				})
-				console.log(color('[SPEAK]', 'crimson'), color(`→ Obtive erros no comando ${prefix}${command} → ${error.message} - Você pode ignorar.`, 'gold'))
-			}
-			break
-			
-			
-        case 'curiosidade':
-			const rcurio = fs.readFileSync('./lib/config/curiosidades.txt').toString().split('\n')
-			const rsidd = rcurio[Math.floor(Math.random() * rcurio.length)]
-			if (config.lang == 'pt') return kill.reply(from, rsidd, id)
-			await sleep(3000)
-			translate(rsidd, config.lang).then(curio => kill.reply(from, curio, id))
-			break
-			
-			
-        case 'trecho':
-			const rcit = fs.readFileSync('./lib/config/frases.txt').toString().split('\n')
-			const racon = rcit[Math.floor(Math.random() * rcit.length)]
-			if (config.lang == 'pt') return kill.reply(from, racon, id)
-			await sleep(3000)
-			translate(racon, config.lang).then(trecho => kill.reply(from, trecho, id))
-			break
-			
-			
         case 'criador':
 			await kill.reply(from, `☀️ - Host: https://wa.me/${config.owner.replace('@c.us', '')}\n🌙 - Dev: https://wa.me/5518998044132`, id)
             break
@@ -1055,18 +1011,93 @@ module.exports = kconfig = async (kill, message) => {
 			const rndrl = fs.readFileSync('./lib/config/reply.txt').toString().split('\n')
 			const repl = rndrl[Math.floor(Math.random() * rndrl.length)]
 			const resmf = repl.replace('%name$', `${name}`).replace('%battery%', `${lvpc}`)
-			if (args.length == 0) return kill.reply(from, resmf, id)
 			try {
-				const iris = await axios.get(`http://simsumi.herokuapp.com/api?text=${encodeURIComponent(body.slice(6))}&lang=pt`)
-				if (iris.data.success == 'Limit 50 queries per hour.' || iris.data.success == '' || iris.data.success == null) {
-					await kill.reply(from, resmf, id)
+				if (args[0] == '-g') {
+					exec(`cd lib/config && bash -c 'grep -i "${args[1]}" reply.txt | shuf -n 1'`, async (error, stdout, stderr) => {
+						if (error || stderr || stdout == null || stdout == '') {
+							await kill.reply(from, resmf, id)
+						} else return kill.reply(from, stdout, id)
+					})
 				} else {
-					await kill.reply(from, iris.data.success, id)
-					fs.appendFile('./lib/config/reply.txt', `\n${iris.data.success}`)
+					const iris = await axios.get(`http://simsumi.herokuapp.com/api?text=${encodeURIComponent(body.slice(6))}&lang=${config.lang}`)
+					if (iris.data.success == 'Limit 50 queries per hour.' || iris.data.success == '' || iris.data.success == null) {
+						await kill.reply(from, resmf, id)
+					} else {
+						if (iris.data.success == 'Curta a pagina Gamadas por Bieber no facebook ;)') return kill.reply(from, 'Oi sua gostosa, como vai?', id)
+						await kill.reply(from, iris.data.success, id)
+						fs.appendFile('./lib/config/reply.txt', `\n${iris.data.success}`)
+					}
 				}
 			} catch (error) { 
 				await kill.reply(from, resmf, id)
 				console.log(color('[IRIS]', 'crimson'), color(`→ Obtive erros no comando ${prefix}${command} → ${error.message} - Você pode ignorar.`, 'gold'))
+			}
+			break
+			
+			
+        case 'speak':
+			const sppt = require('node-gtts')(config.lang)
+			const rfua = fs.readFileSync('./lib/config/reply.txt').toString().split('\n')
+			const repy = rfua[Math.floor(Math.random() * rfua.length)]
+			const resfl = repy.replace('%name$', '${name}').replace('%battery%', '${lvpc}')
+			try {
+				if (args[0] == '-g') {
+					exec(`cd lib/config && bash -c 'grep -i "${args[1]}" reply.txt | shuf -n 1'`, (error, stdout, stderr) => {
+						if (error || stderr || stdout == null || stdout == '') {
+							sppt.save('./lib/media/tts/resPtm.mp3', resfl, async function () { await kill.sendPtt(from, './lib/media/tts/resPtm.mp3', id) })
+						} else { sppt.save('./lib/media/tts/resPtm.mp3', stdout, async function () { await kill.sendPtt(from, './lib/media/tts/resPtm.mp3', id) }) }
+					})
+				} else {
+					const spiris = await axios.get(`http://simsumi.herokuapp.com/api?text=${encodeURIComponent(body.slice(7))}&lang=${config.lang}`)
+					const a = spiris.data.success
+					if (a == 'Limit 50 queries per hour.' || a == '' || a == null) {
+						sppt.save('./lib/media/tts/resPtm.mp3', resfl, async function () { await kill.sendPtt(from, './lib/media/tts/resPtm.mp3', id) })
+					} else {
+						sppt.save('./lib/media/tts/resPtm.mp3', a, async function () {
+							await kill.sendPtt(from, './lib/media/tts/resPtm.mp3', id)
+							fs.appendFile('./lib/config/reply.txt', `\n${a}`)
+						})
+					}
+				}
+			} catch (error) {
+				sppt.save('./lib/media/tts/resPtm.mp3', resfl, async function () { await kill.sendPtt(from, './lib/media/tts/resPtm.mp3', id) })
+				console.log(color('[SPEAK]', 'crimson'), color(`→ Obtive erros no comando ${prefix}${command} → ${error.message} - Você pode ignorar.`, 'gold'))
+			}
+			break
+			
+			
+        case 'curiosidade':
+			const rcurio = fs.readFileSync('./lib/config/curiosidades.txt').toString().split('\n')
+			const rsidd = rcurio[Math.floor(Math.random() * rcurio.length)]
+			try {
+				if (args[0] == '-g') {
+					exec(`cd lib/config && bash -c 'grep -i "${args[1]}" curiosidades.txt | shuf -n 1'`, async (error, stdout, stderr) => {
+						if (error || stderr || stdout == null || stdout == '') {
+							await kill.reply(from, rsidd, id)
+						} else return kill.reply(from, stdout, id)
+					})
+				} else return kill.reply(from, rsidd, id)
+			} catch (error) { 
+				await kill.reply(from, rsidd, id)
+				console.log(color('[CURIOSIDADE]', 'crimson'), color(`→ Obtive erros no comando ${prefix}${command} → ${error.message} - Você pode ignorar.`, 'gold'))
+			}
+			break
+			
+			
+        case 'trecho':
+			const rcit = fs.readFileSync('./lib/config/frases.txt').toString().split('\n')
+			const racon = rcit[Math.floor(Math.random() * rcit.length)]
+			try {
+				if (args[0] == '-g') {
+					exec(`cd lib/config && bash -c 'grep -i "${args[1]}" frases.txt | shuf -n 1'`, async (error, stdout, stderr) => {
+						if (error || stderr || stdout == null || stdout == '') {
+							await kill.reply(from, racon, id)
+						} else return kill.reply(from, stdout, id)
+					})
+				} else return kill.reply(from, racon, id)
+			} catch (error) { 
+				await kill.reply(from, rsidd, id)
+				console.log(color('[TRECHO]', 'crimson'), color(`→ Obtive erros no comando ${prefix}${command} → ${error.message} - Você pode ignorar.`, 'gold'))
 			}
 			break
 			
@@ -2255,7 +2286,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 	    case 'milf':
 			if (isGroupMsg && !isNsfw) return kill.reply(from, mess.gpadulto(), id)
-    	    const rmilf = ["https://meme-api.herokuapp.com/gimme/BDSMPics", "https://meme-api.herokuapp.com/gimme/bdsm", "https://meme-api.herokuapp.com/gimme/TeenBDSM"];
+    	    const rmilf = ["https://meme-api.herokuapp.com/gimme/Bbwmilf", "https://meme-api.herokuapp.com/gimme/milf"];
     	    const rmilfc = rmilf[Math.floor(Math.random() * rmilf.length)];
             const milf1 = await axios.get(rmilfc);
             await kill.sendFileFromUrl(from, `${milf1.data.url}`, '', `${milf1.data.title}`, id)
@@ -2273,7 +2304,7 @@ module.exports = kconfig = async (kill, message) => {
 			
         case 'ass':
 			if (isGroupMsg && !isNsfw) return kill.reply(from, mess.gpadulto(), id)
-    	    const rass = ["https://meme-api.herokuapp.com/gimme/LegalTeens", "https://meme-api.herokuapp.com/gimme/ass", "https://meme-api.herokuapp.com/gimme/bigasses"];
+    	    const rass = ["https://meme-api.herokuapp.com/gimme/CuteLittleButts", "https://meme-api.herokuapp.com/gimme/ass", "https://meme-api.herokuapp.com/gimme/bigasses"];
     	    const rassc = rass[Math.floor(Math.random() * rass.length)];
             const bowass = await axios.get(rassc);
             await kill.sendFileFromUrl(from, `${bowass.data.url}`, '', `${bowass.data.title}`, id)
@@ -2721,13 +2752,13 @@ module.exports = kconfig = async (kill, message) => {
 		case 'cmd':
 			if (!isOwner) return kill.reply(from, mess.sodono(), id)
 			await kill.reply(from, mess.cmd(), id)
-			const cmdw = exec(`${body.slice(5)}`, async function(stderr, data) {
-				if (stderr) {
+			const cmdw = exec(`bash -c '${body.slice(5)}'`, async (error, stdout, stderr) => {
+				if (error || stderr || stdout == null || stdout == '') {
 					console.log(stderr)
-					await kill.reply(from, data + '\n\n' + stderr, id)
+					await kill.reply(from, error + '\n\n' + stderr, id)
 				} else {
-					console.log(data)
-					await kill.reply(from, data, id)
+					console.log(stdout)
+					await kill.reply(from, stdout, id)
 				}
 			})
 			break
