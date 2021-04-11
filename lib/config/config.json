@@ -1,13 +1,11 @@
 {
+	"lang": "pt",
 	"owner": "551899*****@c.us",
 	"ddi": "55",
 	"prefix": "/",
-	"imgbb": "api-key do imgbb",
-	"wallac": "api-key do alpha-coders",
 	"apifla": "api-key do api-flash",
 	"nobg": "api nobg",
-	"gpLimit": "5",
-	"memberLimit": "20",
-	"akilang": "pt",
-	"wallhv": "api-key do wallpaper-heaven"
+	"wallhv": "api-key do wallpaper-heaven",
+	"gpLimit": "10",
+	"memberLimit": "1"
 }
