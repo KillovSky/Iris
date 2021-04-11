@@ -312,10 +312,10 @@ module.exports = kconfig = async (kill, message) => {
 		}
 
         // Anti Flood para PV'S
-        if (isCmd && isFiltered(from) && !isGroupMsg && !isOnwer) { return console.log(color('FLOOD AS', 'red'), color(moment(t * 1000).format('DD/MM/YY HH:mm:ss'), 'yellow'), color(`${command} [${args.length}]`), 'de', color(`${pushname} - [${user.replace('@c.us', '')}]`)) }
+        if (isCmd && isFiltered(from) && !isGroupMsg && !isOwner) { return console.log(color('FLOOD AS', 'red'), color(moment(t * 1000).format('DD/MM/YY HH:mm:ss'), 'yellow'), color(`${command} [${args.length}]`), 'de', color(`${pushname} - [${user.replace('@c.us', '')}]`)) }
 		
 		// Anti Flood para grupos
-        if (isCmd && isFiltered(from) && isGroupMsg && !isOnwer) { return console.log(color('FLOOD AS', 'red'), color(moment(t * 1000).format('DD/MM/YY HH:mm:ss'), 'yellow'), color(`${command} [${args.length}]`), 'de', color(`${pushname} - [${user.replace('@c.us', '')}]`), 'em', color(name || formattedTitle)) }
+        if (isCmd && isFiltered(from) && isGroupMsg && !isOwner) { return console.log(color('FLOOD AS', 'red'), color(moment(t * 1000).format('DD/MM/YY HH:mm:ss'), 'yellow'), color(`${command} [${args.length}]`), 'de', color(`${pushname} - [${user.replace('@c.us', '')}]`), 'em', color(name || formattedTitle)) }
 		
 		// Contador de Mensagens (em grupo)
         if (isGroupMsg) { getMsg(user, msgcount); addMsg(user, 1, msgcount) }
