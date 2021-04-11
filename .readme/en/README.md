@@ -87,9 +87,10 @@ Edit all the info bellow:
 - [API 1 - API-Flash](https://github.com/KillovSky/iris/blob/main/lib/config/config.json#6)
 - [API 2 - RemoveBG](https://github.com/KillovSky/iris/blob/main/lib/config/config.json#7)
 - [API 3 - WallHaven](https://github.com/KillovSky/iris/blob/main/lib/config/config.json#8)
-- [Group Limit](https://github.com/KillovSky/iris/blob/main/lib/config/config.json#9)
-- [Member Requiriment](https://github.com/KillovSky/iris/blob/main/lib/config/config.json#10)
-- They refer to the sites [RemoveBG](https://www.remove.bg/pt-br), [API-Flash](https://apiflash.com) and [WallHaven](https://wallhaven.cc/settings/account).
+- [API 4 - Deep-AI](https://github.com/KillovSky/iris/blob/main/lib/config/config.json#9)
+- [Group Limit](https://github.com/KillovSky/iris/blob/main/lib/config/config.json#10)
+- [Member Requiriment](https://github.com/KillovSky/iris/blob/main/lib/config/config.json#11)
+- They refer to the sites [RemoveBG](https://www.remove.bg/pt-br), [API-Flash](https://apiflash.com), [WallHaven](https://wallhaven.cc/settings/account) & [Deep-AI](https://deepai.org).
 - The DDI and Language is only necessary if you are outside Brazil, the available languages are "en" in english, "pt" in portuguese and "es" in spanish and affect all dialogues and akinator.
 
 ### Run

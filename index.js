@@ -13,7 +13,7 @@ const irisvs = require('./package.json')
 const start = async (kill = new Client()) => {
 	const getversion = await axios.get('https://raw.githubusercontent.com/KillovSky/iris/main/package.json')
 	if (irisvs.version !== getversion.data.version) { console.log(color('\n[UPDATE]', 'crimson'), color(`Uma nova versão da Íris foi lançada [${getversion.data.version}], atualize para obter melhorias e correções! → ${irisvs.homepage}`, 'gold')) }
-	console.log(color('\n[SUPORTE]', 'magenta'), color('https://chat.whatsapp.com/H53MdwhtnRf7TGX1VJ2Jje & +55 18 99804-4132\n', 'teal'), color(`\n[ÍRIS ${irisvs.version}]`, 'magenta'), color('Estamos prontos para começar mestre!\n', 'green'))
+	console.log(color('\n[SUPORTE]', 'magenta'), color('https://chat.whatsapp.com/H53MdwhtnRf7TGX1VJ2Jje & +55 18 99804-4132\n', 'blue'), color(`\n[ÍRIS ${irisvs.version}]`, 'magenta'), color('Estamos prontos para começar mestre!\n', 'green'))
 	
 	
 		// Forçar recarregamento caso obtenha erros

@@ -55,7 +55,7 @@ const puppeteer = require('puppeteer')
 const { XVDL } = require("xvdl")
 
 // UTILIDADES
-const { color, sleep, wall, tulis, ss, isUrl, upload, addFilter, isFiltered, translate } = require('./lib/functions')
+const { color, sleep, ss, isUrl, upload, addFilter, isFiltered, translate } = require('./lib/functions')
 const { getLevel, getMsg, getXp, addLevel, addXp, getRank, isWin, wait, addLimit, addMsg, getLimit } = require('./lib/gaming')
 const poll = require('./lib/poll')
 const config = require('./lib/config/config.json')
@@ -117,7 +117,7 @@ module.exports = kconfig = async (kill, message) => {
         body = (type === 'chat' && body.startsWith(prefix)) ? body : (((type === 'image' || type === 'video') && caption) && caption.startsWith(prefix)) ? caption : ''
         const time = moment(t * 1000).format('DD/MM HH:mm:ss')
 		const processTime = (timestamp, now) => { return moment.duration(now - moment(timestamp * 1000)).asSeconds() }
-        const comma = body.slice(1).trim().split(/ +/).shift().toLowerCase()
+		const comma = body.slice(1).trim().split(/ +/).shift().toLowerCase()
 		const command = removeAccents(comma)
 		const arg = body.trim().substring(body.indexOf(' ') + 1)
         const args = body.trim().split(/ +/).slice(1)
@@ -228,7 +228,7 @@ module.exports = kconfig = async (kill, message) => {
         }
 
         // Anti links de grupo
-        if (isGroupMsg && !isGroupAdmins && isBotGroupAdmins && isLeg && !isOwner) {
+		if (isGroupMsg && !isGroupAdmins && isBotGroupAdmins && isLeg && !isOwner) {
 			try {
 				if (chats.match(new RegExp(/(https:\/\/chat.whatsapp.com)/gi))) {
 					const gplka = await kill.inviteInfo(chats)
@@ -250,7 +250,7 @@ module.exports = kconfig = async (kill, message) => {
 						if (err) return console.error(err)
 						if (status) {
 							console.log(color('[NSFW]', 'red'), color(`O link é pornografico, removerei o → ${pushname} - [${user}]...`, 'yellow'))
-							await kill.removeParticipant(groupId, user)
+							wait kill.removeParticipant(groupId, user)
 						} else { console.log(color('[SEM NSFW]', 'green'), color(`→ O link não possui pornografia.`, 'gold')) }
 					})
 				}
@@ -268,25 +268,25 @@ module.exports = kconfig = async (kill, message) => {
 				console.log(color('[IMAGEM]', 'red'), color('Verificando a imagem por pornografia...', 'yellow'))
 				const mediaData = await decryptMedia(message, uaOverride)
 				const getUrl = await upload(mediaData, false)
-				deepai.setApiKey('quickstart-QUdJIGlzIGNvbWluZy4uLi4K');
+				deepai.setApiKey(config.deepai)
 				const resp = await deepai.callStandardApi("nsfw-detector", { image: `${getUrl}` })
-				if (resp.output.nsfw_score >= 0.60) {
+				if (resp.output.nsfw_score >= 0.70) {
 					await kill.removeParticipant(groupId, user)
 					console.log(color('[NSFW]', 'red'), color(`A imagem contém traços de contéudo adulto, removerei o → ${pushname} - [${user}]...`, 'yellow'))
 				} else { console.log(color('[SEM NSFW]', 'green'), color(`→ A imagem não aparententa ser pornografica.`, 'gold')) }
 			} catch (error) { return }
 		}
 		
-		// Impede travas ou textos que tenham mais de 10.000 linhas
+		// Impede travas ou textos que tenham mais de 5.000 linhas
 		if (isGroupMsg && !isGroupAdmins && !isOwner && isBotGroupAdmins) {
 			try {
-				if (chats.length > 10000) {
-				   await kill.sendTextWithMentions(from, mess.antitrava(user))
-				   await kill.removeParticipant(groupId, user)
-				   await kill.contactBlock(user) // Caso sua bot não seja imune
+				if (chats.length > 5000) {
+					await kill.sendTextWithMentions(from, mess.antitrava(user))
+					await kill.removeParticipant(groupId, user)
+					await kill.contactBlock(user) // Caso sua bot não seja imune
 				}
 			} catch (error) { return }
-        }
+		}
 		
 		// Impede comandos em PV'S mutados
 		if (!isGroupMsg && isCmd && !isOwner && pvmte) return console.log(color('[SILENCE]', 'red'), color(`Ignorando comando de ${pushname} - [${user.replace('@c.us', '')}] pois ele está mutado...`, 'yellow'))
@@ -304,7 +304,7 @@ module.exports = kconfig = async (kill, message) => {
             await kill.sendImageAsSticker(from, imageBase64, { author: '🎁 https://bit.ly/30t4jJV ☆', pack: '🔰 Iris/Legião Z ⚜️', keepScale: true })
         }
 		
-        // Auto-sticker de videos & gifs
+		// Auto-sticker de videos & gifs
 		if (isGroupMsg && autoSticker && isMedia && isVideo && !isCmd) {
 			const mediaData = await decryptMedia(message, uaOverride)
 			const videoBase64 = `data:${mimetype};base64,${mediaData.toString('base64')}`
@@ -312,10 +312,10 @@ module.exports = kconfig = async (kill, message) => {
 		}
 
         // Anti Flood para PV'S
-        if (isCmd && isFiltered(from) && !isGroupMsg) { return console.log(color('FLOOD AS', 'red'), color(moment(t * 1000).format('DD/MM/YY HH:mm:ss'), 'yellow'), color(`${command} [${args.length}]`), 'de', color(`${pushname} - [${user.replace('@c.us', '')}]`)) }
+        if (isCmd && isFiltered(from) && !isGroupMsg && !isOnwer) { return console.log(color('FLOOD AS', 'red'), color(moment(t * 1000).format('DD/MM/YY HH:mm:ss'), 'yellow'), color(`${command} [${args.length}]`), 'de', color(`${pushname} - [${user.replace('@c.us', '')}]`)) }
 		
 		// Anti Flood para grupos
-        if (isCmd && isFiltered(from) && isGroupMsg) { return console.log(color('FLOOD AS', 'red'), color(moment(t * 1000).format('DD/MM/YY HH:mm:ss'), 'yellow'), color(`${command} [${args.length}]`), 'de', color(`${pushname} - [${user.replace('@c.us', '')}]`), 'em', color(name || formattedTitle)) }
+        if (isCmd && isFiltered(from) && isGroupMsg && !isOnwer) { return console.log(color('FLOOD AS', 'red'), color(moment(t * 1000).format('DD/MM/YY HH:mm:ss'), 'yellow'), color(`${command} [${args.length}]`), 'de', color(`${pushname} - [${user.replace('@c.us', '')}]`), 'em', color(name || formattedTitle)) }
 		
 		// Contador de Mensagens (em grupo)
         if (isGroupMsg) { getMsg(user, msgcount); addMsg(user, 1, msgcount) }
@@ -835,7 +835,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
         case 'mp3':
-            if (args.length == 0 || !isUrl(url) || !url.includes('youtu.be')) return kill.reply(from, mess.nolink(), id)
+            if (args.length == 0 || !isUrl(url) || !url.includes('youtu')) return kill.reply(from, mess.nolink(), id)
 			try {
 				const ytmp3d = await axios.get(`http://st4rz.herokuapp.com/api/yta2?url=${encodeURIComponent(url)}`)
 				await kill.sendFileFromUrl(from, `${ytmp3d.data.result}`, `${ytmp3d.data.title}.${ytmp3d.data.ext}`, `${ytmp3d.data.title}`, id)
@@ -847,7 +847,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
         case 'mp4':
-            if (args.length == 0 || !isUrl(url) || !url.includes('youtu.be')) return kill.reply(from, mess.nolink(), id)
+            if (args.length == 0 || !isUrl(url) || !url.includes('youtu')) return kill.reply(from, mess.nolink(), id)
 			await kill.reply(from, mess.wait(), id)
 			try {
 				const ytmp4d = await axios.get(`http://st4rz.herokuapp.com/api/ytv2?url=${encodeURIComponent(url)}`)
@@ -1017,7 +1017,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
         case 'criador':
-			await kill.reply(from, `Host: https://wa.me/${config.owner.replace('@c.us', '')}\n\nDev: https://wa.me/5518998044132`, id)
+			await kill.reply(from, `☀️ - Host: https://wa.me/${config.owner.replace('@c.us', '')}\n🌙 - Dev: https://wa.me/5518998044132`, id)
             break
 			
 			
@@ -1323,7 +1323,7 @@ module.exports = kconfig = async (kill, message) => {
        case 'clima':
        		if (args.length == 0) return kill.reply(from, mess.noargs() + 'city names/nomes de cidade/nombres de ciudad.', id)
 			const clima = await axios.get(`https://pt.wttr.in/${encodeURIComponent(body.slice(7))}?format=Cidade%20=%20%l+\n\nEstado%20=%20%C+%c+\n\nTemperatura%20=%20%t+\n\nUmidade%20=%20%h\n\nVento%20=%20%w\n\nLua agora%20=%20%m\n\nNascer%20do%20Sol%20=%20%S\n\nPor%20do%20Sol%20=%20%s`)
-			await kill.sendFileFromUrl(from, `https://wttr.in/${body.slice(7)}.png`, '', mess.wttr(clima), id)
+			await kill.sendFileFromUrl(from, `https://wttr.in/${encodeURIComponent(body.slice(7))}.png`, '', mess.wttr(clima), id)
             break
 			
 			
@@ -1392,13 +1392,12 @@ module.exports = kconfig = async (kill, message) => {
         case 'nh':
 			if (isGroupMsg && !isNsfw) return kill.reply(from, mess.gpadulto(), id)
 			if (args.length == 1) {
-				const nuklir = body.split(' ')[1]
 				await kill.reply(from, mess.wait(), id)
-				const cek = await nhentai.exists(nuklir)
+				const cek = await nhentai.exists(args[0])
 				if (cek == true)  {
 					const api = new API()
-					const pic = await api.getBook(nuklir).then(book => { return api.getImageURL(book.cover) })
-					const dojin = await nhentai.getDoujin(nuklir)
+					const pic = await api.getBook(args[0]).then(book => { return api.getImageURL(book.cover) })
+					const dojin = await nhentai.getDoujin(args[0])
 					const { title, details, link } = dojin
 					const { parodies, tags, artists, groups, languages, categories } = await details
 					await kill.sendFileFromUrl(from, pic, '', mess.nhentai(title, parodies, tags, artists, groups, languages, categories, link), id)
@@ -1521,7 +1520,7 @@ module.exports = kconfig = async (kill, message) => {
 								const mediaData = await decryptMedia(quotedMsgObj)
 								await kill.sendFile(ids, `data:${quotedMsgObj.mimetype};base64,${mediaData.toString('base64')}`, '', `Enviado pelo Dono.`)
 							}
-					} else { console.log(color('[FECHADO]', 'crimson'), color(`→ Um grupo/privado estava bloqueado, então ignorei ele...`, 'gold')) }
+						} else { console.log(color('[FECHADO]', 'crimson'), color(`→ Um grupo/privado estava bloqueado, então ignorei ele...`, 'gold')) }
 					}
 				}
 				await kill.reply(from, mess.maked(), id)
@@ -1599,9 +1598,7 @@ module.exports = kconfig = async (kill, message) => {
 				await kill.reply(from, `📞 - https://wa.me/${quotedMsgObj.sender.id.replace('@c.us', '')} - ${quotedMsgObj.sender.id.replace('@c.us', '')}`, id)
 			} else if (mentionedJidList.length !== 0) {
 				var wame = ''
-				for (let i = 0; i < mentionedJidList.length; i++) {
-					wame += `\n📞 - https://wa.me/${mentionedJidList[i].replace('@c.us', '')} - @${mentionedJidList[i].replace('@c.us', '')}`
-				}
+				for (let i = 0; i < mentionedJidList.length; i++) { wame += `\n📞 - https://wa.me/${mentionedJidList[i].replace('@c.us', '')} - @${mentionedJidList[i].replace('@c.us', '')}` }
 				await kill.sendTextWithMentions(from, wame, id)
 			} else return kill.reply(from, `📞 - https://wa.me/${user.replace('@c.us', '')} - ${user.replace('@c.us', '')}`, id)
 			break
@@ -2127,36 +2124,26 @@ module.exports = kconfig = async (kill, message) => {
 				await kill.sendText(`${args[1]}` + '@g.us', `${prefix}enviar ${gporpv} ${gid} | Coloque sua resposta aqui`)
 				await kill.reply(from, mess.maked(), id)
 				if (quotedMsgObj) {
-					let encryptMedia
 					let replyOnReply = await kill.getMessageById(quotedMsgObj.id)
 					let obj = replyOnReply.quotedMsgObj
 					if (/ptt|audio|video|image|document|sticker/.test(quotedMsgObj.type)) {
-						encryptMedia = quotedMsgObj
-						if (encryptMedia.animated) encryptMedia.mimetype = ''
-					} else if (obj && /ptt|audio|video|image/.test(obj.type)) {
-						encryptMedia = obj
-					} else return
-					const _mimetype = encryptMedia.mimetype
-					const mediaData = await decryptMedia(encryptMedia)
-					await kill.sendFile(`${args[1]}` + '@g.us', `data:${_mimetype};base64,${mediaData.toString('base64')}`, '', `De/From ${nofsender}`)
+						if (quotedMsgObj.animated) quotedMsgObj.mimetype = ''
+					} else if (obj && /ptt|audio|video|image/.test(obj.type)) { quotedMsgObj = obj } else return
+					const mediaData = await decryptMedia(quotedMsgObj)
+					await kill.sendFile(`${args[1]}` + '@g.us', `data:${quotedMsgObj.mimetype};base64,${mediaData.toString('base64')}`, '', `De/From ${nofsender}`)
 				}
 			} else if (args[0] == '-pv') {
 				await kill.sendText(`${args[1]}` + '@c.us', `${arg.split('|')[1]}` + '\n\n_Quem enviou =_ ' + '*' + nofsender + '*' + '\n\n_Como responder:_')
 				await kill.sendText(`${args[1]}` + '@c.us', `${prefix}enviar ${gporpv} ${gid} | Coloque sua resposta aqui`)
 				await kill.reply(from, mess.maked(), id)
 				if (quotedMsgObj) {
-					let encryptMedia
 					let replyOnReply = await kill.getMessageById(quotedMsgObj.id)
 					let obj = replyOnReply.quotedMsgObj
 					if (/ptt|audio|video|image|document|sticker/.test(quotedMsgObj.type)) {
-						encryptMedia = quotedMsgObj
-						if (encryptMedia.animated) encryptMedia.mimetype = ''
-					} else if (obj && /ptt|audio|video|image/.test(obj.type)) {
-						encryptMedia = obj
-					} else return
-					const _mimetype = encryptMedia.mimetype
-					const mediaData = await decryptMedia(encryptMedia)
-					await kill.sendFile(`${args[1]}` + '@c.us', `data:${_mimetype};base64,${mediaData.toString('base64')}`, '', `De/From ${nofsender}`)
+						if (quotedMsgObj.animated) quotedMsgObj.mimetype = ''
+					} else if (obj && /ptt|audio|video|image/.test(obj.type)) { quotedMsgObj = obj } else return
+					const mediaData = await decryptMedia(quotedMsgObj)
+					await kill.sendFile(`${args[1]}` + '@c.us', `data:${quotedMsgObj.mimetype};base64,${mediaData.toString('base64')}`, '', `De/From ${nofsender}`)
 				}
 			} else return kill.reply(from, mess.enviar(), id)
 			break
@@ -2568,9 +2555,7 @@ module.exports = kconfig = async (kill, message) => {
 			if (args.length !== 2 || isNaN(args[0]) || isNaN(args[1])) {
 				const catu = await axios.get('https://nekos.life/api/v2/img/meow')
 				await kill.sendFileFromUrl(from, catu.data.url, 'gato.jpg', mess.cats(), id)
-			} else {
-				await kill.sendFileFromUrl(from, `https://placekitten.com/${args[0]}/${args[1]}`, 'neko.png', 'Nekooo', id)
-			}
+			} else { await kill.sendFileFromUrl(from, `https://placekitten.com/${args[0]}/${args[1]}`, 'neko.png', 'Nekooo', id) }
             break
 			
 			
@@ -3044,7 +3029,7 @@ module.exports = kconfig = async (kill, message) => {
 					} else if (nivel[i].level <= 1000 || nivel[i].level >= 1000) {
 						role = 'Divindade'
 					}
-                board += `${i + 1}. @${nivel[i].id.replace('@c.us', '')}\n➸ *Mensagens*: ${msgcount[i].msg}\n➸ *XP*: ${nivel[i].xp}\n➸ *Level*: ${nivel[i].level}\n➸ *Patente*: ${role}\n\n`
+					board += `${i + 1}. @${nivel[i].id.replace('@c.us', '')}\n➸ *Mensagens*: ${msgcount[i].msg}\n➸ *XP*: ${nivel[i].xp}\n➸ *Level*: ${nivel[i].level}\n➸ *Patente*: ${role}\n\n`
                 }
                 await kill.sendTextWithMentions(from, board)
             } catch (err) { await kill.reply(from, mess.tenpeo(), id) }
