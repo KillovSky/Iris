@@ -250,7 +250,7 @@ module.exports = kconfig = async (kill, message) => {
 						if (err) return console.error(err)
 						if (status) {
 							console.log(color('[NSFW]', 'red'), color(`O link é pornografico, removerei o → ${pushname} - [${user}]...`, 'yellow'))
-							wait kill.removeParticipant(groupId, user)
+							await kill.removeParticipant(groupId, user)
 						} else { console.log(color('[SEM NSFW]', 'green'), color(`→ O link não possui pornografia.`, 'gold')) }
 					})
 				}
