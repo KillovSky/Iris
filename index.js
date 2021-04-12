@@ -1,7 +1,7 @@
 const { create, Client } = require('@open-wa/wa-automate')
 const fs = require('fs-extra')
 const kconfig = require('./config')
-const options = require('./options')
+const options = require('./lib/options')
 const { color, sleep } = require('./lib/functions')
 const config = require('./lib/config/config.json')
 const canvas = require('discord-canvas')
@@ -146,4 +146,4 @@ const start = async (kill = new Client()) => {
     }
 
 // Cria uma sessão da Íris
-create(options(true, start)).then((kill) => start(kill)).catch((err) => new Error(err))
+create(options(start)).then((kill) => start(kill)).catch((err) => console.error(err))
