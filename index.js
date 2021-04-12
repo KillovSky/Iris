@@ -3,7 +3,7 @@ const fs = require('fs-extra')
 const kconfig = require('./config')
 const options = require('./lib/options')
 const { color, sleep } = require('./lib/functions')
-const config = require('./lib/config/config.json')
+const config = require('./lib/config/Bot/config.json')
 const canvas = require('discord-canvas')
 const { mylang } = require('./lib/lang')
 const axios = require('axios')
@@ -13,7 +13,7 @@ const irisvs = require('./package.json')
 const start = async (kill = new Client()) => {
 	const getversion = await axios.get('https://raw.githubusercontent.com/KillovSky/iris/main/package.json')
 	if (irisvs.version !== getversion.data.version) { console.log(color('\n[UPDATE]', 'crimson'), color(`Uma nova versão da Íris foi lançada [${getversion.data.version}], atualize para obter melhorias e correções! → ${irisvs.homepage}`, 'gold')) }
-	console.log(color('\n[SUPORTE]', 'magenta'), color('https://chat.whatsapp.com/H53MdwhtnRf7TGX1VJ2Jje & +55 18 99804-4132\n', 'blue'), color(`\n[ÍRIS ${irisvs.version}]`, 'magenta'), color('Estamos prontos para começar mestre!\n', 'green'))
+	console.log(color('\n[SUPORTE]', 'magenta'), color(`https://chat.whatsapp.com/H53MdwhtnRf7TGX1VJ2Jje | +55 18 99804-4132 | ${irisvs.bugs.url}\n`, 'blue'), color(`\n[ÍRIS ${irisvs.version}]`, 'magenta'), color('Estamos prontos para começar mestre!\n', 'green'))
 	
 	
 		// Forçar recarregamento caso obtenha erros
@@ -48,10 +48,10 @@ const start = async (kill = new Client()) => {
 		
 		// Configuração do welcome
 		kill.onGlobalParticipantsChanged(async (event) => {
-			const welkom = JSON.parse(fs.readFileSync('./lib/config/welcome.json'))
-			const bklist = JSON.parse(fs.readFileSync('./lib/config/anti.json'))
-			const anti = JSON.parse(fs.readFileSync('./lib/config/blacklist.json'))
-			const fks = JSON.parse(fs.readFileSync('./lib/config/fake.json'))
+			const welkom = JSON.parse(fs.readFileSync('./lib/config/Grupos/welcome.json'))
+			const bklist = JSON.parse(fs.readFileSync('./lib/config/Bot/anti.json'))
+			const anti = JSON.parse(fs.readFileSync('./lib/config/Grupos/blacklist.json'))
+			const fks = JSON.parse(fs.readFileSync('./lib/config/Grupos/fake.json'))
 			const personr = event.who
 			const numebot = await kill.getHostNumber() + '@c.us'
 			const isMyBot = personr.includes(numebot)
