@@ -25,6 +25,7 @@ To download chrome on Windows go [here](https://www.google.com/chrome), on linux
 
 | Functions | Have |
 | ------------- | ------------- |
+| Run Wa-Automate/Functions inside WhatsApp |✅|
 | Manage Groups |✅|
 | Betting/Casino/Other Games |✅|
 | Anti Porn & Image +18/Chat Link |✅|
@@ -108,13 +109,13 @@ Send this to your chat, if you changed the prefix settion, change the "/" bellow
 ```
 
 ### Make new commands
-I have putted a code to new commands [here](https://github.com/KillovSky/iris/blob/main/config.js#L3540), remove the "/\*" and "\*/" to use the code, if you need more types, you can view all [here](https://docs.openwa.dev/classes/api_client.client.html), if you have some difficuty talk me on [KillovSky Number](https://wa.me/+5518998044132).
+I have putted a code to new commands [here](https://github.com/KillovSky/iris/blob/main/config.js#L3554), remove the "/\*" and "\*/" to use the code, if you need more types, you can view all [here](https://docs.openwa.dev/classes/api_client.client.html), if you have some difficuty talk me on [KillovSky Number](https://wa.me/+5518998044132).
 
 ### Computer-Freaker/Axios
 To fix Computer-Freaker API(Baguette, Yuri, Hug...) and some axios website compatibility, open this [Mini-Tutorial](https://github.com/KillovSky/iris/discussions/10).
 
 ### Report errors on Messages
-To receive your errors from commandline at whatsapp, remove the "//" on line [Catch](https://github.com/KillovSky/iris/blob/main/config.js#L3552).
+To receive your errors from commandline at whatsapp, remove the "//" on line [Catch](https://github.com/KillovSky/iris/blob/main/config.js#L3566).
 
 ### Thanks:
 - [Open-WA](https://github.com/open-wa)

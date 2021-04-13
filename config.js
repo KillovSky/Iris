@@ -288,6 +288,16 @@ module.exports = kconfig = async (kill, message) => {
 			} catch (error) { return }
 		}
 		
+		// Bloqueia travas no PV que tenham mais de 5.000 linhas
+		if (!isGroupMsg && !isOwner) {
+			try {
+				if (chats.length > 5000) {
+					await kill.sendText(ownerNumber, mess.recTrava(user))
+					await kill.contactBlock(user) // Caso sua bot não seja imune
+				}
+			} catch (error) { return }
+		}
+		
 		// Impede comandos em PV'S mutados
 		if (!isGroupMsg && isCmd && !isOwner && pvmte) return console.log(color('[SILENCE]', 'red'), color(`Ignorando comando de ${pushname} - [${user.replace('@c.us', '')}] pois ele está mutado...`, 'yellow'))
 		
@@ -2626,10 +2636,7 @@ module.exports = kconfig = async (kill, message) => {
 			
         case 'screenshot':
             if (args.length == 0 || !isUrl(url)) return kill.reply(from, mess.nolink(), id)
-            await ss(url)
-            await sleep(4000)
-			await kill.sendFile(from, './lib/media/img/screenshot.jpeg', 'ss.jpeg', mess.noporn(), id)
-            .catch(() => kill.reply(from, mess.failed() + `\n${args[0]}`, id))
+			await kill.sendFileFromUrl(from, `https://api.apiflash.com/v1/urltoimage?access_key=${config.apifla}&url=${url}`, 'ss.jpeg', mess.noporn(), id)
             break
 			
 			
@@ -3535,8 +3542,15 @@ module.exports = kconfig = async (kill, message) => {
 			}
 			break
 			
+			
+		case 'exec':
+			if (args.length == 0) return kill.reply(from, mess.noargs() + `Wa Automate function/função da Wa Automate.\n\nEx: ${prefix}exec await kill.reply(from, 'Oi', id)`, id)
+			if (!isOwner) return kill.reply(from, mess.sodono(), id)
+			const waitEval = (cmd) => { return new Promise((resolve, reject) => { eval(cmd) }) }
+			(async () => { await waitEval(body.slice(6).replace('await ', '')) })()
+			break
+			
 		// Para usar a base remova o /* e o */ e bote um nome dentro das aspas da case e em seguida sua mensagem dentro das aspas na frente do from
-		
 		/*case 'Nome do comando sem espaços':
 			await kill.reply(from, 'Sua mensagem', id)
 			break*/

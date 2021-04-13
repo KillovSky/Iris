@@ -25,6 +25,7 @@ Descarga Chrome en Windows por [aqui](https://www.google.com/chrome), en linux u
 
 | Función | Contiene|
 | ------------- | ------------- |
+| Ejecute Wa-Automate/Functions dentro de WhatsApp |✅|
 | Administrar Grupos |✅|
 | Apuestas/Casino/Otros juegos |✅|
 | Anti Porno - Imagen +18/Enlaces de Chat |✅|
@@ -108,13 +109,13 @@ Escriba en su chat el mensaje, si editó su prefijo, cambie la '/' al carácter 
 ```
 
 ### Crea tus comandos
-Hay una base simple para sus creaciones por [aqui](https://github.com/KillovSky/iris/blob/main/config.js#L3540), solo tienes que quitar el "/\*" e la "\*/" para usarlo, si necesita otros tipos, puede ver sobre ellos para [aqui](https://docs.openwa.dev/classes/api_client.client.html), si tienes dificultades llámame por [aqui](https://chat.whatsapp.com/H53MdwhtnRf7TGX1VJ2Jje) o [aqui](https://wa.me/+5518998044132).
+Hay una base simple para sus creaciones por [aqui](https://github.com/KillovSky/iris/blob/main/config.js#L3554), solo tienes que quitar el "/\*" e la "\*/" para usarlo, si necesita otros tipos, puede ver sobre ellos para [aqui](https://docs.openwa.dev/classes/api_client.client.html), si tienes dificultades llámame por [aqui](https://chat.whatsapp.com/H53MdwhtnRf7TGX1VJ2Jje) o [aqui](https://wa.me/+5518998044132).
 
 ### Computer-Freaker/Axios
 Para solucionar el funcionamiento de la API Computer-Freaker (Baguette, Yuri, Hug ...) y algunos problemas en el módulo Axios, siga los pasos en este [Mini-Tutorial](https://github.com/KillovSky/iris/discussions/10).
 
 ### Alertas en WhatsApp
-Para recibir también mensajes de error de Iris a través de WhatsApp, elimine el "//" de la línea [Catch](https://github.com/KillovSky/iris/blob/main/config.js#L3552).
+Para recibir también mensajes de error de Iris a través de WhatsApp, elimine el "//" de la línea [Catch](https://github.com/KillovSky/iris/blob/main/config.js#L3566).
 
 ### Agradecimientos:
 - [Open-WA](https://github.com/open-wa)
