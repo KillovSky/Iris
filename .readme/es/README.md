@@ -80,16 +80,16 @@ Necesita tener este repositorio, es simple, ejecute los comandos abajo, en caso 
 ### Cambios obligatorios
 Edite las API que se encuentran en: 
 
-- [Lenguaje](https://github.com/KillovSky/iris/blob/main/lib/config/config.json#2)
-- [Número](https://github.com/KillovSky/iris/blob/main/lib/config/config.json#3)
-- [DDI](https://github.com/KillovSky/iris/blob/main/lib/config/config.json#4)
-- [Prefix](https://github.com/KillovSky/iris/blob/main/lib/config/config.json#5)
-- [API 1 - API-Flash](https://github.com/KillovSky/iris/blob/main/lib/config/config.json#6)
-- [API 2 - RemoveBG](https://github.com/KillovSky/iris/blob/main/lib/config/config.json#7)
-- [API 3 - WallHaven](https://github.com/KillovSky/iris/blob/main/lib/config/config.json#8)
-- [API 4 - Deep-AI](https://github.com/KillovSky/iris/blob/main/lib/config/config.json#9)
-- [Limite de Grupos](https://github.com/KillovSky/iris/blob/main/lib/config/config.json#10)
-- [Requisito de miembros ](https://github.com/KillovSky/iris/blob/main/lib/config/config.json#11)
+- [Lenguaje](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#2)
+- [Número](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#3)
+- [DDI](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#4)
+- [Prefix](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#5)
+- [API 1 - API-Flash](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#6)
+- [API 2 - RemoveBG](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#7)
+- [API 3 - WallHaven](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#8)
+- [API 4 - Deep-AI](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#9)
+- [Limite de Grupos](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#10)
+- [Requisito de miembros](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#11)
 - Elas são referentes aos sites [RemoveBG](https://www.remove.bg/pt-br), [API-Flash](https://apiflash.com), [WallHaven](https://wallhaven.cc/settings/account) & [Deep-AI](https://deepai.org).
 - La DDI y Idioma solo son necesarios si es de fuera de Brasil, los idiomas disponibles son "en" de inglés, "pt" de portugués y "es" de español y afectan todos los diálogos y akinator.
 
