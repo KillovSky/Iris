@@ -1,12 +1,12 @@
 {
 	"lang": "pt",
-	"owner": "551899*****@c.us",
+	"owner": "556392445315@c.us",
 	"ddi": "55",
 	"prefix": "/",
 	"apifla": "API-KEY NOFLASH",
 	"nobg": "API-KEY REMOVEBG",
 	"wallhv": "API-KEY WALLHAVEN",
 	"deepai": "API-KEY DEEPAI",
-	"gpLimit": "10",
+	"gpLimit": "100",
 	"memberLimit": "1"
 }
