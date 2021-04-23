@@ -112,13 +112,13 @@ Send this to your chat, if you changed the prefix settion, change the "/" bellow
 ```
 
 ### Make new commands
-I have putted a code to new commands [here](https://github.com/KillovSky/iris/blob/main/config.js#L3822), with no Prefix [here](https://github.com/KillovSky/iris/blob/main/config.js#L279), remove the "/\*" and "\*/" to use the code, if you need more types, you can view all [here](https://docs.openwa.dev/classes/api_client.client.html), if you have some difficuty talk me on [KillovSky Number](https://wa.me/+5518998044132).
+I have putted a code to new commands [here](https://github.com/KillovSky/iris/blob/main/config.js#L3834), with no Prefix [here](https://github.com/KillovSky/iris/blob/main/config.js#L279), remove the "/\*" and "\*/" to use the code, if you need more types, you can view all [here](https://docs.openwa.dev/classes/api_client.client.html), if you have some difficuty talk me on [KillovSky Number](https://wa.me/+5518998044132).
 
 ### Computer-Freaker/Axios
 To fix Computer-Freaker API(Logos, Baguette, Yuri, Hug...) and some axios website compatibility, open this [Mini-Tutorial](https://github.com/KillovSky/iris/discussions/10).
 
 ### Report errors on Messages
-To receive your errors from commandline at whatsapp, remove the "//" on line [Catch](https://github.com/KillovSky/iris/blob/main/config.js#L3834).
+To receive your errors from commandline at whatsapp, remove the "//" on line [Catch](https://github.com/KillovSky/iris/blob/main/config.js#L3846).
 
 ### Thanks:
 - [Open-WA](https://github.com/open-wa)

@@ -14,6 +14,7 @@
 * Então você gostaria de ter algo que se esforçou muito de GRAÇA roubado de você? Pois eu não.
 *
 * Se ainda planeja roubar, saiba que eu espero de coração que você nunca seja roubado.
+* P.S: Plagiar este BOT significa estar vendendo a alma para Lucas R. - KillovSky! ;D
 *
 * Obrigado a todos que me apoiam, que não roubam isso, que pegam e põem os créditos e...
 *
@@ -154,8 +155,7 @@ module.exports = kconfig = async (kill, message) => {
 		const errorurl = 'https://img.wallpapersafari.com/desktop/1920/1080/19/44/evOxST.jpg'
 		const errorImg = 'https://i.ibb.co/jRCpLfn/user.png'
 		const irisMsgs = fs.readFileSync('./lib/config/Utilidades/reply.txt').toString().split('\n')
-		const theMsgC = irisMsgs[Math.floor(Math.random() * irisMsgs.length)]
-		const chatBotR = theMsgC.replace('%name$', `${name}`).replace('%battery%', `${lvpc}`)
+		const chatBotR = irisMsgs[Math.floor(Math.random() * irisMsgs.length)].replace('%name$', `${name}`).replace('%battery%', `${lvpc}`)
 		const lgbt = fs.readFileSync('./lib/config/Utilidades/lgbt.txt').toString().split('\n')
 		const guei = lgbt[Math.floor(Math.random() * lgbt.length)]
 		
@@ -276,7 +276,7 @@ module.exports = kconfig = async (kill, message) => {
 		if (!isFiltered(from) && !isCmd) { try { if (chats.includes(`@${botNumber.replace('@c.us', '')}`)) { await kill.reply(from, chatBotR, id) } } catch (error) { return } }
 		
 		// Caso deseje criar siga o estilo disso abaixo, para usar a base remova a /* e a */
-		/*if (!isFiltered(from) && !isCmd) { try { if (chats == 'Mensagem a receber') await kill.reply(from, 'Resposta para enviar', id) } } catch (error) { return }*/
+		/*if (!isFiltered(from) && !isCmd) { try { if (chats == 'Mensagem a receber') await kill.reply(from, 'Resposta para enviar', id) } catch (error) { return } }*/
 		
 		// Impede travas ou textos que tenham mais de 5.000 linhas
 		if (isGroupMsg && !isGroupAdmins && !isOwner && isBotGroupAdmins) {
@@ -1042,7 +1042,7 @@ module.exports = kconfig = async (kill, message) => {
 					}
 				}
 			} catch (error) { 
-				await kill.reply(from, resmf, id)
+				await kill.reply(from, chatBotR, id)
 				console.log(color('[IRIS]', 'crimson'), color(`→ Obtive erros no comando ${prefix}${command} → ${error.message} - Você pode ignorar.`, 'gold'))
 			}
 			break
@@ -1070,7 +1070,7 @@ module.exports = kconfig = async (kill, message) => {
 					}
 				}
 			} catch (error) {
-				sppt.save('./lib/media/audio/resPtm.mp3', resfl, async function () { await kill.sendPtt(from, './lib/media/audio/resPtm.mp3', id) })
+				sppt.save('./lib/media/audio/resPtm.mp3', chatBotR, async function () { await kill.sendPtt(from, './lib/media/audio/resPtm.mp3', id) })
 				console.log(color('[SPEAK]', 'crimson'), color(`→ Obtive erros no comando ${prefix}${command} → ${error.message} - Você pode ignorar.`, 'gold'))
 			}
 			break
@@ -3059,7 +3059,10 @@ module.exports = kconfig = async (kill, message) => {
 					active += `${i + 1} → *${getPushname}*\n➸ *Mensagens*: ${msgcount[i].msg}\n\n`
 				}
                 await kill.sendText(from, active)
-            } catch (err) { await kill.reply(from, mess.tenpeo(), id) }
+            } catch (error) { 
+				await kill.reply(from, mess.tenpeo(), id)
+				console.log(color('[ATIVOS]', 'crimson'), color(`→ Obtive erros no comando ${prefix}${command} → ${error.message} - Você pode ignorar.`, 'gold'))
+			}
             break
 			
 			
@@ -3078,7 +3081,10 @@ module.exports = kconfig = async (kill, message) => {
 					geralRank += `→ *${getUserName}*\n➸ *Mensagens*: ${msgCount}\n➸ *XP*: ${xpCount} / ${xpToUp}\n➸ *Level*: ${levelCount}\n\n`
 				}
                 await kill.sendText(from, geralRank)
-            } catch (err) { await kill.reply(from, mess.tenpeo(), id) }
+            } catch (error) { 
+				await kill.reply(from, mess.tenpeo(), id)
+				console.log(color('[RANK GERAL]', 'crimson'), color(`→ Obtive erros no comando ${prefix}${command} → ${error.message} - Você pode ignorar.`, 'gold'))
+			}
             break
 			
 			
@@ -3155,7 +3161,10 @@ module.exports = kconfig = async (kill, message) => {
 					board += `${i + 1} → *${getTheName}*\n➸ *Mensagens*: ${msgcount[i].msg}\n➸ *XP*: ${nivel[i].xp}\n➸ *Level*: ${nivel[i].level}\n➸ *Patente*: ${role}\n\n`
                 }
                 await kill.sendText(from, board)
-            } catch (err) { await kill.reply(from, mess.tenpeo(), id) }
+            } catch (error) { 
+				await kill.reply(from, mess.tenpeo(), id)
+				console.log(color('[RANKING]', 'crimson'), color(`→ Obtive erros no comando ${prefix}${command} → ${error.message} - Você pode ignorar.`, 'gold'))
+			}
             break
 			
 			
@@ -3399,6 +3408,7 @@ module.exports = kconfig = async (kill, message) => {
 			const newname = body.slice(6)
 			if (newname.length >= 25) return kill.reply(from, mess.letlimit() + '25.', id)
 			await kill.setMyName(newname)
+			await kill.reply(from, mess.maked(), id)
 			break
 			
 			
@@ -3408,6 +3418,7 @@ module.exports = kconfig = async (kill, message) => {
 			const newstat = body.slice(8)
 			if (newstat.length >= 250) return kill.reply(from, mess.letlimit() + '250.', id)
 			await kill.setMyStatus(newstat)
+			await kill.reply(from, mess.maked(), id)
 			break
 			
 			
@@ -3420,6 +3431,7 @@ module.exports = kconfig = async (kill, message) => {
 				if (bkmypic == undefined) { var backpt = errorurl } else { var backpt = bkmypic }
 				await kill.sendFileFromUrl(from, backpt, '', 'Backup', id)
 				await kill.setProfilePic(mediaData)
+				await kill.reply(from, mess.maked(), id)
 			} else return kill.reply(from, mess.onlyimg(), id)
 			break
 			
@@ -3482,8 +3494,8 @@ module.exports = kconfig = async (kill, message) => {
 				if (thehitlerpic === undefined) thehitlerpic = errorImg
 				canvas.Canvas.hitler(thehitlerpic).then(async (buffer) => { await kill.sendFile(from, `data:image/png;base64,${buffer.toString('base64')}`, `hitler.png`, '卍', id) })
 			} catch (error) {
-				console.log(color('[HITLER]', 'crimson'), color(`→ Obtive erros no comando ${prefix}${command} → ${error.message} - Você pode ignorar.`, 'gold'))
 				await kill.reply(from, mess.fail(), id)
+				console.log(color('[HITLER]', 'crimson'), color(`→ Obtive erros no comando ${prefix}${command} → ${error.message} - Você pode ignorar.`, 'gold'))
 			}
 			break
 			
@@ -3499,8 +3511,8 @@ module.exports = kconfig = async (kill, message) => {
 				if (theTrashpic === undefined) theTrashpic = errorImg
 				canvas.Canvas.trash(theTrashpic).then(async (buffer) => { await kill.sendFile(from, `data:image/png;base64,${buffer.toString('base64')}`, `trash.png`, '🚮', id) })
 			} catch (error) {
-				console.log(color('[TRASH]', 'crimson'), color(`→ Obtive erros no comando ${prefix}${command} → ${error.message} - Você pode ignorar.`, 'gold'))
 				await kill.reply(from, mess.fail(), id)
+				console.log(color('[TRASH]', 'crimson'), color(`→ Obtive erros no comando ${prefix}${command} → ${error.message} - Você pode ignorar.`, 'gold'))
 			}
 			break
 			
@@ -3516,8 +3528,8 @@ module.exports = kconfig = async (kill, message) => {
 				if (theshitpic === undefined) theshitpic = errorImg
 				canvas.Canvas.shit(theshitpic).then(async (buffer) => { await kill.sendFile(from, `data:image/png;base64,${buffer.toString('base64')}`, `shit.png`, '💩💩💩', id) })
 			} catch (error) {
-				console.log(color('[SHIT]', 'crimson'), color(`→ Obtive erros no comando ${prefix}${command} → ${error.message} - Você pode ignorar.`, 'gold'))
 				await kill.reply(from, mess.fail(), id)
+				console.log(color('[SHIT]', 'crimson'), color(`→ Obtive erros no comando ${prefix}${command} → ${error.message} - Você pode ignorar.`, 'gold'))
 			}
 			break
 			
@@ -3533,8 +3545,8 @@ module.exports = kconfig = async (kill, message) => {
 				if (theBlurpic === undefined) theBlurpic = errorImg
 				canvas.Canvas.blur(theBlurpic).then(async (buffer) => { await kill.sendFile(from, `data:image/png;base64,${buffer.toString('base64')}`, `blur.png`, '💡', id) })
 			} catch (error) {
-				console.log(color('[BLUR]', 'crimson'), color(`→ Obtive erros no comando ${prefix}${command} → ${error.message} - Você pode ignorar.`, 'gold'))
 				await kill.reply(from, mess.fail(), id)
+				console.log(color('[BLUR]', 'crimson'), color(`→ Obtive erros no comando ${prefix}${command} → ${error.message} - Você pode ignorar.`, 'gold'))
 			}
 			break
 			
@@ -3550,8 +3562,8 @@ module.exports = kconfig = async (kill, message) => {
 				if (theRippic === undefined) theRippic = errorImg
 				canvas.Canvas.rip(theRippic).then(async (buffer) => { await kill.sendFile(from, `data:image/png;base64,${buffer.toString('base64')}`, `rip.png`, '☠️', id) })
 			} catch (error) {
-				console.log(color('[RIP]', 'crimson'), color(`→ Obtive erros no comando ${prefix}${command} → ${error.message} - Você pode ignorar.`, 'gold'))
 				await kill.reply(from, mess.fail(), id)
+				console.log(color('[RIP]', 'crimson'), color(`→ Obtive erros no comando ${prefix}${command} → ${error.message} - Você pode ignorar.`, 'gold'))
 			}
 			break
 			
@@ -3563,8 +3575,8 @@ module.exports = kconfig = async (kill, message) => {
 				const waitEval = (cmd) => { return new Promise((resolve, reject) => { eval(cmd) }) }
 				(async () => { await waitEval(body.slice(6).replace('await ', '')) })()
 			} catch (error) {
-				console.log(color('[EXEC]', 'crimson'), color(`→ Obtive erros no comando ${prefix}${command} → ${error.message} - Você pode ignorar.`, 'gold'))
 				await kill.reply(from, mess.fail(), id)
+				console.log(color('[EXEC]', 'crimson'), color(`→ Obtive erros no comando ${prefix}${command} → ${error.message} - Você pode ignorar.`, 'gold'))
 			}
 			break
 			
