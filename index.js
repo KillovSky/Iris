@@ -13,12 +13,12 @@ const irisvs = require('./package.json')
 const start = async (kill = new Client()) => {
 	const getversion = await axios.get('https://raw.githubusercontent.com/KillovSky/iris/main/package.json')
 	if (irisvs.version !== getversion.data.version) { console.log(color('\n[UPDATE]', 'crimson'), color(`Uma nova versão da Íris foi lançada [${getversion.data.version}], atualize para obter melhorias e correções! → ${irisvs.homepage}`, 'gold')) }
-	console.log(color('\n[SUPORTE]', 'magenta'), color(`https://chat.whatsapp.com/H53MdwhtnRf7TGX1VJ2Jje | +55 18 99804-4132 | ${irisvs.bugs.url}\n`, 'blue'), color(`\n[ÍRIS ${irisvs.version}]`, 'magenta'), color('Estamos prontos para começar mestre!\n', 'green'))
+	console.log(color('\n[SUPORTE]', 'magenta'), color(`https://chat.whatsapp.com/H53MdwhtnRf7TGX1VJ2Jje | +55 18 99804-4132 | ${irisvs.bugs.url}\n`, 'lime'), color(`\n[ÍRIS ${irisvs.version}]`, 'magenta'), color('Estamos prontos para começar mestre!\n', 'lime'))
 	
 	
 		// Forçar recarregamento caso obtenha erros
 		kill.onStateChanged((state) => {
-			console.log(color('[RELOAD]', 'red'), color('Isso pode ser ignorado →', 'green'), color(state, 'yellow'))
+			console.log(color('[RELOAD]', 'red'), color('Isso pode ser ignorado →', 'lime'), color(state, 'yellow'))
 			if (state === 'UNPAIRED' || state === 'CONFLICT' || state === 'UNLAUNCHED') kill.forceRefocus()
 		})
 		
@@ -83,8 +83,10 @@ const start = async (kill = new Client()) => {
 					} else if (isWelkom && !isMyBot) {
 						var profile = await kill.getProfilePicFromServer(event.who)
 						if (profile == '' || profile == undefined) profile = 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTQcODjk7AcA4wb_9OLzoeAdpGwmkJqOYxEBA&usqp=CAU'
+						var nameWhoE = pushname
+						if (nameWhoE = undefined) nameWhoE = 'Stranger'
 						const welcomer = await new canvas.Welcome()
-						.setUsername(pushname)
+						.setUsername(nameWhoE)
 						.setDiscriminator(event.who.substring(6, 10))
 						.setMemberCount(groupMetadata.participants.length)
 						.setGuildName(name)
@@ -105,13 +107,16 @@ const start = async (kill = new Client()) => {
 						.toAttachment()
 						const base64 = `data:image/png;base64,${welcomer.toBuffer().toString('base64')}`
 						await kill.sendFile(event.chat, base64, 'welcome.png', mylang().welcome(pushname, name))
+						await kill.sendPtt(event.chat, `./lib/media/audio/welcome.mp3`)
 						console.log(color('[ENTROU]', 'red'), color(`${pushname} - (${event.who.replace('@c.us', '')}) entrou no grupo ${name}...`, 'yellow'))
 					}
 				} else if (event.action == 'remove' && isWelkom && !isMyBot) {
 					var profile = await kill.getProfilePicFromServer(event.who)
 					if (profile == '' || profile == undefined) profile = 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTQcODjk7AcA4wb_9OLzoeAdpGwmkJqOYxEBA&usqp=CAU'
+					var nameWhoS = pushname
+					if (nameWhoS = undefined) nameWhoS = 'Stranger'
 					const bye = await new canvas.Goodbye()
-					.setUsername(pushname)
+					.setUsername(nameWhoS)
 					.setDiscriminator(event.who.substring(6, 10))
 					.setMemberCount(groupMetadata.participants.length)
 					.setGuildName(name)
@@ -132,6 +137,7 @@ const start = async (kill = new Client()) => {
 					.toAttachment()
 					const base64 = `data:image/png;base64,${bye.toBuffer().toString('base64')}`
 					await kill.sendFile(event.chat, base64, 'welcome.png', mylang().bye(pushname))
+					await kill.sendPtt(event.chat, `./lib/media/audio/bye.mp3`)
 					console.log(color('[SAIU/BAN]', 'red'), color(`${pushname} - (${event.who.replace('@c.us', '')}) saiu ou foi banido do grupo ${name}...`, 'yellow'))
 				}
 			} catch (err) { console.log(err) }

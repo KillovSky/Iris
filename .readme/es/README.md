@@ -31,7 +31,7 @@ Descarga Chrome en Windows por [aqui](https://www.google.com/chrome), en linux u
 | Anti Porno - Imagen +18/Enlaces de Chat |✅|
 | Ataques SMS/CALL/EMAIL |✅|
 | Bienvenido/Adiós/Anti-Fake/Blacklist |✅|
-| Bloquear/Desbloquear personas |✅|
+| Bloquear/Desbloquear/Rastrear personas |✅|
 | Buscar Anime/Letra de Música/Twitter/Instagram |✅|
 | Mandar mensagens a otros grupos |✅|
 | Conversa por texto/voz Sim-Simi/Local (ilimitado) |✅|
@@ -55,6 +55,7 @@ Descarga Chrome en Windows por [aqui](https://www.google.com/chrome), en linux u
 
 ### Requisitos
 
+- Dos números en WhatsApp, uno para propietario y otro para BOT.
 - [NodeJS](https://nodejs.org) - Recomiendo la LTS.
 - [Git](https://git-scm.com) - Para las Unix-Tools - Cuidado.
 - [FFmpeg](https://ffmpeg.org) - Para el comando de GIF.
@@ -91,6 +92,8 @@ Edite las API que se encuentran en:
 - [API 4 - Deep-AI](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#9)
 - [Limite de Grupos](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#10)
 - [Requisito de miembros](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#11)
+- [Sticker-Autor](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#12)
+- [Sticker-Pack](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#13)
 - Elas são referentes aos sites [RemoveBG](https://www.remove.bg/pt-br), [API-Flash](https://apiflash.com), [WallHaven](https://wallhaven.cc/settings/account) & [Deep-AI](https://deepai.org).
 - La DDI y Idioma solo son necesarios si es de fuera de Brasil, los idiomas disponibles son "en" de inglés, "pt" de portugués y "es" de español y afectan todos los diálogos y akinator.
 
@@ -109,13 +112,13 @@ Escriba en su chat el mensaje, si editó su prefijo, cambie la '/' al carácter 
 ```
 
 ### Crea tus comandos
-Hay una base simple para sus creaciones por [aqui](https://github.com/KillovSky/iris/blob/main/config.js#L3554), solo tienes que quitar el "/\*" e la "\*/" para usarlo, si necesita otros tipos, puede ver sobre ellos para [aqui](https://docs.openwa.dev/classes/api_client.client.html), si tienes dificultades llámame por [aqui](https://chat.whatsapp.com/H53MdwhtnRf7TGX1VJ2Jje) o [aqui](https://wa.me/+5518998044132).
+Hay una base simple para sus creaciones por [aqui](https://github.com/KillovSky/iris/blob/main/config.js#L3822), sin Prefix [here](https://github.com/KillovSky/iris/blob/main/config.js#L279), solo tienes que quitar el "/\*" e la "\*/" para usarlo, si necesita otros tipos, puede ver sobre ellos para [aqui](https://docs.openwa.dev/classes/api_client.client.html), si tienes dificultades llámame por [aqui](https://chat.whatsapp.com/H53MdwhtnRf7TGX1VJ2Jje) o [aqui](https://wa.me/+5518998044132).
 
 ### Computer-Freaker/Axios
-Para solucionar el funcionamiento de la API Computer-Freaker (Baguette, Yuri, Hug ...) y algunos problemas en el módulo Axios, siga los pasos en este [Mini-Tutorial](https://github.com/KillovSky/iris/discussions/10).
+Para solucionar el funcionamiento de la API Computer-Freaker (Logos, Baguette, Yuri, Hug ...) y algunos problemas en el módulo Axios, siga los pasos en este [Mini-Tutorial](https://github.com/KillovSky/iris/discussions/10).
 
 ### Alertas en WhatsApp
-Para recibir también mensajes de error de Iris a través de WhatsApp, elimine el "//" de la línea [Catch](https://github.com/KillovSky/iris/blob/main/config.js#L3566).
+Para recibir también mensajes de error de Iris a través de WhatsApp, elimine el "//" de la línea [Catch](https://github.com/KillovSky/iris/blob/main/config.js#L3834).
 
 ### Agradecimientos:
 - [Open-WA](https://github.com/open-wa)

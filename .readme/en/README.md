@@ -31,7 +31,7 @@ To download chrome on Windows go [here](https://www.google.com/chrome), on linux
 | Anti Porn & Image +18/Chat Link |✅|
 | Attacks SMS/CALL/EMAIL |✅|
 | Welcome/Goodbye/Anti-Fake/Blacklist |✅|
-| Block/Unblock people |✅|
+| Block/Unblock/Track people |✅|
 | Search Anime/Music Letter/Instagram |✅|
 | Send Messages to another places |✅|
 | Speak Audio/Msg - SimSimi/Local |✅|
@@ -55,6 +55,7 @@ To download chrome on Windows go [here](https://www.google.com/chrome), on linux
 
 ### Requiriments
 
+- Two numbers at WhatsApp, one for owner and other for BOT.
 - [NodeJS](https://nodejs.org) - LTS recommended.
 - [Git](https://git-scm.com) - For the Unix-Tools - Careful.
 - [FFmpeg](https://ffmpeg.org) - For gif command.
@@ -82,7 +83,7 @@ To download Íris use the following commands, if have some error try with admini
 Edit all the info bellow:
 
 - [Language](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#2)
-- [Number](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#3)
+- [Owner](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#3)
 - [DDI](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#4)
 - [Prefix](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#5)
 - [API 1 - API-Flash](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#6)
@@ -91,6 +92,8 @@ Edit all the info bellow:
 - [API 4 - Deep-AI](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#9)
 - [Group Limit](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#10)
 - [Member Requiriment](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#11)
+- [Sticker-Author](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#12)
+- [Sticker-Pack](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#13)
 - They refer to the sites [RemoveBG](https://www.remove.bg/pt-br), [API-Flash](https://apiflash.com), [WallHaven](https://wallhaven.cc/settings/account) & [Deep-AI](https://deepai.org).
 - The DDI and Language is only necessary if you are outside Brazil, the available languages are "en" in english, "pt" in portuguese and "es" in spanish and affect all dialogues and akinator.
 
@@ -109,13 +112,13 @@ Send this to your chat, if you changed the prefix settion, change the "/" bellow
 ```
 
 ### Make new commands
-I have putted a code to new commands [here](https://github.com/KillovSky/iris/blob/main/config.js#L3554), remove the "/\*" and "\*/" to use the code, if you need more types, you can view all [here](https://docs.openwa.dev/classes/api_client.client.html), if you have some difficuty talk me on [KillovSky Number](https://wa.me/+5518998044132).
+I have putted a code to new commands [here](https://github.com/KillovSky/iris/blob/main/config.js#L3822), with no Prefix [here](https://github.com/KillovSky/iris/blob/main/config.js#L279), remove the "/\*" and "\*/" to use the code, if you need more types, you can view all [here](https://docs.openwa.dev/classes/api_client.client.html), if you have some difficuty talk me on [KillovSky Number](https://wa.me/+5518998044132).
 
 ### Computer-Freaker/Axios
-To fix Computer-Freaker API(Baguette, Yuri, Hug...) and some axios website compatibility, open this [Mini-Tutorial](https://github.com/KillovSky/iris/discussions/10).
+To fix Computer-Freaker API(Logos, Baguette, Yuri, Hug...) and some axios website compatibility, open this [Mini-Tutorial](https://github.com/KillovSky/iris/discussions/10).
 
 ### Report errors on Messages
-To receive your errors from commandline at whatsapp, remove the "//" on line [Catch](https://github.com/KillovSky/iris/blob/main/config.js#L3566).
+To receive your errors from commandline at whatsapp, remove the "//" on line [Catch](https://github.com/KillovSky/iris/blob/main/config.js#L3834).
 
 ### Thanks:
 - [Open-WA](https://github.com/open-wa)

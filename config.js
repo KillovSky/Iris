@@ -35,6 +35,7 @@ const sinesp = require('sinesp-api')
 const { Aki } = require('aki-api')
 const request = require('request')
 const canvas = require('canvacord')
+const ffmpeg = require('fluent-ffmpeg')
 const { spawn, exec, execFile } = require('child_process')
 const nhentai = require('nhentai-js')
 const { API } = require('nhentai-api')
@@ -64,8 +65,8 @@ const { mylang } = require('./lib/lang')
 // ATIVADORES & CONFIGS
 const region = config.lang
 const aki = new Aki(region)
-const playaki = async () => { try { await aki.start() } catch (error) { console.log(color('[A]', 'crimson'), color(`→ Obtive erros ao iniciar o akinator → ${error.message} - Você pode ignorar.`, 'gold')) } }
-playaki()
+const akinit = async () => { try { await aki.start() } catch (error) { console.log(color('[AKI]', 'crimson'), color(`→ Obtive erros ao iniciar o akinator → ${error.message} - Você pode ignorar.`, 'gold')) } }
+akinit()
 const cd = 0.18e+7
 const mess = mylang()
 moment.tz.setDefault('America/Sao_Paulo').locale('pt_BR')
@@ -135,8 +136,12 @@ module.exports = kconfig = async (kill, message) => {
         const isQuotedVideo = quotedMsg && quotedMsg.type === 'video'
         const isQuotedSticker = quotedMsg && quotedMsg.type === 'sticker'
         const isQuotedGif = quotedMsg && quotedMsg.mimetype === 'image/gif'
+        const isQuotedAudio = quotedMsg && quotedMsg.type === 'audio'
+        const isQuotedPtt = quotedMsg && quotedMsg.type === 'ptt'
         const isImage = type === 'image'
         const isVideo = type === 'video'
+        const isAudio = type === 'audio'
+        const isPtt = type === 'ptt'
         const isGif = mimetype === 'image/gif'
         const arqs = body.trim().split(' ')
         const arks = args.join(' ')
@@ -148,6 +153,11 @@ module.exports = kconfig = async (kill, message) => {
         global.voterslistfile = 'poll_voters_Config_' + groupId + '.json'
 		const errorurl = 'https://img.wallpapersafari.com/desktop/1920/1080/19/44/evOxST.jpg'
 		const errorImg = 'https://i.ibb.co/jRCpLfn/user.png'
+		const irisMsgs = fs.readFileSync('./lib/config/Utilidades/reply.txt').toString().split('\n')
+		const theMsgC = irisMsgs[Math.floor(Math.random() * irisMsgs.length)]
+		const chatBotR = theMsgC.replace('%name$', `${name}`).replace('%battery%', `${lvpc}`)
+		const lgbt = fs.readFileSync('./lib/config/Utilidades/lgbt.txt').toString().split('\n')
+		const guei = lgbt[Math.floor(Math.random() * lgbt.length)]
 		
 		// Sobe patente por nivel, mude pro que quiser dentro das aspas, não esqueca do case ranking
         const check = getLevel(user, nivel)
@@ -253,7 +263,7 @@ module.exports = kconfig = async (kill, message) => {
 						if (status) {
 							console.log(color('[NSFW]', 'red'), color(`O link é pornografico, removerei o → ${pushname} - [${user}]...`, 'yellow'))
 							await kill.removeParticipant(groupId, user)
-						} else { console.log(color('[SEM NSFW]', 'green'), color(`→ O link não possui pornografia.`, 'gold')) }
+						} else { console.log(color('[SEM NSFW]', 'lime'), color(`→ O link não possui pornografia.`, 'gold')) }
 					})
 				}
 			} catch (error) { return }
@@ -262,20 +272,11 @@ module.exports = kconfig = async (kill, message) => {
 		// Ative para banir quem mandar todos os tipos de links (Ative removendo a /* e */)
 		/*if (isGroupMsg && !isGroupAdmins && isBotGroupAdmins && isAntiLink && !isOwner && isUrl(chats)) { await kill.removeParticipant(groupId, user) }*/
 		
-		// Anti Imagens pornograficas, tirar o isCmd quebra diversos comandos de imagens
-		if (isGroupMsg && !isGroupAdmins && isBotGroupAdmins && !isOwner && isAntiPorn && isMedia && isImage && !isCmd) {
-			try {
-				console.log(color('[IMAGEM]', 'red'), color('Verificando a imagem por pornografia...', 'yellow'))
-				const mediaData = await decryptMedia(message, uaOverride)
-				const getUrl = await upload(mediaData, false)
-				deepai.setApiKey(config.deepai)
-				const resp = await deepai.callStandardApi("nsfw-detector", { image: `${getUrl}` })
-				if (resp.output.nsfw_score >= 0.70) {
-					await kill.removeParticipant(groupId, user)
-					console.log(color('[NSFW]', 'red'), color(`A imagem contém traços de contéudo adulto, removerei o → ${pushname} - [${user}]...`, 'yellow'))
-				} else { console.log(color('[SEM NSFW]', 'green'), color(`→ A imagem não aparententa ser pornografica.`, 'gold')) }
-			} catch (error) { return }
-		}
+		// Comandos sem prefix, esse responde se marcar a BOT
+		if (!isFiltered(from) && !isCmd) { try { if (chats.includes(`@${botNumber.replace('@c.us', '')}`)) { await kill.reply(from, chatBotR, id) } } catch (error) { return } }
+		
+		// Caso deseje criar siga o estilo disso abaixo, para usar a base remova a /* e a */
+		/*if (!isFiltered(from) && !isCmd) { try { if (chats == 'Mensagem a receber') await kill.reply(from, 'Resposta para enviar', id) } } catch (error) { return }*/
 		
 		// Impede travas ou textos que tenham mais de 5.000 linhas
 		if (isGroupMsg && !isGroupAdmins && !isOwner && isBotGroupAdmins) {
@@ -299,48 +300,61 @@ module.exports = kconfig = async (kill, message) => {
 		}
 		
 		// Impede comandos em PV'S mutados
-		if (!isGroupMsg && isCmd && !isOwner && pvmte) return console.log(color('[SILENCE]', 'red'), color(`Ignorando comando de ${pushname} - [${user.replace('@c.us', '')}] pois ele está mutado...`, 'yellow'))
+		if (!isGroupMsg && isCmd && !isOwner && pvmte) return console.log(color('> [SILENCE]', 'red'), color(`Ignorando comando de ${pushname} - [${user.replace('@c.us', '')}] pois ele está mutado...`, 'yellow'))
 		
 		// Impede comandos em grupos mutados
-		if (isGroupMsg && isCmd && !isOwner && !isGroupAdmins && mute) return console.log(color('[SILENCE]', 'red'), color(`Ignorando comando de ${name} pois ele está mutado...`, 'yellow'))
+		if (isGroupMsg && isCmd && !isOwner && !isGroupAdmins && mute) return console.log(color('> [SILENCE]', 'red'), color(`Ignorando comando de ${name} pois ele está mutado...`, 'yellow'))
 
 		// Ignora pessoas bloqueadas
-		if (isBlocked && !isOwner && isCmd) return console.log(color('[BLOCK]', 'red'), color(`Ignorando comando de ${pushname} - [${user.replace('@c.us', '')}] por ele estar bloqueado...`, 'yellow'))
+		if (isBlocked && !isOwner && isCmd) return console.log(color('> [BLOCK]', 'red'), color(`Ignorando comando de ${pushname} - [${user.replace('@c.us', '')}] por ele estar bloqueado...`, 'yellow'))
 
         // Auto-stickers de fotos
         if (isGroupMsg && autoSticker && isMedia && isImage && !isCmd) {
-            const mediaData = await decryptMedia(message, uaOverride)
-            const imageBase64 = `data:${mimetype};base64,${mediaData.toString('base64')}`
-            await kill.sendImageAsSticker(from, imageBase64, { author: '🎁 https://bit.ly/30t4jJV ☆', pack: '🔰 Iris/Legião Z ⚜️', keepScale: true })
+            const mediaData = await decryptMedia(message, uaOverride) 
+            await kill.sendImageAsSticker(from, `data:${mimetype};base64,${mediaData.toString('base64')}`, { author: config.author, pack: config.pack, keepScale: true })
         }
 		
 		// Auto-sticker de videos & gifs
 		if (isGroupMsg && autoSticker && isMedia && isVideo && !isCmd) {
 			const mediaData = await decryptMedia(message, uaOverride)
-			const videoBase64 = `data:${mimetype};base64,${mediaData.toString('base64')}`
-			await kill.sendMp4AsSticker(from, videoBase64, null, { stickerMetadata: true, pack: '🔰 Iris/Legião Z ⚜️', author: '🎁 https://bit.ly/30t4jJV ☆', fps: 30, startTime: '00:00:00.0', endTime : '00:00:05.0', crop: true, loop: 0 })
+			await kill.sendMp4AsSticker(from, `data:${mimetype};base64,${mediaData.toString('base64')}`, null, { stickerMetadata: true, pack: config.pack, author: config.author, fps: 10, crop: true, loop: 0 })
+		}
+		
+		// Anti Imagens pornograficas, tirar o isCmd quebra diversos comandos de imagens
+		if (isGroupMsg && !isGroupAdmins && isBotGroupAdmins && !isOwner && isAntiPorn && isMedia && isImage && !isCmd) {
+			try {
+				console.log(color('[IMAGEM]', 'red'), color('Verificando a imagem por pornografia...', 'yellow'))
+				const mediaData = await decryptMedia(message, uaOverride)
+				const getUrl = await upload(mediaData, false)
+				deepai.setApiKey(config.deepai)
+				const resp = await deepai.callStandardApi("nsfw-detector", { image: `${getUrl}` })
+				if (resp.output.nsfw_score >= 0.70) {
+					await kill.removeParticipant(groupId, user)
+					console.log(color('[NSFW]', 'red'), color(`A imagem contém traços de contéudo adulto, removerei o → ${pushname} - [${user}]...`, 'yellow'))
+				} else { console.log(color('[SEM NSFW]', 'lime'), color(`→ A imagem não aparententa ser pornografica.`, 'gold')) }
+			} catch (error) { return }
 		}
 
         // Anti Flood para PV'S
-        if (isCmd && isFiltered(from) && !isGroupMsg && !isOwner) { return console.log(color('FLOOD AS', 'red'), color(moment(t * 1000).format('DD/MM/YY HH:mm:ss'), 'yellow'), color(`${command} [${args.length}]`), 'de', color(`${pushname} - [${user.replace('@c.us', '')}]`)) }
+        if (isCmd && isFiltered(from) && !isGroupMsg && !isOwner) { return console.log(color('> [FLOOD AS]', 'red'), color(moment(t * 1000).format('DD/MM/YY HH:mm:ss'), 'yellow'), color(`"[${prefix}${command.toUpperCase()}] [${args.length}]"`, 'red'), 'DE', color(`"${pushname} - [${user.replace('@c.us', '')}]"`, 'red')) }
 		
 		// Anti Flood para grupos
-        if (isCmd && isFiltered(from) && isGroupMsg && !isOwner) { return console.log(color('FLOOD AS', 'red'), color(moment(t * 1000).format('DD/MM/YY HH:mm:ss'), 'yellow'), color(`${command} [${args.length}]`), 'de', color(`${pushname} - [${user.replace('@c.us', '')}]`), 'em', color(name || formattedTitle)) }
+        if (isCmd && isFiltered(from) && isGroupMsg && !isOwner) { return console.log(color('> [FLOOD AS]', 'red'), color(moment(t * 1000).format('DD/MM/YY HH:mm:ss'), 'yellow'), color(`"[${prefix}${command.toUpperCase()}] [${args.length}]"`, 'red'), 'DE', color(`"${pushname} - [${user.replace('@c.us', '')}]"`, 'red'), 'EM', color(`"${name || formattedTitle}"`)) }
 		
 		// Contador de Mensagens (em grupo)
         if (isGroupMsg) { getMsg(user, msgcount); addMsg(user, 1, msgcount) }
 		
         // Mensagens no PV
-        if (!isCmd && !isGroupMsg) { return console.log('> MENSAGEM AS', color(moment(t * 1000).format('DD/MM/YY HH:mm:ss'), 'yellow'), 'de', color(`${pushname} - [${user.replace('@c.us', '')}]`)) }
+        if (!isCmd && !isGroupMsg) { return console.log('> MENSAGEM AS', color(moment(t * 1000).format('DD/MM/YY HH:mm:ss'), 'yellow'), 'DE', color(`"${pushname} - [${user.replace('@c.us', '')}]"`)) }
 		
 		// Mensagem em Grupo
-        if (!isCmd && isGroupMsg) { return console.log('> MENSAGEM AS', color(moment(t * 1000).format('DD/MM/YY HH:mm:ss'), 'yellow'), 'de', color(`${pushname} - [${user.replace('@c.us', '')}]`), 'em', color(name || formattedTitle)) }
+        if (!isCmd && isGroupMsg) { return console.log('> MENSAGEM AS', color(moment(t * 1000).format('DD/MM/YY HH:mm:ss'), 'yellow'), 'DE', color(`"${pushname} - [${user.replace('@c.us', '')}]"`), 'EM', color(`"${name || formattedTitle}"`)) }
 		
 		// Comandos no PV
-        if (isCmd && !isGroupMsg) { console.log(color(`> COMANDO "${command} [${args.length}]" AS`), color(moment(t * 1000).format('DD/MM/YY HH:mm:ss'), 'yellow'), 'de', color(`${pushname} - [${user.replace('@c.us', '')}]`)) }
+		if (isCmd && !isGroupMsg) { console.log(color(`> COMANDO "[${prefix}${command.toUpperCase()}]"`), 'AS', color(moment(t * 1000).format('DD/MM/YY HH:mm:ss'), 'yellow'), 'DE', color(`"${pushname} - [${user.replace('@c.us', '')}]"`)) }
 		
 		// Comandos em grupo
-        if (isCmd && isGroupMsg) { console.log(color(`> COMANDO "${command} [${args.length}]" AS`), color(moment(t * 1000).format('DD/MM/YY HH:mm:ss'), 'yellow'), 'de', color(`${pushname} - [${user.replace('@c.us', '')}]`), 'em', color(name || formattedTitle)) }
+        if (isCmd && isGroupMsg) { console.log(color(`> COMANDO "[${prefix}${command.toUpperCase()}]"`), 'AS', color(moment(t * 1000).format('DD/MM/YY HH:mm:ss'), 'yellow'), 'DE', color(`"${pushname} - [${user.replace('@c.us', '')}]"`), 'EM', color(`"${name || formattedTitle}"`)) }
 		
         // Impede SPAM
         if (isCmd && !isOwner) addFilter(from)
@@ -353,15 +367,13 @@ module.exports = kconfig = async (kill, message) => {
         case 'stiker':
             if (isMedia && isImage) {
 				const mediaData = await decryptMedia(message, uaOverride)
-				const imageBase64 = `data:${mimetype};base64,${mediaData.toString('base64')}`
-				await kill.sendImageAsSticker(from, imageBase64, { author: '🎁 https://bit.ly/30t4jJV ☆', pack: '🔰 Iris/Legião Z ⚜️', keepScale: true })
+				await kill.sendImageAsSticker(from, `data:${mimetype};base64,${mediaData.toString('base64')}`, { author: config.author, pack: config.pack, keepScale: true })
             } else if (isQuotedImage) {
                 const mediaData = await decryptMedia(quotedMsg, uaOverride)
-				const imageBase64 = `data:${quotedMsg.mimetype};base64,${mediaData.toString('base64')}`
-				await kill.sendImageAsSticker(from, imageBase64, { author: '🎁 https://bit.ly/30t4jJV ☆', pack: '🔰 Iris/Legião Z ⚜️', keepScale: true })
+				await kill.sendImageAsSticker(from, `data:${quotedMsg.mimetype};base64,${mediaData.toString('base64')}`, { author: config.author, pack: config.pack, keepScale: true })
             } else if (args.length == 1) {
                 if (isUrl(url)) {
-                    await kill.sendStickerfromUrl(from, url, { method: 'get' }, { author: '🎁 https://bit.ly/30t4jJV ☆', pack: '🔰 Iris/Legião Z ⚜️', keepScale: true })
+                    await kill.sendStickerfromUrl(from, url, { method: 'get' }, { author: config.author, pack: config.pack, keepScale: true })
                 } else return kill.reply(from, mess.nolink(), id)
             } else return kill.reply(from, mess.sticker(), id)
             break
@@ -370,7 +382,7 @@ module.exports = kconfig = async (kill, message) => {
 		case 'ttp':
 			if (args.length == 0) return kill.reply(from, mess.noargs() + 'palavras/words/números/numbers.', id)
 			const ttpst = await axios.get(`https://st4rz.herokuapp.com/api/ttp?kata=${encodeURIComponent(body.slice(5))}`)
-			await kill.sendImageAsSticker(from, ttpst.data.result, { author: '🎁 https://bit.ly/30t4jJV ☆', pack: '🔰 Iris/Legião Z ⚜️', keepScale: true })
+			await kill.sendImageAsSticker(from, ttpst.data.result, { author: config.author, pack: config.pack, keepScale: true })
 			break
 			
 			
@@ -379,7 +391,7 @@ module.exports = kconfig = async (kill, message) => {
 			await kill.reply(from, mess.wait(), id)
 			await axios.get(`https://api.xteam.xyz/attp?file&text=${encodeURIComponent(body.slice(6))}`, { responseType: 'arraybuffer' }).then(async (response) => {
 				const attp = Buffer.from(response.data, 'binary').toString('base64')
-				await kill.sendImageAsSticker(from, attp, { author: '🎁 https://bit.ly/30t4jJV ☆', pack: '🔰 Iris/Legião Z ⚜️', keepScale: true })
+				await kill.sendImageAsSticker(from, attp, { author: config.author, pack: config.pack, keepScale: true })
 			})
 			break
 			
@@ -404,7 +416,7 @@ module.exports = kconfig = async (kill, message) => {
 				const getTrigger = await upload(upTrigger, false)
 				await axios.get(`https://some-random-api.ml/canvas/triggered?avatar=${getTrigger}`, { responseType: 'arraybuffer' }).then(async (response) => {
 					const theTigger = Buffer.from(response.data, 'binary').toString('base64')
-					await kill.sendImageAsSticker(from, theTigger, { author: '🎁 https://bit.ly/30t4jJV ☆', pack: '🔰 Iris/Legião Z ⚜️', keepScale: true })
+					await kill.sendImageAsSticker(from, theTigger, { author: config.author, pack: config.pack, keepScale: true })
 				})
 				.catch(() => { kill.reply(from, mess.upfail(), id) })
             } else return kill.reply(from, mess.onlyimg(), id)
@@ -420,14 +432,15 @@ module.exports = kconfig = async (kill, message) => {
 			if (isMedia && type === 'image' || isQuotedImage) {
 				const nobgmd = isQuotedImage ? quotedMsg : message
 				const mediaData = await decryptMedia(nobgmd, uaOverride)
-				const imageBase64 = `data:${mimetype};base64,${mediaData.toString('base64')}`
+				const imageBase64 = `data:${nobgmd.mimetype};base64,${mediaData.toString('base64')}`
 				await kill.reply(from, mess.wait(), id) 
 				const base64img = imageBase64
-				const outFile = './lib/media/img/noBg.png'
+				const outFile = `./lib/media/img/${user.replace('@c.us', '')}noBg.png`
 				var result = await removeBackgroundFromImageBase64({ base64img, apiKey: config.nobg, size: 'auto', type: 'auto', outFile })
 				await fs.writeFile(outFile, result.base64img)
-				await kill.sendImageAsSticker(from, `data:${mimetype};base64,${result.base64img}`, { author: '🎁 https://bit.ly/30t4jJV ☆', pack: '🔰 Iris/Legião Z ⚜️', keepScale: true })
+				await kill.sendImageAsSticker(from, `data:${nobgmd.mimetype};base64,${result.base64img}`, { author: '🎁 https://bit.ly/30t4jJV ☆', pack: '🔰 Iris/Legião Z ⚜️', keepScale: true })
 				await kill.reply(from, mess.nobgms(), id)
+				fs.unlinkSync(`./lib/media/img/${user.replace('@c.us', '')}noBg.png`)
             } else return kill.reply(from, mess.onlyimg(), id)
             break
 			
@@ -439,7 +452,7 @@ module.exports = kconfig = async (kill, message) => {
                 await kill.reply(from, mess.wait(), id)
 				const encryptMedia = isQuotedGif || isQuotedVideo ? quotedMsg : message
 				const mediaData = await decryptMedia(encryptMedia, uaOverride)
-				await kill.sendMp4AsSticker(from, mediaData, null, { stickerMetadata: true, pack: '🔰 Iris/Legião Z ⚜️', author: '🎁 https://bit.ly/30t4jJV ☆', fps: 10, startTime: '00:00:00.0', endTime : '00:00:05.0', crop: true, loop: 0 })
+				await kill.sendMp4AsSticker(from, mediaData, null, { stickerMetadata: true, pack: config.pack, author: config.author, fps: 10, crop: true, loop: 0 })
 				.catch(() => { kill.reply(from, mess.gifail(), id) })
             } else return kill.reply(from, mess.onlyvgif(), id)
             break
@@ -479,7 +492,7 @@ module.exports = kconfig = async (kill, message) => {
 			const stkm = await fetch(`https://api.fdci.se/sosmed/rep.php?gambar=${encodeURIComponent(body.slice(12))}`)
 			const stimg = await stkm.json()
 			let stkfm = stimg[Math.floor(Math.random() * stimg.length) + 1]
-			await kill.sendStickerfromUrl(from, stkfm, { method: 'get' }, { author: '🎁 https://bit.ly/30t4jJV ☆', pack: '🔰 Iris/Legião Z ⚜️', keepScale: true })
+			await kill.sendStickerfromUrl(from, stkfm, { method: 'get' }, { author: config.author, pack: config.pack, keepScale: true })
             break
 			
 			
@@ -659,7 +672,7 @@ module.exports = kconfig = async (kill, message) => {
 				await kill.reply(from, mess.wait() + '\n\n20+ s.', id)
 				const browser = await puppeteer.launch({ headless: true })
 				const page = await browser.newPage()
-				await page.goto("https://textpro.me/dropwater-text-effect-872.html", {waitUntil: "networkidle2" }).then(async () => {
+				await page.goto("https://textpro.me/dropwater-text-effect-872.html", { waitUntil: "networkidle2" }).then(async () => {
 					await page.type("#text-0", body.slice(6))
 					await page.click("#submit")
 					await new Promise(resolve => setTimeout(resolve, 10000))
@@ -681,21 +694,18 @@ module.exports = kconfig = async (kill, message) => {
             if (!isBotGroupAdmins) return kill.reply(from, mess.botademira(), id)
 			if (isMedia && type == 'image' || isQuotedImage) {
 				const dataMedia = isQuotedImage ? quotedMsg : message
-				const _mimetype = dataMedia.mimetype
 				const mediaData = await decryptMedia(dataMedia, uaOverride)
-				const imageBase64 = `data:${_mimetype};base64,${mediaData.toString('base64')}`
 				const picgp = await kill.getProfilePicFromServer(groupId)
 				if (picgp == undefined) { var backup = errorurl } else { var backup = picgp }
 				await kill.sendFileFromUrl(from, backup, 'group.png', 'Backup', id)
-				await kill.setGroupIcon(groupId, imageBase64)
+				await kill.setGroupIcon(groupId, `data:${mimetype};base64,${mediaData.toString('base64')}`)
 			} else if (args.length == 1) {
 				if (!isUrl(url)) { await kill.reply(from, mess.nolink(), id) }
 				const picgpo = await kill.getProfilePicFromServer(groupId)
 				if (picgpo == undefined) { var back = errorurl } else { var back = picgpo }
 				await kill.sendFileFromUrl(from, back, 'group.png', 'Backup', id)
 				await kill.setGroupIconByUrl(groupId, url).then((r) => (!r && r !== undefined)
-				? kill.reply(from, mess.nolink(), id)
-				: kill.reply(from, mess.maked(), id))
+				? kill.reply(from, mess.nolink(), id) : kill.reply(from, mess.maked(), id))
 			} else return kill.reply(from, mess.onlyimg(), id)
 			break
 			
@@ -704,8 +714,7 @@ module.exports = kconfig = async (kill, message) => {
             if (isQuotedSticker) {
 				await kill.reply(from, mess.wait(), id)
 				const mediaData = await decryptMedia(quotedMsg, uaOverride)
-				const stickerImg = `data:${quotedMsg.mimetype};base64,${mediaData.toString('base64')}`
-				await kill.sendFile(from, stickerImg, '', '', id)
+				await kill.sendFile(from, `data:${quotedMsg.mimetype};base64,${mediaData.toString('base64')}`, '', '', id)
             } else return kill.reply(from, mess.onlyst(), id)
 			break
 			
@@ -958,9 +967,9 @@ module.exports = kconfig = async (kill, message) => {
 				var langtts = args[0]
 				if (args[0] == 'br') langtts = 'pt-br'
 				var idptt = tts(langtts)
-				idptt.save(`./lib/media/tts/res${idptt}.mp3`, dataText, async () => {
+				idptt.save(`./lib/media/audio/res${idptt}.mp3`, dataText, async () => {
 					await sleep(3000)
-					await kill.sendPtt(from, `./lib/media/tts/res${idptt}.mp3`, id)
+					await kill.sendPtt(from, `./lib/media/audio/res${idptt}.mp3`, id)
 				})
 			} catch (error) { 
 				await kill.reply(from, mess.ttsiv(), id)
@@ -1001,15 +1010,13 @@ module.exports = kconfig = async (kill, message) => {
 						await kill.sendFileFromUrl(from, `${akiwon.absolute_picture_path}`, '', mess.akiwon(aki, akiwon), id)
 					} else { await kill.reply(from, mess.akistart(aki), id) }
 				} else if (args[0] == '-back' || args[0] == '-new') {
-					for (let i = 0; i < jogadas; i++) {
-						await aki.back()
-					}
+					for (let i = 0; i < jogadas; i++) { await aki.back() }
 					jogadas = 0
 					await kill.reply(from, mess.akistart(aki), id)
 				} else return kill.reply(from, mess.akistart(aki), id)
 			} catch (error) {
 				await kill.reply(from, mess.akifail(), id)
-				playaki()
+				akinit()
 				await kill.reply(from, mess.akistart(aki), id)
 				console.log(color('[AKINATOR]', 'crimson'), color(`→ Obtive erros no comando ${prefix}${command} → ${error.message} - Você pode ignorar.`, 'gold'))
 			}
@@ -1017,20 +1024,17 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
         case 'iris':
-			const rndrl = fs.readFileSync('./lib/config/Utilidades/reply.txt').toString().split('\n')
-			const repl = rndrl[Math.floor(Math.random() * rndrl.length)]
-			const resmf = repl.replace('%name$', `${name}`).replace('%battery%', `${lvpc}`)
 			try {
 				if (args[0] == '-g') {
-					exec(`cd lib/config && bash -c 'grep -i "${args[1]}" reply.txt | shuf -n 1'`, async (error, stdout, stderr) => {
+					exec(`cd lib/config/Utilidades && bash -c 'grep -i "${args[1]}" reply.txt | shuf -n 1'`, async (error, stdout, stderr) => {
 						if (error || stderr || stdout == null || stdout == '') {
-							await kill.reply(from, resmf, id)
+							await kill.reply(from, chatBotR, id)
 						} else return kill.reply(from, stdout, id)
 					})
 				} else {
 					const iris = await axios.get(`http://simsumi.herokuapp.com/api?text=${encodeURIComponent(body.slice(6))}&lang=${config.lang}`)
 					if (iris.data.success == 'Limit 50 queries per hour.' || iris.data.success == '' || iris.data.success == null) {
-						await kill.reply(from, resmf, id)
+						await kill.reply(from, chatBotR, id)
 					} else {
 						if (iris.data.success == 'Curta a pagina Gamadas por Bieber no facebook ;)') return kill.reply(from, 'Oi sua gostosa, como vai?', id)
 						await kill.reply(from, iris.data.success, id)
@@ -1046,30 +1050,27 @@ module.exports = kconfig = async (kill, message) => {
 			
         case 'speak':
 			const sppt = require('node-gtts')(config.lang)
-			const rfua = fs.readFileSync('./lib/config/Utilidades/reply.txt').toString().split('\n')
-			const repy = rfua[Math.floor(Math.random() * rfua.length)]
-			const resfl = repy.replace('%name$', '${name}').replace('%battery%', '${lvpc}')
 			try {
 				if (args[0] == '-g') {
-					exec(`cd lib/config && bash -c 'grep -i "${args[1]}" reply.txt | shuf -n 1'`, (error, stdout, stderr) => {
+					exec(`cd lib/config/Utilidades && bash -c 'grep -i "${args[1]}" reply.txt | shuf -n 1'`, (error, stdout, stderr) => {
 						if (error || stderr || stdout == null || stdout == '') {
-							sppt.save('./lib/media/tts/resPtm.mp3', resfl, async function () { await kill.sendPtt(from, './lib/media/tts/resPtm.mp3', id) })
-						} else { sppt.save('./lib/media/tts/resPtm.mp3', stdout, async function () { await kill.sendPtt(from, './lib/media/tts/resPtm.mp3', id) }) }
+							sppt.save('./lib/media/audio/resPtm.mp3', chatBotR, async function () { await kill.sendPtt(from, './lib/media/audio/resPtm.mp3', id) })
+						} else { sppt.save('./lib/media/audio/resPtm.mp3', stdout, async function () { await kill.sendPtt(from, './lib/media/audio/resPtm.mp3', id) }) }
 					})
 				} else {
 					const spiris = await axios.get(`http://simsumi.herokuapp.com/api?text=${encodeURIComponent(body.slice(7))}&lang=${config.lang}`)
 					const a = spiris.data.success
 					if (a == 'Limit 50 queries per hour.' || a == '' || a == null) {
-						sppt.save('./lib/media/tts/resPtm.mp3', resfl, async function () { await kill.sendPtt(from, './lib/media/tts/resPtm.mp3', id) })
+						sppt.save('./lib/media/audio/resPtm.mp3', chatBotR, async function () { await kill.sendPtt(from, './lib/media/audio/resPtm.mp3', id) })
 					} else {
-						sppt.save('./lib/media/tts/resPtm.mp3', a, async function () {
-							await kill.sendPtt(from, './lib/media/tts/resPtm.mp3', id)
+						sppt.save('./lib/media/audio/resPtm.mp3', a, async function () {
+							await kill.sendPtt(from, './lib/media/audio/resPtm.mp3', id)
 							fs.appendFile('./lib/config/Utilidades/reply.txt', `\n${a}`)
 						})
 					}
 				}
 			} catch (error) {
-				sppt.save('./lib/media/tts/resPtm.mp3', resfl, async function () { await kill.sendPtt(from, './lib/media/tts/resPtm.mp3', id) })
+				sppt.save('./lib/media/audio/resPtm.mp3', resfl, async function () { await kill.sendPtt(from, './lib/media/audio/resPtm.mp3', id) })
 				console.log(color('[SPEAK]', 'crimson'), color(`→ Obtive erros no comando ${prefix}${command} → ${error.message} - Você pode ignorar.`, 'gold'))
 			}
 			break
@@ -1080,7 +1081,7 @@ module.exports = kconfig = async (kill, message) => {
 			const rsidd = rcurio[Math.floor(Math.random() * rcurio.length)]
 			try {
 				if (args[0] == '-g') {
-					exec(`cd lib/config && bash -c 'grep -i "${args[1]}" curiosidades.txt | shuf -n 1'`, async (error, stdout, stderr) => {
+					exec(`cd lib/config/Utilidades && bash -c 'grep -i "${args[1]}" curiosidades.txt | shuf -n 1'`, async (error, stdout, stderr) => {
 						if (error || stderr || stdout == null || stdout == '') {
 							await kill.reply(from, rsidd, id)
 						} else return kill.reply(from, stdout, id)
@@ -1098,7 +1099,7 @@ module.exports = kconfig = async (kill, message) => {
 			const racon = rcit[Math.floor(Math.random() * rcit.length)]
 			try {
 				if (args[0] == '-g') {
-					exec(`cd lib/config && bash -c 'grep -i "${args[1]}" frases.txt | shuf -n 1'`, async (error, stdout, stderr) => {
+					exec(`cd lib/config/Utilidades && bash -c 'grep -i "${args[1]}" frases.txt | shuf -n 1'`, async (error, stdout, stderr) => {
 						if (error || stderr || stdout == null || stdout == '') {
 							await kill.reply(from, racon, id)
 						} else return kill.reply(from, stdout, id)
@@ -1113,7 +1114,7 @@ module.exports = kconfig = async (kill, message) => {
 			
         case 'roll':
             const dice = Math.floor(Math.random() * 6) + 1
-            await kill.sendStickerfromUrl(from, 'https://www.random.org/dice/dice' + dice + '.png', { method: 'get' }, { author: '🎁 https://bit.ly/30t4jJV ☆', pack: '🔰 Iris/Legião Z ⚜️', keepScale: true })
+            await kill.sendStickerfromUrl(from, 'https://www.random.org/dice/dice' + dice + '.png', { method: 'get' }, { author: config.author, pack: config.pack, keepScale: true })
             break
 			
 			
@@ -1158,7 +1159,7 @@ module.exports = kconfig = async (kill, message) => {
 			} else {
 				if (args[0] == 'cara' || args[0] == 'coroa') {
 					if (side == 1) {
-						await kill.sendStickerfromUrl(from, 'https://i.ibb.co/LJjkVK5/heads.png', { method: 'get' }, { author: '🎁 https://bit.ly/30t4jJV ☆', pack: '🔰 Iris/Legião Z ⚜️', keepScale: true })
+						await kill.sendStickerfromUrl(from, 'https://i.ibb.co/LJjkVK5/heads.png', { method: 'get' }, { author: config.author, pack: config.pack, keepScale: true })
 						if (args[0] == 'cara') {
 							await kill.reply(from, mess.flipwin(pflipxp) + ' "cara".', id)
 							addXp(user, pflipxp, nivel)
@@ -1167,7 +1168,7 @@ module.exports = kconfig = async (kill, message) => {
 							addXp(user, nflipxp, nivel)
 						}
 					} else {
-						await kill.sendStickerfromUrl(from, 'https://i.ibb.co/wNnZ4QD/tails.png', { method: 'get' }, { author: '🎁 https://bit.ly/30t4jJV ☆', pack: '🔰 Iris/Legião Z ⚜️', keepScale: true })
+						await kill.sendStickerfromUrl(from, 'https://i.ibb.co/wNnZ4QD/tails.png', { method: 'get' }, { author: config.author, pack: config.pack, keepScale: true })
 						if (args[0] == 'coroa') {
 							await kill.reply(from, mess.flipwin(pflipxp) + ' "coroa".', id)
 							addXp(user, pflipxp, nivel)
@@ -1286,7 +1287,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 		case 'ball':
 			const ball = await axios.get('https://nekos.life/api/v2/img/8ball')
-			await kill.sendStickerfromUrl(from, ball.data.url, { method: 'get' }, { author: '🎁 https://bit.ly/30t4jJV ☆', pack: '🔰 Iris/Legião Z ⚜️', keepScale: true })
+			await kill.sendStickerfromUrl(from, ball.data.url, { method: 'get' }, { author: config.author, pack: config.pack, keepScale: true })
 			break
 			
 			
@@ -1296,7 +1297,7 @@ module.exports = kconfig = async (kill, message) => {
 			const cfnean = await axios.get('https://nekos.life/api/v2/img/poke')
 			await axios.get(cfnean.data.url, { responseType: 'arraybuffer' }).then(async (response) => {
 				const cfune = Buffer.from(response.data, 'binary').toString('base64')
-				await kill.sendImageAsSticker(from, cfune, { author: '🎁 https://bit.ly/30t4jJV ☆', pack: '🔰 Iris/Legião Z ⚜️', keepScale: true })
+				await kill.sendImageAsSticker(from, cfune, { author: config.author, pack: config.pack, keepScale: true })
 			})
 			break			
 			
@@ -1311,7 +1312,7 @@ module.exports = kconfig = async (kill, message) => {
 			const pokean = await axios.get('https://nekos.life/api/v2/img/poke')
 			await axios.get(pokean.data.url, { responseType: 'arraybuffer' }).then(async (response) => {
 				const teco = Buffer.from(response.data, 'binary').toString('base64')
-				await kill.sendImageAsSticker(from, teco, { author: '🎁 https://bit.ly/30t4jJV ☆', pack: '🔰 Iris/Legião Z ⚜️', keepScale: true })
+				await kill.sendImageAsSticker(from, teco, { author: config.author, pack: config.pack, keepScale: true })
 			})
 			break
 			
@@ -1320,7 +1321,7 @@ module.exports = kconfig = async (kill, message) => {
 			const cocegas = await axios.get('https://nekos.life/api/v2/img/tickle')
 			await axios.get(cocegas.data.url, { responseType: 'arraybuffer' }).then(async (response) => {
 				const cosqha = Buffer.from(response.data, 'binary').toString('base64')
-				await kill.sendImageAsSticker(from, cosqha, { author: '🎁 https://bit.ly/30t4jJV ☆', pack: '🔰 Iris/Legião Z ⚜️', keepScale: true })
+				await kill.sendImageAsSticker(from, cosqha, { author: config.author, pack: config.pack, keepScale: true })
 			})
 			break
 			
@@ -1329,7 +1330,7 @@ module.exports = kconfig = async (kill, message) => {
 			const feed = await axios.get('https://nekos.life/api/v2/img/tickle')
 			await axios.get(feed.data.url, { responseType: 'arraybuffer' }).then(async (response) => {
 				const gfood = Buffer.from(response.data, 'binary').toString('base64')
-				await kill.sendImageAsSticker(from, gfood, { author: '🎁 https://bit.ly/30t4jJV ☆', pack: '🔰 Iris/Legião Z ⚜️', keepScale: true })
+				await kill.sendImageAsSticker(from, gfood, { author: config.author, pack: config.pack, keepScale: true })
 			})
 			break
 			
@@ -1338,7 +1339,7 @@ module.exports = kconfig = async (kill, message) => {
 			const baka = await axios.get('https://nekos.life/api/v2/img/baka')
 			await axios.get(baka .data.url, { responseType: 'arraybuffer' }).then(async (response) => {
 				const bakay = Buffer.from(response.data, 'binary').toString('base64')
-				await kill.sendImageAsSticker(from, bakay, { author: '🎁 https://bit.ly/30t4jJV ☆', pack: '🔰 Iris/Legião Z ⚜️', keepScale: true })
+				await kill.sendImageAsSticker(from, bakay, { author: config.author, pack: config.pack, keepScale: true })
 			})
 			break
 			
@@ -1497,9 +1498,8 @@ module.exports = kconfig = async (kill, message) => {
             if (isMedia && type === 'image' || quotedMsg && quotedMsg.type === 'image') {
 				const tMData = isQuotedImage ? quotedMsg : message
 				const mediaData = await decryptMedia(tMData, uaOverride)
-                const imgBS4 = `data:${mimetype};base64,${mediaData.toString('base64')}`
                 await kill.reply(from, mess.searchanime(), id)
-                fetch('https://trace.moe/api/search', { method: 'POST', body: JSON.stringify({ image: imgBS4 }), headers: { "Content-Type": "application/json" } }).then(respon => respon.json()).then(async (resolt) => {
+                fetch('https://trace.moe/api/search', { method: 'POST', body: JSON.stringify({ image: `data:${mimetype};base64,${mediaData.toString('base64')}` }), headers: { "Content-Type": "application/json" } }).then(respon => respon.json()).then(async (resolt) => {
                 	if (resolt.docs && resolt.docs.length <= 0) { await kill.reply(from, mess.noresult(), id) }
                     const { is_adult, title, title_chinese, title_romaji, title_english, episode, similarity, filename, at, tokenthumb, anilist_id } = resolt.docs[0]
                     teks = ''
@@ -1524,47 +1524,49 @@ module.exports = kconfig = async (kill, message) => {
         case 'broad':
             if (!isOwner) return kill.reply(from, mess.sodono(), id)
 			if (args.length == 0) return kill.reply(from, mess.broad(), id)
-			const chatz = await kill.getAllChatIds()
-			if (args[0] == '-all') {
+			const chatall = await kill.getAllChatIds()
+			const isGroupC = await chatall.filter(group => group.includes('@g.us'))
+			const isPrivateC = await chatall.filter(group => group.includes('@c.us'))
+			try {
+				const sendQFileC = async (quotedMsgObj, ids) => {
+					let replyOnReply = await kill.getMessageById(quotedMsgObj.id)
+					let obj = replyOnReply.quotedMsgObj
+					if (/ptt|audio|video|image|document|sticker/.test(quotedMsgObj.type)) {
+						if (quotedMsgObj.animated) quotedMsgObj.mimetype = ''
+					} else if (obj && /ptt|audio|video|image/.test(obj.type)) { quotedMsgObj = obj } else return
+					const mediaData = await decryptMedia(quotedMsgObj)
+					await kill.sendFile(ids, `data:${quotedMsgObj.mimetype};base64,${mediaData.toString('base64')}`, '', `Enviado pelo Dono.`)
+				}
 				let msg = body.slice(12)
-				for (let ids of chatz) {
-					var cvk = await kill.getChatById(ids)
-					if (!cvk.isReadOnly) {
-						await kill.sendText(ids, `[Transmissão do dono da Íris]\n\n${msg}`)
-						if (quotedMsgObj) {
-							let replyOnReply = await kill.getMessageById(quotedMsgObj.id)
-							let obj = replyOnReply.quotedMsgObj
-							if (/ptt|audio|video|image|document|sticker/.test(quotedMsgObj.type)) {
-								if (quotedMsgObj.animated) quotedMsgObj.mimetype = ''
-							} else if (obj && /ptt|audio|video|image/.test(obj.type)) { quotedMsgObj = obj } else return
-							const mediaData = await decryptMedia(quotedMsgObj)
-							await kill.sendFile(ids, `data:${quotedMsgObj.mimetype};base64,${mediaData.toString('base64')}`, '', `Enviado pelo Dono.`)
+				if (args[0] == '-all') {
+					for (let ids of chatall) {
+						var cvk = await kill.getChatById(ids)
+						if (!cvk.isReadOnly) {
+							await kill.sendText(ids, `[Transmissão do dono da Íris]\n\n${msg}`)
+							if (quotedMsgObj) { sendQFileC(quotedMsgObj, ids) }
 						}
-					} else { console.log(color('[FECHADO]', 'crimson'), color(`→ Um grupo/privado estava bloqueado, então ignorei ele...`, 'gold')) }
-				}
-				await kill.reply(from, mess.maked(), id)
-			} else if (args[0] == '-gp') {
-				let msg = body.slice(11)
-				for (let bclst of chatz) {
-					var notgps = bclst.endsWith('@c.us')
-					if (!notgps) {
-						var bkgps = await kill.getChatById(bclst)
-						if (!bkgps.isReadOnly) {
-							await kill.sendText(bclst, `[Transmissão do dono da Íris]\n\n${msg}`)
-							if (quotedMsgObj) {
-								let replyOnReply = await kill.getMessageById(quotedMsgObj.id)
-								let obj = replyOnReply.quotedMsgObj
-								if (/ptt|audio|video|image|document|sticker/.test(quotedMsgObj.type)) {
-									if (quotedMsgObj.animated) quotedMsgObj.mimetype = ''
-								} else if (obj && /ptt|audio|video|image/.test(obj.type)) { quotedMsgObj = obj } else return
-								const mediaData = await decryptMedia(quotedMsgObj)
-								await kill.sendFile(ids, `data:${quotedMsgObj.mimetype};base64,${mediaData.toString('base64')}`, '', `Enviado pelo Dono.`)
-							}
-						} else { console.log(color('[FECHADO]', 'crimson'), color(`→ Um grupo/privado estava bloqueado, então ignorei ele...`, 'gold')) }
 					}
-				}
-				await kill.reply(from, mess.maked(), id)
-			} else return kill.reply(from, mess.broad(), id)
+					await kill.reply(from, mess.maked(), id)
+				} else if (args[0] == '-gps') {
+					for (let ids of isGroupC) {
+						var cvk = await kill.getChatById(ids)
+						if (!cvk.isReadOnly) {
+							await kill.sendText(ids, `[Transmissão do dono da Íris]\n\n${msg}`)
+							if (quotedMsgObj) { sendQFileC(quotedMsgObj, ids) }
+						}
+					}
+					await kill.reply(from, mess.maked(), id)
+				} else if (args[0] == '-pvs') {
+					for (let ids of isPrivateC) {
+						await kill.sendText(ids, `[Transmissão do dono da Íris]\n\n${msg}`)
+						if (quotedMsgObj) { sendQFileC(quotedMsgObj, ids) }
+					}
+					await kill.reply(from, mess.maked(), id)
+				} else return kill.reply(from, mess.broad(), id)
+			} catch (error) {
+				await kill.reply(from, mess.noctt(), id)
+				console.log(color('[BROADCAST]', 'crimson'), color(`→ Obtive erros no comando ${prefix}${command} → ${error.message} - Você pode ignorar.`, 'gold'))
+			}
             break
 			
 			
@@ -1609,8 +1611,14 @@ module.exports = kconfig = async (kill, message) => {
             var desc = chat.groupMetadata.desc
             var groupname = name
             let admgp = ''
-            for (let admon of groupAdmins) { admgp += `➸ @${admon.replace(/@c.us/g, '')}\n` }
-			var gpOwner = chat.groupMetadata.owner.replace(/@c.us/g, '')
+            for (let admon of groupAdmins) {
+				var adminsls = await kill.getContact(admon)
+				var getAdmsLst = adminsls.pushname
+				if (getAdmsLst == null) getAdmsLst = 'wa.me/' + admon.replace(/@c.us/g, '')
+				admgp += `➸ ${getAdmsLst}\n`
+			}
+			var donodeGp = await kill.getContact(chat.groupMetadata.owner)
+			var gpOwner = (donodeGp.pushname == undefined) ? `wa.me/${chat.groupMetadata.owner.replace('@c.us', '')}` : donodeGp.pushname
             var welgrp = welkom.includes(groupId) ? 'Sim' : 'Não'
             var fakegp = faki.includes(groupId) ? 'Sim' : 'Não'
             var bklistgp = bklist.includes(groupId) ? 'Sim' : 'Não'
@@ -1622,8 +1630,7 @@ module.exports = kconfig = async (kill, message) => {
             var atlka = atlinks.includes(groupId) ? 'Sim' : 'Não'
             var grouppic = await kill.getProfilePicFromServer(groupId)
             if (grouppic == undefined) { var pfp = errorurl } else { var pfp = grouppic }
-            await kill.sendFileFromUrl(from, pfp, 'group.png', ``, id)
-			await kill.sendTextWithMentions(from, mess.groupinfo(groupname, totalMem, welgrp, atpngy, atlka, xpgp, fakegp, bklistgp, slcegp, autostk, ngrp, desc, gpOwner, admgp))
+            await kill.sendFileFromUrl(from, pfp, 'group.png', mess.groupinfo(groupname, totalMem, welgrp, atpngy, atlka, xpgp, fakegp, bklistgp, slcegp, autostk, ngrp, desc, gpOwner, admgp), id)
 			break
 			
 			
@@ -1650,16 +1657,30 @@ module.exports = kconfig = async (kill, message) => {
 			const mapz2 = await axios.get(`https://mnazria.herokuapp.com/api/maps?search=${encodeURIComponent(body.slice(6))}`)
 			const { gambar } = mapz2.data
 			const pictk = await bent("buffer")(gambar)
-			const base64 = `data:image/jpg;base64,${pictk.toString("base64")}`
-			await kill.sendImage(from, base64, 'maps.jpg', `*📍 ${body.slice(6)}*`)
+			await kill.sendImage(from, `data:image/jpg;base64,${pictk.toString("base64")}`, 'maps.jpg', `*📍 ${body.slice(6)}*`)
 			break
 			
 			
 		case 'sip':
 			if (args.length !== 1) return kill.reply(from, mess.noargs() + 'IPV4 (ex: 8.8.8.8).', id)
 			const ip = await axios.get(`http://ipwhois.app/json/${encodeURIComponent(body.slice(5))}`)
+			if (ip.data.latitude == undefined) return kill.reply(from, mess.noresult(), id)
 			await kill.sendLocation(from, `${ip.data.latitude}`, `${ip.data.longitude}`, '')
 			await kill.reply(from, mess.sip(ip), id)
+			await kill.reply(from, 'Searching place photo - Buscando foto do local...\nEspere - Wait...\n+20S...', id)
+			const browserip = await puppeteer.launch({ 
+				headless: true,
+				defaultViewport: null,
+				args: ['--start-maximized'] 
+			})
+			const pageip = await browserip.newPage()
+			await pageip.goto(`http://www.google.com/maps?layer=c&cbll=${ip.data.latitude},${ip.data.longitude}`, { waitUntil: "networkidle2" }).then(async () => {
+				await sleep(20000)
+				await pageip.screenshot({path: `./lib/media/img/${user.replace('@c.us', '')}ip.png`})
+				browserip.close()
+			})
+			await kill.sendFile(from, `./lib/media/img/${user.replace('@c.us', '')}ip.png`, 'ip.png', 'Maybe here - Talvez aqui! 📍', id)
+			fs.unlinkSync(`./lib/media/img/${user.replace('@c.us', '')}ip.png`)
 			break
 			
 			
@@ -1749,7 +1770,7 @@ module.exports = kconfig = async (kill, message) => {
 			await kill.reply(from, mess.wait() + '\n\n20+ s.', id)
 			const browsertd = await puppeteer.launch({ headless: true })
 			const pagetd = await browsertd.newPage()
-			await pagetd.goto(tdchoice, {waitUntil: "networkidle2" }).then(async () => {
+			await pagetd.goto(tdchoice, { waitUntil: "networkidle2" }).then(async () => {
 				await pagetd.type("#text-0", body.slice(4))
 				await pagetd.click("#submit")
 				await new Promise(resolve => setTimeout(resolve, 10000))
@@ -1767,7 +1788,7 @@ module.exports = kconfig = async (kill, message) => {
 			await kill.reply(from, mess.wait() + '\n\n20+ s.', id)
 			const browsersg = await puppeteer.launch({ headless: true })
 			const pagesg = await browsersg.newPage()
-			await pagesg.goto('https://textpro.me/1917-style-text-effect-online-980.html', {waitUntil: "networkidle2" }).then(async () => {
+			await pagesg.goto('https://textpro.me/1917-style-text-effect-online-980.html', { waitUntil: "networkidle2" }).then(async () => {
 				await pagesg.type("#text-0", body.slice(8))
 				await pagesg.click("#submit")
 				await new Promise(resolve => setTimeout(resolve, 10000))
@@ -1792,7 +1813,7 @@ module.exports = kconfig = async (kill, message) => {
 			await kill.reply(from, mess.wait() + '\n\n20+ s.', id)
 			const browserth = await puppeteer.launch({ headless: true })
 			const pageth = await browserth.newPage()
-			await pageth.goto("https://textpro.me/thunder-text-effect-online-881.html", {waitUntil: "networkidle2" }).then(async () => {
+			await pageth.goto("https://textpro.me/thunder-text-effect-online-881.html", { waitUntil: "networkidle2" }).then(async () => {
 				await pageth.type("#text-0", body.slice(9))
 				await pageth.click("#submit")
 				await new Promise(resolve => setTimeout(resolve, 10000))
@@ -1810,7 +1831,7 @@ module.exports = kconfig = async (kill, message) => {
 			await kill.reply(from, mess.wait() + '\n\n20+ s.', id)
 			const browserlg = await puppeteer.launch({ headless: true })
 			const pagelg = await browserlg.newPage()
-			await pagelg.goto("https://textpro.me/create-a-futuristic-technology-neon-light-text-effect-1006.html", {waitUntil: "networkidle2" }).then(async () => {
+			await pagelg.goto("https://textpro.me/create-a-futuristic-technology-neon-light-text-effect-1006.html", { waitUntil: "networkidle2" }).then(async () => {
 				await pagelg.type("#text-0", body.slice(7))
 				await pagelg.click("#submit")
 				await new Promise(resolve => setTimeout(resolve, 10000))
@@ -1832,7 +1853,7 @@ module.exports = kconfig = async (kill, message) => {
 				await kill.reply(from, mess.wait() + '\n\n20+ s.', id)
 				const browserwf = await puppeteer.launch({ headless: true })
 				const pagewf = await browserwf.newPage()
-				await pagewf.goto(wolfchoice, {waitUntil: "networkidle2" }).then(async () => {
+				await pagewf.goto(wolfchoice, { waitUntil: "networkidle2" }).then(async () => {
 					await pagewf.type("#text-0", wflogo)
 					await pagewf.type("#text-1", wflogo2)
 					await pagewf.click("#submit")
@@ -1852,7 +1873,7 @@ module.exports = kconfig = async (kill, message) => {
 			await kill.reply(from, mess.wait() + '\n\n20+ s.', id)
 			const browsernn = await puppeteer.launch({ headless: true })
 			const pagenn = await browsernn.newPage()
-			await pagenn.goto("https://textpro.me/create-blackpink-logo-style-online-1001.html", {waitUntil: "networkidle2" }).then(async () => {
+			await pagenn.goto("https://textpro.me/create-blackpink-logo-style-online-1001.html", { waitUntil: "networkidle2" }).then(async () => {
 				await pagenn.type("#text-0", body.slice(6))
 				await pagenn.click("#submit")
 				await new Promise(resolve => setTimeout(resolve, 10000))
@@ -1873,7 +1894,7 @@ module.exports = kconfig = async (kill, message) => {
 				await kill.reply(from, mess.wait() + '\n\n20+ s.', id)
 				const browserrt = await puppeteer.launch({ headless: true })
 				const pagert = await browserrt.newPage()
-				await pagert.goto("https://textpro.me/80-s-retro-neon-text-effect-online-979.html", {waitUntil: "networkidle2" }).then(async () => {
+				await pagert.goto("https://textpro.me/80-s-retro-neon-text-effect-online-979.html", { waitUntil: "networkidle2" }).then(async () => {
 					await pagert.type("#text-0", nnlogo)
 					await pagert.type("#text-1", nnlogo2)
 					await pagert.type("#text-2", nnlogo3)
@@ -1916,7 +1937,7 @@ module.exports = kconfig = async (kill, message) => {
 			await kill.reply(from, mess.wait() + '\n\n20+ s.', id)
 			const browser = await puppeteer.launch({ headless: true })
 			const page = await browser.newPage()
-			await page.goto("https://textpro.me/create-blackpink-logo-style-online-1001.html", {waitUntil: "networkidle2" }).then(async () => {
+			await page.goto("https://textpro.me/create-blackpink-logo-style-online-1001.html", { waitUntil: "networkidle2" }).then(async () => {
 				await page.type("#text-0", body.slice(6))
 				await page.click("#submit")
 				await new Promise(resolve => setTimeout(resolve, 10000))
@@ -1936,7 +1957,7 @@ module.exports = kconfig = async (kill, message) => {
 				await kill.reply(from, mess.wait() + '\n\n20+ s.', id)
 				const browserph = await puppeteer.launch({ headless: true })
 				const pageph = await browserph.newPage()
-				await pageph.goto("https://textpro.me/pornhub-style-logo-online-generator-free-977.html", {waitUntil: "networkidle2" }).then(async () => {
+				await pageph.goto("https://textpro.me/pornhub-style-logo-online-generator-free-977.html", { waitUntil: "networkidle2" }).then(async () => {
 					await pageph.type("#text-0", phlogo)
 					await pageph.type("#text-1", phlogo2)
 					await pageph.click("#submit")
@@ -2170,33 +2191,31 @@ module.exports = kconfig = async (kill, message) => {
 			const gid = isGroupMsg ? groupId.replace('@g.us', '') : user.replace('@c.us', '')
 			const nofsender = isGroupMsg ? name : pushname
 			const gporpv = isGroupMsg ? '-gp' : '-pv'
-			if (args[0] == '-gp') {
-				await kill.sendText(`${args[1]}` + '@g.us', `_Mensagem >_\n*"${arg.split('|')[1]} "*` + '\n\n_Quem enviou =_ ' + '\n*"' + nofsender + '"*' + '\n\n_Como responder:_')
-				await kill.sendText(`${args[1]}` + '@g.us', `${prefix}enviar ${gporpv} ${gid} | Coloque sua resposta aqui`)
-				await kill.reply(from, mess.maked(), id)
-				if (quotedMsgObj) {
+			try {
+				const sendAFile = async (quotedMsgObj, args, type, nofsender) => {
 					let replyOnReply = await kill.getMessageById(quotedMsgObj.id)
 					let obj = replyOnReply.quotedMsgObj
 					if (/ptt|audio|video|image|document|sticker/.test(quotedMsgObj.type)) {
 						if (quotedMsgObj.animated) quotedMsgObj.mimetype = ''
 					} else if (obj && /ptt|audio|video|image/.test(obj.type)) { quotedMsgObj = obj } else return
 					const mediaData = await decryptMedia(quotedMsgObj)
-					await kill.sendFile(`${args[1]}` + '@g.us', `data:${quotedMsgObj.mimetype};base64,${mediaData.toString('base64')}`, '', `De/From ${nofsender}`)
+					await kill.sendFile(`${args[1]}` + type, `data:${quotedMsgObj.mimetype};base64,${mediaData.toString('base64')}`, '', `De/From ${nofsender}`)
 				}
-			} else if (args[0] == '-pv') {
-				await kill.sendText(`${args[1]}` + '@c.us', `${arg.split('|')[1]}` + '\n\n_Quem enviou =_ ' + '*' + nofsender + '*' + '\n\n_Como responder:_')
-				await kill.sendText(`${args[1]}` + '@c.us', `${prefix}enviar ${gporpv} ${gid} | Coloque sua resposta aqui`)
-				await kill.reply(from, mess.maked(), id)
-				if (quotedMsgObj) {
-					let replyOnReply = await kill.getMessageById(quotedMsgObj.id)
-					let obj = replyOnReply.quotedMsgObj
-					if (/ptt|audio|video|image|document|sticker/.test(quotedMsgObj.type)) {
-						if (quotedMsgObj.animated) quotedMsgObj.mimetype = ''
-					} else if (obj && /ptt|audio|video|image/.test(obj.type)) { quotedMsgObj = obj } else return
-					const mediaData = await decryptMedia(quotedMsgObj)
-					await kill.sendFile(`${args[1]}` + '@c.us', `data:${quotedMsgObj.mimetype};base64,${mediaData.toString('base64')}`, '', `De/From ${nofsender}`)
-				}
-			} else return kill.reply(from, mess.enviar(), id)
+				if (args[0] == '-gp') {
+					await kill.sendText(`${args[1]}` + '@g.us', `_Mensagem >_\n"${arg.split('|')[1]} "` + '\n\n_Quem enviou =_ ' + '\n*"' + nofsender + '"*' + '\n\n_Como responder:_')
+					await kill.sendText(`${args[1]}` + '@g.us', `${prefix}enviar ${gporpv} ${gid} | Coloque sua resposta aqui`)
+					await kill.reply(from, mess.maked(), id)
+					if (quotedMsgObj) { sendAFile(quotedMsgObj, args, '@g.us', nofsender) }
+				} else if (args[0] == '-pv') {
+					await kill.sendText(`${args[1]}` + '@c.us', `_Mensagem >_\n"${arg.split('|')[1]}"` + '\n\n_Quem enviou =_ ' + '*' + nofsender + '*' + '\n\n_Como responder:_')
+					await kill.sendText(`${args[1]}` + '@c.us', `${prefix}enviar ${gporpv} ${gid} | Coloque sua resposta aqui`)
+					await kill.reply(from, mess.maked(), id)
+					if (quotedMsgObj) { sendAFile(quotedMsgObj, args, '@c.us', nofsender) }
+				} else return kill.reply(from, mess.enviar(), id)
+			} catch (error) {
+				await kill.reply(from, mess.noctt(), id)
+				console.log(color('[ENVIAR]', 'crimson'), color(`→ Obtive erros no comando ${prefix}${command} → ${error.message} - Você pode ignorar.`, 'gold'))
+			}
 			break
 			
         case 'blocklist':
@@ -2227,7 +2246,7 @@ module.exports = kconfig = async (kill, message) => {
             const chug = await axios.get(bhug);
 			await axios.get(chug.data.url, { responseType: 'arraybuffer' }).then(async (response) => {
 				const hugsz = Buffer.from(response.data, 'binary').toString('base64')
-				await kill.sendImageAsSticker(from, hugsz, { author: '🎁 https://bit.ly/30t4jJV ☆', pack: '🔰 Iris/Legião Z ⚜️', keepScale: true })
+				await kill.sendImageAsSticker(from, hugsz, { author: config.author, pack: config.pack, keepScale: true })
 			})
 			break
 			
@@ -2366,7 +2385,7 @@ module.exports = kconfig = async (kill, message) => {
 			const blowjob = await axios.get(rblowjc)
 			await axios.get(blowjob.data.url, { responseType: 'arraybuffer' }).then(async (response) => {
 				const bjanime = Buffer.from(response.data, 'binary').toString('base64')
-				await kill.sendImageAsSticker(from, bjanime, { author: '🎁 https://bit.ly/30t4jJV ☆', pack: '🔰 Iris/Legião Z ⚜️', keepScale: true })
+				await kill.sendImageAsSticker(from, bjanime, { author: config.author, pack: config.pack, keepScale: true })
 			})
 			break
 			
@@ -2378,7 +2397,7 @@ module.exports = kconfig = async (kill, message) => {
 			const feet = await axios.get(rfeetc)
 			await axios.get(feet.data.url, { responseType: 'arraybuffer' }).then(async (response) => {
 				const pezinime = Buffer.from(response.data, 'binary').toString('base64')
-				await kill.sendImageAsSticker(from, pezinime, { author: '🎁 https://bit.ly/30t4jJV ☆', pack: '🔰 Iris/Legião Z ⚜️', keepScale: true })
+				await kill.sendImageAsSticker(from, pezinime, { author: config.author, pack: config.pack, keepScale: true })
 			})
 			break
 			
@@ -2388,7 +2407,7 @@ module.exports = kconfig = async (kill, message) => {
 			const hard = await axios.get('https://nekos.life/api/v2/img/spank')
 			await axios.get(hard.data.url, { responseType: 'arraybuffer' }).then(async (response) => {
 				const spank = Buffer.from(response.data, 'binary').toString('base64')
-				await kill.sendImageAsSticker(from, spank, { author: '🎁 https://bit.ly/30t4jJV ☆', pack: '🔰 Iris/Legião Z ⚜️', keepScale: true })
+				await kill.sendImageAsSticker(from, spank, { author: config.author, pack: config.pack, keepScale: true })
 			})
 			break
 			
@@ -2400,7 +2419,7 @@ module.exports = kconfig = async (kill, message) => {
 			const bobis = await axios.get(rboobsc)
 			await axios.get(bobis.data.url, { responseType: 'arraybuffer' }).then(async (response) => {
 				const tetbobs = Buffer.from(response.data, 'binary').toString('base64')
-				await kill.sendImageAsSticker(from, tetbobs, { author: '🎁 https://bit.ly/30t4jJV ☆', pack: '🔰 Iris/Legião Z ⚜️', keepScale: true })
+				await kill.sendImageAsSticker(from, tetbobs, { author: config.author, pack: config.pack, keepScale: true })
 			})
 			break
 			
@@ -2412,7 +2431,7 @@ module.exports = kconfig = async (kill, message) => {
 			const lick = await axios.get(rlickc)
 			await axios.get(lick.data.url, { responseType: 'arraybuffer' }).then(async (response) => {
 				const lingani = Buffer.from(response.data, 'binary').toString('base64')
-				await kill.sendImageAsSticker(from, lingani, { author: '🎁 https://bit.ly/30t4jJV ☆', pack: '🔰 Iris/Legião Z ⚜️', keepScale: true })
+				await kill.sendImageAsSticker(from, lingani, { author: config.author, pack: config.pack, keepScale: true })
 			})
 			break
 			
@@ -2440,7 +2459,7 @@ module.exports = kconfig = async (kill, message) => {
 			const mstbra = await axios.get(rmastubc)
 			await axios.get(mstbra.data.url, { responseType: 'arraybuffer' }).then(async (response) => {
 				const twodedo = Buffer.from(response.data, 'binary').toString('base64')
-				await kill.sendImageAsSticker(from, twodedo, { author: '🎁 https://bit.ly/30t4jJV ☆', pack: '🔰 Iris/Legião Z ⚜️', keepScale: true })
+				await kill.sendImageAsSticker(from, twodedo, { author: config.author, pack: config.pack, keepScale: true })
 			})
 			break
 			
@@ -2452,7 +2471,7 @@ module.exports = kconfig = async (kill, message) => {
 			const solog = await axios.get(ranalc)
 			await axios.get(solog.data.url, { responseType: 'arraybuffer' }).then(async (response) => {
 				const anlnime = Buffer.from(response.data, 'binary').toString('base64')
-				await kill.sendImageAsSticker(from, anlnime, { author: '🎁 https://bit.ly/30t4jJV ☆', pack: '🔰 Iris/Legião Z ⚜️', keepScale: true })
+				await kill.sendImageAsSticker(from, anlnime, { author: config.author, pack: config.pack, keepScale: true })
 			})
 			break        
 			
@@ -2460,14 +2479,14 @@ module.exports = kconfig = async (kill, message) => {
 		case 'randomloli':
 			if (isGroupMsg && !isNsfw) return kill.reply(from, mess.gpadulto(), id)
 			const loliz = await axios.get('https://nekos.life/api/v2/img/keta')
-			await kill.sendImageAsSticker(from, loliz.data.url, { author: '🎁 https://bit.ly/30t4jJV ☆', pack: '🔰 Iris/Legião Z ⚜️', keepScale: true })
+			await kill.sendImageAsSticker(from, loliz.data.url, { author: config.author, pack: config.pack, keepScale: true })
 			break
 			
 			
         case 'nsfwicon':
 			if (isGroupMsg && !isNsfw) return kill.reply(from, mess.gpadulto(), id)
 			const icon = await axios.get('https://nekos.life/api/v2/img/nsfw_avatar')
-			await kill.sendImageAsSticker(from, icon.data.url, { author: '🎁 https://bit.ly/30t4jJV ☆', pack: '🔰 Iris/Legião Z ⚜️', keepScale: true })
+			await kill.sendImageAsSticker(from, icon.data.url, { author: config.author, pack: config.pack, keepScale: true })
 			break
 			
 			
@@ -2479,13 +2498,13 @@ module.exports = kconfig = async (kill, message) => {
 			
 		case 'icon':
 			const avatarz = await axios.get('https://nekos.life/api/v2/img/avatar')
-			await kill.sendImageAsSticker(from, avatarz.data.url, { author: '🎁 https://bit.ly/30t4jJV ☆', pack: '🔰 Iris/Legião Z ⚜️', keepScale: true })
+			await kill.sendImageAsSticker(from, avatarz.data.url, { author: config.author, pack: config.pack, keepScale: true })
 			break
 			
 			
 		case 'face':
 			const gasm = await axios.get('https://nekos.life/api/v2/img/gasm')
-			await kill.sendImageAsSticker(from, gasm.data.url, { author: '🎁 https://bit.ly/30t4jJV ☆', pack: '🔰 Iris/Legião Z ⚜️', keepScale: true })
+			await kill.sendImageAsSticker(from, gasm.data.url, { author: config.author, pack: config.pack, keepScale: true })
 			break
 			
 			
@@ -2527,7 +2546,7 @@ module.exports = kconfig = async (kill, message) => {
 			const hentai1 = await axios.get(hentcc)
 			await axios.get(hentai1.data.url, { responseType: 'arraybuffer' }).then(async (response) => {
 				const hntimg = Buffer.from(response.data, 'binary').toString('base64')
-				await kill.sendImageAsSticker(from, hntimg, { author: '🎁 https://bit.ly/30t4jJV ☆', pack: '🔰 Iris/Legião Z ⚜️', keepScale: true })
+				await kill.sendImageAsSticker(from, hntimg, { author: config.author, pack: config.pack, keepScale: true })
 			})
             break
 			
@@ -2545,7 +2564,7 @@ module.exports = kconfig = async (kill, message) => {
 			const nekons = await axios.get(rnekoc)
 			await axios.get(nekons.data.url, { responseType: 'arraybuffer' }).then(async (response) => {
 				const gatadlc = Buffer.from(response.data, 'binary').toString('base64')
-				await kill.sendImageAsSticker(from, gatadlc, { author: '🎁 https://bit.ly/30t4jJV ☆', pack: '🔰 Iris/Legião Z ⚜️', keepScale: true })
+				await kill.sendImageAsSticker(from, gatadlc, { author: config.author, pack: config.pack, keepScale: true })
 			})
             break
 			
@@ -2570,7 +2589,7 @@ module.exports = kconfig = async (kill, message) => {
 			const money = await axios.get(`https://${encodeURIComponent(args[0])}.rate.sx/${encodeURIComponent(args[1])}`)
 			const chkmy = money.data
 			if (isNaN(chkmy)) return kill.reply(from, mess.moneyerr(), id)
-			await kill.reply(from, `*${args[1]}* → *${money.data}*${args[0]}`, id)
+			await kill.reply(from, `*${args[1]}* → *${money.data}* ${args[0]}`, id)
 			break
 			
 			
@@ -2590,7 +2609,7 @@ module.exports = kconfig = async (kill, message) => {
             const smug = await axios.get('https://nekos.life/api/v2/img/smug')
 			await axios.get(smug.data.url, { responseType: 'arraybuffer' }).then(async (response) => {
 				const piscaeye = Buffer.from(response.data, 'binary').toString('base64')
-				await kill.sendImageAsSticker(from, piscaeye, { author: '🎁 https://bit.ly/30t4jJV ☆', pack: '🔰 Iris/Legião Z ⚜️', keepScale: true })
+				await kill.sendImageAsSticker(from, piscaeye, { author: config.author, pack: config.pack, keepScale: true })
 			})
             break
 			
@@ -2605,7 +2624,7 @@ module.exports = kconfig = async (kill, message) => {
 			const kisu = await axios.get('https://nekos.life/api/v2/img/kiss')
 			await axios.get(kisu.data.url, { responseType: 'arraybuffer' }).then(async (response) => {
 				const beijaod = Buffer.from(response.data, 'binary').toString('base64')
-				await kill.sendImageAsSticker(from, beijaod, { author: '🎁 https://bit.ly/30t4jJV ☆', pack: '🔰 Iris/Legião Z ⚜️', keepScale: true })
+				await kill.sendImageAsSticker(from, beijaod, { author: config.author, pack: config.pack, keepScale: true })
 			})
 			break
 			
@@ -2614,7 +2633,7 @@ module.exports = kconfig = async (kill, message) => {
 			const tapi = await axios.get('https://nekos.life/api/v2/img/slap')
 			await axios.get(tapi.data.url, { responseType: 'arraybuffer' }).then(async (response) => {
 				const tapasso = Buffer.from(response.data, 'binary').toString('base64')
-				await kill.sendImageAsSticker(from, tapasso, { author: '🎁 https://bit.ly/30t4jJV ☆', pack: '🔰 Iris/Legião Z ⚜️', keepScale: true })
+				await kill.sendImageAsSticker(from, tapasso, { author: config.author, pack: config.pack, keepScale: true })
 			})
 			break
 			
@@ -2651,8 +2670,6 @@ module.exports = kconfig = async (kill, message) => {
 		// se quiser por mais pra zoar, abra o arquivo lgbt e adicione 1 por linha
         case 'gay':
         case 'lgbt':
-			var lgbt = fs.readFileSync('./lib/config/Utilidades/lgbt.txt').toString().split('\n')
-			var guei = lgbt[Math.floor(Math.random() * lgbt.length)]
 			var twgui = lgbt[Math.floor(Math.random() * lgbt.length)]
 			var lvrq = 100 - lvpc
 			try {
@@ -2682,7 +2699,7 @@ module.exports = kconfig = async (kill, message) => {
 				const kiss = await axios.get('https://nekos.life/api/v2/img/kiss')
 				await axios.get(kiss.data.url, { responseType: 'arraybuffer' }).then(async (response) => {
 					const kissup = Buffer.from(response.data, 'binary').toString('base64')
-					await kill.sendImageAsSticker(from, kissup, { author: '🎁 https://bit.ly/30t4jJV ☆', pack: '🔰 Iris/Legião Z ⚜️', keepScale: true })
+					await kill.sendImageAsSticker(from, kissup, { author: config.author, pack: config.pack, keepScale: true })
 				})
 				await kill.sendTextWithMentions(from, mess.kiss(user, arqs))
 			} else if (isGroupMsg) {
@@ -2696,7 +2713,7 @@ module.exports = kconfig = async (kill, message) => {
 				const tapa = await axios.get('https://nekos.life/api/v2/img/slap')
 				await axios.get(tapa.data.url, { responseType: 'arraybuffer' }).then(async (response) => {
 					const tapaol = Buffer.from(response.data, 'binary').toString('base64')
-					await kill.sendImageAsSticker(from, tapaol, { author: '🎁 https://bit.ly/30t4jJV ☆', pack: '🔰 Iris/Legião Z ⚜️', keepScale: true })
+					await kill.sendImageAsSticker(from, tapaol, { author: config.author, pack: config.pack, keepScale: true })
 				})
 				await kill.sendTextWithMentions(from, mess.tapa(user, arqs))
 			} else if (isGroupMsg) {
@@ -2792,6 +2809,7 @@ module.exports = kconfig = async (kill, message) => {
 		// LEMBRE-SE, REMOVER CRÈDITO È CRIME E PROIBIDO!
         case 'termos':
 			await kill.sendFile(from, './lib/media/img/licenca.png', 'licenca.png', mess.tos(), id)
+			await kill.sendPtt(from, `./lib/media/audio/termos.mp3`, id)
             break
 		// NÃO REMOVA ESSA PARTE!
 			
@@ -2937,7 +2955,7 @@ module.exports = kconfig = async (kill, message) => {
 				} else {
 					const blocknq = args[0]
 					await kill.contactBlock(`${args[0]}@c.us`)
-					await kill.sendTextWithMentions(from, mess.block(blockmq))
+					await kill.sendTextWithMentions(from, mess.block(blocknq))
 				}
 			} else return kill.reply(from, mess.sodono(), id)
 			break
@@ -3047,7 +3065,7 @@ module.exports = kconfig = async (kill, message) => {
 			
 		case 'geral':
             if (!isGroupMsg) return kill.reply(from, mess.sogrupo(), id)
-            let geralRank = `-----[ *RANKING ${name}* ]----\n\n`
+            let geralRank = `-----[ *${name}* ]----\n\n`
             try {
                 for (let i = 0; i < groupMembers.length; i++) {
 					const bRandV = await kill.getContact(groupMembers[i].id)
@@ -3057,7 +3075,7 @@ module.exports = kconfig = async (kill, message) => {
 					const xpToUp = 5 * Math.pow(levelCount, 2) + 50 * levelCount + 100
 					var getUserName = bRandV.pushname
 					if (getUserName == null) getUserName = 'wa.me/' + groupMembers[i].id.replace('@c.us', '')
-					geralRank += `${i + 1} → *${getUserName}*\n➸ *Mensagens*: ${msgCount}\n➸ *XP*: ${xpCount} / ${xpToUp}\n➸ *Level*: ${levelCount}\n\n`
+					geralRank += `→ *${getUserName}*\n➸ *Mensagens*: ${msgCount}\n➸ *XP*: ${xpCount} / ${xpToUp}\n➸ *Level*: ${levelCount}\n\n`
 				}
                 await kill.sendText(from, geralRank)
             } catch (err) { await kill.reply(from, mess.tenpeo(), id) }
@@ -3143,7 +3161,7 @@ module.exports = kconfig = async (kill, message) => {
 			
         case 'give':
             if (!isOwner) return kill.reply(from, mess.sodono(), id)
-            if (args.length !== 2) return kill.reply(from, mess.semmarcar() + `\n\nEx: ${prefix}give @user <value/valor>`, id)
+            if (args.length !== 2 || args[1].includes('@')) return kill.reply(from, mess.semmarcar() + `\n\nEx: ${prefix}give @user <value/valor>`, id)
 			if (isNaN(args[1])) return kill.reply(from, mess.onlynumber(), id)
             if (mentionedJidList.length !== 0) {
                 for (let give of mentionedJidList) {
@@ -3439,7 +3457,7 @@ module.exports = kconfig = async (kill, message) => {
 				let moji = `Emoji: ${emoji.emoji}\n\nUnicode: ${emoji.unicode}\n\nNome: ${emoji.name}\n\nInformações: ${emoji.description}\n\n`
 				for (let i = 0; i < emoji.images.length; i++) { moji += `${emoji.images[i].vendor} → ${emoji.images[i].url}\n\n═════════════════\n\n` }
 				await kill.reply(from, moji + mess.emojis(), id)
-				await kill.sendStickerfromUrl(from, emoji.images[0].url, { method: 'get' }, { author: '🎁 https://bit.ly/30t4jJV ☆', pack: '🔰 Iris/Legião Z ⚜️', keepScale: true })
+				await kill.sendStickerfromUrl(from, emoji.images[0].url, { method: 'get' }, { author: config.author, pack: config.pack, keepScale: true })
 			})
 			break
 			
@@ -3448,13 +3466,12 @@ module.exports = kconfig = async (kill, message) => {
 			if (args.length == 0) return kill.reply(from, mess.noargs() + 'nome/nombre/name.', id)
 			const plate = await axios.get(`https://rest.farzain.com/api/special/fansign/cosplay/cosplay.php?apikey=rambu&text=${encodeURIComponent(body.slice(9))}`, { responseType: 'arraybuffer' }).then(async (response) => {
 				const myplaye = Buffer.from(response.data, 'binary').toString('base64')
-				await kill.sendImageAsSticker(from, myplaye, { author: '🎁 https://bit.ly/30t4jJV ☆', pack: '🔰 Iris/Legião Z ⚜️', keepScale: true })
+				await kill.sendImageAsSticker(from, myplaye, { author: config.author, pack: config.pack, keepScale: true })
 			})
 			break
 			
 			
 		case 'hitler':
-			if (!isGroupMsg) return kill.reply(from, mess.sogrupo(), id)
 			try {
 				await kill.reply(from, mess.wait(), id)
 				if (isMedia && type === 'image' || isQuotedImage) {
@@ -3472,7 +3489,6 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
 		case 'trash':
-			if (!isGroupMsg) return kill.reply(from, mess.sogrupo(), id)
 			try {
 				await kill.reply(from, mess.wait(), id)
 				if (isMedia && type === 'image' || isQuotedImage) {
@@ -3490,7 +3506,6 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
 		case 'shit':
-			if (!isGroupMsg) return kill.reply(from, mess.sogrupo(), id)
 			try {
 				await kill.reply(from, mess.wait(), id)
 				if (isMedia && type === 'image' || isQuotedImage) {
@@ -3508,7 +3523,6 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
 		case 'blur':
-			if (!isGroupMsg) return kill.reply(from, mess.sogrupo(), id)
 			try {
 				await kill.reply(from, mess.wait(), id)
 				if (isMedia && type === 'image' || isQuotedImage) {
@@ -3526,7 +3540,6 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
 		case 'rip':
-			if (!isGroupMsg) return kill.reply(from, mess.sogrupo(), id)
 			try {
 				await kill.reply(from, mess.wait(), id)
 				if (isMedia && type === 'image' || isQuotedImage) {
@@ -3546,8 +3559,263 @@ module.exports = kconfig = async (kill, message) => {
 		case 'exec':
 			if (args.length == 0) return kill.reply(from, mess.noargs() + `Wa Automate function/função da Wa Automate.\n\nEx: ${prefix}exec await kill.reply(from, 'Oi', id)`, id)
 			if (!isOwner) return kill.reply(from, mess.sodono(), id)
-			const waitEval = (cmd) => { return new Promise((resolve, reject) => { eval(cmd) }) }
-			(async () => { await waitEval(body.slice(6).replace('await ', '')) })()
+			try {
+				const waitEval = (cmd) => { return new Promise((resolve, reject) => { eval(cmd) }) }
+				(async () => { await waitEval(body.slice(6).replace('await ', '')) })()
+			} catch (error) {
+				console.log(color('[EXEC]', 'crimson'), color(`→ Obtive erros no comando ${prefix}${command} → ${error.message} - Você pode ignorar.`, 'gold'))
+				await kill.reply(from, mess.fail(), id)
+			}
+			break
+			
+			
+		case 'github':
+			if (args.length == 0) return kill.reply(from, mess.noargs() + 'github username', id)
+			await kill.reply(from, mess.wait(), id)
+			const gitData = await axios.get(`https://api.github.com/users/${args[0]}`)
+			const siteAdmin = (gitData.data.site_admin == false) ? 'Não' : gitData.data.site_admin
+			const companY = (gitData.data.company == null) ? 'Não' : gitData.data.company
+			const bloG = (gitData.data.blog == "") ? 'Não' : gitData.data.blog
+			const emaiL = (gitData.data.email == null) ? 'Não' : gitData.data.email
+			const tramPar = (gitData.data.hireable == null) ? 'Não' : gitData.data.hireable
+			if (gitData.data.message == 'Not Found') return kill.reply(from, mess.noresult(), id)
+			await kill.sendFileFromUrl(from, `${gitData.data.avatar_url}`, 'avatar.png', mess.github(siteAdmin, companY, bloG, emaiL, tramPar, gitData), id)
+			break
+			
+			
+		case 'roubar':
+			if (quotedMsg && quotedMsg.type == 'sticker' && arks.includes('|')) {
+				await kill.reply(from, mess.wait(), id)
+				const stickerMeta = await decryptMedia(quotedMsg)
+				const packName = arg.split('|')[0]
+				const authorName = arg.split('|')[1]
+				await kill.sendImageAsSticker(from, `data:${quotedMsg.mimetype};base64,${stickerMeta.toString('base64')}`, { author: authorName, pack: packName })
+			} else return kill.reply(from, mess.onlyst() + '\n\n' + mess.argsbar() + 'use 1 "|".', id)
+            break
+			
+		// Não deixe seus usuarios floodarem, caso contrario a bot pode desligar
+		case 'sound':
+		case 'bass':
+			if (isMedia && isAudio || isQuotedAudio || isPtt || isQuotedPtt) {
+				if (args.length == 1 && !isNaN(args[0])) {
+					try {
+						await kill.reply(from, mess.wait(), id)
+						const encryptMedia = isQuotedAudio || isQuotedPtt ? quotedMsg : message
+						const mediaData = await decryptMedia(encryptMedia, uaOverride)
+						await fs.writeFile(`./lib/media/audio/${user.replace('@c.us', '')}${lvpc}.mp3`, mediaData, (err) => {
+							if (err) return console.error(err)
+							console.log(color('[FFMPEG]', 'crimson'), color(`- Conversão de audio "Bass" pedida por → ${pushname} - Você pode ignorar.`, 'gold'))
+							ffmpeg(`./lib/media/audio/${user.replace('@c.us', '')}${lvpc}.mp3`)
+							.audioFilter(`equalizer=f=40:width_type=h:width=50:g=${args[0]}`) // Mexa somente aqui se quiser
+							.format('mp3')
+							.save(`./lib/media/audio/audio-${user.replace('@c.us', '')}${lvpc}.mp3`)
+							.on('error', async function (error, stdout, stderr) {
+								await kill.reply(from, mess.fail(), id)
+								console.log(color('[BASS]', 'crimson'), color(`→ Obtive erros no comando ${prefix}${command} → ${error.message} - Você pode ignorar.`, 'gold'))
+							})
+							.on('progress', function (progress) { console.log(`Progresso do Bass: ${progress.percent}% concluído.`) })
+							.on('end', async () => {
+								console.log(color('[FFMPEG]', 'crimson'), color(`- Conversão de audio "Bass" finalizada, enviando para → ${pushname} - Você pode ignorar...`, 'gold'))
+								await kill.sendFile(from, `./lib/media/audio/audio-${user.replace('@c.us', '')}${lvpc}.mp3`, 'audio.mp3', '', id)
+								setTimeout(() => {
+									fs.unlinkSync(`./lib/media/audio/audio-${user.replace('@c.us', '')}${lvpc}.mp3`)
+									fs.unlinkSync(`./lib/media/audio/${user.replace('@c.us', '')}${lvpc}.mp3`)
+								}, 30000)
+							})
+						})
+					} catch (error) {
+						await kill.reply(from, mess.fail(), id)
+						console.log(color('[BASS]', 'crimson'), color(`→ Obtive erros no comando ${prefix}${command} → ${error.message} - Você pode ignorar.`, 'gold'))
+					}
+				} else return kill.reply(from, mess.noargs() + 'quantidade de bass | bass quantity.', id)
+			} else return kill.reply(from, mess.onlyaudio(), id)
+			break
+			
+		// Não deixe seus usuarios floodarem, caso contrario a bot pode desligar
+		case 'nightcore':
+			if (isMedia && isAudio || isQuotedAudio || isPtt || isQuotedPtt) {
+				try {
+					await kill.reply(from, mess.wait(), id)
+					const encryptMedia = isQuotedAudio || isQuotedPtt ? quotedMsg : message
+					const mediaData = await decryptMedia(encryptMedia, uaOverride)
+					await fs.writeFile(`./lib/media/audio/n${user.replace('@c.us', '')}${lvpc}.mp3`, mediaData, (err) => {
+						if (err) return console.error(err)
+						console.log(color('[FFMPEG]', 'crimson'), color(`- Conversão de audio para versão "nightcore" pedida por → ${pushname} - Você pode ignorar.`, 'gold'))
+						ffmpeg(`./lib/media/audio/n${user.replace('@c.us', '')}${lvpc}.mp3`)
+						.audioFilter('asetrate=44100*1.25') // Mexa somente aqui se quiser
+						.format('mp3')
+						.save(`./lib/media/audio/night-${user.replace('@c.us', '')}${lvpc}.mp3`)
+						.on('error', async function (error, stdout, stderr) {
+							await kill.reply(from, mess.fail(), id)
+							console.log(color('[NIGHTCORE]', 'crimson'), color(`→ Obtive erros no comando ${prefix}${command} → ${error.message} - Você pode ignorar.`, 'gold'))
+						})
+						.on('progress', function (progress) { console.log(`Progresso do Nightcore: ${progress.percent}% concluído.`) })
+						.on('end', async () => {
+							console.log(color('[FFMPEG]', 'crimson'), color(`- Conversão de audio para versão "nightcore" finalizada, enviando para → ${pushname} - Você pode ignorar...`, 'gold'))
+							await kill.sendFile(from, `./lib/media/audio/night-${user.replace('@c.us', '')}${lvpc}.mp3`, 'audio.mp3', '', id)
+							setTimeout(() => {
+								fs.unlinkSync(`./lib/media/audio/night-${user.replace('@c.us', '')}${lvpc}.mp3`)
+								fs.unlinkSync(`./lib/media/audio/n${user.replace('@c.us', '')}${lvpc}.mp3`)
+							}, 30000)
+						})
+					})
+				} catch (error) {
+					await kill.reply(from, mess.fail(), id)
+					console.log(color('[NIGHTCORE]', 'crimson'), color(`→ Obtive erros no comando ${prefix}${command} → ${error.message} - Você pode ignorar.`, 'gold'))
+				}
+			} else return kill.reply(from, mess.onlyaudio(), id)
+			break
+			
+		// Não deixe seus usuarios floodarem, caso contrario a bot pode desligar
+		case 'audio':
+			if (isMedia && isVideo || isQuotedVideo) {
+				try {
+					await kill.reply(from, mess.wait(), id)
+					const vTypeA = isQuotedVideo ? quotedMsg : message
+					const mediaData = await decryptMedia(vTypeA, uaOverride)
+					await fs.writeFile(`./lib/media/video/${user.replace('@c.us', '')}${lvpc}.${vTypeA.mimetype.replace(/.+\//, '')}`, mediaData, (err) => {
+						if (err) return console.error(err)
+						console.log(color('[FFMPEG]', 'crimson'), color(`- Conversão de video para audio pedida por → ${pushname} - Você pode ignorar.`, 'gold'))
+						ffmpeg(`./lib/media/video/${user.replace('@c.us', '')}${lvpc}.${vTypeA.mimetype.replace(/.+\//, '')}`)
+						.format('mp3')
+						.save(`./lib/media/video/v${user.replace('@c.us', '')}${lvpc}.mp3`)
+						.on('error', async function (error, stdout, stderr) {
+							await kill.reply(from, mess.fail(), id)
+							console.log(color('[AUDIO]', 'crimson'), color(`→ Obtive erros no comando ${prefix}${command} → ${error.message} - Você pode ignorar.`, 'gold'))
+						})
+						.on('progress', function (progress) { console.log(`Progresso do Audio: ${progress.percent}% concluído.`) })
+						.on('end', async () => {
+							console.log(color('[FFMPEG]', 'crimson'), color(`- Conversão de video para audio terminada, enviando para → ${pushname} - Você pode ignorar...`, 'gold'))
+							await kill.sendFile(from, `./lib/media/video/v${user.replace('@c.us', '')}${lvpc}.mp3`, 'audio.mp3', '', id)
+							setTimeout(() => {
+								fs.unlinkSync(`./lib/media/video/v${user.replace('@c.us', '')}${lvpc}.mp3`)
+								fs.unlinkSync(`./lib/media/video/${user.replace('@c.us', '')}${lvpc}.${vTypeA.mimetype.replace(/.+\//, '')}`)
+							}, 30000)
+						})
+					})
+				} catch (error) {
+					await kill.reply(from, mess.fail(), id)
+					console.log(color('[AUDIO]', 'crimson'), color(`→ Obtive erros no comando ${prefix}${command} → ${error.message} - Você pode ignorar.`, 'gold'))
+				}
+			} else return kill.reply(from, mess.onlyvideo(), id)
+			break
+			
+			
+		case 'cpf':
+			if (!config.lang == 'pt') return kill.reply(from, 'Brazil only/Brasil solamente!', id)
+			try {
+				if (args[0].length > 11) return kill.reply(from, 'cpf invalido.', id)
+				await kill.reply(from, mess.wait(), id)
+				const browsercf = await puppeteer.launch({ headless: false })
+				const pagecf = await browsercf.newPage()
+				await pagecf.goto("https://www.situacao-cadastral.com", { waitUntil: "networkidle2" }).then(async () => {
+					await pagecf.click("#form")
+					await pagecf.type("#doc", args[0])
+					await pagecf.click("#consultar")
+					await new Promise(resolve => setTimeout(resolve, 10000))
+					const divElementcf = await pagecf.$eval('div[id="resultado"] > span.dados.nome', txLogo => txLogo.textContent)
+					await kill.reply(from, `O dono desse CPF se chama ${divElementcf}.`, id)
+					browsercf.close()
+				})
+			} catch (error) {
+				await kill.reply(from, 'CPF não encontrado ou erros.', id)
+				console.log(color('[CPF]', 'crimson'), color(`→ Obtive erros no comando ${prefix}${command} → ${error.message} - Você pode ignorar.`, 'gold'))
+			}
+			break
+			
+			
+		case 'policia':
+			await kill.sendText(from, mess.policemenu())
+			break
+			
+			
+		case '01':
+			if (mentionedJidList.length == 0 && !quotedMsg) return kill.reply(from, mess.howtololi(), id)
+			if (mentionedJidList.length !== 0) theLolicon = await kill.getContact(mentionedJidList[0])
+			var getLolicon = quotedMsg ? quotedMsgObj.sender.pushname : (mentionedJidList.length !== 0 ? theLolicon.pushname : pushname)
+			if (getLolicon == undefined) getLolicon = `??? - Top secret name - ???`
+			fs.appendFile('./lib/config/Utilidades/lolicon.txt', `\n\n${getLolicon} - ${lvpc} Years/Anos 🔒`)
+			await kill.reply(from, mess.fbi(), id)
+			break
+			
+			
+		case '02':
+			var aBraPlP = pushname
+			if (aBraPlP == undefined) aBraPlP = `\n\n??? - Top secret name - ??? - ${lvpc} Years/Anos 🔒`
+			fs.appendFile('./lib/config/Utilidades/entregados.txt', `\n\n${aBraPlP} - ${lvpc} Years/Anos 🔒`)
+			await kill.reply(from, mess.arrested(), id)
+			break
+			
+			
+		case '03':
+			if (mentionedJidList.length == 0 && !quotedMsg) return kill.reply(from, mess.howtoshota(), id)
+			if (mentionedJidList.length !== 0) theShotaCmnl = await kill.getContact(mentionedJidList[0])
+			var takeChild = quotedMsg ? quotedMsgObj.sender.pushname : (mentionedJidList.length !== 0 ? theShotaCmnl.pushname : pushname)
+			if (takeChild == undefined) takeChild = `??? - Top secret name - ???`
+			fs.appendFile('./lib/config/Utilidades/reversecon.txt', `\n\n${takeChild} - ${lvpc} Years/Anos 🔒`)
+			await kill.reply(from, mess.cia(), id)
+			break
+			
+			
+		case '04':
+			if (mentionedJidList.length == 0 && args.length <= 3 && !arks.includes('|') || !quotedMsg && args.length <= 2 && !arks.includes('|')) return kill.reply(from, mess.howtocrime(), id)
+			const theCrime = arg.split('|')[1]
+			if (mentionedJidList.length !== 0) criminalSmooth = await kill.getContact(mentionedJidList[0])
+			var crimeReported = quotedMsg ? quotedMsgObj.sender.pushname : (mentionedJidList.length !== 0 ? criminalSmooth.pushname : pushname)
+			if (crimeReported == undefined) crimeReported = `??? - Top secret name - ???`
+			fs.appendFile('./lib/config/Utilidades/crimereport.txt', `\n\n${crimeReported} (${theCrime}) - ${lvpc} Years/Anos 🔒`)
+			await kill.reply(from, mess.stars(), id)
+			break
+			
+			
+		case '05':
+			if (mentionedJidList.length == 0 && !quotedMsg) return kill.reply(from, mess.howtolgbts(), id)
+			if (mentionedJidList.length !== 0) the1000gender = await kill.getContact(mentionedJidList[0])
+			var genderFuck = quotedMsg ? quotedMsgObj.sender.pushname : (mentionedJidList.length !== 0 ? the1000gender.pushname : pushname)
+			if (genderFuck == undefined) genderFuck = `??? - Top secret name - ???`
+			fs.appendFile('./lib/config/Utilidades/gaysreport.txt', `\n\n${genderFuck} [${guei}] - ${lvpc} Years/Anos 🔒`)
+			await kill.reply(from, mess.bsaa(), id)
+			break
+			
+			
+		case 'fbi':
+			const loliconList = fs.readFileSync('./lib/config/Utilidades/lolicon.txt').toString()
+			await kill.reply(from, loliconList, id)
+			break
+			
+			
+		case 'rpd':
+			const peopleCrz = fs.readFileSync('./lib/config/Utilidades/entregados.txt').toString()
+			await kill.reply(from, peopleCrz, id)
+			break
+			
+			
+		case 'cia':
+			const reversePedo = fs.readFileSync('./lib/config/Utilidades/reversecon.txt').toString()
+			await kill.reply(from, reversePedo, id)
+			break
+			
+			
+		case 'bsaa':
+			const gaysArrest = fs.readFileSync('./lib/config/Utilidades/gaysreport.txt').toString()
+			await kill.reply(from, gaysArrest, id)
+			break
+			
+			
+		case 'stars':
+			const aLotCrime = fs.readFileSync('./lib/config/Utilidades/crimereport.txt').toString()
+			await kill.reply(from, aLotCrime, id)
+			break
+			
+			
+		case 'resetall':
+			if (!isOwner) return kill.reply(from, mess.sodono(), id)
+			await fs.writeFileSync('./lib/config/Utilidades/lolicon.txt', 'Lolicons ↓')
+			await fs.writeFileSync('./lib/config/Utilidades/reversecon.txt', 'Menores Denunciados ↓')
+			await fs.writeFileSync('./lib/config/Utilidades/entregados.txt', 'Auto-denuncias ↓')
+			await fs.writeFileSync('./lib/config/Utilidades/gaysreport.txt', 'LGTB\'S Denunciados ↓')
+			await fs.writeFileSync('./lib/config/Utilidades/crimereport.txt', 'Crimes Reportados ↓')
+			await kill.reply(from, mess.maked(), id)
 			break
 			
 		// Para usar a base remova o /* e o */ e bote um nome dentro das aspas da case e em seguida sua mensagem dentro das aspas na frente do from
@@ -3565,6 +3833,6 @@ module.exports = kconfig = async (kill, message) => {
     } catch (err) {
 		//await kill.sendText(ownerNumber, mess.wpprpt(command, err))
 		await kill.reply(from, mess.fail(), id)
-        console.log(color('[GERAL]', 'red'), err)
+        console.log(color('[FALHA GERAL]', 'red'), err)
     }
 }
