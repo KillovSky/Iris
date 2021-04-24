@@ -238,6 +238,35 @@ module.exports = kconfig = async (kill, message) => {
                 }
             } catch (err) { console.log(color('[XP]', 'crimson'), err) }
         }
+		
+		// Anti Imagens pornograficas
+		if (isGroupMsg && !isGroupAdmins && isBotGroupAdmins && isAntiPorn && isMedia && isImage && !isCmd && !isOwner) {
+			try {
+				console.log(color('[IMAGEM]', 'red'), color('Verificando a imagem por pornografia...', 'yellow'))
+				const mediaData = await decryptMedia(message, uaOverride)
+				const getUrl = await upload(mediaData, false)
+				deepai.setApiKey(config.deepai)
+				const resp = await deepai.callStandardApi("nsfw-detector", { image: `${getUrl}` })
+				if (resp.output.nsfw_score >= 0.70) {
+					await kill.removeParticipant(groupId, user)
+					console.log(color('[NSFW]', 'red'), color(`A imagem contém traços de contéudo adulto, removerei o → ${pushname} - [${user}]...`, 'yellow'))
+				} else { console.log(color('[SEM NSFW]', 'lime'), color(`→ A imagem não aparententa ser pornografica.`, 'gold')) }
+			} catch (error) { return }
+		}
+		
+        // Auto-stickers de fotos
+        if (isGroupMsg && autoSticker && isMedia && isImage && !isCmd) {
+            const mediaData = await decryptMedia(message, uaOverride)
+            await kill.sendImageAsSticker(from, `data:${mimetype};base64,${mediaData.toString('base64')}`, { author: config.author, pack: config.pack, keepScale: true })
+        }
+		
+		// Auto-sticker de videos & gifs
+		if (isGroupMsg && autoSticker && isMedia && isVideo && !isCmd) {
+			console.log('auto stker v')
+			const mediaData = await decryptMedia(message, uaOverride)
+			console.log('enviando')
+			await kill.sendMp4AsSticker(from, `data:${mimetype};base64,${mediaData.toString('base64')}`, null, { stickerMetadata: true, pack: config.pack, author: config.author, fps: 10, crop: true, loop: 0 })
+		}
 
         // Anti links de grupo
 		if (isGroupMsg && !isGroupAdmins && isBotGroupAdmins && isAntiLink && !isOwner) {
@@ -246,6 +275,8 @@ module.exports = kconfig = async (kill, message) => {
 					const gplka = await kill.inviteInfo(chats)
 					if (gplka) {
 						console.log(color('[BAN]', 'red'), color('Link de grupo detectado, removendo participante...', 'yellow'))
+						await kill.sendTextWithMentions(from, mess.baninjusto(user) + 'WhatsApp Link.')
+						await sleep(3000)
 						await kill.removeParticipant(groupId, user)
 					} else { console.log(color('[ALERTA]', 'yellow'), color('Link de grupo invalido recebido...', 'yellow')) }
 				}
@@ -261,7 +292,9 @@ module.exports = kconfig = async (kill, message) => {
 					isPorn(inilkn.hostname, async (err, status) => {
 						if (err) return console.error(err)
 						if (status) {
-							console.log(color('[NSFW]', 'red'), color(`O link é pornografico, removerei o → ${pushname} - [${user}]...`, 'yellow'))
+							console.log(color('[NSFW]', 'red'), color(`O link é pornografico, removerei o → ${pushname} - [${user.replace('@c.us', '')}]...`, 'yellow'))
+							await kill.sendTextWithMentions(from, mess.baninjusto(user) + 'Porno/Porn.')
+							await sleep(3000)
 							await kill.removeParticipant(groupId, user)
 						} else { console.log(color('[SEM NSFW]', 'lime'), color(`→ O link não possui pornografia.`, 'gold')) }
 					})
@@ -269,20 +302,13 @@ module.exports = kconfig = async (kill, message) => {
 			} catch (error) { return }
 		}
 		
-		// Ative para banir quem mandar todos os tipos de links (Ative removendo a /* e */)
-		/*if (isGroupMsg && !isGroupAdmins && isBotGroupAdmins && isAntiLink && !isOwner && isUrl(chats)) { await kill.removeParticipant(groupId, user) }*/
-		
-		// Comandos sem prefix, esse responde se marcar a BOT
-		if (!isFiltered(from) && !isCmd) { try { if (chats.includes(`@${botNumber.replace('@c.us', '')}`)) { await kill.reply(from, chatBotR, id) } } catch (error) { return } }
-		
-		// Caso deseje criar siga o estilo disso abaixo, para usar a base remova a /* e a */
-		/*if (!isFiltered(from) && !isCmd) { try { if (chats == 'Mensagem a receber') await kill.reply(from, 'Resposta para enviar', id) } catch (error) { return } }*/
-		
 		// Impede travas ou textos que tenham mais de 5.000 linhas
-		if (isGroupMsg && !isGroupAdmins && !isOwner && isBotGroupAdmins) {
+		if (isGroupMsg && !isGroupAdmins && isBotGroupAdmins && !isOwner) {
 			try {
 				if (chats.length > 5000) {
-					await kill.sendTextWithMentions(from, mess.antitrava(user))
+					console.log(color('[TRAVA]', 'red'), color(`Possivel trava recebida pelo → ${pushname} - [${user.replace('@c.us', '')}] em ${name}...`, 'yellow'))
+					await kill.sendTextWithMentions(from, mess.baninjusto(user) + 'Travas.')
+					await sleep(3000)
 					await kill.removeParticipant(groupId, user)
 					await kill.contactBlock(user) // Caso sua bot não seja imune
 				}
@@ -293,47 +319,30 @@ module.exports = kconfig = async (kill, message) => {
 		if (!isGroupMsg && !isOwner) {
 			try {
 				if (chats.length > 5000) {
+					console.log(color('[TRAVA]', 'red'), color(`Possivel trava recebida pelo → ${pushname} - [${user.replace('@c.us', '')}]...`, 'yellow'))
 					await kill.sendText(ownerNumber, mess.recTrava(user))
 					await kill.contactBlock(user) // Caso sua bot não seja imune
 				}
 			} catch (error) { return }
 		}
 		
+		// Ative para banir quem mandar todos os tipos de links (Ative removendo a /* e */)
+		/*if (isGroupMsg && !isGroupAdmins && isBotGroupAdmins && isAntiLink && !isOwner && isUrl(chats)) { await kill.removeParticipant(groupId, user) }*/
+		
+		// Comandos sem prefix, esse responde se marcar a BOT
+		if (!isFiltered(from) && !isMedia && !isCmd) { try { if (chats.includes(`@${botNumber.replace('@c.us', '')}`)) { await kill.reply(from, chatBotR, id) } } catch (error) { return } }
+		
+		// Caso deseje criar siga o estilo disso abaixo, para usar a base remova a /* e a */
+		/*if (!isFiltered(from) && !isCmd) { try { if (chats == 'Mensagem a receber') await kill.reply(from, 'Resposta para enviar', id) } catch (error) { return } }*/
+		
 		// Impede comandos em PV'S mutados
-		if (!isGroupMsg && isCmd && !isOwner && pvmte) return console.log(color('> [SILENCE]', 'red'), color(`Ignorando comando de ${pushname} - [${user.replace('@c.us', '')}] pois ele está mutado...`, 'yellow'))
+		if (!isGroupMsg && isCmd && pvmte && !isOwner ) return console.log(color('> [SILENCE]', 'red'), color(`Ignorando comando de ${pushname} - [${user.replace('@c.us', '')}] pois ele está mutado...`, 'yellow'))
 		
 		// Impede comandos em grupos mutados
-		if (isGroupMsg && isCmd && !isOwner && !isGroupAdmins && mute) return console.log(color('> [SILENCE]', 'red'), color(`Ignorando comando de ${name} pois ele está mutado...`, 'yellow'))
+		if (isGroupMsg && isCmd && !isGroupAdmins && mute && !isOwner) return console.log(color('> [SILENCE]', 'red'), color(`Ignorando comando de ${name} pois ele está mutado...`, 'yellow'))
 
 		// Ignora pessoas bloqueadas
-		if (isBlocked && !isOwner && isCmd) return console.log(color('> [BLOCK]', 'red'), color(`Ignorando comando de ${pushname} - [${user.replace('@c.us', '')}] por ele estar bloqueado...`, 'yellow'))
-
-        // Auto-stickers de fotos
-        if (isGroupMsg && autoSticker && isMedia && isImage && !isCmd) {
-            const mediaData = await decryptMedia(message, uaOverride) 
-            await kill.sendImageAsSticker(from, `data:${mimetype};base64,${mediaData.toString('base64')}`, { author: config.author, pack: config.pack, keepScale: true })
-        }
-		
-		// Auto-sticker de videos & gifs
-		if (isGroupMsg && autoSticker && isMedia && isVideo && !isCmd) {
-			const mediaData = await decryptMedia(message, uaOverride)
-			await kill.sendMp4AsSticker(from, `data:${mimetype};base64,${mediaData.toString('base64')}`, null, { stickerMetadata: true, pack: config.pack, author: config.author, fps: 10, crop: true, loop: 0 })
-		}
-		
-		// Anti Imagens pornograficas, tirar o isCmd quebra diversos comandos de imagens
-		if (isGroupMsg && !isGroupAdmins && isBotGroupAdmins && !isOwner && isAntiPorn && isMedia && isImage && !isCmd) {
-			try {
-				console.log(color('[IMAGEM]', 'red'), color('Verificando a imagem por pornografia...', 'yellow'))
-				const mediaData = await decryptMedia(message, uaOverride)
-				const getUrl = await upload(mediaData, false)
-				deepai.setApiKey(config.deepai)
-				const resp = await deepai.callStandardApi("nsfw-detector", { image: `${getUrl}` })
-				if (resp.output.nsfw_score >= 0.70) {
-					await kill.removeParticipant(groupId, user)
-					console.log(color('[NSFW]', 'red'), color(`A imagem contém traços de contéudo adulto, removerei o → ${pushname} - [${user}]...`, 'yellow'))
-				} else { console.log(color('[SEM NSFW]', 'lime'), color(`→ A imagem não aparententa ser pornografica.`, 'gold')) }
-			} catch (error) { return }
-		}
+		if (isBlocked && isCmd && !isOwner) return console.log(color('> [BLOCK]', 'red'), color(`Ignorando comando de ${pushname} - [${user.replace('@c.us', '')}] por ele estar bloqueado...`, 'yellow'))
 
         // Anti Flood para PV'S
         if (isCmd && isFiltered(from) && !isGroupMsg && !isOwner) { return console.log(color('> [FLOOD AS]', 'red'), color(moment(t * 1000).format('DD/MM/YY HH:mm:ss'), 'yellow'), color(`"[${prefix}${command.toUpperCase()}] [${args.length}]"`, 'red'), 'DE', color(`"${pushname} - [${user.replace('@c.us', '')}]"`, 'red')) }
@@ -1442,7 +1451,7 @@ module.exports = kconfig = async (kill, message) => {
 					const { title, details, link } = dojin
 					const { parodies, tags, artists, groups, languages, categories } = await details
 					await kill.sendFileFromUrl(from, pic, '', mess.nhentai(title, parodies, tags, artists, groups, languages, categories, link), id)
-					await kill.sendFileFromUrl(from, `https://nhder.herokuapp.com/download/nhentai/${nuklir}/zip`, 'hentai.zip', '', id)
+					await kill.sendFileFromUrl(from, `https://nhder.herokuapp.com/download/nhentai/${args[0]}/zip`, 'hentai.zip', '', id)
 					.catch(() => kill.reply(from, 'Fail at download', id))
 				} else return await kill.reply(from, mess.noresult(), id) 
 			} else return kill.reply(from, mess.noargs() + '6 digit/digitos (code/código nhentai) (ex: 215600).', id)
@@ -2917,18 +2926,22 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
         case 'autosticker':
-            if (!isGroupMsg) return kill.reply(from, mess.sogrupo(), id)
-            if (!isGroupAdmins) return kill.reply(from, mess.soademiro(), id)
-            if (args[0] == 'on') {
-                atstk.push(groupId)
-                fs.writeFileSync('./lib/config/Grupos/sticker.json', JSON.stringify(atstk))
-                await kill.reply(from, mess.enabled(), id)
-            } else if (args[0] == 'off') {
-                atstk.splice(groupId, 1)
-                fs.writeFileSync('./lib/config/Grupos/sticker.json', JSON.stringify(atstk))
-                await kill.reply(from, mess.disabled(), id)
-            } else return kill.reply(from, mess.onoff(), id)
-			break
+			if (!isGroupMsg) return kill.reply(from, mess.sogrupo(), id)
+			if (isGroupMsg && isGroupAdmins || isGroupMsg && isOwner) {
+				if (args.length !== 1) return kill.reply(from, mess.onoff(), id)
+				if (args[0] == 'on') {
+					atstk.push(groupId)
+					fs.writeFileSync('./lib/config/Grupos/sticker.json', JSON.stringify(atstk))
+					await kill.reply(from, mess.enabled(), id)
+				} else if (args[0] == 'off') {
+					atstk.splice(groupId, 1)
+					fs.writeFileSync('./lib/config/Grupos/sticker.json', JSON.stringify(atstk))
+					await kill.reply(from, mess.disabled(), id)
+				} else return kill.reply(from, mess.kldica1(), id)
+			} else if (isGroupMsg) {
+				await kill.reply(from, mess.soademiro(), id)
+			} else return kill.reply(from, mess.sogrupo(), id)
+            break
 			
 			
 		case 'unblock':
@@ -3170,17 +3183,13 @@ module.exports = kconfig = async (kill, message) => {
 			
         case 'give':
             if (!isOwner) return kill.reply(from, mess.sodono(), id)
-            if (args.length !== 2 || args[1].includes('@')) return kill.reply(from, mess.semmarcar() + `\n\nEx: ${prefix}give @user <value/valor>`, id)
-			if (isNaN(args[1])) return kill.reply(from, mess.onlynumber(), id)
-            if (mentionedJidList.length !== 0) {
-                for (let give of mentionedJidList) {
-                    addXp(give, Number(args[1]), nivel)
-                    await kill.sendTextWithMentions(from, mess.gainxpm(args, give))
-                }
-            } else {
-                addXp(args[0] + '@c.us', Number(args[1]), nivel)
-                await kill.sendTextWithMentions(from, mess.gainxp(args))
-            }
+            if (mentionedJidList.length == 0 && !quotedMsg) return kill.reply(from, mess.semmarcar() + `\n\nEx: ${prefix}give @user <value/valor>`, id)
+			if (mentionedJidList.length !== 0) xpUserGet = await kill.getContact(mentionedJidList[0])
+			var userGainXp = quotedMsg ? quotedMsgObj.sender.id : (mentionedJidList.length !== 0 ? xpUserGet.id : user)
+			var theXPtoAdd = quotedMsg ? args[0] : (mentionedJidList.length !== 0 ? args[1] : args[1])
+			if (isNaN(theXPtoAdd)) return kill.reply(from, mess.onlynumber(), id)
+            addXp(userGainXp, Number(theXPtoAdd), nivel)
+			await kill.sendTextWithMentions(from, mess.gainxp(userGainXp, theXPtoAdd))
 			break
 		
 			
@@ -3718,7 +3727,7 @@ module.exports = kconfig = async (kill, message) => {
 			try {
 				if (args[0].length > 11) return kill.reply(from, 'cpf invalido.', id)
 				await kill.reply(from, mess.wait(), id)
-				const browsercf = await puppeteer.launch({ headless: false })
+				const browsercf = await puppeteer.launch({ headless: true })
 				const pagecf = await browsercf.newPage()
 				await pagecf.goto("https://www.situacao-cadastral.com", { waitUntil: "networkidle2" }).then(async () => {
 					await pagecf.click("#form")

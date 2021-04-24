@@ -83,10 +83,8 @@ const start = async (kill = new Client()) => {
 					} else if (isWelkom && !isMyBot) {
 						var profile = await kill.getProfilePicFromServer(event.who)
 						if (profile == '' || profile == undefined) profile = 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTQcODjk7AcA4wb_9OLzoeAdpGwmkJqOYxEBA&usqp=CAU'
-						var nameWhoE = pushname
-						if (nameWhoE = undefined) nameWhoE = 'Stranger'
 						const welcomer = await new canvas.Welcome()
-						.setUsername(nameWhoE)
+						.setUsername(pushname)
 						.setDiscriminator(event.who.substring(6, 10))
 						.setMemberCount(groupMetadata.participants.length)
 						.setGuildName(name)
@@ -113,10 +111,8 @@ const start = async (kill = new Client()) => {
 				} else if (event.action == 'remove' && isWelkom && !isMyBot) {
 					var profile = await kill.getProfilePicFromServer(event.who)
 					if (profile == '' || profile == undefined) profile = 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTQcODjk7AcA4wb_9OLzoeAdpGwmkJqOYxEBA&usqp=CAU'
-					var nameWhoS = pushname
-					if (nameWhoS = undefined) nameWhoS = 'Stranger'
 					const bye = await new canvas.Goodbye()
-					.setUsername(nameWhoS)
+					.setUsername(pushname)
 					.setDiscriminator(event.who.substring(6, 10))
 					.setMemberCount(groupMetadata.participants.length)
 					.setGuildName(name)
