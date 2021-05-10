@@ -5,12 +5,9 @@
 If want a english tutorial, open this [English Tutorial](https://github.com/KillovSky/iris/blob/main/.readme/en/README.md), si quieres en español, abre esta [Tutorial Español](https://github.com/KillovSky/iris/blob/main/.readme/es/README.md)
 Para deixar sua bot completamente em outro idioma, abra a configuração de [linguagem aqui](https://github.com/KillovSky/iris/blob/main/lib/config/config.json#2) e troque o "pt" para "en" que é inglês ou "es" para espanhol, não há outros idiomas além destes, não agora.
 
-### Usar apenas no Telefone
-No celular é dificílimo que você consiga usar por Termux, portanto, use o site [Goorm](https://ide.goorm.io) ou a [Google Cloud-Shell](https://cloud.google.com/shell) para criar sua BOT pelo telefone, mas saiba que eles irão te desconectar frequentemente, se você possui PC, é muito melhor ir por ele.
-
 ### Nota Pessoal
 Esse software funciona sob a licença [MIT](http://escolhaumalicenca.com.br/licencas/mit/), sendo proibido a retirada de créditos, e lembre-se, eu gasto MUITO tempo ajudando todos que tem dúvidas e melhorando a BOT, mas sem ganhar nada nisso, por favor, não remova os créditos.
-Se você ver alguém roubando ou que tenha roubado, mostre a verdade, diga a ela que isso é plagio, esse é o unico pedido que tenho.
+Se você ver alguém roubando ou que tenha roubado, mostre a verdade, diga a ela que isso é plagio, esse é o único pedido que tenho.
 
 ### Erros & Bugs
 Se notar erros leia a [Discussions](https://github.com/KillovSky/iris/discussions), se ela não resolver, fale comigo pelos meios no final da pagina ou reporte no [Issues](https://github.com/KillovSky/iris/issues), e claro, se certifique de ter instalado chrome e de ler TUDO que estiver escrito abaixo.
@@ -58,26 +55,37 @@ Baixe Chrome no Windows por [aqui](https://www.google.com/chrome), no linux use 
 - Dois números no WhatsApp, um para o dono e outro para a BOT.
 - [NodeJS](https://nodejs.org) - Recomendo a LTS.
 - [Git](https://git-scm.com) - Para as Unix-Tools - Cuidado.
-- [FFmpeg](https://ffmpeg.org) - Para o comando de GIF.
+- [FFmpeg](https://ffmpeg.org) - Para conversões.
 - [Libwebp](https://developers.google.com/speed/webp/download) - Ajuda no de cima e outras coisas.
-- Para um tutorial de instalação do FFmpeg no Windows, veja [WikiHow](https://pt.wikihow.com/Instalar-o-FFmpeg-no-Windows), para instalar o Libwebp siga os mesmos passos, mas mudando o nome da pasta para libwebp, fazendo o mesmo no comando "setx".
+- Para um tutorial de instalação do FFmpeg no Windows 7/8, veja [WikiHow](https://pt.wikihow.com/Instalar-o-FFmpeg-no-Windows), no caso de Windows 10 veja a [SoundArtifacts](https://soundartifacts.com/pt/how-to/186-how-to-install-ffmpeg-on-windows-10-amp-add-ffmpeg-to-windows-path.html).
+- Para instalar o LibWebP siga os mesmos passos, mas mudando o nome da pasta para LibWebP em vez de FFmpeg.
 
 Para a instalação de tudo acima no Linux, você pode usar o comando abaixo:
 
 ```bash
-> sudo apt install nodejs git ffmpeg libwebp -y
+> sudo apt install nodejs git ffmpeg -y
 ```
 
 Caso você obtenha erros com a versão do node no repositório de seu Linux, use o [Node Source](https://github.com/nodesource/distributions), lembre-se de usar a LTS (14).
 
 ### Instalação
-Você precisa ter esse repositório, é simples, rode os comandos abaixo, em caso de erros, rode como sudo/administrador.
+Você precisa ter esse repositório, é simples, rode os comandos abaixo, em caso de erros, rode como sudo/administrador ou veja os tutoriais abaixo.
 
 ```bash
 > git clone https://github.com/KillovSky/iris.git
 > cd iris
 > npm i
 ```
+
+- Aqui estão tutoriais feitos por usuários da Íris, se obtiver problemas veja-os, todos os direitos dos vídeos a eles, lhes agradeço! ❤️
+
+- [Windows](https://youtu.be/avMaidfe9Zg) - "Gabriel Fonseca"
+
+- [Linux](https://youtu.be/_CpGs-mZ72I) - "Jeean"
+
+- [Termux - Goorm](https://youtu.be/_64MehNvZhg) - "Mawy ff"
+
+- [PC - Goorm](https://youtu.be/3VtJHlW135w) - "Jeean"
 
 ### Mudanças OBRIGATÓRIAS
 EDITE as API's encontradas em:
@@ -94,8 +102,12 @@ EDITE as API's encontradas em:
 - [Limite de Membros](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#11)
 - [Sticker-Autor](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#12)
 - [Sticker-Pack](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#13)
+- [User-Agent](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#14)
+- [Tempo de Jogo](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#15)
+- [Anti-Flood](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#16)
 - Elas são referentes aos sites [RemoveBG](https://www.remove.bg/pt-br), [API-Flash](https://apiflash.com), [WallHaven](https://wallhaven.cc/settings/account) & [Deep-AI](https://deepai.org).
 - A DDI e Linguagem são necessárias apenas se você for de fora do Brasil, as linguagens disponiveis são "en" de inglês, "pt" de português e "es" de espanhol e afetam todos os diálogos e o akinator.
+- Você pode inserir dois ou mais números de dono, se não quiser apenas deixe o segundo como está, o tempo de jogo deve ser inserido em MINUTOS, ele limitará o tempo para cada jogatina, o Anti-Flood deverá ser em SEGUNDOS e limita os comandos e a User-Agent é opcional.
 
 ### Iniciar
 Após a edição dos arquivos necessários, rode o comando abaixo e espere iniciar, após isso, escaneie o QR Code.
@@ -112,13 +124,10 @@ Digite no seu chat a mensagem, se você editou sua prefix, troque a '/' para o c
 ```
 
 ### Crie seus comandos
-Há uma base simples para suas criações por [aqui](https://github.com/KillovSky/iris/blob/main/config.js#L3843), sem Prefix [aqui](https://github.com/KillovSky/iris/blob/main/config.js#L336), basta que você remova a "/\*" e a "\*/" para utilizá-la, se precisar de outros tipos, você pode ver sobre eles por [aqui](https://docs.openwa.dev/classes/api_client.client.html), se obtiver dificuldades, chame-me por [aqui](https://chat.whatsapp.com/H53MdwhtnRf7TGX1VJ2Jje) ou [aqui](https://wa.me/+5518998044132).
-
-### Computer-Freaker/Axios
-Para fixar o funcionamento da API da Computer-Freaker(Logos, Baguette, Yuri, Hug...) e de alguns problemas no módulo Axios, siga os passos desse [Mini-Tutorial](https://github.com/KillovSky/iris/discussions/10).
+Há uma base simples para suas criações por [aqui](https://github.com/KillovSky/iris/blob/main/config.js#L3947), sem Prefix [aqui](https://github.com/KillovSky/iris/blob/main/config.js#L295), basta que você remova a "/\*" e a "\*/" para utilizá-la, se precisar de outros tipos, você pode ver sobre eles por [aqui](https://docs.openwa.dev/classes/api_client.client.html), se obtiver dificuldades, chame-me por [aqui](https://chat.whatsapp.com/H53MdwhtnRf7TGX1VJ2Jje) ou [aqui](https://wa.me/+5518998044132).
 
 ### Alertas no WhatsApp
-Para receber também as mensagem de erros da Íris pelo WhatsApp, remova a "//" da linha [Catch](https://github.com/KillovSky/iris/blob/main/config.js#L3855).
+Para receber também as mensagem de erros da Íris pelo WhatsApp, remova a "//" da linha [Catch](https://github.com/KillovSky/iris/blob/main/config.js#L3959).
 
 ### Agradecimentos:
 - [Open-WA](https://github.com/open-wa)

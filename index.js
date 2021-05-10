@@ -22,7 +22,7 @@ const start = async (kill = new Client()) => {
 			if (state === 'UNPAIRED' || state === 'CONFLICT' || state === 'UNLAUNCHED') kill.forceRefocus()
 		})
 		
-        // Le as mensagens e limpa cache
+        // Lê as mensagens e limpa cache a cada 1000, se quiser menos só editar ali
         kill.onMessage((async (message) => {
             kill.getAmountOfLoadedMessages().then((msg) => { if (msg >= 1000) { kill.cutMsgCache() } })
             kconfig(kill, message)
@@ -34,7 +34,7 @@ const start = async (kill = new Client()) => {
             const totalMem = chat.groupMetadata.participants.length
 			if (chat.groupMetadata.participants.includes(config.owner)) {
 				await kill.sendText(chat.id, mylang().novogrupo())
-			} else if (totalMem < config.memberLimit) {
+			} else if (totalMem < config.memberReq) {
             	await kill.sendText(chat.id, mylang().noreq(totalMem))
 				await kill.deleteChat(chat.id)
 				await kill.leaveGroup(chat.id)
@@ -83,8 +83,7 @@ const start = async (kill = new Client()) => {
 					} else if (isWelkom && !isMyBot) {
 						var profile = await kill.getProfilePicFromServer(event.who)
 						if (profile == '' || profile == undefined) profile = 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTQcODjk7AcA4wb_9OLzoeAdpGwmkJqOYxEBA&usqp=CAU'
-						const welcomer = await new canvas.Welcome()
-						.setUsername(pushname)
+						const welcomer = await new canvas.Welcome().setUsername(pushname)
 						.setDiscriminator(event.who.substring(6, 10))
 						.setMemberCount(groupMetadata.participants.length)
 						.setGuildName(name)
@@ -111,8 +110,7 @@ const start = async (kill = new Client()) => {
 				} else if (event.action == 'remove' && isWelkom && !isMyBot) {
 					var profile = await kill.getProfilePicFromServer(event.who)
 					if (profile == '' || profile == undefined) profile = 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTQcODjk7AcA4wb_9OLzoeAdpGwmkJqOYxEBA&usqp=CAU'
-					const bye = await new canvas.Goodbye()
-					.setUsername(pushname)
+					const bye = await new canvas.Goodbye().setUsername(pushname)
 					.setDiscriminator(event.who.substring(6, 10))
 					.setMemberCount(groupMetadata.participants.length)
 					.setGuildName(name)
@@ -148,4 +146,4 @@ const start = async (kill = new Client()) => {
     }
 
 // Cria uma sessão da Íris
-create(options(start)).then((kill) => start(kill)).catch((err) => console.error(err))
+create(options(start, config)).then((kill) => start(kill)).catch((err) => console.error(err))

@@ -5,9 +5,6 @@
 Si quieres un tutorial en español, abre lo [Tutorial Español](https://github.com/KillovSky/iris/blob/main/.readme/es/README.md), para um português use o [Tutorial PT-BR](https://github.com/KillovSky/iris/blob/main/README.md).
 To make your bot completely in another language, open [language](https://github.com/KillovSky/iris/blob/main/lib/config/config.json#2) and change from "pt" for "en" which is English or "es" for Spanish, there are no languages other than these - not yet.
 
-### Only Phone
-On cellphone it's impossible you can use, incluse on Termux, but you can use the site [Goorm](https://ide.goorm.io) or the app [Google Cloud-Shell](https://cloud.google.com/shell) to make a Íris, but will disconnect frequent, is much better a use from a computer.
-
 ### Personal Note
 This software uses the [MIT](https://choosealicense.com/licenses/mit/) license, it's proibited the removal of credits, and i'm expending a LOT of time without gain nothing to make this better, please, do not remove the credits of my bot.
 If you see someone stealing or who has stolen, show the truth, tell them it is plagiarism, is the only desire i have.
@@ -58,14 +55,15 @@ To download chrome on Windows go [here](https://www.google.com/chrome), on linux
 - Two numbers at WhatsApp, one for owner and other for BOT.
 - [NodeJS](https://nodejs.org) - LTS recommended.
 - [Git](https://git-scm.com) - For the Unix-Tools - Careful.
-- [FFmpeg](https://ffmpeg.org) - For gif command.
+- [FFmpeg](https://ffmpeg.org) - For conversions.
 - [Libwebp](https://developers.google.com/speed/webp/download) - Help the FFmpeg and other things.
-- If needs help to install FFmpeg, view the [WikiHow](https://www.wikihow.com/Install-FFmpeg-on-Windows), to install Libwebp follow the same steps, but changing the folder name to libwebp, doing the same in the "setx" command.
+- If needs help to install FFmpeg, view the [WikiHow](https://www.wikihow.com/Install-FFmpeg-on-Windows) for Windows 7/8, to Windows 10 see [SoundArtifacts](https://soundartifacts.com/pt/how-to/186-how-to-install-ffmpeg-on-windows-10-amp-add-ffmpeg-to-windows-path.html).
+- To install LibWebP follow the same steps, but changing the folder name to LibWebP instead of FFmpeg.
 
 To install all programs above at Linux, use that command:
 
 ```bash
-> sudo apt install nodejs git ffmpeg libwebp -y
+> sudo apt install nodejs git ffmpeg -y
 ```
 
 If have some errors at Node, try using the [Node Source](https://github.com/nodesource/distributions), remember, LTS version.
@@ -78,6 +76,16 @@ To download Íris use the following commands, if have some error try with admini
 > cd iris
 > npm i
 ```
+
+- Here are tutorials made by Iris users, if you get problems see them, all the rights of the videos to them and thanks! ❤️
+
+- [Windows](https://youtu.be/avMaidfe9Zg) - "Gabriel Fonseca"
+
+- [Linux](https://youtu.be/_CpGs-mZ72I) - "Jeean"
+
+- [Termux - Goorm](https://youtu.be/_64MehNvZhg) - "Mawy ff"
+
+- [PC - Goorm](https://youtu.be/3VtJHlW135w) - "Jeean"
 
 ### Mandatory Changes
 Edit all the info bellow:
@@ -94,8 +102,12 @@ Edit all the info bellow:
 - [Member Requiriment](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#11)
 - [Sticker-Author](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#12)
 - [Sticker-Pack](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#13)
+- [User-Agent](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#14)
+- [Playing Time](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#15)
+- [Anti-Flood](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#16)
 - They refer to the sites [RemoveBG](https://www.remove.bg/pt-br), [API-Flash](https://apiflash.com), [WallHaven](https://wallhaven.cc/settings/account) & [Deep-AI](https://deepai.org).
 - The DDI and Language is only necessary if you are outside Brazil, the available languages are "en" in english, "pt" in portuguese and "es" in spanish and affect all dialogues and akinator.
+- You can enter two or more owner numbers, if you don't want this, just leave the second one as it is, the Play-Time must be entered in MINUTES, it will limit the time for each game, Anti-Flood should be in SECONDS, he limits the commands, the User-Agent is optional.
 
 ### Run
 After installing and changing all the necessary info, just run the code bellow, wait start, and scan QR.
@@ -112,13 +124,10 @@ Send this to your chat, if you changed the prefix settion, change the "/" bellow
 ```
 
 ### Make new commands
-I have putted a code to new commands [here](https://github.com/KillovSky/iris/blob/main/config.js#L3843), with no Prefix [here](https://github.com/KillovSky/iris/blob/main/config.js#L336), remove the "/\*" and "\*/" to use the code, if you need more types, you can view all [here](https://docs.openwa.dev/classes/api_client.client.html), if you have some difficuty talk me on [KillovSky Number](https://wa.me/+5518998044132).
-
-### Computer-Freaker/Axios
-To fix Computer-Freaker API(Logos, Baguette, Yuri, Hug...) and some axios website compatibility, open this [Mini-Tutorial](https://github.com/KillovSky/iris/discussions/10).
+I have putted a code to new commands [here](https://github.com/KillovSky/iris/blob/main/config.js#L3947), with no Prefix [here](https://github.com/KillovSky/iris/blob/main/config.js#L295), remove the "/\*" and "\*/" to use the code, if you need more types, you can view all [here](https://docs.openwa.dev/classes/api_client.client.html), if you have some difficuty talk me on [KillovSky Number](https://wa.me/+5518998044132).
 
 ### Report errors on Messages
-To receive your errors from commandline at whatsapp, remove the "//" on line [Catch](https://github.com/KillovSky/iris/blob/main/config.js#L3855).
+To receive your errors from commandline at whatsapp, remove the "//" on line [Catch](https://github.com/KillovSky/iris/blob/main/config.js#L3959).
 
 ### Thanks:
 - [Open-WA](https://github.com/open-wa)
