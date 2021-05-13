@@ -76,6 +76,8 @@ moment.tz.setDefault('America/Sao_Paulo').locale('pt_BR')
 const emoji = new EmojiAPI();
 var jogadas = 0
 axios.defaults.headers.common['User-Agent'] = config.userAgent
+var isMuteAll = 0
+var prefix = config.prefix
 
 // JSON'S
 const nsfw_ = JSON.parse(fs.readFileSync('./lib/config/Grupos/NSFW.json'))
@@ -93,9 +95,6 @@ const atlinks = JSON.parse(fs.readFileSync('./lib/config/Grupos/antilinks.json')
 const trava = JSON.parse(fs.readFileSync('./lib/config/Grupos/antitrava.json'))
 
 module.exports = kconfig = async (kill, message) => {
-	
-    // Prefix
-    const prefix = config.prefix
 	
 	// Isso antes da try possibilita receber os alertas no WhatsApp
 	const { type, id, from, t, sender, author, isGroupMsg, chat, chatId, caption, isMedia, mimetype, quotedMsg, quotedMsgObj, mentionedJidList } = message
@@ -308,6 +307,9 @@ module.exports = kconfig = async (kill, message) => {
 		
 		// Impede comandos em grupos mutados
 		if (isGroupMsg && isCmd && !isGroupAdmins && mute && !isOwner) return console.log(color('> [SILENCE]', 'red'), color(`Ignorando comando de ${name} pois ele está mutado...`, 'yellow'))
+
+		// Muta geral, reseta ao reiniciar
+		if (isCmd && !isOwner && isMuteAll == 1) return console.log(color('> [SILENCE]', 'red'), color(`Ignorando comando de ${pushname} pois os PV'S e Grupos estão mutados...`, 'yellow'))
 
 		// Ignora pessoas bloqueadas
 		if (isBlocked && isCmd && !isOwner) return console.log(color('> [BLOCK]', 'red'), color(`Ignorando comando de ${pushname} - [${user.replace('@c.us', '')}] por ele estar bloqueado...`, 'yellow'))
@@ -3940,6 +3942,28 @@ module.exports = kconfig = async (kill, message) => {
 			})
 			break
 			
+			
+		case 'muteall':
+            if (isOwner) {
+				if (args.length == 0) return await kill.reply(from, mess.onoff(), id)
+				if (args[0] == 'on') {
+					isMuteAll = 1
+					await kill.reply(from, mess.enabled(), id)
+				} else if (args[0] == 'off') {
+					isMuteAll = 0
+					await kill.reply(from, mess.disabled(), id)
+				} else return await kill.reply(from, mess.kldica2(), id)
+            } else return await kill.reply(from, mess.sodono(), id)
+			break
+			
+			
+		case 'newprefix':
+            if (isOwner) {
+				if (args.length == 0) return await kill.reply(from, mess.noargs() + 'new prefix.', id)
+				prefix = args[0]
+				await kill.reply(from, mess.newprefix(args), id)
+            } else return await kill.reply(from, mess.sodono(), id)
+			break
 			
 		// Para usar a base remova o /* e o */ e bote um nome dentro das aspas da case e em seguida sua mensagem dentro das aspas na frente do from
 		/*case 'Nome do comando sem espaços':
