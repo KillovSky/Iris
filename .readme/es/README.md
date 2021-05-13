@@ -2,7 +2,7 @@
 Íris es un bot en inglés, español y portugués creado y actualizado por Lucas R. - KillovSky para el grupo "Legião Z", tiene más de 200 comandos y actualizaciones frecuentes con correcciones y novedades.
 
 ### Otros idiomas
-If want a english tutorial, open this [English Tutorial](https://github.com/KillovSky/iris/blob/main/.readme/en/README.md), para um português use o [Tutorial PT-BR](https://github.com/KillovSky/iris/blob/main/README.md).
+if you want a English tutorial, open this [English Tutorial](https://github.com/KillovSky/iris/blob/main/.readme/en/README.md), para um português use o [Tutorial PT-BR](https://github.com/KillovSky/iris/blob/main/README.md).
 Para dejar su bot completamente en otro idioma, abra la configuración de [Idioma aquí](https://github.com/KillovSky/iris/blob/main/lib/config/config.json#2) y cambie el "pt" por "en" que es inglés o "es" para español, no hay otros idiomas que estos.
 
 ### Nota personal 
@@ -69,23 +69,13 @@ Para la instalación de todo en Linux, puede usar el siguiente comando:
 Si obtiene errores con la versión del node en su repositorio de Linux, use el [Node Source](https://github.com/nodesource/distributions), recuerde, LTS (14).
 
 ### Instalación 
-Necesita tener este repositorio, es simple, ejecute los comandos abajo, en caso de errores, intente como sudo/administrador y vea los tutoriales abajo.
+Necesita tener este repositorio, es simple, ejecute los comandos abajo, en caso de errores, intente como sudo/administrador o vea los [Tutoriales](https://github.com/KillovSky/iris/discussions/28).
 
 ```bash
 > git clone https://github.com/KillovSky/iris.git
 > cd iris
 > npm i
 ```
-
-- Ahi estan tutoriales de algunos usuarios de la Iris, si no puede instalarlo, mírelos, todos los derechos de video reservados a ellos, les agradezco! ❤️
-
-- [Windows](https://youtu.be/avMaidfe9Zg) - "Gabriel Fonseca"
-
-- [Linux](https://youtu.be/_CpGs-mZ72I) - "Jeean"
-
-- [Termux - Goorm](https://youtu.be/_64MehNvZhg) - "Mawy ff"
-
-- [PC - Goorm](https://youtu.be/3VtJHlW135w) - "Jeean"
 
 ### Cambios obligatorios y Opcionales
 Edite las API que se encuentran en: 
@@ -105,9 +95,10 @@ Edite las API que se encuentran en:
 - [User-Agent](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#14)
 - [Playing Time](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#15)
 - [Anti-Flood](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#16)
+- [Max-Size](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#17)
 - Elas são referentes aos sites [RemoveBG](https://www.remove.bg/pt-br), [API-Flash](https://apiflash.com), [WallHaven](https://wallhaven.cc/settings/account) & [Deep-AI](https://deepai.org).
 - La DDI y Idioma solo son necesarios si es de fuera de Brasil, los idiomas disponibles son "en" de inglés, "pt" de portugués y "es" de español y afectan todos los diálogos y akinator.
-- Puede ingresar dos o más números de propietario, si no quiere esto, simplemente deje el segundo como está, el tiempo de juego debe ingresarse en MINUTOS, limitará el tiempo para cada juego, Anti-Flood debe ser en SEGUNDOS, limita los comandos, el User-Agent es opcional.
+- Puede ingresar dos o más números de propietario, si no quiere esto, simplemente deje el segundo como está, el tiempo de juego debe ingresarse en MINUTOS, limitará el tiempo para cada juego, Anti-Flood debe ser en SEGUNDOS, limita los comandos, el User-Agent es opcional y el Max-Size es para descargas, pona entre 1 a 64 (Propongo 16).
 
 ### Comenzar
 Después de editar los archivos necesarios, ejecute el siguiente comando y espere para comenzar, luego escane el código QR.
@@ -124,10 +115,10 @@ Escriba en su chat el mensaje, si editó su prefijo, cambie la '/' al carácter 
 ```
 
 ### Crea tus comandos
-Hay una base simple para sus creaciones por [aqui](https://github.com/KillovSky/iris/blob/main/config.js#L3947), sin Prefix [here](https://github.com/KillovSky/iris/blob/main/config.js#L295), solo tienes que quitar el "/\*" e la "\*/" para usarlo, si necesita otros tipos, puede ver sobre ellos para [aqui](https://docs.openwa.dev/classes/api_client.client.html), si tienes dificultades llámame por [aqui](https://chat.whatsapp.com/H53MdwhtnRf7TGX1VJ2Jje) o [aqui](https://wa.me/+5518998044132).
+Hay una base simple para sus creaciones por [aqui](https://github.com/KillovSky/iris/blob/main/config.js#L3945), sin Prefix [here](https://github.com/KillovSky/iris/blob/main/config.js#L304), solo tienes que quitar el "/\*" e la "\*/" para usarlo, si necesita otros tipos, puede ver sobre ellos para [aqui](https://docs.openwa.dev/classes/api_client.client.html), si tienes dificultades llámame por [aqui](https://chat.whatsapp.com/H53MdwhtnRf7TGX1VJ2Jje) o [aqui](https://wa.me/+5518998044132).
 
 ### Alertas en WhatsApp
-Para recibir también mensajes de error de Iris a través de WhatsApp, elimine el "//" de la línea [Catch](https://github.com/KillovSky/iris/blob/main/config.js#L3959).
+Para recibir también mensajes de error de Iris a través de WhatsApp, elimine el "//" de la línea [Catch](https://github.com/KillovSky/iris/blob/main/config.js#L3957).
 
 ### Agradecimientos:
 - [Open-WA](https://github.com/open-wa)

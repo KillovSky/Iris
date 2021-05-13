@@ -1,0 +1,1 @@
+Aqui fica hospedado o backup do level e msgcount para casos de corrupção de dados.

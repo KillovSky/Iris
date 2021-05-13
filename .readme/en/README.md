@@ -69,23 +69,13 @@ To install all programs above at Linux, use that command:
 If have some errors at Node, try using the [Node Source](https://github.com/nodesource/distributions), remember, LTS version.
 
 ### Installation
-To download Íris use the following commands, if have some error try with administrator or sudo.
+To download Íris use the following commands, if have some error try with administrator or sudo, or view the [Tutorials](https://github.com/KillovSky/iris/discussions/28).
 
 ```bash
 > git clone https://github.com/KillovSky/iris.git
 > cd iris
 > npm i
 ```
-
-- Here are tutorials made by Iris users, if you get problems see them, all the rights of the videos to them and thanks! ❤️
-
-- [Windows](https://youtu.be/avMaidfe9Zg) - "Gabriel Fonseca"
-
-- [Linux](https://youtu.be/_CpGs-mZ72I) - "Jeean"
-
-- [Termux - Goorm](https://youtu.be/_64MehNvZhg) - "Mawy ff"
-
-- [PC - Goorm](https://youtu.be/3VtJHlW135w) - "Jeean"
 
 ### Mandatory Changes
 Edit all the info bellow:
@@ -105,9 +95,10 @@ Edit all the info bellow:
 - [User-Agent](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#14)
 - [Playing Time](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#15)
 - [Anti-Flood](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#16)
+- [Max-Size](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#17)
 - They refer to the sites [RemoveBG](https://www.remove.bg/pt-br), [API-Flash](https://apiflash.com), [WallHaven](https://wallhaven.cc/settings/account) & [Deep-AI](https://deepai.org).
 - The DDI and Language is only necessary if you are outside Brazil, the available languages are "en" in english, "pt" in portuguese and "es" in spanish and affect all dialogues and akinator.
-- You can enter two or more owner numbers, if you don't want this, just leave the second one as it is, the Play-Time must be entered in MINUTES, it will limit the time for each game, Anti-Flood should be in SECONDS, he limits the commands, the User-Agent is optional.
+- You can enter two or more owner numbers, if you don't want this, just leave the second one as it is, the Play-Time must be entered in MINUTES, it will limit the time for each game, Anti-Flood should be in SECONDS, he limits the commands, the User-Agent is optional and Max-Size is for Downloads, set from 1-64 (Suggest 16).
 
 ### Run
 After installing and changing all the necessary info, just run the code bellow, wait start, and scan QR.
@@ -124,10 +115,10 @@ Send this to your chat, if you changed the prefix settion, change the "/" bellow
 ```
 
 ### Make new commands
-I have putted a code to new commands [here](https://github.com/KillovSky/iris/blob/main/config.js#L3947), with no Prefix [here](https://github.com/KillovSky/iris/blob/main/config.js#L295), remove the "/\*" and "\*/" to use the code, if you need more types, you can view all [here](https://docs.openwa.dev/classes/api_client.client.html), if you have some difficuty talk me on [KillovSky Number](https://wa.me/+5518998044132).
+I have putted a code to new commands [here](https://github.com/KillovSky/iris/blob/main/config.js#L3945), with no Prefix [here](https://github.com/KillovSky/iris/blob/main/config.js#L304), remove the "/\*" and "\*/" to use the code, if you need more types, you can view all [here](https://docs.openwa.dev/classes/api_client.client.html), if you have some difficuty talk me on [Here](https://wa.me/+5518998044132).
 
 ### Report errors on Messages
-To receive your errors from commandline at whatsapp, remove the "//" on line [Catch](https://github.com/KillovSky/iris/blob/main/config.js#L3959).
+To receive your errors from commandline at whatsapp, remove the "//" on line [Catch](https://github.com/KillovSky/iris/blob/main/config.js#L3957).
 
 ### Thanks:
 - [Open-WA](https://github.com/open-wa)

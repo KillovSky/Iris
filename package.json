@@ -1,6 +1,6 @@
 {
   "name": "iris",
-  "version": "3.0.9",
+  "version": "3.0.10",
   "private": "true",
   "description": "A bot oficial do Legião Z!",
   "main": "index.js",
@@ -35,6 +35,7 @@
     "fluent-ffmpeg": "^2.1.2",
     "fs-extra": "^9.1.0",
     "google-it": "^1.6.2",
+	"ignore-check": "^1.1.7",
     "is-porn": "^0.9.0",
     "mathjs": "^8.1.0",
     "moment-timezone": "^0.5.33",
@@ -43,7 +44,6 @@
     "nhentai-js": "^4.0.0",
     "node-fetch": "^2.6.1",
     "node-gtts": "^2.0.2",
-    "node-reverse-image-search": "^1.0.2",
     "parse-ms": "^2.1.0",
     "promise": "^8.1.0",
     "puppeteer": "^8.0.0",

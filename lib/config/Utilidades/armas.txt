@@ -1,0 +1,207 @@
+1792 contract rifle
+AAC Honey Badger PDW
+AGM-1 Carbine
+AK-22
+AK-47
+AK-74
+AK74U
+AMT Lightning 25/22
+AR-57
+AWC G2
+Accuracy International AS50
+Ag m/42
+Antecarga
+Arcabuz de Java
+Armalite AR-7
+Armscor AK22
+Armscor M16 22
+Bacamarte
+Barrett M82
+Barrett XM109
+Barrett XM500
+Benelli Argo
+Benelli Argo Comfortech
+Benelli Argo EL
+Benelli MR1
+Beretta BM59
+Beretta Cx4 Storm
+Beretta Rx4 Storm
+Berkut rifle
+Bombarda
+Breda M1935 PG Rifle
+Browning 22 Semi-Auto rifle
+Browning BAR
+Bushmaster M4 Type Carbine
+Bushmaster XM-15
+CZ 511
+Calico Liberty
+Calico M100
+Cap and ball
+Carbon 15
+Cartucho de agulha
+Caçoleta
+Charlton Automatic Rifle
+Chave de roda
+Colt 45
+Colt AR-15
+Colt Dragoon Revolver
+Colt Model 1855 Sidehammer Pocket Revolver
+Colt Paterson
+Colt Pocket Percussion Revolvers
+Colt Police Positive Special
+Colt Walker
+Colt's New Model Revolving rifle
+Colubrina
+Crazy Horse rifle
+Demro TAC-1
+Dragunov SVU
+Dragunov sniper rifle
+Espoleta de fita Maynard
+Espoleta de percussão
+FAMAE FD-200
+FEG Model 58
+FN FAL
+FN FNAR
+FN Model 1910
+FN Model 1949
+Flechas
+Fusil Automatique Modèle 1917
+Marine EUA Fuzil
+Fuzil Dreyse
+Fuzil de agulha
+Garrucha
+General Liu rifle
+German Sport Guns GSG-5
+Gewehr 41
+Gewehr 43
+Hakim Rifle
+Hamada
+Harper's Ferry flintlock pistol
+Harris Gun Works M-96
+Heckler & Koch HK41
+Heckler & Koch HK43
+Heckler & Koch PSG1
+Heckler & Koch SL7
+Heckler & Koch SL8
+Heckler & Koch SR9
+Hi-Point Carbine
+Howa Type 64
+Howard Francis machine carbine
+Howdah pistol
+Howell Automatic Rifle
+Hwach'a
+Itajubá Model 954 Mosquetão
+KAL1 General Purpose Infantry Rifle
+Kammerlader
+Kbsp wz. 1938M
+Kel-Tec RFB
+Kel-Tec SU-16
+Kel-Tec SUB-2000
+Kintrek KBP-1
+Krag-Jørgensen
+L1A1 Self-Loading Rifle
+Lança de fogo
+Lazarina
+Lombarda
+M1 Garand
+M1 carbine
+M110 Semi-Automatic Sniper System
+M16A1
+M1841 Mississippi Rifle
+M1922 Bang rifle
+M1941 Johnson rifle
+M1947 Johnson auto carbine
+M21 Sniper Weapon System
+M25 Sniper Weapon System
+M39 Enhanced Marksman Rifle
+M4A1
+M4A4
+M89SR sniper rifle
+Mauser Modelo 1889
+Mecanismo de pederneira
+Mons Meg
+Norinco NHM 91
+Olin/Winchester Salvo Rifle
+PSL
+PTR 91F
+Patch box
+Pauza P-50
+Pederneira
+Pedersen rifle
+Pistola bengala
+Pistola de duelo
+Polvarim
+Preetz Model 65
+Pumhart von Steyr
+QBU-88
+Rasheed Carbine
+Remington Model 24
+Remington Model 522 Viper
+Remington Model 552
+Remington Model 597
+Remington Model 740
+Remington Model 742
+Remington Model 8
+Remington Model Four
+Remington Nylon 66
+Remington Rolling Block rifle
+Remington Semi Automatic Sniper System
+Repetidora Cookson
+Repetidora Kalthoff
+Rieder Automatic Rifle
+Rifle Baker
+Rifle Farquharson
+Rifle Whitworth
+Rifles Frank Wesson
+Robinson Armament M96 Expeditionary
+Ruger 10/17
+Ruger 10/22
+Ruger Deerfield Carbine
+Ruger Mini-14
+Ruger Mini-30
+Ruger Model 44
+Ruger Police Carbine
+Ruger SR-556
+Ruger XGI
+SCAR-L
+SIG 522LR
+SIG Sauer SIG516
+SIG Sauer SIG556xi
+SIG Sauer SIGM400
+SKS
+SOCOM II Rifle
+SR-25
+STK SSW
+SVT-40
+Saiga semi-automatic rifle
+Savage Model 64
+Smith & Wesson M&P10
+Smith & Wesson M&P15
+Smith & Wesson M&P15-22
+Springfield Armory M1A
+Steyr IWS 2000
+Sturmgewehr 58
+Tabuk Sniper Rifle
+Tanegashima
+Terry Carbine
+Thompson Autorifle
+Trabuco
+Tubo de percussão
+UMP45
+Vareta
+Volkssturmgewehr
+Vulcan V18
+Vz. 52 rifle
+Wall gun
+Walther G22
+Walther WA 2000
+Webley Revolver
+Winchester Model 1905
+Winchester Model 1907
+Winchester Model 1910
+Winchester model 30
+Zastava M76
+Zastava M91
+Zijiang M99
+Marine Sco - Norinco JW-20
+ČZW-127
