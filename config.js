@@ -62,6 +62,7 @@ const { color, sleep, ss, isUrl, upload, addFilter, isFiltered, translate, isInt
 const { getLevel, getMsg, getXp, addLevel, addXp, getRank, isWin, wait, addLimit, addMsg, getLimit } = require('./lib/gaming')
 const poll = require('./lib/poll')
 const config = require('./lib/config/Bot/config.json')
+const patents = require('./lib/config/Bot/patentes.json')
 const { mylang } = require('./lib/lang')
 const options = { headless: true, defaultViewport: null, args: [ "--aggressive-cache-discard", "--disable-application-cache", "--disable-cache", "--disable-dev-profile","--disable-dev-shm-usage", "--disable-extensions", "--disable-gpu", "--disable-offline-load-stale-cache", "--disable-setuid-sandbox", "--disable-web-security", "--disk-cache-size=0", "--ignore-certificate-errors", "--no-sandbox" ] }
 
@@ -171,10 +172,10 @@ module.exports = kconfig = async (kill, message) => {
 		const weaponC = await fs.readFileSync('./lib/config/Utilidades/armas.txt').toString().split('\n')
 		const whatWeapon = weaponC[Math.floor(Math.random() * weaponC.length)]
 		
-		// Sobe patente por nível, mude o nome que quiser dentro das ASPAS ('), não esqueça do case ranking e profile
+		// Sobe patente por nível, se desejar edite as patentes em 'lib/config/Bot/patentes.json'
         const check = await getLevel(user, nivel)
-		var patente = 'Cobre'
-		if (check <= 4) { patente = 'Bronze I' } else if (check <= 10) { patente = 'Bronze II' } else if (check <= 15) { patente = 'Bronze III' } else if (check <= 20) { patente = 'Bronze IV' } else if (check <= 25) { patente = 'Bronze V' } else if (check <= 30) { patente = 'Prata I' } else if (check <= 35) { patente = 'Prata II' } else if (check <= 40) { patente = 'Prata III' } else if (check <= 45) { patente = 'Prata IV' } else if (check <= 50) { patente = 'Prata V' } else if (check <= 55) { patente = 'Ouro I' } else if (check <= 60) { patente = 'Ouro II' } else if (check <= 65) { patente = 'Ouro III' } else if (check <= 70) { patente = 'Ouro IV' } else if (check <= 75) { patente = 'Ouro V' } else if (check <= 80) { patente = 'Diamante I' } else if (check <= 85) { patente = 'Diamante II' } else if (check <= 90) { patente = 'Diamante III' } else if (check <= 95) { patente = 'Diamante IV' } else if (check <= 100) { patente = 'Diamante V' } else if (check <= 200) { patente = 'Diamante Mestre' } else if (check <= 300) { patente = 'Elite' } else if (check <= 400) { patente = 'Global' } else if (check <= 500) { patente = 'Herói' } else if (check <= 600) { patente = 'Lendário' } else if (check <= 700) { patente = 'Semi-Deus' } else if (check <= 800) { patente = 'Arcanjo' } else if (check <= 900) { patente = 'Demoníaco' } else if (check <= 1000 || check >= 1000) { patente = 'Divindade' }
+		var patente = patents.a0
+		if (check <= 4) { patente = patents.a1 } else if (check <= 10) { patente = patents.a2 } else if (check <= 15) { patente = patents.a3 } else if (check <= 20) { patente = patents.a4 } else if (check <= 25) { patente = patents.a5 } else if (check <= 30) { patente = patents.a6 } else if (check <= 35) { patente = patents.a7 } else if (check <= 40) { patente = patents.a8 } else if (check <= 45) { patente = patents.a9 } else if (check <= 50) { patente = patents.a10 } else if (check <= 55) { patente = patents.a11 } else if (check <= 60) { patente = patents.a12 } else if (check <= 65) { patente = patents.a13 } else if (check <= 70) { patente = patents.a14 } else if (check <= 75) { patente = patents.a15 } else if (check <= 80) { patente = patents.a16 } else if (check <= 85) { patente = patents.a17 } else if (check <= 90) { patente = patents.a18 } else if (check <= 95) { patente = patents.a19 } else if (check <= 100) { patente = patents.a20 } else if (check <= 200) { patente = patents.a21 } else if (check <= 300) { patente = patents.a22 } else if (check <= 400) { patente = patents.a23 } else if (check <= 500) { patente = patents.a24 } else if (check <= 550) { patente = patents.a25 } else if (check <= 600) { patente = patents.a26 } else if (check <= 700) { patente = patents.a27 } else if (check <= 800) { patente = patents.a28 } else if (check <= 900) { patente = patents.a29 } else if (check <= 1000 || check >= 1000) { patente = patents.a30 }
 
         // Sistema do XP - Baseado no de Bocchi - Slavyan
         if (isGroupMsg && isxp && !isWin(user) && !isBlocked) {
@@ -195,7 +196,7 @@ module.exports = kconfig = async (kill, message) => {
             } catch (err) { console.log(color('[XP]', 'crimson'), err) }
         }
 		
-		// Anti Imagens pornograficas
+		// Anti Imagens pornográficas
 		if (isGroupMsg && !isGroupAdmins && isBotGroupAdmins && isAntiPorn && isMedia && isImage && !isCmd && !isOwner) {
 			try {
 				console.log(color('[IMAGEM]', 'red'), color('Verificando a imagem por pornografia...', 'yellow'))
@@ -243,16 +244,16 @@ module.exports = kconfig = async (kill, message) => {
 				var shrekDes = ''
 				for (let i = 0; i < 20; i++) { shrekDes += `⢀⡴⠑⡄⠀⠀⠀⠀⠀⠀⠀⣀⣀⣤⣤⣤⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ \n⠸⡇⠀⠿⡀⠀⠀⠀⣀⡴⢿⣿⣿⣿⣿⣿⣿⣿⣷⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀ \n⠀⠀⠀⠀⠑⢄⣠⠾⠁⣀⣄⡈⠙⣿⣿⣿⣿⣿⣿⣿⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀ \n⠀⠀⠀⠀⢀⡀⠁⠀⠀⠈⠙⠛⠂⠈⣿⣿⣿⣿⣿⠿⡿⢿⣆⠀⠀⠀⠀⠀⠀⠀ \n⠀⠀⠀⢀⡾⣁⣀⠀⠴⠂⠙⣗⡀⠀⢻⣿⣿⠭⢤⣴⣦⣤⣹⠀⠀⠀⢀⢴⣶⣆ \n⠀⠀⢀⣾⣿⣿⣿⣷⣮⣽⣾⣿⣥⣴⣿⣿⡿⢂⠔⢚⡿⢿⣿⣦⣴⣾⠁⠸⣼⡿ \n⠀⢀⡞⠁⠙⠻⠿⠟⠉⠀⠛⢹⣿⣿⣿⣿⣿⣌⢤⣼⣿⣾⣿⡟⠉⠀⠀⠀⠀⠀ \n⠀⣾⣷⣶⠇⠀⠀⣤⣄⣀⡀⠈⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀ \n⠀⠉⠈⠉⠀⠀⢦⡈⢻⣿⣿⣿⣶⣶⣶⣶⣤⣽⡹⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀ \n⠀⠀⠀⠀⠀⠀⠀⠉⠲⣽⡻⢿⣿⣿⣿⣿⣿⣿⣷⣜⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀ \n⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣷⣶⣮⣭⣽⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀ \n⠀⠀⠀⠀⠀⠀⣀⣀⣈⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇⠀⠀⠀⠀⠀⠀⠀ \n⠀⠀⠀⠀⠀⠀⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀ \n⠀⠀⠀⠀⠀⠀⠀⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀ \n⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⠻⠿⠿⠿⠿⠛⠉\n\n` }
 				for (let adminls of groupAdmins) { wakeAdm += `➸ @${adminls.replace(/@c.us/g, '')}\n` }
-				await kill.sendText(from, shrekDes, id).then(async () => { await kill.setGroupToAdminsOnly(groupId, true) }) // Anti-Trava BR do Shrek muahauhauha + Fechar Grupo
-				await kill.sendTextWithMentions(from, wakeAdm).then(async () => { await kill.removeParticipant(groupId, user) }) // Fecha só para admins e bane o cara que travou
-				await kill.sendText(ownerNumber, mess.recTrava(user)).then(async () => { await kill.contactBlock(user) }) // Avisa o dono do bot e bloqueia o cara
+				await kill.removeParticipant(groupId, user).then(async () => { await kill.setGroupToAdminsOnly(groupId, true) }) // Fecha só para admins e bane o cara que travou
+				await kill.sendText(from, shrekDes, id).then(async () => { await kill.sendTextWithMentions(from, wakeAdm) })  // Anti-Trava BR do Shrek muahauhauha + Chamar ADMS
 				await kill.sendTextWithMentions(from, mess.baninjusto(user) + 'Travas.').then(async () => { await kill.sendText(from, mess.nopanic(), id) }) // Manda o motivo do ban e explica para os membros
+				await kill.sendText(ownerNumber[0], mess.recTrava(user) + `\nAt/No > ${name}`).then(async () => { await kill.contactBlock(user) }) // Avisa o dono do bot e bloqueia o cara
 				return await kill.setGroupToAdminsOnly(groupId, false) // Reabre o grupo
 			} catch (error) { return }
 		}
 		
 		// Bloqueia travas no PV
-		if (!isGroupMsg && !isOwner && isTrava) { await kill.sendText(ownerNumber, mess.recTrava(user)).then(async () => { await kill.contactBlock(user) }) }
+		if (!isGroupMsg && !isOwner && isTrava) { await kill.contactBlock(user).then(async () => { await kill.sendText(ownerNumber[0], mess.recTrava(user)) }) }
 		// Para limpar automaticamente sem você verificar, adicione "await kill.clearChat(chatId)", o mesmo no de grupos.
 
         // Anti links pornográficos
@@ -278,7 +279,7 @@ module.exports = kconfig = async (kill, message) => {
 				if (chats.length > 5000) {
 					console.log(color('[TRAVA]', 'red'), color(`Possivel trava recebida pelo → ${pushname} - [${user.replace('@c.us', '')}] em ${name}...`, 'yellow'))
 					await kill.removeParticipant(groupId, user).then(async () => { await kill.sendTextWithMentions(from, mess.baninjusto(user) + 'Travas.') }) // Remove e manda o motivo no grupo
-					return await kill.sendText(ownerNumber, mess.recTrava(user)).then(async () => { await kill.contactBlock(user) }) // Avisa o dono e então bloqueia a pessoa
+					return await kill.sendText(ownerNumber[0], mess.recTrava(user)).then(async () => { await kill.contactBlock(user) }) // Avisa o dono e então bloqueia a pessoa
 				}
 			} catch (error) { return }
 		}
@@ -288,7 +289,7 @@ module.exports = kconfig = async (kill, message) => {
 			try {
 				if (chats.length > 5000) {
 					console.log(color('[TRAVA]', 'red'), color(`Possivel trava recebida pelo → ${pushname} - [${user.replace('@c.us', '')}]...`, 'yellow'))
-					return await kill.contactBlock(user).then(async () => { await kill.sendText(ownerNumber, mess.recTrava(user)) }) // Avisa o dono e bloqueia
+					return await kill.contactBlock(user).then(async () => { await kill.sendText(ownerNumber[0], mess.recTrava(user)) }) // Avisa o dono e bloqueia
 				}
 			} catch (error) { return }
 		}
@@ -315,10 +316,10 @@ module.exports = kconfig = async (kill, message) => {
 		if (isBlocked && isCmd && !isOwner) return console.log(color('> [BLOCK]', 'red'), color(`Ignorando comando de ${pushname} - [${user.replace('@c.us', '')}] por ele estar bloqueado...`, 'yellow'))
 
         // Anti Flood para PV'S
-        if (isCmd && isFiltered(from) && !isGroupMsg && !isOwner) { return console.log(color('> [FLOOD AS]', 'red'), color(moment(t * 1000).format('DD/MM/YY HH:mm:ss'), 'yellow'), color(`"[${prefix}${command.toUpperCase()}] [${args.length}]"`, 'red'), 'DE', color(`"${pushname} - [${user.replace('@c.us', '')}]"`, 'red')) }
+        if (isCmd && isFiltered(from) && !isGroupMsg && !isOwner) { await addXp(user, -100, nivel); return console.log(color('> [FLOOD AS]', 'red'), color(moment(t * 1000).format('DD/MM/YY HH:mm:ss'), 'yellow'), color(`"[${prefix}${command.toUpperCase()}] [${args.length}]"`, 'red'), 'DE', color(`"${pushname} - [${user.replace('@c.us', '')}]"`, 'red')) }
 		
 		// Anti Flood para grupos
-        if (isCmd && isFiltered(from) && isGroupMsg && !isOwner) { return console.log(color('> [FLOOD AS]', 'red'), color(moment(t * 1000).format('DD/MM/YY HH:mm:ss'), 'yellow'), color(`"[${prefix}${command.toUpperCase()}] [${args.length}]"`, 'red'), 'DE', color(`"${pushname} - [${user.replace('@c.us', '')}]"`, 'red'), 'EM', color(`"${name || formattedTitle}"`)) }
+        if (isCmd && isFiltered(from) && isGroupMsg && !isOwner) { await addXp(user, -100, nivel); return console.log(color('> [FLOOD AS]', 'red'), color(moment(t * 1000).format('DD/MM/YY HH:mm:ss'), 'yellow'), color(`"[${prefix}${command.toUpperCase()}] [${args.length}]"`, 'red'), 'DE', color(`"${pushname} - [${user.replace('@c.us', '')}]"`, 'red'), 'EM', color(`"${name || formattedTitle}"`)) }
 		
 		// Contador de Mensagens (em grupo) | Para contar do PV bote sem aspas "isGroupMsg || !isGroupMsg"
         if (isGroupMsg) { await getMsg(user, msgcount); await addMsg(user, 1, msgcount) }
@@ -424,9 +425,9 @@ module.exports = kconfig = async (kill, message) => {
 				const outFile = `./lib/media/img/${user.replace('@c.us', '')}noBg.png`
 				var result = await removeBackgroundFromImageBase64({ base64img, apiKey: config.nobg, size: 'auto', type: 'auto', outFile })
 				await fs.writeFile(outFile, result.base64img)
-				await kill.sendImageAsSticker(from, `data:${nobgmd.mimetype};base64,${result.base64img}`, { author: '🎁 https://bit.ly/30t4jJV ☆', pack: '🔰 Iris/Legião Z ⚜️', keepScale: true })
+				await kill.sendImageAsSticker(from, `data:${nobgmd.mimetype};base64,${result.base64img}`, { pack: config.pack, author: config.author, keepScale: true })
 				await kill.reply(from, mess.nobgms(), id)
-				fs.unlinkSync(`./lib/media/img/${user.replace('@c.us', '')}noBg.png`)
+				setTimeout(() => { fs.unlinkSync(`./lib/media/img/${user.replace('@c.us', '')}noBg.png`) }, 30000)
             } else return await kill.reply(from, mess.onlyimg(), id)
             break
 			
@@ -793,7 +794,7 @@ module.exports = kconfig = async (kill, message) => {
 			
         case 'stalkig':
             if (args.length == 0) return await kill.reply(from, mess.noargs() + 'instagram usernames.', id)
-            const ig = await axios.get(`https://docs-jojo.herokuapp.com/api/stalk?username=${body.slice(9)}`)
+            const ig = await axios.get(`https://www.instagram.com/${body.slice(9)}/?__a=1`)
 			const stkig = JSON.stringify(ig.data)
 			if (stkig == '{}') return await kill.reply(from, mess.noresult(), id)
 			await kill.sendFileFromUrl(from, `${ig.data.graphql.user.profile_pic_url}`, ``, mess.insta(ig), id)
@@ -845,9 +846,8 @@ module.exports = kconfig = async (kill, message) => {
 			if (args.length == 0 || !isUrl(url)) return await kill.reply(from, mess.nolink(), id)
             try {
 				await kill.reply(from, mess.wait(), id)
-				await youtubedl(`${url}`, { noWarnings: true, noCallHome: true, noCheckCertificate: true, preferFreeFormats: true, youtubeSkipDashManifest: true, referer: `${url}`, x: true, audioFormat: 'mp3', matchFilter: `filesize < ${Number(config.maxSize)}M`, o: `./lib/media/audio/d${user.replace('@c.us', '')}${lvpc}.mp3` }).then(async () => { await kill.sendPtt(from, `./lib/media/audio/d${user.replace('@c.us', '')}${lvpc}.mp3`, id) })
-				await sleep(30000)
-				fs.unlinkSync(`./lib/media/audio/d${user.replace('@c.us', '')}${lvpc}.mp3`)
+				await youtubedl(`${url}`, { noWarnings: true, noCallHome: true, noCheckCertificate: true, preferFreeFormats: true, youtubeSkipDashManifest: true, referer: `${url}`, x: true, audioFormat: 'mp3', o: `./lib/media/audio/d${user.replace('@c.us', '')}${lvpc}.mp3` }).then(async () => { await kill.sendPtt(from, `./lib/media/audio/d${user.replace('@c.us', '')}${lvpc}.mp3`, id) })
+				setTimeout(() => { fs.unlinkSync(`./lib/media/audio/d${user.replace('@c.us', '')}${lvpc}.mp3`) }, 30000)
 			} catch (error) {
 				await kill.reply(from, mess.verybig(), id)
 				console.log(color('[DOWNAUDIO]', 'crimson'), color(`→ Obtive erros no comando ${prefix}${command} → ${error.message} - Você pode ignorar.`, 'gold'))
@@ -860,23 +860,23 @@ module.exports = kconfig = async (kill, message) => {
 			try {
 				await kill.reply(from, mess.wait(), id)
 				const ytres = await ytsearch(`${body.slice(6)}`)
-				await kill.sendFileFromUrl(from, `${ytres.all[0].image}`, ``, mess.play(ytres), id)
-				await youtubedl(`https://youtu.be/${ytres.all[0].videoId}`, { noWarnings: true, noCallHome: true, noCheckCertificate: true, preferFreeFormats: true, youtubeSkipDashManifest: true, referer: `https://youtu.be/${ytres.all[0].videoId}`, x: true, audioFormat: 'mp3', matchFilter: `filesize < ${Number(config.maxSize)}M`, o: `./lib/media/audio/${user.replace('@c.us', '')}${lvpc}.mp3` }).then(async () => { await kill.sendPtt(from, `./lib/media/audio/${user.replace('@c.us', '')}${lvpc}.mp3`, id) })
+				await kill.sendYoutubeLink(from, `${ytres.all[0].url}`, '\n' + mess.play(ytres))
+				await youtubedl(`https://youtu.be/${ytres.all[0].videoId}`, { noWarnings: true, noCallHome: true, noCheckCertificate: true, preferFreeFormats: true, youtubeSkipDashManifest: true, referer: `https://youtu.be/${ytres.all[0].videoId}`, x: true, audioFormat: 'mp3', o: `./lib/media/audio/${user.replace('@c.us', '')}${lvpc}.mp3` }).then(async () => { await kill.sendPtt(from, `./lib/media/audio/${user.replace('@c.us', '')}${lvpc}.mp3`, id) })
 				await sleep(30000)
-				fs.unlinkSync(`./lib/media/audio/${user.replace('@c.us', '')}${lvpc}.mp3`)
+				setTimeout(() => { fs.unlinkSync(`./lib/media/audio/${user.replace('@c.us', '')}${lvpc}.mp3`) }, 30000)
 			} catch (error) {
 				await kill.reply(from, mess.verybig(), id)
 				console.log(color('[PLAY]', 'crimson'), color(`→ Obtive erros no comando ${prefix}${command} → ${error.message} - Você pode ignorar.`, 'gold'))
 			}
             break
 			
-		 // Se obter erros com o 'replace' apague a "${user.replace('@c.us', '')}" de todos os comandos de download (são os 4).
+		 // Se obter erros com o 'replace' apague a "${user.replace('@c.us', '')}" de todos os comandos de download que o possuem.
         case 'video':
             if (args.length == 0) return await kill.reply(from, mess.noargs() + 'Títulos do YouTube/YouTube Titles.', id)
 			try {
 				await kill.reply(from, mess.wait(), id)
 				const vipres = await ytsearch(`${body.slice(7)}`)
-				await kill.sendFileFromUrl(from, `${vipres.all[0].image}`, ``, mess.play(vipres), id)
+				await kill.sendYoutubeLink(from, `${vipres.all[0].url}`, '\n' + mess.play(vipres))
 				await youtubedl(`https://www.youtube.com/watch?v=${vipres.all[0].videoId}`, { noWarnings: true, noCallHome: true, noCheckCertificate: true, preferFreeFormats: true, youtubeSkipDashManifest: true, referer: `https://www.youtube.com/watch?v=${vipres.all[0].videoId}`, getUrl: true, x: true, format: 'mp4', skipDownload: true, matchFilter: `filesize < ${Number(config.maxSize)}M` }).then(async (video) => { await kill.sendFileFromUrl(from, video, `${vipres.all[0].title}.mp4`, `${vipres.all[0].title}`, id) })
 			} catch (error) {
 				await kill.reply(from, mess.verybig(), id)
@@ -889,7 +889,7 @@ module.exports = kconfig = async (kill, message) => {
             if (args.length == 0) return await kill.reply(from, mess.noargs() + 'Títulos do YouTube/YouTube Titles.', id)
 			await kill.reply(from, mess.wait(), id)
 			const ytvrz = await ytsearch(`${body.slice(10)}`)
-			await kill.sendYoutubeLink(from, `${ytvrz.all[0].url}`, mess.play(ytvrz))
+			await kill.sendYoutubeLink(from, `${ytvrz.all[0].url}`, '\n' + mess.play(ytvrz))
             break
 			
 			
@@ -954,7 +954,7 @@ module.exports = kconfig = async (kill, message) => {
 				var langtts = args[0]
 				if (args[0] == 'br') langtts = 'pt-br'
 				var idptt = tts(langtts)
-				idptt.save(`./lib/media/audio/res${idptt}.mp3`, dataText, async () => {
+				await idptt.save(`./lib/media/audio/res${idptt}.mp3`, dataText, async () => {
 					await sleep(3000)
 					await kill.sendPtt(from, `./lib/media/audio/res${idptt}.mp3`, id)
 				})
@@ -1039,25 +1039,25 @@ module.exports = kconfig = async (kill, message) => {
 			const sppt = require('node-gtts')(config.lang)
 			try {
 				if (args[0] == '-g') {
-					await exec(`cd lib/config/Utilidades && bash -c 'grep -i "${args[1]}" reply.txt | shuf -n 1'`, (error, stdout, stderr) => {
+					await exec(`cd lib/config/Utilidades && bash -c 'grep -i "${args[1]}" reply.txt | shuf -n 1'`, async (error, stdout, stderr) => {
 						if (error || stderr || stdout == null || stdout == '') {
-							sppt.save('./lib/media/audio/resPtm.mp3', chatBotR, async function () { await kill.sendPtt(from, './lib/media/audio/resPtm.mp3', id) })
-						} else { sppt.save('./lib/media/audio/resPtm.mp3', stdout, async function () { await kill.sendPtt(from, './lib/media/audio/resPtm.mp3', id) }) }
+							await sppt.save('./lib/media/audio/resPtm.mp3', chatBotR, async function () { await kill.sendPtt(from, './lib/media/audio/resPtm.mp3', id) })
+						} else { await sppt.save('./lib/media/audio/resPtm.mp3', stdout, async function () { await kill.sendPtt(from, './lib/media/audio/resPtm.mp3', id) }) }
 					})
 				} else {
 					const spiris = await axios.get(`http://simsumi.herokuapp.com/api?text=${encodeURIComponent(body.slice(7))}&lang=${config.lang}`)
 					const a = spiris.data.success
 					if (a == 'Limit 50 queries per hour.' || a == '' || a == null) {
-						sppt.save('./lib/media/audio/resPtm.mp3', chatBotR, async function () { await kill.sendPtt(from, './lib/media/audio/resPtm.mp3', id) })
+						await sppt.save('./lib/media/audio/resPtm.mp3', chatBotR, async function () { await kill.sendPtt(from, './lib/media/audio/resPtm.mp3', id) })
 					} else {
-						sppt.save('./lib/media/audio/resPtm.mp3', a, async function () {
+						await sppt.save('./lib/media/audio/resPtm.mp3', a, async function () {
 							await kill.sendPtt(from, './lib/media/audio/resPtm.mp3', id)
 							await fs.appendFile('./lib/config/Utilidades/reply.txt', `\n${a}`)
 						})
 					}
 				}
 			} catch (error) {
-				sppt.save('./lib/media/audio/resPtm.mp3', chatBotR, async function () { await kill.sendPtt(from, './lib/media/audio/resPtm.mp3', id) })
+				await sppt.save('./lib/media/audio/resPtm.mp3', chatBotR, async function () { await kill.sendPtt(from, './lib/media/audio/resPtm.mp3', id) })
 				console.log(color('[SPEAK]', 'crimson'), color(`→ Obtive erros no comando ${prefix}${command} → ${error.message} - Você pode ignorar.`, 'gold'))
 			}
 			break
@@ -1449,7 +1449,8 @@ module.exports = kconfig = async (kill, message) => {
 				var blocked = blockNumber.includes(qmid) ? 'Sim' : 'Não'
 				const { status } = sts
 				if (pic == undefined) { var pfp = errorurl } else { var pfp = pic }
-				if (peoLevel <= 4) { playerRole = 'Bronze I' } else if (peoLevel <= 10) { playerRole = 'Bronze II' } else if (peoLevel <= 15) { playerRole = 'Bronze III' } else if (peoLevel <= 20) { playerRole = 'Bronze IV' } else if (peoLevel <= 25) { playerRole = 'Bronze V' } else if (peoLevel <= 30) { playerRole = 'Prata I' } else if (peoLevel <= 35) { playerRole = 'Prata II' } else if (peoLevel <= 40) { playerRole = 'Prata III' } else if (peoLevel <= 45) { playerRole = 'Prata IV' } else if (peoLevel <= 50) { playerRole = 'Prata V' } else if (peoLevel <= 55) { playerRole = 'Ouro I' } else if (peoLevel <= 60) { playerRole = 'Ouro II' } else if (peoLevel <= 65) { playerRole = 'Ouro III' } else if (peoLevel <= 70) { playerRole = 'Ouro IV' } else if (peoLevel <= 75) { playerRole = 'Ouro V' } else if (peoLevel <= 80) { playerRole = 'Diamante I' } else if (peoLevel <= 85) { playerRole = 'Diamante II' } else if (peoLevel <= 90) { playerRole = 'Diamante III' } else if (peoLevel <= 95) { playerRole = 'Diamante IV' } else if (peoLevel <= 100) { playerRole = 'Diamante V' } else if (peoLevel <= 200) { playerRole = 'Diamante Mestre' } else if (peoLevel <= 300) { playerRole = 'Elite' } else if (peoLevel <= 400) { playerRole = 'Global' } else if (peoLevel <= 500) { playerRole = 'Herói' } else if (peoLevel <= 600) { playerRole = 'Lendário' } else if (peoLevel <= 700) { playerRole = 'Semi-Deus' } else if (peoLevel <= 800) { playerRole = 'Arcanjo' } else if (peoLevel <= 900) { playerRole = 'Demoníaco' } else if (peoLevel <= 1000 || peoLevel >= 1000) { playerRole = 'Divindade' }
+				var playerRole = patents.a0
+				if (peoLevel <= 4) { playerRole = patents.a1 } else if (peoLevel <= 10) { playerRole = patents.a2 } else if (peoLevel <= 15) { playerRole = patents.a3 } else if (peoLevel <= 20) { playerRole = patents.a4 } else if (peoLevel <= 25) { playerRole = patents.a5 } else if (peoLevel <= 30) { playerRole = patents.a6 } else if (peoLevel <= 35) { playerRole = patents.a7 } else if (peoLevel <= 40) { playerRole = patents.a8 } else if (peoLevel <= 45) { playerRole = patents.a9 } else if (peoLevel <= 50) { playerRole = patents.a10 } else if (peoLevel <= 55) { playerRole = patents.a11 } else if (peoLevel <= 60) { playerRole = patents.a12 } else if (peoLevel <= 65) { playerRole = patents.a13 } else if (peoLevel <= 70) { playerRole = patents.a14 } else if (peoLevel <= 75) { playerRole = patents.a15 } else if (peoLevel <= 80) { playerRole = patents.a16 } else if (peoLevel <= 85) { playerRole = patents.a17 } else if (peoLevel <= 90) { playerRole = patents.a18 } else if (peoLevel <= 95) { playerRole = patents.a19 } else if (peoLevel <= 100) { playerRole = patents.a20 } else if (peoLevel <= 200) { playerRole = patents.a21 } else if (peoLevel <= 300) { playerRole = patents.a22 } else if (peoLevel <= 400) { playerRole = patents.a23 } else if (peoLevel <= 500) { playerRole = patents.a24 } else if (peoLevel <= 550) { playerRole = patents.a25 } else if (peoLevel <= 600) { playerRole = patents.a26 } else if (peoLevel <= 700) { playerRole = patents.a27 } else if (peoLevel <= 800) { playerRole = patents.a28 } else if (peoLevel <= 900) { playerRole = patents.a29 } else if (peoLevel <= 1000 || peoLevel >= 1000) { playerRole = patents.a30 }
 				await kill.sendFileFromUrl(from, pfp, 'pfo.jpg', mess.profile(namae, myMsg, adm, muted, blocked, status, peoLevel, peoXp, ineedxp, playerRole))
 			} else return await kill.reply(from, mess.sogrupo(), id)
 			break
@@ -1661,7 +1662,7 @@ module.exports = kconfig = async (kill, message) => {
 				await browserip.close()
 			})
 			await kill.sendFile(from, `./lib/media/img/${user.replace('@c.us', '')}ip.png`, 'ip.png', 'Maybe here - Talvez aqui! 📍', id)
-			fs.unlinkSync(`./lib/media/img/${user.replace('@c.us', '')}ip.png`)
+			setTimeout(() => { fs.unlinkSync(`./lib/media/img/${user.replace('@c.us', '')}ip.png`) }, 30000)
 			break
 			
 			
@@ -2966,7 +2967,7 @@ module.exports = kconfig = async (kill, message) => {
 			const hpgp = isGroupMsg ? groupId.replace('@g.us', '') : user.replace('@c.us', '')
 			const nopvne = isGroupMsg ? name : pushname
 			const isgorp = isGroupMsg ? '-gp' : '-pv'
-			await kill.sendText(ownerNumber, mess.advise(nopvne, isgorp, user, body, hpgp))
+			await kill.sendText(ownerNumber[0], mess.advise(nopvne, isgorp, user, body, hpgp))
 			await kill.reply(from, mess.thanks(), id)
 			break
 			
@@ -3013,7 +3014,7 @@ module.exports = kconfig = async (kill, message) => {
 			ranq.build().then(async (buffer) => {
 				canvas.write(buffer, `${wdfWho}_card.png`)
 				await kill.sendFile(from, `${wdfWho}_card.png`, `${wdfWho}_card.png`, '', id)
-				fs.unlinkSync(`${wdfWho}_card.png`)
+				setTimeout(() => { fs.unlinkSync(`${wdfWho}_card.png`) }, 30000)
 			})
             break
 			
@@ -3026,6 +3027,8 @@ module.exports = kconfig = async (kill, message) => {
 			await kill.reply(from, mess.wait(), id)
 			var userRem = `Removidos ↓\n\n`
             try {
+				welkom.splice(groupId, 1)
+				await fs.writeFileSync('./lib/config/Grupos/welcome.json', JSON.stringify(welkom))
                 for (let i = 0; i < groupMembers.length; i++) {
 					const msgCount = await getMsg(groupMembers[i].id, msgcount)
 					if (groupAdmins.includes(groupMembers[i].id) || botNumber.includes(groupMembers[i].id) || ownerNumber.includes(groupMembers[i].id)) {
@@ -3038,6 +3041,8 @@ module.exports = kconfig = async (kill, message) => {
 					}
 				}
                 await kill.sendTextWithMentions(from, userRem.replace('@c.us', ''))
+				welkom.push(groupId)
+				await fs.writeFileSync('./lib/config/Grupos/welcome.json', JSON.stringify(welkom))
             } catch (err) { await kill.reply(from, mess.fail() + '\nMaybe mistake/Talvez engano/0 removidos/0 removed.', id) }
             break
 			
@@ -3090,8 +3095,8 @@ module.exports = kconfig = async (kill, message) => {
             let board = '-----[ *RANKING DE XP* ]----\n\n'
             try {
                 for (let i = 0; i < 10; i++) {
-					var role = 'Cobre'
-					if (nivel[i].level <= 4) { role = 'Bronze I' } else if (nivel[i].level <= 10) { role = 'Bronze II' } else if (nivel[i].level <= 15) { role = 'Bronze III' } else if (nivel[i].level <= 20) { role = 'Bronze IV' } else if (nivel[i].level <= 25) { role = 'Bronze V' } else if (nivel[i].level <= 30) { role = 'Prata I' } else if (nivel[i].level <= 35) { role = 'Prata II' } else if (nivel[i].level <= 40) { role = 'Prata III' } else if (nivel[i].level <= 45) { role = 'Prata IV' } else if (nivel[i].level <= 50) { role = 'Prata V' } else if (nivel[i].level <= 55) { role = 'Ouro I' } else if (nivel[i].level <= 60) { role = 'Ouro II' } else if (nivel[i].level <= 65) { role = 'Ouro III' } else if (nivel[i].level <= 70) { role = 'Ouro IV' } else if (nivel[i].level <= 75) { role = 'Ouro V' } else if (nivel[i].level <= 80) { role = 'Diamante I' } else if (nivel[i].level <= 85) { role = 'Diamante II' } else if (nivel[i].level <= 90) { role = 'Diamante III' } else if (nivel[i].level <= 95) { role = 'Diamante IV' } else if (nivel[i].level <= 100) { role = 'Diamante V' } else if (nivel[i].level <= 200) { role = 'Diamante Mestre' } else if (nivel[i].level <= 300) { role = 'Elite' } else if (nivel[i].level <= 400) { role = 'Global' } else if (nivel[i].level <= 500) { role = 'Herói' } else if (nivel[i].level <= 600) { role = 'Lendário' } else if (nivel[i].level <= 700) { role = 'Semi-Deus' } else if (nivel[i].level <= 800) { role = 'Arcanjo' } else if (nivel[i].level <= 900) { role = 'Demoníaco' } else if (nivel[i].level <= 1000 || nivel[i].level >= 1000) { role = 'Divindade' }
+					var role = patents.a0
+					if (nivel[i].level <= 4) { role = patents.a1 } else if (nivel[i].level <= 10) { role = patents.a2 } else if (nivel[i].level <= 15) { role = patents.a3 } else if (nivel[i].level <= 20) { role = patents.a4 } else if (nivel[i].level <= 25) { role = patents.a5 } else if (nivel[i].level <= 30) { role = patents.a6 } else if (nivel[i].level <= 35) { role = patents.a7 } else if (nivel[i].level <= 40) { role = patents.a8 } else if (nivel[i].level <= 45) { role = patents.a9 } else if (nivel[i].level <= 50) { role = patents.a10 } else if (nivel[i].level <= 55) { role = patents.a11 } else if (nivel[i].level <= 60) { role = patents.a12 } else if (nivel[i].level <= 65) { role = patents.a13 } else if (nivel[i].level <= 70) { role = patents.a14 } else if (nivel[i].level <= 75) { role = patents.a15 } else if (nivel[i].level <= 80) { role = patents.a16 } else if (nivel[i].level <= 85) { role = patents.a17 } else if (nivel[i].level <= 90) { role = patents.a18 } else if (nivel[i].level <= 95) { role = patents.a19 } else if (nivel[i].level <= 100) { role = patents.a20 } else if (nivel[i].level <= 200) { role = patents.a21 } else if (nivel[i].level <= 300) { role = patents.a22 } else if (nivel[i].level <= 400) { role = patents.a23 } else if (nivel[i].level <= 500) { role = patents.a24 } else if (nivel[i].level <= 550) { role = patents.a25 } else if (nivel[i].level <= 600) { role = patents.a26 } else if (nivel[i].level <= 700) { role = patents.a27 } else if (nivel[i].level <= 800) { role = patents.a28 } else if (nivel[i].level <= 900) { role = patents.a29 } else if (nivel[i].level <= 1000 || nivel[i].level >= 1000) { role = patents.a30 }
 					var aRandNe = await kill.getContact(nivel[i].id)
 					var getTheName = aRandNe.pushname
 					if (getTheName == null) getTheName = 'wa.me/' + nivel[i].id.replace('@c.us', '')
@@ -3337,7 +3342,7 @@ module.exports = kconfig = async (kill, message) => {
 			if (args.length == 1 && isGroupMsg && isGroupAdmins || args.length == 1 && isOwner) {
 				if (isNaN(args[0])) return await kill.reply(from, mess.usenumber(), id)
 				if (ownerNumber.includes(`${args[0]}@c.us`) || args[0].includes(`${botNumber.replace('@c.us', '')}`)) {
-					await kill.sendText(ownerNumber, mess.nobomb(pushname, user))
+					await kill.sendText(ownerNumber[0], mess.nobomb(pushname, user))
 					await kill.reply(from, mess.fuckbomb(), id)
 					return await kill.contactBlock(user)
 				}
@@ -3519,7 +3524,7 @@ module.exports = kconfig = async (kill, message) => {
 			if (!isOwner) return await kill.reply(from, mess.sodono(), id)
 			try {
 				const waitEval = (cmd) => { return new Promise((resolve, reject) => { eval(cmd) }) }
-				(async () => { await waitEval(body.slice(6).replace('await ', '')) })()
+				(async () => { await waitEval(body.slice(6).replace('await', '')) })()
 			} catch (error) {
 				await kill.reply(from, mess.fail(), id)
 				console.log(color('[EXEC]', 'crimson'), color(`→ Obtive erros no comando ${prefix}${command} → ${error.message} - Você pode ignorar.`, 'gold'))
@@ -3562,10 +3567,7 @@ module.exports = kconfig = async (kill, message) => {
 						await fs.writeFile(`./lib/media/audio/${user.replace('@c.us', '')}${lvpc}.mp3`, mediaData, (err) => {
 							if (err) return console.error(err)
 							console.log(color('[FFMPEG]', 'crimson'), color(`- Conversão de audio "Bass" pedida por → ${pushname} - Você pode ignorar.`, 'gold'))
-							ffmpeg(`./lib/media/audio/${user.replace('@c.us', '')}${lvpc}.mp3`)
-							.audioFilter(`equalizer=f=40:width_type=h:width=50:g=${args[0]}`) // Mexa somente aqui se quiser
-							.format('mp3')
-							.save(`./lib/media/audio/audio-${user.replace('@c.us', '')}${lvpc}.mp3`)
+							ffmpeg(`./lib/media/audio/${user.replace('@c.us', '')}${lvpc}.mp3`).audioFilter(`equalizer=f=40:width_type=h:width=50:g=${args[0]}`).format('mp3').save(`./lib/media/audio/audio-${user.replace('@c.us', '')}${lvpc}.mp3`) // Você pode editar o equalizador ali
 							.on('error', async function (error, stdout, stderr) {
 								await kill.reply(from, mess.fail(), id)
 								console.log(color('[BASS]', 'crimson'), color(`→ Obtive erros no comando ${prefix}${command} → ${error.message} - Você pode ignorar.`, 'gold'))
@@ -3597,8 +3599,7 @@ module.exports = kconfig = async (kill, message) => {
 					await fs.writeFile(`./lib/media/audio/n${user.replace('@c.us', '')}${lvpc}.mp3`, mediaData, (err) => {
 						if (err) return console.error(err)
 						console.log(color('[FFMPEG]', 'crimson'), color(`- Conversão de audio para versão "nightcore" pedida por → ${pushname} - Você pode ignorar.`, 'gold'))
-						ffmpeg(`./lib/media/audio/n${user.replace('@c.us', '')}${lvpc}.mp3`).audioFilter('asetrate=44100*1.25') // Mexa somente aqui se quiser
-						.format('mp3').save(`./lib/media/audio/night-${user.replace('@c.us', '')}${lvpc}.mp3`)
+						ffmpeg(`./lib/media/audio/n${user.replace('@c.us', '')}${lvpc}.mp3`).audioFilter('asetrate=44100*1.25').format('mp3').save(`./lib/media/audio/night-${user.replace('@c.us', '')}${lvpc}.mp3`) // Você pode editar o valor acima (44100*1.25)
 						.on('error', async function (error, stdout, stderr) {
 							await kill.reply(from, mess.fail(), id)
 							console.log(color('[NIGHTCORE]', 'crimson'), color(`→ Obtive erros no comando ${prefix}${command} → ${error.message} - Você pode ignorar.`, 'gold'))
@@ -3629,9 +3630,7 @@ module.exports = kconfig = async (kill, message) => {
 					await fs.writeFile(`./lib/media/video/${user.replace('@c.us', '')}${lvpc}.${vTypeA.mimetype.replace(/.+\//, '')}`, mediaData, (err) => {
 						if (err) return console.error(err)
 						console.log(color('[FFMPEG]', 'crimson'), color(`- Conversão de video para audio pedida por → ${pushname} - Você pode ignorar.`, 'gold'))
-						ffmpeg(`./lib/media/video/${user.replace('@c.us', '')}${lvpc}.${vTypeA.mimetype.replace(/.+\//, '')}`)
-						.format('mp3')
-						.save(`./lib/media/video/v${user.replace('@c.us', '')}${lvpc}.mp3`)
+						ffmpeg(`./lib/media/video/${user.replace('@c.us', '')}${lvpc}.${vTypeA.mimetype.replace(/.+\//, '')}`).format('mp3').save(`./lib/media/video/v${user.replace('@c.us', '')}${lvpc}.mp3`)
 						.on('error', async function (error, stdout, stderr) {
 							await kill.reply(from, mess.fail(), id)
 							console.log(color('[AUDIO]', 'crimson'), color(`→ Obtive erros no comando ${prefix}${command} → ${error.message} - Você pode ignorar.`, 'gold'))
@@ -3965,6 +3964,38 @@ module.exports = kconfig = async (kill, message) => {
             } else return await kill.reply(from, mess.sodono(), id)
 			break
 			
+			
+        case 'noadms':;case 'noadmin':
+			if (isGroupMsg) {
+				const groupOwnerz = user === chat.groupMetadata.owner
+				if (groupOwnerz || isOwner) {
+					if (!isBotGroupAdmins) return await kill.reply(from, mess.botademira(), id)
+					for (let noadms of groupAdmins) {
+						if (noadms == groupOwnerz || ownerNumber.includes(noadms) || noadms == botNumber) {
+							console.log(color('[VIP] - ', 'crimson'), noadms)
+						} else { await kill.demoteParticipant(groupId, noadms) }
+					}
+					await kill.reply(from, mess.maked(), id)
+				} else return await kill.reply(from, mess.gpowner(), id)
+			} else return await kill.reply(from, mess.sogrupo(), id)
+            break
+			
+			
+        case 'alladms':;case 'alladmin':
+			if (isGroupMsg) {
+				const groupOwneran = user === chat.groupMetadata.owner
+				if (groupOwneran || isOwner) {
+					if (!isBotGroupAdmins) return await kill.reply(from, mess.botademira(), id)
+					for (let alladmin of groupMembersId) {
+						if (groupAdmins.includes(alladmin)) {
+							console.log(color('[JÁ ADM] - ', 'crimson'), alladmin)
+						} else { await kill.promoteParticipant(groupId, alladmin) }
+					}
+					await kill.reply(from, mess.maked(), id)
+				} else return await kill.reply(from, mess.gpowner(), id)
+			} else return await kill.reply(from, mess.sogrupo(), id)
+            break
+			
 		// Para usar a base remova o /* e o */ e bote um nome dentro das aspas da case e em seguida sua mensagem dentro das aspas na frente do from
 		/*case 'Nome do comando sem espaços':
 			await kill.reply(from, 'Sua mensagem', id)
@@ -3978,7 +4009,7 @@ module.exports = kconfig = async (kill, message) => {
 			
         }
     } catch (err) {
-		//await kill.sendText(ownerNumber, mess.wpprpt(command, err))
+		//await kill.sendText(ownerNumber[0], mess.wpprpt(command, err))
 		await kill.reply(from, mess.fail(), id)
         console.log(color('[FALHA GERAL]', 'red'), err)
     }
