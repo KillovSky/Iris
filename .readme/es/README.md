@@ -19,7 +19,6 @@ Descarga Chrome en Windows por [aqui](https://www.google.com/chrome), en linux u
 ```
 
 ### Funciones (+200)
-
 | Función | Contiene|
 | ------------- | ------------- |
 | Ejecute Wa-Automate/Functions dentro de WhatsApp |✅|
@@ -51,7 +50,6 @@ Descarga Chrome en Windows por [aqui](https://www.google.com/chrome), en linux u
 | Outros |✅|
 
 ### Requisitos
-
 - Dos números en WhatsApp, uno para propietario y otro para BOT.
 - [NodeJS](https://nodejs.org) - Recomiendo la LTS.
 - [Git](https://git-scm.com) - Para las Unix-Tools - Cuidado.
@@ -77,7 +75,7 @@ Necesita tener este repositorio, es simple, ejecute los comandos abajo, en caso 
 > npm i
 ```
 
-### Cambios obligatorios y Opcionales
+### Cambios OBLIGATORIOS
 Edite las API que se encuentran en: 
 
 - [Lenguaje](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#2)
@@ -96,9 +94,10 @@ Edite las API que se encuentran en:
 - [Playing Time](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#15)
 - [Anti-Flood](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#16)
 - [Max-Size](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#17)
+- [Win-Time](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#18)
 - Elas são referentes aos sites [RemoveBG](https://www.remove.bg/pt-br), [API-Flash](https://apiflash.com), [WallHaven](https://wallhaven.cc/settings/account) & [Deep-AI](https://deepai.org).
 - La DDI y Idioma solo son necesarios si es de fuera de Brasil, los idiomas disponibles son "en" de inglés, "pt" de portugués y "es" de español y afectan todos los diálogos y akinator.
-- Puede ingresar dos o más números de propietario, si no quiere esto, simplemente deje el segundo como está, el tiempo de juego debe ingresarse en MINUTOS, limitará el tiempo para cada juego, Anti-Flood debe ser en SEGUNDOS, limita los comandos, el User-Agent es opcional y el Max-Size es para descargas, pona entre 1 a 64 (Propongo 16).
+- Puede ingresar dos o más números de propietario, si no quiere esto, simplemente deje el segundo como está, el tiempo de juego debe ingresarse en MINUTOS, limitará el tiempo para cada juego, Anti-Flood debe ser en SEGUNDOS, limita los comandos, el User-Agent es opcional, Max-Size es para descargas, pona entre 1 a 64 (Propongo 16) y Win-Time es el tiempo de gano de XP para cada mensaje.
 
 ### Comenzar
 Después de editar los archivos necesarios, ejecute el siguiente comando y espere para comenzar, luego escane el código QR.
@@ -115,7 +114,7 @@ Escriba en su chat el mensaje, si editó su prefijo, cambie la '/' al carácter 
 ```
 
 ### Crea tus comandos
-Hay una base simple para sus creaciones por [aqui](https://github.com/KillovSky/iris/blob/main/config.js#L4000), sin Prefix [here](https://github.com/KillovSky/iris/blob/main/config.js#L304), solo tienes que quitar el "/\*" e la "\*/" para usarlo, si necesita otros tipos, puede ver sobre ellos para [aqui](https://docs.openwa.dev/classes/api_client.client.html), si tienes dificultades llámame por [aqui](https://chat.whatsapp.com/H53MdwhtnRf7TGX1VJ2Jje) o [aqui](https://wa.me/+5518998044132).
+Hay una base simple para sus creaciones por [aqui](https://github.com/KillovSky/iris/blob/main/config.js#L4000), sin Prefix [here](https://github.com/KillovSky/iris/blob/main/config.js#L304), solo tienes que quitar el "/\*" e la "\*/" para usarlo, si necesita otros tipos, puede ver sobre ellos para [aqui](https://docs.openwa.dev/classes/api_client.client.html), si tienes dificultades llámame por [aqui](https://bit.ly/3owVJoB) o [aqui](https://wa.me/+5518998044132).
 
 ### Alertas en WhatsApp
 Para recibir también mensajes de error de Iris a través de WhatsApp, elimine el "//" de la línea [Catch](https://github.com/KillovSky/iris/blob/main/config.js#L4012).
@@ -131,5 +130,5 @@ Para recibir también mensajes de error de Iris a través de WhatsApp, elimine e
 ### Donar y Apoyo
 - [Doações] - Este proyecto se mantiene sólo por mí de forma gratuita y sin cobrar nada, si es posible, dona algo ❤️ - [Doar](https://picpay.me/userlucas123)
 - [PIX] - fc270199-2d55-4d91-be5c-bfbd431cfad4
-- [Grupo Oficial](https://chat.whatsapp.com/H53MdwhtnRf7TGX1VJ2Jje)
+- [Grupo Oficial](https://bit.ly/3owVJoB)
 - [Dono] - Si necesitas hablar conmigo (siempre respondo lo más rápido posible) - [Falar](https://wa.me/+5518998044132)

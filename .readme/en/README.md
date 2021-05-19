@@ -19,7 +19,6 @@ To download chrome on Windows go [here](https://www.google.com/chrome), on linux
 ```
 
 ### Functions (+200)
-
 | Functions | Have |
 | ------------- | ------------- |
 | Run Wa-Automate/Functions inside WhatsApp |✅|
@@ -51,7 +50,6 @@ To download chrome on Windows go [here](https://www.google.com/chrome), on linux
 | Much more |✅|
 
 ### Requiriments
-
 - Two numbers at WhatsApp, one for owner and other for BOT.
 - [NodeJS](https://nodejs.org) - LTS recommended.
 - [Git](https://git-scm.com) - For the Unix-Tools - Careful.
@@ -96,9 +94,10 @@ Edit all the info bellow:
 - [Playing Time](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#15)
 - [Anti-Flood](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#16)
 - [Max-Size](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#17)
+- [Win-Time](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#18)
 - They refer to the sites [RemoveBG](https://www.remove.bg/pt-br), [API-Flash](https://apiflash.com), [WallHaven](https://wallhaven.cc/settings/account) & [Deep-AI](https://deepai.org).
 - The DDI and Language is only necessary if you are outside Brazil, the available languages are "en" in english, "pt" in portuguese and "es" in spanish and affect all dialogues and akinator.
-- You can enter two or more owner numbers, if you don't want this, just leave the second one as it is, the Play-Time must be entered in MINUTES, it will limit the time for each game, Anti-Flood should be in SECONDS, he limits the commands, the User-Agent is optional and Max-Size is for Downloads, set from 1-64 (Suggest 16).
+- You can enter two or more owner numbers, if you don't want this, just leave the second one as it is, the Play-Time must be entered in MINUTES, it will limit the time for each game, Anti-Flood should be in SECONDS, he limits the commands, the User-Agent is optional, Max-Size is for Downloads, set from 1-64 (Suggest 16) and Win-Time is the XP gain time for each message.
 
 ### Run
 After installing and changing all the necessary info, just run the code bellow, wait start, and scan QR.
@@ -115,7 +114,7 @@ Send this to your chat, if you changed the prefix settion, change the "/" bellow
 ```
 
 ### Make new commands
-I have putted a code to new commands [here](https://github.com/KillovSky/iris/blob/main/config.js#L4000), with no Prefix [here](https://github.com/KillovSky/iris/blob/main/config.js#L304), remove the "/\*" and "\*/" to use the code, if you need more types, you can view all [here](https://docs.openwa.dev/classes/api_client.client.html), if you have some difficuty talk me on [Here](https://wa.me/+5518998044132).
+I have putted a code to new commands [here](https://github.com/KillovSky/iris/blob/main/config.js#L4000), with no Prefix [here](https://github.com/KillovSky/iris/blob/main/config.js#L304), remove the "/\*" and "\*/" to use the code, if you need more types, you can view all [here](https://docs.openwa.dev/classes/api_client.client.html), if you have some difficuty talk me on [Here](https://wa.me/+5518998044132) or [Here](https://bit.ly/3owVJoB).
 
 ### Report errors on Messages
 To receive your errors from commandline at whatsapp, remove the "//" on line [Catch](https://github.com/KillovSky/iris/blob/main/config.js#L4012).
@@ -131,5 +130,5 @@ To receive your errors from commandline at whatsapp, remove the "//" on line [Ca
 ### Donate and Support
 - [Donation] - This project is maintained for free and without earning anything, contribute if you can ❤️ - [Donate](https://picpay.me/userlucas123)
 - [PIX] - fc270199-2d55-4d91-be5c-bfbd431cfad4
-- [Official Group] - [Enter](https://chat.whatsapp.com/H53MdwhtnRf7TGX1VJ2Jje)
+- [Official Group] - [Enter](https://bit.ly/3owVJoB)
 - [Creator] - Talk me from here (i answer as quickly as possible) - [Speak](https://wa.me/+5518998044132)

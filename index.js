@@ -8,14 +8,18 @@ const canvas = require('discord-canvas')
 const { mylang } = require('./lib/lang')
 const axios = require('axios')
 const irisvs = require('./package.json')
-const maxBackups = Math.floor(Math.random() * 10) + 1
-// A maxBackups serve pra ter 10 backups no máximo, é o suficiente mas se quiser aumente o 10 para ter mais backups
+
+// Quantidade máxima de Backups do Level.json e MsgCount.json
+const maxBackups = Math.floor(Math.random() * 5) + 1
+
+// Apaga a pasta de cache do Chrome caso exista
+if (fs.existsSync('./logs/Chrome')) { fs.rmdirSync('./logs/Chrome', { recursive: true }) }
 
 // Cria um cliente de inicialização da BOT
 const start = async (kill = new Client()) => {
 	const getversion = await axios.get('https://raw.githubusercontent.com/KillovSky/iris/main/package.json')
 	if (irisvs.version !== getversion.data.version) { console.log(color('\n[UPDATE]', 'crimson'), color(`Uma nova versão da Íris foi lançada [${getversion.data.version}], atualize para obter melhorias e correções! → ${irisvs.homepage}`, 'gold')) }
-	console.log(color('\n[SUPORTE]', 'magenta'), color(`https://chat.whatsapp.com/H53MdwhtnRf7TGX1VJ2Jje | +55 18 99804-4132 | ${irisvs.bugs.url}\n`, 'lime'), color(`\n[ÍRIS ${irisvs.version}]`, 'magenta'), color('Estamos prontos para começar mestre!\n', 'lime'))
+	console.log(color('\n[SUPORTE]', 'magenta'), color(`https://bit.ly/3owVJoB | +55 18 99804-4132 | ${irisvs.bugs.url}\n`, 'lime'), color(`\n[ÍRIS ${irisvs.version}]`, 'magenta'), color('Estamos prontos para começar mestre!\n', 'lime'))
 	
 	// Backup do Level.json & MsgCount.json toda vez que religar a BOT
 	const levelBk = JSON.parse(fs.readFileSync('./lib/config/Bot/level.json'))
@@ -24,21 +28,21 @@ const start = async (kill = new Client()) => {
 	await fs.writeFileSync(`./lib/config/Bot/Backup/msgcount-${maxBackups}.json`, JSON.stringify(messBk))
 	
 	// Forçar recarregamento caso obtenha erros
-	kill.onStateChanged((state) => {
+	kill.onStateChanged(async (state) => {
 		console.log(color('[RELOAD]', 'red'), color('Isso pode ser ignorado →', 'lime'), color(state, 'yellow'))
-		if (state === 'UNPAIRED' || state === 'CONFLICT' || state === 'UNLAUNCHED') kill.forceRefocus()
+		if (state === 'UNPAIRED' || state === 'CONFLICT' || state === 'UNLAUNCHED') await kill.forceRefocus()
 	})
 
 	// Lê as mensagens e limpa cache a cada 3000, se quiser menos só editar ali
 	kill.onMessage(async (message) => {
-		kill.getAmountOfLoadedMessages().then((msg) => {
+		await kill.getAmountOfLoadedMessages().then(async (msg) => {
 			if (msg >= 3000) {
-				console.log(color('[CACHE]', 'red'), color('Recebemos 1000 mensagens! Limpando o cache delas...', 'yellow'))
-				kill.cutMsgCache()
+				console.log(color('[CACHE]', 'red'), color('Recebemos 3000 mensagens! Limpando o cache delas...', 'yellow'))
+				await kill.cutMsgCache()
 				console.log(color('[CACHE]', 'red'), color('O cache das mensagens foi totalmente limpo!', 'lime'))
 			}
 		})
-		kconfig(kill, message)
+		await kconfig(kill, message)
 	})
 
 	// Funções para caso seja adicionada em um grupo

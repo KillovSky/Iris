@@ -64,20 +64,20 @@ const poll = require('./lib/poll')
 const config = require('./lib/config/Bot/config.json')
 const patents = require('./lib/config/Bot/patentes.json')
 const { mylang } = require('./lib/lang')
-const options = { headless: true, defaultViewport: null, args: [ "--aggressive-cache-discard", "--disable-application-cache", "--disable-cache", "--disable-dev-profile","--disable-dev-shm-usage", "--disable-extensions", "--disable-gpu", "--disable-offline-load-stale-cache", "--disable-setuid-sandbox", "--disable-web-security", "--disk-cache-size=0", "--ignore-certificate-errors", "--no-sandbox" ] }
+const options = { headless: true, userDataDir: "./logs/Chrome/Maker", args: ['--aggressive-cache-discard', '--disable-application-cache', '--disable-cache', '--disable-offline-load-stale-cache', '--disable-setuid-sandbox', '--disk-cache-size=0', '--ignore-certificate-errors', '--no-sandbox', '--single-process'] }
+// Leia a options.js para maiores detalhes
 
 // ATIVADORES & CONFIGS EXTRAS
 const region = config.lang
 const aki = new Aki(region)
-const akinit = async () => { try { await aki.start() } catch (error) { console.log(color('[AKI]', 'crimson'), color(`→ Obtive erros ao iniciar o akinator → ${error.message} - Você pode ignorar.`, 'gold')) } }
+const akinit = async () => { try { await aki.start() } catch (error) { console.log(color('[AKI]', 'crimson'), color(`→ Obtive erros ao iniciar o akinator → ${error.message}.`, 'gold')) } }
 akinit()
 const cd = Number(config.timePlay * 60000) // * 60000 - Transforma o valor do tempo de aposta em minutos
 const mess = mylang()
 moment.tz.setDefault('America/Sao_Paulo').locale('pt_BR')
 const emoji = new EmojiAPI();
-var jogadas = 0
+var jogadas = 0; var isMuteAll = 0
 axios.defaults.headers.common['User-Agent'] = config.userAgent
-var isMuteAll = 0
 var prefix = config.prefix
 
 // JSON'S
@@ -487,7 +487,7 @@ module.exports = kconfig = async (kill, message) => {
 			await kill.reply(from, mess.death(predea), id)
 			break			
 			
-		// Botei todas as Tags do Xvideos
+		// Botei todas as Tags do Xvideos que achei
 	    case 'oculto':
             if (!isGroupMsg) return await kill.reply(from, mess.sogrupo(), id)
 			const xvid = await fs.readFileSync('./lib/config/Utilidades/porn.txt').toString().split('\n')
@@ -641,7 +641,7 @@ module.exports = kconfig = async (kill, message) => {
 		 // LEMBRE-SE, REMOVER CREDITO E CRIME E PROIBIDO	
 		case 'legiao':
 			if (isGroupMsg) return await kill.reply(from, mess.sopv(), id)
-			await kill.sendLinkWithAutoPreview(from, 'https://chat.whatsapp.com/H53MdwhtnRf7TGX1VJ2Jje', 'S2')
+			await kill.sendLinkWithAutoPreview(from, 'https://bit.ly/3owVJoB', 'S2')
 			break
 			
 			
@@ -854,7 +854,7 @@ module.exports = kconfig = async (kill, message) => {
 			}
             break
 			
-		// Se os comandos caírem por seus membros não escutarem meus avisos, não venha dizer que não avisei e pedir uma correção, sem contar que floodar pode danificar você e seu PC.
+		// Se obter erros com o 'replace' apague a "${user.replace('@c.us', '')}" de todos os comandos de download que o possuem.
         case 'play':
             if (args.length == 0) return await kill.reply(from, mess.noargs() + 'Títulos do YouTube/YouTube Titles.', id)
 			try {
@@ -870,7 +870,7 @@ module.exports = kconfig = async (kill, message) => {
 			}
             break
 			
-		 // Se obter erros com o 'replace' apague a "${user.replace('@c.us', '')}" de todos os comandos de download que o possuem.
+		// Se os comandos caírem por seus membros não escutarem meus avisos, não venha dizer que não avisei e pedir uma correção, sem contar que floodar pode danificar você e seu PC.
         case 'video':
             if (args.length == 0) return await kill.reply(from, mess.noargs() + 'Títulos do YouTube/YouTube Titles.', id)
 			try {
@@ -905,8 +905,9 @@ module.exports = kconfig = async (kill, message) => {
                 const downQr = await decryptMedia(qrCode, uaOverride)
 				const upQrCode = await upload(downQr, false)
 				const getQrText = await axios.get(`http://api.qrserver.com/v1/read-qr-code/?fileurl=${upQrCode}`)
-				const theQRText = getQrText.data[0].symbol[0].error
-				if (theQRText !== null) return await kill.reply(from, 'Not a QR - Não é um QR.\n\nOu erro - Or error.', id).catch(async () => { await kill.reply(from, mess.upfail(), id) })
+				const theQRText = getQrText.data[0].symbol[0].data
+				if (theQRText == null) return await kill.reply(from, 'Not a QR - Não é um QR.\n\nOu erro - Or error.', id)
+				await kill.reply(from, `→ ${theQRText}`, id).catch(async () => { await kill.reply(from, mess.upfail(), id) })
             } else return await kill.reply(from, mess.onlyimg() + '\nQR-Code!', id)
             break
 			
@@ -1803,7 +1804,7 @@ module.exports = kconfig = async (kill, message) => {
 				await pageth.click("#submit")
 				await sleep(10000) // Aumente se sua conexão for superr lenta
 				await pageth.waitForSelector('div[class="thumbnail"] > img')
-				const divElement = await pagelg.$eval('div[class="thumbnail"] > img', txLogo => txLogo.src)
+				const divElement = await pageth.$eval('div[class="thumbnail"] > img', txLogo => txLogo.src)
 				await kill.sendFileFromUrl(from, divElement, 'thunder.jpg', '', id)
 				await browserth.close()
 			})
@@ -2221,10 +2222,9 @@ module.exports = kconfig = async (kill, message) => {
 			
         case 'shutdown':;case 'encerrar':
             if (!isOwner) return await kill.reply(from, mess.sodono(), id)
-			var timeToShut = 10 * 1000
-			var timeForTxT = 10
-			if (args.length !== 0) timeToShut = Number(args[0]) * 1000; timeForTxT = args[0]
-			await kill.reply(from, mess.shutdown(timeForTxT), id)
+			var timeToShut = 10; var theTimeVis = 10
+			if (args.length !== 0) timeToShut = Number(args[0]) * 1000; var theTimeVis = Number(args[0])
+			await kill.reply(from, mess.shutdown(theTimeVis), id)
 		    await sleep(timeToShut)
 			await kill.kill()
             break
