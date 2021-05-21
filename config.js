@@ -1615,9 +1615,10 @@ module.exports = kconfig = async (kill, message) => {
             var autostk = atstk.includes(groupId) ? 'Sim' : 'Não'
             var atpngy = atporn.includes(groupId) ? 'Sim' : 'Não'
             var atlka = atlinks.includes(groupId) ? 'Sim' : 'Não'
+            var anttra = trava.includes(groupId) ? 'Sim' : 'Não'
             var grouppic = await kill.getProfilePicFromServer(groupId)
             if (grouppic == undefined) { var pfp = errorurl } else { var pfp = grouppic }
-            await kill.sendFileFromUrl(from, pfp, 'group.png', mess.groupinfo(groupname, totalMem, welgrp, atpngy, atlka, xpgp, fakegp, bklistgp, slcegp, autostk, ngrp, desc, gpOwner, admgp), id)
+            await kill.sendFileFromUrl(from, pfp, 'group.png', mess.groupinfo(groupname, totalMem, welgrp, atpngy, atlka, anttra, xpgp, fakegp, bklistgp, slcegp, autostk, ngrp, desc, gpOwner, admgp), id)
 			break
 			
 			
@@ -2719,10 +2720,9 @@ module.exports = kconfig = async (kill, message) => {
 			
 			
         case 'getmeme':
-			var thememer = ''
-			if (config.lang == 'pt') thememer = 'https://meme-api.herokuapp.com/gimme/memesbrasil'
-			if (config.lang == 'en') thememer = 'https://meme-api.herokuapp.com/gimme/memes'
-			if (config.lang == 'es') thememer = 'https://meme-api.herokuapp.com/gimme/SpanishMeme'
+			if (config.lang == 'pt') var thememer = 'https://meme-api.herokuapp.com/gimme/memesbrasil'
+			if (config.lang == 'en') var thememer = 'https://meme-api.herokuapp.com/gimme/memes'
+			if (config.lang == 'es') var thememer = 'https://meme-api.herokuapp.com/gimme/SpanishMeme'
             const response = await axios.get(thememer);
             await kill.sendFileFromUrl(from, `${response.data.url}`, 'meme.jpg', `${response.data.title}`, id)
             break
