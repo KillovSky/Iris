@@ -4014,7 +4014,7 @@ module.exports = kconfig = async (kill, message) => {
 
 	case 'mercadolivre':;case 'mercado':;case 'ml':;case 'market':
 		if (config.lang == 'en') return await kill.reply(from, 'Brazil and Argentina only/Brasil y Argentina solamente!', id)
-		if (args.length == 0) return kill.reply(from, mess.noargs() + 'Produto/Product/Producto', id)
+		if (args.length == 0) return kill.reply(from, mess.noargs() + 'Produto/Producto', id)
 		if (config.lang == 'pt') {country = 'MLB'} else {country = 'MLA'}
 		const getML = await axios.get(`https://api.mercadolibre.com/sites/${country}/search?q=${encodeURIComponent(body.slice(7))}&limit=1#json`)
 		if (getML.data.results[0].condition == 'new') {cond = ''} else {cond = '\n*Usado!*'}
