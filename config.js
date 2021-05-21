@@ -3996,10 +3996,12 @@ module.exports = kconfig = async (kill, message) => {
 			} else return await kill.reply(from, mess.sogrupo(), id)
             break
 
+
 	case 'trending':;case 'twitter':;case 'trendings':
 		try {
 			let boardtr = '「 *Twitter Trending Topics* 」\n\n'
-			const getTr = (await axios.get(`https://twittertrendingtopics.herokuapp.com/api/trends/brazil`)).data
+			if (config.lang == 'en') {country = 'United%20States'} else if (config.lang == 'pt') {country = 'brazil'} else {country = 'Argentina'}
+			const getTr = (await axios.get(`https://twittertrendingtopics.herokuapp.com/api/trends/${country}`)).data
 			for (let i = 0; i < 10; i++) {
 				if (getTr[i].tweet_volume == null) getTr[i].tweet_volume = '1k+'
 				boardtr += `${i + 1} → *#${getTr[i].name}*\n➸${getTr[i].tweet_volume} Tweets\n\n`}
@@ -4011,11 +4013,13 @@ module.exports = kconfig = async (kill, message) => {
 
 
 	case 'mercadolivre':;case 'mercado':;case 'ml':;case 'market':
+		if (config.lang == 'en') return await kill.reply(from, 'Brazil and Argentina only/Brasil y Argentina solamente!', id)
 		if (args.length == 0) return kill.reply(from, mess.noargs() + 'Produto/Product/Producto', id)
-		const getML = await axios.get(`https://api.mercadolibre.com/sites/MLB/search?q=${encodeURIComponent(body.slice(7))}&limit=1#json`)
-		if (getML.data.results[0].condition == 'new') {cond = ''} else {cond = '\n*Usado/Used!*'}
-		if (getML.data.results[0].shipping.store_pick_up == true) {retirar = '\n*Retire o produto na loja!*'} else {retirar = ''}
-		await kill.sendFileFromUrl(from, `${getML.data.results[0].thumbnail}`, 'produto.jpg', `✔️ - Seria este?\n\n✨️ *Produto/Product/Producto:* ${getML.data.results[0].title}${cond}\n\n💸 *Preço/Price/Precio:* R$${getML.data.results[0].price}${retirar}\n\n📍 *Onde/Where/Dónde:* ${getML.data.results[0].address.state_name} - ${getML.data.results[0].address.city_name}\n\n*Seller's total sales:* ${getML.data.results[0].seller.seller_reputation.transactions.total}\n\n*Link:* ${getML.data.results[0].permalink}\n\n📃 *Similar products:* ${getML.data.paging.total}`, id)
+		if (config.lang == 'pt') {country = 'MLB'} else {country = 'MLA'}
+		const getML = await axios.get(`https://api.mercadolibre.com/sites/${country}/search?q=${encodeURIComponent(body.slice(7))}&limit=1#json`)
+		if (getML.data.results[0].condition == 'new') {cond = ''} else {cond = '\n*Usado!*'}
+		if (getML.data.results[0].shipping.store_pick_up == true) {retirar = '\n*Retire na loja!*'} else {retirar = ''}
+		await kill.sendFileFromUrl(from, `${getML.data.results[0].thumbnail}`, 'produto.jpg', `✔️ - Seria este?\n\n✨️ *Produto/Producto:* ${getML.data.results[0].title}${cond}\n\n💸 *Preço/Precio:* R$${getML.data.results[0].price}${retirar}\n\n📍 *Onde/Dónde:* ${getML.data.results[0].address.state_name} - ${getML.data.results[0].address.city_name}\n\n*Vendas totais do vendedor:* ${getML.data.results[0].seller.seller_reputation.transactions.total}\n\n*Link:* ${getML.data.results[0].permalink}\n\n📃 *Produtos similares:* ${getML.data.paging.total}`, id)
 	break
 
 
