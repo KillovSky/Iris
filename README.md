@@ -96,7 +96,7 @@ EDITE as API's encontradas em:
 - [Tempo de Jogo](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#15)
 - [Anti-Flood](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#16)
 - [Max-Size](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#17)
-- [Win-Time](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#17)
+- [Win-Time](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#18)
 - Elas são referentes aos sites [RemoveBG](https://www.remove.bg/pt-br), [API-Flash](https://apiflash.com), [WallHaven](https://wallhaven.cc/settings/account) & [Deep-AI](https://deepai.org).
 - A DDI e Linguagem são necessárias apenas se você for de fora do Brasil, as linguagens disponiveis são "en" de inglês, "pt" de português e "es" de espanhol e afetam todos os diálogos e o akinator.
 - Você pode inserir dois ou mais números de dono, se não quiser apenas deixe o segundo como está, o tempo de jogo deve ser inserido em MINUTOS, ele limitará o tempo para cada jogatina, o Anti-Flood deverá ser em SEGUNDOS e limita os comandos e a User-Agent é opcional, Max-Size é para Downloads, coloque entre 1 a 64 (Sugiro 16) e a Win-Time é o tempo de ganho de XP para cada mensagem.
@@ -116,10 +116,10 @@ Digite no seu chat a mensagem, se você editou sua prefix, troque a '/' para o c
 ```
 
 ### Crie seus comandos
-Há uma base simples para suas criações por [aqui](https://github.com/KillovSky/iris/blob/main/config.js#L4000), sem Prefix [aqui](https://github.com/KillovSky/iris/blob/main/config.js#L304), basta que você remova a "/\*" e a "\*/" para utilizá-la, se precisar de outros tipos, você pode ver sobre eles por [aqui](https://docs.openwa.dev/classes/api_client.client.html), se obtiver dificuldades, chame-me por [aqui](https://bit.ly/3owVJoB) ou [aqui](https://wa.me/+5518998044132).
+Há uma base simples para suas criações por [aqui](https://github.com/KillovSky/iris/blob/main/config.js#L4026), sem Prefix [aqui](https://github.com/KillovSky/iris/blob/main/config.js#L304), basta que você remova a "/\*" e a "\*/" para utilizá-la, se precisar de outros tipos, você pode ver sobre eles por [aqui](https://docs.openwa.dev/classes/api_client.client.html), se obtiver dificuldades, chame-me por [aqui](https://bit.ly/3owVJoB) ou [aqui](https://wa.me/+5518998044132).
 
 ### Alertas no WhatsApp
-Para receber também as mensagem de erros da Íris pelo WhatsApp, remova a "//" da linha [Catch](https://github.com/KillovSky/iris/blob/main/config.js#L4012).
+Para receber também as mensagem de erros da Íris pelo WhatsApp, remova a "//" da linha [Catch](https://github.com/KillovSky/iris/blob/main/config.js#L4038).
 
 ### Agradecimentos:
 - [Open-WA](https://github.com/open-wa)

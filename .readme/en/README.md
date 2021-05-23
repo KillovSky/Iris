@@ -114,10 +114,10 @@ Send this to your chat, if you changed the prefix settion, change the "/" bellow
 ```
 
 ### Make new commands
-I have putted a code to new commands [here](https://github.com/KillovSky/iris/blob/main/config.js#L4000), with no Prefix [here](https://github.com/KillovSky/iris/blob/main/config.js#L304), remove the "/\*" and "\*/" to use the code, if you need more types, you can view all [here](https://docs.openwa.dev/classes/api_client.client.html), if you have some difficuty talk me on [Here](https://wa.me/+5518998044132) or [Here](https://bit.ly/3owVJoB).
+I have putted a code to new commands [here](https://github.com/KillovSky/iris/blob/main/config.js#L4026), with no Prefix [here](https://github.com/KillovSky/iris/blob/main/config.js#L304), remove the "/\*" and "\*/" to use the code, if you need more types, you can view all [here](https://docs.openwa.dev/classes/api_client.client.html), if you have some difficuty talk me on [Here](https://wa.me/+5518998044132) or [Here](https://bit.ly/3owVJoB).
 
 ### Report errors on Messages
-To receive your errors from commandline at whatsapp, remove the "//" on line [Catch](https://github.com/KillovSky/iris/blob/main/config.js#L4012).
+To receive your errors from commandline at whatsapp, remove the "//" on line [Catch](https://github.com/KillovSky/iris/blob/main/config.js#L4038).
 
 ### Thanks:
 - [Open-WA](https://github.com/open-wa)

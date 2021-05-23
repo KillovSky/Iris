@@ -76,7 +76,7 @@ const cd = Number(config.timePlay * 60000) // * 60000 - Transforma o valor do te
 const mess = mylang()
 moment.tz.setDefault('America/Sao_Paulo').locale('pt_BR')
 const emoji = new EmojiAPI();
-var jogadas = 0; var isMuteAll = 0
+var jogadas = 0; var isMuteAll = 0; var oneImage = 0; var oneLink = 0; var oneTrava = 0
 axios.defaults.headers.common['User-Agent'] = config.userAgent
 var prefix = config.prefix
 
@@ -197,18 +197,18 @@ module.exports = kconfig = async (kill, message) => {
         }
 		
 		// Anti Imagens pornográficas
-		if (isGroupMsg && !isGroupAdmins && isBotGroupAdmins && isAntiPorn && isMedia && isImage && !isCmd && !isOwner) {
+		if (isGroupMsg && !isGroupAdmins && isBotGroupAdmins && isAntiPorn && isMedia && isImage && !isCmd && !isOwner && oneImage == 0) {
 			try {
-				console.log(color('[IMAGEM]', 'red'), color('Verificando a imagem por pornografia...', 'yellow'))
+				oneImage = 1; console.log(color('[IMAGEM]', 'red'), color('Verificando a imagem por pornografia...', 'yellow'))
 				const mediaData = await decryptMedia(message, uaOverride)
 				const getUrl = await upload(mediaData, false)
 				deepai.setApiKey(config.deepai)
 				const resp = await deepai.callStandardApi("nsfw-detector", { image: `${getUrl}` })
 				if (resp.output.nsfw_score > 0.85) {
 					await kill.removeParticipant(groupId, user).then(async () => { await kill.sendTextWithMentions(from, mess.baninjusto(user) + 'Porno.') })
-					return console.log(color('[NSFW]', 'red'), color(`A imagem contém traços de contéudo adulto, removerei o → ${pushname} - [${user}]...`, 'yellow'))
-				} else { console.log(color('[SEM NSFW]', 'lime'), color(`→ A imagem não aparententa ser pornografica.`, 'gold')) }
-			} catch (error) { return }
+					console.log(color('[NSFW]', 'red'), color(`A imagem contém traços de conteúdo adulto, removerei o → ${pushname} - [${user}]...`, 'yellow'));return oneImage = 0
+				} else { console.log(color('[SEM NSFW]', 'lime'), color(`→ A imagem não aparem tenta ser pornográfica.`, 'gold'));oneImage = 0 }
+			} catch (error) { return oneImage = 0 }
 		}
 		
         // Auto-stickers de fotos
@@ -224,32 +224,32 @@ module.exports = kconfig = async (kill, message) => {
 		}
 
         // Anti links de grupo
-		if (isGroupMsg && !isGroupAdmins && isBotGroupAdmins && isAntiLink && !isOwner) {
+		if (isGroupMsg && !isGroupAdmins && isBotGroupAdmins && isAntiLink && !isOwner && oneLink == 0) {
 			try {
 				if (chats.match(new RegExp(/(https:\/\/chat.whatsapp.com)/gi))) {
-					const gplka = await kill.inviteInfo(chats)
+					oneLink = 1; const gplka = await kill.inviteInfo(chats)
 					if (gplka) {
 						console.log(color('[BAN]', 'red'), color('Link de grupo detectado, removendo participante...', 'yellow'))
-						return await kill.removeParticipant(groupId, user).then(async () => { await kill.sendTextWithMentions(from, mess.baninjusto(user) + 'WhatsApp Link.') })
-					} else { console.log(color('[ALERTA]', 'yellow'), color('Link de grupo invalido recebido...', 'yellow')) }
+						await kill.removeParticipant(groupId, user).then(async () => { await kill.sendTextWithMentions(from, mess.baninjusto(user) + 'WhatsApp Link.');return oneLink = 0 })
+					} else { console.log(color('[ALERTA]', 'yellow'), color('Link de grupo invalido recebido...', 'yellow'));oneLink = 0 }
 				}
-			} catch (error) { return }
+			} catch (error) { return oneLink = 0 }
 		}
 
 		// Bloqueia todas as travas, seja contato, localização, texto e outros
-		if (isGroupMsg && isAntiTravas && isTrava && !isGroupAdmins && isBotGroupAdmins && !isOwner) {
+		if (isGroupMsg && isAntiTravas && isTrava && !isGroupAdmins && isBotGroupAdmins && !isOwner && oneTrava == 0) {
 			try {
-				console.log(color('[TRAVA]', 'red'), color(`Possivel trava recebida pelo → ${pushname} - [${user.replace('@c.us', '')}] em ${name}...`, 'yellow'))
+				oneTrava = 1; console.log(color('[TRAVA]', 'red'), color(`Possivel trava recebida pelo → ${pushname} - [${user.replace('@c.us', '')}] em ${name}...`, 'yellow'))
 				let wakeAdm = 'ACORDA - WAKE UP ADM\n\n'
 				var shrekDes = ''
-				for (let i = 0; i < 20; i++) { shrekDes += `⢀⡴⠑⡄⠀⠀⠀⠀⠀⠀⠀⣀⣀⣤⣤⣤⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ \n⠸⡇⠀⠿⡀⠀⠀⠀⣀⡴⢿⣿⣿⣿⣿⣿⣿⣿⣷⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀ \n⠀⠀⠀⠀⠑⢄⣠⠾⠁⣀⣄⡈⠙⣿⣿⣿⣿⣿⣿⣿⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀ \n⠀⠀⠀⠀⢀⡀⠁⠀⠀⠈⠙⠛⠂⠈⣿⣿⣿⣿⣿⠿⡿⢿⣆⠀⠀⠀⠀⠀⠀⠀ \n⠀⠀⠀⢀⡾⣁⣀⠀⠴⠂⠙⣗⡀⠀⢻⣿⣿⠭⢤⣴⣦⣤⣹⠀⠀⠀⢀⢴⣶⣆ \n⠀⠀⢀⣾⣿⣿⣿⣷⣮⣽⣾⣿⣥⣴⣿⣿⡿⢂⠔⢚⡿⢿⣿⣦⣴⣾⠁⠸⣼⡿ \n⠀⢀⡞⠁⠙⠻⠿⠟⠉⠀⠛⢹⣿⣿⣿⣿⣿⣌⢤⣼⣿⣾⣿⡟⠉⠀⠀⠀⠀⠀ \n⠀⣾⣷⣶⠇⠀⠀⣤⣄⣀⡀⠈⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀ \n⠀⠉⠈⠉⠀⠀⢦⡈⢻⣿⣿⣿⣶⣶⣶⣶⣤⣽⡹⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀ \n⠀⠀⠀⠀⠀⠀⠀⠉⠲⣽⡻⢿⣿⣿⣿⣿⣿⣿⣷⣜⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀ \n⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣷⣶⣮⣭⣽⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀ \n⠀⠀⠀⠀⠀⠀⣀⣀⣈⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇⠀⠀⠀⠀⠀⠀⠀ \n⠀⠀⠀⠀⠀⠀⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀ \n⠀⠀⠀⠀⠀⠀⠀⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀ \n⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⠻⠿⠿⠿⠿⠛⠉\n\n` }
+				for (let i = 0; i < 20; i++) { shrekDes += `⡴⠑⡄⠀⠀⠀⠀⠀⠀⣀⣀⣤⣤⣤⣀⡀\n⡇⠀⠿⠀⠀⠀⣀⡴⢿⣿⣿⣿⣿⣿⣿⣿⣷⣦⡀\n⠀⠀⠀⢄⣠⠾⠁⣀⣄⡈⠙⣿⣿⣿⣿⣿⣿⣿⣿⣆\n⠀⠀⠀⢀⡀⠁⠀⠀⠈⠙⠛⠂⠈⣿⣿⣿⣿⣿⠿⡿⢿⣆\n⠀⠀⢀⡾⣁⣀⠀⠴⠂⠙⣗⡀⠀⢻⣿⣿⠭⢤⣴⣦⣤⣹⠀⠀⠀⢴⣆ \n⠀⢀⣾⣿⣿⣿⣷⣮⣽⣾⣿⣥⣴⣿⣿⡿⢂⠔⢚⡿⢿⣿⣦⣴⣾⠁⡿ \n⢀⡞⠁⠙⠻⠿⠟⠉⠀⠛⢹⣿⣿⣿⣿⣿⣌⢤⣼⣿⣾⣿⡟⠉\n⣾⣷⣶⠇⠀⠀⣤⣄⣀⡀⠈⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇\n⠉⠈⠉⠀⠀⢦⡈⢻⣿⣿⣿⣶⣶⣶⣶⣤⣽⡹⣿⣿⣿⣿⡇\n⠀⠀⠀⠀⠀⠀⠉⠲⣽⡻⢿⣿⣿⣿⣿⣿⣿⣷⣜⣿⣿⣿⡇\n⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣷⣶⣮⣭⣽⣿⣿⣿⣿⣿⣿⣿\n⠀⠀⠀⠀⠀⣀⣀⣈⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇\n⠀⠀⠀⠀⠀⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠃\n⠀⠀⠀⠀⠀⠀⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠟⠁\n⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⠻⠿⠿⠿⠿⠛⠉\n\n` }
 				for (let adminls of groupAdmins) { wakeAdm += `➸ @${adminls.replace(/@c.us/g, '')}\n` }
 				await kill.removeParticipant(groupId, user).then(async () => { await kill.setGroupToAdminsOnly(groupId, true) }) // Fecha só para admins e bane o cara que travou
 				await kill.sendText(from, shrekDes, id).then(async () => { await kill.sendTextWithMentions(from, wakeAdm) })  // Anti-Trava BR do Shrek muahauhauha + Chamar ADMS
 				await kill.sendTextWithMentions(from, mess.baninjusto(user) + 'Travas.').then(async () => { await kill.sendText(from, mess.nopanic(), id) }) // Manda o motivo do ban e explica para os membros
 				await kill.sendText(ownerNumber[0], mess.recTrava(user) + `\nAt/No > ${name}`).then(async () => { await kill.contactBlock(user) }) // Avisa o dono do bot e bloqueia o cara
-				return await kill.setGroupToAdminsOnly(groupId, false) // Reabre o grupo
-			} catch (error) { return }
+				await kill.setGroupToAdminsOnly(groupId, false);return oneTrava = 0 // Reabre o grupo
+			} catch (error) { return oneTrava = 0 }
 		}
 		
 		// Bloqueia travas no PV
@@ -257,31 +257,31 @@ module.exports = kconfig = async (kill, message) => {
 		// Para limpar automaticamente sem você verificar, adicione "await kill.clearChat(chatId)", o mesmo no de grupos.
 
         // Anti links pornográficos
-        if (isGroupMsg && !isGroupAdmins && isBotGroupAdmins && isAntiPorn && !isOwner) {
+        if (isGroupMsg && !isGroupAdmins && isBotGroupAdmins && isAntiPorn && !isOwner && oneLink == 0) {
 			try {
 				if (isUrl(chats)) {
-					const inilkn = new URL(chats)
+					oneLink = 1; const inilkn = new URL(chats)
 					console.log(color('[URL]', 'yellow'), 'URL recebida →', inilkn.hostname)
 					await isPorn(inilkn.hostname, async (err, status) => {
 						if (err) return console.error(err)
 						if (status) {
 							console.log(color('[NSFW]', 'red'), color(`O link é pornografico, removerei o → ${pushname} - [${user.replace('@c.us', '')}]...`, 'yellow'))
-							return await kill.removeParticipant(groupId, user).then(async () => { await kill.sendTextWithMentions(from, mess.baninjusto(user) + 'Porno/Porn.') })
-						} else { console.log(color('[SEM NSFW]', 'lime'), color(`→ O link não possui pornografia.`, 'gold')) }
+							await kill.removeParticipant(groupId, user).then(async () => { await kill.sendTextWithMentions(from, mess.baninjusto(user) + 'Porno/Porn.');return oneLink = 0 })
+						} else { console.log(color('[SEM NSFW]', 'lime'), color(`→ O link não possui pornografia.`, 'gold'));oneLink = 0 }
 					})
 				}
-			} catch (error) { return }
+			} catch (error) { return oneLink = 0 }
 		}
 		
 		// Impede travas ou textos que tenham mais de 5.000 linhas
-		if (isGroupMsg && !isGroupAdmins && isBotGroupAdmins && !isOwner) {
+		if (isGroupMsg && !isGroupAdmins && isBotGroupAdmins && !isOwner && oneTrava == 0) {
 			try {
 				if (chats.length > 5000) {
-					console.log(color('[TRAVA]', 'red'), color(`Possivel trava recebida pelo → ${pushname} - [${user.replace('@c.us', '')}] em ${name}...`, 'yellow'))
+					oneTrava = 1; console.log(color('[TRAVA]', 'red'), color(`Possivel trava recebida pelo → ${pushname} - [${user.replace('@c.us', '')}] em ${name}...`, 'yellow'))
 					await kill.removeParticipant(groupId, user).then(async () => { await kill.sendTextWithMentions(from, mess.baninjusto(user) + 'Travas.') }) // Remove e manda o motivo no grupo
-					return await kill.sendText(ownerNumber[0], mess.recTrava(user)).then(async () => { await kill.contactBlock(user) }) // Avisa o dono e então bloqueia a pessoa
+					await kill.sendText(ownerNumber[0], mess.recTrava(user)).then(async () => { await kill.contactBlock(user);return oneTrava = 0 }) // Avisa o dono e então bloqueia a pessoa
 				}
-			} catch (error) { return }
+			} catch (error) { return oneTrava = 0}
 		}
 		
 		// Bloqueia travas no PV que tenham mais de 5.000 linhas
@@ -427,7 +427,7 @@ module.exports = kconfig = async (kill, message) => {
 				await fs.writeFile(outFile, result.base64img)
 				await kill.sendImageAsSticker(from, `data:${nobgmd.mimetype};base64,${result.base64img}`, { pack: config.pack, author: config.author, keepScale: true })
 				await kill.reply(from, mess.nobgms(), id)
-				setTimeout(() => { fs.unlinkSync(`./lib/media/img/${user.replace('@c.us', '')}noBg.png`) }, 30000)
+				await sleep(10000).then(async () => { await fs.unlinkSync(`./lib/media/img/${user.replace('@c.us', '')}noBg.png`) })
             } else return await kill.reply(from, mess.onlyimg(), id)
             break
 			
@@ -847,7 +847,7 @@ module.exports = kconfig = async (kill, message) => {
             try {
 				await kill.reply(from, mess.wait(), id)
 				await youtubedl(`${url}`, { noWarnings: true, noCallHome: true, noCheckCertificate: true, preferFreeFormats: true, youtubeSkipDashManifest: true, referer: `${url}`, x: true, audioFormat: 'mp3', o: `./lib/media/audio/d${user.replace('@c.us', '')}${lvpc}.mp3` }).then(async () => { await kill.sendPtt(from, `./lib/media/audio/d${user.replace('@c.us', '')}${lvpc}.mp3`, id) })
-				setTimeout(() => { fs.unlinkSync(`./lib/media/audio/d${user.replace('@c.us', '')}${lvpc}.mp3`) }, 30000)
+				await sleep(10000).then(async () => { await fs.unlinkSync(`./lib/media/audio/d${user.replace('@c.us', '')}${lvpc}.mp3`) })
 			} catch (error) {
 				await kill.reply(from, mess.verybig(), id)
 				console.log(color('[DOWNAUDIO]', 'crimson'), color(`→ Obtive erros no comando ${prefix}${command} → ${error.message} - Você pode ignorar.`, 'gold'))
@@ -862,8 +862,7 @@ module.exports = kconfig = async (kill, message) => {
 				const ytres = await ytsearch(`${body.slice(6)}`)
 				await kill.sendYoutubeLink(from, `${ytres.all[0].url}`, '\n' + mess.play(ytres))
 				await youtubedl(`https://youtu.be/${ytres.all[0].videoId}`, { noWarnings: true, noCallHome: true, noCheckCertificate: true, preferFreeFormats: true, youtubeSkipDashManifest: true, referer: `https://youtu.be/${ytres.all[0].videoId}`, x: true, audioFormat: 'mp3', o: `./lib/media/audio/${user.replace('@c.us', '')}${lvpc}.mp3` }).then(async () => { await kill.sendPtt(from, `./lib/media/audio/${user.replace('@c.us', '')}${lvpc}.mp3`, id) })
-				await sleep(30000)
-				setTimeout(() => { fs.unlinkSync(`./lib/media/audio/${user.replace('@c.us', '')}${lvpc}.mp3`) }, 30000)
+				await sleep(10000).then(async () => { await fs.unlinkSync(`./lib/media/audio/${user.replace('@c.us', '')}${lvpc}.mp3`) })
 			} catch (error) {
 				await kill.reply(from, mess.verybig(), id)
 				console.log(color('[PLAY]', 'crimson'), color(`→ Obtive erros no comando ${prefix}${command} → ${error.message} - Você pode ignorar.`, 'gold'))
@@ -1664,7 +1663,7 @@ module.exports = kconfig = async (kill, message) => {
 				await browserip.close()
 			})
 			await kill.sendFile(from, `./lib/media/img/${user.replace('@c.us', '')}ip.png`, 'ip.png', 'Maybe here - Talvez aqui! 📍', id)
-			setTimeout(() => { fs.unlinkSync(`./lib/media/img/${user.replace('@c.us', '')}ip.png`) }, 30000)
+			await sleep(10000).then(async () => { await fs.unlinkSync(`./lib/media/img/${user.replace('@c.us', '')}ip.png`) })
 			break
 			
 			
@@ -3012,9 +3011,9 @@ module.exports = kconfig = async (kill, message) => {
 			.setUsername(yourName)
 			.setDiscriminator(wdfWho.substring(6, 10))
 			ranq.build().then(async (buffer) => {
-				canvas.write(buffer, `${wdfWho}_card.png`)
-				await kill.sendFile(from, `${wdfWho}_card.png`, `${wdfWho}_card.png`, '', id)
-				setTimeout(() => { fs.unlinkSync(`${wdfWho}_card.png`) }, 30000)
+				canvas.write(buffer, `./lib/media/img/${wdfWho.replace('@c.us', '')}_card.png`)
+				await kill.sendFile(from, `./lib/media/img/${wdfWho.replace('@c.us', '')}_card.png`, `${wdfWho.replace('@c.us', '')}_card.png`, '', id)
+				await sleep(10000).then(async () => { await fs.unlinkSync(`./lib/media/img/${wdfWho.replace('@c.us', '')}_card.png`) })
 			})
             break
 			
@@ -3135,7 +3134,7 @@ module.exports = kconfig = async (kill, message) => {
 			await kill.sendTextWithMentions(from, mess.gainxp(usermrLvl, aLvLtoAdd) + 'Level.')
 			break
 			
-		// Por Leonardo, updates KillovSky
+		// Obrigado pela base Leonardo
 		case 'softban':
 			try {
 				if (isGroupMsg && isGroupAdmins || isGroupMsg && isOwner) {
@@ -3229,7 +3228,7 @@ module.exports = kconfig = async (kill, message) => {
 			}
 			break
 			
-		// Por Jon, updates KillovSky
+		// Obrigado pela base Jon
 		case 'wallhaven':;case 'wallpaper':
             if (args.length == 0) return await kill.reply(from, mess.noargs() + 'wallpaper name/nome/nombre.', id)
 			await kill.reply(from, mess.wait(), id)
@@ -3247,14 +3246,14 @@ module.exports = kconfig = async (kill, message) => {
 			}
             break
 			
-		// Por Tio das Trevas, updates KillovSky
+		// Obrigado pela base Tio das Trevas
 		case 'decode':
 			if (args.length == 0) return await kill.reply(from, mess.noargs() + 'binary code/código binario.', id)
 			const dbin = await axios.get(`https://some-random-api.ml/binary?decode=${encodeURIComponent(body.slice(8))}`)
 			await kill.reply(from, `*🤖1️⃣  =*\n\n${body.slice(8)}\n\n *= 📓✏️*\n\n${dbin.data.text}`, id)
 			break
 			
-		// Por Tio das Trevas, updates KillovSky
+		// Obrigado pela base Tio das Trevas
 		case 'encode':
 			if (args.length == 0) return await kill.reply(from, mess.noargs() + 'palavras/words/números/numbers.', id)
 			const cbin = await axios.get(`https://some-random-api.ml/binary?text=${encodeURIComponent(body.slice(8))}`)
@@ -3575,10 +3574,7 @@ module.exports = kconfig = async (kill, message) => {
 							.on('end', async () => {
 								console.log(color('[FFMPEG]', 'crimson'), color(`- Conversão de audio "Bass" finalizada, enviando para → ${pushname} - Você pode ignorar...`, 'gold'))
 								await kill.sendFile(from, `./lib/media/audio/audio-${user.replace('@c.us', '')}${lvpc}.mp3`, 'audio.mp3', '', id)
-								setTimeout(() => {
-									fs.unlinkSync(`./lib/media/audio/audio-${user.replace('@c.us', '')}${lvpc}.mp3`)
-									fs.unlinkSync(`./lib/media/audio/${user.replace('@c.us', '')}${lvpc}.mp3`)
-								}, 30000)
+								await sleep(10000).then(async () => { await fs.unlinkSync(`./lib/media/audio/audio-${user.replace('@c.us', '')}${lvpc}.mp3`);await fs.unlinkSync(`./lib/media/audio/${user.replace('@c.us', '')}${lvpc}.mp3`) })
 							})
 						})
 					} catch (error) {
@@ -3607,10 +3603,7 @@ module.exports = kconfig = async (kill, message) => {
 						.on('end', async () => {
 							console.log(color('[FFMPEG]', 'crimson'), color(`- Conversão de audio para versão "nightcore" finalizada, enviando para → ${pushname} - Você pode ignorar...`, 'gold'))
 							await kill.sendFile(from, `./lib/media/audio/night-${user.replace('@c.us', '')}${lvpc}.mp3`, 'audio.mp3', '', id)
-							setTimeout(() => {
-								fs.unlinkSync(`./lib/media/audio/night-${user.replace('@c.us', '')}${lvpc}.mp3`)
-								fs.unlinkSync(`./lib/media/audio/n${user.replace('@c.us', '')}${lvpc}.mp3`)
-							}, 30000)
+							await sleep(10000).then(async () => { await fs.unlinkSync(`./lib/media/audio/night-${user.replace('@c.us', '')}${lvpc}.mp3`);await fs.unlinkSync(`./lib/media/audio/n${user.replace('@c.us', '')}${lvpc}.mp3`) })
 						})
 					})
 				} catch (error) {
@@ -3638,10 +3631,7 @@ module.exports = kconfig = async (kill, message) => {
 						.on('end', async () => {
 							console.log(color('[FFMPEG]', 'crimson'), color(`- Conversão de video para audio terminada, enviando para → ${pushname} - Você pode ignorar...`, 'gold'))
 							await kill.sendFile(from, `./lib/media/video/v${user.replace('@c.us', '')}${lvpc}.mp3`, 'audio.mp3', '', id)
-							setTimeout(() => {
-								fs.unlinkSync(`./lib/media/video/v${user.replace('@c.us', '')}${lvpc}.mp3`)
-								fs.unlinkSync(`./lib/media/video/${user.replace('@c.us', '')}${lvpc}.${vTypeA.mimetype.replace(/.+\//, '')}`)
-							}, 30000)
+							await sleep(10000).then(async () => { await fs.unlinkSync(`./lib/media/video/v${user.replace('@c.us', '')}${lvpc}.mp3`);await fs.unlinkSync(`./lib/media/video/${user.replace('@c.us', '')}${lvpc}.${vTypeA.mimetype.replace(/.+\//, '')}`) })
 						})
 					})
 				} catch (error) {
@@ -3847,7 +3837,7 @@ module.exports = kconfig = async (kill, message) => {
 		case 'destrava':
 			if (isGroupMsg && isGroupAdmins || isGroupMsg && isOwner) {
 				var shrekDes = ''
-				for (let i = 0; i < 20; i++) { shrekDes += `⢀⡴⠑⡄⠀⠀⠀⠀⠀⠀⠀⣀⣀⣤⣤⣤⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ \n⠸⡇⠀⠿⡀⠀⠀⠀⣀⡴⢿⣿⣿⣿⣿⣿⣿⣿⣷⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀ \n⠀⠀⠀⠀⠑⢄⣠⠾⠁⣀⣄⡈⠙⣿⣿⣿⣿⣿⣿⣿⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀ \n⠀⠀⠀⠀⢀⡀⠁⠀⠀⠈⠙⠛⠂⠈⣿⣿⣿⣿⣿⠿⡿⢿⣆⠀⠀⠀⠀⠀⠀⠀ \n⠀⠀⠀⢀⡾⣁⣀⠀⠴⠂⠙⣗⡀⠀⢻⣿⣿⠭⢤⣴⣦⣤⣹⠀⠀⠀⢀⢴⣶⣆ \n⠀⠀⢀⣾⣿⣿⣿⣷⣮⣽⣾⣿⣥⣴⣿⣿⡿⢂⠔⢚⡿⢿⣿⣦⣴⣾⠁⠸⣼⡿ \n⠀⢀⡞⠁⠙⠻⠿⠟⠉⠀⠛⢹⣿⣿⣿⣿⣿⣌⢤⣼⣿⣾⣿⡟⠉⠀⠀⠀⠀⠀ \n⠀⣾⣷⣶⠇⠀⠀⣤⣄⣀⡀⠈⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀ \n⠀⠉⠈⠉⠀⠀⢦⡈⢻⣿⣿⣿⣶⣶⣶⣶⣤⣽⡹⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀ \n⠀⠀⠀⠀⠀⠀⠀⠉⠲⣽⡻⢿⣿⣿⣿⣿⣿⣿⣷⣜⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀ \n⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣷⣶⣮⣭⣽⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀ \n⠀⠀⠀⠀⠀⠀⣀⣀⣈⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇⠀⠀⠀⠀⠀⠀⠀ \n⠀⠀⠀⠀⠀⠀⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀ \n⠀⠀⠀⠀⠀⠀⠀⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀ \n⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⠻⠿⠿⠿⠿⠛⠉\n\n` }
+				for (let i = 0; i < 20; i++) { shrekDes += `⡴⠑⡄⠀⠀⠀⠀⠀⠀⣀⣀⣤⣤⣤⣀⡀\n⡇⠀⠿⠀⠀⠀⣀⡴⢿⣿⣿⣿⣿⣿⣿⣿⣷⣦⡀\n⠀⠀⠀⢄⣠⠾⠁⣀⣄⡈⠙⣿⣿⣿⣿⣿⣿⣿⣿⣆\n⠀⠀⠀⢀⡀⠁⠀⠀⠈⠙⠛⠂⠈⣿⣿⣿⣿⣿⠿⡿⢿⣆\n⠀⠀⢀⡾⣁⣀⠀⠴⠂⠙⣗⡀⠀⢻⣿⣿⠭⢤⣴⣦⣤⣹⠀⠀⠀⢴⣆ \n⠀⢀⣾⣿⣿⣿⣷⣮⣽⣾⣿⣥⣴⣿⣿⡿⢂⠔⢚⡿⢿⣿⣦⣴⣾⠁⡿ \n⢀⡞⠁⠙⠻⠿⠟⠉⠀⠛⢹⣿⣿⣿⣿⣿⣌⢤⣼⣿⣾⣿⡟⠉\n⣾⣷⣶⠇⠀⠀⣤⣄⣀⡀⠈⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇\n⠉⠈⠉⠀⠀⢦⡈⢻⣿⣿⣿⣶⣶⣶⣶⣤⣽⡹⣿⣿⣿⣿⡇\n⠀⠀⠀⠀⠀⠀⠉⠲⣽⡻⢿⣿⣿⣿⣿⣿⣿⣷⣜⣿⣿⣿⡇\n⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣷⣶⣮⣭⣽⣿⣿⣿⣿⣿⣿⣿\n⠀⠀⠀⠀⠀⣀⣀⣈⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇\n⠀⠀⠀⠀⠀⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠃\n⠀⠀⠀⠀⠀⠀⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠟⠁\n⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⠻⠿⠿⠿⠿⠛⠉\n\n` }
 				await kill.sendText(from, shrekDes, id)
             } else return await kill.reply(from, mess.soademiro(), id)
 			break
@@ -3995,6 +3985,42 @@ module.exports = kconfig = async (kill, message) => {
 				} else return await kill.reply(from, mess.gpowner(), id)
 			} else return await kill.reply(from, mess.sogrupo(), id)
             break
+			
+		// Obrigado pela base Pedro Batistop
+		case 'trending':;case 'twitter':;case 'trendings':;case 'trend':;case 'trends':
+			var aFplaceOnEarth = args.length !== 0 ? args[0] : config.lang == 'pt' ? 'brazil' : config.lang == 'en' ? 'United%20States' : 'Argentina'
+			const newsNow = await axios.get(`https://api-twitter-trends.herokuapp.com/trends?location=${aFplaceOnEarth}`)
+			if (newsNow.data.status == false) return await kill.reply(from, mess.noresult(), id)
+			var theTrend = `🌎 - ${newsNow.data.data.location} - 🌎\n\n`
+			for (let i = 0; i < 10; i++) {
+				var monkeyIdent = newsNow.data.data.trends[1].data[i].tweet_count == '' ? '+1K' : newsNow.data.data.trends[1].data[i].tweet_count
+				theTrend += `\n${i + 1} → *#${newsNow.data.data.trends[1].data[i].name} - ${monkeyIdent} Tweets*\n`
+			}
+			await kill.reply(from, theTrend, id)
+			break
+			
+		// Obrigado pela base Pedro Batistop	
+		case 'market':
+			if (args.length == 0) return await kill.reply(from, mess.reMerchant(), id) // Mude o MLB se desejar
+			const placeToBuy = !arks.includes('|') ? 'MLB' : args[0];const vibProduct = !arks.includes('|') ? body.slice(7) : arg.split('|')[1]
+			const getML = await axios.get(`https://api.mercadolibre.com/sites/${placeToBuy}/search?q=${encodeURIComponent(vibProduct)}&limit=1#json`)
+			const isNewP = getML.data.results[0].condition == 'new' ? 'Sim' : 'Não'
+			const temLoja = getML.data.results[0].shipping.store_pick_up == true ? 'Sim' : 'Não'
+			await kill.sendFileFromUrl(from, `${getML.data.results[0].thumbnail}`, 'produto.jpg', mess.theStore(getML, isNewP, temLoja), id)
+			break
+			
+		// Sem XP, por que precisamos de jogos livres também
+		case 'jokenpo':
+			const bigThree = Math.floor(Math.random() * 3) + 1;const jokenPedra = ['pedra', '✊', '✊🏻', '✊🏼', '✊🏽', '✊🏾', 'rock', 'piedra', '🪨'];const jokenLesb = ['tesoura', '✌️', '✌🏻', '✌🏼', '✌🏽', '✌🏾', '✌🏿', 'scissors', 'tijera', '✂️'];const jokenPaper = ['papel', '✋', '✋🏻', '✋🏼', '✋🏽', '✋🏾', '✋🏿', 'paper', '🤚', '🤚🏻', '🤚🏼', '🤚🏽', '🤚🏾', '🤚🏿']
+			if (!jokenPedra.includes(args[0]) && !jokenPaper.includes(args[0]) && !jokenLesb.includes(args[0])) return await kill.reply(from, mess.noargs() + 'pedra [✊🏻], papel [✋🏿] ou tesoura [✌️]', id)
+			const needPlay = jokenPedra.includes(args[0]) ? 1 : jokenPaper.includes(args[0]) ? 2 : jokenLesb.includes(args[0]) ? 3 : false
+			const theMove = bigThree == 1 ? '✊🏻 - Pedra/Rock/Piedra' : bigThree == 2 ? '✋🏿 - Papel/Paper' : bigThree == 3 ? '✌️ - Tesoura/Tijera/Scissors' : 'Algo'
+			if (needPlay == bigThree) {
+				await kill.reply(from, mess.nowinjoken(theMove), id)
+			} else if (needPlay == 2 && bigThree == 1 || needPlay == 3 && bigThree == 2 || needPlay == 1 && bigThree == 3) {
+				await kill.reply(from, mess.winjoken(theMove, args), id)
+			} else return await kill.reply(from, mess.losejoken(theMove), id)
+			break
 			
 		// Para usar a base remova o /* e o */ e bote um nome dentro das aspas da case e em seguida sua mensagem dentro das aspas na frente do from
 		/*case 'Nome do comando sem espaços':

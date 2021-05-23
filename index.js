@@ -8,6 +8,7 @@ const canvas = require('discord-canvas')
 const { mylang } = require('./lib/lang')
 const axios = require('axios')
 const irisvs = require('./package.json')
+var welcOn = 0;var abayo = 0
 
 // Quantidade máxima de Backups do Level.json e MsgCount.json
 const maxBackups = Math.floor(Math.random() * 5) + 1
@@ -93,11 +94,12 @@ const start = async (kill = new Client()) => {
 					console.log(color('[BLACKLIST]', 'red'), color(`${pushname} - (${event.who.replace('@c.us', '')}) foi banido do ${name} por ter sido colocado na blacklist...`, 'yellow'))
 				} else if (isFake && !fake && !isMyBot) {
 					await kill.sendTextWithMentions(event.chat, mylang().nofake(event))
-					await sleep(4000)
+					await sleep(4000) // Anti-fake e Black-List não tem anti-flood por segurança, mexa com a var welcOn para inserir
 					await kill.removeParticipant(event.chat, event.who)
 					await kill.contactBlock(event.who) // Evita ser travado por putinhos
 					console.log(color('[FAKE]', 'red'), color(`${pushname} - (${event.who.replace('@c.us', '')}) foi banido do ${name} por usar número falso ou ser de fora do país...`, 'yellow'))
-				} else if (isWelkom && !isMyBot) {
+				} else if (isWelkom && !isMyBot && welcOn == 0 && !fuck && fake) {
+					welcOn = 1
 					var profile = await kill.getProfilePicFromServer(event.who)
 					if (profile == '' || profile == undefined) profile = 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTQcODjk7AcA4wb_9OLzoeAdpGwmkJqOYxEBA&usqp=CAU'
 					const welcomer = await new canvas.Welcome().setUsername(pushname)
@@ -122,9 +124,11 @@ const start = async (kill = new Client()) => {
 					const base64 = `data:image/png;base64,${welcomer.toBuffer().toString('base64')}`
 					await kill.sendFile(event.chat, base64, 'welcome.png', mylang().welcome(pushname, name))
 					await kill.sendPtt(event.chat, `./lib/media/audio/welcome.mp3`)
+					welcOn = 0
 					console.log(color('[ENTROU]', 'red'), color(`${pushname} - (${event.who.replace('@c.us', '')}) entrou no grupo ${name}...`, 'yellow'))
 				}
-			} else if (event.action == 'remove' && isWelkom && !isMyBot) {
+			} else if (event.action == 'remove' && isWelkom && !isMyBot && abayo == 0 && !fuck && fake) {
+				abayo = 1
 				var profile = await kill.getProfilePicFromServer(event.who)
 				if (profile == '' || profile == undefined) profile = 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTQcODjk7AcA4wb_9OLzoeAdpGwmkJqOYxEBA&usqp=CAU'
 				const bye = await new canvas.Goodbye().setUsername(pushname)
@@ -149,9 +153,10 @@ const start = async (kill = new Client()) => {
 				const base64 = `data:image/png;base64,${bye.toBuffer().toString('base64')}`
 				await kill.sendFile(event.chat, base64, 'welcome.png', mylang().bye(pushname))
 				await kill.sendPtt(event.chat, `./lib/media/audio/bye.mp3`)
+				abayo = 0
 				console.log(color('[SAIU/BAN]', 'red'), color(`${pushname} - (${event.who.replace('@c.us', '')}) saiu ou foi banido do grupo ${name}...`, 'yellow'))
 			}
-		} catch (err) { console.log(err) }
+		} catch (err) { console.log(err);welcOn = 0;abayo = 0 }
 	})
 
 	// Bloqueia na call
