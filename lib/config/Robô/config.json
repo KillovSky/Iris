@@ -1,9 +1,9 @@
 {
 	"lang": "pt",
-	"owner": ["551899*****@c.us", "551398....@c.us"],
+	"proprietário" : ["555198908436@c.us"],
 	"ddi": "55",
-	"prefix": "/",
-	"apifla": "API-KEY NOFLASH",
+	"prefixo" : "#" ,
+	"apifla" : "API-KEY NOFLASH" ,
 	"nobg": "API-KEY REMOVEBG",
 	"wallhv": "API-KEY WALLHAVEN",
 	"deepai": "API-KEY DEEPAI",
@@ -12,7 +12,7 @@
 	"author": "🎁 Iris - bit.ly/2QvFo78 ☆",
 	"pack": "🔰 Legião Z - bit.ly/3owVJoB ⚜️",
 	"userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36",
-	"timePlay": "30",
+	"timePlay" : "15" ,
 	"antiFlood": "10",
 	"maxSize": "16",
 	"WinTime": "60"
