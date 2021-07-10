@@ -1,0 +1,1 @@
+[{"anti":[],"silence":[],"antilinks":[],"antiporn":[],"antitrava":[],"blacklist":[],"fake":[],"pt":[],"es":[],"en":[],"nsfw":[],"sticker":[],"welcome":[],"xp":[],"thieves":[],"companions":[]}]

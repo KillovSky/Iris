@@ -1,9 +1,8 @@
 ### Projeto Íris
-Íris é uma bot em inglês, espanhol e português criada e mantida atualizada pelo Lucas R. - KillovSky para o grupo "Legião Z", ela tem mais de 200 comandos e atualização frequente com correções e novidades.
+Íris é uma bot em inglês, espanhol e português criada e mantida atualizada pelo Lucas R. - KillovSky para o grupo "Legião Z", ela tem mais de +300 comandos e atualização frequente com correções e novidades.
 
 ### Outros idiomas
-if you want a English tutorial, open this [English Tutorial](https://github.com/KillovSky/iris/blob/main/.readme/en/README.md), si quieres en español, abre esta [Tutorial Español](https://github.com/KillovSky/iris/blob/main/.readme/es/README.md)
-Para deixar sua bot completamente em outro idioma, abra a configuração de [linguagem aqui](https://github.com/KillovSky/iris/blob/main/lib/config/config.json#2) e troque o "pt" para "en" que é inglês ou "es" para espanhol, não há outros idiomas além destes, não agora.
+if you want a English tutorial, open this [English Tutorial](https://github.com/KillovSky/iris/blob/main/.readme/en/README.md), si quieres en español, abre esta [Tutorial Español](https://github.com/KillovSky/iris/blob/main/.readme/es/README.md).
 
 ### Nota Pessoal
 Esse software funciona sob a licença [MIT](http://escolhaumalicenca.com.br/licencas/mit/), sendo proibido a retirada de créditos, e lembre-se, eu gasto MUITO tempo ajudando todos que tem dúvidas e melhorando a BOT, mas sem ganhar nada nisso, por favor, não remova os créditos.
@@ -18,13 +17,13 @@ Baixe Chrome no Windows por [aqui](https://www.google.com/chrome), no linux use 
 > sudo apt install ./google-chrome-stable_current_amd64.deb
 ```
 
-### Funções (+200)
+### Funções (+300)
 
 | Função |Contém|
 | ------------- | ------------- |
 | Rodar WA-Automate/Functions dentro do WhatsApp |✅|
 | Administrar Grupos |✅|
-| Apostar/Cassino/Outros Jogos |✅|
+| Cassino/Jogo da Velha/Outros Jogos |✅|
 | Anti Porno & Imagem +18/Link de Chat |✅|
 | Ataques SMS/CALL/EMAIL |✅|
 | Bem Vindo/Adeus/Anti-Fake/Blacklist |✅|
@@ -78,28 +77,7 @@ Você precisa ter esse repositório, é simples, rode os comandos abaixo, em cas
 ```
 
 ### Mudanças OBRIGATÓRIAS
-EDITE as API's encontradas em:
-
-- [Linguagem](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#2)
-- [Dono](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#3)
-- [DDI](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#4)
-- [Prefix](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#5)
-- [API 1 - API-Flash](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#6)
-- [API 2 - RemoveBG](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#7)
-- [API 3 - WallHaven](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#8)
-- [API 4 - Deep-AI](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#9)
-- [Limite de Grupos](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#10)
-- [Limite de Membros](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#11)
-- [Sticker-Autor](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#12)
-- [Sticker-Pack](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#13)
-- [User-Agent](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#14)
-- [Tempo de Jogo](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#15)
-- [Anti-Flood](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#16)
-- [Max-Size](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#17)
-- [Win-Time](https://github.com/KillovSky/iris/blob/main/lib/config/Bot/config.json#18)
-- Elas são referentes aos sites [RemoveBG](https://www.remove.bg/pt-br), [API-Flash](https://apiflash.com), [WallHaven](https://wallhaven.cc/settings/account) & [Deep-AI](https://deepai.org).
-- A DDI e Linguagem são necessárias apenas se você for de fora do Brasil, as linguagens disponiveis são "en" de inglês, "pt" de português e "es" de espanhol e afetam todos os diálogos e o akinator.
-- Você pode inserir dois ou mais números de dono, se não quiser apenas deixe o segundo como está, o tempo de jogo deve ser inserido em MINUTOS, ele limitará o tempo para cada jogatina, o Anti-Flood deverá ser em SEGUNDOS e limita os comandos e a User-Agent é opcional, Max-Size é para Downloads, coloque entre 1 a 64 (Sugiro 16) e a Win-Time é o tempo de ganho de XP para cada mensagem.
+Edite TODAS as informações necessárias descritas [aqui](https://github.com/KillovSky/iris/blob/main/.readme/pt/config.md) antes de iniciar a Íris.
 
 ### Iniciar
 Após a edição dos arquivos necessários, rode o comando abaixo e espere iniciar, após isso, escaneie o QR Code.
@@ -107,6 +85,16 @@ Após a edição dos arquivos necessários, rode o comando abaixo e espere inici
 ```bash
 > npm start
 ```
+
+Você pode usar a inicialização do PM2 - recomendada mas usa CPU/RAM+ - em vez do `npm start` com:
+
+```bash
+> npm i pm2 -g
+> pm2 start index.js
+> pm2 monit
+```
+
+O `npm i pm2 -g` somente precisa ser executado uma única vez.
 
 ### Ver todos os comandos
 Digite no seu chat a mensagem, se você editou sua prefix, troque a '/' para o caractere que você utilizará.
@@ -116,10 +104,10 @@ Digite no seu chat a mensagem, se você editou sua prefix, troque a '/' para o c
 ```
 
 ### Crie seus comandos
-Há uma base simples para suas criações por [aqui](https://github.com/KillovSky/iris/blob/main/config.js#L4026), sem Prefix [aqui](https://github.com/KillovSky/iris/blob/main/config.js#L304), basta que você remova a "/\*" e a "\*/" para utilizá-la, se precisar de outros tipos, você pode ver sobre eles por [aqui](https://docs.openwa.dev/classes/api_client.client.html), se obtiver dificuldades, chame-me por [aqui](https://bit.ly/3owVJoB) ou [aqui](https://wa.me/+5518998044132).
+Há uma base simples para suas criações por [aqui](https://github.com/KillovSky/iris/blob/main/config.js#L4364), sem Prefix [aqui](https://github.com/KillovSky/iris/blob/main/config.js#L321), basta que você remova a "/\*" e a "\*/" para utilizá-la, se precisar de outros tipos, você pode ver sobre eles por [aqui](https://docs.openwa.dev/classes/api_client.client.html), se obtiver dificuldades, venha perguntar [aqui](https://bit.ly/3owVJoB).
 
 ### Alertas no WhatsApp
-Para receber também as mensagem de erros da Íris pelo WhatsApp, remova a "//" da linha [Catch](https://github.com/KillovSky/iris/blob/main/config.js#L4038).
+Para receber também as mensagem de erros da Íris pelo WhatsApp, remova a "//" da linha [Catch](https://github.com/KillovSky/iris/blob/main/config.js#L4383).
 
 ### Agradecimentos:
 - [Open-WA](https://github.com/open-wa)
@@ -130,7 +118,8 @@ Para receber também as mensagem de erros da Íris pelo WhatsApp, remova a "//" 
 - Agradeço de coração a todos vocês!
 
 ### Doar e Suporte
-- [Doações] - Este projeto é mantido apenas por mim de graça e sem cobrar nada, se puder, doe algo ❤️ - [Doar](https://picpay.me/userlucas123)
-- [PIX] - fc270199-2d55-4d91-be5c-bfbd431cfad4
-- [Grupo Oficial] - Não somos grupos de travas - [Entrar](https://bit.ly/3owVJoB)
-- [Dono] - Se precisar falar comigo (respondo sempre o mais rápido possível) - [Falar](https://wa.me/+5518998044132)
+- [Doações] - Este projeto é mantido apenas por mim de graça e sem cobrar nada, se puder, doe algo ❤️
+- [PicPay](https://picpay.me/userlucas123)
+- [Ko-fi](https://ko-fi.com/killovsky)
+- [PIX] - fc270199-2d55-4d91-be5c-bfbd431cfad4 - **Brasil**
+- [Grupo Oficial](https://bit.ly/3owVJoB)
