@@ -41,7 +41,7 @@ const start = async (kill = new Client()) => {
 	})
 
 	// Lê as mensagens, se você quer usar o watchFile, mude para o require | Ative a await se quiser auto limpeza de cache, 3000 significa limpeza a cada 3000 mensagens
-	kill.onAnyMessage(async (message) => {
+	kill.onMessage(async (message) => {
 		//await kill.getAmountOfLoadedMessages().then(async (msg) => { if (msg >= 3000) { await kill.cutMsgCache();await kill.cutChatCache() } })
 		await kconfig(kill, message) // require('./config')(kill, message)
 	})
