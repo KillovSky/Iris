@@ -91,7 +91,8 @@ module.exports = kconfig = async (kill, message) => {
 	// Isso antes da try possibilita receber os alertas no WhatsApp
 	const { type, id, from, t, sender, author, isGroupMsg, chat, chatId, caption, isMedia, mimetype, quotedMsg, quotedMsgObj, mentionedJidList } = message
 	const groupId = isGroupMsg ? chat.groupMetadata.id : ''
-	for (let i = 0; i < ctmprefix.length; i++) { if (Object.keys(ctmprefix[i]) == groupId) { var prefix = Object.values(ctmprefix[i]);break } else var prefix = config.Prefix }
+	var prefix = config.Prefix
+	for (let i = 0; i < ctmprefix.length; i++) { if (Object.keys(ctmprefix[i]) == groupId) { prefix = Object.values(ctmprefix[i]);break } }
 	let { body } = message
 	const ownerNumber = config.Owner
 	const chats = (type === 'chat') ? body : ((type === 'image' || type === 'video')) ? caption : ''
