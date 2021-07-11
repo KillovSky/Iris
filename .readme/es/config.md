@@ -26,6 +26,9 @@ Edite toda la información abajo:
 - [Min-XP-Earn](https://github.com/KillovSky/iris/blob/main/lib/config/Gerais/config.json#22) - Opcional
 - [Iris-Coin](https://github.com/KillovSky/iris/blob/main/lib/config/Gerais/config.json#23) - Opcional
 - [Max-Steal](https://github.com/KillovSky/iris/blob/main/lib/config/Gerais/config.json#24) - Opcional
+- [Max_Characters](https://github.com/KillovSky/iris/blob/main/lib/config/Gerais/config.json#25) - Opcional
+- [XP_Difficulty](https://github.com/KillovSky/iris/blob/main/lib/config/Gerais/config.json#26) - Opcional
+
 
 ### Cómo obtener una API-KEY
 
@@ -37,7 +40,7 @@ Puede obtener una API-KEY creando una cuenta en los sitios solicitados, en Íris
 - [NASA](https://api.nasa.gov)
 - [Deep-AI](https://deepai.org)
 - [The Movie Database](https://developers.themoviedb.org/3)
-- [ACR-Cloud](https://www.acrcloud.com/)
+- [ACR-Cloud](https://console.acrcloud.com/avr?#/projects/online)
 
 ### Qué hace la configuración?
 
@@ -53,7 +56,7 @@ La configuración es fundamental porque afectan a los comandos, si no configura,
 
 - ```WallHaven``` es para obtener fondos de pantalla.
 
-- ```Deep-AI``` es para el ```Anti-Porn``` & ```Toonify``` funciones
+- ```Deep-AI``` es para el ```Anti-Porn``` funcion.
 
 - ```The Movie Database``` es para buscar información de películas.
 
@@ -88,6 +91,10 @@ La configuración es fundamental porque afectan a los comandos, si no configura,
 - ```Iris-Coin``` es la cantidad recibida del `Íris Coin` por nivel, el `Íris-Coin` sigue siendo una sorpresa para todos, en el futuro estará disponible (solo en WhatsApp), edición es opcional.
 
 - ```Max-Steal``` es la XP máxima con la que puedes robar con `steal`, edición es opcional.
+
+- ```Max-Characters``` es el tamaño máximo del mensaje, los mensajes más grandes que este límite harán que Íris expulse al usuario que envía, edición es opcional.
+
+- ```XP-Difficulty``` controla la dificultad de conseguir un nuevo nivel, los valores más altos significan más dificultad para subir de nivel, edición es opcional.
 
 ### Como configurar?
 

@@ -24,7 +24,7 @@ const start = async (kill = new Client()) => {
 	if (irisvs.version !== getversion.data.version) { console.log(color('\n[UPDATE]', 'crimson'), color(`Uma nova versão da Íris foi lançada [${getversion.data.version}], atualize para obter melhorias e correções! → ${irisvs.homepage}`, 'gold')) }
 	console.log(color('\n[SUPORTE]', 'magenta'), color(`https://bit.ly/3owVJoB | ${irisvs.bugs.url}\n`, 'lime'), color(`\n[ÍRIS ${irisvs.version} - BETA]`, 'magenta'), color('Estamos prontos para começar mestre!\n', 'lime'))
 	
-	// Auto Recarregamento da Config.js sem reiniciar, para casos de edições em tempo real, use com cautela
+	// Auto Recarregamento da Config.js sem reiniciar, para casos de edições em tempo real, use com cautela e ative a require la em baixo se usar
 	//await watchFile('./config.js')
 	
 	// Backup dos arquivos toda vez que religar a BOT
@@ -46,6 +46,7 @@ const start = async (kill = new Client()) => {
 		await kconfig(kill, message) // require('./config')(kill, message)
 	})
 	// Você pode rodar certos comandos(/enviar por exemplo) pelo próprio WhatsApp da BOT trocando o "kill.onMessage" por "kill.onAnyMessage", não recomendado.
+	// Caso deseje, faça um "wa.me" do próprio número e rode os comandos em um chat consigo mesmo.
 
 	// Funções para caso seja adicionada em um grupo
 	kill.onAddedToGroup(async (chat) => {

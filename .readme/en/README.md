@@ -102,10 +102,13 @@ Send this to your chat, if you changed the prefix settion, change the "/" bellow
 ```
 
 ### Make new commands
-I have putted a code to new commands [here](https://github.com/KillovSky/iris/blob/main/config.js#L4364), with no Prefix [here](https://github.com/KillovSky/iris/blob/main/config.js#L321), remove the "/\*" and "\*/" to use the code, if you need more types, you can view all [here](https://docs.openwa.dev/classes/api_client.client.html), if you have some difficuty, get help [Here](https://bit.ly/3owVJoB).
+I have putted a code to new commands [here](https://github.com/KillovSky/iris/blob/main/config.js#L4384), with no Prefix [here](https://github.com/KillovSky/iris/blob/main/config.js#L331), remove the "/\*" and "\*/" to use the code, if you need more types, you can view all [here](https://docs.openwa.dev/classes/api_client.client.html), if you have some difficuty, get help [Here](https://bit.ly/3owVJoB).
 
 ### Report errors on Messages
-To receive your errors from commandline at whatsapp, remove the "//" on line [Catch](https://github.com/KillovSky/iris/blob/main/config.js#L4383).
+To receive your errors from commandline at whatsapp, remove the "//" on line [Catch](https://github.com/KillovSky/iris/blob/main/config.js#L4403).
+
+### Disable auto-opening browser on bomb
+To make the browser stop opening every time you start Iris, open the folder ```node_modules``` and go to ```bomber-api```, open the file ```index.js``` and remove the lines ```"open(`http://localhost:3000/`)"``` & ```"open(`http://localhost:${arguments.port}/`)"```, if you got problems with port 3000, you can edit the ```"app.listen(3000"``` to a random port that is not in use.
 
 ### Thanks:
 - [Open-WA](https://github.com/open-wa)

@@ -57,9 +57,11 @@ const puppeteer = require('puppeteer')
 const { XVDL } = require("xvdl")
 const youtubedl = require('youtube-dl-exec')
 const sharp = require('sharp')
-const { bomber } = require("bomber-api")
 const acrcloud = require("acrcloud")
 const Pokemon = require('pokemon.js')
+
+// Bomber, se desejar desativar o auto-abrir navegador leia a página inicial da Íris na github
+const { bomber } = require("bomber-api")
 
 // UTILIDADES
 const { poll, gaming, color, sleep, isUrl, upload, addFilter, isFiltered, translate, isInt } = require('./lib/functions')
@@ -111,6 +113,7 @@ module.exports = kconfig = async (kill, message) => {
 		const blockNumber = await kill.getBlockedIds()
 		const user = sender.id
 		const isOwner = ownerNumber.includes(user)
+		const isBot = user === `${botNumber}@c.us`
 		const groupMembers = isGroupMsg ? await kill.getGroupMembers(groupId) : false
 		const groupMembersId = isGroupMsg ? await kill.getGroupMembersId(groupId) : false
 		const groupAdmins = isGroupMsg ? await kill.getGroupAdmins(groupId) : ''
@@ -165,9 +168,8 @@ module.exports = kconfig = async (kill, message) => {
 		const weaponC = await fs.readFileSync('./lib/config/Utilidades/armas.txt').toString().split('\n')
 		const whatWeapon = weaponC[Math.floor(Math.random() * weaponC.length)]
 		const checkLvL = await gaming.getValue(user, nivel, 'level')
-		const checkXPu = await gaming.getValue(user, nivel, 'xp')
 		const patente = await gaming.getPatent(checkLvL)
-		const getReqXP = (theRcvLvL) => { return 6 * Math.pow(theRcvLvL, 2) + 300 * theRcvLvL + 1000 }
+		const getReqXP = (theRcvLvL) => { return Number(config.XP_Difficulty) * Math.pow(theRcvLvL, 2) * Number(config.XP_Difficulty) + 1000 }
 		const valueRand = (value) => { const valres = value[Math.floor(Math.random() * value.length)];return valres }
 		const tagsPorn = await fs.readFileSync('./lib/config/Utilidades/porn.txt').toString().split('\n')
 		const theTagPorn = tagsPorn[Math.floor(Math.random() * tagsPorn.length)]
@@ -186,10 +188,16 @@ module.exports = kconfig = async (kill, message) => {
 		const getChifre = await fs.readFileSync('./lib/config/Utilidades/corno.txt').toString().split('\n')
 		const howGado = getChifre[Math.floor(Math.random() * getChifre.length)]
 		
+		// Sistema que permite ignorar comandos de um grupo, caso você já possua um BOT nele e queira deixar a Íris desligada apenas lá, basta ativar
+		/*if (isGroupMsg && isCmd && !isOwner && !isBot && groupId == 'Insira a id do grupo') return*/
+		
 		// Muda a linguagem para a requisitada no comando newlang
 		if (isGroupMsg && isCmd && functions[0].en.includes(groupId)) { mess = mylang('en') }
 		if (isGroupMsg && isCmd && functions[0].es.includes(groupId)) { mess = mylang('es') }
 		if (isGroupMsg && isCmd && functions[0].pt.includes(groupId)) { mess = mylang('pt') }
+		
+		// Ensina a rodar comandos pelo WhatsApp da BOT
+		if (isBot && isCmd && chatId !== `${botNumber}@c.us`) await kill.reply(ownerNumber[0], mess.howtorun(`wa.me/+${botNumber}`), id)
 		
 		// Mantém a BOT escrevendo caso o dono queira
 		if (isGroupMsg && isTyping.includes(groupId) || isCmd) await kill.simulateTyping(from, true)
@@ -198,10 +206,11 @@ module.exports = kconfig = async (kill, message) => {
 		if (isGroupMsg && isxp && !gaming.isWin(user) && !isBlocked) {
 			try {
 				await gaming.wait(user);var gainedXP = Math.floor(Math.random() * Number(config.Max_XP_Earn)) + Number(config.Min_XP_Earn);const usuarioLevel = await gaming.getValue(user, nivel, 'level')
-				if (functions[0].companions.includes(user)) { gainedXP = parseInt(gainedXP + (usuarioLevel * 5)) } // Beneficio de guilda Companions, XP 5x mais
-				if (functions[0].thieves.includes(user)) { gainedXP = parseInt(gainedXP + (usuarioLevel * 3)) } // Beneficio de guilda Thieves, XP 3x mais
+				if (functions[0].companions.includes(user)) { gainedXP = parseInt(gainedXP + (usuarioLevel * 5), 10) } // Beneficio de guilda Companions, XP 5x mais
+				if (functions[0].thieves.includes(user)) { gainedXP = parseInt(gainedXP + (usuarioLevel * 3), 10) } // Beneficio de guilda Thieves, XP 3x mais
 				await gaming.addValue(user, Number(gainedXP), nivel, 'xp')
-				if (getReqXP(checkLvL) <= checkXPu) {
+				const haveXptoUp = await gaming.getValue(user, nivel, 'xp')
+				if (getReqXP(checkLvL) <= haveXptoUp) {
 					await gaming.addValue(user, 1, nivel, 'level');await gaming.addValue(user, Number(config.Iris_Coin), nivel, 'coin')
 					await kill.reply(from, `*「 +1 NIVEL 」*\n\n➸ *Nome:* ${pushname}\n➸ *XP:* ${await gaming.getValue(user, nivel, 'xp')} / ${getReqXP(checkLvL)}\n➸ *Level:* ${checkLvL} -> ${await gaming.getValue(user, nivel, 'level')} 🆙 \n➸ *Í-Coin:* ${await gaming.getValue(user, nivel, 'coin')}\n➸ *Patente:* *${patente}* 🎉`, id)
 					// Desative ou Apague a "kill.reply" acima se sua Íris floodar mensagens de "Level UP"
@@ -215,7 +224,7 @@ module.exports = kconfig = async (kill, message) => {
 		if (justCheckXP >= getReqXP(justCheckLvL)) { await gaming.addValue(user, 1, nivel, 'level') }
 		
 		// Anti Imagens pornográficas
-		if (isGroupMsg && !isGroupAdmins && isBotGroupAdmins && isAntiPorn && isMedia && isImage && !isCmd && !isOwner && oneImage == 0) {
+		if (isGroupMsg && !isGroupAdmins && isBotGroupAdmins && isAntiPorn && isMedia && isImage && !isCmd && !isOwner && oneImage == 0 && !isBot) {
 			try {
 				oneImage = 1; console.log(color('[IMAGEM]', 'red'), color('Verificando a imagem por pornografia...', 'yellow'))
 				const mediaData = await decryptMedia(message, uaOverride)
@@ -230,19 +239,19 @@ module.exports = kconfig = async (kill, message) => {
 		}
 		
 		// Auto-stickers de fotos
-		if (isGroupMsg && autoSticker && isMedia && isImage && !isCmd) {
+		if (isGroupMsg && autoSticker && isMedia && isImage && !isCmd && !isBot) {
 			const mediaData = await decryptMedia(message, uaOverride)
 			await kill.sendImageAsSticker(from, `data:${mimetype};base64,${mediaData.toString('base64')}`, { author: config.Sticker_Author, pack: config.Sticker_Pack, keepScale: true })
 		}
 		
 		// Auto-sticker de videos & gifs
-		if (isGroupMsg && autoSticker && isMedia && isVideo && !isCmd) {
+		if (isGroupMsg && autoSticker && isMedia && isVideo && !isCmd && !isBot) {
 			const mediaData = await decryptMedia(message, uaOverride)
-			await kill.sendMp4AsSticker(from, `data:${mimetype};base64,${mediaData.toString('base64')}`, null, { stickerMetadata: true, pack: config.Sticker_Pack, author: config.Sticker_Author, fps: 10, crop: true, loop: 0 })
+			await kill.sendMp4AsSticker(from, `data:${mimetype};base64,${mediaData.toString('base64')}`, null, { stickerMetadata: true, pack: config.Sticker_Pack, author: config.Sticker_Author, fps: 10, crop: false, loop: 0 })
 		}
 
 		// Anti links de grupo
-		if (isGroupMsg && !isGroupAdmins && isBotGroupAdmins && isAntiLink && !isOwner && oneLink == 0) {
+		if (isGroupMsg && !isGroupAdmins && isBotGroupAdmins && isAntiLink && !isOwner && oneLink == 0 && !isBot) {
 			try {
 				if (chats.match(new RegExp(/(https:\/\/chat.whatsapp.com)/gi))) {
 					oneLink = 1; const gplka = await kill.inviteInfo(chats)
@@ -255,9 +264,9 @@ module.exports = kconfig = async (kill, message) => {
 		}
 
 		// Bloqueia todas as travas, seja contato, localização, texto e outros
-		if (isGroupMsg && isAntiTravas && isTrava && !isGroupAdmins && isBotGroupAdmins && !isOwner && oneTrava == 0) {
+		if (isGroupMsg && isAntiTravas && isTrava && !isGroupAdmins && isBotGroupAdmins && !isOwner && oneTrava == 0 && !isBot) {
 			try {
-				oneTrava = 1; console.log(color('[TRAVA]', 'red'), color(`Possivel trava recebida pelo → ${pushname} - [${user.replace('@c.us', '')}] em ${name}...`, 'yellow'))
+				oneTrava = 1; console.log(color('[TRAVA]', 'red'), color(`Possível trava recebida pelo → ${pushname} - [${user.replace('@c.us', '')}] em ${name}...`, 'yellow'))
 				let wakeAdm = 'ACORDA - WAKE UP ADM\n\n'
 				var shrekDes = ''
 				for (let i = 0; i < 20; i++) { shrekDes += `⡴⠑⡄⠀⠀⠀⠀⠀⠀⣀⣀⣤⣤⣤⣀⡀\n⡇⠀⠿⠀⠀⠀⣀⡴⢿⣿⣿⣿⣿⣿⣿⣿⣷⣦⡀\n⠀⠀⠀⢄⣠⠾⠁⣀⣄⡈⠙⣿⣿⣿⣿⣿⣿⣿⣿⣆\n⠀⠀⠀⢀⡀⠁⠀⠀⠈⠙⠛⠂⠈⣿⣿⣿⣿⣿⠿⡿⢿⣆\n⠀⠀⢀⡾⣁⣀⠀⠴⠂⠙⣗⡀⠀⢻⣿⣿⠭⢤⣴⣦⣤⣹⠀⠀⠀⢴⣆ \n⠀⢀⣾⣿⣿⣿⣷⣮⣽⣾⣿⣥⣴⣿⣿⡿⢂⠔⢚⡿⢿⣿⣦⣴⣾⠁⡿ \n⢀⡞⠁⠙⠻⠿⠟⠉⠀⠛⢹⣿⣿⣿⣿⣿⣌⢤⣼⣿⣾⣿⡟⠉\n⣾⣷⣶⠇⠀⠀⣤⣄⣀⡀⠈⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇\n⠉⠈⠉⠀⠀⢦⡈⢻⣿⣿⣿⣶⣶⣶⣶⣤⣽⡹⣿⣿⣿⣿⡇\n⠀⠀⠀⠀⠀⠀⠉⠲⣽⡻⢿⣿⣿⣿⣿⣿⣿⣷⣜⣿⣿⣿⡇\n⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣷⣶⣮⣭⣽⣿⣿⣿⣿⣿⣿⣿\n⠀⠀⠀⠀⠀⣀⣀⣈⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇\n⠀⠀⠀⠀⠀⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠃\n⠀⠀⠀⠀⠀⠀⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠟⠁\n⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⠻⠿⠿⠿⠿⠛⠉\n\n` }
@@ -271,11 +280,11 @@ module.exports = kconfig = async (kill, message) => {
 		}
 		
 		// Bloqueia travas no PV
-		if (!isGroupMsg && !isOwner && isTrava) { await kill.contactBlock(user).then(async () => { await kill.sendText(ownerNumber[0], mess.recTrava(user)) }) }
+		if (!isGroupMsg && !isOwner && isTrava && !isBot) { await kill.contactBlock(user).then(async () => { await kill.sendText(ownerNumber[0], mess.recTrava(user)) }) }
 		// Para limpar automaticamente sem você verificar, adicione "await kill.clearChat(chatId)", o mesmo no de grupos.
 
 		// Anti links pornográficos
-		if (isGroupMsg && !isGroupAdmins && isBotGroupAdmins && isAntiPorn && !isOwner && oneLink == 0) {
+		if (isGroupMsg && !isGroupAdmins && isBotGroupAdmins && isAntiPorn && !isOwner && oneLink == 0 && !isBot) {
 			try {
 				if (isUrl(chats)) {
 					oneLink = 1; const inilkn = new URL(chats)
@@ -292,9 +301,9 @@ module.exports = kconfig = async (kill, message) => {
 		}
 		
 		// Impede travas ou textos que tenham mais de 5.000 linhas
-		if (isGroupMsg && !isGroupAdmins && isBotGroupAdmins && !isOwner && oneTrava == 0) {
+		if (isGroupMsg && !isGroupAdmins && isBotGroupAdmins && !isOwner && oneTrava == 0 && !isBot) {
 			try {
-				if (chats.length > 5000) {
+				if (chats.length > Number(config.Max_Characters)) {
 					oneTrava = 1; console.log(color('[TRAVA]', 'red'), color(`Possivel trava recebida pelo → ${pushname} - [${user.replace('@c.us', '')}] em ${name}...`, 'yellow'))
 					await kill.removeParticipant(groupId, user).then(async () => { await kill.sendTextWithMentions(from, mess.baninjusto(user) + 'Travas.') }) // Remove e manda o motivo no grupo
 					await kill.sendText(ownerNumber[0], mess.recTrava(user)).then(async () => { await kill.contactBlock(user);return oneTrava = 0 }) // Avisa o dono e então bloqueia a pessoa
@@ -303,9 +312,9 @@ module.exports = kconfig = async (kill, message) => {
 		}
 		
 		// Bloqueia travas no PV que tenham mais de 5.000 linhas
-		if (!isGroupMsg && !isOwner) {
+		if (!isGroupMsg && !isOwner && !isBot) {
 			try {
-				if (chats.length > 5000) {
+				if (chats.length > Number(config.Max_Characters)) {
 					console.log(color('[TRAVA]', 'red'), color(`Possivel trava recebida pelo → ${pushname} - [${user.replace('@c.us', '')}]...`, 'yellow'))
 					return await kill.contactBlock(user).then(async () => { await kill.sendText(ownerNumber[0], mess.recTrava(user)) }) // Avisa o dono e bloqueia
 				}
@@ -313,7 +322,7 @@ module.exports = kconfig = async (kill, message) => {
 		}
 		
 		// Ative para banir quem mandar todos os tipos de links (Ative removendo a /* e */)
-		/*if (isGroupMsg && !isGroupAdmins && isBotGroupAdmins && isAntiLink && !isOwner && isUrl(chats)) { await kill.removeParticipant(groupId, user) }*/
+		/*if (isGroupMsg && !isGroupAdmins && isBotGroupAdmins && isAntiLink && !isOwner && isUrl(chats) && !isBot) return await kill.removeParticipant(groupId, user)*/
 		
 		// Comandos sem prefix, esse responde se marcar a BOT
 		if (!isFiltered(from) && !isMedia && !isCmd) { try { if (chats.includes(`@${botNumber.replace('@c.us', '')}`)) { await kill.reply(from, chatBotR, id) } } catch (error) { return } }
@@ -323,7 +332,7 @@ module.exports = kconfig = async (kill, message) => {
 		// Se falhar você pode tentar chats.toLowerCase().includes
 		
 		// Impede comandos em PV'S mutados
-		if (!isGroupMsg && isCmd && pvmte && !isOwner ) return console.log(color('> [SILENCE]', 'red'), color(`Ignorando comando de ${pushname} - [${user.replace('@c.us', '')}] pois ele está mutado...`, 'yellow'))
+		if (!isGroupMsg && isCmd && pvmte && !isOwner) return console.log(color('> [SILENCE]', 'red'), color(`Ignorando comando de ${pushname} - [${user.replace('@c.us', '')}] pois ele está mutado...`, 'yellow'))
 		
 		// Impede comandos em grupos mutados
 		if (isGroupMsg && isCmd && !isGroupAdmins && mute && !isOwner) return console.log(color('> [SILENCE]', 'red'), color(`Ignorando comando de ${name} pois ele está mutado...`, 'yellow'))
@@ -356,7 +365,7 @@ module.exports = kconfig = async (kill, message) => {
 		if (isCmd && isGroupMsg) { console.log(color(`> COMANDO "[${prefix}${command.toUpperCase()}]"`), 'AS', color(moment(t * 1000).format('DD/MM/YY HH:mm:ss'), 'yellow'), 'DE', color(`"${pushname} - [${user.replace('@c.us', '')}]"`), 'EM', color(`"${name || formattedTitle}"`)) }
 
 		// Impede SPAM
-		if (isCmd) await addFilter(from)
+		if (isCmd && !isOwner) await addFilter(from) // Para limitar os usuários em vez do grupo, troque o "from" por "user"
 
 		switch(command) {
 
@@ -405,7 +414,7 @@ module.exports = kconfig = async (kill, message) => {
 						const getWastedPic = await decryptMedia(wantedPict, uaOverride)
 						var thePicWasted = await upload(getWastedPic, false)
 					} else { var thePicWasted = quotedMsg ? await kill.getProfilePicFromServer(quotedMsgObj.sender.id) : (mentionedJidList.length !== 0 ? await kill.getProfilePicFromServer(mentionedJidList[0]) : await kill.getProfilePicFromServer(user)) }
-					if (thePicWasted == null) thePicWasted = errorImg
+					if (thePicWasted == null || typeof thePicWasted === 'object') thePicWasted = errorImg
 					await canvacord.Canvas.wasted(thePicWasted).then(async (buffer) => { await kill.sendFile(from, `data:image/png;base64,${buffer.toString('base64')}`, `wasted.png`, '', id) })
 				} catch (error) {
 					await kill.reply(from, mess.fail(), id)
@@ -421,7 +430,7 @@ module.exports = kconfig = async (kill, message) => {
 						const upTrigger = await decryptMedia(triggermd, uaOverride)
 						var getTrigger = await upload(upTrigger, false)
 					} else { var getTrigger = quotedMsg ? await kill.getProfilePicFromServer(quotedMsgObj.sender.id) : (mentionedJidList.length !== 0 ? await kill.getProfilePicFromServer(mentionedJidList[0]) : await kill.getProfilePicFromServer(user)) }
-					if (getTrigger == null) getTrigger = errorImg
+					if (getTrigger == null || typeof getTrigger === 'object') getTrigger = errorImg
 					await canvacord.Canvas.trigger(getTrigger).then(async (buffer) => { await kill.sendFile(from, `data:image/png;base64,${buffer.toString('base64')}`, `trigger.png`, 'Run...', id) })
 				} catch (error) {
 					console.log(color('[TRIGGER]', 'crimson'), color(`→ Obtive erros no comando ${prefix}${command} → ${error.message} - Você pode ignorar.`, 'gold'))
@@ -593,7 +602,7 @@ module.exports = kconfig = async (kill, message) => {
 						await kill.reply(from, mess.disabled(), id)
 					} else return await kill.reply(from, mess.kldica1(), id)
 				} else return await kill.reply(from, mess.soademiro(), id)
-				break	
+				break
 				
 			case 'bklist':
 				if (isGroupMsg && isGroupAdmins || isGroupMsg && isOwner) {
@@ -1060,28 +1069,37 @@ module.exports = kconfig = async (kill, message) => {
 				break
 				
 			case 'rolette':;case 'roleta':
+				if (!isxp) return await kill.reply(from, mess.needxpon(), id)
 				const limitrl = await gaming.getLimit(user, daily);if (gaming.isLimit(limitrl) == 1) return await kill.reply(from, mess.limitgame(), id)
 				const checkxpr = await gaming.getValue(user, nivel, 'xp');const xpMenorT = parseInt(checkxpr / 2, 10)
 				if (isNaN(args[0]) || !isInt(args[0]) || Number(args[0]) >= xpMenorT || Number(args[0]) < 250) return await kill.reply(from, mess.gaming(checkxpr, xpMenorT), id)
 				var nrolxp = Math.floor(Math.random() * -milSort) - Number(args[0]);var prolxp = Math.floor(Math.random() * milSort) + Number(args[0])
 				side == 1 ? await kill.sendFileFromUrl(from, 'https://i.ibb.co/vQj6nq4/roleta1.png', 'rol1.png', mess.loseshot(nrolxp), id) : await kill.sendFileFromUrl(from, 'https://i.ibb.co/PwKR2nR/roleta.jpg', 'rol.jpg', mess.winshot(prolxp), id)
 				side == 1 ? await gaming.addValue(user, Number(nrolxp), nivel, 'xp') : await gaming.addValue(user, Number(prolxp), nivel, 'xp')
-				if (noLimits == 0) await gaming.addLimit(user, daily, './lib/config/Gerais/limit.json') // remova para tirar o limite dos jogos
+				if (noLimits == 0) await gaming.addLimit(user, daily, './lib/config/Gerais/diario.json')
 				break
 				
 			case 'flip':
+				if (!isxp) return await kill.reply(from, mess.needxpon(), id)
 				const limitfp = await gaming.getLimit(user, daily);if (gaming.isLimit(limitfp) == 1) return await kill.reply(from, mess.limitgame(), id)
 				const checkxp = await gaming.getValue(user, nivel, 'xp');const xpMenorc = parseInt(checkxp / 2, 10)
 				if (isNaN(args[1]) || !isInt(args[1]) || Number(args[1]) >= xpMenorc || Number(args[1]) < 250) return await kill.reply(from, mess.gaming(checkxp, xpMenorc), id)
 				var nflipxp = Math.floor(Math.random() * -milSort) - Number(args[1]);var pflipxp = Math.floor(Math.random() * milSort) + Number(args[1])
 				if (args[0].toLowerCase() == 'cara' || args[0].toLowerCase() == 'coroa') {
 					if (side == 1) { await kill.sendStickerfromUrl(from, 'https://i.ibb.co/LJjkVK5/heads.png', { method: 'get' }, { author: config.Sticker_Author, pack: config.Sticker_Pack, keepScale: true }) } else { await kill.sendStickerfromUrl(from, 'https://i.ibb.co/wNnZ4QD/tails.png', { method: 'get' }, { author: config.Sticker_Author, pack: config.Sticker_Pack, keepScale: true }) }
-					if (args[0].toLowerCase() == 'cara') { await kill.reply(from, mess.flipwin(pflipxp) + ' "cara".', id);await gaming.addValue(user, Number(pflipxp), nivel, 'xp') } else { await kill.reply(from, mess.fliplose(nflipxp) + ' "coroa".', id);await gaming.addValue(user, Number(nflipxp), nivel, 'xp') }
+					if (args[0].toLowerCase() == 'cara' && side == 1) {
+						await kill.reply(from, mess.flipwin(pflipxp) + ' "cara".', id)
+						await gaming.addValue(user, Number(pflipxp), nivel, 'xp')
+					} else if (args[0].toLowerCase() == 'coroa' && side == 2) {
+						await kill.reply(from, mess.flipwin(pflipxp) + ' "coroa".', id)
+						await gaming.addValue(user, Number(pflipxp), nivel, 'xp')
+					} else { await kill.reply(from, mess.fliplose(nflipxp) + ` "${args[0].toLowerCase()}".`, id);await gaming.addValue(user, Number(nflipxp), nivel, 'xp') }
 				} else return await kill.reply(from, mess.fliphow(), id)
-				if (noLimits == 0) await gaming.addLimit(user, daily, './lib/config/Gerais/limit.json') // remova para tirar o limite dos jogos
+				if (noLimits == 0) await gaming.addLimit(user, daily, './lib/config/Gerais/diario.json')
 				break
 				
 			case 'cassino':
+				if (!isxp) return await kill.reply(from, mess.needxpon(), id)
 				const limitcs = await gaming.getLimit(user, daily)
 				if (gaming.isLimit(limitcs) == 1) return await kill.reply(from, mess.limitgame(), id)
 				var checkxpc = await gaming.getValue(user, nivel, 'xp')
@@ -1091,7 +1109,7 @@ module.exports = kconfig = async (kill, message) => {
 				var cassin = ['- 🍒 ', '- 🎃 ', '- 🍐 ']
 				var cassinend = valueRand(cassin) + valueRand(cassin) + valueRand(cassin) + '-'
 				if (cassinend == '- 🍒 - 🍒 - 🍒 -' || cassinend == '- 🍐 - 🍐 - 🍐 -' || cassinend == '- 🎃 - 🎃 - 🎃 -') { await gaming.addValue(user, Number(pcasxp), nivel, 'xp');await kill.reply(from, mess.caswin(cassinend, Number(pcasxp)), id) } else { await gaming.addValue(user, Number(-pcasxp), nivel, 'xp');await kill.reply(from, mess.caslose(cassinend, Number(-pcasxp)), id) }
-				if (noLimits == 0) await gaming.addLimit(user, daily, './lib/config/Gerais/limit.json') // remova para tirar o limite de tempo
+				if (noLimits == 0) await gaming.addLimit(user, daily, './lib/config/Gerais/diario.json')
 				break
 				
 				
@@ -1308,7 +1326,7 @@ module.exports = kconfig = async (kill, message) => {
 					var muted = functions[0].silence.includes(qmid) ? 'Sim' : 'Não'
 					var blocked = blockNumber.includes(qmid) ? 'Sim' : 'Não'
 					var { status } = sts;status == '' || status == '401' ? status = '' : status = `\n\n💌️ *Frase do recado?*\n${status}`
-					if (pic == null) { var pfp = errorurl } else { var pfp = pic }
+					if (pic == null || typeof pic === 'object') { var pfp = errorurl } else { var pfp = pic }
 					var playerRole = await gaming.getPatent(peoLevel)
 					var customRec = '';var GodKillsToo = '';var fuckALLife = '';var getGirlfriend = '';var myGuild = '';var stateOrigin = '\n\n👪 *Clã:* '
 					if (region == 'en') { fuckALLife = fmylife;GodKillsToo = randomBible;getGirlfriend = getHappyness } else {
@@ -1320,7 +1338,7 @@ module.exports = kconfig = async (kill, message) => {
 					const statesgp = await kill.getAllGroups()
 					for (let ids of statesgp) { const chatPersons = await kill.getGroupMembersId(`${ids.contact.id}`);if (chatPersons.includes(qmid)) { const groupInfo = await kill.getGroupInfo(`${ids.contact.id}`);stateOrigin += `\n➸ ${groupInfo.title}` } }
 					Object.keys(custom).forEach((i) => { if (custom[i].user == qmid) { customRec = `\n\n🌟 *Nota:* ${custom[i].msg}` } })
-					await kill.sendFileFromUrl(from, pfp, 'pfo.jpg', mess.profile(namae, myMsg, adm, muted, blocked, status, peoLevel, peoXp, getReqXP(peoLevel), playerRole) + `\n\n💴 *Í-Coin*: ${thecoinqtd}\n\n🏷️ *TAG:* #${theTagPorn}‎\n\n❇️ *Arma:* ${whatWeapon}‎\n\n📢 *Inspire-se:* ${theCitacion}‎\n\n💡 *Aprenda:* ${thisKillCats}‎\n\n🐏 *Versículo:* ${GodKillsToo}\n\n🔮 *Futuro:* ${fuckALLife}‎\n\n🌺 *Cantada:* ${getGirlfriend}\n\n🐂 *Tipo:* ${howGado}‎` + customRec + myGuild + stateOrigin)
+					await kill.sendFileFromUrl(from, pfp, 'pfo.jpg', mess.profile(namae, myMsg, adm, muted, blocked, status, peoLevel, peoXp, getReqXP(peoLevel), playerRole) + `\n\n💴 *Í-Coin*: ${thecoinqtd}\n\n🏷️ *TAG:* #${theTagPorn}‎\n\n❇️ *Arma:* ${whatWeapon}‎\n\n📢 *Inspire-se:* ${theCitacion}‎\n\n💡 *Aprenda:* ${thisKillCats}‎\n\n🐏 *Versículo:* ${GodKillsToo}\n\n🔮 *Futuro:* ${fuckALLife}‎\n\n🌺 *Cantada:* ${getGirlfriend}\n\n🐂 *Tipo:* ${howGado}‎` + customRec + myGuild + stateOrigin, id)
 				} else return await kill.reply(from, mess.sogrupo(), id)
 				break
 				
@@ -1483,7 +1501,7 @@ module.exports = kconfig = async (kill, message) => {
 				var atlka = functions[0].antilinks.includes(groupId) ? 'Sim' : 'Não'
 				var anttra = functions[0].antitrava.includes(groupId) ? 'Sim' : 'Não'
 				var grouppic = await kill.getProfilePicFromServer(groupId)
-				if (grouppic == null) { var pfp = errorurl } else { var pfp = grouppic }
+				if (grouppic == null || typeof grouppic === 'object') { var pfp = errorurl } else { var pfp = grouppic }
 				await kill.sendFileFromUrl(from, pfp, 'group.png', mess.groupinfo(groupname, totalMem, welgrp, atpngy, atlka, anttra, xpgp, fakegp, bklistgp, slcegp, autostk, ngrp, desc, gpOwner, admgp), id)
 				break
 				
@@ -1980,7 +1998,7 @@ module.exports = kconfig = async (kill, message) => {
 						const getphComP = await decryptMedia(phcoM, uaOverride)
 						var thephComP = await upload(getphComP, false)
 					} else { var thephComP = quotedMsg ? await kill.getProfilePicFromServer(quotedMsgObj.sender.id) : (mentionedJidList.length !== 0 ? await kill.getProfilePicFromServer(mentionedJidList[0]) : await kill.getProfilePicFromServer(user)) }
-					if (thephComP == null) thephComP = errorImg
+					if (thephComP == null || typeof thephComP === 'object') thephComP = errorImg
 					const mentionRmv = mentionedJidList.map(x => `@${x.replace('@c.us', '')}`).join(' ')
 					const dataSendPh = { username: arg.split('|')[0].replace(mentionRmv, ''), message: arg.split('|')[1], image: thephComP }
 					await canvacord.Canvas.phub(dataSendPh).then(async (buffer) => { await kill.sendFile(from, `data:image/png;base64,${buffer.toString('base64')}`, `pornhub.png`, '', id) })
@@ -1999,7 +2017,7 @@ module.exports = kconfig = async (kill, message) => {
 						const getYtComP = await decryptMedia(ytcoM, uaOverride)
 						var theYtComP = await upload(getYtComP, false)
 					} else { var theYtComP = quotedMsg ? await kill.getProfilePicFromServer(quotedMsgObj.sender.id) : (mentionedJidList.length !== 0 ? await kill.getProfilePicFromServer(mentionedJidList[0]) : await kill.getProfilePicFromServer(user)) }
-					if (theYtComP == null) theYtComP = errorImg
+					if (theYtComP == null || typeof theYtComP === 'object') theYtComP = errorImg
 					const mentionRemove = mentionedJidList.map(x => `@${x.replace('@c.us', '')}`).join(' ')
 					const dataSendYt = { username: arg.split('|')[0].replace(mentionRemove, ''), content: arg.split('|')[1], avatar: theYtComP, dark: false }
 					await canvacord.Canvas.youtube(dataSendYt).then(async (buffer) => { await kill.sendFile(from, `data:image/png;base64,${buffer.toString('base64')}`, `youtube.png`, '', id) })
@@ -2408,7 +2426,7 @@ module.exports = kconfig = async (kill, message) => {
 						const getLgBtPic = await decryptMedia(ALgBTt, uaOverride)
 						var theLgBtic = await upload(getLgBtPic, false)
 					} else { var theLgBtic = quotedMsg ? await kill.getProfilePicFromServer(quotedMsgObj.sender.id) : (mentionedJidList.length !== 0 ? await kill.getProfilePicFromServer(mentionedJidList[0]) : await kill.getProfilePicFromServer(user)) }
-					if (theLgBtic == null) theLgBtic = errorImg
+					if (theLgBtic == null || typeof theLgBtic === 'object') theLgBtic = errorImg
 					await canvacord.Canvas.rainbow(theLgBtic).then(async (buffer) => { await kill.sendFile(from, `data:image/png;base64,${buffer.toString('base64')}`, `gay.png`, mess.lgbt(lvpc, guei, lvrq, twgui), id) })
 				} catch (error) {
 					console.log(color('[GAY]', 'crimson'), color(`→ Obtive erros no comando ${prefix}${command} → ${error.message} - Você pode ignorar.`, 'gold'))
@@ -2508,8 +2526,8 @@ module.exports = kconfig = async (kill, message) => {
 				await kill.sendFileFromUrl(from, 'https://i.ibb.co/nczyDbx/licenca.png', 'licenca.png', mess.tos(), id)
 				await kill.sendPtt(from, `https://www.myinstants.com/media/sounds/resident-evil-4-merchant-thank-you.mp3`, id);await kill.reply(from, mess.everhost(), id)
 				break
-				
 			// NÃO REMOVA ESSA PARTE!
+				
 			case 'cmd':
 				if (!isOwner) return await kill.reply(from, mess.sodono(), id)
 				await kill.reply(from, mess.cmd(), id)
@@ -2524,7 +2542,6 @@ module.exports = kconfig = async (kill, message) => {
 			case 'mac':
 				if (args.length == 0) return await kill.reply(from, mess.noargs() + 'mac (ex: 70:B3:D5:03:62:A1).', id)
 				await kill.reply(from, mess.wait(), id)
-				await sleep(3000)
 				const maclk = await axios.get(`https://api.macvendors.com/${encodeURIComponent(body.slice(5))}`)
 				await kill.reply(from, `📱 → ${maclk.data}.`, id)
 				break
@@ -2683,7 +2700,7 @@ module.exports = kconfig = async (kill, message) => {
 				const userLevel = await gaming.getValue(wdfWho, nivel, 'level')
 				const userXp = await gaming.getValue(wdfWho, nivel, 'xp')
 				const ppLink = await kill.getProfilePicFromServer(wdfWho)
-				if (ppLink == null) { var pepe = errorImg } else { pepe = ppLink }
+				if (ppLink == null || typeof ppLink === 'object') { var pepe = errorImg } else { pepe = ppLink }
 				const ranq = new canvacord.Rank().setAvatar(pepe).setLevel(userLevel).setLevelColor('#ffa200', '#ffa200').setRank(Number(gaming.getRank(wdfWho, nivel))).setCurrentXP(userXp).setOverlay('#000000', 100, false).setRequiredXP(getReqXP(userLevel)).setProgressBar('#ffa200', 'COLOR').setBackground('COLOR', '#000000').setUsername(yourName).setDiscriminator(wdfWho.substring(6, 10)).setStatus('idle')
 				ranq.build().then(async (buffer) => {
 					canvacord.write(buffer, `./lib/media/img/${wdfWho.replace('@c.us', '')}_card.png`)
@@ -2800,8 +2817,8 @@ module.exports = kconfig = async (kill, message) => {
 				try {
 					if (isGroupMsg && isGroupAdmins || isGroupMsg && isOwner) {
 						if (!isBotGroupAdmins) return await kill.reply(from, mess.botademira(), id)
-						const aatimep = Number(args[0]) * 60000
-						const timeMsg = Number(aatimep) + 10000
+						const aatimep = quotedMsg ? Number(args[0] * 60000) : (mentionedJidList.length !== 0 ? Number(args[1] * 60000) : Number(args[1] * 60000))
+						const timeMsg = Number(aatimep) + 5000
 						if (quotedMsg) {
 							if (args.length == 0 || isNaN(args[0])) return await kill.reply(from, mess.nomark() + ' + time/tempo (minutos/minutes)\n(Ex: 30)', id)
 							const bgmcomum = quotedMsgObj.sender.id
@@ -2824,8 +2841,7 @@ module.exports = kconfig = async (kill, message) => {
 							await sleep(3000)
 							if (ownerNumber.includes(mentionedJidList[0]) || groupAdmins.includes(mentionedJidList[0])) return await kill.reply(from, mess.vip(), id)
 							await kill.removeParticipant(groupId, mentionedJidList[0])
-							await sleep(aatimep)
-							const checkIsHerea = await kill.getGroupMembersId(groupId)
+							await sleep(aatimep);const checkIsHerea = await kill.getGroupMembersId(groupId)
 							if (checkIsHerea.includes(mentionedJidList[0])) return await kill.reply(from, mess.janogp(), id)
 							await kill.reply(from, mess.timeadd(), id)
 							await kill.addParticipant(groupId, mentionedJidList[0])
@@ -2957,7 +2973,7 @@ module.exports = kconfig = async (kill, message) => {
 						const revigb = await decryptMedia(revimg, uaOverride)
 						var revUpl = await upload(revigb, false)
 					} else { var revUpl = quotedMsg ? await kill.getProfilePicFromServer(quotedMsgObj.sender.id) : (mentionedJidList.length !== 0 ? await kill.getProfilePicFromServer(mentionedJidList[0]) : await kill.getProfilePicFromServer(user)) }
-					if (revUpl == null) revUpl = errorImg
+					if (revUpl == null || typeof revUpl === 'object') revUpl = errorImg
 					await canvacord.Canvas.invert(revUpl).then(async (buffer) => { await kill.sendFile(from, `data:image/png;base64,${buffer.toString('base64')}`, `rev.png`, 'Ah não, sou daltônica!', id) })
 				} catch (error) {
 					console.log(color('[REVERTER]', 'crimson'), color(`→ Obtive erros no comando ${prefix}${command} → ${error.message} - Você pode ignorar.`, 'gold'))
@@ -3076,7 +3092,7 @@ module.exports = kconfig = async (kill, message) => {
 						const gethitlerPic = await decryptMedia(hitlerPict, uaOverride)
 						var thehitlerpic = await upload(gethitlerPic, false)
 					} else { var thehitlerpic = quotedMsg ? await kill.getProfilePicFromServer(quotedMsgObj.sender.id) : (mentionedJidList.length !== 0 ? await kill.getProfilePicFromServer(mentionedJidList[0]) : await kill.getProfilePicFromServer(user)) }
-					if (thehitlerpic == null) thehitlerpic = errorImg
+					if (thehitlerpic == null || typeof thehitlerpic === 'object') thehitlerpic = errorImg
 					await canvacord.Canvas.hitler(thehitlerpic).then(async (buffer) => { await kill.sendFile(from, `data:image/png;base64,${buffer.toString('base64')}`, `hitler.png`, '卍', id) })
 				} catch (error) {
 					await kill.reply(from, mess.fail(), id)
@@ -3092,7 +3108,7 @@ module.exports = kconfig = async (kill, message) => {
 						const getTrashPic = await decryptMedia(trashPict, uaOverride)
 						var theTrashpic = await upload(getTrashPic, false)
 					} else { var theTrashpic = quotedMsg ? await kill.getProfilePicFromServer(quotedMsgObj.sender.id) : (mentionedJidList.length !== 0 ? await kill.getProfilePicFromServer(mentionedJidList[0]) : await kill.getProfilePicFromServer(user)) }
-					if (theTrashpic == null) theTrashpic = errorImg
+					if (theTrashpic == null || typeof theTrashpic === 'object') theTrashpic = errorImg
 					await canvacord.Canvas.trash(theTrashpic).then(async (buffer) => { await kill.sendFile(from, `data:image/png;base64,${buffer.toString('base64')}`, `trash.png`, '🚮', id) })
 				} catch (error) {
 					await kill.reply(from, mess.fail(), id)
@@ -3108,7 +3124,7 @@ module.exports = kconfig = async (kill, message) => {
 						const getshitPic = await decryptMedia(shitPict, uaOverride)
 						var theshitpic = await upload(getshitPic, false)
 					} else { var theshitpic = quotedMsg ? await kill.getProfilePicFromServer(quotedMsgObj.sender.id) : (mentionedJidList.length !== 0 ? await kill.getProfilePicFromServer(mentionedJidList[0]) : await kill.getProfilePicFromServer(user)) }
-					if (theshitpic == null) theshitpic = errorImg
+					if (theshitpic == null || typeof theshitpic === 'object') theshitpic = errorImg
 					await canvacord.Canvas.shit(theshitpic).then(async (buffer) => { await kill.sendFile(from, `data:image/png;base64,${buffer.toString('base64')}`, `shit.png`, '💩💩💩', id) })
 				} catch (error) {
 					await kill.reply(from, mess.fail(), id)
@@ -3124,7 +3140,7 @@ module.exports = kconfig = async (kill, message) => {
 						const getshitPic = await decryptMedia(shitBlurt, uaOverride)
 						var theBlurpic = await upload(getshitPic, false)
 					} else { var theBlurpic = quotedMsg ? await kill.getProfilePicFromServer(quotedMsgObj.sender.id) : (mentionedJidList.length !== 0 ? await kill.getProfilePicFromServer(mentionedJidList[0]) : await kill.getProfilePicFromServer(user)) }
-					if (theBlurpic == null) theBlurpic = errorImg
+					if (theBlurpic == null || typeof theBlurpic === 'object') theBlurpic = errorImg
 					await canvacord.Canvas.blur(theBlurpic).then(async (buffer) => { await kill.sendFile(from, `data:image/png;base64,${buffer.toString('base64')}`, `blur.png`, '💡', id) })
 				} catch (error) {
 					await kill.reply(from, mess.fail(), id)
@@ -3140,7 +3156,7 @@ module.exports = kconfig = async (kill, message) => {
 						const getRipPic = await decryptMedia(ARipt, uaOverride)
 						var theRippic = await upload(getRipPic, false)
 					} else { var theRippic = quotedMsg ? await kill.getProfilePicFromServer(quotedMsgObj.sender.id) : (mentionedJidList.length !== 0 ? await kill.getProfilePicFromServer(mentionedJidList[0]) : await kill.getProfilePicFromServer(user)) }
-					if (theRippic == null) theRippic = errorImg
+					if (theRippic == null || typeof theRippic === 'object') theRippic = errorImg
 					await canvacord.Canvas.rip(theRippic).then(async (buffer) => { await kill.sendFile(from, `data:image/png;base64,${buffer.toString('base64')}`, `rip.png`, '☠️', id) })
 				} catch (error) {
 					await kill.reply(from, mess.fail(), id)
@@ -3465,6 +3481,7 @@ module.exports = kconfig = async (kill, message) => {
 				break
 				
 			case 'steal':
+				if (!isxp) return await kill.reply(from, mess.needxpon(), id)
 				if (mentionedJidList.length == 0 && !quotedMsg) return await kill.reply(from, mess.semmarcar(), id)
 				const noStealTm = await gaming.getLimit(user, daily)
 				if (gaming.isLimit(noStealTm) == 1) return await kill.reply(from, mess.steal(), id)
@@ -3474,13 +3491,13 @@ module.exports = kconfig = async (kill, message) => {
 				if (stealAlvo <= 1000) return await kill.sendTextWithMentions(from, mess.notalvo(theStealK, stealAlvo), id) // Precisa de 1000 XP para roubar
 				const checkUserXP = await gaming.getValue(user, nivel, 'xp');const getUsrLevel = await gaming.getValue(user, nivel, 'level')
 				var xpSteal = parseInt(stealAlvo / 10, 10);var stealGain = Math.floor(Math.random() * xpSteal + Number(lvpc)) + Number(lvpc);var stealLose = Number(-stealGain)
-				const checkMaxSteal = (stealLose, checkUserXP, stealGain, config, parseInt) => { for (let i = 0; i < 5; i++) { if (stealLose < -checkUserXP || isNaN(stealGain) || isNaN(stealLose) || stealGain > Number(config.Max_Steal)) { stealGain = parseInt(stealGain / 10, 10);stealLose = Number(-stealGain) } } }
-				if (functions[0].thieves.includes(qmid)) { lvpc = parseInt(lvpc + (getUsrLevel + 5)) } // Beneficio da Guilda de Ladrões, Steal melhora a cada nível, sem limite
-				if (functions[0].companions.includes(qmid)) { lvpc = parseInt(lvpc + (getUsrLevel / 2 + 2)) } // Beneficio da Guilda Companions, melhora o Steal mas com limitação
-				if (lvpc >= 70) { await kill.sendTextWithMentions(from, mess.stealwkd(theStealK, stealGain)) } else { await kill.sendTextWithMentions(from, mess.stealfail(theStealK, stealLose)) }
-				if (lvpc >= 70) { await gaming.addValue(user, Number(stealGain), nivel, 'xp') } else { await gaming.addValue(user, Number(stealLose), nivel, 'xp') }
-				if (lvpc >= 70) { await gaming.addValue(theStealK, Number(stealLose), nivel, 'xp') } else { await gaming.addValue(theStealK, Number(stealGain), nivel, 'xp') }
-				if (noLimits == 0) await gaming.addLimit(user, daily, './lib/config/Gerais/limit.json') // remova para tirar o limite dos jogos
+				for (let i = 0; i < 10; i++) { if (stealLose < -checkUserXP || isNaN(stealGain) || isNaN(stealLose) || stealGain > Number(config.Max_Steal)) { stealGain = parseInt(stealGain / 2, 10);stealLose = Number(-stealGain) } }
+				if (functions[0].thieves.includes(theStealK)) { lvpc = parseInt(lvpc + (getUsrLevel / 3), 10) } // Beneficio da Guilda de Ladrões, Steal melhora a cada nível, sem limite
+				if (functions[0].companions.includes(theStealK)) { lvpc = parseInt(lvpc + (getUsrLevel / 5), 10) } // Beneficio da Guilda Companions, melhora o Steal mas com limitação
+				if (lvpc > 70) { await kill.sendTextWithMentions(from, mess.stealwkd(theStealK, stealGain)) } else { await kill.sendTextWithMentions(from, mess.stealfail(theStealK, stealLose)) }
+				if (lvpc > 70) { await gaming.addValue(user, Number(stealGain), nivel, 'xp') } else { await gaming.addValue(user, Number(stealLose), nivel, 'xp') }
+				if (lvpc > 70) { await gaming.addValue(theStealK, Number(stealLose), nivel, 'xp') } else { await gaming.addValue(theStealK, Number(stealGain), nivel, 'xp') }
+				if (noLimits == 0) await gaming.addLimit(user, daily, './lib/config/Gerais/diario.json')
 				break
 				
 			case 'nolimit':
@@ -3496,9 +3513,10 @@ module.exports = kconfig = async (kill, message) => {
 				break
 				
 			case 'doar':
+				if (!isxp) return await kill.reply(from, mess.needxpon(), id)
 				if (args.length == 0) return await kill.reply(from, mess.semmarcar() + `\n\nEx: ${prefix}give @user <value/valor>`, id)
 				const checkValue = await gaming.getValue(user, nivel, 'xp')
-				var theXpdonate = quotedMsg ? parseInt(args[0]) : (mentionedJidList.length !== 0 ? parseInt(args[1]) : parseInt(args[1]))
+				var theXpdonate = quotedMsg ? parseInt(args[0], 10) : (mentionedJidList.length !== 0 ? parseInt(args[1], 10) : parseInt(args[1], 10))
 				if (isNaN(theXpdonate) || !isInt(theXpdonate) || Number(theXpdonate) > checkValue || theXpdonate < 1) return await kill.reply(from, mess.noxpalv(checkValue), id)
 				var sortFd = quotedMsg ? quotedMsgObj.sender.id : (mentionedJidList.length !== 0 ? mentionedJidList[0] : null)
 				if (sortFd == null) return await kill.reply(from, mess.cmdfailed(), id)
@@ -3552,7 +3570,7 @@ module.exports = kconfig = async (kill, message) => {
 						functions[0].pt.push(groupId);functions[0].es.splice(groupId, 1);functions[0].en.splice(groupId, 1)
 						await fs.writeFileSync('./lib/config/Gerais/functions.json', JSON.stringify(functions))
 						await kill.reply(from, mess.enabled(), id)
-					} else return await kill.reply(from, `Seu grupo já utiliza essa linguagem ou você digitou incorretamente.`, id)
+					} else return await kill.reply(from, mess.usinglang(), id)
 				} else if (isGroupMsg) {
 					await kill.reply(from, mess.soademiro(), id)
 				} else return await kill.reply(from, mess.sogrupo(), id)
@@ -3785,7 +3803,7 @@ module.exports = kconfig = async (kill, message) => {
 						const getJailPict = await decryptMedia(jailPictr, uaOverride)
 						var theJailPictu = await upload(getJailPict, false)
 					} else { var sendJailPictre = quotedMsg ? await kill.getProfilePicFromServer(quotedMsgObj.sender.id) : (mentionedJidList.length !== 0 ? await kill.getProfilePicFromServer(mentionedJidList[0]) : await kill.getProfilePicFromServer(user)) }
-					if (sendJailPictre == null) sendJailPictre = errorImg
+					if (sendJailPictre == null || typeof sendJailPictre === 'object') sendJailPictre = errorImg
 					await canvacord.Canvas.jail(sendJailPictre, true).then(async (buffer) => { await kill.sendFile(from, `data:image/png;base64,${buffer.toString('base64')}`, `jail.png`, '', id) })
 				} catch (error) {
 					await kill.reply(from, mess.fail(), id)
@@ -3809,7 +3827,7 @@ module.exports = kconfig = async (kill, message) => {
 								var theKisuPict = mentionedJidList.length !== 0 ? await kill.getProfilePicFromServer(mentionedJidList[0]) : await kill.getProfilePicFromServer(user)
 								var theKisuPict2 = quotedMsg ? await kill.getProfilePicFromServer(quotedMsgObj.sender.id) : await kill.getProfilePicFromServer(user)
 							}
-							if (theKisuPict == null) theKisuPict = errorImg;if (theKisuPict2 == null) theKisuPict2 = errorImg
+							if (theKisuPict == null || typeof theKisuPict === 'object') theKisuPict = errorImg;if (theKisuPict2 == null || typeof theKisuPict2 === 'object') theKisuPict2 = errorImg
 						}
 						await canvacord.Canvas.kiss(theKisuPict, theKisuPict2).then(async (buffer) => { await kill.sendFile(from, `data:image/png;base64,${buffer.toString('base64')}`, `kiss.png`, '', id) })
 					} else return await kill.reply(from, mess.semmarcar() + '\n2x.', id)
@@ -3835,7 +3853,7 @@ module.exports = kconfig = async (kill, message) => {
 								var theBedPict = mentionedJidList.length !== 0 ? await kill.getProfilePicFromServer(mentionedJidList[0]) : await kill.getProfilePicFromServer(user)
 								var theBedPict2 = quotedMsg ? await kill.getProfilePicFromServer(quotedMsgObj.sender.id) : await kill.getProfilePicFromServer(user)
 							}
-							if (theBedPict == null) theBedPict = errorImg;if (theBedPict2 == null) theBedPict2 = errorImg
+							if (theBedPict == null || typeof theBedPict === 'object') theBedPict = errorImg;if (theBedPict2 == null || typeof theBedPict2 === 'object') theBedPict2 = errorImg
 						}
 						await canvacord.Canvas.bed(theBedPict, theBedPict2).then(async (buffer) => { await kill.sendFile(from, `data:image/png;base64,${buffer.toString('base64')}`, `bed.png`, '', id) })
 					} else return await kill.reply(from, mess.semmarcar() + '\n2x.', id)
@@ -3871,7 +3889,7 @@ module.exports = kconfig = async (kill, message) => {
 								var theSpankPic = mentionedJidList.length !== 0 ? await kill.getProfilePicFromServer(mentionedJidList[0]) : await kill.getProfilePicFromServer(user)
 								var theSpankPic2 = quotedMsg ? await kill.getProfilePicFromServer(quotedMsgObj.sender.id) : await kill.getProfilePicFromServer(user)
 							}
-							if (theSpankPic == null) theSpankPic = errorImg;if (theSpankPic2 == null) theSpankPic2 = errorImg
+							if (theSpankPic == null || typeof theSpankPic === 'object') theSpankPic = errorImg;if (theSpankPic2 == null || typeof theSpankPic2 === 'object') theSpankPic2 = errorImg
 						}
 						await canvacord.Canvas.spank(theSpankPic, theSpankPic2).then(async (buffer) => { await kill.sendFile(from, `data:image/png;base64,${buffer.toString('base64')}`, `spank.png`, '', id) })
 					} else return await kill.reply(from, mess.semmarcar() + '\n2x.', id)
@@ -3897,7 +3915,7 @@ module.exports = kconfig = async (kill, message) => {
 								var theBatSlap = mentionedJidList.length !== 0 ? await kill.getProfilePicFromServer(mentionedJidList[0]) : await kill.getProfilePicFromServer(user)
 								var theBatSlap2 = quotedMsg ? await kill.getProfilePicFromServer(quotedMsgObj.sender.id) : await kill.getProfilePicFromServer(user)
 							}
-							if (theBatSlap == null) theBatSlap = errorImg;if (theBatSlap2 == null) theBatSlap2 = errorImg
+							if (theBatSlap == null || typeof theBatSlap === 'object') theBatSlap = errorImg;if (theBatSlap2 == null || typeof theBatSlap2 === 'object') theBatSlap2 = errorImg
 						}
 						await canvacord.Canvas.slap(theBatSlap, theBatSlap2).then(async (buffer) => { await kill.sendFile(from, `data:image/png;base64,${buffer.toString('base64')}`, `spank.png`, '', id) })
 					} else return await kill.reply(from, mess.semmarcar() + '\n2x.', id)
@@ -3926,7 +3944,7 @@ module.exports = kconfig = async (kill, message) => {
 								var theboyfriend2 = quotedMsg ? await kill.getProfilePicFromServer(quotedMsgObj.sender.id) : await kill.getProfilePicFromServer(user)
 								var theboyfriend3 = false
 							}
-							if (theboyfriend == null) theboyfriend = errorImg;if (theboyfriend2 == null) theboyfriend2 = errorImg;if (theboyfriend3 == null) theboyfriend3 = errorImg;
+							if (theboyfriend == null || typeof theboyfriend === 'object') theboyfriend = errorImg;if (theboyfriend2 == null || typeof theboyfriend2 === 'object') theboyfriend2 = errorImg;if (theboyfriend3 == null || typeof theboyfriend3 === 'object') theboyfriend3 = errorImg;
 						}
 						await canvacord.Canvas.distracted(theboyfriend, theboyfriend2, theboyfriend3).then(async (buffer) => { await kill.sendFile(from, `data:image/png;base64,${buffer.toString('base64')}`, `distract.png`, '', id) })
 					} else return await kill.reply(from, mess.semmarcar() + '\n3x.', id)
@@ -3944,7 +3962,7 @@ module.exports = kconfig = async (kill, message) => {
 						const jokePicImg = await decryptMedia(jokePict, uaOverride)
 						var jokErPictF = await upload(jokePicImg, false)
 					} else { var jokErPictF = quotedMsg ? await kill.getProfilePicFromServer(quotedMsgObj.sender.id) : (mentionedJidList.length !== 0 ? await kill.getProfilePicFromServer(mentionedJidList[0]) : await kill.getProfilePicFromServer(user)) }
-					if (jokErPictF == null) jokErPictF = errorImg
+					if (jokErPictF == null || typeof jokErPictF === 'object') jokErPictF = errorImg
 					await canvacord.Canvas.jokeOverHead(jokErPictF).then(async (buffer) => { await kill.sendFile(from, `data:image/png;base64,${buffer.toString('base64')}`, `joke.png`, '', id) })
 				} catch (error) {
 					await kill.reply(from, mess.fail(), id)
@@ -3980,7 +3998,7 @@ module.exports = kconfig = async (kill, message) => {
 						const getnidabPict = await decryptMedia(nidabPictr, uaOverride)
 						var thenidabPictu = await upload(getnidabPict, false)
 					} else { var thenidabPictu = quotedMsg ? await kill.getProfilePicFromServer(quotedMsgObj.sender.id) : (mentionedJidList.length !== 0 ? await kill.getProfilePicFromServer(mentionedJidList[0]) : await kill.getProfilePicFromServer(user)) }
-					if (thenidabPictu == null) thenidabPictu = errorImg
+					if (thenidabPictu == null || typeof thenidabPictu === 'object') thenidabPictu = errorImg
 					await canvacord.Canvas.affect(thenidabPictu).then(async (buffer) => { await kill.sendFile(from, `data:image/png;base64,${buffer.toString('base64')}`, `baby.png`, '', id) })
 				} catch (error) {
 					await kill.reply(from, mess.fail(), id)
@@ -4004,7 +4022,7 @@ module.exports = kconfig = async (kill, message) => {
 								var fundPict = mentionedJidList.length !== 0 ? await kill.getProfilePicFromServer(mentionedJidList[0]) : await kill.getProfilePicFromServer(user)
 								var fundPict2 = quotedMsg ? await kill.getProfilePicFromServer(quotedMsgObj.sender.id) : await kill.getProfilePicFromServer(user)
 							}
-							if (fundPict == null) fundPict = errorImg;if (fundPict2 == null) fundPict2 = errorImg
+							if (fundPict == null || typeof fundPict === 'object') fundPict = errorImg;if (fundPict2 == null || typeof fundPict2 === 'object') fundPict2 = errorImg
 						}
 						await canvacord.Canvas.fuse(fundPict, fundPict2).then(async (buffer) => { await kill.sendFile(from, `data:image/png;base64,${buffer.toString('base64')}`, `fuse.png`, '', id) })
 					} else return await kill.reply(from, mess.semmarcar() + '\n2x.', id)
@@ -4022,7 +4040,7 @@ module.exports = kconfig = async (kill, message) => {
 						const getbeautPict = await decryptMedia(beautPictr, uaOverride)
 						var thebeautPictu = await upload(getbeautPict, false)
 					} else { var thebeautPictu = quotedMsg ? await kill.getProfilePicFromServer(quotedMsgObj.sender.id) : (mentionedJidList.length !== 0 ? await kill.getProfilePicFromServer(mentionedJidList[0]) : await kill.getProfilePicFromServer(user)) }
-					if (thebeautPictu == null) thebeautPictu = errorImg
+					if (thebeautPictu == null || typeof thebeautPictu === 'object') thebeautPictu = errorImg
 					await canvacord.Canvas.beautiful(thebeautPictu).then(async (buffer) => { await kill.sendFile(from, `data:image/png;base64,${buffer.toString('base64')}`, `beautiful.png`, '', id) })
 				} catch (error) {
 					await kill.reply(from, mess.fail(), id)
@@ -4038,7 +4056,7 @@ module.exports = kconfig = async (kill, message) => {
 						const getPixelPict = await decryptMedia(pixelPictr, uaOverride)
 						var thePixelPictu = await upload(getPixelPict, false)
 					} else { var thePixelPictu = quotedMsg ? await kill.getProfilePicFromServer(quotedMsgObj.sender.id) : (mentionedJidList.length !== 0 ? await kill.getProfilePicFromServer(mentionedJidList[0]) : await kill.getProfilePicFromServer(user)) }
-					if (thePixelPictu == null) thePixelPictu = errorImg
+					if (thePixelPictu == null || typeof thePixelPictu === 'object') thePixelPictu = errorImg
 					await canvacord.Canvas.pixelate(thePixelPictu).then(async (buffer) => { await kill.sendFile(from, `data:image/png;base64,${buffer.toString('base64')}`, `pixelate.png`, '', id) })
 				} catch (error) {
 					await kill.reply(from, mess.fail(), id)
@@ -4054,7 +4072,7 @@ module.exports = kconfig = async (kill, message) => {
 						const getWantedPic = await decryptMedia(wantedPict, uaOverride)
 						var thePicWanted = await upload(getWantedPic, false)
 					} else { var thePicWanted = quotedMsg ? await kill.getProfilePicFromServer(quotedMsgObj.sender.id) : (mentionedJidList.length !== 0 ? await kill.getProfilePicFromServer(mentionedJidList[0]) : await kill.getProfilePicFromServer(user)) }
-					if (thePicWanted == null) thePicWanted = errorImg
+					if (thePicWanted == null || typeof thePicWanted === 'object') thePicWanted = errorImg
 					await canvacord.Canvas.wanted(thePicWanted).then(async (buffer) => { await kill.sendFile(from, `data:image/png;base64,${buffer.toString('base64')}`, `reward.png`, '', id) })
 				} catch (error) {
 					await kill.reply(from, mess.fail(), id)
@@ -4070,7 +4088,7 @@ module.exports = kconfig = async (kill, message) => {
 						const downNmrImg = await decryptMedia(aNormalImg, uaOverride)
 						var theSharpedImg = await upload(downNmrImg, false)
 					} else { var theSharpedImg = quotedMsg ? await kill.getProfilePicFromServer(quotedMsgObj.sender.id) : (mentionedJidList.length !== 0 ? await kill.getProfilePicFromServer(mentionedJidList[0]) : await kill.getProfilePicFromServer(user)) }
-					if (theSharpedImg == null) theSharpedImg = errorImg;sharplvl = mentionedJidList.length !== 0 ? args[1] : args.length >= 1 && !isNaN(args[0]) ? args[0] : 1
+					if (theSharpedImg == null || typeof theSharpedImg === 'object') theSharpedImg = errorImg;sharplvl = mentionedJidList.length !== 0 ? args[1] : args.length >= 1 && !isNaN(args[0]) ? args[0] : 1
 					await canvacord.Canvas.sharpen(theSharpedImg).then(async (buffer) => { await kill.sendFile(from, `data:image/png;base64,${buffer.toString('base64')}`, `sharp.png`, '', id) })
 				} catch (error) {
 					await kill.reply(from, mess.fail(), id)
@@ -4086,7 +4104,7 @@ module.exports = kconfig = async (kill, message) => {
 						const whoisImage = await decryptMedia(afuckImg, uaOverride)
 						var theBurnFire = await upload(whoisImage, false)
 					} else { var theBurnFire = quotedMsg ? await kill.getProfilePicFromServer(quotedMsgObj.sender.id) : (mentionedJidList.length !== 0 ? await kill.getProfilePicFromServer(mentionedJidList[0]) : await kill.getProfilePicFromServer(user)) }
-					if (theBurnFire == null) theBurnFire = errorImg;burnlvl = mentionedJidList.length !== 0 ? args[1] : args.length >= 1 && !isNaN(args[0]) ? args[0] : 1
+					if (theBurnFire == null || typeof theBurnFire === 'object') theBurnFire = errorImg;burnlvl = mentionedJidList.length !== 0 ? args[1] : args.length >= 1 && !isNaN(args[0]) ? args[0] : 1
 					await canvacord.Canvas.burn(theBurnFire, Number(burnlvl)).then(async (buffer) => { await kill.sendFile(from, `data:image/png;base64,${buffer.toString('base64')}`, `burn.png`, '', id) })
 				} catch (error) {
 					await kill.reply(from, mess.fail(), id)
@@ -4102,7 +4120,7 @@ module.exports = kconfig = async (kill, message) => {
 						const thrsimg = await decryptMedia(thrwtfimg, uaOverride)
 						var theThreImg = await upload(thrsimg, false)
 					} else { var theThreImg = quotedMsg ? await kill.getProfilePicFromServer(quotedMsgObj.sender.id) : (mentionedJidList.length !== 0 ? await kill.getProfilePicFromServer(mentionedJidList[0]) : await kill.getProfilePicFromServer(user)) }
-					if (theThreImg == null) theThreImg = errorImg;thrqtd = mentionedJidList.length !== 0 ? Number(args[1]) + 100 : args.length >= 1 && !isNaN(args[0]) ? Number(args[0]) + 100 : 100
+					if (theThreImg == null || typeof theThreImg === 'object') theThreImg = errorImg;thrqtd = mentionedJidList.length !== 0 ? Number(args[1]) + 100 : args.length >= 1 && !isNaN(args[0]) ? Number(args[0]) + 100 : 100
 					await canvacord.Canvas.threshold(theThreImg, Number(thrqtd)).then(async (buffer) => { await kill.sendFile(from, `data:image/png;base64,${buffer.toString('base64')}`, `threshold.png`, '', id) })
 				} catch (error) {
 					await kill.reply(from, mess.fail(), id)
@@ -4118,7 +4136,7 @@ module.exports = kconfig = async (kill, message) => {
 						const ordonteit = await decryptMedia(ordontext, uaOverride)
 						var theLGBTopn = await upload(ordonteit, false)
 					} else { var theLGBTopn = quotedMsg ? await kill.getProfilePicFromServer(quotedMsgObj.sender.id) : (mentionedJidList.length !== 0 ? await kill.getProfilePicFromServer(mentionedJidList[0]) : await kill.getProfilePicFromServer(user)) }
-					if (theLGBTopn == null) theLGBTopn = errorImg
+					if (theLGBTopn == null || typeof theLGBTopn === 'object') theLGBTopn = errorImg
 					var opnionqs = body.slice(8).replace(mentionedJidList.map(x => `@${x.replace('@c.us', '')}`).join(' '), '')
 					await canvacord.Canvas.opinion(theLGBTopn, opnionqs).then(async (buffer) => { await kill.sendFile(from, `data:image/png;base64,${buffer.toString('base64')}`, `opnion.png`, '', id) })
 				} catch (error) {
@@ -4246,9 +4264,10 @@ module.exports = kconfig = async (kill, message) => {
 				break
 				
 			case 'agiotar':
+				if (!isxp) return await kill.reply(from, mess.needxpon(), id)
 				if (args.length <= 1) return await kill.reply(from, mess.semmarcar() + `\n\nEx: ${prefix}Agiotar @user <value/valor>`, id)
 				const checkAgiota = await gaming.getValue(user, nivel, 'xp')
-				var theAgiota = quotedMsg ? parseInt(args[0]) : (mentionedJidList.length !== 0 ? parseInt(args[1]) : parseInt(args[1]))
+				var theAgiota = quotedMsg ? parseInt(args[0], 10) : (mentionedJidList.length !== 0 ? parseInt(args[1], 10) : parseInt(args[1], 10))
 				var timeAgiota = quotedMsg ? args[1] : (mentionedJidList.length !== 0 ? args[2] : args[2])
 				if (isNaN(theAgiota) || !isInt(theAgiota) || Number(theAgiota) > checkAgiota || theAgiota < 100 || isNaN(timeAgiota) || timeAgiota < 5) return await kill.reply(from, mess.maxAgiota(checkAgiota), id)
 				var alvoAgiota = quotedMsg ? quotedMsgObj.sender.id : (mentionedJidList.length !== 0 ? mentionedJidList[0] : null)
@@ -4267,7 +4286,7 @@ module.exports = kconfig = async (kill, message) => {
 						const imgsepia = await decryptMedia(crptimg, uaOverride)
 						var sepiaUpl = await upload(imgsepia, false)
 					} else { var sepiaUpl = quotedMsg ? await kill.getProfilePicFromServer(quotedMsgObj.sender.id) : (mentionedJidList.length !== 0 ? await kill.getProfilePicFromServer(mentionedJidList[0]) : await kill.getProfilePicFromServer(user)) }
-					if (sepiaUpl == null) sepiaUpl = errorImg
+					if (sepiaUpl == null || typeof sepiaUpl === 'object') sepiaUpl = errorImg
 					await canvacord.Canvas.invert(sepiaUpl).then(async (buffer) => { await kill.sendFile(from, `data:image/png;base64,${buffer.toString('base64')}`, `sepia.png`, '', id) })
 				} catch (error) {
 					console.log(color('[SEPIA]', 'crimson'), color(`→ Obtive erros no comando ${prefix}${command} → ${error.message} - Você pode ignorar.`, 'gold'))
@@ -4307,11 +4326,11 @@ module.exports = kconfig = async (kill, message) => {
 				if (gaming.isLimit(waitToChange) == 1) return await kill.reply(from, mess.waitNewGuild(), id)
 				if (args.length !== 0 && args[0].toLowerCase() == '-thieves' || args.length !== 0 && args[0].toLowerCase() == '-companions') {
 					if (functions[0].thieves.includes(user) && args[0].toLowerCase() == '-thieves' || functions[0].companions.includes(user) && args[0].toLowerCase() == '-companions') return await kill.reply(from, mess.onGuild(), id)
-					if (functions[0].thieves.includes(user) || functions[0].companions.includes(user)) { await kill.reply(from, mess.changeGuild(), id);functions[0].companions.splice(user, 1);functions[0].thieves.splice(groupId, 1) }
+					if (functions[0].thieves.includes(user) || functions[0].companions.includes(user)) { await kill.reply(from, mess.changeGuild(), id);functions[0].companions.splice(user, 1);functions[0].thieves.splice(user, 1) }
 					if (args[0].toLowerCase() == '-thieves') { functions[0].thieves.push(user) } else if (args[0].toLowerCase() == '-companions') { functions[0].companions.push(user) }
 					await fs.writeFileSync('./lib/config/Gerais/functions.json', JSON.stringify(functions))
 					await kill.reply(from, mess.newGuild(), id)
-					if (noLimits == 0) await gaming.addLimit(user, guildlimit, './lib/config/Gerais/limit.json') // remova para tirar o limite dos jogos
+					if (noLimits == 0) await gaming.addLimit(user, guildlimit, './lib/config/Gerais/limit.json')
 				} else return await kill.reply(from, mess.helpGuild(), id)
 				break
 				
@@ -4370,7 +4389,7 @@ module.exports = kconfig = async (kill, message) => {
 				if (isCmd) {
 					var havEaCmd = 0;for (let o = 0; o < cmds.length; o++) { if (Object.keys(cmds[o]) == command) { Object.keys(cmds[o]).forEach(async (i) => { await kill.reply(from, cmds[o][i], id) });havEaCmd = 1;break } }
 					if (havEaCmd == 1) return
-					await exec(`cd lib/config/Utilidades && bash -c 'grep -i "${command.slice(0, 4)}" comandos.txt | shuf -n 1'`, async (error, stdout, stderr) => {
+					await exec(`cd lib/config/Utilidades && bash -c 'grep -i "${command.slice(0, 3)}" comandos.txt | shuf -n 1'`, async (error, stdout, stderr) => {
 						if (error || stderr || stdout == null || stdout == '') {
 							await kill.reply(from, mess.nocmd(command), id)
 						} else return await kill.reply(from, mess.previewcmd(stdout), id)

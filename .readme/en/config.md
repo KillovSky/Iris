@@ -26,6 +26,8 @@ Edit all the info bellow:
 - [Min-XP-Earn](https://github.com/KillovSky/iris/blob/main/lib/config/Gerais/config.json#22) - Opcional
 - [Iris-Coin](https://github.com/KillovSky/iris/blob/main/lib/config/Gerais/config.json#23) - Opcional
 - [Max-Steal](https://github.com/KillovSky/iris/blob/main/lib/config/Gerais/config.json#24) - Opcional
+- [Max_Characters](https://github.com/KillovSky/iris/blob/main/lib/config/Gerais/config.json#25) - Opcional
+- [XP_Difficulty](https://github.com/KillovSky/iris/blob/main/lib/config/Gerais/config.json#26) - Opcional
 
 ### How to get an API-KEY
 
@@ -37,7 +39,7 @@ You can get an API-KEY by creating an account on the requested sites, and yes, i
 - [NASA](https://api.nasa.gov)
 - [Deep-AI](https://deepai.org)
 - [The Movie Database](https://developers.themoviedb.org/3)
-- [ACR-Cloud](https://www.acrcloud.com/)
+- [ACR-Cloud](https://console.acrcloud.com/avr?#/projects/online)
 
 ### What does the setup do?
 
@@ -53,7 +55,7 @@ The configuration is essential because they affect commands, if you don't config
 
 - ```WallHaven``` is for getting Wallpapers.
 
-- ```Deep-AI``` is for the ```Anti-Porn``` & ```Toonify``` functions.
+- ```Deep-AI``` is for the ```Anti-Porn``` function.
 
 - ```The Movie Database``` is for searching movies info.
 
@@ -88,6 +90,10 @@ The configuration is essential because they affect commands, if you don't config
 - ```Iris-Coin``` is the received amount of the `Íris Coin` per level, the `Íris-Coin` still a surprise for everyone, in future she will be usable (only at WhatsApp ofcourse), edit this is opcional.
 
 - ```Max-Steal``` is the maximum XP you can steal with `steal` command, edit this is opcional.
+
+- ```Max-Characters``` is the maximum size of message, messages bigger that this limit will make Íris kick the user who as send, edit this is opcional.
+
+- ```XP-Difficulty``` control how hard is to get a new level, higher values mean more difficulty to level up, edit this is opcional.
 
 ### How to configure?
 

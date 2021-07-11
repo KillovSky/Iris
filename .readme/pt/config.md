@@ -37,7 +37,7 @@ Você pode obter uma API-KEY criando uma conta nos sites abaixo, e sim, só uso 
 - [NASA](https://api.nasa.gov)
 - [Deep-AI](https://deepai.org)
 - [The Movie Database](https://developers.themoviedb.org/3)
-- [ACR-Cloud](https://www.acrcloud.com/)
+- [ACR-Cloud](https://console.acrcloud.com/avr?#/projects/online)
 
 ### O que a configuração faz?
 
@@ -53,7 +53,7 @@ A configuração é essencial porque afetam os comandos, se você não configura
 
 - ```WallHaven``` serve para adquirir wallpapers.
 
-- ```Deep-AI``` serve para as funções ```Anti-Porn``` & ```Toonify```.
+- ```Deep-AI``` serve para as funções ```Anti-Porn```.
 
 - ```The Movie Database``` permite a busca por filmes.
 
@@ -88,6 +88,10 @@ A configuração é essencial porque afetam os comandos, se você não configura
 - ```Iris-Coin``` é a quantidade de `Íris Coin` ganha por nível, a `Íris-Coin` ainda permanece de surpresa para todos, no futuro será usada (só no WhatsApp claro), edição opcional.
 
 - ```Max-Steal``` é o máximo de XP que pode ser adquirido com o comando `steal`, edição opcional.
+
+- ```Max-Characters``` é o tamanho máximo de mensagem, mensagens que passem desse limite farão com que a Íris bana quem enviou, edição opcional.
+
+- ```XP-Difficulty``` controla a dificuldade de level up, valores mais altos significam mais dificuldade, edição opcional.
 
 ### Como configurar?
 

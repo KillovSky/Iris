@@ -1,6 +1,6 @@
 {
   "name": "iris",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "private": "true",
   "description": "A bot oficial do Legião Z!",
   "main": "index.js",

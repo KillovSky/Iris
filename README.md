@@ -104,10 +104,13 @@ Digite no seu chat a mensagem, se você editou sua prefix, troque a '/' para o c
 ```
 
 ### Crie seus comandos
-Há uma base simples para suas criações por [aqui](https://github.com/KillovSky/iris/blob/main/config.js#L4364), sem Prefix [aqui](https://github.com/KillovSky/iris/blob/main/config.js#L321), basta que você remova a "/\*" e a "\*/" para utilizá-la, se precisar de outros tipos, você pode ver sobre eles por [aqui](https://docs.openwa.dev/classes/api_client.client.html), se obtiver dificuldades, venha perguntar [aqui](https://bit.ly/3owVJoB).
+Há uma base simples para suas criações por [aqui](https://github.com/KillovSky/iris/blob/main/config.js#L4384), sem Prefix [aqui](https://github.com/KillovSky/iris/blob/main/config.js#L331), basta que você remova a "/\*" e a "\*/" para utilizá-la, se precisar de outros tipos, você pode ver sobre eles por [aqui](https://docs.openwa.dev/classes/api_client.client.html), se obtiver dificuldades, venha perguntar [aqui](https://bit.ly/3owVJoB).
 
 ### Alertas no WhatsApp
-Para receber também as mensagem de erros da Íris pelo WhatsApp, remova a "//" da linha [Catch](https://github.com/KillovSky/iris/blob/main/config.js#L4383).
+Para receber também as mensagem de erros da Íris pelo WhatsApp, remova a "//" da linha [Catch](https://github.com/KillovSky/iris/blob/main/config.js#L4403).
+
+### Desativar a auto-abertura de navegador do bomb
+Para fazer com que o navegador pare de abrir toda vez que iniciar a Íris, abra a pasta ```node_modules``` e vá em ```bomber-api```, abra o arquivo ```index.js``` e remova as linhas ```"open(`http://localhost:3000/`)"``` e ```"open(`http://localhost:${arguments.port}/`)"```, se você obteve problemas com a porta 3000, você pode editar a ```"app.listen(3000"``` para uma porta aleatória que não esteja em uso.
 
 ### Agradecimentos:
 - [Open-WA](https://github.com/open-wa)

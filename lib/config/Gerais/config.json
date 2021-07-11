@@ -24,5 +24,7 @@
 	"Max_Steal": "3000",
 	"Acr_Host": "INSIRA A SUA HOST ACR-CLOUD",
 	"Acr_Access": "INSIRA A API-KEY ACR-CLOUD",
-	"Acr_Secret": "INSIRA A API-KEY SECRET ACR-CLOUD"
+	"Acr_Secret": "INSIRA A API-KEY SECRET ACR-CLOUD",
+	"Max_Characters": "5000",
+	"XP_Difficulty": "5"
 }
