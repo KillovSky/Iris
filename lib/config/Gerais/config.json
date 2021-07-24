@@ -1,7 +1,7 @@
 {
-	"Language": "pt",
-	"Owner": ["Insira seu Número@c.us", "Número 2 - Opcional@c.us", "Não remova a @c.us - 3° dono@c.us"],
-	"DDI": "55",
+	"Language": "es",
+	"Owner": ["6594590828@c.us", "Número 2 - Opcional@c.us", "Não remova a @c.us - 3° dono@c.us"],
+	"DDI": "65",
 	"Prefix": "/",
 	"API_NoFlash": "INSIRA A API_KEY NOFLASH",
 	"API_RemoveBG": "INSIRA A API_KEY REMOVEBG",
