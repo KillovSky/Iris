@@ -1,1 +1,18 @@
-[{"anti":[],"silence":[],"antilinks":[],"antiporn":[],"antitrava":[],"blacklist":[],"fake":[],"pt":[],"es":[],"en":[],"nsfw":[],"sticker":[],"welcome":[],"xp":[],"thieves":[],"companions":[]}]
+{
+	"anti": [],
+	"silence": [],
+	"antilinks": [],
+	"antiporn": [],
+	"antitrava": [],
+	"blacklist": [],
+	"fake": [],
+	"nsfw": [],
+	"sticker": [],
+	"welcome": [],
+	"xp": [],
+	"guild": [
+		"COMPANIONS",
+		"THIEVES"
+	],
+	"vips": []
+}
