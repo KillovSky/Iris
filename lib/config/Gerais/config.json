@@ -32,7 +32,6 @@
 	"Language": "pt",
 	"Max_Msg_Cache": "3000",
 	"Max_Characters": "5000",
-	"Max_Commands": "5",
 	"Max_Download_Size": "16",
 	"Max_Groups": "10",
 	"Max_Revoked": "20",

@@ -37,7 +37,7 @@ const functions = JSON.parse(fs.readFileSync('./lib/config/Gerais/functions.json
 const start = async (kill = new Client()) => {
 	try {
 		try {
-			const getversion = await axios.get('https://raw.githubusercontent.com/KillovSky/iris/dev/package.json')
+			const getversion = await axios.get('https://raw.githubusercontent.com/KillovSky/iris/main/package.json')
 			if (irisvs.version !== getversion.data.version) {
 				console.log(tools('others').color('\n[UPDATE]', 'crimson'), tools('others').color(`Uma nova versão da Íris foi lançada [${getversion.data.version}], atualize para obter melhorias e correções! → ${irisvs.homepage}`, 'gold'))
 			}
@@ -75,7 +75,7 @@ const start = async (kill = new Client()) => {
 		}
 
 		// Backup dos arquivos toda vez que religar a BOT
-		await exec(`bash -c 'zip -r "lib/config/Backup/${moment().format('DD-MM-YY # HH-mm-ss')}.zip" lib/config/Gerais'`, async (err) => {
+		await exec(`bash -c 'tar -zcvf "lib/config/Backup/${moment().format('DD-MM-YY # HH-mm-ss')}.tgz" lib/config/Gerais`, async (err) => {
 			if (!err) {
 				setTimeout(async () => {
 					for (let i of mylang(config.Language).bkpfinish()) {
@@ -86,9 +86,7 @@ const start = async (kill = new Client()) => {
 						}
 					}
 				}, 10000)
-			} else {
-				console.log(tools('others').color(`[BACKUP]`, 'crimson'), tools('others').color(`→ O Backup obteve uns problemas mas você pode ignorar - ou não. → "${err.message}"`, 'gold'))
-			}
+			} else console.log(tools('others').color(`[BACKUP]`, 'crimson'), tools('others').color(`→ O Backup obteve uns problemas mas você pode ignorar - ou não. → "${err.message}"`, 'gold'))
 		})
 
 		// Forçar recarregamento caso obtenha erros
@@ -96,7 +94,7 @@ const start = async (kill = new Client()) => {
 			if (state == 'UNPAIRED' || state == 'CONFLICT' || state == 'UNLAUNCHED') {
 				await kill.forceRefocus()
 			}
-			console.log(tools('others').color('[RELOAD]', 'red'), tools('others').color('Estou recarregando a página pois a conexão mudou →', 'lime'), tools('others').color(state, 'yellow'))
+			console.log(tools('others').color('[RELOAD]', 'red'), tools('others').color('Estou recarregando a página pois a conexão caiu →', 'lime'), tools('others').color(state, 'yellow'))
 		})
 
 		// Parte principal responsavel pelos comandos, além da limpeza de cache
@@ -122,7 +120,7 @@ const start = async (kill = new Client()) => {
 			if (!deleted.nolog.includes(msg.from)) {
 				let delMsg = (msg.type == 'chat' || msg.type == "buttons_response") ? msg.body : ((msg.type == 'image' || msg.type == 'video') && msg.caption) ? msg.caption : ''
 				deleted.texts.push({
-					"user": msg.from,
+					"user": msg.sender.id,
 					"message": delMsg,
 					"to": msg.to,
 					"time": (new Date).toString()
@@ -131,7 +129,7 @@ const start = async (kill = new Client()) => {
 					deleted.texts.shift()
 				}
 				await fs.writeFileSync('./lib/config/Utilidades/message.json', JSON.stringify(deleted))
-				console.log('[DELETED]', `"${msg.body.slice(0,10)}"`, 'AS', tools('others').color(moment(msg.t * 1000).format('DD/MM/YY HH:mm:ss'), 'yellow'), 'DE', msg.from)
+				console.log('[DELETED]', `"${msg.body.slice(0,10)}"`, 'AS', tools('others').color(moment(msg.t * 1000).format('DD/MM/YY HH:mm:ss'), 'yellow'), 'DE', delUser)
 			}
 		})
 
@@ -159,6 +157,10 @@ const start = async (kill = new Client()) => {
 			const eChat = await kill.getContact(event.who)
 			pushname = eChat.pushname || eChat.verifiedName || eChat.formattedName || 'Censored by Government'
 			const gChat = await kill.getChatById(event.chat)
+			const {
+				groupMetadata,
+				name
+			} = gChat
 			try {
 				if (event.action == 'add') {
 					if (functions.anti.includes(event.chat) && fuck && !isMyBot) {
@@ -170,7 +172,7 @@ const start = async (kill = new Client()) => {
 						await kill.sendText(event.chat, mylang(config.Language).entrace())
 						//await tools('others').sleep(2000) // Ative se a Íris remover antes de mandar a mensagem
 						await kill.removeParticipant(event.chat, event.who)
-						console.log(tools('others').color('[BLACKLIST]', 'red'), tools('others').color(`${pushname} - (${event.who.replace('@c.us', '')}) foi banido do ${gChat.name} por ter sido colocado na blacklist...`, 'yellow'))
+						console.log(tools('others').color('[BLACKLIST]', 'red'), tools('others').color(`${pushname} - (${event.who.replace('@c.us', '')}) foi banido do ${name} por ter sido colocado na blacklist...`, 'yellow'))
 						if (config.Auto_Block) return await kill.contactBlock(event.who) // Evita ser travado por putinhos
 					} else if (functions.fake.includes(event.chat) && !fake && !isMyBot) {
 						setLimit.oneFake == 1 ? setLimit.oneFake = 0 : setLimit.oneFake = 1
@@ -184,44 +186,44 @@ const start = async (kill = new Client()) => {
 						if (config.Auto_Block) {
 							await kill.contactBlock(event.who) // Evita ser travado por putinhos
 						}
-						console.log(tools('others').color('[FAKE]', 'red'), tools('others').color(`${pushname} - (${event.who.replace('@c.us', '')}) foi banido do ${gChat.name} por usar número falso ou ser de fora do país...`, 'yellow'))
+						console.log(tools('others').color('[FAKE]', 'red'), tools('others').color(`${pushname} - (${event.who.replace('@c.us', '')}) foi banido do ${name} por usar número falso ou ser de fora do país...`, 'yellow'))
 					} else if (isWelkom && !isMyBot && setLimit.welcOn == 0 && !fuck && fake) {
 						setLimit.welcOn = 1
 						if (Object.keys(welcmsg).includes(event.chat)) {
 							await kill.sendText(event.chat, welcmsg[event.chat]['welcome']['message'])
-							console.log(tools('others').color('[ENTROU]', 'red'), tools('others').color(`${pushname} - (${event.who.replace('@c.us', '')}) entrou no grupo ${gChat.name}...`, 'yellow'))
+							console.log(tools('others').color('[ENTROU]', 'red'), tools('others').color(`${pushname} - (${event.who.replace('@c.us', '')}) entrou no grupo ${name}...`, 'yellow'))
 							if (welcmsg[event.chat]['welcome']['onlyText']) return setLimit.welcOn = 0
 						}
 						var profile = await kill.getProfilePicFromServer(event.who)
 						if (typeof profile == 'object' || !tools('others').isUrl(profile)) {
 							profile = 'https://i.ibb.co/jRCpLfn/user.png'
 						}
-						const welcomer = await tools('canvas').welver(pushname, event.who.substring(6, 10), gChat.name, gChat.groupMetadata.participants.length, profile, canvacord)
-						await kill.sendFile(event.chat, tools('others').dataURI('image/png', welcomer), 'welcome.png', mylang(config.Language).welcome(pushname, gChat.name))
+						const welcomer = await tools('canvas').welver(pushname, event.who.substring(6, 10), name, groupMetadata.participants.length, profile, canvacord)
+						await kill.sendFile(event.chat, tools('others').dataURI('image/png', welcomer), 'welcome.png', mylang(config.Language).welcome(pushname, name))
 						if (config.Canvas_Audio) {
 							await kill.sendPtt(event.chat, canvacord.Sound_Welcome)
 						}
 						setLimit.welcOn = 0
-						console.log(tools('others').color('[ENTROU]', 'red'), tools('others').color(`${pushname} - (${event.who.replace('@c.us', '')}) entrou no grupo ${gChat.name}...`, 'yellow'))
+						console.log(tools('others').color('[ENTROU]', 'red'), tools('others').color(`${pushname} - (${event.who.replace('@c.us', '')}) entrou no grupo ${name}...`, 'yellow'))
 					}
 				} else if (event.action == 'remove' && isWelkom && !isMyBot && setLimit.abayo == 0 && !fuck && fake) {
 					setLimit.abayo = 1
 					if (Object.keys(welcmsg).includes(event.chat)) {
 						await kill.sendText(event.chat, welcmsg[event.chat]['goodbye']['message'])
-						console.log(tools('others').color('[SAIU/BAN]', 'red'), tools('others').color(`${pushname} - (${event.who.replace('@c.us', '')}) saiu ou foi banido do grupo ${gChat.name}...`, 'yellow'))
+						console.log(tools('others').color('[SAIU/BAN]', 'red'), tools('others').color(`${pushname} - (${event.who.replace('@c.us', '')}) saiu ou foi banido do grupo ${name}...`, 'yellow'))
 						if (welcmsg[event.chat]['goodbye']['onlyText']) return setLimit.abayo = 0
 					}
 					var profile = await kill.getProfilePicFromServer(event.who)
 					if (typeof profile == 'object' || !tools('others').isUrl(profile)) {
 						profile = 'https://i.ibb.co/jRCpLfn/user.png'
 					}
-					const bye = await tools('canvas').welver(pushname, event.who.substring(6, 10), gChat.name, gChat.groupMetadata.participants.length, profile, canvacord)
+					const bye = await tools('canvas').welver(pushname, event.who.substring(6, 10), name, groupMetadata.participants.length, profile, canvacord)
 					await kill.sendFile(event.chat, tools('others').dataURI('image/png', bye), 'goodbye.png', mylang(config.Language).bye(pushname))
 					if (config.Canvas_Audio) {
 						await kill.sendPtt(event.chat, canvacord.Sound_Goodbye)
 					}
 					setLimit.abayo = 0
-					console.log(tools('others').color('[SAIU/BAN]', 'red'), tools('others').color(`${pushname} - (${event.who.replace('@c.us', '')}) saiu ou foi banido do grupo ${gChat.name}...`, 'yellow'))
+					console.log(tools('others').color('[SAIU/BAN]', 'red'), tools('others').color(`${pushname} - (${event.who.replace('@c.us', '')}) saiu ou foi banido do grupo ${name}...`, 'yellow'))
 				}
 			} catch (err) {
 				setLimit = {
@@ -246,7 +248,7 @@ const start = async (kill = new Client()) => {
 		
 		// Faz backups periodicos durante a execução
 		setInterval(async () => {
-			await exec(`bash -c 'zip -r "lib/config/Backup/${moment().format('DD-MM-YY # HH-mm-ss')}.zip" lib/config/Gerais'`, async (err) => {
+			await exec(`bash -c 'tar -zcvf "lib/config/Backup/${moment().format('DD-MM-YY # HH-mm-ss')}.tgz" lib/config/Gerais`, async (err) => {
 				if (!err) {
 					console.log(tools('others').color(`[BACKUP]`, 'crimson'), tools('others').color(`→ O Backup periodico foi concluido com sucesso!`, 'gold'))
 				} else {
