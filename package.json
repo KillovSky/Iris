@@ -34,6 +34,7 @@
 		"ddg-scraper": "^1.0.2",
 		"ddgimages-node": "^1.0.1",
 		"deepai": "^1.0.17",
+		"discord-canvas": "^1.4.1",
 		"emoji-api": "^2.0.1",
 		"fluent-ffmpeg": "^2.1.2",
 		"free-textmaker-alpha": "^0.0.3",

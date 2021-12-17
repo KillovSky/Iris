@@ -107,6 +107,7 @@ global.region = config.Language
 var mess = mylang(region)
 moment.tz.setDefault(config.Moment_Timezone).locale(config.Moment_Locale)
 axios.defaults.headers.common['User-Agent'] = config.User_Agent
+var akistarted = 0
 var gameconfig = {}
 var lotery = {
 	"hasLast": false,
@@ -224,21 +225,21 @@ module.exports = kconfig = async (kill, message) => {
 		const isGroupCreator = isGroupMsg ? sender.id == chat.groupMetadata.owner : false
 
 		/*OUTRAS*/
-		const pollfile = `./lib/media/poll/${chatId.replace('@c.us', '')}.json`
+		const pollfile = `./lib/media/poll/${chatId.replace('@g.us', '')}.json`
 		var side = tools('others').randomNumber(1, 2)
 		var lvpc = tools('others').randomNumber(1, 100)
 		var milSort = tools('others').randomNumber(1, 1000)
 		const errorurl = 'https://img.wallpapersafari.com/desktop/1920/1080/19/44/evOxST.jpg'
 		const personPhoto = 'https://thispersondoesnotexist.com/image'
 		const errorImg = 'https://i.ibb.co/jRCpLfn/user.png'
-		const checkLvL = await tools('gaming').getValue(sender.id, nivel, chatId, 'level')
-		const patente = await tools('gaming').getPatent(checkLvL)
+		const checkLvL = tools('gaming').getValue(sender.id, nivel, chatId, 'level')
+		const patente = tools('gaming').getPatent(checkLvL)
 		const fileFor = ['pais', 'fruta', 'capital', 'empresa', 'nome']
 		// Função que envia uma resposta 
 		const sendRes = async (error, results) => {
 			if (!error) {
 				await kill.sendText(message.from, mess.wait())
-				let results = await tools('others').randVal(results.map(a => a.url))
+				let results = tools('others').randVal(results.map(a => a.url))
 				await kill.sendFileFromUrl(message.from, results, '', ';)', message.id)
 			} else return await kill.sendFileFromUrl(message.from, errorImg, '', 'Tãn tãn tãn...', message.id)
 		}
@@ -353,7 +354,7 @@ module.exports = kconfig = async (kill, message) => {
 
 		/*Contador de Mensagens (em grupo) | Para contar do PV bote sem aspas "isGroupMsg || !isGroupMsg"*/
 		if (isGroupMsg) {
-			await tools('gaming').addValue(sender.id, 1, nivel, chatId, 'msg')
+			tools('gaming').addValue(sender.id, 1, nivel, chatId, 'msg')
 		}
 
 		/*Muda a linguagem para a requisitada no comando newlang*/
@@ -412,10 +413,10 @@ module.exports = kconfig = async (kill, message) => {
 		/*Sistema do XP - Baseado no de Bocchi - Slavyan*/
 		if (isGroupMsg && isxp && !tools('gaming').isWin(sender.id) && !isBlocked) {
 			try {
-				await tools('gaming').wait(sender.id)
+				tools('gaming').wait(sender.id)
 				var gainedXP = Math.floor(Math.random() * Number(config.Max_XP_Earn)) + Number(config.Min_XP_Earn)
-				const usuarioLevel = await tools('gaming').getValue(sender.id, nivel, chatId, 'level')
-				var myGuildN = await tools('gaming').getValue(sender.id, nivel, chatId, 'guild')
+				const usuarioLevel = tools('gaming').getValue(sender.id, nivel, chatId, 'level')
+				var myGuildN = tools('gaming').getValue(sender.id, nivel, chatId, 'guild')
 				if (myGuildN.toUpperCase() == 'COMPANIONS') {
 					gainedXP = parseInt(gainedXP + (usuarioLevel * 4), 10) /*Guilda Companions ganha 4X*/
 				} else if (myGuildN.toUpperCase() == 'THIEVES') {
@@ -424,28 +425,28 @@ module.exports = kconfig = async (kill, message) => {
 					gainedXP = parseInt(gainedXP + (usuarioLevel * 2), 10) /* Guildas genericas ganham 2X */
 				}
 				myGuildN = myGuildN !== '' ? `\n➸ *Guilda:* ${myGuildN.toUpperCase()}` : ''
-				await tools('gaming').addValue(sender.id, gainedXP, nivel, chatId, 'xp')
-				const haveXptoUp = await tools('gaming').getValue(sender.id, nivel, chatId, 'xp')
+				tools('gaming').addValue(sender.id, gainedXP, nivel, chatId, 'xp')
+				const haveXptoUp = tools('gaming').getValue(sender.id, nivel, chatId, 'xp')
 				if (tools('gaming').LevelEXP(checkLvL) <= haveXptoUp) {
-					await tools('gaming').addValue(sender.id, 1, nivel, chatId, 'level')
-					await tools('gaming').addValue(sender.id, Number(config.Iris_Coin), nivel, chatId, 'coin')
-					let userStats = await tools('gaming').getValue(sender.id, nivel, chatId, null)
+					tools('gaming').addValue(sender.id, 1, nivel, chatId, 'level')
+					tools('gaming').addValue(sender.id, Number(config.Iris_Coin), nivel, chatId, 'coin')
+					let userStats = tools('gaming').getValue(sender.id, nivel, chatId, null)
 					await kill.reply(from, `*「 +1 NIVEL 」*\n\n➸ *Nome:* ${pushname}\n➸ *XP:* ${haveXptoUp} / ${tools('gaming').LevelEXP(checkLvL + 1)}\n➸ *Level:* ${checkLvL} -> ${userStats.level} 🆙 \n➸ *Í-Coin:* ${userStats.coin}${myGuildN}\n➸ *Patente:* *${patente}* 🎉`, id)
 					/*Desative ou Apague a linha do "kill.reply" acima se sua Íris floodar mensagens de "Level UP"*/
 				}
-			} catch (err) {
+			} catch (error) {
 				console.log(tools('others').color('[XP]', 'crimson'), err)
 			}
 		}
 
 		/*Adiciona nível caso tenha ganhado XP demais*/
-		let userStats = await tools('gaming').getValue(sender.id, nivel, chatId, null)
+		let userStats = tools('gaming').getValue(sender.id, nivel, chatId, null)
 		if (userStats.xp >= tools('gaming').LevelEXP(userStats.level)) {
-			await tools('gaming').addValue(sender.id, 1, nivel, chatId, 'level')
+			tools('gaming').addValue(sender.id, 1, nivel, chatId, 'level')
 		}
 		
 		/* Insere a Íris no ranking */
-		await tools('gaming').addValue(botNumber+'@c.us', 100, nivel, chatId, 'coin')
+		tools('gaming').addValue(botNumber+'@c.us', 100, nivel, chatId, 'coin')
 
 		/*Auto-stickers de fotos*/
 		if (isGroupMsg && autoSticker && isMedia && isImage && !isCmd && !isBot) {
@@ -493,9 +494,9 @@ module.exports = kconfig = async (kill, message) => {
 					gameconfig[chatId]['word'] = 0
 					gameconfig[chatId]['whoplay'] = 0
 					gameconfig[chatId]['hint'] = 0
-					let winType = await tools('others').randVal(['xp', 'coin', 'rubi', 'dima'])
+					let winType = tools('others').randVal(['xp', 'coin', 'rubi', 'dima'])
 					let winChos = await tools('others').randomNumber(config.Prize_Value_Min, config.Prize_Value_Max)
-					await tools('gaming').addValue(sender.id, Number(winChos), nivel, chatId, winType)
+					tools('gaming').addValue(sender.id, Number(winChos), nivel, chatId, winType)
 					await kill.sendTextWithMentions(from, `@${sender.id.replace('@c.us', '')} acertou!\n\n> ${body.toUpperCase()}\n\nRecompensa: ${winChos} ${winType.toUpperCase()}`)
 				} catch (error) {
 					/*Nada a ser feito*/
@@ -527,13 +528,13 @@ module.exports = kconfig = async (kill, message) => {
 
 		/*Anti Flood para PV'S*/
 		if (isCmd && tools('cooldown').isFiltered(chatId) && !isGroupMsg && !isOwner) {
-			await tools('gaming').addValue(sender.id, Number(-100), nivel, chatId, 'xp')
+			tools('gaming').addValue(sender.id, Number(-100), nivel, chatId, 'xp')
 			return console.log(tools('others').color('> [FLOOD AS]', 'red'), tools('others').color(moment(t * 1000).format('DD/MM/YY HH:mm:ss'), 'yellow'), tools('others').color(`"[${prefix}${command.toUpperCase()}] [${args.length}]"`, 'red'), 'DE', tools('others').color(`"${pushname} - [${sender.id.replace('@c.us', '')}]"`, 'red'))
 		}
 
 		/*Anti Flood para grupos*/
 		if (isCmd && tools('cooldown').isFiltered(chatId) && isGroupMsg && !isOwner) {
-			await tools('gaming').addValue(sender.id, Number(-100), nivel, chatId, 'xp')
+			tools('gaming').addValue(sender.id, Number(-100), nivel, chatId, 'xp')
 			return console.log(tools('others').color('> [FLOOD AS]', 'red'), tools('others').color(moment(t * 1000).format('DD/MM/YY HH:mm:ss'), 'yellow'), tools('others').color(`"[${prefix}${command.toUpperCase()}] [${args.length}]"`, 'red'), 'DE', tools('others').color(`"${pushname} - [${sender.id.replace('@c.us', '')}]"`, 'red'), 'EM', tools('others').color(`"${name}"`))
 		}
 
@@ -559,12 +560,12 @@ module.exports = kconfig = async (kill, message) => {
 
 		/*Impede SPAM*/
 		if (isCmd && !isOwner) {
-			await tools('cooldown').addFilter(chatId) // Para limitar apenas usuarios em vez de grupo, troque "chatId" por "user"
+			tools('cooldown').addFilter(chatId) // Para limitar apenas usuarios em vez de grupo, troque "chatId" por "user"
 		}
 
 		/* Roda multiplos comandos */
 		let cmdtorun = [command]
-		args.filter(c => c.includes(prefix)).map(b => cmdtorun.push(b.slice(1))) // Limitado para rodar apenas com o mesmo prefix se for todos os comandos
+		args.filter(c => c.includes(prefix) && !tools('others').isUrl(c)).map(b => cmdtorun.push(b.slice(1))) // Limitado para rodar apenas com o mesmo prefix se for todos os comandos
 
 		for (let i = 0; i < cmdtorun.length; i++) {
 
@@ -598,7 +599,7 @@ module.exports = kconfig = async (kill, message) => {
 							functions.anti.splice(bkls, 1)
 							await kill.reply(from, mess.bklistoff(), id)
 						} else return await kill.reply(from, mess.kldica2(), id)
-						await fs.writeFileSync('./lib/config/Gerais/anti.json', JSON.stringify(functions, null, "\t"))
+						fs.writeFileSync('./lib/config/Gerais/anti.json', JSON.stringify(functions, null, "\t"))
 					} else if (isGroupMsg) {
 						await kill.reply(from, mess.soademiro(), id)
 					} else return await kill.reply(from, mess.sogrupo(), id)
@@ -686,6 +687,16 @@ module.exports = kconfig = async (kill, message) => {
 						await kill.reply(from, mess.soademiro(), id)
 					} else return await kill.reply(from, mess.sogrupo(), id)
 				break
+				
+				case 'goodbye':
+					if (!isGroupMsg) return await kill.reply(from, mess.sogrupo(), id)
+					if (isGroupMsg && isGroupAdmins || isGroupMsg && isOwner) {
+						if (args.length !== 1) return await kill.reply(from, mess.onoff(), id)
+						await tools('handler').switchs(argl[0], functions, 'goodbye', chatId, mess.kldica1(), kill, message)
+					} else if (isGroupMsg) {
+						await kill.reply(from, mess.soademiro(), id)
+					} else return await kill.reply(from, mess.sogrupo(), id)
+				break
 
 				case 'link':
 					if (!isBotGroupAdmins) return await kill.reply(from, mess.botademira(), id)
@@ -716,8 +727,8 @@ module.exports = kconfig = async (kill, message) => {
 							await kill.reply(from, mess.soademiro(), id)
 						} else return await kill.reply(from, mess.sogrupo(), id)
 					} catch (error) {
+						tools('others').reportConsole(command, error)
 						await kill.reply(from, mess.addpessoa() + '\n\n' + mess.fail(command, error, time), id)
-						await tools('others').reportConsole(command, error)
 					}
 				break
 
@@ -735,8 +746,8 @@ module.exports = kconfig = async (kill, message) => {
 							await kill.reply(from, mess.soademiro(), id)
 						} else return await kill.reply(from, mess.sogrupo(), id)
 					} catch (error) {
+						tools('others').reportConsole(command, error)
 						await kill.reply(from, mess.addpessoa() + '\n\n' + mess.fail(command, error, time), id)
-						await tools('others').reportConsole(command, error)
 					}
 				break
 
@@ -897,7 +908,7 @@ module.exports = kconfig = async (kill, message) => {
 						if (functions.welcome.includes(chatId)) {
 							functions.welcome.splice(chatId, 1)
 							let useWelcomeAFT = 1
-							await fs.writeFileSync('./lib/config/Gerais/functions.json', JSON.stringify(functions, null, "\t"))
+							fs.writeFileSync('./lib/config/Gerais/functions.json', JSON.stringify(functions, null, "\t"))
 						}
 						for (let member of groupMembersId) {
 							if (!groupAdmins.includes(member) || !botNumber.includes(member) || !config.Owner.includes(member)) {
@@ -909,7 +920,7 @@ module.exports = kconfig = async (kill, message) => {
 						}
 						if (useWelcomeAFT == 1) {
 							functions.welcome.push(chatId)
-							await fs.writeFileSync('./lib/config/Gerais/functions.json', JSON.stringify(functions, null, "\t"))
+							fs.writeFileSync('./lib/config/Gerais/functions.json', JSON.stringify(functions, null, "\t"))
 						}
 						await kill.sendTextWithMentions(from, userRem.replace('@c.us', ''))
 					} else if (isGroupMsg) {
@@ -941,8 +952,8 @@ module.exports = kconfig = async (kill, message) => {
 							await kill.reply(from, mess.soademiro(), id)
 						} else return await kill.reply(from, mess.sogrupo(), id)
 					} catch (error) {
+						tools('others').reportConsole(command, error)
 						await kill.reply(from, mess.addpessoa() + '\n\n' + mess.fail(command, error, time), id)
-						await tools('others').reportConsole(command, error)
 					}
 				break
 
@@ -998,7 +1009,7 @@ module.exports = kconfig = async (kill, message) => {
 					if (isGroupMsg && isGroupAdmins || isGroupMsg && isOwner) {
 						if (args.length == 0 || argl[0] == '-help') return await kill.reply(from, mess.noargs() + 'new prefix.', id)
 						ctmprefix[chatId] = args[0]
-						await fs.writeFileSync('./lib/config/Gerais/prefix.json', JSON.stringify(ctmprefix, null, "\t"))
+						fs.writeFileSync('./lib/config/Gerais/prefix.json', JSON.stringify(ctmprefix, null, "\t"))
 						await kill.reply(from, mess.newprefix(args), id)
 					} else if (isGroupMsg) {
 						await kill.reply(from, mess.soademiro(), id)
@@ -1016,7 +1027,7 @@ module.exports = kconfig = async (kill, message) => {
 						} else if (argl[0] == 'pt') {
 							languages.pt.push(chatId)
 						} else return await kill.reply(from, mess.usinglang(), id)
-						await fs.writeFileSync('./lib/config/Gerais/lang.json', JSON.stringify(languages, null, "\t"))
+						fs.writeFileSync('./lib/config/Gerais/lang.json', JSON.stringify(languages, null, "\t"))
 						await kill.reply(from, mess.enabled(), id)
 					} else if (isGroupMsg) {
 						await kill.reply(from, mess.soademiro(), id)
@@ -1032,7 +1043,7 @@ module.exports = kconfig = async (kill, message) => {
 								onlyText: arg.split('|')[1].replace(' ', '') == 'on' ? true : false
 							}
 						}
-						await fs.writeFileSync('./lib/config/Gerais/greetings.json', JSON.stringify(hail, null, "\t"))
+						fs.writeFileSync('./lib/config/Gerais/greetings.json', JSON.stringify(hail, null, "\t"))
 						await kill.reply(from, mess.enabled(), id)
 					} else if (isGroupMsg) {
 						await kill.reply(from, mess.soademiro(), id)
@@ -1048,7 +1059,7 @@ module.exports = kconfig = async (kill, message) => {
 								onlyText: arg.split('|')[1].replace(' ', '') == 'on' ? true : false
 							}
 						}
-						await fs.writeFileSync('./lib/config/Gerais/greetings.json', JSON.stringify(hail, null, "\t"))
+						fs.writeFileSync('./lib/config/Gerais/greetings.json', JSON.stringify(hail, null, "\t"))
 						await kill.reply(from, mess.enabled(), id)
 					} else if (isGroupMsg) {
 						await kill.reply(from, mess.soademiro(), id)
@@ -1128,8 +1139,8 @@ module.exports = kconfig = async (kill, message) => {
 							await kill.reply(from, mess.maked(), id)
 						} else return await kill.reply(from, mess.broad(), id)
 					} catch (error) {
-						await kill.reply(from, mess.noctt(), id)
-						await tools('others').reportConsole(command, error)
+						await kill.reply(from, mess.noctt() + '\n\n' + mess.fail(command, error, time), id)
+						tools('others').reportConsole(command, error)
 					}
 				break
 
@@ -1163,7 +1174,7 @@ module.exports = kconfig = async (kill, message) => {
 					if (functions.welcome.includes(chatId)) {
 						functions.welcome.splice(chatId, 1)
 						let useWelcomeStd = 1
-						await fs.writeFileSync('./lib/config/Gerais/functions.json', JSON.stringify(functions, null, "\t"))
+						fs.writeFileSync('./lib/config/Gerais/functions.json', JSON.stringify(functions, null, "\t"))
 					}
 					for (let dchat of allChatz) {
 						await kill.deleteChat(dchat.id)
@@ -1171,7 +1182,7 @@ module.exports = kconfig = async (kill, message) => {
 					}
 					if (useWelcomeStd == 1) {
 						functions.welcome.push(chatId)
-						await fs.writeFileSync('./lib/config/Gerais/functions.json', JSON.stringify(functions, null, "\t"))
+						fs.writeFileSync('./lib/config/Gerais/functions.json', JSON.stringify(functions, null, "\t"))
 					}
 					await kill.reply(from, mess.maked(), id)
 				break
@@ -1193,7 +1204,7 @@ module.exports = kconfig = async (kill, message) => {
 					var timeToShut = !isNaN(args[0]) ? Number(args[0]) * 1000 : 10000
 					await kill.reply(from, mess.shutdown((timeToShut / 1000).toString()), id)
 					config.SafeBoot = 0
-					await fs.writeFileSync('./lib/config/Gerais/config.json', JSON.stringify(config, null, "\t"))
+					fs.writeFileSync('./lib/config/Gerais/config.json', JSON.stringify(config, null, "\t"))
 					await tools('others').sleep(timeToShut)
 					await kill.kill()
 				break
@@ -1233,12 +1244,12 @@ module.exports = kconfig = async (kill, message) => {
 						if (argl[0] == 'on') {
 							if (functions.silence.includes(pvmt)) return await kill.reply(from, mess.jadisabled(), id)
 							functions.silence.push(pvmt)
-							await fs.writeFileSync('./lib/config/Gerais/functions.json', JSON.stringify(functions, null, "\t"))
+							fs.writeFileSync('./lib/config/Gerais/functions.json', JSON.stringify(functions, null, "\t"))
 							await kill.reply(from, mess.enabled(), id)
 						} else if (argl[0] == 'off') {
 							if (!functions.silence.includes(pvmt)) return await kill.reply(from, mess.jadisabled(), id)
 							functions.silence.splice(pvmt, 1)
-							await fs.writeFileSync('./lib/config/Gerais/functions.json', JSON.stringify(functions, null, "\t"))
+							fs.writeFileSync('./lib/config/Gerais/functions.json', JSON.stringify(functions, null, "\t"))
 							await kill.reply(from, mess.disabled(), id)
 						} else return await kill.reply(from, mess.kldica2(), id)
 					} else return await kill.reply(from, mess.sodono())
@@ -1271,7 +1282,7 @@ module.exports = kconfig = async (kill, message) => {
 						var userGainXp = quotedMsg ? quotedMsgObj.sender.id : (mentionedJidList.length !== 0 ? xpUserGet.id : sender.id)
 						var theValuetoAdd = quotedMsg ? args[1] : (mentionedJidList.length !== 0 ? args[2] : args[2])
 						if (isNaN(theValuetoAdd)) return await kill.reply(from, mess.onlynumber(), id)
-						await tools('gaming').addValue(userGainXp, Number(theValuetoAdd), nivel, chatId, argl[0]);
+						tools('gaming').addValue(userGainXp, Number(theValuetoAdd), nivel, chatId, argl[0]);
 						await kill.sendTextWithMentions(from, mess.gainxp(userGainXp, theValuetoAdd) + argl[0].toUpperCase() + '.')
 					} else return await kill.reply(from, mess.semmarcar() + `\n\nEx: ${prefix}give -xp/-level/-coin @user <value/valor>`, id)
 				break
@@ -1321,18 +1332,18 @@ module.exports = kconfig = async (kill, message) => {
 
 				case 'resetall':
 					if (!isOwner) return await kill.reply(from, mess.sodono(), id)
-					await fs.writeFileSync('./lib/config/Utilidades/lolicon.txt', 'Lolicons ↓')
-					await fs.writeFileSync('./lib/config/Utilidades/reversecon.txt', 'Menores Denunciados ↓')
-					await fs.writeFileSync('./lib/config/Utilidades/entregados.txt', 'Auto-denuncias ↓')
-					await fs.writeFileSync('./lib/config/Utilidades/gaysreport.txt', 'LGTB\'S Denunciados ↓')
-					await fs.writeFileSync('./lib/config/Utilidades/crimereport.txt', 'Crimes Reportados ↓')
+					fs.writeFileSync('./lib/config/Utilidades/lolicon.txt', 'Lolicons ↓')
+					fs.writeFileSync('./lib/config/Utilidades/reversecon.txt', 'Menores Denunciados ↓')
+					fs.writeFileSync('./lib/config/Utilidades/entregados.txt', 'Auto-denuncias ↓')
+					fs.writeFileSync('./lib/config/Utilidades/gaysreport.txt', 'LGTB\'S Denunciados ↓')
+					fs.writeFileSync('./lib/config/Utilidades/crimereport.txt', 'Crimes Reportados ↓')
 					await kill.reply(from, mess.maked(), id)
 				break
 
 				case 'nolimit':
 					if (isOwner) {
 						if (argl[0] == 'on') {
-							await fs.writeFileSync('./lib/config/Gerais/limit.json', JSON.stringify(JSON.parse("{\n\t\"games\": {},\n\t\"steal\": {},\n\t\"guild\": {}\n}"), null, "\t"));
+							fs.writeFileSync('./lib/config/Gerais/limit.json', JSON.stringify(JSON.parse("{\n\t\"games\": {},\n\t\"steal\": {},\n\t\"guild\": {}\n}"), null, "\t"));
 							await kill.reply(from, mess.enabled(), id)
 							objconfig.noLimits = 1
 						} else if (argl[0] == 'off') {
@@ -1440,17 +1451,16 @@ module.exports = kconfig = async (kill, message) => {
 				case 'gifsticker':
 					await kill.reply(from, mess.wait(), id)
 					const sharpre = async (mimetype, isCircle, Cut, mediaData) => {
-						await sharp(mediaData).resize({
+						let resizedImageBuffer = await sharp(mediaData).resize({
 							width: 512,
 							height: 512,
 							fit: 'fill'
-						}).then(async (resizedImageBuffer) => {
-							await kill.sendImageAsSticker(from, resizedImageBuffer, {
-								author: config.Sticker_Author,
-								pack: config.Sticker_Pack,
-								keepScale: Cut,
-								circle: isCircle
-							})
+						})
+						await kill.sendImageAsSticker(from, resizedImageBuffer, {
+							author: config.Sticker_Author,
+							pack: config.Sticker_Pack,
+							keepScale: Cut,
+							circle: isCircle
 						})
 					}
 					if (isMedia && isImage || isQuotedImage) {
@@ -1544,7 +1554,8 @@ module.exports = kconfig = async (kill, message) => {
 
 				case 'getsticker':
 					if (args.length == 0) return await kill.reply(from, mess.noargs() + 'palavras/words/números/numbers.', id)
-					const getSticker = await duck.search(body.slice(12), isNsfw ? -2 : isAntiPorn ? 1 : -1)
+					let filterAdu = isNsfw || isAntiPorn ? duck.SafetyLevels.OFF : duck.SafetyLevels.STRICT
+					const getSticker = await duck.search(body.slice(12), filterAdu)
 					if (getSticker.length == 0) return await kill.sendFileFromUrl(from, errorImg, '', mess.noresult() + '\n\nTãn tãn tãn...', id)
 					await kill.sendStickerfromUrl(from, tools('others').randVal(getSticker.map(c => c.image)), {
 						method: 'get'
@@ -1572,7 +1583,8 @@ module.exports = kconfig = async (kill, message) => {
 							await kill.sendFile(from, tools('others').dataURI('image/png', buffer), `wasted.png`, '', id)
 						})
 					} catch (error) {
-						await tools('others').reportConsole(command, error)
+						tools('others').reportConsole(command, error)
+						await kill.reply(from, mess.fail(command, error, time), id)
 					}
 				break
 
@@ -1593,8 +1605,8 @@ module.exports = kconfig = async (kill, message) => {
 							await kill.sendFile(from, tools('others').dataURI('image/png', buffer), `trigger.png`, 'Run...', id)
 						})
 					} catch (error) {
-						console.log(error)
-						await tools('others').reportConsole(command, error)
+						tools('others').reportConsole(command, error)
+						await kill.reply(from, mess.fail(command, error, time), id)
 					}
 				break
 
@@ -1633,8 +1645,8 @@ module.exports = kconfig = async (kill, message) => {
 							await kill.reply(from, googleRes.map(a => '\n' + a.title + '\n' + a.url + '\n').slice(1).toString().replace(/^\,/gm, ''), id)
 						} else return await kill.reply(from, mess.onlyimg(), id)
 					} catch (error) {
+						tools('others').reportConsole(command, error)
 						await kill.reply(from, mess.fail(command, error, time) + '\n\nMaybe/Talvez...' + mess.upfail(), id)
-						await tools('others').reportConsole(command, error)
 					}
 				break
 
@@ -1646,8 +1658,8 @@ module.exports = kconfig = async (kill, message) => {
 							await kill.reply(from, mess.tempimg(upImg), id)
 						} else return await kill.reply(from, mess.onlyimg(), id)
 					} catch (error) {
+						tools('others').reportConsole(command, error)
 						await kill.reply(from, mess.fail(command, error, time) + '\n\nMaybe/Talvez...' + mess.upfail(), id)
-						await tools('others').reportConsole(command, error)
 					}
 				break
 
@@ -1684,8 +1696,8 @@ module.exports = kconfig = async (kill, message) => {
 					try {
 						await kill.reply(from, `${body.slice(6)}\n\n*=*\n\n${math.evaluate(body.slice(6))}`, id)
 					} catch (error) {
+						tools('others').reportConsole(command, error)
 						await kill.reply(from, mess.onlynumber() + '\nUse	+	-	*	/' + '\n\n' + mess.fail(command, error, time), id)
-						await tools('others').reportConsole(command, error)
 					}
 				break
 
@@ -1737,15 +1749,11 @@ module.exports = kconfig = async (kill, message) => {
 					await kill.reply(from, mess.wait() + '\n\n20+ s.', id)
 					try {
 						await maker.textpro('https://textpro.me/dropwater-text-effect-872.html', body.slice(6)).then(async (data) => {
-							try {
-								await kill.sendFileFromUrl(from, data, 'textpro.jpg', '', id)
-							} catch (err) {
-								await kill.reply(from, mess.fail(command, waterPro, time), id)
-								await tools('others').reportConsole(command, waterPro)
-							}
+							await kill.sendFileFromUrl(from, data, 'textpro.jpg', '', id)
 						})
-					} catch (err) {
-						/* Ignore worse error */
+					} catch (error) {
+						tools('others').reportConsole(command, error)
+						await kill.reply(from, mess.fail(command, error, time), id)
 					}
 				break
 
@@ -1758,7 +1766,7 @@ module.exports = kconfig = async (kill, message) => {
 				break
 
 				case 'randomanime':
-					const nime = await axios.get('https://api.computerfreaker.cf/v1/anime')
+					const nime = await axios.get('https://nekos.life/api/v2/img/wallpaper')
 					await kill.sendFileFromUrl(from, `${nime.data.url}`, ``, 'e.e', id)
 				break
 
@@ -1780,21 +1788,23 @@ module.exports = kconfig = async (kill, message) => {
 
 				case 'image':
 					if (args.length == 0) return await kill.reply(from, mess.noargs() + 'palavras/words/números/numbers.', id)
-					const getImage = await duck.search(body.slice(7), isNsfw ? -2 : isAntiPorn ? 1 : -1)
+					let filterP = isNsfw || isAntiPorn ? duck.SafetyLevels.OFF : duck.SafetyLevels.STRICT
+					const getImage = await duck.search(body.slice(7), filterP)
 					if (getImage.length == 0) return await kill.sendFileFromUrl(from, errorImg, '', 'Tãn tãn tãn...', id)
 					await kill.sendFileFromUrl(from, tools('others').randVal(getImage.map(c => c.image)), '', ';)', id)
 				break
 
 				case 'yaoi':
-					const iHateYaoi = await duck.search('yaoi', isNsfw ? -2 : isAntiPorn ? 1 : -1)
+					let filterH = isNsfw || isAntiPorn ? duck.SafetyLevels.OFF : duck.SafetyLevels.STRICT
+					const iHateYaoi = await duck.search('yaoi', filterH)
 					if (iHateYaoi.length == 0) return await kill.sendFileFromUrl(from, errorImg, '', 'Tãn tãn tãn...', id)
-					await kill.sendFileFromUrl(from, await tools('others').randVal(iHateYaoi.map(c => c.image)), '', ';)', id)
+					await kill.sendFileFromUrl(from, tools('others').randVal(iHateYaoi.map(c => c.image)), '', ';)', id)
 				break
 
 					/*Adicione mais no arquivo fml.txt na pasta config, obs, em inglês*/
 				case 'life':
 					if (region == 'en') return await kill.reply(from, tools('others').getRandLine(1, './lib/config/Utilidades/fml.txt')[0], id)
-					await translate(tools('others').getRandLine(1, './lib/config/Utilidades/fml.txt')[0], {
+					translate(tools('others').getRandLine(1, './lib/config/Utilidades/fml.txt')[0], {
 						to: region
 					}).then(async (lfts) => {
 						await kill.reply(from, lfts.text, id)
@@ -1813,8 +1823,8 @@ module.exports = kconfig = async (kill, message) => {
 						const wikis = await axios.get(`https://${region}.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&pageids=${wikip.data.query.search[0].pageid}`)
 						await kill.reply(from, wikis.data.query.pages[Object.keys(wikis.data.query.pages)].extract, id)
 					} catch (error) {
+						tools('others').reportConsole(command, error)
 						await kill.reply(from, mess.noresult() + '\n\n' + mess.fail(command, error, time), id)
-						await tools('others').reportConsole(command, error)
 					}
 				break
 
@@ -1826,7 +1836,7 @@ module.exports = kconfig = async (kill, message) => {
 							await kill.sendFileFromUrl(from, nasa.data.url, '', `\n${nasa.data.date} → ${nasa.data.title}\n\n${nasa.data.explanation}`, id)
 						} else await kill.sendYoutubeLink(from, nasa.data.url, `${nasa.data.date} → ${nasa.data.title}\n\n${nasa.data.explanation}`)
 					} else {
-						await translate(nasa.data.explanation, {
+						translate(nasa.data.explanation, {
 							to: region
 						}).then(async (result) => {
 							if (nasa.data.media_type == 'image') {
@@ -1846,7 +1856,7 @@ module.exports = kconfig = async (kill, message) => {
 				case 'fatos':
 					const animl = await axios.get(`https://some-random-api.ml/facts/${tools('others').randVal(["dog", "cat", "bird", "panda", "fox", "koala"])}`)
 					if (region == 'en') return await kill.reply(from, animl.data.fact, id)
-					await translate(animl.data.fact, {
+					translate(animl.data.fact, {
 						to: region
 					}).then(async (result) => {
 						await kill.reply(from, result.text, id)
@@ -1869,8 +1879,8 @@ module.exports = kconfig = async (kill, message) => {
 						let sPornD = await XVDL.getInfo(args[0])
 						await kill.sendFileFromUrl(from, `${sPornD.streams.lq}`, 'xvideos.mp4', `🌚`, id)
 					} catch (error) {
+						tools('others').reportConsole(command, error)
 						await kill.reply(from, mess.nolink() + mess.fail(command, error, time), id)
-						await tools('others').reportConsole(command, error)
 					}
 				break
 
@@ -1878,16 +1888,16 @@ module.exports = kconfig = async (kill, message) => {
 					if (args.length == 0 || !tools('others').isUrl(args[0])) return await kill.reply(from, mess.nolink(), id)
 					try {
 						await kill.reply(from, mess.wait(), id)
-						const vdoClip = await downVideo(args[0])
+						const vdoClip = await tools('youtube').downVideo(args[0])
 						if (vdoClip instanceof Error) {
 							await kill.reply(from, mess.verybig() + mess.fail(command, vdoClip, time), id)
-							await tools('others').reportConsole(command, vdoClip)
+							tools('others').reportConsole(command, vdoClip)
 						} else {
 							await kill.sendFileFromUrl(from, video, `downloads.mp4`, `e.e`, id)
 						}
 					} catch (error) {
+						tools('others').reportConsole(command, error)
 						await kill.reply(from, mess.verybig() + mess.fail(command, error, time), id)
-						await tools('others').reportConsole(command, error)
 					}
 				break
 
@@ -1895,13 +1905,13 @@ module.exports = kconfig = async (kill, message) => {
 				case 'downaudio':
 					if (args.length == 0 || !tools('others').isUrl(args[0])) return await kill.reply(from, mess.nolink(), id)
 					await kill.reply(from, mess.wait(), id)
-					const ytPlayer = await ytPlay(lvpc, args[0])
+					const ytPlayer = await tools('youtube').downPlay(args[0])
 					if (ytPlayer instanceof Error) {
 						await kill.reply(from, mess.verybig() + mess.fail(command, ytPlayer, time), id)
-						await tools('others').reportConsole(command, ytPlayer)
+						tools('others').reportConsole(command, ytPlayer)
 					} else {
 						await kill.sendPtt(from, ytPlayer, id)
-						await tools('others').clearFile(ytPlayer)
+						tools('others').clearFile(ytPlayer)
 					}
 				break
 
@@ -1914,10 +1924,10 @@ module.exports = kconfig = async (kill, message) => {
 					const playMusic = await tools('youtube').downPlay(`https://youtu.be/${ytres.all[0].videoId}`)
 					if (playMusic instanceof Error) {
 						await kill.reply(from, mess.verybig() + mess.fail(command, playMusic, time), id)
-						await tools('others').reportConsole(command, playMusic)
+						tools('others').reportConsole(command, playMusic)
 					} else {
 						await kill.sendPtt(from, playMusic, id)
-						await tools('others').clearFile(playMusic)
+						tools('others').clearFile(playMusic)
 					}
 				break
 
@@ -1930,13 +1940,13 @@ module.exports = kconfig = async (kill, message) => {
 						const ytClip = await tools('youtube').downVideo(`https://www.youtube.com/watch?v=${vipres.all[0].videoId}`)
 						if (ytClip instanceof Error) {
 							await kill.reply(from, mess.verybig() + mess.fail(command, ytClip, time), id)
-							await tools('others').reportConsole(command, ytClip)
+							tools('others').reportConsole(command, ytClip)
 						} else {
 							await kill.sendFileFromUrl(from, ytClip, `${vipres.all[0].title}.mp4`, `${vipres.all[0].title}`, id)
 						}
 					} catch (error) {
+						tools('others').reportConsole(command, error)
 						await kill.reply(from, mess.verybig() + mess.fail(command, error, time), id)
-						await tools('others').reportConsole(command, error)
 					}
 				break
 
@@ -1962,8 +1972,8 @@ module.exports = kconfig = async (kill, message) => {
 							await kill.reply(from, `→ ${getQrText.data[0].symbol[0].data}`, id)
 						} else return await kill.reply(from, mess.onlyimg() + '\nQR-Code!', id)
 					} catch (error) {
+						tools('others').reportConsole(command, error)
 						await kill.reply(from, mess.fail(command, error, time) + '\n\nMaybe/Talvez...' + mess.upfail(), id)
-						await tools('others').reportConsole(command, error)
 					}
 				break
 
@@ -1972,8 +1982,8 @@ module.exports = kconfig = async (kill, message) => {
 						if (args.length == 0 || !tools('others').isUrl(args[0])) return await kill.reply(from, mess.nolink(), id)
 						await kill.sendFileFromUrl(from, args[0], '', '', id)
 					} catch (error) {
+						tools('others').reportConsole(command, error)
 						await kill.reply(from, mess.fail(command, error, time) + '\n\nMaybe/Talvez...' + mess.onlyimg(), id)
-						await tools('others').reportConsole(command, error)
 					}
 				break
 
@@ -1989,14 +1999,14 @@ module.exports = kconfig = async (kill, message) => {
 					if (args.length == 0) return await kill.reply(from, mess.noargs() + 'idioma/language & words/palavras ou/or marca/mark a message/mensagem.', id)
 					await kill.reply(from, mess.wait(), id)
 					try {
-						await translate((quotedMsg.type == 'chat' ? quotedMsg.body : quotedMsg.type == 'image' ? quotedMsg.caption : body.slice(14)), {
+						translate((quotedMsg.type == 'chat' ? quotedMsg.body : quotedMsg.type == 'image' ? quotedMsg.caption : body.slice(14)), {
 							to: args[0]
 						}).then(async (result) => {
 							await kill.reply(from, `→ ${result.text}`, id)
 						})
 					} catch (error) {
+						tools('others').reportConsole(command, error)
 						await kill.reply(from, mess.ttsiv() + '\n\nOu' + mess.gblock() + '\n\n' + mess.fail(command, error, time), id)
-						await tools('others').reportConsole(command, error)
 					}
 				break
 
@@ -2006,9 +2016,10 @@ module.exports = kconfig = async (kill, message) => {
 						let placet = `./lib/media/audio/tts[${argl[0]}]-${tools('others').randomString(10)}.mp3`
 						await tts(argl[0]).save(placet, body.slice(8), async () => {
 							await kill.sendPtt(from, placet, id)
-							await tools('others').clearFile(placet)
+							tools('others').clearFile(placet)
 						})
 					} catch (error) {
+						tools('others').reportConsole(command, error)
 						await kill.reply(from, mess.ttsiv() + '\n\n' + mess.fail(command, error, time), id)
 					}
 				break
@@ -2019,7 +2030,7 @@ module.exports = kconfig = async (kill, message) => {
 
 				case 'resposta':
 					if (args.length == 0) return await kill.reply(from, mess.noargs() + 'palavras/words/números/numbers/emojis/etc.', id)
-					await fs.appendFile('./lib/config/Utilidades/reply.txt', `\n${body.slice(10)}`)
+					fs.appendFile('./lib/config/Utilidades/reply.txt', `\n${body.slice(10)}`)
 					await kill.reply(from, mess.maked(), id)
 				break
 
@@ -2030,7 +2041,7 @@ module.exports = kconfig = async (kill, message) => {
 				case 'akinator':
 				case 'aki':
 					if (akistarted == 0) {
-						const aki = new Aki(region)
+						const aki = new Aki({region})
 						await aki.start()
 						akistarted = 1
 					}
@@ -2053,9 +2064,9 @@ module.exports = kconfig = async (kill, message) => {
 							await kill.reply(from, mess.akistart(aki), id)
 						} else return await kill.reply(from, mess.akistart(aki), id)
 					} catch (error) {
-						await kill.reply(from, mess.akifail() + '\n\n' + mess.akistart(aki), id)
+						tools('others').reportConsole(command, error)
+						await kill.reply(from, mess.akifail() + '\n\n' + mess.akistart(aki) + '\n\n' + mess.fail(command, error, time), id)
 						akinit()
-						await tools('others').reportConsole(command, error)
 					}
 				break
 
@@ -2071,17 +2082,17 @@ module.exports = kconfig = async (kill, message) => {
 								await kill.reply(from, tools('others').getRandLine(1, './lib/config/Utilidades/reply.txt')[0], id)
 							} else return await kill.reply(from, awnser, id)
 						} else {
-							const iris = await axios.get(`${config.SimSimi_Host}?key=${await tools('others').randVal(config.API_SimSimi)}&lc=${region}&text=${encodeURIComponent(body.slice(6))}`)
+							const iris = await axios.get(`${config.SimSimi_Host}?key=${tools('others').randVal(config.API_SimSimi)}&lc=${region}&text=${encodeURIComponent(body.slice(6))}`)
 							if (iris.data.result !== '100') {
 								await kill.reply(from, tools('others').getRandLine(1, './lib/config/Utilidades/reply.txt')[0], id)
 							} else {
 								await kill.reply(from, iris.data.response, id)
-								await fs.appendFile('./lib/config/Utilidades/reply.txt', `\n${iris.data.response}`)
+								fs.appendFile('./lib/config/Utilidades/reply.txt', `\n${iris.data.response}`)
 							}
 						}
 					} catch (error) {
-						await kill.reply(from, tools('others').getRandLine(1, './lib/config/Utilidades/reply.txt')[0], id)
-						await tools('others').reportConsole(command, error)
+						tools('others').reportConsole(command, error)
+						await kill.reply(from, mess.fail(command, error, time), id)
 					}
 				break
 
@@ -2090,7 +2101,7 @@ module.exports = kconfig = async (kill, message) => {
 					let speakttplc = `./lib/media/audio/speak[${region}]-${tools('others').randomString(10)}.mp3`
 					if (args.length == 0) return await sppt.save(speakttplc, tools('others').getRandLine(1, './lib/config/Utilidades/reply.txt')[0], async function() {
 						await kill.sendPtt(from, speakttplc, id)
-						await tools('others').clearFile(speakttplc)
+						tools('others').clearFile(speakttplc)
 					})
 					try {
 						if (argl[0] == '-g') {
@@ -2105,7 +2116,7 @@ module.exports = kconfig = async (kill, message) => {
 								await kill.sendPtt(from, speakttplc, id)
 							})
 						} else {
-							const spiris = await axios.get(`${config.SimSimi_Host}?key=${await tools('others').randVal(config.API_SimSimi)}&lc=${region}&text=${encodeURIComponent(body.slice(6))}`)
+							const spiris = await axios.get(`${config.SimSimi_Host}?key=${tools('others').randVal(config.API_SimSimi)}&lc=${region}&text=${encodeURIComponent(body.slice(6))}`)
 							if (spiris.data.result !== '100') {
 								await sppt.save(speakttplc, tools('others').getRandLine(1, './lib/config/Utilidades/reply.txt')[0], async function() {
 									await kill.sendPtt(from, speakttplc, id)
@@ -2113,17 +2124,15 @@ module.exports = kconfig = async (kill, message) => {
 							} else {
 								await sppt.save(speakttplc, spiris.data.result, async function() {
 									await kill.sendPtt(from, speakttplc, id)
-									await fs.appendFile('./lib/config/Utilidades/reply.txt', `\n${spiris.data.result}`)
+									fs.appendFile('./lib/config/Utilidades/reply.txt', `\n${spiris.data.result}`)
 								})
 							}
 						}
-						await tools('others').clearFile(speakttplc)
+						tools('others').clearFile(speakttplc)
 					} catch (error) {
-						await sppt.save(speakttplc, tools('others').getRandLine(1, './lib/config/Utilidades/reply.txt')[0], async function() {
-							await kill.sendPtt(from, speakttplc, id)
-						})
-						await tools('others').reportConsole(command, error)
-						await tools('others').clearFile(speakttplc)
+						tools('others').reportConsole(command, error)
+						tools('others').clearFile(speakttplc)
+						await kill.reply(from, mess.fail(command, error, time), id)
 					}
 				break
 
@@ -2138,7 +2147,7 @@ module.exports = kconfig = async (kill, message) => {
 							} else return await kill.reply(from, curist, id)
 						} else return await kill.reply(from, tools('others').getRandLine(1, './lib/config/Utilidades/curiosidades.txt')[0], id)
 					} catch (error) {
-						await kill.reply(from, tools('others').getRandLine(1, './lib/config/Utilidades/curiosidades.txt')[0], id)
+						tools('others').reportConsole(command, error)
 						await kill.reply(from, mess.fail(command, error, time), id)
 					}
 				break
@@ -2154,7 +2163,7 @@ module.exports = kconfig = async (kill, message) => {
 							} else return await kill.reply(from, trecd, id)
 						} else return await kill.reply(from, tools('others').getRandLine(1, './lib/config/Utilidades/frases.txt')[0], id)
 					} catch (error) {
-						await kill.reply(from, tools('others').getRandLine(1, './lib/config/Utilidades/frases.txt')[0], id)
+						tools('others').reportConsole(command, error)
 						await kill.reply(from, mess.fail(command, error, time), id)
 					}
 				break
@@ -2173,23 +2182,23 @@ module.exports = kconfig = async (kill, message) => {
 				case 'roleta':
 					if (!isxp) return await kill.reply(from, mess.needxpon(), id)
 					if (tools('gaming').isLimit(sender.id, daily, 'games')) return await kill.reply(from, mess.limitgame(), id)
-					const gamerRol = parseInt(await tools('gaming').getValue(sender.id, nivel, chatId, 'coin'))
+					const gamerRol = parseInt(tools('gaming').getValue(sender.id, nivel, chatId, 'coin'))
 					if (isNaN(args[0]) || !tools('others').isInt(args[0]) || Number(args[0]) >= gamerRol) return await kill.reply(from, mess.gaming(gamerRol), id)
 					var iRoll = tools('others').randomNumber(config.Iris_Coin, gamerRol * 2)
 					if (tools('others').randomNumber(1, 2) == 1) {
 						await kill.sendFileFromUrl(from, 'https://i.ibb.co/vQj6nq4/roleta1.png', 'rol1.png', mess.loseshot(iRoll), id)
-						await tools('gaming').addValue(sender.id, Number(-iRoll), nivel, chatId, 'coin')
+						tools('gaming').addValue(sender.id, Number(-iRoll), nivel, chatId, 'coin')
 					} else {
 						await kill.sendFileFromUrl(from, 'https://i.ibb.co/PwKR2nR/roleta.jpg', 'rol.jpg', mess.winshot(iRoll), id)
-						await tools('gaming').addValue(sender.id, Number(iRoll), nivel, chatId, 'coin')
+						tools('gaming').addValue(sender.id, Number(iRoll), nivel, chatId, 'coin')
 					}
-					if (objconfig.noLimits == 0) return await tools('gaming').addLimit(sender.id, daily, 'games')
+					if (objconfig.noLimits == 0) return tools('gaming').addLimit(sender.id, daily, 'games')
 				break
 
 				case 'flip':
 					if (!isxp) return await kill.reply(from, mess.needxpon(), id)
 					if (tools('gaming').isLimit(sender.id, daily, 'games') == 1) return await kill.reply(from, mess.limitgame(), id)
-					const gamerFlip = parseInt(await tools('gaming').getValue(sender.id, nivel, chatId, 'coin'))
+					const gamerFlip = parseInt(tools('gaming').getValue(sender.id, nivel, chatId, 'coin'))
 					if (isNaN(args[1]) || !tools('others').isInt(args[1]) || Number(args[1]) >= gamerFlip) return await kill.reply(from, mess.gaming(gamerFlip), id)
 					var iFlip = tools('others').randomNumber(config.Iris_Coin, gamerFlip * 2)
 					let flipSor = await tools('others').randomNumber(1, 2) == 1
@@ -2202,7 +2211,7 @@ module.exports = kconfig = async (kill, message) => {
 							keepScale: true
 						})
 						await kill.reply(from, mess.flipwin(iFlip) + ' "cara".', id)
-						await tools('gaming').addValue(sender.id, Number(iFlip), nivel, chatId, 'coin')
+						tools('gaming').addValue(sender.id, Number(iFlip), nivel, chatId, 'coin')
 					} else if (argl[0] == 'coroa' && flipSor == 2) {
 						await kill.sendStickerfromUrl(from, 'https://i.ibb.co/wNnZ4QD/tails.png', {
 							method: 'get'
@@ -2212,61 +2221,55 @@ module.exports = kconfig = async (kill, message) => {
 							keepScale: true
 						})
 						await kill.reply(from, mess.flipwin(iFlip) + ' "coroa".', id)
-						await tools('gaming').addValue(sender.id, Number(iFlip), nivel, chatId, 'coin')
+						tools('gaming').addValue(sender.id, Number(iFlip), nivel, chatId, 'coin')
 					} else if (argl[0] == 'coroa' || argl[0] == 'cara') {
 						await kill.reply(from, mess.fliplose(iFlip) + ` "${argl[0]}".`, id)
-						await tools('gaming').addValue(sender.id, Number(-iFlip), nivel, chatId, 'coin')
+						tools('gaming').addValue(sender.id, Number(-iFlip), nivel, chatId, 'coin')
 					} else return await kill.reply(from, mess.fliphow(), id)
-					if (objconfig.noLimits == 0) return await tools('gaming').addLimit(sender.id, daily, 'games')
+					if (objconfig.noLimits == 0) return tools('gaming').addLimit(sender.id, daily, 'games')
 				break
 
 				case 'cassino':
 					if (!isxp) return await kill.reply(from, mess.needxpon(), id)
 					if (tools('gaming').isLimit(sender.id, daily, 'games') == 1) return await kill.reply(from, mess.limitgame(), id)
-					const gamerCas = parseInt(await tools('gaming').getValue(sender.id, nivel, chatId, 'coin'))
+					const gamerCas = parseInt(tools('gaming').getValue(sender.id, nivel, chatId, 'coin'))
 					if (isNaN(args[0]) || !tools('others').isInt(args[0]) || Number(args[0]) >= gamerCas) return await kill.reply(from, mess.gaming(gamerCas), id)
 					var iCass = tools('others').randomNumber(config.Iris_Coin, gamerCas * 2)
 					var cassin = ['- 🍒 ', '- 🎃 ', '- 🍐 ']
 					var cassinend = tools('others').randVal(cassin) + tools('others').randVal(cassin) + tools('others').randVal(cassin) + '-'
 					if (cassinend == '- 🍒 - 🍒 - 🍒 -' || cassinend == '- 🍐 - 🍐 - 🍐 -' || cassinend == '- 🎃 - 🎃 - 🎃 -') {
-						await tools('gaming').addValue(sender.id, Number(iCass), nivel, chatId, 'coin')
+						tools('gaming').addValue(sender.id, Number(iCass), nivel, chatId, 'coin')
 						await kill.reply(from, mess.caswin(cassinend, Number(iCass)), id)
 					} else {
-						await tools('gaming').addValue(sender.id, Number(-iCass), nivel, chatId, 'coin')
+						tools('gaming').addValue(sender.id, Number(-iCass), nivel, chatId, 'coin')
 						await kill.reply(from, mess.caslose(cassinend, Number(iCass)), id)
 					}
-					if (objconfig.noLimits == 0) return await tools('gaming').addLimit(sender.id, daily, 'games')
+					if (objconfig.noLimits == 0) return tools('gaming').addLimit(sender.id, daily, 'games')
 				break
 
 				case 'poll':
 					if (!isGroupMsg) return await kill.reply(from, mess.sogrupo(), id)
-					await tools('poll').get(kill, message, pollfile).catch(async (error) => {
-						await kill.reply(from, '0 votações abertas.', id)
-						console.log(error)
-					})
+					await tools('poll').get(kill, message, pollfile)
 				break
 
 				case 'vote':
 					if (!isGroupMsg) return await kill.reply(from, mess.sogrupo(), id)
-					await tools('poll').vote(kill, message, args[0], pollfile).catch(async (error) => {
-						console.log(error)
-						await kill.reply(from, '0 votações abertas.', id)
-					})
+					await tools('poll').vote(kill, message, args[0], pollfile)
 				break
 
 				case 'newpoll':
 					if (!isGroupMsg) return await kill.reply(from, mess.sogrupo(), id)
-					if (args.length < 2) return await kill.reply(from, `Para criar uma votação, digite "${prefix}NewPoll [Nome da Votação] | [Quantidade Máxima de votos]".\n\nExemplo: "${prefix}NewPoll Prefeito | 10"`, id)
-					await tools('poll').create(kill, message, arg.split('|')[0], pollfile, arg.split('|')[1].split(' ').join(''))
+					if (argl[0] == '-delete') {
+						tools('others').clearFile(pollfile, 1000)
+						await kill.reply(from, `Votação cancelada e excluida.`, id)
+					} else {
+						await tools('poll').create(kill, message, pollfile, arg.split('|'))
+					}
 				break
-
 
 				case 'ins':
 					if (!isGroupMsg) return await kill.reply(from, mess.sogrupo(), id)
-					await tools('poll').add(kill, message, body.slice(5), pollfile, isGroupAdmins).catch(async (error) => {
-						console.log(error)
-						await kill.reply(from, '0 votações abertas.', id)
-					})
+					await tools('poll').add(kill, message, body.slice(5), pollfile, isGroupAdmins)
 				break
 
 				case 'macaco':
@@ -2286,9 +2289,9 @@ module.exports = kconfig = async (kill, message) => {
 				break
 
 				case 'cafune':
-					const cfnean = await axios.get('https://nekos.life/api/v2/img/' + tools('others').randVal(["pat", "cuddle", "poke"]))
+					const cfnean = await axios.get(`https://nekos.life/api/v2/img/${tools('others').randVal(["pat", "cuddle", "poke"])}`)
 					if (cfnean.data.url.endsWith('.gif')) {
-						await tools('stickers').resize(cfnean, command, kill, message)
+						await tools('ffmpeg').resize(cfnean, command, kill, message)
 					} else {
 						await kill.sendStickerfromUrl(from, cfnean.data.url, {
 							author: config.Sticker_Author,
@@ -2313,11 +2316,10 @@ module.exports = kconfig = async (kill, message) => {
 				break
 
 				case 'cocegas':
-					if (config.Fig_Fix === "true") {
-						var linklist = ["https://nekos.life/api/v2/img/tickle"]
-						await tools('stickers').resize(linklist, sender.id, lvpc, prefix, command, from, id, kill, config)
+					const cocegas = await axios.get('https://nekos.life/api/v2/img/tickle')
+					if (cocegas.data.url.endsWith('.gif')) {
+						await tools('ffmpeg').resize(nekons, command, kill, message)
 					} else {
-						const cocegas = await axios.get('https://nekos.life/api/v2/img/tickle')
 						await kill.sendStickerfromUrl(from, cocegas.data.url, {
 							author: config.Sticker_Author,
 							pack: config.Sticker_Pack,
@@ -2336,12 +2338,11 @@ module.exports = kconfig = async (kill, message) => {
 				break
 
 				case 'baka':
-					if (config.Fig_Fix === "true") {
-						var linklist = ["https://nekos.life/api/v2/img/baka"]
-						tools('stickers').resize(linklist, sender.id, lvpc, prefix, command, from, id, kill, config)
+					let bakaYaro = await axios.get("https://nekos.life/api/v2/img/baka")
+					if (bakaYaro.data.url.endsWith('.gif')) {
+						await tools('ffmpeg').resize(bakaYaro, command, kill, message)
 					} else {
-						const baka = await axios.get('https://nekos.life/api/v2/img/baka')
-						await kill.sendStickerfromUrl(from, baka.data.url, {
+						await kill.sendStickerfromUrl(from, bakaYaro.data.url, {
 							author: config.Sticker_Author,
 							pack: config.Sticker_Pack,
 							keepScale: true
@@ -2357,7 +2358,7 @@ module.exports = kconfig = async (kill, message) => {
 				case 'duck':
 					if (args.length == 0) return await kill.reply(from, mess.noargs() + 'palavras/words/números/numbers.', id)
 					await kill.reply(from, mess.wait(), id)
-					await ddg.search({
+					ddg.search({
 						q: body.slice(8),
 						max: config.Search_Results
 					}, async (err, urls) => {
@@ -2392,8 +2393,7 @@ module.exports = kconfig = async (kill, message) => {
 					const getAnime = await axios.get(`https://api.jikan.moe/v3/search/anime?q=${encodeURIComponent(body.slice(7))}&limit=1`)
 					if (getAnime.data.status == 404 || getAnime.data.results[0] == '') return await kill.sendFileFromUrl(from, errorurl, 'error.png', mess.noresult())
 					if (region == 'en') return await kill.sendFileFromUrl(from, `${getAnime.data.results[0].image_url}`, 'anime.jpg', `✔️ - Is that?\n\n✨️ *Title:* ${getAnime.data.results[0].title}\n\n🎆️ *Episode:* ${getAnime.data.results[0].episodes}\n\n💌️ *Rating:* ${getAnime.data.results[0].rated}\n\n❤️ *Note:* ${getAnime.data.results[0].score}\n\n💚️ *Synopsis:* ${getAnime.data.results[0].synopsis}\n\n🌐️ *Link*: ${getAnime.data.results[0].url}`, id)
-					await tools('others').sleep(5000)
-					await translate(getAnime.data.results[0].synopsis, {
+					translate(getAnime.data.results[0].synopsis, {
 						to: region
 					}).then(async (syno) => {
 						await kill.sendFileFromUrl(from, `${getAnime.data.results[0].image_url}`, 'anime.jpg', mess.getanime(syno.text, getAnime), id)
@@ -2405,8 +2405,7 @@ module.exports = kconfig = async (kill, message) => {
 					const getManga = await axios.get(`https://api.jikan.moe/v3/search/manga?q=${encodeURIComponent(body.slice(7))}&limit=1`)
 					if (getManga.data.status == 404 || getManga.data.results[0] == '') return await kill.sendFileFromUrl(from, errorurl, 'error.png', mess.noresult())
 					if (region == 'en') return await kill.sendFileFromUrl(from, `${getManga.data.results[0].image_url}`, 'manga.jpg', `✔️ - Is that?\n\n✨️ *Title:* ${getManga.data.results[0].title}\n\n🎆️ *Chapters:* ${getManga.data.results[0].chapters}\n\n💌️ *Volumes:* ${getManga.data.results[0].volumes}\n\n❤️ *Note:* ${getManga.data.results[0].score}\n\n💚️ *Synopsis:* ${getManga.data.results[0].synopsis}\n\n🌐️ *Link*: ${getManga.data.results[0].url}`, id)
-					await tools('others').sleep(5000)
-					await translate(getManga.data.results[0].synopsis, {
+					translate(getManga.data.results[0].synopsis, {
 						to: region
 					}).then(async (syno) => {
 						await kill.sendFileFromUrl(from, `${getManga.data.results[0].image_url}`, 'manga.jpg', mess.getmanga(syno.text, getManga), id)
@@ -2423,7 +2422,7 @@ module.exports = kconfig = async (kill, message) => {
 					if (isGroupMsg) {
 						await kill.reply(from, mess.wait(), id)
 						var qmid = quotedMsg ? quotedMsgObj.sender.id : (mentionedJidList.length !== 0 ? await kill.getContact(mentionedJidList[0]).id : sender.id)
-						let peoLevel = await tools('gaming').getValue(qmid, nivel, chatId, 'level')
+						let peoLevel = tools('gaming').getValue(qmid, nivel, chatId, 'level')
 						var pic = await kill.getProfilePicFromServer(qmid)
 						let pfp = pic.includes('ERR') || pic == null || typeof pic === 'object' || !tools('others').isUrl(pic) ? errorurl : pic
 						var namae = (quotedMsg ? quotedMsgObj.sender.pushname : (mentionedJidList.length !== 0 ? await kill.getContact(mentionedJidList[0]).pushname : pushname)) || "Censored by Government"
@@ -2439,38 +2438,38 @@ module.exports = kconfig = async (kill, message) => {
 						}
 						try {
 							if (config.Language == 'en') throw new Error('Tradução cancelada pois o BOT ta em gringanês')
-							await translate(tools('others').getRandLine(1, './lib/config/Utilidades/biblia.txt')[0], {
+							translate(tools('others').getRandLine(1, './lib/config/Utilidades/biblia.txt')[0], {
 								to: region
 							}).then((bibles) => {
 								customTexts.GodKillsToo = bibles.text
 							})
-							await translate(tools('others').getRandLine(1, './lib/config/Utilidades/fml.txt')[0], {
+							translate(tools('others').getRandLine(1, './lib/config/Utilidades/fml.txt')[0], {
 								to: region
 							}).then((lifes) => {
 								customTexts.fuckALLife = lifes.text
 							})
-							await translate(tools('others').getRandLine(1, './lib/config/Utilidades/cantadas.txt')[0], {
+							translate(tools('others').getRandLine(1, './lib/config/Utilidades/cantadas.txt')[0], {
 								to: region
 							}).then((love) => {
 								customTexts.getGirlfriend = love.text
 							})
-						} catch (err) {
+						} catch (error) {
 							customTexts.fuckALLife = tools('others').getRandLine(1, './lib/config/Utilidades/fml.txt')[0]
 							customTexts.GodKillsToo = tools('others').getRandLine(1, './lib/config/Utilidades/biblia.txt')[0]
 							customTexts.getGirlfriend = tools('others').getRandLine(1, './lib/config/Utilidades/cantadas.txt')[0]
 						}
-						customTexts.myGuild = await tools('gaming').getValue(sender.id, nivel, chatId, 'guild') !== '' ? `\n\n⚔️ *Guilda:* ${(await tools('gaming').getValue(sender.id, nivel, chatId, 'guild')).toUpperCase()}` : ''
+						customTexts.myGuild = tools('gaming').getValue(sender.id, nivel, chatId, 'guild') !== '' ? `\n\n⚔️ *Guilda:* ${(tools('gaming').getValue(sender.id, nivel, chatId, 'guild')).toUpperCase()}` : ''
 						for (let i of await kill.getAllGroups()) {
 							if (i.groupMetadata.participants.map(m => m.id._serialized).includes(qmid)) {
 								customTexts.stateOrigin += `\n➸ ${i.name}`
 							}
 						}
 						Object.keys(custom).forEach((i) => {
-							if (custom[i].sender.id == qmid) {
+							if (custom[i][sender.id] == qmid) {
 								customTexts.customRec = `\n\n🌟 *Nota:* ${custom[i].msg}`
 							}
 						})
-						let profileSend = mess.profile(namae, await tools('gaming').getValue(qmid, nivel, chatId, 'msg'), groupAdmins.includes(qmid) ? tools('others').yesAwnsers() : tools('others').noAwnsers(), functions.silence.includes(qmid) ? tools('others').yesAwnsers() : tools('others').noAwnsers(), blockNumber.includes(qmid) ? tools('others').yesAwnsers() : tools('others').noAwnsers(), status, peoLevel, await tools('gaming').getValue(qmid, nivel, chatId, 'xp'), await tools('gaming').LevelEXP(peoLevel), await tools('gaming').getPatent(peoLevel)) + `\n\n💴 *Í-Coin*: ${await tools('gaming').getValue(qmid, nivel, chatId, 'coin')}\n\n🏷️ *TAG:* #${tools('others').getRandLine(1, './lib/config/Utilidades/porn.txt')[0]}‎\n\n❇️ *Arma:* ${tools('others').getRandLine(1, './lib/config/Utilidades/armas.txt')[0]}‎\n\n📢 *Inspire-se:* ${tools('others').getRandLine(1, './lib/config/Utilidades/frases.txt')[0]}‎\n\n💡 *Aprenda:* ${tools('others').getRandLine(1, './lib/config/Utilidades/curiosidades.txt')[0]}‎\n\n🐏 *Versículo:* ${customTexts.GodKillsToo}\n\n🔮 *Futuro:* ${customTexts.fuckALLife}‎\n\n🌺 *Cantada:* ${customTexts.getGirlfriend}\n\n🐂 *Tipo:* ${tools('others').getRandLine(1, './lib/config/Utilidades/corno.txt')[0]}` + customTexts.customRec + customTexts.myGuild + customTexts.stateOrigin
+						let profileSend = mess.profile(namae, tools('gaming').getValue(qmid, nivel, chatId, 'msg'), groupAdmins.includes(qmid) ? tools('others').yesAwnsers() : tools('others').noAwnsers(), functions.silence.includes(qmid) ? tools('others').yesAwnsers() : tools('others').noAwnsers(), blockNumber.includes(qmid) ? tools('others').yesAwnsers() : tools('others').noAwnsers(), status, peoLevel, tools('gaming').getValue(qmid, nivel, chatId, 'xp'), tools('gaming').LevelEXP(peoLevel), tools('gaming').getPatent(peoLevel)) + `\n\n💴 *Í-Coin*: ${tools('gaming').getValue(qmid, nivel, chatId, 'coin')}\n\n🏷️ *TAG:* #${tools('others').getRandLine(1, './lib/config/Utilidades/porn.txt')[0]}‎\n\n❇️ *Arma:* ${tools('others').getRandLine(1, './lib/config/Utilidades/armas.txt')[0]}‎\n\n📢 *Inspire-se:* ${tools('others').getRandLine(1, './lib/config/Utilidades/frases.txt')[0]}‎\n\n💡 *Aprenda:* ${tools('others').getRandLine(1, './lib/config/Utilidades/curiosidades.txt')[0]}‎\n\n🐏 *Versículo:* ${customTexts.GodKillsToo}\n\n🔮 *Futuro:* ${customTexts.fuckALLife}‎\n\n🌺 *Cantada:* ${customTexts.getGirlfriend}\n\n🐂 *Tipo:* ${tools('others').getRandLine(1, './lib/config/Utilidades/corno.txt')[0]}` + customTexts.customRec + customTexts.myGuild + customTexts.stateOrigin
 						await kill.sendFileFromUrl(from, pfp, 'pfo.jpg', profileSend, id).catch(async () => {
 							await kill.reply(from, profileSend, id)
 						})
@@ -2492,10 +2491,10 @@ module.exports = kconfig = async (kill, message) => {
 					let storeInfo = await store.search(`${body.slice(7)}`)
 					let stsp = await store.getExtendedInfo(storeInfo.results[0].link)
 					if (region == 'en') return await kill.sendFileFromUrl(from, stsp.icon, '', mess.store(stsp, stsp.description), id)
-					await translate(stsp.description, {
+					translate(stsp.description, {
 						to: region
 					}).then(async (playst) => {
-						await kill.sendFileFromUrl(from, stsp.icon, '', mess.store(stsp, playst.text), id)
+						await kill.sendFileFromUrl(from, stsp.icon, '', mess.store(stsp, playst), id)
 					})
 				break
 
@@ -2569,7 +2568,7 @@ module.exports = kconfig = async (kill, message) => {
 
 				case 'maps':
 					if (args.length == 0) return await kill.reply(from, mess.noargs() + 'city names/nomes de cidade/nombres de ciudad.', id)
-					await kill.sendImage(from, `https://image.maps.api.here.com/mia/1.6/mapview?app_id=BfZ8dcHfdbDsDyvIlbme&app_code=bVHueWcUAejl27n_Ip6mKg&ci=${encodeURIComponent(body.slice(6))}&h=800&w=800&t=3`, '', `*📍 ${body.slice(6).toUpperCase()}*`)
+					await kill.sendImage(from, `https://image.maps.api.here.com/mia/1.6/mapview?app_id=${config.Here_APP_ID}&app_code=${config.Here_APP_Code}&ci=${encodeURIComponent(body.slice(6))}&h=800&w=800&t=3`, '', `*📍 ${body.slice(6).toUpperCase()}*`)
 				break
 
 				case 'sip':
@@ -2603,28 +2602,28 @@ module.exports = kconfig = async (kill, message) => {
 					if (args.length == 0) return await kill.reply(from, mess.noargs() + 'palavras/words/números/numbers.', id)
 					if (arks.length >= 16) return await kill.reply(from, 'Max: 10 letras/letters.', id)
 					await kill.reply(from, mess.wait() + '\n\n20+ s.', id)
-					await maker.textpro(tools('others').randVal(["https://textpro.me/3d-gradient-text-effect-online-free-1002.html", "https://textpro.me/3d-box-text-effect-online-880.html"]), body.slice(4)).then(async (data) => {
-						try {
+					try {
+						await maker.textpro(tools('others').randVal(["https://textpro.me/3d-gradient-text-effect-online-free-1002.html", "https://textpro.me/3d-box-text-effect-online-880.html"]), body.slice(4)).then(async (data) => {
 							await kill.sendFileFromUrl(from, data, 'textpro.jpg', '', id)
-						} catch (err) {
-							await kill.reply(from, mess.fail(command, waterPro, time), id)
-							await tools('others').reportConsole(command, waterPro)
-						}
-					})
+						})
+					} catch (error) {
+						tools('others').reportConsole(command, error)
+						await kill.reply(from, mess.fail(command, error, time), id)
+					}
 				break
 
 				case 'slogan':
 					if (args.length == 0) return await kill.reply(from, mess.noargs() + 'palavras/words/números/numbers.', id)
 					if (arks.length >= 16) return await kill.reply(from, 'Max: 10 letras/letters.', id)
 					await kill.reply(from, mess.wait() + '\n\n20+ s.', id)
-					await maker.textpro("https://textpro.me/1917-style-text-effect-online-980.html", body.slice(8)).then(async (data) => {
-						try {
+					try {
+						await maker.textpro("https://textpro.me/1917-style-text-effect-online-980.html", body.slice(8)).then(async (data) => {
 							await kill.sendFileFromUrl(from, data, 'textpro.jpg', '', id)
-						} catch (err) {
-							await kill.reply(from, mess.fail(command, waterPro, time), id)
-							await tools('others').reportConsole(command, waterPro)
-						}
-					})
+						})
+					} catch (error) {
+						tools('others').reportConsole(command, error)
+						await kill.reply(from, mess.fail(command, error, time), id)
+					}
 				break
 
 				case 'gaming':
@@ -2637,71 +2636,70 @@ module.exports = kconfig = async (kill, message) => {
 					if (args.length == 0) return await kill.reply(from, mess.noargs() + 'palavras/words/números/numbers.', id)
 					if (arks.length >= 16) return await kill.reply(from, 'Max: 10 letras/letters.', id)
 					await kill.reply(from, mess.wait() + '\n\n20+ s.', id)
-					await maker.textpro("https://textpro.me/thunder-text-effect-online-881.html", body.slice(8)).then(async (data) => {
-						try {
+					try {
+						await maker.textpro("https://textpro.me/thunder-text-effect-online-881.html", body.slice(8)).then(async (data) => {
 							await kill.sendFileFromUrl(from, data, 'textpro.jpg', '', id)
-						} catch (err) {
-							await kill.reply(from, mess.fail(command, waterPro, time), id)
-							await tools('others').reportConsole(command, waterPro)
-						}
-					})
+						})
+					} catch (error) {
+						tools('others').reportConsole(command, error)
+						await kill.reply(from, mess.fail(command, error, time), id)
+					}
 				break
 
 				case 'light':
 					if (args.length == 0) return await kill.reply(from, mess.noargs() + 'palavras/words/números/numbers.', id)
 					if (arks.length >= 16) return await kill.reply(from, 'Max: 10 letras/letters.', id)
 					await kill.reply(from, mess.wait() + '\n\n20+ s.', id)
-					await maker.textpro("https://textpro.me/create-a-futuristic-technology-neon-light-text-effect-1006.html", body.slice(7)).then(async (data) => {
-						try {
+					try {
+						await maker.textpro("https://textpro.me/create-a-futuristic-technology-neon-light-text-effect-1006.html", body.slice(7)).then(async (data) => {
 							await kill.sendFileFromUrl(from, data, 'textpro.jpg', '', id)
-						} catch (err) {
-							await kill.reply(from, mess.fail(command, waterPro, time), id)
-							await tools('others').reportConsole(command, waterPro)
-						}
-					})
+						})
+					} catch (error) {
+						tools('others').reportConsole(command, error)
+						await kill.reply(from, mess.fail(command, error, time), id)
+					}
 				break
 
 				case 'wolf':
-					if (args.length >= 2 && arks.includes('|')) {
-						if (arg.split('|')[0].length >= 10 || arg.split('|')[1].length >= 10) return await kill.reply(from, 'Max: 10 letras/letters p/frase - phrase.', id)
-						await kill.reply(from, mess.wait() + '\n\n20+ s.', id)
+					if (args.length < 2 && !arks.includes('|')) return await kill.reply(from, mess.noargs() + 'palavras/words/números/numbers.' + '\n\n' + mess.argsbar() + 'use 1 "|".', id)
+					if (arg.split('|')[0].length >= 10 || arg.split('|')[1].length >= 10) return await kill.reply(from, 'Max: 10 letras/letters p/frase - phrase.', id)
+					await kill.reply(from, mess.wait() + '\n\n20+ s.', id)
+					try {
 						await maker.textpro(tools('others').randVal(["https://textpro.me/create-wolf-logo-black-white-937.html", "https://textpro.me/create-wolf-logo-galaxy-online-936.html"]), arg.split('|')).then(async (data) => {
-							try {
-								await kill.sendFileFromUrl(from, data, 'textpro.jpg', '', id)
-							} catch (err) {
-								await kill.reply(from, mess.fail(command, waterPro, time), id)
-								await tools('others').reportConsole(command, waterPro)
-							}
+							await kill.sendFileFromUrl(from, data, 'textpro.jpg', '', id)
 						})
-					} else return await kill.reply(from, mess.noargs() + 'palavras/words/números/numbers.' + '\n\n' + mess.argsbar() + 'use 1 "|".', id)
+					} catch (error) {
+						tools('others').reportConsole(command, error)
+						await kill.reply(from, mess.fail(command, error, time), id)
+					}
 				break
 
 				case 'neon':
 					if (args.length == 0) return await kill.reply(from, mess.noargs() + 'palavras/words/números/numbers.', id)
 					if (arks.length >= 16) return await kill.reply(from, 'Max: 10 letras/letters.', id)
 					await kill.reply(from, mess.wait() + '\n\n20+ s.', id)
-					await maker.textpro("https://textpro.me/create-blackpink-logo-style-online-1001.html", body.slice(6)).then(async (data) => {
-						try {
+					try {
+						await maker.textpro("https://textpro.me/create-blackpink-logo-style-online-1001.html", body.slice(6)).then(async (data) => {
 							await kill.sendFileFromUrl(from, data, 'textpro.jpg', '', id)
-						} catch (err) {
-							await kill.reply(from, mess.fail(command, waterPro, time), id)
-							await tools('others').reportConsole(command, waterPro)
-						}
-					})
+						})
+					} catch (error) {
+						tools('others').reportConsole(command, error)
+						await kill.reply(from, mess.fail(command, error, time), id)
+					}
 				break
 
 				case 'retro':
 					if (args.length >= 4 && arks.includes('|')) {
 						if (arg.split('|')[0].length >= 10 || arg.split('|')[1].length >= 10 || arg.split('|')[2].length >= 10) return await kill.reply(from, 'Max: 10 letras/letters p/frase - phrase.', id)
 						await kill.reply(from, mess.wait() + '\n\n20+ s.', id)
-						await maker.textpro("https://textpro.me/80-s-retro-neon-text-effect-online-979.html", arg.split('|')).then(async (data) => {
-							try {
+						try {
+							await maker.textpro("https://textpro.me/80-s-retro-neon-text-effect-online-979.html", arg.split('|')).then(async (data) => {
 								await kill.sendFileFromUrl(from, data, 'textpro.jpg', '', id)
-							} catch (err) {
-								await kill.reply(from, mess.fail(command, waterPro, time), id)
-								await tools('others').reportConsole(command, waterPro)
-							}
-						})
+							})
+						} catch (error) {
+							tools('others').reportConsole(command, error)
+							await kill.reply(from, mess.fail(command, error, time), id)
+						}
 					} else return await kill.reply(from, mess.noargs() + 'palavras/words/números/numbers.' + '\n\n' + mess.argsbar() + 'use 2 "|".', id)
 				break
 
@@ -2717,7 +2715,6 @@ module.exports = kconfig = async (kill, message) => {
 					await kill.sendFileFromUrl(from, `${lesb.data.url}`, '', `${lesb.data.title}`, id)
 				break
 
-
 				case 'pgay':
 					if (isGroupMsg && !isNsfw) return await kill.reply(from, mess.gpadulto(), id)
 					const gay = await axios.get('https://meme-api.herokuapp.com/gimme/gayporn')
@@ -2728,28 +2725,28 @@ module.exports = kconfig = async (kill, message) => {
 					if (args.length == 0) return await kill.reply(from, mess.noargs() + 'palavras/words/números/numbers.', id)
 					if (arks.length >= 16) return await kill.reply(from, 'Max: 10 letras/letters.', id)
 					await kill.reply(from, mess.wait() + '\n\n20+ s.', id)
-					await maker.textpro("https://textpro.me/create-blackpink-logo-style-online-1001.html", body.slice(6)).then(async (data) => {
-						try {
+					try {
+						await maker.textpro("https://textpro.me/create-blackpink-logo-style-online-1001.html", body.slice(6)).then(async (data) => {
 							await kill.sendFileFromUrl(from, data, 'textpro.jpg', '', id)
-						} catch (err) {
-							await kill.reply(from, mess.fail(command, waterPro, time), id)
-							await tools('others').reportConsole(command, waterPro)
-						}
-					})
+						})
+					} catch (error) {
+						tools('others').reportConsole(command, error)
+						await kill.reply(from, mess.fail(command, error, time), id)
+					}
 				break
 
 				case 'pornhub':
 					if (args.length >= 2 && arks.includes('|')) {
 						if (arg.split('|')[0].length >= 10 || arg.split('|')[1].length >= 10) return await kill.reply(from, 'Max: 10 letras/letters p/frase - phrase.', id)
 						await kill.reply(from, mess.wait() + '\n\n20+ s.', id)
-						await maker.textpro("https://textpro.me/pornhub-style-logo-online-generator-free-977.html", arg.split('|')).then(async (data) => {
-							try {
+						try {
+							await maker.textpro("https://textpro.me/pornhub-style-logo-online-generator-free-977.html", arg.split('|')).then(async (data) => {
 								await kill.sendFileFromUrl(from, data, 'textpro.jpg', '', id)
-							} catch (err) {
-								await kill.reply(from, mess.fail(command, waterPro, time), id)
-								await tools('others').reportConsole(command, waterPro)
-							}
-						})
+							})
+						} catch (error) {
+							tools('others').reportConsole(command, error)
+							await kill.reply(from, mess.fail(command, error, time), id)
+						}
 					} else return await kill.reply(from, mess.noargs() + 'palavras/words/números/numbers.' + '\n\n' + mess.argsbar() + 'use 1 "|".', id)
 				break
 
@@ -2767,24 +2764,22 @@ module.exports = kconfig = async (kill, message) => {
 						return `${Math.floor(seconds / (60*60))} horas | ${Math.floor(seconds % (60*60) / 60)} minutos | ${Math.floor(seconds % 60)} segundos - HH:MM:SS`
 					}
 					let myInfo = await kill.getMe()
-					await kill.reply(from, mess.stats(rTime(process.uptime()), rTime(os.uptime()), `${(os.freemem() / 1024 / 1024).toFixed(2)} MB / ${Math.floor(os.totalmem() / 1024 / 1024)} MB`, os, await kill.getAmountOfLoadedMessages(), await kill.getAllGroups(), await kill.getAllChatIds(), await tools('others').processTime(t, moment()), await kill.getWAVersion(), await kill.getIsPlugged(), myInfo), id)
+					let totalMemo = `${Math.floor(os.totalmem() / 1024 / 1024) - Math.floor(os.freemem() / 1024 / 1024)} MB / ${Math.floor(os.totalmem() / 1024 / 1024)} MB - [${Math.floor(os.freemem() / 1024 / 1024)} MB Livres]`
+					await kill.reply(from, mess.stats(rTime(process.uptime()), rTime(os.uptime()), totalMemo, os, await kill.getAmountOfLoadedMessages(), await kill.getAllGroups(), await kill.getAllChatIds(), await tools('others').processTime(t, moment()), await kill.getWAVersion(), await kill.getIsPlugged(), myInfo), id)
 				break
 
 				case 'join':
 					if (args.length == 0) return await kill.reply(from, mess.nolink(), id)
-					const gplk = body.slice(6)
 					const tGr = await kill.getAllGroups()
-					const isLink = gplk.match(/(https:\/\/chat.whatsapp.com)/gi)
-					const check = await kill.inviteInfo(gplk)
-					const memberlmt = check.size
-					if (!isLink) return await kill.reply(from, mess.nolink(), id)
+					const check = await kill.inviteInfo(args[0])
+					if (!args[0].match(/(https:\/\/chat.whatsapp.com)/gi)) return await kill.reply(from, mess.nolink(), id)
 					if (tGr.length > config.Max_Groups) return await kill.reply(from, mess.cheio(tGr), id)
-					if (memberlmt < config.Min_Membros) return await kill.reply(from, mess.noreq(memberlmt), id)
+					if (check.size < config.Min_Membros) return await kill.reply(from, mess.noreq(check.size), id)
 					if (check.status == 200) {
-						await kill.joinGroupViaLink(gplk).then(async () => {
+						await kill.joinGroupViaLink(args[0]).then(async () => {
 							await kill.reply(from, mess.maked())
 						})
-					} else return await kill.reply(from, mess.fail(command, error, time), id)
+					} else return await kill.reply(from, mess.nolink(), id)
 				break
 
 				case 'placa':
@@ -2794,8 +2789,8 @@ module.exports = kconfig = async (kill, message) => {
 					await sinesp.search(`${args[0]}`).then(async (dados) => {
 						await kill.reply(from, `Placa: ${dados.placa}\n\nSituação: ${dados.situacao}\n\nModelo: ${dados.modelo}\n\nMarca: ${dados.marca}\n\nCor: ${dados.cor}\n\nAno: ${dados.ano}\n\nAno do modelo: ${dados.anoModelo}\n\nEstado: ${dados.uf}\n\nMunicipio: ${dados.municipio}\n\nChassi: ${dados.chassi}.`, id)
 					}).catch(async (error) => {
-						await kill.reply(from, 'Nenhuma placa encontrada.', id)
-						await kill.reply(from, mess.fail(command, error, time), id)
+						tools('others').reportConsole(command, error)
+						await kill.reply(from, 'Não encontrei nada, pode ser um erro ou a placa não existe.\n\n' + mess.fail(command, error, time), id)
 					})
 				break
 
@@ -2809,13 +2804,11 @@ module.exports = kconfig = async (kill, message) => {
 						var thephComP = quotedMsg ? await kill.getProfilePicFromServer(quotedMsgObj.sender.id) : (mentionedJidList.length !== 0 ? await kill.getProfilePicFromServer(mentionedJidList[0]) : await kill.getProfilePicFromServer(sender.id))
 					}
 					if (thephComP == null || typeof thephComP === 'object') thephComP = errorImg
-					const mentionRmv = mentionedJidList.map(x => `@${x.replace('@c.us', '')}`).join(' ')
-					const dataSendPh = {
-						username: arg.split('|')[0].replace(mentionRmv, ''),
+					await canvacord.Canvas.phub({
+						username: arg.split('|')[0].replace(mentionedJidList.map(x => `@${x.replace('@c.us', '')}`).join(' '), ''),
 						message: arg.split('|')[1],
 						image: thephComP
-					}
-					await canvacord.Canvas.phub(dataSendPh).then(async (buffer) => {
+					}).then(async (buffer) => {
 						await kill.sendFile(from, tools('others').dataURI('image/png', buffer), `pornhub.png`, '', id)
 					})
 
@@ -2831,14 +2824,12 @@ module.exports = kconfig = async (kill, message) => {
 						var theYtComP = quotedMsg ? await kill.getProfilePicFromServer(quotedMsgObj.sender.id) : (mentionedJidList.length !== 0 ? await kill.getProfilePicFromServer(mentionedJidList[0]) : await kill.getProfilePicFromServer(sender.id))
 					}
 					if (theYtComP == null || typeof theYtComP === 'object') theYtComP = errorImg
-					const mentionRemove = mentionedJidList.map(x => `@${x.replace('@c.us', '')}`).join(' ')
-					const dataSendYt = {
-						username: arg.split('|')[0].replace(mentionRemove, ''),
+					await canvacord.Canvas.youtube({
+						username: arg.split('|')[0].replace(mentionedJidList.map(x => `@${x.replace('@c.us', '')}`).join(' '), ''),
 						content: arg.split('|')[1],
 						avatar: theYtComP,
 						dark: false
-					}
-					await canvacord.Canvas.youtube(dataSendYt).then(async (buffer) => {
+					}).then(async (buffer) => {
 						await kill.sendFile(from, tools('others').dataURI('image/png', buffer), `youtube.png`, '', id)
 					})
 				break
@@ -2873,20 +2864,19 @@ module.exports = kconfig = async (kill, message) => {
 							}
 						} else return await kill.reply(from, mess.enviar(), id)
 					} catch (error) {
-						await kill.reply(from, mess.noctt(), id)
-						await kill.reply(from, mess.fail(command, error, time), id)
+						tools('others').reportConsole(command, error)
+						await kill.reply(from, mess.noctt() + '\n\n' + mess.fail(command, error, time), id)
 					}
 				break
 
 				case 'loli':
-					const onefive = Math.floor(Math.random() * 145) + 1
-					await kill.sendFileFromUrl(from, `https://media.publit.io/file/Twintails/${onefive}.jpg`, 'loli.jpg', mess.logomgs(), id)
+					await kill.sendFileFromUrl(from, `https://media.publit.io/file/Twintails/${tools('others').randNbr(1, 145)}.jpg`, 'loli.jpg', mess.logomgs(), id)
 				break
 
 				case 'hug':
 					let hugPeo = await axios.get("https://nekos.life/api/v2/img/hug")
 					if (hugPeo.data.url.endsWith('.gif')) {
-						await tools('stickers').resize(hugPeo, command, kill, message)
+						await tools('ffmpeg').resize(hugPeo, command, kill, message)
 					} else await kill.sendStickerfromUrl(from, hugPeo.data.url, {
 						author: config.Sticker_Author,
 						pack: config.Sticker_Pack,
@@ -2895,19 +2885,20 @@ module.exports = kconfig = async (kill, message) => {
 				break
 
 				case 'baguette':
-					const baguette = await axios.get('https://api.computerfreaker.cf/v1/baguette')
-					await kill.sendFileFromUrl(from, `${baguette.data.url}`, `baguette.jpg`, '🥖', id)
+					let filterBg = isNsfw || isAntiPorn ? duck.SafetyLevels.OFF : duck.SafetyLevels.STRICT
+					const getBaguette = await duck.search('anime baguette girls', filterBg)
+					await kill.sendFileFromUrl(from, tools('others').randVal(getBaguette.map(c => c.image)), `baguette.jpg`, '🥖', id)
 				break
 
 				case 'dva':
-					if (isGroupMsg && !isNsfw) return await kill.reply(from, mess.gpadulto(), id)
-					const dva = await axios.get('https://api.computerfreaker.cf/v1/dva')
-					await kill.sendFileFromUrl(from, `${dva.data.url}`, `dva.jpg`, `😍`, id)
+					let filterDva = isNsfw || isAntiPorn ? duck.SafetyLevels.OFF : duck.SafetyLevels.STRICT
+					const getDVA = await duck.search('dva overwatch', filterDva)
+					await kill.sendFileFromUrl(from, tools('others').randVal(getDVA.map(c => c.image)), `dva.jpg`, '😍', id)
 				break
 
 				case 'waifu':
 					if (side == 1) {
-						const waifu = await fs.readFileSync('./lib/config/Utilidades/waifu.json')
+						const waifu = fs.readFileSync('./lib/config/Utilidades/waifu.json')
 						const waifuParse = JSON.parse(waifu)
 						const waifuChoice = Math.floor(Math.random() * waifuParse.length)
 						const getWaifu = waifuParse[waifuChoice]
@@ -2919,7 +2910,7 @@ module.exports = kconfig = async (kill, message) => {
 				break
 
 				case 'husb':
-					const husb = await fs.readFileSync('./lib/config/Utilidades/husb.json')
+					const husb = fs.readFileSync('./lib/config/Utilidades/husb.json')
 					const husbParse = JSON.parse(husb)
 					const husbChoice = Math.floor(Math.random() * husbParse.length)
 					const getHusb = husbParse[husbChoice]
@@ -2970,87 +2961,47 @@ module.exports = kconfig = async (kill, message) => {
 				case 'blowjob':
 				case 'boquete':
 					if (isGroupMsg && !isNsfw) return await kill.reply(from, mess.gpadulto(), id)
-					if (config.Fig_Fix === "true") {
-						if (arks.includes('-gif') || side == 1) {
-							var linklist = ["https://nekos.life/api/v2/img/bj"]
-							tools('stickers').resize(linklist, sender.id, lvpc, prefix, command, from, id, kill, config)
-						} else {
-							const blowjob = await axios.get('https://nekos.life/api/v2/img/blowjob')
-							await kill.sendStickerfromUrl(from, blowjob.data.url, {
-								author: config.Sticker_Author,
-								pack: config.Sticker_Pack,
-								keepScale: true
-							})
-						}
-					} else {
-						const rblowjc = tools('others').randVal(["bj", "blowjob"])
-						const blowjob = await axios.get('https://nekos.life/api/v2/img/' + rblowjc)
-						await kill.sendStickerfromUrl(from, blowjob.data.url, {
-							author: config.Sticker_Author,
-							pack: config.Sticker_Pack,
-							keepScale: true
-						})
-					}
+					let blowJobs = await axios.get(`https://nekos.life/api/v2/img/${tools('others').randVal(["bj", "blowjob"])}`)
+					if (blowJobs.data.url.endsWith('.gif')) {
+						await tools('ffmpeg').resize(blowJobs, command, kill, message)
+					} else await kill.sendStickerfromUrl(from, blowJobs.data.url, {
+						author: config.Sticker_Author,
+						pack: config.Sticker_Pack,
+						keepScale: true
+					})
 				break
 
 				case 'feet':
 					if (isGroupMsg && !isNsfw) return await kill.reply(from, mess.gpadulto(), id)
-					if (config.Fig_Fix === "true") {
-						if (arks.includes('-gif') || side == 1) {
-							var linklist = ["https://nekos.life/api/v2/img/feetg"]
-							tools('stickers').resize(linklist, sender.id, lvpc, prefix, command, from, id, kill, config)
-						} else {
-							const feet = await axios.get('https://nekos.life/api/v2/img/erofeet')
-							await kill.sendStickerfromUrl(from, feet.data.url, {
-								author: config.Sticker_Author,
-								pack: config.Sticker_Pack,
-								keepScale: true
-							})
-						}
-					} else {
-						const rfeetc = tools('others').randVal(["feetg", "erofeet"])
-						const feet = await axios.get('https://nekos.life/api/v2/img/' + rfeetc)
-						await kill.sendStickerfromUrl(from, feet.data.url, {
-							author: config.Sticker_Author,
-							pack: config.Sticker_Pack,
-							keepScale: true
-						})
-					}
+					let feetGet = await axios.get(`https://nekos.life/api/v2/img/${tools('others').randVal(["feetg", "erofeet"])}`)
+					if (feetGet.data.url.endsWith('.gif')) {
+						await tools('ffmpeg').resize(feetGet, command, kill, message)
+					} else await kill.sendStickerfromUrl(from, feetGet.data.url, {
+						author: config.Sticker_Author,
+						pack: config.Sticker_Pack,
+						keepScale: true
+					})
 				break
 
 				case 'hard':
 					if (isGroupMsg && !isNsfw) return await kill.reply(from, mess.gpadulto(), id)
-					if (config.Fig_Fix === "true") {
-						var linklist = ["https://nekos.life/api/v2/img/spank"]
-						tools('stickers').resize(linklist, sender.id, lvpc, prefix, command, from, id, kill, config)
-					} else {
-						const hard = await axios.get('https://nekos.life/api/v2/img/spank')
-						await kill.sendStickerfromUrl(from, hard.data.url, {
-							author: config.Sticker_Author,
-							pack: config.Sticker_Pack,
-							keepScale: true
-						})
-					}
+					let hardGet = await axios.get(`https://nekos.life/api/v2/img/spank`)
+					if (hardGet.data.url.endsWith('.gif')) {
+						await tools('ffmpeg').resize(hardGet, command, kill, message)
+					} else await kill.sendStickerfromUrl(from, hardGet.data.url, {
+						author: config.Sticker_Author,
+						pack: config.Sticker_Pack,
+						keepScale: true
+					})
 				break
 
 				case 'boobs':
 					if (isGroupMsg && !isNsfw) return await kill.reply(from, mess.gpadulto(), id)
-					if (config.Fig_Fix === "true") {
-						if (arks.includes('-gif') || side == 1) {
-							var linklist = ["https://nekos.life/api/v2/img/boobs"]
-							tools('stickers').resize(linklist, sender.id, lvpc, prefix, command, from, id, kill, config)
-						} else {
-							const blowjob = await axios.get('https://nekos.life/api/v2/img/tits')
-							await kill.sendStickerfromUrl(from, blowjob.data.url, {
-								author: config.Sticker_Author,
-								pack: config.Sticker_Pack,
-								keepScale: true
-							})
-						}
+					let getboobs = await axios.get(`https://nekos.life/api/v2/img/${tools('others').randVal(["boobs", "tits"])}`)
+					if (getboobs.data.url.endsWith('.gif')) {
+						await tools('ffmpeg').resize(getboobs, command, kill, message)
 					} else {
-						const rboobsc = tools('others').randVal(["boobs", "tits"])
-						const bobis = await axios.get('https://nekos.life/api/v2/img/' + rboobsc)
-						await kill.sendStickerfromUrl(from, bobis.data.url, {
+						await kill.sendStickerfromUrl(from, getboobs.data.url, {
 							author: config.Sticker_Author,
 							pack: config.Sticker_Pack,
 							keepScale: true
@@ -3060,13 +3011,11 @@ module.exports = kconfig = async (kill, message) => {
 
 				case 'lick':
 					if (isGroupMsg && !isNsfw) return await kill.reply(from, mess.gpadulto(), id)
-					if (config.Fig_Fix === "true") {
-						var linklist = ["https://nekos.life/api/v2/img/kuni", "https://nekos.life/api/v2/img/les"]
-						tools('stickers').resize(linklist, sender.id, lvpc, prefix, command, from, id, kill, config)
+					let getlick = await axios.get(`https://nekos.life/api/v2/img/${tools('others').randVal(["kuni", "les"])}`)
+					if (getlick.data.url.endsWith('.gif')) {
+						await tools('ffmpeg').resize(getlick, command, kill, message)
 					} else {
-						const rlickc = tools('others').randVal(["kuni", "les"])
-						const lick = await axios.get('https://nekos.life/api/v2/img/' + rlickc)
-						await kill.sendStickerfromUrl(from, lick.data.url, {
+						await kill.sendStickerfromUrl(from, getlick.data.url, {
 							author: config.Sticker_Author,
 							pack: config.Sticker_Pack,
 							keepScale: true
@@ -3089,22 +3038,11 @@ module.exports = kconfig = async (kill, message) => {
 
 				case 'masturb':
 					if (isGroupMsg && !isNsfw) return await kill.reply(from, mess.gpadulto(), id)
-					if (config.Fig_Fix === "true") {
-						if (arks.includes('-gif') || side == 1) {
-							var linklist = ["https://nekos.life/api/v2/img/solog"]
-							tools('stickers').resize(linklist, sender.id, lvpc, prefix, command, from, id, kill, config)
-						} else {
-							const mstbra = await axios.get('https://nekos.life/api/v2/img/solo')
-							await kill.sendStickerfromUrl(from, mstbra.data.url, {
-								author: config.Sticker_Author,
-								pack: config.Sticker_Pack,
-								keepScale: true
-							})
-						}
+					let getMasturb = await axios.get(`https://nekos.life/api/v2/img/${tools('others').randVal(["solo", "solog"])}`)
+					if (getMasturb.data.url.endsWith('.gif')) {
+						await tools('ffmpeg').resize(getMasturb, command, kill, message)
 					} else {
-						const rmastubc = tools('others').randVal(["solo", "solog"])
-						const mstbra = await axios.get('https://nekos.life/api/v2/img/' + rmastubc)
-						await kill.sendStickerfromUrl(from, mstbra.data.url, {
+						await kill.sendStickerfromUrl(from, getMasturb.data.url, {
 							author: config.Sticker_Author,
 							pack: config.Sticker_Pack,
 							keepScale: true
@@ -3114,21 +3052,11 @@ module.exports = kconfig = async (kill, message) => {
 
 				case 'anal':
 					if (isGroupMsg && !isNsfw) return await kill.reply(from, mess.gpadulto(), id)
-					if (config.Fig_Fix === "true") {
-						if (arks.includes('-gif') || side == 1) {
-							var linklist = ["https://nekos.life/api/v2/img/cum"]
-							tools('stickers').resize(linklist, sender.id, lvpc, prefix, command, from, id, kill, config)
-						} else {
-							const solog = await axios.get('https://nekos.life/api/v2/img/cum_jpg')
-							await kill.sendStickerfromUrl(from, solog.data.url, {
-								author: config.Sticker_Author,
-								pack: config.Sticker_Pack,
-								keepScale: true
-							})
-						}
+					let getanal = await axios.get(`https://nekos.life/api/v2/img/${tools('others').randVal(["cum", "cum_jpg"])}`)
+					if (getanal.data.url.endsWith('.gif')) {
+						await tools('ffmpeg').resize(getanal, command, kill, message)
 					} else {
-						const solog = await axios.get('https://nekos.life/api/v2/img/' + tools('others').randVal(["cum", "cum_jpg"]))
-						await kill.sendStickerfromUrl(from, solog.data.url, {
+						await kill.sendStickerfromUrl(from, getanal.data.url, {
 							author: config.Sticker_Author,
 							pack: config.Sticker_Pack,
 							keepScale: true
@@ -3206,25 +3134,11 @@ module.exports = kconfig = async (kill, message) => {
 
 				case 'ihentai':
 					if (isGroupMsg && !isNsfw) return await kill.reply(from, mess.gpadulto(), id)
-					if (config.Fig_Fix === "true") {
-						if (arks.includes('-gif') || side == 1) {
-							var linklist = ["https://nekos.life/api/v2/img/classic", "https://nekos.life/api/v2/img/pussy"]
-							tools('stickers').resize(linklist, sender.id, lvpc, prefix, command, from, id, kill, config)
-						} else {
-							const hntai = ["hentai", "pussy_jpg", "https://api.computerfreaker.cf/v1/hentai"];
-							const hentcc = hntai[Math.floor(Math.random() * hntai.length)]
-							const hentai1 = hentcc.includes('https') ? await axios.get(hentcc) : await axios.get('https://nekos.life/api/v2/img/' + hentcc)
-							await kill.sendStickerfromUrl(from, hentai1.data.url, {
-								author: config.Sticker_Author,
-								pack: config.Sticker_Pack,
-								keepScale: true
-							})
-						}
+					let ihentai = await axios.get(`https://nekos.life/api/v2/img/${tools('others').randVal(["hentai", "pussy_jpg", "pussy"])}`)
+					if (ihentai.data.url.endsWith('.gif')) {
+						await tools('ffmpeg').resize(ihentai, command, kill, message)
 					} else {
-						const hntai = ["hentai", "pussy", "pussy_jpg", "classic", "https://api.computerfreaker.cf/v1/hentai"];
-						const hentcc = hntai[Math.floor(Math.random() * hntai.length)]
-						const hentai1 = hentcc.includes('https') ? await axios.get(hentcc) : await axios.get('https://nekos.life/api/v2/img/' + hentcc)
-						await kill.sendStickerfromUrl(from, hentai1.data.url, {
+						await kill.sendStickerfromUrl(from, ihentai.data.url, {
 							author: config.Sticker_Author,
 							pack: config.Sticker_Pack,
 							keepScale: true
@@ -3233,30 +3147,17 @@ module.exports = kconfig = async (kill, message) => {
 				break
 
 				case 'yuri':
-					const yuri = await axios.get('https://api.computerfreaker.cf/v1/yuri')
-					await kill.sendFileFromUrl(from, `${yuri.data.url}`, ``, ``, id)
+					let filterYu = isNsfw || isAntiPorn ? duck.SafetyLevels.OFF : duck.SafetyLevels.STRICT
+					const getYuri = await duck.search('yuri anime kiss', filterYu)
+					await kill.sendFileFromUrl(from, tools('others').randVal(getYuri.map(c => c.image)), `yuri.jpg`, 'Pro inferno com as Fujoshis ehehe!', id)
 				break
 
 				case 'randomneko':
 					if (isGroupMsg && !isNsfw) return await kill.reply(from, mess.gpadulto(), id)
-					if (config.Fig_Fix === "true") {
-						if (arks.includes('-gif') || side == 1) {
-							var linklist = ["https://nekos.life/api/v2/img/nsfw_neko_gif"]
-							tools('stickers').resize(linklist, sender.id, lvpc, prefix, command, from, id, kill, config)
-						} else {
-							const rnekoi = ["hololewd", "lewdk", "lewdkemo", "eron", "holoero", "https://api.computerfreaker.cf/v1/nsfwneko"];
-							const rnekoc = rnekoi[Math.floor(Math.random() * rnekoi.length)]
-							const nekons = rnekoc.includes('https') ? await axios.get(rnekoc) : await axios.get('https://nekos.life/api/v2/img/' + rnekoc)
-							await kill.sendStickerfromUrl(from, nekons.data.url, {
-								author: config.Sticker_Author,
-								pack: config.Sticker_Pack,
-								keepScale: true
-							})
-						}
+					const nekons = await axios.get(`https://nekos.life/api/v2/img/${tools('others').randVal(["hololewd", "lewdk", "lewdkemo", "eron", "holoero", "nsfw_neko_gif"])}`)
+					if (nekons.data.url.endsWith('.gif')) {
+						await tools('ffmpeg').resize(nekons, command, kill, message)
 					} else {
-						const rnekoi = ["nsfw_neko_gif", "hololewd", "lewdk", "lewdkemo", "eron", "holoero", "https://api.computerfreaker.cf/v1/nsfwneko"];
-						const rnekoc = rnekoi[Math.floor(Math.random() * rnekoi.length)]
-						const nekons = rnekoc.includes('https') ? await axios.get(rnekoc) : await axios.get('https://nekos.life/api/v2/img/' + rnekoc)
 						await kill.sendStickerfromUrl(from, nekons.data.url, {
 							author: config.Sticker_Author,
 							pack: config.Sticker_Pack,
@@ -3267,9 +3168,7 @@ module.exports = kconfig = async (kill, message) => {
 
 				case 'trap':
 					if (isGroupMsg && !isNsfw) return await kill.reply(from, mess.gpadulto(), id)
-					const rtrap = ["trap", "https://api.computerfreaker.cf/v1/trap"];
-					const rtrapc = rtrap[Math.floor(Math.random() * rtrap.length)]
-					const tapr = rtrapc.includes('https') ? await axios.get(rtrapc) : await axios.get('https://nekos.life/api/v2/img/' + rtrapc)
+					const tapr = await axios.get('https://nekos.life/api/v2/img/trap')
 					await kill.sendFileFromUrl(from, tapr.data.url, '', '', id)
 				break
 
@@ -3281,28 +3180,21 @@ module.exports = kconfig = async (kill, message) => {
 				case 'valor':
 					if (args.length !== 2) return await kill.reply(from, mess.moneyerr(), id)
 					const money = await axios.get(`https://${encodeURIComponent(args[0])}.rate.sx/${encodeURIComponent(args[1])}`)
-					const chkmy = money.data
-					if (isNaN(chkmy)) return await kill.reply(from, mess.moneyerr(), id)
+					if (/^[0-9+]/.test(money.data)) return await kill.reply(from, mess.moneyerr(), id)
 					await kill.reply(from, `*${args[1]}* → *${money.data.toFixed(2)}* ${args[0]}`, id)
 				break
 
 				case 'dog':
-					if (side == 1) {
-						const list = await axios.get('https://shibe.online/api/shibes')
-						await kill.sendFileFromUrl(from, list.data[0], '', '🐕', id)
-					} else if (side == 2) {
-						const doug = await axios.get('https://nekos.life/api/v2/img/woof')
-						await kill.sendFileFromUrl(from, doug.data.url, '', '🐕', id)
-					}
+					const list = await axios.get('https://shibe.online/api/shibes')
+					await kill.sendFileFromUrl(from, list.data[0], '', '🐕', id)
 				break
 
 				case 'look':
-					if (config.Fig_Fix === "true") {
-						var linklist = ["https://nekos.life/api/v2/img/smug"]
-						tools('stickers').resize(linklist, sender.id, lvpc, prefix, command, from, id, kill, config)
+					let getLook = await axios.get(`https://nekos.life/api/v2/img/smug`)
+					if (getLook.data.url.endsWith('.gif')) {
+						await tools('ffmpeg').resize(getLook, command, kill, message)
 					} else {
-						const smug = await axios.get('https://nekos.life/api/v2/img/smug')
-						await kill.sendStickerfromUrl(from, smug.data.url, {
+						await kill.sendStickerfromUrl(from, getLook.data.url, {
 							author: config.Sticker_Author,
 							pack: config.Sticker_Pack,
 							keepScale: true
@@ -3316,12 +3208,11 @@ module.exports = kconfig = async (kill, message) => {
 				break
 
 				case 'kisu':
-					if (config.Fig_Fix === "true") {
-						var linklist = ["https://nekos.life/api/v2/img/kiss"]
-						tools('stickers').resize(linklist, sender.id, lvpc, prefix, command, from, id, kill, config)
+					let getKisu = await axios.get(`https://nekos.life/api/v2/img/kiss`)
+					if (getKisu.data.url.endsWith('.gif')) {
+						await tools('ffmpeg').resize(getKisu, command, kill, message)
 					} else {
-						const kisu = await axios.get('https://nekos.life/api/v2/img/kiss')
-						await kill.sendStickerfromUrl(from, kisu.data.url, {
+						await kill.sendStickerfromUrl(from, getKisu.data.url, {
 							author: config.Sticker_Author,
 							pack: config.Sticker_Pack,
 							keepScale: true
@@ -3330,12 +3221,11 @@ module.exports = kconfig = async (kill, message) => {
 				break
 
 				case 'tapa':
-					if (config.Fig_Fix === "true") {
-						var linklist = ["https://nekos.life/api/v2/img/slap"]
-						tools('stickers').resize(linklist, sender.id, lvpc, prefix, command, from, id, kill, config)
+					let getSlap = await axios.get(`https://nekos.life/api/v2/img/slap`)
+					if (getSlap.data.url.endsWith('.gif')) {
+						await tools('ffmpeg').resize(getSlap, command, kill, message)
 					} else {
-						const tapi = await axios.get('https://nekos.life/api/v2/img/slap')
-						await kill.sendStickerfromUrl(from, tapi.data.url, {
+						await kill.sendStickerfromUrl(from, getSlap.data.url, {
 							author: config.Sticker_Author,
 							pack: config.Sticker_Pack,
 							keepScale: true
@@ -3358,8 +3248,7 @@ module.exports = kconfig = async (kill, message) => {
 					config.Language == 'es' ? Pokemon.setLanguage('spanish') : Pokemon.setLanguage('english')
 					const pokemae = await Pokemon.getPokemon(args[0])
 					if (pokemae == null) return await kill.reply(from, mess.noresult(), id)
-					await kill.sendFileFromUrl(from, pokemae.sprites.front_default, 'pokemon.png', mess.pokemon(pokemae, `➸ ${pokemae.join('\n➸ ')}`), id)
-					/**/
+					await kill.sendFileFromUrl(from, pokemae.sprites.front_default, 'pokemon.png', mess.pokemon(pokemae, `\n➸ ${pokemae.moves.join('\n➸ ')}`), id)
 				break
 
 				case 'screenshot':
@@ -3399,12 +3288,11 @@ module.exports = kconfig = async (kill, message) => {
 
 				case 'kiss':
 					const getMeKiss = quotedMsg ? quotedMsgObj.sender.id.replace('@c.us', '') : (mentionedJidList.length !== 0 ? mentionedJidList[0] : sender.id)
-					if (config.Fig_Fix === "true") {
-						var linklist = ["https://nekos.life/api/v2/img/kiss"]
-						tools('stickers').resize(linklist, sender.id, lvpc, prefix, command, from, id, kill, config)
+					let getKiss = await axios.get(`https://nekos.life/api/v2/img/kiss`)
+					if (getKiss.data.url.endsWith('.gif')) {
+						await tools('ffmpeg').resize(getKiss, command, kill, message)
 					} else {
-						const kiss = await axios.get('https://nekos.life/api/v2/img/kiss')
-						await kill.sendStickerfromUrl(from, kiss.data.url, {
+						await kill.sendStickerfromUrl(from, getKiss.data.url, {
 							author: config.Sticker_Author,
 							pack: config.Sticker_Pack,
 							keepScale: true
@@ -3415,12 +3303,11 @@ module.exports = kconfig = async (kill, message) => {
 
 				case 'slap':
 					const getMeSlap = quotedMsg ? quotedMsgObj.sender.id : (mentionedJidList.length !== 0 ? mentionedJidList[0] : sender.id)
-					const tapa = await axios.get('https://nekos.life/api/v2/img/slap')
-					if (config.Fig_Fix === "true") {
-						var linklist = ["https://nekos.life/api/v2/img/slap"]
-						tools('stickers').resize(linklist, sender.id, lvpc, prefix, command, from, id, kill, config)
+					let getTapa = await axios.get(`https://nekos.life/api/v2/img/slap`)
+					if (getTapa.data.url.endsWith('.gif')) {
+						await tools('ffmpeg').resize(getTapa, command, kill, message)
 					} else {
-						await kill.sendStickerfromUrl(from, tapa.data.url, {
+						await kill.sendStickerfromUrl(from, getTapa.data.url, {
 							author: config.Sticker_Author,
 							pack: config.Sticker_Pack,
 							keepScale: true
@@ -3430,9 +3317,7 @@ module.exports = kconfig = async (kill, message) => {
 				break
 
 				case 'getmeme':
-					if (region == 'pt') var thememer = 'memesbrasil'
-					if (region == 'en') var thememer = 'memes'
-					if (region == 'es') var thememer = 'SpanishMeme'
+					var thememer = region == 'pt' ? 'memesbrasil' : (region == 'en' ? 'memes' : 'SpanishMeme')
 					const response = await axios.get('https://meme-api.herokuapp.com/gimme/' + thememer)
 					await kill.sendFileFromUrl(from, `${response.data.url}`, 'meme.jpg', `${response.data.title}`, id)
 				break
@@ -3443,11 +3328,12 @@ module.exports = kconfig = async (kill, message) => {
 				break
 
 				case 'menu':
-					const theMsg = await tools('gaming').getValue(sender.id, nivel, chatId, 'msg')
-					const uzrXp = await tools('gaming').getValue(sender.id, nivel, chatId, 'xp')
-					const uzrlvl = await tools('gaming').getValue(sender.id, nivel, chatId, 'level')
+					const theMsg = tools('gaming').getValue(sender.id, nivel, chatId, 'msg')
+					const uzrXp = tools('gaming').getValue(sender.id, nivel, chatId, 'xp')
+					const uzrlvl = tools('gaming').getValue(sender.id, nivel, chatId, 'level')
 					const mping = tools('others').processTime(t, moment())
-					await kill.sendButtons(from, 'Atalhos →', [{
+					await kill.sendButtons(from, 'Atalhos →', [
+						{
 							"id": "1",
 							"text": "/Admins"
 						},
@@ -3459,7 +3345,7 @@ module.exports = kconfig = async (kill, message) => {
 							"id": "3",
 							"text": "/Legião"
 						}
-					], mess.menu(pushname, time, theMsg, uzrXp, await tools('gaming').LevelEXP(uzrlvl), uzrlvl, mping, patente))
+					], mess.menu(pushname, time, theMsg, uzrXp, tools('gaming').LevelEXP(uzrlvl), uzrlvl, mping, patente))
 				break
 
 				case 'stickers':
@@ -3505,9 +3391,8 @@ module.exports = kconfig = async (kill, message) => {
 
 					/*LEMBRE-SE, REMOVER CRÈDITO È CRIME E PROIBIDO!*/
 				case 'termos':
-					await kill.sendFileFromUrl(from, 'https://i.ibb.co/nczyDbx/licenca.png', 'licenca.png', mess.tos(), id)
+					await kill.sendFileFromUrl(from, 'https://i.ibb.co/nczyDbx/licenca.png', 'licenca.png', mess.everhost() + '\n\n' + mess.tos(), id)
 					await kill.sendPtt(from, `https://www.myinstants.com/media/sounds/resident-evil-4-merchant-thank-you.mp3`, id);
-					await kill.reply(from, mess.everhost(), id)
 				break
 					/*NÃO REMOVA ESSA PARTE!*/
 
@@ -3524,24 +3409,20 @@ module.exports = kconfig = async (kill, message) => {
 					try {
 						if (argl[0] == '-f') {
 							if (isNaN(args[1])) return await kill.reply(from, mess.onlynumber(), id)
-							const cels = args[1] / 5 * 9 + 32
-							await kill.reply(from, `*${args[1]}* _C° - Celsius =_ ${cels} _F° - Fahrenheit._`, id)
+							await kill.reply(from, `*${args[1]}* _C° - Celsius =_ ${args[1] / 5 * 9 + 32} _F° - Fahrenheit._`, id)
 						} else if (argl[0] == '-c') {
 							if (isNaN(args[1])) return await kill.reply(from, mess.onlynumber(), id)
-							const fahf = 5 * (args[1] - 32) / 9
-							await kill.reply(from, `*${args[1]}* _F° - Fahrenheit =_ *${fahf}* _C° - Celsius._`, id)
+							await kill.reply(from, `*${args[1]}* _F° - Fahrenheit =_ *${5 * (args[1] - 32) / 9}* _C° - Celsius._`, id)
 						} else if (argl[0] == '-m') {
 							if (isNaN(args[1])) return await kill.reply(from, mess.onlynumber(), id)
-							const ktom = args[1] * 0.62137
-							await kill.reply(from, `*${args[1]}* _KM =_ *${ktom}* _MI._`, id)
+							await kill.reply(from, `*${args[1]}* _KM =_ *${args[1] * 0.62137}* _MI._`, id)
 						} else if (argl[0] == '-q') {
 							if (isNaN(args[1])) return await kill.reply(from, mess.onlynumber(), id)
-							const mtok = args[1] / 0.62137
-							await kill.reply(from, `*${args[1]}* _MI =_ *${mtok}* _KM._`, id)
+							await kill.reply(from, `*${args[1]}* _MI =_ *${args[1] / 0.62137}* _KM._`, id)
 						} else return await kill.reply(from, mess.conv(), id)
 					} catch (error) {
-						await kill.reply(from, mess.onlynumber(), id)
-						await kill.reply(from, mess.fail(command, error, time), id)
+						tools('others').reportConsole(command, error)
+						await kill.reply(from, mess.onlynumber() + '\n\n' + mess.fail(command, error, time), id)
 					}
 				break
 
@@ -3578,29 +3459,17 @@ module.exports = kconfig = async (kill, message) => {
 					if (mentionedJidList.length !== 0) lvlusrph = await kill.getContact(mentionedJidList[0])
 					var yourName = quotedMsg ? quotedMsgObj.sender.pushname : (mentionedJidList.length !== 0 ? lvlusrph.pushname : pushname)
 					var wdfWho = quotedMsg ? quotedMsgObj.sender.id : (mentionedJidList.length !== 0 ? mentionedJidList[0] : sender.id)
-					const userLevel = await tools('gaming').getValue(wdfWho, nivel, chatId, 'level')
-					const userXp = await tools('gaming').getValue(wdfWho, nivel, chatId, 'xp')
+					const userLevel = tools('gaming').getValue(wdfWho, nivel, chatId, 'level')
+					const userXp = tools('gaming').getValue(wdfWho, nivel, chatId, 'xp')
 					const ppLink = await kill.getProfilePicFromServer(wdfWho)
-					var pepe = ppLink.includes('ERR') || ppLink == null || typeof ppLink === 'object' || !tools('others').isUrl(ppLink) ? errorurl : ppLink
-					const ranq = new canvacord.Rank()
-						.setDiscriminator(groupMembersId.indexOf(wdfWho).toString().padStart(4, '0'))
-						.setAvatar(pepe)
-						.setLevel(userLevel)
-						.setLevelColor('#ffa200', '#ffa200')
-						.setRank(Object.keys(nivel[chatId]).indexOf(wdfWho))
-						.setCurrentXP(userXp)
-						.setOverlay('#000000', 100, false)
-						.setRequiredXP(tools('gaming').LevelEXP(userLevel))
-						.setProgressBar('#ffa200', 'COLOR')
-						.setBackground('COLOR', '#000000')
-						.setUsername(yourName)
-						.setStatus('idle')
-					await kill.sendFile(from, tools('others').dataURI('image/png', await ranq.build()), `${wdfWho.replace('@c.us', '')}_card.png`, `🔭 - ${yourName} - ${name}\n🎮 - ${userXp} / ${tools('gaming').LevelEXP(userLevel)} XP\n☄️ - Level ${userLevel}\n⏱️ - ${await tools('gaming').getValue(wdfWho, nivel, chatId, 'msg')} Mensagens\n🃏 - ${await tools('gaming').getPatent(userLevel)}\n💵 - ${await tools('gaming').getValue(wdfWho, nivel, chatId, 'coin')} Í-coins\n⚔️ - ${(await tools('gaming').getValue(sender.id, nivel, chatId, 'guild')).toUpperCase()}\n🔶 - ${await tools('gaming').getValue(wdfWho, nivel, chatId, 'rubi')} Rubis\n💎 - ${await tools('gaming').getValue(wdfWho, nivel, chatId, 'dima')} Diamantes`, id)
+					var perf = ppLink.includes('ERR') || ppLink == null || typeof ppLink === 'object' || !tools('others').isUrl(ppLink) ? errorurl : ppLink
+					let rankCard = await tools('canvas').ranking(perf, userXp, tools('gaming').LevelEXP(userLevel), userLevel, Object.keys(nivel[chatId]).indexOf(wdfWho), 0, `${tools('gaming').getPatent(userLevel)} - ${(tools('gaming').getValue(sender.id, nivel, chatId, 'guild')).toUpperCase()}`, yourName)
+					await kill.sendFile(from, rankCard, `${wdfWho.replace('@c.us', '')}_card.png`, `🔭 - ${yourName} - ${name}\n🎮 - ${userXp} / ${tools('gaming').LevelEXP(userLevel)} XP\n☄️ - Level ${userLevel}\n⏱️ - ${tools('gaming').getValue(wdfWho, nivel, chatId, 'msg')} Mensagens\n🃏 - ${tools('gaming').getPatent(userLevel)}\n💵 - ${tools('gaming').getValue(wdfWho, nivel, chatId, 'coin')} Í-coins\n⚔️ - ${(tools('gaming').getValue(sender.id, nivel, chatId, 'guild')).toUpperCase()}\n🔶 - ${tools('gaming').getValue(wdfWho, nivel, chatId, 'rubi')} Rubis\n💎 - ${tools('gaming').getValue(wdfWho, nivel, chatId, 'dima')} Diamantes`, id)
 				break
 
 				case 'ativos':
 					if (!isGroupMsg) return await kill.reply(from, mess.sogrupo(), id)
-					nivel[chatId] = await tools('others').sort(nivel[chatId], 'msg')
+					nivel[chatId] = tools('others').sort(nivel[chatId], 'msg')
 					let active = '-----[ *RANKING DOS ATIVOS* ]----\n\n'
 					let CountMsg = 0
 					try {
@@ -3613,34 +3482,34 @@ module.exports = kconfig = async (kill, message) => {
 						}
 						await kill.sendText(from, active)
 					} catch (error) {
+						tools('others').reportConsole(command, error)
 						await kill.reply(from, mess.tenpeo() + '\n\n' + mess.fail(command, error, time), id)
-						console.log(error)
 					}
 				break
 
 				case 'geral':
 					if (!isGroupMsg) return await kill.reply(from, mess.sogrupo(), id)
 					let geralRank = `-----[ *${name}* [${groupMembersId.length}]]----\n\n`
-					nivel[chatId] = await tools('others').sort(nivel[chatId], 'xp')
+					nivel[chatId] = tools('others').sort(nivel[chatId], 'xp')
 					try {
 						for (let i = Object.keys(nivel[chatId]).length; i > 0; i--) {
 							if (Object.keys(nivel[chatId])[i] == null) return
 							if (groupMembersId.includes(Object.keys(nivel[chatId])[i])) {
 								const bRandV = await kill.getContact(Object.keys(nivel[chatId])[i])
-								let userInfo = await tools('gaming').getValue(Object.keys(nivel[chatId])[i], nivel, chatId, null)
-								geralRank += `${i + 1} → *${bRandV.pushname || 'wa.me/' + Object.keys(nivel[chatId])[i].replace('@c.us', '')}*\n➸ *Mensagens*: ${userInfo.msg}\n➸ *XP*: ${userInfo.xp} / ${tools('gaming').LevelEXP(userInfo.level)}\n➸ *Level*: ${userInfo.level}\n➸ *Í-Coin*: ${userInfo.coin}\n➸ *Patente*: ${await tools('gaming').getPatent(userInfo.level)}\n\n`
+								let userInfo = tools('gaming').getValue(Object.keys(nivel[chatId])[i], nivel, chatId, null)
+								geralRank += `${i + 1} → *${bRandV.pushname || 'wa.me/' + Object.keys(nivel[chatId])[i].replace('@c.us', '')}*\n➸ *Mensagens*: ${userInfo.msg}\n➸ *XP*: ${userInfo.xp} / ${tools('gaming').LevelEXP(userInfo.level)}\n➸ *Level*: ${userInfo.level}\n➸ *Í-Coin*: ${userInfo.coin}\n➸ *Patente*: ${tools('gaming').getPatent(userInfo.level)}\n\n`
 							}
 						}
 						await kill.sendText(from, geralRank)
 					} catch (error) {
+						tools('others').reportConsole(command, error)
 						await kill.reply(from, mess.tenpeo() + '\n\n' + mess.fail(command, error, time), id)
-						console.log(error)
 					}
 				break
 
 				case 'ranking':
 					if (!isGroupMsg) return await kill.reply(from, mess.sogrupo(), id)
-					nivel[chatId] = await tools('others').sort(nivel[chatId], 'xp')
+					nivel[chatId] = tools('others').sort(nivel[chatId], 'xp')
 					let CountUp = 0
 					let board = '-----[ *RANKING DE XP* ]----\n\n'
 					try {
@@ -3649,13 +3518,13 @@ module.exports = kconfig = async (kill, message) => {
 							Object.keys(nivel[chatId])[i] == null ? i = i - 1 : i = i
 							if (Object.keys(nivel[chatId])[i] == null) return
 							var aRandNe = await kill.getContact(Object.keys(nivel[chatId])[i])
-							let userInfo = await tools('gaming').getValue(Object.keys(nivel[chatId])[i], nivel, chatId, null)
-							board += `${CountUp} → *${aRandNe.pushname || 'wa.me/' + Object.keys(nivel[chatId])[i].replace('@c.us', '')}*\n➸ *Mensagens*: ${userInfo.msg}\n➸ *XP*: ${userInfo.xp} / ${tools('gaming').LevelEXP(userInfo.level)}\n➸ *Level*: ${userInfo.level}\n➸ *Patente*: ${await tools('gaming').getPatent(userInfo.level)}\n➸ *Í-Coin*: ${userInfo.coin}\n\n`
+							let userInfo = tools('gaming').getValue(Object.keys(nivel[chatId])[i], nivel, chatId, null)
+							board += `${CountUp} → *${aRandNe.pushname || 'wa.me/' + Object.keys(nivel[chatId])[i].replace('@c.us', '')}*\n➸ *Mensagens*: ${userInfo.msg}\n➸ *XP*: ${userInfo.xp} / ${tools('gaming').LevelEXP(userInfo.level)}\n➸ *Level*: ${userInfo.level}\n➸ *Patente*: ${tools('gaming').getPatent(userInfo.level)}\n➸ *Í-Coin*: ${userInfo.coin}\n\n`
 						}
 						await kill.sendText(from, board)
 					} catch (error) {
+						tools('others').reportConsole(command, error)
 						await kill.reply(from, mess.tenpeo() + '\n\n' + mess.fail(command, error, time), id)
-						console.log(error)
 					}
 				break
 
@@ -3669,6 +3538,7 @@ module.exports = kconfig = async (kill, message) => {
 						const liric = await axios.get(`https://some-random-api.ml/lyrics?title=${encodeURIComponent(body.slice(7))}`)
 						await kill.sendFileFromUrl(from, liric.data.thumbnail.genius, '', `*🎸*\n\n${liric.data.title}\n\n*🎵*\n\n${liric.data.lyrics}`, id)
 					} catch (error) {
+						tools('others').reportConsole(command, error)
 						await kill.reply(from, mess.noresult() + '\n\n' + mess.fail(command, error, time), id)
 					}
 				break
@@ -3688,6 +3558,7 @@ module.exports = kconfig = async (kill, message) => {
 							}
 						}
 					} catch (error) {
+						tools('others').reportConsole(command, error)
 						await kill.reply(from, mess.noresult() + '\n\n' + mess.fail(command, error, time), id)
 					}
 				break
@@ -3701,6 +3572,7 @@ module.exports = kconfig = async (kill, message) => {
 						const wpphe = await axios.get(`https://wallhaven.cc/api/v1/search?apikey=${config.API_WallHaven}&q=${encodeURIComponent(body.slice(11))}`)
 						await kill.sendFileFromUrl(from, tools('others').randVal(wpphe.data.data.map(w => w.path)), 'WallHaven.jpg', '<3', id)
 					} catch (error) {
+						tools('others').reportConsole(command, error)
 						await kill.reply(from, mess.noresult() + '\n\n' + mess.fail(command, error, time), id)
 					}
 				break
@@ -3759,7 +3631,7 @@ module.exports = kconfig = async (kill, message) => {
 					const zodd = await axios.get(`https://horoscope-api.herokuapp.com/horoscope/today/${encodeURIComponent(args[0])}`)
 					if (zodd.data.horoscope == '[]') return await kill.reply(from, signoerr, id);
 					if (region == 'en') return await kill.reply(from, zodd.data.horoscope, id)
-					await translate(zodd.data.horoscope, {
+					translate(zodd.data.horoscope, {
 						to: region
 					}).then(async (horoZod) => {
 						await kill.reply(from, horoZod.text, id)
@@ -3777,7 +3649,7 @@ module.exports = kconfig = async (kill, message) => {
 				case 'piada':
 					const piada = await axios.get('https://v2.jokeapi.dev/joke/Any?format=txt');
 					if (region == 'en') return await kill.reply(from, piada.data, id)
-					await translate(piada.data, {
+					translate(piada.data, {
 						to: region
 					}).then(async (getPiada) => {
 						await kill.reply(from, getPiada.text, id)
@@ -3909,7 +3781,7 @@ module.exports = kconfig = async (kill, message) => {
 				case 'audio':
 					if (isMedia && isVideo || isQuotedVideo) {
 						let mediaData = await decryptMedia(encryptMedia)
-						await tools('ffmpeg').audio(mediaData, kill, message)
+						await tools('ffmpeg').audio(mediaData, kill, message, encryptMedia.mimetype)
 					} else return await kill.reply(from, mess.onlyvideo(), id)
 				break
 				
@@ -3970,15 +3842,19 @@ module.exports = kconfig = async (kill, message) => {
 						addedLolicon = mentPush.pushname || ' - "Censored by Government"'
 					}
 					if (tools('others').randVal(['Inocente', 'Culpado']) == 'Culpado') {
-						await fs.appendFileSync('./lib/config/Utilidades/lolicon.txt', `\n\n${addedLolicon} - ${lvpc} Years/Anos 🔒`)
-					} else await fs.appendFileSync('./lib/config/Utilidades/lolicon.txt', `\n\n${addedLolicon} - Innocent/inocente 🔓`)
+						fs.appendFileSync('./lib/config/Utilidades/lolicon.txt', `\n\n${addedLolicon} - ${lvpc} Years/Anos 🔒`)
+					} else {
+						fs.appendFileSync('./lib/config/Utilidades/lolicon.txt', `\n\n${addedLolicon} - Innocent/inocente 🔓`)
+					}
 					await kill.reply(from, mess.fbi(), id)
 				break
 
 				case '02':
 					if (tools('others').randVal(['Inocente', 'Culpado']) == 'Inocente') {
-						await fs.appendFileSync('./lib/config/Utilidades/entregados.txt', `\n\n${pushname} - Innocent/inocente 🔓`)
-					} else await fs.appendFileSync('./lib/config/Utilidades/entregados.txt', `\n\n${pushname} - ${lvpc} Years/Anos 🔒`)
+						fs.appendFileSync('./lib/config/Utilidades/entregados.txt', `\n\n${pushname} - Innocent/inocente 🔓`)
+					} else {
+						fs.appendFileSync('./lib/config/Utilidades/entregados.txt', `\n\n${pushname} - ${lvpc} Years/Anos 🔒`)
+					}
 					await kill.reply(from, mess.arrested(), id)
 				break
 
@@ -3990,8 +3866,10 @@ module.exports = kconfig = async (kill, message) => {
 						takeChild = mentPush.pushname || ' - "Censored by Government"'
 					}
 					if (tools('others').randVal(['Inocente', 'Culpado']) == 'Culpado') {
-						await fs.appendFileSync('./lib/config/Utilidades/reversecon.txt', `\n\n${takeChild} - ${lvpc} Years/Anos 🔒`)
-					} else await fs.appendFileSync('./lib/config/Utilidades/reversecon.txt', `\n\n${takeChild} - Innocent/inocente 🔓`)
+						fs.appendFileSync('./lib/config/Utilidades/reversecon.txt', `\n\n${takeChild} - ${lvpc} Years/Anos 🔒`)
+					} else {
+						fs.appendFileSync('./lib/config/Utilidades/reversecon.txt', `\n\n${takeChild} - Innocent/inocente 🔓`)
+					}
 					await kill.reply(from, mess.cia(), id)
 				break
 
@@ -4003,8 +3881,10 @@ module.exports = kconfig = async (kill, message) => {
 						crimeNet = mentPush.pushname || ' - "Censored by Government"'
 					}
 					if (tools('others').randVal(['Inocente', 'Culpado']) == 'Culpado') {
-						await fs.appendFileSync('./lib/config/Utilidades/crimereport.txt', `\n\n${crimeNet} (${arg.split('|')[1] || '🤢'}) - ${lvpc} Years/Anos 🔒`)
-					} else await fs.appendFileSync('./lib/config/Utilidades/crimereport.txt', `\n\n${crimeNet} (${arg.split('|')[1] || '🤢'}) - Innocent/inocente 🔓`)
+						fs.appendFileSync('./lib/config/Utilidades/crimereport.txt', `\n\n${crimeNet} (${arg.split('|')[1] || '🤢'}) - ${lvpc} Years/Anos 🔒`)
+					} else {
+						fs.appendFileSync('./lib/config/Utilidades/crimereport.txt', `\n\n${crimeNet} (${arg.split('|')[1] || '🤢'}) - Innocent/inocente 🔓`)
+					}
 					await kill.reply(from, mess.stars(), id)
 				break
 
@@ -4016,44 +3896,36 @@ module.exports = kconfig = async (kill, message) => {
 						genderFuck = mentPush.pushname || ' - "Censored by Government"'
 					}
 					if (tools('others').randVal(['Inocente', 'Culpado']) == 'Culpado') {
-						await fs.appendFileSync('./lib/config/Utilidades/gaysreport.txt', `\n\n${genderFuck} [${tools('others').getRandLine(1, './lib/config/Utilidades/lgbt.txt')[0]}] - ${lvpc} Years/Anos 🔒`)
-					} else await fs.appendFileSync('./lib/config/Utilidades/gaysreport.txt', `\n\n${genderFuck} [${tools('others').getRandLine(1, './lib/config/Utilidades/lgbt.txt')[0]}] - Innocent/inocente 🔓`)
+						fs.appendFileSync('./lib/config/Utilidades/gaysreport.txt', `\n\n${genderFuck} [${tools('others').getRandLine(1, './lib/config/Utilidades/lgbt.txt')[0]}] - ${lvpc} Years/Anos 🔒`)
+					} else {
+						fs.appendFileSync('./lib/config/Utilidades/gaysreport.txt', `\n\n${genderFuck} [${tools('others').getRandLine(1, './lib/config/Utilidades/lgbt.txt')[0]}] - Innocent/inocente 🔓`)
+					}
 					await kill.reply(from, mess.bsaa(), id)
 				break
 
 				case 'fbi':
-					const loliconList = await fs.readFileSync('./lib/config/Utilidades/lolicon.txt').toString()
+					const loliconList = fs.readFileSync('./lib/config/Utilidades/lolicon.txt').toString()
 					await kill.reply(from, loliconList, id)
 				break
 
 				case 'rpd':
-					const peopleCrz = await fs.readFileSync('./lib/config/Utilidades/entregados.txt').toString()
+					const peopleCrz = fs.readFileSync('./lib/config/Utilidades/entregados.txt').toString()
 					await kill.reply(from, peopleCrz, id)
 				break
 
 				case 'cia':
-					const reversePedo = await fs.readFileSync('./lib/config/Utilidades/reversecon.txt').toString()
+					const reversePedo = fs.readFileSync('./lib/config/Utilidades/reversecon.txt').toString()
 					await kill.reply(from, reversePedo, id)
 				break
 
 				case 'bsaa':
-					const gaysArrest = await fs.readFileSync('./lib/config/Utilidades/gaysreport.txt').toString()
+					const gaysArrest = fs.readFileSync('./lib/config/Utilidades/gaysreport.txt').toString()
 					await kill.reply(from, gaysArrest, id)
 				break
 
 				case 'stars':
-					const aLotCrime = await fs.readFileSync('./lib/config/Utilidades/crimereport.txt').toString()
+					const aLotCrime = fs.readFileSync('./lib/config/Utilidades/crimereport.txt').toString()
 					await kill.reply(from, aLotCrime, id)
-				break
-
-					/*Se tiver um link de video DIRETO, adicione-o na "lolis.txt".*/
-				case 'lolireal':
-					const aLolisV = await fs.readFileSync('./lib/config/Utilidades/lolis.txt').toString().split('\n')
-					const getLoliVideo = aLolisV[Math.floor(Math.random() * aLolisV.length)]
-					await kill.reply(from, mess.wait(), id)
-					await kill.sendFileFromUrl(from, getLoliVideo, 'loli.mp4', 'Lolicon!', id).catch(async () => {
-						await kill.reply(from, mess.fbispoted(), id)
-					})
 				break
 
 					/*Adicione mais no arquivo "desafio.txt" e "verdade.txt", mas em inglês.*/
@@ -4061,19 +3933,19 @@ module.exports = kconfig = async (kill, message) => {
 					if (!isGroupMsg) return await kill.reply(from, mess.sogrupo(), id)
 					if (args.length == 0) return await kill.reply(from, mess.tordare(), id)
 					if (argl[0] == '-dare') {
-						const desafios = await fs.readFileSync('./lib/config/Utilidades/desafio.txt').toString().split('\n')
+						const desafios = fs.readFileSync('./lib/config/Utilidades/desafio.txt').toString().split('\n')
 						const getDare = desafios[Math.floor(Math.random() * desafios.length)]
 						if (region == 'en') return await kill.reply(from, getDare, id)
-						await translate(getDare, {
+						translate(getDare, {
 							to: region
 						}).then(async (darem) => {
 							await kill.reply(from, darem.text, id)
 						})
 					} else if (argl[0] == '-truth') {
-						const verdadeG = await fs.readFileSync('./lib/config/Utilidades/verdade.txt').toString().split('\n')
+						const verdadeG = fs.readFileSync('./lib/config/Utilidades/verdade.txt').toString().split('\n')
 						const getTruth = verdadeG[Math.floor(Math.random() * verdadeG.length)]
 						if (region == 'en') return await kill.reply(from, getTruth, id)
-						await translate(getTruth, {
+						translate(getTruth, {
 							to: region
 						}).then(async (truthm) => {
 							await kill.reply(from, truthm.text, id)
@@ -4086,7 +3958,7 @@ module.exports = kconfig = async (kill, message) => {
 					/*Adicione mais no arquivo "never.txt", mas em inglês.*/
 				case 'nunca':
 					if (region == 'en') return await kill.reply(from, tools('others').getRandLine(1, './lib/config/Utilidades/never.txt')[0], id)
-					await translate(tools('others').getRandLine(1, './lib/config/Utilidades/never.txt')[0], {
+					translate(tools('others').getRandLine(1, './lib/config/Utilidades/never.txt')[0], {
 						to: region
 					}).then(async (willdo) => {
 						await kill.reply(from, willdo.text, id)
@@ -4096,7 +3968,7 @@ module.exports = kconfig = async (kill, message) => {
 					/*Adicione mais no arquivo "cantadas.txt", mas em inglês.*/
 				case 'cantada':
 					if (region == 'en') return await kill.reply(from, tools('others').getRandLine(1, './lib/config/Utilidades/cantadas.txt')[0], id)
-					await translate(tools('others').getRandLine(1, './lib/config/Utilidades/cantadas.txt')[0], {
+					translate(tools('others').getRandLine(1, './lib/config/Utilidades/cantadas.txt')[0], {
 						to: region
 					}).then(async (notHappy) => {
 						await kill.reply(from, notHappy.text, id)
@@ -4105,7 +3977,7 @@ module.exports = kconfig = async (kill, message) => {
 
 				case 'sort':
 					if (args.length == 0 || !arks.includes('|')) return await kill.reply(from, mess.noargs() + 'palavras/words/números/numbers.' + '\n\n' + mess.argsbar(), id)
-					await kill.reply(from, await tools('others').randVal(arg.split('|')), id)
+					await kill.reply(from, tools('others').randVal(arg.split('|')), id)
 				break
 
 				case 'biblia':
@@ -4117,27 +3989,27 @@ module.exports = kconfig = async (kill, message) => {
 							}).stdout
 							if (biblin == '') {
 								if (region == 'en') return await kill.reply(from, tools('others').getRandLine(1, './lib/config/Utilidades/biblia.txt')[0], id)
-								await translate(tools('others').getRandLine(1, './lib/config/Utilidades/biblia.txt')[0], {
+								translate(tools('others').getRandLine(1, './lib/config/Utilidades/biblia.txt')[0], {
 									to: region
 								}).then(async (bible) => {
 									await kill.reply(from, bible.text, id)
 								})
 							} else {
 								if (region == 'en') return await kill.reply(from, biblin, id)
-								await translate(biblin, {
+								translate(biblin, {
 									to: region
 								}).then(async (bible) => {
 									await kill.reply(from, bible.text, id)
 								})
 							}
-						} else return await translate(tools('others').getRandLine(1, './lib/config/Utilidades/biblia.txt')[0], {
+						} else return translate(tools('others').getRandLine(1, './lib/config/Utilidades/biblia.txt')[0], {
 							to: region
 						}).then(async (bible) => {
 							await kill.reply(from, bible.text, id)
 						})
 					} catch (error) {
-						await kill.reply(from, tools('others').getRandLine(1, './lib/config/Utilidades/biblia.txt')[0], id)
-						await tools('others').reportConsole(command, error)
+						tools('others').reportConsole(command, error)
+						await kill.reply(from, mess.fail(command, error, time), id)
 					}
 				break
 
@@ -4147,10 +4019,10 @@ module.exports = kconfig = async (kill, message) => {
 					if (tools('gaming').isLimit(sender.id, daily, 'steal')) return await kill.reply(from, mess.steal(), id)
 					var theStealK = quotedMsg ? quotedMsgObj.sender.id : (mentionedJidList.length !== 0 ? mentionedJidList[0] : null)
 					if (theStealK == null || theStealK == botNumber) return await kill.reply(from, mess.cmdfailed(), id)
-					const stealAlvo = await tools('gaming').getValue(theStealK, nivel, chatId, 'xp')
+					const stealAlvo = tools('gaming').getValue(theStealK, nivel, chatId, 'xp')
 					if (stealAlvo <= 1000) return await kill.sendTextWithMentions(from, mess.notalvo(theStealK, stealAlvo), id) /*Precisa de 1000 XP para roubar*/
-					const checkUserXP = await tools('gaming').getValue(sender.id, nivel, chatId, 'xp');
-					const getUsrLevel = await tools('gaming').getValue(sender.id, nivel, chatId, 'level')
+					const checkUserXP = tools('gaming').getValue(sender.id, nivel, chatId, 'xp')
+					const getUsrLevel = tools('gaming').getValue(sender.id, nivel, chatId, 'level')
 					var xpSteal = parseInt(stealAlvo / 10, 10);
 					var stealGain = Math.floor(Math.random() * xpSteal + Number(lvpc)) + Number(lvpc);
 					var stealLose = Number(-stealGain)
@@ -4162,7 +4034,7 @@ module.exports = kconfig = async (kill, message) => {
 							stealLose = Number(-stealGain)
 						}
 					}
-					var stGuild = await tools('gaming').getValue(sender.id, nivel, chatId, 'guild')
+					var stGuild = tools('gaming').getValue(sender.id, nivel, chatId, 'guild')
 					if (stGuild.toUpperCase() == 'THIEVES') {
 						lvpc = parseInt(lvpc + (getUsrLevel / 3), 10) /*Beneficio da Guilda Thieves, melhora o Steal sem limites*/
 					} else if (stGuild.toUpperCase() == 'COMPANIONS') {
@@ -4170,27 +4042,27 @@ module.exports = kconfig = async (kill, message) => {
 					} /*Beneficio da Guilda Companions, melhora o Steal mas com limitação*/
 					if (lvpc > 70) {
 						await kill.sendTextWithMentions(from, mess.stealwkd(theStealK, stealGain))
-						await tools('gaming').addValue(sender.id, Number(stealGain), nivel, chatId, 'xp')
-						await tools('gaming').addValue(theStealK, Number(stealLose), nivel, chatId, 'xp')
+						tools('gaming').addValue(sender.id, Number(stealGain), nivel, chatId, 'xp')
+						tools('gaming').addValue(theStealK, Number(stealLose), nivel, chatId, 'xp')
 					} else {
 						await kill.sendTextWithMentions(from, mess.stealfail(theStealK, stealLose))
-						await tools('gaming').addValue(sender.id, Number(stealLose), nivel, chatId, 'xp')
-						await tools('gaming').addValue(theStealK, Number(stealGain), nivel, chatId, 'xp')
+						tools('gaming').addValue(sender.id, Number(stealLose), nivel, chatId, 'xp')
+						tools('gaming').addValue(theStealK, Number(stealGain), nivel, chatId, 'xp')
 					}
-					if (objconfig.noLimits == 0) return await tools('gaming').addLimit(sender.id, daily, 'steal')
+					if (objconfig.noLimits == 0) return tools('gaming').addLimit(sender.id, daily, 'steal')
 				break
 
 				case 'doar':
 					if (!isxp) return await kill.reply(from, mess.needxpon(), id)
 					if (objconfig.agiotas.includes(sender.id)) return await kill.reply(from, `Você agiotou ou foi agiotado por alguém, para fazer isso novamente aguarde que a agiotagem anterior termine.`, id)
 					if (args.length == 0) return await kill.reply(from, mess.semmarcar() + `\n\nEx: ${prefix}give @user <value/valor>`, id)
-					const checkValue = await tools('gaming').getValue(sender.id, nivel, chatId, 'xp')
+					const checkValue = tools('gaming').getValue(sender.id, nivel, chatId, 'xp')
 					var theXpdonate = quotedMsg ? parseInt(args[0], 10) : (mentionedJidList.length !== 0 ? parseInt(args[1], 10) : parseInt(args[1], 10))
 					if (isNaN(theXpdonate) || !tools('others').isInt(theXpdonate) || Number(theXpdonate) > checkValue || theXpdonate < 1) return await kill.reply(from, mess.noxpalv(checkValue), id)
 					var sortFd = quotedMsg ? quotedMsgObj.sender.id : (mentionedJidList.length !== 0 ? mentionedJidList[0] : null)
 					if (sortFd == null) return await kill.reply(from, mess.cmdfailed(), id)
-					await tools('gaming').addValue(sender.id, Number(-theXpdonate), nivel, chatId, 'xp')
-					await tools('gaming').addValue(sortFd, Number(theXpdonate), nivel, chatId, 'xp')
+					tools('gaming').addValue(sender.id, Number(-theXpdonate), nivel, chatId, 'xp')
+					tools('gaming').addValue(sortFd, Number(theXpdonate), nivel, chatId, 'xp')
 					await kill.sendTextWithMentions(from, mess.xpdon(sortFd, theXpdonate))
 				break
 
@@ -4277,7 +4149,7 @@ module.exports = kconfig = async (kill, message) => {
 				case 'news':
 					if (args.length == 0) return await kill.reply(from, mess.noargs() + 'Theme/Tema.', id)
 					const theNews = await axios.get(`https://news.google.com/rss/search?q=${body.slice(6)}&hl=${region}`)
-					await fs.writeFileSync('./lib/news.xml', theNews.data)
+					fs.writeFileSync('./lib/news.xml', theNews.data)
 					let graNews = await shell.exec(`bash -c "grep -i "${body.slice(13)}" lib/config/Utilidades/biblia.txt | shuf -n 1"`, {
 						silent: true
 					})
@@ -4308,8 +4180,8 @@ module.exports = kconfig = async (kill, message) => {
 						await kill.sendFileFromUrl(from, musicFind.data[0].album.cover, 'cover.jpg', mess.musicdzr(musicFind.data[0]), id)
 						await kill.sendAudio(from, musicFind.data[0].preview, id)
 					} catch (error) {
+						tools('others').reportConsole(command, error)
 						await kill.reply(from, mess.fail(command, error, time) + '\n\n' + `Use ${prefix}Play.`, id)
-						await tools('others').reportConsole(command, error)
 					}
 				break
 
@@ -4343,7 +4215,7 @@ module.exports = kconfig = async (kill, message) => {
 						}
 					}
 					if (region == 'en') return await kill.sendFileFromUrl(from, garsonDK.strDrinkThumb, 'drink.jpg', `Drink: ${garsonDK.strDrink}\n\nAlcoholic? ${garsonDK.strAlcoholic == 'Alcoholic' ? 'Yes' : 'No'}\n\n${aCock}\n\nMaking: ${garsonDK.strInstructions}`, id)
-					await translate(garsonDK.strInstructions, {
+					translate(garsonDK.strInstructions, {
 						to: region
 					}).then(async (drink) => {
 						await kill.sendFileFromUrl(from, garsonDK.strDrinkThumb, 'drink.jpg', mess.drinkcmd(garsonDK, aCock, drink.text), id)
@@ -4373,7 +4245,7 @@ module.exports = kconfig = async (kill, message) => {
 						}
 					}
 					if (region == 'en') return await kill.sendFileFromUrl(from, garsonFD.strMealThumb, 'food.jpg', `Food: ${garsonFD.strMeal}\n\nTypical: ${garsonFD.strArea}\n\n${cookTa}\n\nCooking: ${garsonFD.strInstructions}`, id)
-					await translate(garsonFD.strInstructions, {
+					translate(garsonFD.strInstructions, {
 						to: region
 					}).then(async (food) => {
 						await kill.sendFileFromUrl(from, garsonFD.strMealThumb, 'food.jpg', mess.mealcmd(garsonFD, cookTa, food.text), id)
@@ -4386,7 +4258,7 @@ module.exports = kconfig = async (kill, message) => {
 					custom[sender.id] = {
 						msg: body.slice(7)
 					}
-					await fs.writeFileSync('./lib/config/Gerais/custom.json', JSON.stringify(custom, null, "\t"))
+					fs.writeFileSync('./lib/config/Gerais/custom.json', JSON.stringify(custom, null, "\t"))
 					await kill.reply(from, mess.maked(), id)
 				break
 
@@ -4707,12 +4579,13 @@ module.exports = kconfig = async (kill, message) => {
 				break
 
 				case 'surprise':
-					const surpmother = await fs.readFileSync('./lib/config/Utilidades/sounds.txt').toString().split('\n')
+					const surpmother = fs.readFileSync('./lib/config/Utilidades/sounds.txt').toString().split('\n')
 					try {
 						await kill.sendFileFromUrl(from, `https://www.myinstants.com/media/sounds/${tools('others').randVal(surpmother)}`, 'audio.mp3', '', null, null, null, true, null, null)
-					} catch (err) {
+					} catch (error) {
 						await kill.sendPtt(from, 'https://www.myinstants.com/media/sounds/soviet-anthem-but-its-sung-by-a-loli-audiotrimmer.mp3')
-						await tools('others').reportConsole(command, error)
+						tools('others').reportConsole(command, error)
+						await kill.reply(from, mess.fail(command, error, time), id)
 					}
 				break
 
@@ -4745,7 +4618,7 @@ module.exports = kconfig = async (kill, message) => {
 						await kill.reply(from, mess.cmdExist(), id)
 					} else {
 						cmds[chatId][removeAccents(arg.split('|')[0].replace(' ', '').toLowerCase())] = arg.split('|')[1]
-						await fs.writeFileSync('./lib/config/Gerais/cmds.json', JSON.stringify(cmds, null, "\t"))
+						fs.writeFileSync('./lib/config/Gerais/cmds.json', JSON.stringify(cmds, null, "\t"))
 						await kill.reply(from, mess.cmdAdded(arg), id)
 					}
 				break
@@ -4798,19 +4671,6 @@ module.exports = kconfig = async (kill, message) => {
 					if (theplayer2 !== null) {
 						tttSet[chatId]['isValidGame'] = 1
 					}
-					const verifyVict = () => {
-						playingX = tttSet[chatId].xjogadas.map(c => c[0])
-						playingO = tttSet[chatId].ojogadas.map(c => c[0])
-						if (playingX.filter(n => n == 'a').length == 3 || playingX.filter(n => n == 'b').length == 3 || playingX.filter(n => n == 'c').length == 3) {
-							tttSet[chatId].finalAwnser = 1
-						} else if (playingO.filter(n => n == 'a').length == 3 || playingO.filter(n => n == 'b').length == 3 || playingO.filter(n => n == 'c').length == 3) {
-							tttSet[chatId].finalAwnser = 2
-						}
-						if (tttSet[chatId].finalAwnser == 0 && tttSet[chatId].tttboard.a1 !== 'A1' && tttSet[chatId].tttboard.a2 !== 'A2' && tttSet[chatId].tttboard.a3 !== 'A3' && tttSet[chatId].tttboard.b1 !== 'B1' && tttSet[chatId].tttboard.b2 !== 'B2' && tttSet[chatId].tttboard.b3 !== 'B3' && tttSet[chatId].tttboard.c1 !== 'C1' && tttSet[chatId].tttboard.c2 !== 'C2' && tttSet[chatId].tttboard.c3 !== 'C3') {
-							tttSet[chatId].finalAwnser = 3
-						}
-						return tttSet[chatId].finalAwnser
-					}
 					if (sender.id == tttSet[chatId].thePlayerGameOld && argl[0] == '-cancel' || sender.id == tttSet[chatId].thePlayerGameOld2 && argl[0] == '-cancel') {
 						await kill.reply(from, mess.cancelgame(), id)
 						return await resetGameNew()
@@ -4829,14 +4689,25 @@ module.exports = kconfig = async (kill, message) => {
 							if (spliceindex2 !== -1) {
 								tttSet[chatId].tictacplays.splice(spliceindex2, 1)
 							}
-						}
-						if (sender.id == tttSet[chatId].thePlayerGameOld2) {
+						} else if (sender.id == tttSet[chatId].thePlayerGameOld2) {
 							var irissplice = tttSet[chatId].ojogadas.push(argl[0])
 							tttSet[chatId].tttboard[argl[0]] = 'O'
 							var irissplice2 = tttSet[chatId].tictacplays.indexOf(argl[0])
 							if (irissplice2 !== -1) {
 								tttSet[chatId].tictacplays.splice(irissplice2, 1)
 							}
+						}
+						if (tttSet[chatId].thePlayerGameOld2 == botNumber + '@c.us') {
+							let irisJog = tools('others').randVal(tttSet[chatId]['tictacplays'])
+							var irissplice = tttSet[chatId].ojogadas.push(irisJog)
+							tttSet[chatId].tttboard[irisJog] = 'O'
+							var irissplice2 = tttSet[chatId].tictacplays.indexOf(irisJog)
+							if (irissplice2 !== -1) {
+								tttSet[chatId].tictacplays.splice(irissplice2, 1)
+							}
+							await kill.sendTextWithMentions(from, `Estou fazendo minha jogada, vou mandar o tabuleiro assim que eu terminar @${tttSet[chatId].thePlayerGameOld.replace('@c.us', '')}.`)
+							tttSet[chatId].thePlayerGame = tttSet[chatId].thePlayerGameOld
+							tttSet[chatId].thePlayerGame2 = 1
 						}
 						let tboards = await canvacord.Canvas.tictactoe(tttSet[chatId].tttboard, {
 							bg: '#000000',
@@ -4850,37 +4721,20 @@ module.exports = kconfig = async (kill, message) => {
 						if (tttSet[chatId].thePlayerGameOld == sender.id) {
 							tttSet[chatId].thePlayerGame2 = tttSet[chatId].thePlayerGameOld2
 							tttSet[chatId].thePlayerGame = 1
-						}
-						if (tttSet[chatId].thePlayerGameOld2 == sender.id) {
+						} else if (tttSet[chatId].thePlayerGameOld2 == sender.id) {
 							tttSet[chatId].thePlayerGame = tttSet[chatId].thePlayerGameOld
 							tttSet[chatId].thePlayerGame2 = 1
+						}
+						if (tttSet[chatId].thePlayerGameOld2 == botNumber + '@c.us') {
+							tttSet[chatId].thePlayerGame = tttSet[chatId].thePlayerGameOld
+							tttSet[chatId].thePlayerGame2 = 1
+						} else if (tttSet[chatId].thePlayerGameOld == botNumber + '@c.us') {
+							tttSet[chatId].thePlayerGame2 = tttSet[chatId].thePlayerGameOld2
+							tttSet[chatId].thePlayerGame = 1
 						}
 						tttSet[chatId].timesPlayed = 1
 						tttSet[chatId].waitJogo = 0
-						if (tttSet[chatId].thePlayerGameOld2 !== botNumber + '@c.us') {
-							await kill.sendTextWithMentions(from, `É sua vez @${tttSet[chatId].thePlayerGame2.replace('@c.us', '')}.`)
-						} else if (tttSet[chatId].thePlayerGameOld2 == botNumber + '@c.us') {
-							let irisJog = await tools('others').randVal(tttSet[chatId]['tictacplays'])
-							var irissplice = tttSet[chatId].ojogadas.push(irisJog)
-							tttSet[chatId].tttboard[irisJog] = 'O'
-							var irissplice2 = tttSet[chatId].tictacplays.indexOf(irisJog)
-							if (irissplice2 !== -1) {
-								tttSet[chatId].tictacplays.splice(irissplice2, 1)
-							}
-							await kill.sendTextWithMentions(from, `Pronto, fiz minha jogada, sua vez @${tttSet[chatId].thePlayerGameOld.replace('@c.us', '')}.`)
-							let newTtt = await canvacord.Canvas.tictactoe(tttSet[chatId].tttboard, {
-								bg: '#000000',
-								bar: '#FFFFFF'
-							}) // Branco | Preto
-							await kill.sendImageAsSticker(from, newTtt, {
-								author: config.Sticker_Author,
-								pack: config.Sticker_Pack,
-								keepScale: true
-							})
-							tttSet[chatId].thePlayerGame = tttSet[chatId].thePlayerGameOld
-							tttSet[chatId].thePlayerGame2 = 1
-						}
-						var theVeredict = await verifyVict(tttSet[chatId].xjogadas, tttSet[chatId].ojogadas)
+						var theVeredict = tools('gaming').verify(tttSet, chatId)
 						if (theVeredict == 1) {
 							await kill.sendTextWithMentions(from, mess.playerWin(tttSet[chatId].thePlayerGameOld))
 							return await resetGameNew()
@@ -4909,7 +4763,7 @@ module.exports = kconfig = async (kill, message) => {
 					if (objconfig.agiotas.includes(sender.id)) return await kill.reply(from, cdagiot, id)
 					if (!isxp) return await kill.reply(from, mess.needxpon(), id)
 					if (args.length <= 1) return await kill.reply(from, mess.semmarcar() + `\n\nEx: ${prefix}Agiotar @user <value/valor> <time/tempo>`, id)
-					const checkAgiota = await tools('gaming').getValue(sender.id, nivel, chatId, 'xp')
+					const checkAgiota = tools('gaming').getValue(sender.id, nivel, chatId, 'xp')
 					var theAgiota = quotedMsg ? parseInt(args[0], 10) : (mentionedJidList.length !== 0 ? parseInt(args[1], 10) : parseInt(args[1], 10))
 					var timeAgiota = quotedMsg ? args[1] : (mentionedJidList.length !== 0 ? args[2] : args[2])
 					if (isNaN(theAgiota) || !tools('others').isInt(theAgiota) || Number(theAgiota) > checkAgiota || theAgiota < 100 || isNaN(timeAgiota) || timeAgiota < 5) return await kill.reply(from, mess.maxAgiota(checkAgiota), id)
@@ -4918,13 +4772,13 @@ module.exports = kconfig = async (kill, message) => {
 					if (alvoAgiota == null) return await kill.reply(from, mess.cmdfailed(), id)
 					objconfig.agiotas.push(sender.id)
 					objconfig.agiotas.push(alvoAgiota)
-					await tools('gaming').addValue(sender.id, Number(-theAgiota), nivel, chatId, 'xp')
-					await tools('gaming').addValue(alvoAgiota, Number(theAgiota), nivel, chatId, 'xp')
+					tools('gaming').addValue(sender.id, Number(-theAgiota), nivel, chatId, 'xp')
+					tools('gaming').addValue(alvoAgiota, Number(theAgiota), nivel, chatId, 'xp')
 					await kill.sendTextWithMentions(from, mess.moneyagi(theAgiota, alvoAgiota, timeAgiota))
 					setTimeout(async () => {
 						await kill.sendTextWithMentions(from, mess.backmoney(theAgiota, sender.id, alvoAgiota))
-						await tools('gaming').addValue(alvoAgiota, Number(-theAgiota), nivel, chatId, 'xp')
-						await tools('gaming').addValue(sender.id, Number(theAgiota), nivel, chatId, 'xp')
+						tools('gaming').addValue(alvoAgiota, Number(-theAgiota), nivel, chatId, 'xp')
+						tools('gaming').addValue(sender.id, Number(theAgiota), nivel, chatId, 'xp')
 						objconfig.agiotas.splice(sender.id, 1)
 						objconfig.agiotas.splice(alvoAgiota, 1)
 					}, Number(timeAgiota * 60000))
@@ -4949,8 +4803,8 @@ module.exports = kconfig = async (kill, message) => {
 							await kill.sendFile(from, tools('others').dataURI('image/png', buffer), `sepia.png`, '', id)
 						})
 					} catch (error) {
+						tools('others').reportConsole(command, error)
 						await kill.reply(from, mess.fail(command, error, time), id)
-						await tools('others').reportConsole(command, error)
 					}
 				break
 
@@ -4981,8 +4835,8 @@ module.exports = kconfig = async (kill, message) => {
 							await kill.sendFile(from, tools('others').dataURI('image/png', buffer), `medal.png`, '', id)
 						})
 					} catch (error) {
+						tools('others').reportConsole(command, error)
 						await kill.reply(from, mess.fail(command, error, time), id)
-						await tools('others').reportConsole(command, error)
 					}
 				break
 
@@ -4991,9 +4845,9 @@ module.exports = kconfig = async (kill, message) => {
 					if (tools('gaming').isLimit(sender.id, daily, 'guild')) return await kill.reply(from, mess.waitNewGuild(), id)
 					if (args.length == 0) return await kill.reply(from, mess.helpGuild(), id)
 					if (functions.guild.includes(argc[0]) && tools('gaming').getValue(sender.id, nivel, chatId, 'guild') !== argc[0]) {
-						await tools('gaming').changeGuild(sender.id, nivel, chatId, argc[0])
+						tools('gaming').changeGuild(sender.id, nivel, chatId, argc[0])
 						await kill.reply(from, mess.newGuild(), id)
-						if (objconfig.noLimits == 0) return await tools('gaming').addLimit(sender.id, daily, 'guild')
+						if (objconfig.noLimits == 0) return tools('gaming').addLimit(sender.id, daily, 'guild')
 					} else return await kill.reply(from, `A guilda informada não existe ou você já está nela.`, id)
 				break
 
@@ -5016,8 +4870,8 @@ module.exports = kconfig = async (kill, message) => {
 						}
 						await kill.sendText(from, guildTit)
 					} catch (error) {
+						tools('others').reportConsole(command, error)
 						await kill.reply(from, mess.fail(command, error, time), id)
-						await tools('others').reportConsole(command, error)
 					}
 				break
 
@@ -5034,8 +4888,8 @@ module.exports = kconfig = async (kill, message) => {
 					if (functions.guild.includes(argc[0])) return await kill.reply(from, 'A guilda que você deseja criar já existe.', id)
 					functions.guild.push(argc[0])
 					if (tools('gaming').getValue(sender.id, nivel, chatId, 'guild') == argc[0]) return await kill.reply(from, `A guilda informada não existe ou você já está nela.`, id)
-					await tools('gaming').changeGuild(sender.id, nivel, chatId, argc[0])
-					await fs.writeFileSync('./lib/config/Gerais/functions.json', JSON.stringify(functions, null, "\t"))
+					tools('gaming').changeGuild(sender.id, nivel, chatId, argc[0])
+					fs.writeFileSync('./lib/config/Gerais/functions.json', JSON.stringify(functions, null, "\t"))
 					await kill.reply(from, `Guilda ${argc[0]} criada com sucesso, chame alguém para entrar com ${prefix}Guild ${argc[0]}!`, id)
 				break
 
@@ -5097,7 +4951,7 @@ module.exports = kconfig = async (kill, message) => {
 					}
 					console.log(canvaimage)
 					let animatedGif = await petPetGif(canvaimage)
-					await fs.writeFile(`./lib/media/img/petpet${sender.id.replace('@c.us', '')}${lvpc}.gif`, animatedGif, async (err) => {
+					fs.writeFile(`./lib/media/img/petpet${sender.id.replace('@c.us', '')}${lvpc}.gif`, animatedGif, async (err) => {
 						if (err) return console.error(err)
 						const resultwebp = webp.gwebp(`./lib/media/img/petpet${sender.id.replace('@c.us', '')}${lvpc}.gif`, `./lib/media/img/petpet${sender.id.replace('@c.us', '')}${lvpc}.webp`, "-q 100", logging = "-v").then(async () => {
 							await kill.sendImageAsSticker(from, `./lib/media/img/petpet${sender.id.replace('@c.us', '')}${lvpc}.webp`, {
@@ -5106,8 +4960,8 @@ module.exports = kconfig = async (kill, message) => {
 								keepScale: true
 							})
 							await tools('others').sleep(10000).then(async () => {
-								await fs.unlinkSync(`./lib/media/img/petpet${sender.id.replace('@c.us', '')}${lvpc}.gif`)
-								await fs.unlinkSync(`./lib/media/img/petpet${sender.id.replace('@c.us', '')}${lvpc}.webp`)
+								fs.unlinkSync(`./lib/media/img/petpet${sender.id.replace('@c.us', '')}${lvpc}.gif`)
+								fs.unlinkSync(`./lib/media/img/petpet${sender.id.replace('@c.us', '')}${lvpc}.webp`)
 							})
 						})
 					})
@@ -5120,7 +4974,7 @@ module.exports = kconfig = async (kill, message) => {
 						let BkMesa = quotedMsgObj ? quotedMsgObj : message
 						if (BkMesa.duration > 60) return await kill.reply(from, mess.watsonmsg(), id)
 						let watsonst = `./lib/media/audio/stt-${tools('others').randomString(10)}.ogg`
-						await fs.writeFile(watsonst, await decryptMedia(encryptMedia), async (err) => {
+						fs.writeFile(watsonst, await decryptMedia(encryptMedia), async (err) => {
 							if (err) return console.error(err)
 							const speechToText = new SpeechToTextV1({
 								authenticator: new IamAuthenticator({
@@ -5134,20 +4988,20 @@ module.exports = kconfig = async (kill, message) => {
 								contentType: 'audio/ogg',
 								model: config.Watson_Model
 							})
-							await fs.createReadStream(watsonst).pipe(recognizeStream)
+							fs.createReadStream(watsonst).pipe(recognizeStream)
 							recognizeStream.setEncoding('utf8')
 							recognizeStream.on('data', async function(data, event) {
 								await kill.reply(from, '🎙️: "' + data + '"', id)
 								await kill.reply(from, mess.nobgms(), id)
 							})
 							recognizeStream.on('error', async function(error, event) {
+								tools('others').reportConsole(command, error)
 								await kill.reply(from, mess.fail(command, error, time), id)
-								console.log(error)
 							})
 							recognizeStream.on('close', async function(event) {})
 						})
 						await tools('others').sleep(10000).then(async () => {
-							await fs.unlinkSync(watsonst)
+							fs.unlinkSync(watsonst)
 						})
 					} else return await kill.reply(from, mess.onlyaudio(), id)
 				break
@@ -5306,7 +5160,7 @@ module.exports = kconfig = async (kill, message) => {
 				break
 
 				case 'time':
-					const getlimit = await tools('gaming').getLimit(sender.id, daily, 'games')
+					const getlimit = tools('gaming').getLimit(sender.id, daily, 'games')
 					if (getlimit !== undefined) {
 						const whenminutes = Math.floor((Date.now() - getlimit) / 60000)
 						const whenseconds = Math.floor(((Date.now() - getlimit) % 60000) / 1000) + 1
@@ -5323,8 +5177,6 @@ module.exports = kconfig = async (kill, message) => {
 				case 'mix':
 					if (!Object.keys(gameconfig).includes(chatId)) {
 						gameconfig[chatId] = {
-							akistarted: 0,
-							forcplay: 0,
 							lives: 6,
 							dicas: 0,
 							forcw: 0,
@@ -5332,12 +5184,11 @@ module.exports = kconfig = async (kill, message) => {
 							wordVsb: 0,
 							wordOct: 0,
 							word: 0,
-							whoplay: 0,
+							whoplay: chatId,
 							gameFile: 0,
 							forcFile: 0
 						}
 					}
-					if (gameconfig[chatId]['whoplay'] !== chatId && gameconfig[chatId]['word'] !== 0) return await kill.reply(from, 'Alguém está jogando, apenas espere.', id)
 					gameconfig[chatId]['gameFile'] = gameconfig[chatId]['gameFile'] == 0 ? tools('others').randVal(fileFor) : gameconfig[chatId]['gameFile']
 					if (argl[0] == '-dica' && gameconfig[chatId]['word'] !== 0) {
 						if (gameconfig[chatId]['hint'] !== 0) return await kill.reply(from, `Você já usou todas as dicas deste jogo atual, irei re-ordenar as letras!\n\n❗ - ${gameconfig[chatId]['gameFile'].toUpperCase()}\n\n❓ - "${tools('others').randomArr(gameconfig[chatId]['word'].split('').sort()).toString()}""`, id)
@@ -5353,7 +5204,7 @@ module.exports = kconfig = async (kill, message) => {
 						}
 						await kill.reply(from, score, id)
 					} else if (gameconfig[chatId]['word'] == 0 || argl[0] == '-new') {
-						gameconfig[chatId]['word'] = fileFor.includes(argl[1]) ? tools('others').getRandLine(1, `./lib/config/Utilidades/${argl[1]}.txt`) : tools('others').getRandLine(1, `./lib/config/Utilidades/${gameconfig[chatId]['gameFile']}.txt`)
+						gameconfig[chatId]['word'] = fileFor.includes(argl[1]) ? tools('others').getRandLine(1, `./lib/config/Utilidades/${argl[1]}.txt`)[0] : tools('others').getRandLine(1, `./lib/config/Utilidades/${gameconfig[chatId]['gameFile']}.txt`)[0]
 						gameconfig[chatId]['whoplay'] = chatId
 						gameconfig[chatId]['hint'] = 0
 						gameconfig[chatId]['gameFile'] = fileFor.includes(argl[1]) ? argl[1] : gameconfig[chatId]['gameFile']
@@ -5367,7 +5218,7 @@ module.exports = kconfig = async (kill, message) => {
 					if (args.length == 0) return await kill.reply(from, 'Insira um personagem de anime.', id)
 					let charac = await axios.get(`https://www.animecharactersdatabase.com/api_series_characters.php?character_q=${encodeURIComponent(body.slice(4))}`)
 					if (charac.data == '-1') return await kill.reply(from, mess.noresult(), id)
-					await translate(charac.data.search_results[0].desc, {
+					translate(charac.data.search_results[0].desc, {
 						to: region
 					}).then(async (desc) => {
 						await kill.sendFileFromUrl(from, `${response.data.search_results[0].character_image}`, 'char.jpg', `${response.data.search_results[0].name} - ${response.data.search_results[0].gender}\n\n${response.data.search_results[0].anime_name}\n\n${desc.text}`)
@@ -5375,13 +5226,26 @@ module.exports = kconfig = async (kill, message) => {
 				break
 
 				case 'forca':
-					if (gameconfig[chatId]['forcw'] !== 0 && gameconfig[chatId]['forcplay'] !== chatId) return await kill.reply(from, 'Alguém está jogando, apenas espere.', id)
+					if (!Object.keys(gameconfig).includes(chatId)) {
+						gameconfig[chatId] = {
+							lives: 6,
+							dicas: 0,
+							forcw: 0,
+							hint: 0,
+							wordVsb: 0,
+							wordOct: 0,
+							word: 0,
+							whoplay: chatId,
+							gameFile: 0,
+							forcFile: 0
+						}
+					}
 					gameconfig[chatId]['forcFile'] = gameconfig[chatId]['forcFile'] == 0 ? tools('others').randVal(fileFor) : gameconfig[chatId]['forcFile']
 					let resetForca = () => {
 						gameconfig[chatId]['forcw'] = 0
 						gameconfig[chatId]['wordVsb'] = 0
 						gameconfig[chatId]['wordOct'] = 0
-						gameconfig[chatId]['forcplay'] = 0
+						gameconfig[chatId]['whoplay'] = 0
 						gameconfig[chatId]['lives'] = 0
 						gameconfig[chatId]['forcFile'] = 0
 					}
@@ -5395,26 +5259,26 @@ module.exports = kconfig = async (kill, message) => {
 						})
 					}
 					if (gameconfig[chatId]['forcw'] == 0 || argl[0] == '-new') {
-						gameconfig[chatId]['forcw'] = tools('others').getRandLine(1, `./lib/config/Utilidades/${gameconfig[chatId]["forcFile"]}.txt`)
+						gameconfig[chatId]['forcw'] = tools('others').getRandLine(1, `./lib/config/Utilidades/${gameconfig[chatId]["forcFile"]}.txt`)[0]
 						gameconfig[chatId]['wordVsb'] = gameconfig[chatId]['forcw'].replace(/[a-zA-Z]/g, '_ ').split(' ')
 						gameconfig[chatId]['wordOct'] = gameconfig[chatId]['forcw'].split('')
-						gameconfig[chatId]['forcplay'] = chatId
+						gameconfig[chatId]['whoplay'] = chatId
 						await kill.reply(from, `❗ - ${gameconfig[chatId]['forcFile'].toUpperCase()}\n\n❓ - "${gameconfig[chatId]['wordVsb'].join(' ')}"`, id)
 					} else if (argl.length >= 2 && argl[0] == '-r') {
 						if (gameconfig[chatId]['wordVsb'].includes(argl[1].split('')[0])) return await kill.reply(from, 'Já possui esta letra.' + '\n\n' + gameconfig[chatId]["wordVsb"].join(' '), id)
 						let awnserFind = 0
-						for (let i = 0; i < gameconfig[chatId][wordVsb].length; i++) {
-							if (gameconfig[chatId][wordOct[i]] == argl[1].split('')[0]) {
-								gameconfig[chatId][wordVsb[i]] = gameconfig[chatId][wordOct[i]]
+						for (let i = 0; i < gameconfig[chatId]['wordVsb'].length; i++) {
+							if (gameconfig[chatId]['wordOct'][i] == argl[1][0]) {
+								gameconfig[chatId]['wordVsb'][i] = gameconfig[chatId]['wordOct'][i]
 								awnserFind = 1
 							}
 						}
 						if (awnserFind == 1) {
+							await kill.reply(from, 'Letra encontrada! > ' + gameconfig[chatId]['wordVsb'].join(' '), id)
 							if (gameconfig[chatId]['wordVsb'].filter((a => a == '_')).length == 0) {
-								await kill.reply(from, 'Você venceu! > ' + gameconfig[chatId]['wordVsb'].join(' '), id)
+								await kill.reply(from, 'A palavra era -> "' + gameconfig[chatId]['wordVsb'].join(' ') + '", você venceu!' , id)
 								resetForca()
 							}
-							await kill.reply(from, 'Letra encontrada! > ' + gameconfig[chatId]['wordVsb'].join(' '), id)
 						} else {
 							gameconfig[chatId]['lives'] -= 1
 							if (gameconfig[chatId]['lives'] == 5) {
@@ -5484,28 +5348,28 @@ module.exports = kconfig = async (kill, message) => {
 					if (!isxp) return await kill.reply(from, mess.needxpon(), id)
 					if (argl[0] == '-buy') {
 						if (lotery['users'].includes(sender.id)) return await kill.reply(from, `Você já está no sorteio, apenas espere que ele finalize para participar novamente.`, id)
-						const icoinTick = parseInt(await tools('gaming').getValue(sender.id, nivel, chatId, 'coin'))
-						const xpPrize = parseInt(await tools('gaming').getValue(sender.id, nivel, chatId, 'xp'))
-						const rubiPrize = parseInt(await tools('gaming').getValue(sender.id, nivel, chatId, 'rubi'))
-						const diamoPrize = parseInt(await tools('gaming').getValue(sender.id, nivel, chatId, 'rubi'))
+						const icoinTick = parseInt(tools('gaming').getValue(sender.id, nivel, chatId, 'coin'))
+						const xpPrize = parseInt(tools('gaming').getValue(sender.id, nivel, chatId, 'xp'))
+						const rubiPrize = parseInt(tools('gaming').getValue(sender.id, nivel, chatId, 'rubi'))
+						const diamoPrize = parseInt(tools('gaming').getValue(sender.id, nivel, chatId, 'rubi'))
 						if (Number(shopconf.Ticket_Price) > icoinTick) return await kill.reply(from, `Você precisa ter ${shopconf.Ticket_Price} I'Coin para participar, você tem apenas ${icoinTick}, junte mais antes que o tempo expire!`, id)
 						lotery['users'].push(sender.id)
 						lotery['prize']['icoin'] += parseInt(icoinTick + 10)
 						lotery['prize']['xp'] += parseInt(xpPrize * 2 / 3)
 						lotery['prize']['rubi'] += parseInt(rubiPrize + 10)
 						lotery['prize']['dima'] += parseInt(diamoPrize + 10)
-						await tools('gaming').addValue(sender.id, Number(-shopconf.Ticket_Price), nivel, chatId, 'coin')
+						tools('gaming').addValue(sender.id, Number(-shopconf.Ticket_Price), nivel, chatId, 'coin')
 						if (lotery['hasLast']) {
 							await kill.sendTextWithMentions(from, `Atualmente os premios são de:\n\n- ${lotery['prize']['icoin']} I'coin.\n- ${lotery['prize']['xp']} XP.\n- ${lotery['prize']['rubi']} Rubis.\n- ${lotery['prize']['dima']} Diamantes.\n\nOs premios aumentam conforme a quantidade de apostadores, atualmente existem ${lotery['users'].length} apostadores, as chances de você ganhar são de ${parseFloat(100/Number(lotery['users'].length)).toFixed(2)}%.\n\nPara comprar um ticket, digite \"${prefix}loteria -buy\", tenha certeza de ter ${shopconf.Ticket_Price} I'coins para comprar!\n\nUltimo sorteio foi as ${moment(lotery['lasttime']).toString()}.\n\nUltimo ganhador foi @${lotery['winner'].replace('@c.us', '')}.\n\nGanhou ${Number(lotery['lastprize'][lotery['win']])} ${lotery['win']}.\n\nHouveram ${Number(lotery['lastUserPart'])} participantes.`)
 						} else await kill.reply(from, `Atualmente os premios são de:\n\n- ${lotery['prize']['icoin']} I'coin.\n- ${lotery['prize']['xp']} XP.\n- ${lotery['prize']['rubi']} Rubis.\n- ${lotery['prize']['dima']} Diamantes.\n\nOs premios aumentam conforme a quantidade de apostadores, atualmente existem ${lotery['users'].length} apostadores, as chances de você ganhar são de ${parseFloat(100/Number(lotery['users'].length)).toFixed(2)}%.\n\nPara comprar um ticket, digite \"${prefix}loteria -buy\", tenha certeza de ter ${shopconf.Ticket_Price} I'coins para comprar!`, id)
 						if (!lotery['isStarted']) {
 							lotery['isStarted'] = true
 							lotery['time'] = moment().add(shopconf.Lotery_Time, 'minutes').unix()
-							await tools('others').sleep(shopconf.Lotery_Time * 60000)
-							lotery['win'] = await tools('others').randVal(['xp', 'coin', 'rubi', 'dima'])
-							lotery['winner'] = await tools('others').randVal(lotery['users'])
-							await tools('gaming').addValue(lotery['winner'], Number(lotery['prize'][lotery['win']]), nivel, chatId, lotery['prize'])
-							await kill.sendTextWithMentions(from, `Parabéns @${lotery['winner'].replace('@c.us','')}, você ganhou ${Number(lotery['prize'][lotery['win']])} ${lotery['win']}!`)
+							await tools('others').sleep(2 * 60000)
+							lotery['win'] = tools('others').randVal(['xp', 'coin', 'rubi', 'dima'])
+							lotery['winner'] = tools('others').randVal(lotery['users'])
+							tools('gaming').addValue(lotery['winner'], Number(lotery['prize'][lotery['win']]), nivel, chatId, lotery['prize'])
+							await kill.sendTextWithMentions(from, `Parabéns @${lotery['winner'].replace('@c.us','')}, você ganhou ${lotery['prize'][lotery['win']]} ${lotery['win']}!`)
 							lotery['lastTime'] = Number(moment().unix())
 							lotery['lastUserPart'] = lotery['users'].length
 							lotery['prize'] = {
@@ -5530,25 +5394,21 @@ module.exports = kconfig = async (kill, message) => {
 				break
 
 				case 'deleted':
+					if (args.length == 0) return await kill.reply(from, `Para ativar esse recurso use "-log".\nPara desativar use "-nolog".\nPara listar as mensagens apagadas use "-show".`, id)
 					if (isGroupMsg && isGroupAdmins || isGroupMsg && isOwner) {
 						await kill.reply(from, `Isso apenas funciona se meu dono não estiver usando a função "Anti-Revoke" no WhatsApp.`, id)
 						if (arks.includes('-log')) {
-							if (!deleted.nolog.includes(chatId)) return await kill.reply(from, mess.jadisabled(), id)
-							deleted.nolog.push(from)
-							await fs.writeFileSync('./lib/config/Utilidades/message.json', JSON.stringify(deleted, null, "\t"))
-							return await kill.reply(from, mess.disabled(), id)
-						} else if (arks.includes('-nolog')) {
-							if (deleted.nolog.includes(chatId)) return await kill.reply(from, mess.jaenabled(), id)
-							deleted.nolog = deleted.nolog.filter(g => g !== chatId)
-							await fs.writeFileSync('./lib/config/Utilidades/message.json', JSON.stringify(deleted, null, "\t"))
+							if (deleted.log.includes(chatId)) return await kill.reply(from, mess.jaenabled(), id)
+							deleted.log.push(from)
+							fs.writeFileSync('./lib/config/Gerais/message.json', JSON.stringify(deleted, null, "\t"))
 							return await kill.reply(from, mess.enabled(), id)
+						} else if (arks.includes('-nolog')) {
+							if (!deleted.log.includes(chatId)) return await kill.reply(from, mess.jadisabled(), id)
+							deleted.log = deleted.log.filter(g => g !== chatId)
+							fs.writeFileSync('./lib/config/Gerais/message.json', JSON.stringify(deleted, null, "\t"))
+							return await kill.reply(from, mess.disabled(), id)
 						} else if (arks.includes('-show')) {
-							let userMesgs = ''
-							deleted.texts.map(async (msg) => {
-								let userName = await kill.getContact(msg.user)
-								userMesgs += `De: ${userName.pushname}\nPara: ${msg.to}\nQuando: ${msg.time}\nMensagem: ${msg.message}\n\n`
-							})
-							await kill.reply(from, 'Mensagens apagadas:\n\n' + userMesgs.toString().replace(/,De/g, 'De'), id)
+							await kill.sendText(from, 'Mensagens apagadas:\n\n' + deleted.texts.map(msgdl => `De: "${msgdl.user.replace('@c.us', '')}"\nPara: "${msgdl.to}"\nQuando: "${msgdl.time}"\nMensagem: "${msgdl.message}"\n\n`).toString().replace(/,De/g, 'De'))
 						}
 					} else if (isGroupMsg) {
 						await kill.reply(from, mess.soademiro(), id)
@@ -5590,8 +5450,8 @@ module.exports = kconfig = async (kill, message) => {
 			}
 		}
 	} catch (error) {
-		await kill.simulateTyping(from, true)
 		await kill.reply(from, mess.fail(command, error, time), id)
+		await kill.simulateTyping(from, true)
 		if (config.WhatsApp_Report) {
 			await kill.sendText(config.Owner[0], mess.wpprpt(command, error))
 		}

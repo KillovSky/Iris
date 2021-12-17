@@ -23,6 +23,7 @@ const config = require('./lib/config/Gerais/config.json')
 const fs = require('fs')
 const irisvs = require('./package.json')
 const kconfig = require('./config')
+const welcome = require('./lib/functions/welcome')
 const moment = require('moment-timezone')
 const os = require('os')
 /* Como fazer um require = "const | var | let [Nome] = require('Nome_do_Módulo')" */
@@ -43,35 +44,36 @@ const start = async (kill = new Client()) => {
 			}
 		} catch (err) {
 			console.log(`Checagem de versão falhou, de uma olhada no arquivo de Logs -> "/logs/Iris_Login_QR/${moment().format('DD-MM-YY # HH-mm-ss')}.txt".`)
-			await fs.appendFileSync(`./logs/Iris_Login_QR/${moment().format('DD-MM-YY # HH-mm-ss')}.txt`, err)
+			fs.appendFileSync(`./logs/Iris_Login_QR/${moment().format('DD-MM-YY # HH-mm-ss')}.txt`, err)
 		}
 		console.log(tools('others').color('\n[SUPORTE]', 'magenta'), tools('others').color(`${irisvs.bugs.url}\n`, 'lime'), tools('others').color(`\n[ÍRIS ${irisvs.version}]`, 'magenta'), tools('others').color('Estamos prontos para começar mestre!\n', 'lime'))
 
 		// Íris Push-Alert - Inicialização
 		if (config.Popup) {
-			await tools('others').notify('Íris', mylang(config.Language).started(os, (new Date()).getHours()), './lib/media/img/Hello.png')
+			tools('others').notify('Íris', mylang(config.Language).started(os, (new Date()).getHours()), './lib/media/img/Hello.png')
 		}
 
 		// Auto Recarregamento da Config.js sem reiniciar, para casos de edições em tempo real, use com cautela e ative a require la em baixo se usar
 		if (config.Auto_Update) {
-			await tools('reload').watchFile('./config.js', '../../config.js')
+			tools('reload').watchFile('./config.js', '../../config.js')
 		}
 
 		// Não irrite a Íris :)
 		if (config.SafeBoot !== 0) {
+			let imgNot = 0
 			setTimeout(async () => {
-				let texts = mylang(config.Language).badshtd(os)
-				for (let i in texts) {
-					console.log(tools('others').color('[ÍRIS 😠]', 'magenta'), tools('others').color(texts[i], 'lime'))
+				for (let tex of mylang(config.Language).badshtd(os)) {
+					imgNot++
+					console.log(tools('others').color('[ÍRIS 😠]', 'magenta'), tools('others').color(tex, 'lime'))
 					if (config.Popup) {
 						await tools('others').sleep(5000)
-						await tools('others').notify('ÍRIS', texts[i], `./lib/media/img/${i}.png`)
+						tools('others').notify('ÍRIS', tex, `./lib/media/img/${imgNot}.png`)
 					}
 				}
 			}, 30000)
 		} else {
 			config.SafeBoot = 1
-			await fs.writeFileSync('./lib/config/Gerais/config.json', JSON.stringify(config, null, 2))
+			fs.writeFileSync('./lib/config/Gerais/config.json', JSON.stringify(config, null, 2))
 		}
 
 		// Backup dos arquivos toda vez que religar a BOT
@@ -82,7 +84,7 @@ const start = async (kill = new Client()) => {
 						console.log(tools('others').color('[ÍRIS 🙂]', 'magenta'), tools('others').color(i, 'lime'))
 						if (config.Popup) {
 							await tools('others').sleep(5000)
-							await tools('others').notify('ÍRIS', i, `./lib/media/img/3.png`)
+							tools('others').notify('ÍRIS', i, `./lib/media/img/3.png`)
 						}
 					}
 				}, 10000)
@@ -114,12 +116,11 @@ const start = async (kill = new Client()) => {
 				require('./config')(kill, message)
 			} else await kconfig(kill, message)
 		})
-		// Você pode rodar certos comandos(/enviar por exemplo) pelo próprio WhatsApp da BOT trocando o "kill.onMessage" por "kill.onAnyMessage", não recomendado.
-		// Caso deseje, faça um "wa.me" do número da BOT, entre e rode os comandos no chat.
+		// Você pode rodar certos comandos(/enviar por exemplo) pelo próprio WhatsApp da BOT, caso deseje, faça um "wa.me" do número da BOT, entre e rode os comandos no chat, não recomendado.
 
 		kill.onMessageDeleted(async (msg) => {
 			const deleted = JSON.parse(fs.readFileSync('./lib/config/Gerais/message.json'))
-			if (!deleted.nolog.includes(msg.from)) {
+			if (deleted.log.includes(msg.from)) {
 				let delMsg = (msg.type == 'chat' || msg.type == "buttons_response") ? msg.body : ((msg.type == 'image' || msg.type == 'video') && msg.caption) ? msg.caption : ''
 				deleted.texts.push({
 					"user": msg.from,
@@ -130,8 +131,9 @@ const start = async (kill = new Client()) => {
 				if (deleted.texts.length > Number(config.Max_Revoked)) {
 					deleted.texts.shift()
 				}
-				await fs.writeFileSync('./lib/config/Utilidades/message.json', JSON.stringify(deleted))
-				console.log('[DELETED]', `"${msg.body.slice(0,10)}"`, 'AS', tools('others').color(moment(msg.t * 1000).format('DD/MM/YY HH:mm:ss'), 'yellow'), 'DE', msg.from)
+				fs.writeFileSync('./lib/config/Gerais/message.json', JSON.stringify(deleted))
+				console.log(tools('others').color('> [DELETED AS]', 'red'), tools('others').color(moment(msg.t * 1000).format('DD/MM/YY HH:mm:ss'), 'yellow'), tools('others').color(`"${msg.body.slice(0,10)}"`, 'red'), 'EM', tools('others').color(`"${msg.from}"`))
+				await kill.sendText(msg.from, `Ooops, você acabou de deletar a seguinte mensagem:\n\n${delMsg}`)
 			}
 		})
 
@@ -150,89 +152,7 @@ const start = async (kill = new Client()) => {
 
 		// Configuração do welcome
 		kill.onGlobalParticipantsChanged(async (event) => {
-			const welcmsg = JSON.parse(fs.readFileSync('./lib/config/Gerais/greetings.json'))
-			const canvacord = JSON.parse(fs.readFileSync('./lib/config/Gerais/canvas.json'))
-			const isMyBot = event.who == await kill.getHostNumber() + '@c.us'
-			const isWelkom = functions.welcome.includes(event.chat)
-			const fake = event.who.startsWith(config.DDI)
-			const fuck = functions.blacklist.includes(event.who)
-			const eChat = await kill.getContact(event.who)
-			pushname = eChat.pushname || eChat.verifiedName || eChat.formattedName || 'Censored by Government'
-			const gChat = await kill.getChatById(event.chat)
-			try {
-				if (event.action == 'add') {
-					if (functions.anti.includes(event.chat) && fuck && !isMyBot) {
-						setLimit.oneMsg == 1 ? setLimit.oneMsg = 0 : setLimit.oneMsg = 1
-						if (setLimit.oneMsg == 1) {
-							await kill.removeParticipant(event.chat, event.who)
-							return setLimit.oneMsg = 0
-						}
-						await kill.sendText(event.chat, mylang(config.Language).entrace())
-						//await tools('others').sleep(2000) // Ative se a Íris remover antes de mandar a mensagem
-						await kill.removeParticipant(event.chat, event.who)
-						console.log(tools('others').color('[BLACKLIST]', 'red'), tools('others').color(`${pushname} - (${event.who.replace('@c.us', '')}) foi banido do ${gChat.name} por ter sido colocado na blacklist...`, 'yellow'))
-						if (config.Auto_Block) return await kill.contactBlock(event.who) // Evita ser travado por putinhos
-					} else if (functions.fake.includes(event.chat) && !fake && !isMyBot) {
-						setLimit.oneFake == 1 ? setLimit.oneFake = 0 : setLimit.oneFake = 1
-						if (setLimit.oneFake == 1) {
-							await kill.removeParticipant(event.chat, event.who)
-							return setLimit.oneFake = 0
-						}
-						await kill.sendTextWithMentions(event.chat, mylang(config.Language).nofake(event))
-						//await tools('others').sleep(2000) // Ative se a Íris remover antes de mandar a mensagem
-						await kill.removeParticipant(event.chat, event.who)
-						if (config.Auto_Block) {
-							await kill.contactBlock(event.who) // Evita ser travado por putinhos
-						}
-						console.log(tools('others').color('[FAKE]', 'red'), tools('others').color(`${pushname} - (${event.who.replace('@c.us', '')}) foi banido do ${gChat.name} por usar número falso ou ser de fora do país...`, 'yellow'))
-					} else if (isWelkom && !isMyBot && setLimit.welcOn == 0 && !fuck && fake) {
-						setLimit.welcOn = 1
-						if (Object.keys(welcmsg).includes(event.chat)) {
-							await kill.sendText(event.chat, welcmsg[event.chat]['welcome']['message'])
-							console.log(tools('others').color('[ENTROU]', 'red'), tools('others').color(`${pushname} - (${event.who.replace('@c.us', '')}) entrou no grupo ${gChat.name}...`, 'yellow'))
-							if (welcmsg[event.chat]['welcome']['onlyText']) return setLimit.welcOn = 0
-						}
-						var profile = await kill.getProfilePicFromServer(event.who)
-						if (typeof profile == 'object' || !tools('others').isUrl(profile)) {
-							profile = 'https://i.ibb.co/jRCpLfn/user.png'
-						}
-						const welcomer = await tools('canvas').welver(pushname, event.who.substring(6, 10), gChat.name, gChat.groupMetadata.participants.length, profile, canvacord)
-						await kill.sendFile(event.chat, tools('others').dataURI('image/png', welcomer), 'welcome.png', mylang(config.Language).welcome(pushname, gChat.name))
-						if (config.Canvas_Audio) {
-							await kill.sendPtt(event.chat, canvacord.Sound_Welcome)
-						}
-						setLimit.welcOn = 0
-						console.log(tools('others').color('[ENTROU]', 'red'), tools('others').color(`${pushname} - (${event.who.replace('@c.us', '')}) entrou no grupo ${gChat.name}...`, 'yellow'))
-					}
-				} else if (event.action == 'remove' && isWelkom && !isMyBot && setLimit.abayo == 0 && !fuck && fake) {
-					setLimit.abayo = 1
-					if (Object.keys(welcmsg).includes(event.chat)) {
-						await kill.sendText(event.chat, welcmsg[event.chat]['goodbye']['message'])
-						console.log(tools('others').color('[SAIU/BAN]', 'red'), tools('others').color(`${pushname} - (${event.who.replace('@c.us', '')}) saiu ou foi banido do grupo ${gChat.name}...`, 'yellow'))
-						if (welcmsg[event.chat]['goodbye']['onlyText']) return setLimit.abayo = 0
-					}
-					var profile = await kill.getProfilePicFromServer(event.who)
-					if (typeof profile == 'object' || !tools('others').isUrl(profile)) {
-						profile = 'https://i.ibb.co/jRCpLfn/user.png'
-					}
-					const bye = await tools('canvas').welver(pushname, event.who.substring(6, 10), gChat.name, gChat.groupMetadata.participants.length, profile, canvacord)
-					await kill.sendFile(event.chat, tools('others').dataURI('image/png', bye), 'goodbye.png', mylang(config.Language).bye(pushname))
-					if (config.Canvas_Audio) {
-						await kill.sendPtt(event.chat, canvacord.Sound_Goodbye)
-					}
-					setLimit.abayo = 0
-					console.log(tools('others').color('[SAIU/BAN]', 'red'), tools('others').color(`${pushname} - (${event.who.replace('@c.us', '')}) saiu ou foi banido do grupo ${gChat.name}...`, 'yellow'))
-				}
-			} catch (err) {
-				setLimit = {
-					welcOn: 0,
-					abayo: 0,
-					oneMsg: 0,
-					oneFake: 0,
-					emergence: 0
-				}
-				console.log(err)
-			}
+			await welcome(kill, event)
 		})
 
 		// Bloqueia na call
@@ -244,7 +164,7 @@ const start = async (kill = new Client()) => {
 			}
 		})
 		
-		// Faz backups periodicos durante a execução
+		// Faz backups periódicos durante a execução
 		setInterval(async () => {
 			await exec(`bash -c 'zip -r "lib/config/Backup/${moment().format('DD-MM-YY # HH-mm-ss')}.zip" lib/config/Gerais'`, async (err) => {
 				if (!err) {
@@ -264,7 +184,8 @@ const start = async (kill = new Client()) => {
 					if (config.Language == 'pt') {
 						console.log(tools('others').color('[KILLOVSKY]', 'magenta'), tools('others').color(govMessage.data, 'lime'))
 						if (config.Popup) {
-							await tools('others').notify('KILLOVSKY', govMessage.data, './lib/media/img/kill.png')
+							await tools('others').sleep(5000)
+							tools('others').notify('KILLOVSKY', govMessage.data, './lib/media/img/kill.png')
 						}
 					} else {
 						await translate(govMessage.data, config.Language, {
@@ -272,7 +193,8 @@ const start = async (kill = new Client()) => {
 						}).then(async (msg) => {
 							console.log(tools('others').color('[KILLOVSKY]', 'magenta'), tools('others').color(msg, 'lime'))
 							if (config.Popup) {
-								await tools('others').notify('KILLOVSKY', msg, './lib/media/img/kill.png')
+								await tools('others').sleep(5000)
+								tools('others').notify('KILLOVSKY', msg, './lib/media/img/kill.png')
 							}
 						})
 					}
