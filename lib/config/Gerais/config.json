@@ -3,7 +3,7 @@
 	"Acr_Host": "INSIRA A SUA HOST ACR-CLOUD",
 	"Acr_Secret": "INSIRA A API-KEY SECRET ACR-CLOUD",
 	"API_DeepAI": "INSIRA A API_KEY DEEPAI",
-	"API_Google_Maps": "INSIRA A API GOOGLE-MAPS",
+	"API_Google_Maps": "AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg",
 	"API_IBM_Watson": "INSIRA A API IBM-WATSON",
 	"Watson_Host": "INSIRA A SUA HOST IBM-WATSON",
 	"Watson_Model": "INSIRA O MODELO DE SUA HOST IBM-WATSON",
@@ -28,6 +28,7 @@
 	"Chrome_Path": null,
 	"Clear_Cache": true,
 	"Day_Messages": true,
+	"Daily_Reward": 30,
 	"DDI": [
 		"55",
 		"DDI DOIS - Opcional"
@@ -50,6 +51,7 @@
 	"Moment_Locale": "pt_BR",
 	"Moment_Timezone": "America/Sao_Paulo",
 	"Multiple_Devices": false,
+	"Multitasking": true,
 	"Notification_Lang": "pt-br",
 	"Owner": [
 		"Insira aqui seu número@c.us",

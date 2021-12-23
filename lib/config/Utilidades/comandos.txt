@@ -19,6 +19,7 @@ alladmin
 alladms
 allguild
 allid
+alpha
 anal
 anime
 antilinks
@@ -42,6 +43,7 @@ bdsm
 beauty
 bed
 beijo
+bew
 bible
 biblia
 bklist
@@ -62,6 +64,7 @@ brainly
 broad
 bsaa
 burn
+bye
 cafune
 cantada
 casal
@@ -69,6 +72,7 @@ cassino
 cat
 chance
 chefe
+chess
 cia
 clear
 clima
@@ -81,7 +85,6 @@ contar
 conv
 converter
 corno
-cosplay
 covid
 cpf
 create
@@ -90,6 +93,7 @@ ctt
 curiosidade
 custom
 dados
+daily
 dark
 darkmode
 data
@@ -106,6 +110,7 @@ demote
 destrava
 detect
 detector
+diario
 die
 dieplague
 distract
@@ -119,8 +124,6 @@ drake
 drink
 duck
 dva
-editgp
-email
 emoji
 encerrar
 encode
@@ -155,6 +158,7 @@ gato
 gay
 gender
 genero
+genshin
 gerador
 geral
 get
@@ -167,10 +171,11 @@ giphy
 girl
 github
 give
+goodbye
+gray
 greet
 groupinfo
 grupos
-gtav
 guild
 guilda
 hard
@@ -216,7 +221,6 @@ link
 lizard
 logo
 loli
-lolireal
 look
 loteria
 mac
@@ -246,6 +250,8 @@ msg
 mute
 muteall
 mutepv
+mutev
+mutevideo
 myguild
 mymsg
 nasa
@@ -277,6 +283,7 @@ outros
 paises
 pat
 patpat
+peb
 perfil
 pet
 petpet
@@ -319,6 +326,7 @@ resetall
 resposta
 retro
 rev
+reverse
 reverter
 revoke
 reward
@@ -355,6 +363,7 @@ sort
 sound
 spank
 speak
+speed
 spoiler
 sporn
 stalkig
@@ -395,6 +404,7 @@ unkick
 upimg
 upload
 valor
+vblur
 video
 views
 vote

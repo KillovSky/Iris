@@ -78,10 +78,12 @@ const wordwrap = require('word-wrapper')
 const youtubedl = require('youtube-dl-exec')
 const ytsearch = require('yt-search')
 const maker = require('free-textmaker-alpha')
+const TicTacToe = require('tictactoe-agent')
+const genshin = require('genshin-db')
+const chess = require('chess.js')
+const chessImageGenerator = require("chess-image-generator")
 
 /*UTILIDADES*/
-const config = require('./lib/config/Gerais/config.json')
-const shopconf = require('./lib/config/Gerais/shop.json')
 const shop = require('./lib/functions/shop')
 const hentao = require('./lib/functions/nhentai')
 const {
@@ -92,8 +94,11 @@ const {
 } = require('./lib/functions')
 
 /*JSON'S*/
+const config = JSON.parse(fs.readFileSync('./lib/config/Gerais/config.json'))
+const shopconf = JSON.parse(fs.readFileSync('./lib/config/Gerais/shop.json'))
 const cmds = JSON.parse(fs.readFileSync('./lib/config/Gerais/cmds.json'))
 const ctmprefix = JSON.parse(fs.readFileSync('./lib/config/Gerais/prefix.json'))
+const reward = JSON.parse(fs.readFileSync('./lib/config/Gerais/rewards.json'))
 const custom = JSON.parse(fs.readFileSync('./lib/config/Gerais/custom.json'))
 const deleted = JSON.parse(fs.readFileSync('./lib/config/Gerais/message.json'))
 const functions = JSON.parse(fs.readFileSync('./lib/config/Gerais/functions.json'))
@@ -107,8 +112,8 @@ global.region = config.Language
 var mess = mylang(region)
 moment.tz.setDefault(config.Moment_Timezone).locale(config.Moment_Locale)
 axios.defaults.headers.common['User-Agent'] = config.User_Agent
-var akistarted = 0
 var gameconfig = {}
+let chessGame = {}
 var lotery = {
 	"hasLast": false,
 	"users": [],
@@ -140,6 +145,7 @@ var objconfig = {
 	dawn: [],
 	isMuteAll: 0,
 	isTyping: [],
+	akistarted: 0,
 	jogadas: 0,
 	noLimits: 0,
 	oneImage: 0,
@@ -235,14 +241,6 @@ module.exports = kconfig = async (kill, message) => {
 		const checkLvL = tools('gaming').getValue(sender.id, nivel, chatId, 'level')
 		const patente = tools('gaming').getPatent(checkLvL)
 		const fileFor = ['pais', 'fruta', 'capital', 'empresa', 'nome']
-		// Função que envia uma resposta 
-		const sendRes = async (error, results) => {
-			if (!error) {
-				await kill.sendText(message.from, mess.wait())
-				let results = tools('others').randVal(results.map(a => a.url))
-				await kill.sendFileFromUrl(message.from, results, '', ';)', message.id)
-			} else return await kill.sendFileFromUrl(message.from, errorImg, '', 'Tãn tãn tãn...', message.id)
-		}
 		const typeChat = isGroupMsg ? '-gp' : '-pv'
 		const typeName = isGroupMsg ? name : pushname
 		const typeId = isGroupMsg ? chatId.replace('@g.us', '') : sender.id.replace('@c.us', '')
@@ -370,7 +368,7 @@ module.exports = kconfig = async (kill, message) => {
 		}
 
 		/*Manda Bom Dia/Tarde/Noite sem floodar*/
-		if (config.Day_Messages) {
+		if (config.Day_Messages && !config.Auto_Update) {
 			if (isGroupMsg && dateOfDay >= '5' && dateOfDay < '11') {
 				if (!objconfig.ohayo.includes(chatId)) {
 					objconfig.ohayo.push(chatId)
@@ -431,11 +429,14 @@ module.exports = kconfig = async (kill, message) => {
 					tools('gaming').addValue(sender.id, 1, nivel, chatId, 'level')
 					tools('gaming').addValue(sender.id, Number(config.Iris_Coin), nivel, chatId, 'coin')
 					let userStats = tools('gaming').getValue(sender.id, nivel, chatId, null)
-					await kill.reply(from, `*「 +1 NIVEL 」*\n\n➸ *Nome:* ${pushname}\n➸ *XP:* ${haveXptoUp} / ${tools('gaming').LevelEXP(checkLvL + 1)}\n➸ *Level:* ${checkLvL} -> ${userStats.level} 🆙 \n➸ *Í-Coin:* ${userStats.coin}${myGuildN}\n➸ *Patente:* *${patente}* 🎉`, id)
-					/*Desative ou Apague a linha do "kill.reply" acima se sua Íris floodar mensagens de "Level UP"*/
+					const rankPh = await kill.getProfilePicFromServer(sender.id)
+					var ohotLev = rankPh.includes('ERR') || rankPh == null || typeof rankPh === 'object' || !tools('others').isUrl(rankPh) ? errorurl : rankPh
+					let rankCard = await tools('canvas').ranking(ohotLev, haveXptoUp, tools('gaming').LevelEXP(userStats.level), userStats.level, Object.keys(nivel[chatId]).indexOf(sender.id), Number(gainedXP), `${tools('gaming').getPatent(userStats.level)} - ${(userStats.guild).toUpperCase()}`, pushname)
+					await kill.sendFile(from, rankCard, `${sender.id.replace('@c.us', '')}_card.png`, `🔭 - ${pushname} - ${name}\n🎮 - ${haveXptoUp} / ${tools('gaming').LevelEXP(userStats.level)} XP\n☄️ - Level ${userStats.level}\n⏱️ - ${userStats.msg} Mensagens\n🃏 - ${tools('gaming').getPatent(userStats.level)}\n💵 - ${userStats.coin} Í-coins\n⚔️ - ${(userStats.guild).toUpperCase()}\n🔶 - ${userStats.rubi} Rubis\n💎 - ${userStats.dima} Diamantes`, id)
+					/*Desative ou Apague as linhas a partir de "userStats" ate "sendFile", se sua Íris floodar mensagens de "Level UP"*/
 				}
 			} catch (error) {
-				console.log(tools('others').color('[XP]', 'crimson'), err)
+				console.log(tools('others').color('[XP]', 'crimson'), error)
 			}
 		}
 
@@ -475,7 +476,7 @@ module.exports = kconfig = async (kill, message) => {
 		/*if (isGroupMsg && !isGroupAdmins && isBotGroupAdmins && isAntiLink && !isOwner && tools('others').isUrl(body) && !isBot) return await kill.removeParticipant(chatId, sender.id)*/
 
 		/*Comandos sem prefix, esse responde se marcar a BOT*/
-		if (!tools('cooldown').isFiltered(from)) {
+		if (!tools('cooldown').isFiltered(from) && !isCmd) {
 			try {
 				if (message.body.includes(`@${botNumber.replace('@c.us', '')}`)) {
 					await kill.reply(from, tools('others').getRandLine(1, './lib/config/Utilidades/reply.txt')[0], id)
@@ -589,17 +590,16 @@ module.exports = kconfig = async (kill, message) => {
 
 				case 'bklist':
 					if (isGroupMsg && isGroupAdmins || isGroupMsg && isOwner) {
-						let bkls = argl[0] == 'on' ? `${body.slice(11)}@c.us` : `${body.slice(12)}@c.us`
 						if (argl[0] == 'on') {
-							if (functions.anti.includes(bkls)) return await kill.reply(from, mess.jaenabled(), id)
-							functions.anti.push(bkls)
+							if (functions.antinumbers.includes(`${argl[1]}@c.us`)) return await kill.reply(from, mess.jaenabled(), id)
+							functions.antinumbers.push(`${argl[1]}@c.us`)
 							await kill.reply(from, mess.bkliston(), id)
 						} else if (argl[0] == 'off') {
-							if (!functions.anti.includes(bkls)) return await kill.reply(from, mess.jadisabled(), id)
-							functions.anti.splice(bkls, 1)
+							if (!functions.antinumbers.includes(`${argl[1]}@c.us`)) return await kill.reply(from, mess.jadisabled(), id)
+							functions.antinumbers.splice(`${argl[1]}@c.us`, 1)
 							await kill.reply(from, mess.bklistoff(), id)
 						} else return await kill.reply(from, mess.kldica2(), id)
-						fs.writeFileSync('./lib/config/Gerais/anti.json', JSON.stringify(functions, null, "\t"))
+						fs.writeFileSync('./lib/config/Gerais/functions.json', JSON.stringify(functions, null, "\t"))
 					} else if (isGroupMsg) {
 						await kill.reply(from, mess.soademiro(), id)
 					} else return await kill.reply(from, mess.sogrupo(), id)
@@ -613,21 +613,6 @@ module.exports = kconfig = async (kill, message) => {
 							await kill.sendText(from, mess.admson())
 						} else if (argl[0] == 'off') {
 							await kill.setGroupToAdminsOnly(chatId, false)
-							await kill.sendText(from, mess.admsoff())
-						} else return await kill.reply(from, mess.kldica1(), id)
-					} else if (isGroupMsg) {
-						await kill.reply(from, mess.soademiro(), id)
-					} else return await kill.reply(from, mess.sogrupo(), id)
-				break
-
-				case 'editgp':
-					if (!isBotGroupAdmins) return await kill.reply(from, mess.botademira(), id)
-					if (isGroupMsg && isGroupAdmins || isGroupMsg && isOwner) {
-						if (argl[0] == 'on') {
-							await kill.setGroupEditToAdminsOnly(chatId, true)
-							await kill.sendText(from, mess.admson())
-						} else if (argl[0] == 'off') {
-							await kill.setGroupEditToAdminsOnly(chatId, false)
 							await kill.sendText(from, mess.admsoff())
 						} else return await kill.reply(from, mess.kldica1(), id)
 					} else if (isGroupMsg) {
@@ -1343,7 +1328,7 @@ module.exports = kconfig = async (kill, message) => {
 				case 'nolimit':
 					if (isOwner) {
 						if (argl[0] == 'on') {
-							fs.writeFileSync('./lib/config/Gerais/limit.json', JSON.stringify(JSON.parse("{\n\t\"games\": {},\n\t\"steal\": {},\n\t\"guild\": {}\n}"), null, "\t"));
+							fs.writeFileSync('./lib/config/Gerais/limit.json', JSON.stringify(JSON.parse("{\n\t\"games\": {},\n\t\"steal\": {},\n\t\"guild\": {},\n\t\"reward\": {}\n}"), null, "\t"));
 							await kill.reply(from, mess.enabled(), id)
 							objconfig.noLimits = 1
 						} else if (argl[0] == 'off') {
@@ -1740,7 +1725,7 @@ module.exports = kconfig = async (kill, message) => {
 					/*LEMBRE-SE, REMOVER CREDITO E CRIME E PROIBIDO*/
 				case 'legiao':
 					if (isGroupMsg) return await kill.reply(from, mess.sopv(), id)
-					await kill.sendLinkWithAutoPreview(from, 'https://bit.ly/BOT-IRIS', '\nEsse grupo é apenas a recepção do grupo Legião Z, ao entrar leia a descrição, responda as perguntas e aguarde pela chegada de um administrador para te adicionar - siga os passos que ele pedir.')
+					await kill.sendLinkWithAutoPreview(from, 'https://bit.ly/BOT-IRIS', '\nEsse grupo é apenas a recepção do grupo Legião Z e não é para suporte da Íris, responda as perguntas na descrição e aguarde pela chegada de um administrador para te adicionar.\nPessoas banidas não serão re-adicionadas!')
 				break
 
 				case 'water':
@@ -1804,7 +1789,7 @@ module.exports = kconfig = async (kill, message) => {
 					/*Adicione mais no arquivo fml.txt na pasta config, obs, em inglês*/
 				case 'life':
 					if (region == 'en') return await kill.reply(from, tools('others').getRandLine(1, './lib/config/Utilidades/fml.txt')[0], id)
-					translate(tools('others').getRandLine(1, './lib/config/Utilidades/fml.txt')[0], {
+					await translate(tools('others').getRandLine(1, './lib/config/Utilidades/fml.txt')[0], {
 						to: region
 					}).then(async (lfts) => {
 						await kill.reply(from, lfts.text, id)
@@ -1836,7 +1821,7 @@ module.exports = kconfig = async (kill, message) => {
 							await kill.sendFileFromUrl(from, nasa.data.url, '', `\n${nasa.data.date} → ${nasa.data.title}\n\n${nasa.data.explanation}`, id)
 						} else await kill.sendYoutubeLink(from, nasa.data.url, `${nasa.data.date} → ${nasa.data.title}\n\n${nasa.data.explanation}`)
 					} else {
-						translate(nasa.data.explanation, {
+						await translate(nasa.data.explanation, {
 							to: region
 						}).then(async (result) => {
 							if (nasa.data.media_type == 'image') {
@@ -1856,7 +1841,7 @@ module.exports = kconfig = async (kill, message) => {
 				case 'fatos':
 					const animl = await axios.get(`https://some-random-api.ml/facts/${tools('others').randVal(["dog", "cat", "bird", "panda", "fox", "koala"])}`)
 					if (region == 'en') return await kill.reply(from, animl.data.fact, id)
-					translate(animl.data.fact, {
+					await translate(animl.data.fact, {
 						to: region
 					}).then(async (result) => {
 						await kill.reply(from, result.text, id)
@@ -1892,9 +1877,7 @@ module.exports = kconfig = async (kill, message) => {
 						if (vdoClip instanceof Error) {
 							await kill.reply(from, mess.verybig() + mess.fail(command, vdoClip, time), id)
 							tools('others').reportConsole(command, vdoClip)
-						} else {
-							await kill.sendFileFromUrl(from, video, `downloads.mp4`, `e.e`, id)
-						}
+						} else await kill.sendFileFromUrl(from, vdoClip, `downloads.mp4`, `e.e`, id)
 					} catch (error) {
 						tools('others').reportConsole(command, error)
 						await kill.reply(from, mess.verybig() + mess.fail(command, error, time), id)
@@ -1999,7 +1982,7 @@ module.exports = kconfig = async (kill, message) => {
 					if (args.length == 0) return await kill.reply(from, mess.noargs() + 'idioma/language & words/palavras ou/or marca/mark a message/mensagem.', id)
 					await kill.reply(from, mess.wait(), id)
 					try {
-						translate((quotedMsg.type == 'chat' ? quotedMsg.body : quotedMsg.type == 'image' ? quotedMsg.caption : body.slice(14)), {
+						await translate((quotedMsg.type == 'chat' ? quotedMsg.body : quotedMsg.type == 'image' ? quotedMsg.caption : body.slice(14)), {
 							to: args[0]
 						}).then(async (result) => {
 							await kill.reply(from, `→ ${result.text}`, id)
@@ -2040,10 +2023,13 @@ module.exports = kconfig = async (kill, message) => {
 
 				case 'akinator':
 				case 'aki':
-					if (akistarted == 0) {
-						const aki = new Aki({region})
+					let startAki = async () => {
+						global.aki = new Aki({region})
 						await aki.start()
-						akistarted = 1
+						objconfig.akistarted = 1
+					}
+					if (objconfig.akistarted == 0) {
+						await startAki()
 					}
 					try {
 						if (argl[0] == '-r') {
@@ -2053,11 +2039,14 @@ module.exports = kconfig = async (kill, message) => {
 							if (aki.progress >= config.Akinator_Win || aki.currentStep >= config.Akinator_Win) {
 								await aki.win()
 								await kill.sendFileFromUrl(from, `${aki.answers[0].absolute_picture_path}`, '', mess.akiwon(aki, aki.answers[0]), id)
-							} else {
-								await kill.reply(from, mess.akistart(aki), id)
-							}
-						} else if (argl[0] == '-back' || argl[0] == '-new') {
-							for (let i in objconfig.jogadas) {
+							} else await kill.reply(from, mess.akistart(aki), id)
+						} else if (argl[0] == '-new') {
+							await startAki()
+							objconfig.jogadas = 0
+							await kill.reply(from, mess.akistart(aki), id)
+						} else if (argl[0] == '-back') {
+							if (isNaN(argl[1])) return await kill.reply(from, `Especifique a quantidade de jogadas que deseja voltar, se deseja criar um novo jogo use "-new".\nVocê fez ${objconfig.jogadas} jogadas.`, id)
+							for (let i = 0; i < Number(argl[1]); i++) {
 								await aki.back()
 							}
 							objconfig.jogadas = 0
@@ -2065,8 +2054,9 @@ module.exports = kconfig = async (kill, message) => {
 						} else return await kill.reply(from, mess.akistart(aki), id)
 					} catch (error) {
 						tools('others').reportConsole(command, error)
-						await kill.reply(from, mess.akifail() + '\n\n' + mess.akistart(aki) + '\n\n' + mess.fail(command, error, time), id)
-						akinit()
+						await kill.reply(from, mess.akifail() + mess.fail(command, error, time), id)
+						objconfig.akistarted = 0
+						objconfig.jogadas = 0
 					}
 				break
 
@@ -2097,13 +2087,13 @@ module.exports = kconfig = async (kill, message) => {
 				break
 
 				case 'speak':
-					const sppt = require('node-gtts')(region)
-					let speakttplc = `./lib/media/audio/speak[${region}]-${tools('others').randomString(10)}.mp3`
-					if (args.length == 0) return await sppt.save(speakttplc, tools('others').getRandLine(1, './lib/config/Utilidades/reply.txt')[0], async function() {
-						await kill.sendPtt(from, speakttplc, id)
-						tools('others').clearFile(speakttplc)
-					})
 					try {
+						const sppt = require('node-gtts')(region)
+						let speakttplc = `./lib/media/audio/speak[${region}]-${tools('others').randomString(10)}.mp3`
+						if (args.length == 0) return await sppt.save(speakttplc, tools('others').getRandLine(1, './lib/config/Utilidades/reply.txt')[0], async function() {
+							await kill.sendPtt(from, speakttplc, id)
+							tools('others').clearFile(speakttplc)
+						})
 						if (argl[0] == '-g') {
 							let voiceaw = await shell.exec(`bash -c "grep -i '${args[1]}' './lib/config/Utilidades/reply.txt' | shuf -n 1"`, {
 								silent: true
@@ -2274,7 +2264,7 @@ module.exports = kconfig = async (kill, message) => {
 
 				case 'macaco':
 				case 'monkey':
-					await kill.sendFileFromUrl(from, `https://source.unsplash.com/featured/?monkey,monkey`, "result.jpg", "🙏", id)
+					await kill.sendFileFromUrl(from, `https://source.unsplash.com/featured/?monkey,monkey`, "result.jpg", "🙏\n~Brazil loves monkey soup~.", id)
 				break
 
 				case 'ball':
@@ -2393,7 +2383,7 @@ module.exports = kconfig = async (kill, message) => {
 					const getAnime = await axios.get(`https://api.jikan.moe/v3/search/anime?q=${encodeURIComponent(body.slice(7))}&limit=1`)
 					if (getAnime.data.status == 404 || getAnime.data.results[0] == '') return await kill.sendFileFromUrl(from, errorurl, 'error.png', mess.noresult())
 					if (region == 'en') return await kill.sendFileFromUrl(from, `${getAnime.data.results[0].image_url}`, 'anime.jpg', `✔️ - Is that?\n\n✨️ *Title:* ${getAnime.data.results[0].title}\n\n🎆️ *Episode:* ${getAnime.data.results[0].episodes}\n\n💌️ *Rating:* ${getAnime.data.results[0].rated}\n\n❤️ *Note:* ${getAnime.data.results[0].score}\n\n💚️ *Synopsis:* ${getAnime.data.results[0].synopsis}\n\n🌐️ *Link*: ${getAnime.data.results[0].url}`, id)
-					translate(getAnime.data.results[0].synopsis, {
+					await translate(getAnime.data.results[0].synopsis, {
 						to: region
 					}).then(async (syno) => {
 						await kill.sendFileFromUrl(from, `${getAnime.data.results[0].image_url}`, 'anime.jpg', mess.getanime(syno.text, getAnime), id)
@@ -2405,7 +2395,7 @@ module.exports = kconfig = async (kill, message) => {
 					const getManga = await axios.get(`https://api.jikan.moe/v3/search/manga?q=${encodeURIComponent(body.slice(7))}&limit=1`)
 					if (getManga.data.status == 404 || getManga.data.results[0] == '') return await kill.sendFileFromUrl(from, errorurl, 'error.png', mess.noresult())
 					if (region == 'en') return await kill.sendFileFromUrl(from, `${getManga.data.results[0].image_url}`, 'manga.jpg', `✔️ - Is that?\n\n✨️ *Title:* ${getManga.data.results[0].title}\n\n🎆️ *Chapters:* ${getManga.data.results[0].chapters}\n\n💌️ *Volumes:* ${getManga.data.results[0].volumes}\n\n❤️ *Note:* ${getManga.data.results[0].score}\n\n💚️ *Synopsis:* ${getManga.data.results[0].synopsis}\n\n🌐️ *Link*: ${getManga.data.results[0].url}`, id)
-					translate(getManga.data.results[0].synopsis, {
+					await translate(getManga.data.results[0].synopsis, {
 						to: region
 					}).then(async (syno) => {
 						await kill.sendFileFromUrl(from, `${getManga.data.results[0].image_url}`, 'manga.jpg', mess.getmanga(syno.text, getManga), id)
@@ -2438,17 +2428,17 @@ module.exports = kconfig = async (kill, message) => {
 						}
 						try {
 							if (config.Language == 'en') throw new Error('Tradução cancelada pois o BOT ta em gringanês')
-							translate(tools('others').getRandLine(1, './lib/config/Utilidades/biblia.txt')[0], {
+							await translate(tools('others').getRandLine(1, './lib/config/Utilidades/biblia.txt')[0], {
 								to: region
 							}).then((bibles) => {
 								customTexts.GodKillsToo = bibles.text
 							})
-							translate(tools('others').getRandLine(1, './lib/config/Utilidades/fml.txt')[0], {
+							await translate(tools('others').getRandLine(1, './lib/config/Utilidades/fml.txt')[0], {
 								to: region
 							}).then((lifes) => {
 								customTexts.fuckALLife = lifes.text
 							})
-							translate(tools('others').getRandLine(1, './lib/config/Utilidades/cantadas.txt')[0], {
+							await translate(tools('others').getRandLine(1, './lib/config/Utilidades/cantadas.txt')[0], {
 								to: region
 							}).then((love) => {
 								customTexts.getGirlfriend = love.text
@@ -2491,7 +2481,7 @@ module.exports = kconfig = async (kill, message) => {
 					let storeInfo = await store.search(`${body.slice(7)}`)
 					let stsp = await store.getExtendedInfo(storeInfo.results[0].link)
 					if (region == 'en') return await kill.sendFileFromUrl(from, stsp.icon, '', mess.store(stsp, stsp.description), id)
-					translate(stsp.description, {
+					await translate(stsp.description, {
 						to: region
 					}).then(async (playst) => {
 						await kill.sendFileFromUrl(from, stsp.icon, '', mess.store(stsp, playst), id)
@@ -2803,7 +2793,12 @@ module.exports = kconfig = async (kill, message) => {
 					} else {
 						var thephComP = quotedMsg ? await kill.getProfilePicFromServer(quotedMsgObj.sender.id) : (mentionedJidList.length !== 0 ? await kill.getProfilePicFromServer(mentionedJidList[0]) : await kill.getProfilePicFromServer(sender.id))
 					}
-					if (thephComP == null || typeof thephComP === 'object') thephComP = errorImg
+					if (thephComP.includes('ERR') || thephComP == null || typeof thephComP == 'object' || !tools('others').isUrl(thephComP)) {
+						thephComP = await kill.getProfilePicFromServer(randomMember)
+						if (thephComP == null || typeof thephComP === 'object') {
+							thephComP = errorImg
+						}
+					}
 					await canvacord.Canvas.phub({
 						username: arg.split('|')[0].replace(mentionedJidList.map(x => `@${x.replace('@c.us', '')}`).join(' '), ''),
 						message: arg.split('|')[1],
@@ -2811,7 +2806,6 @@ module.exports = kconfig = async (kill, message) => {
 					}).then(async (buffer) => {
 						await kill.sendFile(from, tools('others').dataURI('image/png', buffer), `pornhub.png`, '', id)
 					})
-
 				break
 
 				case 'ytcom':
@@ -2823,7 +2817,12 @@ module.exports = kconfig = async (kill, message) => {
 					} else {
 						var theYtComP = quotedMsg ? await kill.getProfilePicFromServer(quotedMsgObj.sender.id) : (mentionedJidList.length !== 0 ? await kill.getProfilePicFromServer(mentionedJidList[0]) : await kill.getProfilePicFromServer(sender.id))
 					}
-					if (theYtComP == null || typeof theYtComP === 'object') theYtComP = errorImg
+					if (theYtComP.includes('ERR') || theYtComP == null || typeof theYtComP == 'object' || !tools('others').isUrl(theYtComP)) {
+						theYtComP = await kill.getProfilePicFromServer(randomMember)
+						if (theYtComP == null || typeof theYtComP === 'object') {
+							theYtComP = errorImg
+						}
+					}
 					await canvacord.Canvas.youtube({
 						username: arg.split('|')[0].replace(mentionedJidList.map(x => `@${x.replace('@c.us', '')}`).join(' '), ''),
 						content: arg.split('|')[1],
@@ -2870,7 +2869,7 @@ module.exports = kconfig = async (kill, message) => {
 				break
 
 				case 'loli':
-					await kill.sendFileFromUrl(from, `https://media.publit.io/file/Twintails/${tools('others').randNbr(1, 145)}.jpg`, 'loli.jpg', mess.logomgs(), id)
+					await kill.sendFileFromUrl(from, `https://media.publit.io/file/Twintails/${tools('others').randomNumber(1, 145)}.jpg`, 'loli.jpg', mess.logomgs(), id)
 				break
 
 				case 'hug':
@@ -2897,24 +2896,14 @@ module.exports = kconfig = async (kill, message) => {
 				break
 
 				case 'waifu':
-					if (side == 1) {
-						const waifu = fs.readFileSync('./lib/config/Utilidades/waifu.json')
-						const waifuParse = JSON.parse(waifu)
-						const waifuChoice = Math.floor(Math.random() * waifuParse.length)
-						const getWaifu = waifuParse[waifuChoice]
-						await kill.sendFileFromUrl(from, getWaifu.image, 'waifu.jpg', getWaifu.desc, id)
-					} else if (side == 2) {
-						const waifu3 = await axios.get(`https://waifu.pics/api/sfw/waifu`)
-						await kill.sendFileFromUrl(from, waifu3.data.url, '', 'hmmm...', id)
-					}
+					const waifu3 = await axios.get(`https://waifu.pics/api/sfw/waifu`)
+					await kill.sendFileFromUrl(from, waifu3.data.url, '', 'hmmm...', id)
 				break
 
 				case 'husb':
-					const husb = fs.readFileSync('./lib/config/Utilidades/husb.json')
-					const husbParse = JSON.parse(husb)
-					const husbChoice = Math.floor(Math.random() * husbParse.length)
-					const getHusb = husbParse[husbChoice]
-					await kill.sendFileFromUrl(from, getHusb.image, 'husb.jpg', getHusb.desc, id)
+					let filterHusb = isNsfw || isAntiPorn ? duck.SafetyLevels.OFF : duck.SafetyLevels.STRICT
+					const getHusb = await duck.search('husbando anime boys', filterHusb)
+					await kill.sendFileFromUrl(from, tools('others').randVal(getHusb.map(c => c.image)), `husb.jpg`, '-.-', id)
 				break
 
 				case 'iecchi':
@@ -3631,7 +3620,7 @@ module.exports = kconfig = async (kill, message) => {
 					const zodd = await axios.get(`https://horoscope-api.herokuapp.com/horoscope/today/${encodeURIComponent(args[0])}`)
 					if (zodd.data.horoscope == '[]') return await kill.reply(from, signoerr, id);
 					if (region == 'en') return await kill.reply(from, zodd.data.horoscope, id)
-					translate(zodd.data.horoscope, {
+					await translate(zodd.data.horoscope, {
 						to: region
 					}).then(async (horoZod) => {
 						await kill.reply(from, horoZod.text, id)
@@ -3649,7 +3638,7 @@ module.exports = kconfig = async (kill, message) => {
 				case 'piada':
 					const piada = await axios.get('https://v2.jokeapi.dev/joke/Any?format=txt');
 					if (region == 'en') return await kill.reply(from, piada.data, id)
-					translate(piada.data, {
+					await translate(piada.data, {
 						to: region
 					}).then(async (getPiada) => {
 						await kill.reply(from, getPiada.text, id)
@@ -3936,7 +3925,7 @@ module.exports = kconfig = async (kill, message) => {
 						const desafios = fs.readFileSync('./lib/config/Utilidades/desafio.txt').toString().split('\n')
 						const getDare = desafios[Math.floor(Math.random() * desafios.length)]
 						if (region == 'en') return await kill.reply(from, getDare, id)
-						translate(getDare, {
+						await translate(getDare, {
 							to: region
 						}).then(async (darem) => {
 							await kill.reply(from, darem.text, id)
@@ -3945,7 +3934,7 @@ module.exports = kconfig = async (kill, message) => {
 						const verdadeG = fs.readFileSync('./lib/config/Utilidades/verdade.txt').toString().split('\n')
 						const getTruth = verdadeG[Math.floor(Math.random() * verdadeG.length)]
 						if (region == 'en') return await kill.reply(from, getTruth, id)
-						translate(getTruth, {
+						await translate(getTruth, {
 							to: region
 						}).then(async (truthm) => {
 							await kill.reply(from, truthm.text, id)
@@ -3958,7 +3947,7 @@ module.exports = kconfig = async (kill, message) => {
 					/*Adicione mais no arquivo "never.txt", mas em inglês.*/
 				case 'nunca':
 					if (region == 'en') return await kill.reply(from, tools('others').getRandLine(1, './lib/config/Utilidades/never.txt')[0], id)
-					translate(tools('others').getRandLine(1, './lib/config/Utilidades/never.txt')[0], {
+					await translate(tools('others').getRandLine(1, './lib/config/Utilidades/never.txt')[0], {
 						to: region
 					}).then(async (willdo) => {
 						await kill.reply(from, willdo.text, id)
@@ -3968,7 +3957,7 @@ module.exports = kconfig = async (kill, message) => {
 					/*Adicione mais no arquivo "cantadas.txt", mas em inglês.*/
 				case 'cantada':
 					if (region == 'en') return await kill.reply(from, tools('others').getRandLine(1, './lib/config/Utilidades/cantadas.txt')[0], id)
-					translate(tools('others').getRandLine(1, './lib/config/Utilidades/cantadas.txt')[0], {
+					await translate(tools('others').getRandLine(1, './lib/config/Utilidades/cantadas.txt')[0], {
 						to: region
 					}).then(async (notHappy) => {
 						await kill.reply(from, notHappy.text, id)
@@ -3989,20 +3978,20 @@ module.exports = kconfig = async (kill, message) => {
 							}).stdout
 							if (biblin == '') {
 								if (region == 'en') return await kill.reply(from, tools('others').getRandLine(1, './lib/config/Utilidades/biblia.txt')[0], id)
-								translate(tools('others').getRandLine(1, './lib/config/Utilidades/biblia.txt')[0], {
+								await translate(tools('others').getRandLine(1, './lib/config/Utilidades/biblia.txt')[0], {
 									to: region
 								}).then(async (bible) => {
 									await kill.reply(from, bible.text, id)
 								})
 							} else {
 								if (region == 'en') return await kill.reply(from, biblin, id)
-								translate(biblin, {
+								await translate(biblin, {
 									to: region
 								}).then(async (bible) => {
 									await kill.reply(from, bible.text, id)
 								})
 							}
-						} else return translate(tools('others').getRandLine(1, './lib/config/Utilidades/biblia.txt')[0], {
+						} else return await translate(tools('others').getRandLine(1, './lib/config/Utilidades/biblia.txt')[0], {
 							to: region
 						}).then(async (bible) => {
 							await kill.reply(from, bible.text, id)
@@ -4215,7 +4204,7 @@ module.exports = kconfig = async (kill, message) => {
 						}
 					}
 					if (region == 'en') return await kill.sendFileFromUrl(from, garsonDK.strDrinkThumb, 'drink.jpg', `Drink: ${garsonDK.strDrink}\n\nAlcoholic? ${garsonDK.strAlcoholic == 'Alcoholic' ? 'Yes' : 'No'}\n\n${aCock}\n\nMaking: ${garsonDK.strInstructions}`, id)
-					translate(garsonDK.strInstructions, {
+					await translate(garsonDK.strInstructions, {
 						to: region
 					}).then(async (drink) => {
 						await kill.sendFileFromUrl(from, garsonDK.strDrinkThumb, 'drink.jpg', mess.drinkcmd(garsonDK, aCock, drink.text), id)
@@ -4245,7 +4234,7 @@ module.exports = kconfig = async (kill, message) => {
 						}
 					}
 					if (region == 'en') return await kill.sendFileFromUrl(from, garsonFD.strMealThumb, 'food.jpg', `Food: ${garsonFD.strMeal}\n\nTypical: ${garsonFD.strArea}\n\n${cookTa}\n\nCooking: ${garsonFD.strInstructions}`, id)
-					translate(garsonFD.strInstructions, {
+					await translate(garsonFD.strInstructions, {
 						to: region
 					}).then(async (food) => {
 						await kill.sendFileFromUrl(from, garsonFD.strMealThumb, 'food.jpg', mess.mealcmd(garsonFD, cookTa, food.text), id)
@@ -4265,7 +4254,8 @@ module.exports = kconfig = async (kill, message) => {
 				case 'jail':
 					await kill.reply(from, mess.wait(), id)
 					if (isImage || isQuotedImage) {
-						var theJailPictu = await tools('cloud').upload(await decryptMedia(encryptMedia))
+						let encryptMedia = await decryptMedia(encryptMedia)
+						var theJailPictu = await tools('cloud').upload(encryptMedia)
 					} else {
 						var sendJailPictre = quotedMsg ? quotedMsgObj.sender.id : (mentionedJidList.length !== 0 ? mentionedJidList[0] : sender.id)
 						var theJailPictu = await kill.getProfilePicFromServer(sendJailPictre)
@@ -4284,7 +4274,8 @@ module.exports = kconfig = async (kill, message) => {
 				case 'beijo':
 					if (mentionedJidList.length >= 1 || quotedMsg) {
 						if (isImage || isQuotedImage) {
-							var theKisuPict = await tools('cloud').upload(await decryptMedia(encryptMedia))
+							let encryptMedia = await decryptMedia(encryptMedia)
+							var theKisuPict = await tools('cloud').upload(encryptMedia)
 							var theKisuPict2 = quotedMsg ? await kill.getProfilePicFromServer(quotedMsgObj.sender.id) : (mentionedJidList.length !== 0 ? await kill.getProfilePicFromServer(mentionedJidList[0]) : await kill.getProfilePicFromServer(sender.id))
 						} else {
 							if (mentionedJidList.length == 2) {
@@ -4306,7 +4297,8 @@ module.exports = kconfig = async (kill, message) => {
 				case 'bed':
 					if (mentionedJidList.length >= 1 || quotedMsg) {
 						if (isImage || isQuotedImage) {
-							var theBedPict = await tools('cloud').upload(await decryptMedia(encryptMedia))
+							let encryptMedia = await decryptMedia(encryptMedia)
+							var theBedPict = await tools('cloud').upload(encryptMedia)
 							var theBedPict2 = quotedMsg ? await kill.getProfilePicFromServer(quotedMsgObj.sender.id) : (mentionedJidList.length !== 0 ? await kill.getProfilePicFromServer(mentionedJidList[0]) : await kill.getProfilePicFromServer(sender.id))
 						} else {
 							if (mentionedJidList.length == 2) {
@@ -4335,7 +4327,8 @@ module.exports = kconfig = async (kill, message) => {
 				case 'spank':
 					if (mentionedJidList.length >= 1 || quotedMsg) {
 						if (isImage || isQuotedImage) {
-							var theSpankPic = await tools('cloud').upload(await decryptMedia(encryptMedia))
+							let encryptMedia = await decryptMedia(encryptMedia)
+							var theSpankPic = await tools('cloud').upload(encryptMedia)
 							var theSpankPic2 = quotedMsg ? await kill.getProfilePicFromServer(quotedMsgObj.sender.id) : (mentionedJidList.length !== 0 ? await kill.getProfilePicFromServer(mentionedJidList[0]) : await kill.getProfilePicFromServer(sender.id))
 						} else {
 							if (mentionedJidList.length == 2) {
@@ -4357,7 +4350,8 @@ module.exports = kconfig = async (kill, message) => {
 				case 'batslap':
 					if (mentionedJidList.length >= 1 || quotedMsg) {
 						if (isImage || isQuotedImage) {
-							var theBatSlap = await tools('cloud').upload(await decryptMedia(encryptMedia))
+							let encryptMedia = await decryptMedia(encryptMedia)
+							var theBatSlap = await tools('cloud').upload(encryptMedia)
 							var theBatSlap2 = quotedMsg ? await kill.getProfilePicFromServer(quotedMsgObj.sender.id) : (mentionedJidList.length !== 0 ? await kill.getProfilePicFromServer(mentionedJidList[0]) : await kill.getProfilePicFromServer(sender.id))
 						} else {
 							if (mentionedJidList.length == 2) {
@@ -4379,7 +4373,8 @@ module.exports = kconfig = async (kill, message) => {
 				case 'distract':
 					if (mentionedJidList.length >= 1 || quotedMsg) {
 						if (isImage || isQuotedImage) {
-							var theboyfriend = await tools('cloud').upload(await decryptMedia(encryptMedia))
+							let encryptMedia = await decryptMedia(encryptMedia)
+							var theboyfriend = await tools('cloud').upload(encryptMedia)
 							var theboyfriend2 = quotedMsg ? await kill.getProfilePicFromServer(quotedMsgObj.sender.id) : (mentionedJidList.length !== 0 ? await kill.getProfilePicFromServer(mentionedJidList[0]) : await kill.getProfilePicFromServer(sender.id))
 							var theboyfriend3 = mentionedJidList.length !== 0 ? await kill.getProfilePicFromServer(mentionedJidList[1]) : await kill.getProfilePicFromServer(sender.id)
 						} else {
@@ -4405,7 +4400,8 @@ module.exports = kconfig = async (kill, message) => {
 				case 'joke':
 					await kill.reply(from, mess.wait(), id)
 					if (isImage || isQuotedImage) {
-						var jokErPictF = await tools('cloud').upload(await decryptMedia(encryptMedia))
+						let encryptMedia = await decryptMedia(encryptMedia)
+						var jokErPictF = await tools('cloud').upload(encryptMedia)
 					} else {
 						var jokErPictF = quotedMsg ? await kill.getProfilePicFromServer(quotedMsgObj.sender.id) : (mentionedJidList.length !== 0 ? await kill.getProfilePicFromServer(mentionedJidList[0]) : await kill.getProfilePicFromServer(sender.id))
 					}
@@ -4434,7 +4430,8 @@ module.exports = kconfig = async (kill, message) => {
 				case 'baby':
 					await kill.reply(from, mess.wait(), id)
 					if (isImage || isQuotedImage) {
-						var thenidabPictu = await tools('cloud').upload(await decryptMedia(encryptMedia))
+						let encryptMedia = await decryptMedia(encryptMedia)
+						var thenidabPictu = await tools('cloud').upload(encryptMedia)
 					} else {
 						var thenidabPictu = quotedMsg ? await kill.getProfilePicFromServer(quotedMsgObj.sender.id) : (mentionedJidList.length !== 0 ? await kill.getProfilePicFromServer(mentionedJidList[0]) : await kill.getProfilePicFromServer(sender.id))
 					}
@@ -4448,7 +4445,8 @@ module.exports = kconfig = async (kill, message) => {
 				case 'fuse':
 					if (mentionedJidList.length >= 1 || quotedMsg) {
 						if (isImage || isQuotedImage) {
-							var fundPict = await tools('cloud').upload(await decryptMedia(encryptMedia))
+							let encryptMedia = await decryptMedia(encryptMedia)
+							var fundPict = await tools('cloud').upload(encryptMedia)
 							var fundPict2 = quotedMsg ? await kill.getProfilePicFromServer(quotedMsgObj.sender.id) : (mentionedJidList.length !== 0 ? await kill.getProfilePicFromServer(mentionedJidList[0]) : await kill.getProfilePicFromServer(sender.id))
 						} else {
 							if (mentionedJidList.length == 2) {
@@ -4471,7 +4469,8 @@ module.exports = kconfig = async (kill, message) => {
 				case 'beauty':
 					await kill.reply(from, mess.wait(), id)
 					if (isImage || isQuotedImage) {
-						var thebeautPictu = await tools('cloud').upload(await decryptMedia(encryptMedia))
+						let encryptMedia = await decryptMedia(encryptMedia)
+						var thebeautPictu = await tools('cloud').upload(encryptMedia)
 					} else {
 						var thebeautPictu = quotedMsg ? await kill.getProfilePicFromServer(quotedMsgObj.sender.id) : (mentionedJidList.length !== 0 ? await kill.getProfilePicFromServer(mentionedJidList[0]) : await kill.getProfilePicFromServer(sender.id))
 					}
@@ -4485,7 +4484,8 @@ module.exports = kconfig = async (kill, message) => {
 				case 'pixel':
 					await kill.reply(from, mess.wait(), id)
 					if (isImage || isQuotedImage) {
-						var thePixelPictu = await tools('cloud').upload(await decryptMedia(encryptMedia))
+						let encryptMedia = await decryptMedia(encryptMedia)
+						var thePixelPictu = await tools('cloud').upload(encryptMedia)
 					} else {
 						var thePixelPictu = quotedMsg ? await kill.getProfilePicFromServer(quotedMsgObj.sender.id) : (mentionedJidList.length !== 0 ? await kill.getProfilePicFromServer(mentionedJidList[0]) : await kill.getProfilePicFromServer(sender.id))
 					}
@@ -4531,7 +4531,8 @@ module.exports = kconfig = async (kill, message) => {
 					await kill.reply(from, mess.wait(), id);
 					var burnlvl = 1
 					if (isImage || isQuotedImage) {
-						var theBurnFire = await tools('cloud').upload(await decryptMedia(encryptMedia))
+						let encryptMedia = await decryptMedia(encryptMedia)
+						var theBurnFire = await tools('cloud').upload(encryptMedia)
 					} else {
 						var theBurnFire = quotedMsg ? await kill.getProfilePicFromServer(quotedMsgObj.sender.id) : (mentionedJidList.length !== 0 ? await kill.getProfilePicFromServer(mentionedJidList[0]) : await kill.getProfilePicFromServer(sender.id))
 					}
@@ -4547,7 +4548,8 @@ module.exports = kconfig = async (kill, message) => {
 					await kill.reply(from, mess.wait(), id);
 					var thrqtd = 100
 					if (isImage || isQuotedImage) {
-						var theThreImg = await tools('cloud').upload(await decryptMedia(encryptMedia))
+						let encryptMedia = await decryptMedia(encryptMedia)
+						var theThreImg = await tools('cloud').upload(encryptMedia)
 					} else {
 						var theThreImg = quotedMsg ? await kill.getProfilePicFromServer(quotedMsgObj.sender.id) : (mentionedJidList.length !== 0 ? await kill.getProfilePicFromServer(mentionedJidList[0]) : await kill.getProfilePicFromServer(sender.id))
 					}
@@ -4562,7 +4564,8 @@ module.exports = kconfig = async (kill, message) => {
 				case 'opnion':
 					await kill.reply(from, mess.wait(), id)
 					if (isImage || isQuotedImage) {
-						var theLGBTopn = await tools('cloud').upload(await decryptMedia(encryptMedia))
+						let encryptMedia = await decryptMedia(encryptMedia)
+						var theLGBTopn = await tools('cloud').upload(encryptMedia)
 					} else {
 						var optimg = quotedMsg ? quotedMsgObj.sender.id : (mentionedJidList.length !== 0 ? mentionedJidList[0] : sender.id)
 						var theLGBTopn = await kill.getProfilePicFromServer(optimg)
@@ -4614,9 +4617,12 @@ module.exports = kconfig = async (kill, message) => {
 
 				case 'custom':
 					if (args.length <= 1 || !arks.includes('|')) return await kill.reply(from, mess.noargs() + 'CMD | MSG' + '\n\n' + mess.argsbar() + 'use 1 "|".', id)
-					if (Object.keys(cmds[chatId]).includes(argl.join(''))) {
+					if (Object.keys(cmds).includes(chatId) && Object.keys(cmds[chatId]).includes(removeAccents(arg.split('|')[0].replace(' ', '').toLowerCase()))) {
 						await kill.reply(from, mess.cmdExist(), id)
 					} else {
+						if (!Object.keys(cmds).includes(chatId)) {
+							cmds[chatId] = {}
+						}
 						cmds[chatId][removeAccents(arg.split('|')[0].replace(' ', '').toLowerCase())] = arg.split('|')[1]
 						fs.writeFileSync('./lib/config/Gerais/cmds.json', JSON.stringify(cmds, null, "\t"))
 						await kill.reply(from, mess.cmdAdded(arg), id)
@@ -4625,17 +4631,20 @@ module.exports = kconfig = async (kill, message) => {
 
 				case 'run':
 					if (args.length == 0) return await kill.reply(from, mess.onlyccmds(), id)
-					if (Object.keys(cmds).includes(chatId) && Object.keys(cmds['global']).includes(argl[0])) {
+					if (Object.keys(cmds).includes(chatId) && Object.keys(cmds[chatId]).includes(argl[0])) {
 						await kill.reply(from, cmds[chatId][argl[0]], id)
 					} else if (Object.keys(cmds['global']).includes(argl[0])) {
 						await kill.reply(from, cmds['global'][argl[0]], id)
-					} else await kill.reply(from, mess.cmdnotfound(argl[0]))
+					} else await kill.reply(from, mess.cmdnotfound(argl[0]))	
 				break
 
 				case 'cmds':
-					await kill.reply(from, `Custom CMDS ↓\n\n➸ ${Object.keys(cmds[chatId]).join('\n➸ ')}`, id)
+					if (Object.keys(cmds).includes(chatId)) {
+						await kill.reply(from, `Custom CMDS ↓\n\n➸ ${Object.keys(cmds[chatId]).join('\n➸ ')}`, id)
+					} else await kill.reply(from, mess.noresult(), id)
 				break
 
+				// Você pode jogar sozinho marcando a Íris de oponente, ela sabe jogar
 				case 'tictac':
 					if (args.length == 0 || argl[0] == '-help') return await kill.reply(from, mess.tictactoe(), id)
 					const theplayer2 = quotedMsg ? quotedMsgObj.sender.id : (mentionedJidList.length !== 0 ? mentionedJidList[0] : null)
@@ -4649,7 +4658,8 @@ module.exports = kconfig = async (kill, message) => {
 							ojogadas: [],
 							waitJogo: 0,
 							timesPlayed: 0,
-							tictacplays: ["a1", "a2", "a3", "b1", "b2", "b3", "c1", "c2", "c3"],
+							tictacplays: ["a1", "b1", "c1", "a2", "b2", "c2", "a3", "b3", "c3"],
+							aiplaying: ["-", "-", "-", "-", "-", "-", "-", "-", "-"],
 							tttboard: {
 								a1: 'A1',
 								a2: 'A2',
@@ -4665,8 +4675,23 @@ module.exports = kconfig = async (kill, message) => {
 							isValidGame: 0
 						}
 					}
+					const tboards = async () => {
+						delete tttSet[chatId].tttboard.undefined // Caso alguma jogada por como erro
+						let anamazs = await canvacord.Canvas.tictactoe(tttSet[chatId].tttboard, {
+							bg: '#000000',
+							bar: '#FFFFFF'
+						})
+						return anamazs
+					}
 					if (!Object.keys(tttSet).includes(chatId)) {
 						resetGameNew()
+					}
+					if (argl[0] == '-show') {
+						await kill.sendImageAsSticker(from, await tboards(), {
+							author: config.Sticker_Author,
+							pack: config.Sticker_Pack,
+							keepScale: true
+						})
 					}
 					if (theplayer2 !== null) {
 						tttSet[chatId]['isValidGame'] = 1
@@ -4688,6 +4713,7 @@ module.exports = kconfig = async (kill, message) => {
 							var spliceindex2 = tttSet[chatId].tictacplays.indexOf(argl[0])
 							if (spliceindex2 !== -1) {
 								tttSet[chatId].tictacplays.splice(spliceindex2, 1)
+								tttSet[chatId].aiplaying[spliceindex2] = 'X'
 							}
 						} else if (sender.id == tttSet[chatId].thePlayerGameOld2) {
 							var irissplice = tttSet[chatId].ojogadas.push(argl[0])
@@ -4695,25 +4721,25 @@ module.exports = kconfig = async (kill, message) => {
 							var irissplice2 = tttSet[chatId].tictacplays.indexOf(argl[0])
 							if (irissplice2 !== -1) {
 								tttSet[chatId].tictacplays.splice(irissplice2, 1)
+								tttSet[chatId].aiplaying[irissplice2] = 'O'
 							}
 						}
 						if (tttSet[chatId].thePlayerGameOld2 == botNumber + '@c.us') {
-							let irisJog = tools('others').randVal(tttSet[chatId]['tictacplays'])
+							var model = new TicTacToe.Model(tttSet[chatId].aiplaying.join(''), 'O')
+							var recommendation = model.getRecommendation()
+							let irisJog = (tttSet[chatId].tttboard[recommendation.index] || tools('others').randVal(tttSet[chatId]['tictacplays']))
 							var irissplice = tttSet[chatId].ojogadas.push(irisJog)
 							tttSet[chatId].tttboard[irisJog] = 'O'
 							var irissplice2 = tttSet[chatId].tictacplays.indexOf(irisJog)
 							if (irissplice2 !== -1) {
 								tttSet[chatId].tictacplays.splice(irissplice2, 1)
+								tttSet[chatId].aiplaying[irissplice2] = 'O'
 							}
 							await kill.sendTextWithMentions(from, `Estou fazendo minha jogada, vou mandar o tabuleiro assim que eu terminar @${tttSet[chatId].thePlayerGameOld.replace('@c.us', '')}.`)
 							tttSet[chatId].thePlayerGame = tttSet[chatId].thePlayerGameOld
 							tttSet[chatId].thePlayerGame2 = 1
 						}
-						let tboards = await canvacord.Canvas.tictactoe(tttSet[chatId].tttboard, {
-							bg: '#000000',
-							bar: '#FFFFFF'
-						}) // Branco | Preto
-						await kill.sendImageAsSticker(from, tboards, {
+						await kill.sendImageAsSticker(from, await tboards(), {
 							author: config.Sticker_Author,
 							pack: config.Sticker_Pack,
 							keepScale: true
@@ -4754,7 +4780,8 @@ module.exports = kconfig = async (kill, message) => {
 
 				case 'detect':
 					if (isMedia && isAudio || isQuotedAudio || isPtt || isQuotedPtt) {
-						await tools('acrcloud').recognize(`./lib/media/audio/detect-${tools('others').randomString(10)}.mp3`, await decryptMedia(encryptMedia), kill, message)
+						let encryptMedia = await decryptMedia(encryptMedia)
+						await tools('acrcloud').recognize(`./lib/media/audio/detect-${tools('others').randomString(10)}.mp3`, encryptMedia, kill, message)
 					} else return await kill.reply(from, mess.onlyaudio(), id)
 				break
 
@@ -4788,7 +4815,8 @@ module.exports = kconfig = async (kill, message) => {
 					try {
 						await kill.reply(from, mess.wait(), id)
 						if (isImage || isQuotedImage) {
-							var sepiaUpl = await tools('cloud').upload(await decryptMedia(encryptMedia))
+							let encryptMedia = await decryptMedia(encryptMedia)
+							var sepiaUpl = await tools('cloud').upload(encryptMedia)
 						} else {
 							var whatCanva = quotedMsg ? quotedMsgObj.sender.id : (mentionedJidList.length !== 0 ? mentionedJidList[0] : sender.id)
 							var sepiaUpl = await kill.getProfilePicFromServer(whatCanva)
@@ -4811,7 +4839,8 @@ module.exports = kconfig = async (kill, message) => {
 				case 'medal':
 					try {
 						if (isImage || isQuotedImage) {
-							var personOne = await tools('cloud').upload(await decryptMedia(encryptMedia))
+							let encryptMedia = await decryptMedia(encryptMedia)
+							var personOne = await tools('cloud').upload(encryptMedia)
 							var personTwo = quotedMsg ? await kill.getProfilePicFromServer(quotedMsgObj.sender.id) : (mentionedJidList.length !== 0 ? await kill.getProfilePicFromServer(mentionedJidList[0]) : await kill.getProfilePicFromServer(sender.id))
 						} else {
 							var whatCanva = quotedMsg ? quotedMsgObj.sender.id : (mentionedJidList.length !== 0 ? mentionedJidList[0] : sender.id)
@@ -4938,7 +4967,8 @@ module.exports = kconfig = async (kill, message) => {
 				case 'pat':
 				case 'pet':
 					if (isMedia && type === 'image' || isQuotedImage) {
-						var canvaimage = await tools('cloud').upload(await decryptMedia(encryptMedia))
+						let encryptMedia = await decryptMedia(encryptMedia)
+						var canvaimage = await tools('cloud').upload(encryptMedia)
 					} else {
 						var whatCanva = quotedMsg ? quotedMsgObj.sender.id : (mentionedJidList.length !== 0 ? mentionedJidList[0] : sender.id)
 						var canvaimage = await kill.getProfilePicFromServer(whatCanva)
@@ -4974,7 +5004,8 @@ module.exports = kconfig = async (kill, message) => {
 						let BkMesa = quotedMsgObj ? quotedMsgObj : message
 						if (BkMesa.duration > 60) return await kill.reply(from, mess.watsonmsg(), id)
 						let watsonst = `./lib/media/audio/stt-${tools('others').randomString(10)}.ogg`
-						fs.writeFile(watsonst, await decryptMedia(encryptMedia), async (err) => {
+						let encryptMedia = await decryptMedia(encryptMedia)
+						fs.writeFile(watsonst, encryptMedia, async (err) => {
 							if (err) return console.error(err)
 							const speechToText = new SpeechToTextV1({
 								authenticator: new IamAuthenticator({
@@ -5000,16 +5031,15 @@ module.exports = kconfig = async (kill, message) => {
 							})
 							recognizeStream.on('close', async function(event) {})
 						})
-						await tools('others').sleep(10000).then(async () => {
-							fs.unlinkSync(watsonst)
-						})
+						tools('others').clearFile(watsonst, 10000, false)
 					} else return await kill.reply(from, mess.onlyaudio(), id)
 				break
 
 					/*Feito por Pedro Batistop*/
 				case 'bolsonaro':
 					if (isMedia && type === 'image' || isQuotedImage) {
-						var canvaimage = await tools('cloud').upload(await decryptMedia(encryptMedia))
+						let encryptMedia = await decryptMedia(encryptMedia)
+						var canvaimage = await tools('cloud').upload(encryptMedia)
 						var canvaimage2 = mentionedJidList.length !== 0 ? kill.getProfilePicFromServer(mentionedJidList[0]) : await kill.getProfilePicFromServer(sender.id)
 					} else {
 						var whatCanva = quotedMsg ? quotedMsgObj.sender.id : (mentionedJidList.length !== 0 ? mentionedJidList[0] : sender.id)
@@ -5042,7 +5072,8 @@ module.exports = kconfig = async (kill, message) => {
 				case 'die':
 				case 'plague':
 					if (isMedia && type === 'image' || isQuotedImage) {
-						var canvaimage = await tools('cloud').upload(await decryptMedia(encryptMedia))
+						let encryptMedia = await decryptMedia(encryptMedia)
+						var canvaimage = await tools('cloud').upload(encryptMedia)
 					} else {
 						var whatCanva = quotedMsg ? quotedMsgObj.sender.id : (mentionedJidList.length !== 0 ? mentionedJidList[0] : sender.id)
 						var canvaimage = await kill.getProfilePicFromServer(whatCanva)
@@ -5061,7 +5092,8 @@ module.exports = kconfig = async (kill, message) => {
 					/*Feito por Pedro Batistop*/
 				case 'invert':
 					if (isMedia && type === 'image' || isQuotedImage) {
-						var canvaimage = await tools('cloud').upload(await decryptMedia(encryptMedia))
+						let encryptMedia = await decryptMedia(encryptMedia)
+						var canvaimage = await tools('cloud').upload(encryptMedia)
 					} else {
 						var whatCanva = quotedMsg ? quotedMsgObj.sender.id : (mentionedJidList.length !== 0 ? mentionedJidList[0] : sender.id)
 						var canvaimage = await kill.getProfilePicFromServer(whatCanva)
@@ -5080,7 +5112,8 @@ module.exports = kconfig = async (kill, message) => {
 					/*Feito por Pedro Batistop*/
 				case 'drake':
 					if (isMedia && type === 'image' || isQuotedImage) {
-						var canvaimage = await tools('cloud').upload(await decryptMedia(encryptMedia))
+						let encryptMedia = await decryptMedia(encryptMedia)
+						var canvaimage = await tools('cloud').upload(encryptMedia)
 						var canvaimage2 = mentionedJidList.length !== 0 ? await kill.getProfilePicFromServer(mentionedJidList[0]) : await kill.getProfilePicFromServer(sender.id)
 					} else {
 						var whatCanva = quotedMsg ? quotedMsgObj.sender.id : (mentionedJidList.length !== 0 ? mentionedJidList[0] : sender.id)
@@ -5107,7 +5140,8 @@ module.exports = kconfig = async (kill, message) => {
 
 				case 'wolverine':
 					if (isMedia && type === 'image' || isQuotedImage) {
-						var canvaimage = await tools('cloud').upload(await decryptMedia(encryptMedia))
+						let encryptMedia = await decryptMedia(encryptMedia)
+						var canvaimage = await tools('cloud').upload(encryptMedia)
 					} else {
 						var whatCanva = quotedMsg ? quotedMsgObj.sender.id : (mentionedJidList.length !== 0 ? mentionedJidList[0] : sender.id)
 						var canvaimage = await kill.getProfilePicFromServer(whatCanva)
@@ -5125,7 +5159,8 @@ module.exports = kconfig = async (kill, message) => {
 
 				case 'jooj':
 					if (isMedia && type === 'image' || isQuotedImage) {
-						var canvaimage = await tools('cloud').upload(await decryptMedia(encryptMedia))
+						let encryptMedia = await decryptMedia(encryptMedia)
+						var canvaimage = await tools('cloud').upload(encryptMedia)
 					} else {
 						var whatCanva = quotedMsg ? quotedMsgObj.sender.id : (mentionedJidList.length !== 0 ? mentionedJidList[0] : sender.id)
 						var canvaimage = await kill.getProfilePicFromServer(whatCanva)
@@ -5143,7 +5178,8 @@ module.exports = kconfig = async (kill, message) => {
 
 				case 'ojjo':
 					if (isImage || isQuotedImage) {
-						var canvaimage = await tools('cloud').upload(await decryptMedia(encryptMedia))
+						let encryptMedia = await decryptMedia(encryptMedia)
+						var canvaimage = await tools('cloud').upload(encryptMedia)
 					} else {
 						var ojoacx = quotedMsg ? quotedMsgObj.sender.id : (mentionedJidList.length !== 0 ? mentionedJidList[0] : sender.id)
 						var canvaimage = await kill.getProfilePicFromServer(ojoacx)
@@ -5218,7 +5254,7 @@ module.exports = kconfig = async (kill, message) => {
 					if (args.length == 0) return await kill.reply(from, 'Insira um personagem de anime.', id)
 					let charac = await axios.get(`https://www.animecharactersdatabase.com/api_series_characters.php?character_q=${encodeURIComponent(body.slice(4))}`)
 					if (charac.data == '-1') return await kill.reply(from, mess.noresult(), id)
-					translate(charac.data.search_results[0].desc, {
+					await translate(charac.data.search_results[0].desc, {
 						to: region
 					}).then(async (desc) => {
 						await kill.sendFileFromUrl(from, `${response.data.search_results[0].character_image}`, 'char.jpg', `${response.data.search_results[0].name} - ${response.data.search_results[0].gender}\n\n${response.data.search_results[0].anime_name}\n\n${desc.text}`)
@@ -5302,12 +5338,12 @@ module.exports = kconfig = async (kill, message) => {
 						gameconfig[chatId]['dicas'] = 1
 						let getDica = () => {
 							let randNbr = tools('others').randomNumber(1, gameconfig[chatId]['wordVsb'].length)
-							if (gameconfig[chatId][wordVsb[randNbr]] !== '_') {
-								randNbr = tools('others').randomNumber(1, gameconfig[chatId]['wordVsb'].length)
+							if (gameconfig[chatId]['wordVsb'][randNbr] !== '_') {
+								randNbr = gameconfig[chatId]['wordVsb'].indexOf('_')
 							}
-							gameconfig[chatId][wordVsb[randNbr]] = gameconfig[chatId][wordOct[randNbr]]
+							gameconfig[chatId]['wordVsb'][randNbr] = gameconfig[chatId]['wordOct'][randNbr]
 						}
-						if (gameconfig[chatId][wordVsb].length < 6) {
+						if (gameconfig[chatId]['wordVsb'].length < 6) {
 							getDica()
 						} else {
 							getDica()
@@ -5316,9 +5352,9 @@ module.exports = kconfig = async (kill, message) => {
 						await kill.reply(from, 'Aqui está uma letra, você só pode obter uma dica por jogo.\n' + gameconfig[chatId]['wordVsb'].join(' '), id)
 					} else if (argl.length >= 2 && argl[0] == '-allin') {
 						if (removeAccents(argl[1]) == gameconfig[chatId]['forcw']) {
-							await kill.reply(from, 'Você apostou tudo e venceu!', id)
+							await kill.reply(from, `Parabéns!\nA palavra correta "${gameconfig[chatId]['forcw']}", você acertou em cheio!`, id)
 						} else return await kill.reply(from, `Você perdeu após apostar tudo, palavra correta = "${gameconfig[chatId]['forcw'].toUpperCase()}"`, id)
-					} else return kill.reply(from, `❗ - ${forcFile.toUpperCase()}\n\n❓ - "${gameconfig[chatId]['wordVsb'].join(' ')}"`, id)
+					} else return kill.reply(from, `❗ - ${gameconfig[chatId]['forcFile'].toUpperCase()}\n\n❓ - "${gameconfig[chatId]['wordVsb'].join(' ')}"`, id)
 				break
 
 				case 'shop':
@@ -5401,18 +5437,202 @@ module.exports = kconfig = async (kill, message) => {
 							if (deleted.log.includes(chatId)) return await kill.reply(from, mess.jaenabled(), id)
 							deleted.log.push(from)
 							fs.writeFileSync('./lib/config/Gerais/message.json', JSON.stringify(deleted, null, "\t"))
-							return await kill.reply(from, mess.enabled(), id)
+							await kill.reply(from, mess.enabled(), id)
 						} else if (arks.includes('-nolog')) {
 							if (!deleted.log.includes(chatId)) return await kill.reply(from, mess.jadisabled(), id)
 							deleted.log = deleted.log.filter(g => g !== chatId)
 							fs.writeFileSync('./lib/config/Gerais/message.json', JSON.stringify(deleted, null, "\t"))
-							return await kill.reply(from, mess.disabled(), id)
+							await kill.reply(from, mess.disabled(), id)
 						} else if (arks.includes('-show')) {
 							await kill.sendText(from, 'Mensagens apagadas:\n\n' + deleted.texts.map(msgdl => `De: "${msgdl.user.replace('@c.us', '')}"\nPara: "${msgdl.to}"\nQuando: "${msgdl.time}"\nMensagem: "${msgdl.message}"\n\n`).toString().replace(/,De/g, 'De'))
 						}
 					} else if (isGroupMsg) {
 						await kill.reply(from, mess.soademiro(), id)
 					} else return await kill.reply(from, mess.sogrupo(), id)
+				break
+
+				case 'daily':
+				case 'diario':
+					if (!isxp) return await kill.reply(from, mess.needxpon(), id)
+					if (tools('gaming').isLimit(sender.id, daily, 'reward')) return await kill.reply(from, `Você já resgatou sua recompensa diaria, volte depois para ter acesso a outra, ela só pode ser obtida uma vez por dia, você pode obter o tempo restante digitando "${prefix[0]}Time".`, id)
+					let winType = await tools('others').randVal(['xp', 'rubi', 'dima'])
+					if (!Object.keys(reward).includes(sender.id)) {
+						reward[sender.id] = {
+							"rewards": 1,
+							"dayWin": time,
+							"prevWin": winType,
+							"lastDate": time,
+							"mouth": moment().format('YYYY-MM')
+						}
+					} else {
+						if (moment(reward[sender.id]['mouth'], "YYYY-MM").daysInMonth() !== moment().daysInMonth() || reward[sender.id]["rewards"] >= moment(reward[sender.id]['mouth'], "YYYY-MM").daysInMonth()) {
+							reward[sender.id]['mouth'] = moment().format('YYYY-MM')
+							reward[sender.id]["rewards"] = 0
+						}
+						reward[sender.id]["rewards"]++,
+						reward[sender.id]["lastDate"] = reward[sender.id]["dayWin"],
+						reward[sender.id]["dayWin"] = time,
+						reward[sender.id]["prevWin"] = winType
+					}
+					fs.writeFileSync('./lib/config/Gerais/rewards.json', JSON.stringify(reward, null, "\t"))
+					var dailyReward = tools('others').randomNumber(config.Daily_Reward, config.Daily_Reward * reward[sender.id]["rewards"])
+					var dailyIcoin = tools('others').randomNumber(config.Iris_Coin, config.Iris_Coin * reward[sender.id]["rewards"])
+					tools('gaming').addValue(sender.id, Number(dailyReward), nivel, chatId, winType)
+					tools('gaming').addValue(sender.id, Number(dailyIcoin), nivel, chatId, 'coin')
+					await kill.reply(from, `Você resgatou com sucesso sua recompensa diaria de "${dailyReward} ${winType}" e "${dailyIcoin} I'coins", você possui ${reward[sender.id]["rewards"]} recompensas acumuladas, seus premios aumentam conforme você acumula.\nVocê recebeu "${reward[sender.id]["prevWin"].toUpperCase()}" na ultima vez em ${reward[sender.id]["lastDate"]}.`, id)
+					tools('gaming').addLimit(sender.id, daily, 'reward')
+				break
+				
+				
+				case 'genshin':
+					if (args.length == 0) return await kill.reply(from, `Insira o nome de uma personagem para buscar.`, id)
+					let stanLang = config.Language == 'en' ? 'English' : (config.Language == 'pt' ? 'Portuguese' : 'Spanish')
+					if (argl[0] == '-char') {
+						let impact = await genshin.characters(body.slice(15), {
+							resultLanguage: stanLang
+						})
+						if (impact == null) return await kill.reply(from, mess.noresult(), id)
+						await kill.sendFileFromUrl(from, (impact.images.card || impact.images.portrait || impact.images.cover1), 'card.png', `Nome -> ${impact.name}\n\nTitulo -> ${impact.title}\n\nDescrição -> ${impact.description}\n\nRaridade (estrelas) -> ${impact.rarity}\n\nElemento -> ${impact.element}\n\nArma -> ${impact.weapontype}\n\nSub-Status -> ${impact.substat}\n\nGenero -> ${impact.gender}\n\nCorpo de -> ${impact.body}\n\nAssociação -> ${impact.association}\n\nRegião -> ${impact.region}\n\nAfiliação -> ${impact.affiliation}\n\nAniversario -> ${impact.birthdaymmdd} [${impact.birthday}]\n\nConstelação -> ${impact.constellation}\n\nDublagem inglesa -> ${impact.cv.english}\n\nDublagem chinesa -> ${impact.cv.chinese}\n\nDublagem japonesa -> ${impact.cv.japanese}\n\nDublagem coreana -> ${impact.cv.korean}\n\nFandom -> ${impact.url.fandom}\n\nMateriais de Ascenção #1 ->\n${impact.costs.ascend1.map(as => `\n${as.count} ${as.name}`).toString().replace(/,/g, '')}\n\nMateriais de Ascenção #2 ->\n${impact.costs.ascend2.map(as => `\n${as.count} ${as.name}`).toString().replace(/,/g, '')}\n\nMateriais de Ascenção #3 ->\n${impact.costs.ascend3.map(as => `\n${as.count} ${as.name}`).toString().replace(/,/g, '')}\n\nMateriais de Ascenção #4 ->\n${impact.costs.ascend4.map(as => `\n${as.count} ${as.name}`).toString().replace(/,/g, '')}\n\nMateriais de Ascenção #5 ->\n${impact.costs.ascend5.map(as => `\n${as.count} ${as.name}`).toString().replace(/,/g, '')}\n\nMateriais de Ascenção #6 ->\n${impact.costs.ascend6.map(as => `\n${as.count} ${as.name}`).toString().replace(/,/g, '')}\n\nImagens para você:\n\n${impact.images.nameiconcard || 'Card'} -> ${impact.images.card || 'Não possui.'}\n\n${impact.images.namegachasplash || 'Retrato'} -> ${impact.images.portrait || 'Não possui.'}\n\n${impact.images.nameicon || 'Icon'} -> ${impact.images.icon || 'Não possui.'}\n\n${impact.images.namegachaslice || 'Icon Gacha'} -> ${impact.images.sideicon || 'Não possui.'}\n\nCover 1 -> ${impact.images.cover1 || 'Não possui'}\n\nCover 2 -> ${impact.images.cover2 || 'Não possui.'}\n\nAvatar no APP -> ${impact.images['hoyolab-avatar'] || 'Não possui.'}`, id)
+					} else if (argl[0] == '-weapon') {
+						let impact = await genshin.weapons(body.slice(17), {
+							resultLanguage: stanLang
+						})
+						if (impact == null) return await kill.reply(from, mess.noresult(), id)
+						await kill.sendFileFromUrl(from, impact.images.image, 'image.png', `Nome -> ${impact.name}\n\nDescrição -> ${impact.description}\n\nRaridade (estrelas) -> ${impact.rarity}\n\nBase-ATK -> ${impact.baseatk}\n\nSub-Status -> ${impact.substat}\n\nSub-Valor -> ${impact.subvalue}\n\nEfeito -> ${impact.effectname}\n\nDetalhes do efeito -> ${impact.effect}\n\nPoder do efeito em #R1 -> ${impact.r1.join(', ')}\n\nPoder do efeito em #R2 -> ${impact.r2.join(', ')}\n\nPoder do efeito em #R3 -> ${impact.r3.join(', ')}\n\nPoder do efeito em #R4 -> ${impact.r4.join(', ')}\n\nPoder do efeito em #R5 -> ${impact.r5.join(', ')}\n\nFeito de -> ${impact.weaponmaterialtype}\n\nMateriais de Ascenção #1 -> ${impact.costs.ascend1.map(as => `\n${as.count} ${as.name}`).toString().replace(/,/g, '')}\n\nMateriais de Ascenção #2 -> ${impact.costs.ascend2.map(as => `\n${as.count} ${as.name}`).toString().replace(/,/g, '')}\n\nMateriais de Ascenção #3 -> ${impact.costs.ascend3.map(as => `\n${as.count} ${as.name}`).toString().replace(/,/g, '')}\n\nMateriais de Ascenção #4 -> ${impact.costs.ascend4.map(as => `\n${as.count} ${as.name}`).toString().replace(/,/g, '')}\n\nMateriais de Ascenção #5 -> ${impact.costs.ascend5.map(as => `\n${as.count} ${as.name}`).toString().replace(/,/g, '')}\n\nMateriais de Ascenção #6 -> ${impact.costs.ascend6.map(as => `\n${as.count} ${as.name}`).toString().replace(/,/g, '')}\n\nImagens para você:\n\n${impact.images.namegacha || 'Imagem'} -> ${impact.images.image || 'Não possui.'}\n\n${impact.images.nameicon || 'Icon'} -> ${impact.images.icon || 'Não possui.'}\n\n${impact.images.nameawakenicon || 'Icon 2'} -> ${impact.images.awakenicon || 'Não possui.'}`, id)
+					} else if (argl[0] == '-obj') {
+						let impact = await genshin.materials(body.slice(14), {
+							resultLanguage: stanLang
+						})
+						if (impact == null) return await kill.reply(from, mess.noresult(), id)
+						await kill.sendFileFromUrl(from, (impact.images.redirect || impact.images.fandom), 'image.png', `Nome -> ${impact.name} #${impact.sortorder}\n\nDescrição -> ${impact.description}\n\nRaridade (estrelas) -> ${impact.rarity || 'Não possui.'}\n\nCategoria -> ${impact.category}\n\nTipo de material -> ${impact.materialtype}\n\nLocais -> ${impact.source.join(', ')}\n\nFandom -> ${impact.url.fandom}\n\nImagens para você:\n\n${impact.images.nameicon || 'Icon 1'} -> ${impact.images.redirect || 'Não possui.'}\n\nIcon 2 [Fandom] -> ${impact.images.fandom || 'Não possui.'}`, id)
+					} else if (argl[0] == '-art') {
+						let impact = await genshin.artifacts(body.slice(14), {
+							resultLanguage: stanLang
+						})
+						if (impact == null) return await kill.reply(from, mess.noresult(), id)
+						await kill.sendFileFromUrl(from, impact.images.flower, 'image.png', `Nome -> ${impact.name}\n\nRaridade (estrelas) -> ${impact.rarity.join(' / ')}\n\n2PC -> ${impact['2pc']}\n\n4PC -> ${impact['4pc']}\n\nFlor ->\n${impact.flower.name} - ${impact.flower.relictype}\nDescrição -> ${impact.flower.description}\n\nPena ->\n${impact.plume.name} - ${impact.plume.relictype}\nDescrição -> ${impact.plume.description}\n\nAmpulheta ->\n${impact.sands.name} - ${impact.sands.relictype}\nDescrição -> ${impact.sands.description}\n\nCalice ->\n${impact.goblet.name} - ${impact.goblet.relictype}\nDescrição -> ${impact.goblet.description}\n\nCoroa ->\n${impact.circlet.name} - ${impact.circlet.relictype}\nDescrição -> ${impact.circlet.description}\n\nFandom -> ${impact.url.fandom}\n\nImagens para você:\n\nFlor -> ${impact.images.flower || 'Não possui.'}\n\nPena -> ${impact.images.plume || 'Não possui.'}\n\nAmpulheta -> ${impact.images.sands || 'Não possui.'}\n\nCalice -> ${impact.images.goblet || 'Não possui.'}\n\nCoroa -> ${impact.images.circlet || 'Não possui.'}\n\n`, id)
+					} else if (argl[0] == '-boss') {
+						let impact = await genshin.enemies(body.slice(15), {
+							resultLanguage: stanLang
+						})
+						if (impact == null) return await kill.reply(from, mess.noresult(), id)
+						await kill.reply(from, `Nome -> ${impact.name}\n\nNome Especial -> ${impact.specialname}\n\nRaridade -> ${impact.enemytype}\n\nCategoria -> ${impact.category}\n\nDescrição -> ${impact.description}\n\nEspecie -> ${impact.investigation.name}\n\nDificuldade -> ${impact.investigation.category}\n\nDescrição Esp. -> ${impact.investigation.description}\n\nGanhos ->\n${impact.rewardpreview.map(re => `${re.name}\n`).toString().replace(/,/g, '')}`, id)
+					} else if (argl[0] == '-food') {
+						let impact = await genshin.foods(body.slice(15), {
+							resultLanguage: stanLang
+						})
+						if (impact == null) return await kill.reply(from, mess.noresult(), id)
+						await kill.reply(from, `Nome -> ${impact.name}\n\nRaridade (estrelas) -> ${impact.rarity}\n\nCategoria -> ${impact.foodtype}\n\nFiltrado por -> ${impact.foodfilter}\n\nCategoria -> ${impact.effect}\n\nDescrição -> ${impact.description}\n\nBad Food -> ${impact.suspicious.effect}\n${impact.suspicious.description}\n\nNormal Food -> ${impact.normal.effect}\n${impact.normal.description}\n\nDelicious Food -> ${impact.delicious.effect}\n${impact.delicious.description}\n\nFandom -> ${impact.url.fandom}\n\nIngredientes ->\n${impact.ingredients.map(re => `${re.count} ${re.name}\n`).toString().replace(/,/g, '')}`, id)
+					} else if (argl[0] == '-dom') {
+						let impact = await genshin.domains(body.slice(14), {
+							resultLanguage: stanLang
+						})
+						if (impact == null) return await kill.reply(from, mess.noresult(), id)
+						await kill.reply(from, `Nome -> ${impact.name}\n\nRegião -> ${impact.region}\n\nLocal -> ${impact.domainentrance}\n\nCategoria -> ${impact.domaintype}\n\nDescrição -> ${impact.description}\n\nLevel Recomendado -> ${impact.recommendedlevel}\n\nElementos Recomendados -> ${impact.recommendedelements.join(', ')}\n\nDias da Semana ->\n${impact.daysofweek.join('\n')}\n\nDebloqueia no Level -> ${impact.unlockrank}\n\nTipo de desordem ->\n${impact.disorder.join('\n')}\n\nLista de monstros ->\n${impact.monsterlist.join('\n')}\n\nGanhos ->\n${impact.rewardpreview.map(re => `${re.count || '?'} ${re.name}\n`).toString().replace(/,/g, '')}`, id)
+					} else if (argl[0] == '-talent') {
+						let impact = await genshin.talents(body.slice(17), {
+							resultLanguage: stanLang
+						})
+						if (impact == null) return await kill.reply(from, mess.noresult(), id)
+						await kill.reply(from, `Nome -> ${impact.name}\n\nCombate 1 -> ${impact.combat1.name}\nDescrição -> ${impact.combat1.info}\n\nCombate 2 -> ${impact.combat2.name}\nDescrição -> ${impact.combat2.info}\n\nCombate 3 -> ${impact.combat3.name}\nDescrição -> ${impact.combat3.info}\n\nPassivo 1 -> ${impact.passive1.name}\nDescrição -> ${impact.passive1.info}\n\nPassivo 2 -> ${impact.passive2.name}\nDescrição -> ${impact.passive2.info}\n\nPassivo 3 -> ${impact.passive3.name}\nDescrição -> ${impact.passive3.info}\n\nLevel 2 ->\n${impact.costs.lvl2.map(re => `${re.count || '?'} ${re.name}\n`).toString().replace(/,/g, '')}\nLevel 3 ->\n${impact.costs.lvl3.map(re => `${re.count || '?'} ${re.name}\n`).toString().replace(/,/g, '')}\nLevel 4 ->\n${impact.costs.lvl4.map(re => `${re.count || '?'} ${re.name}\n`).toString().replace(/,/g, '')}\nLevel 5 ->\n${impact.costs.lvl5.map(re => `${re.count || '?'} ${re.name}\n`).toString().replace(/,/g, '')}\nLevel 6 ->\n${impact.costs.lvl6.map(re => `${re.count || '?'} ${re.name}\n`).toString().replace(/,/g, '')}\nLevel 7 ->\n${impact.costs.lvl7.map(re => `${re.count || '?'} ${re.name}\n`).toString().replace(/,/g, '')}\nLevel 8 ->\n${impact.costs.lvl8.map(re => `${re.count || '?'} ${re.name}\n`).toString().replace(/,/g, '')}\nLevel 9 ->\n${impact.costs.lvl9.map(re => `${re.count || '?'} ${re.name}\n`).toString().replace(/,/g, '')}\nLevel 10 ->\n${impact.costs.lvl10.map(re => `${re.count || '?'} ${re.name}\n`).toString().replace(/,/g, '')}`, id)
+					} else if (argl[0] == '-cos') {
+						let impact = await genshin.constellations(body.slice(14), {
+							resultLanguage: stanLang
+						})
+						if (impact == null) return await kill.reply(from, mess.noresult(), id)
+						await kill.sendFileFromUrl(from, impact.images.c1, 'image.png', `Nome -> ${impact.name}\n\nC1 -> ${impact.c1.name}\nDescrição -> ${impact.c1.effect}\n\nC2 -> ${impact.c2.name}\nDescrição -> ${impact.c2.effect}\n\nC3 -> ${impact.c3.name}\nDescrição -> ${impact.c3.effect}\n\nC4 -> ${impact.c4.name}\nDescrição -> ${impact.c4.effect}\n\nC5 -> ${impact.c5.name}\nDescrição -> ${impact.c5.effect}\n\nC6 -> ${impact.c6.name}\nDescrição -> ${impact.c6.effect}`, id)
+					} else if (argl[0] == '-ment') {
+						let impact = await genshin.elements(body.slice(15))
+						if (impact == null) return await kill.reply(from, mess.noresult(), id)
+						await kill.sendFileFromUrl(from, (impact.images.base64 || impact.images.wikia), 'image.png', `Nome -> ${impact.name}\n\nTipo -> ${impact.type}\n\nCor HEX -> ${impact.color}\n\nCódigo emoji (Hoyolab) -> ${impact.emoji}\n\nRegião -> ${impact.region}\n\nArconte -> ${impact.archon}\n\nTema -> ${impact.theme}`, id)
+					} else if (argl[0] == '-type') {
+						let impact = await genshin.weaponmaterialtypes(body.slice(15))
+						if (impact == null) return await kill.reply(from, mess.noresult(), id)
+						await kill.reply(from, `Nome -> ${impact.name}\n\n2 Star -> ${impact['2starname']}\n\n3 Star -> ${impact['3starname']}\n\n4 Star -> ${impact['4starname']}\n\n5 Star -> ${impact['5starname']}\n\nOnde achar -> ${impact.location} - ${impact.region}\n\nNome do Local -> ${impact.domainofforgery}\n\nDias da semana ->\n${impact.day.join('\n')}`, id)
+					} else if (argl[0] == '-tal') {
+						let impact = await genshin.talentmaterialtypes(body.slice(14))
+						if (impact == null) return await kill.reply(from, mess.noresult(), id)
+						await kill.reply(from, `Nome -> ${impact.name}\n\n2 Star -> ${impact['2starname']}\n\n3 Star -> ${impact['3starname']}\n\n4 Star -> ${impact['4starname']}\n\n5 Star -> ${impact['5starname']}\n\nOnde achar -> ${impact.location} - ${impact.region}\n\nNome do Local -> ${impact.domainofforgery}\n\nDias da semana ->\n${impact.day.join('\n')}`, id)
+					}
+				break
+
+				case 'chess':
+					if (args.length == 0 || args[0] == '-help') return await kill.sendFileFromUrl(from, 'https://i.imgur.com/vIo4IAW.png', 'chess.png', `Esse é o tabuleiro de xadrez que utilizo para processar as jogadas de vocês.\n\nPara jogar insira o comando com o subsistema, pessoa e sua jogada.\nExemplo -> "${prefix}Chess -new @Iris a4"\n\nFunções -> ["-new", "-play", "-show"].`, id)
+					const chessglayer = quotedMsg ? quotedMsgObj.sender.id : (mentionedJidList.length !== 0 ? mentionedJidList[0] : null)
+					var chessglate = new chessImageGenerator({
+						size: 800,
+						style: 'alpha'
+					})
+					const newGame = (chatId, user, user2) => {
+						global.chessg = new chess.Chess()
+						chessGame[chatId] = {
+							'fen': chessg.fen(),
+							'b': user2,
+							'w': user
+						}
+					}
+					const getGame = async (chatId) => {
+						await chessglate.loadFEN(chessGame[chatId]['fen'])
+						let imageBoard = await chessglate.generateBuffer()
+						try {
+							await kill.sendImage(from, tools('others').dataURI('image/png', imageBoard), 'chess.png', '', id)
+							await kill.sendTextWithMentions(from, `Fiz minha jogada, sua vez @${chessGame[chatId][chessGame[chatId]['fen'].split(' ')[1]]}.\nVocê pode jogar nas seguintes posições [Digite igual] ->\n${chessg.moves().join(',  ')}`, id)
+						} catch (error) {
+							console.error(error)
+							await kill.reply(from, mess.fail('CHESS', error, (new Date().toString())), id)
+						}
+					}
+					if (args[0] == '-new') {
+						if (args[2] == null) return await kill.reply(from, `Forneça uma jogada.\nJogadas possíveis ->\n${chessg.moves().join(',  ')}`, id)
+						newGame(chatId, sender.id, chessglayer)
+						let moved = (chessg.move(args[2]) == null ? 'Error' : 'Not Error')
+						if (moved !== 'Not Error') return await kill.reply(from, `Sua jogada é invalida, jogadas possíveis ->\n${chessg.moves().join(',  ')}`, id)
+						chessGame[chatId]['fen'] = chessg.fen()
+						global.chessg = new chess.Chess(chessGame[chatId]['fen'])
+					} else if (args[0] == '-play') {
+						if (chessGame[chatId] == null) return await kill.reply(from, `Você precisa iniciar uma partida com ${prefix}Chess -new`, id)
+						if (chessGame[chatId]['w'] !== sender.id && chessGame[chatId]['b'] !== sender.id) return await kill.reply(from, `Você não é um jogador!`, id)
+						global.chessg = new chess.Chess(chessGame[chatId]['fen'])
+						let moved = (chessg.move(args[1]) == null ? 'Error' : 'Not Error')
+						if (moved !== 'Not Error') return await kill.reply(from, `Sua jogada é invalida, jogadas possíveis ->\n${chessg.moves().join(',  ')}`, id)
+						chessGame[chatId]['fen'] = chessg.fen()
+						global.chessg = new chess.Chess(chessGame[chatId]['fen'])
+					} else if (args[0] == '-show') {
+						global.chessg = new chess.Chess(chessGame[chatId]['fen'])
+						await getGame(chatId)
+					}
+					global.chessg = new chess.Chess(chessGame[chatId]['fen'])
+					if (chessGame[chatId][chessGame[chatId]['fen'].split(' ')[1]] == botNumber + '@c.us') {
+						var chessJog = tools('others').randVal(chessg.moves())
+						let moved = chessg.move(chessJog)
+						chessGame[chatId]['fen'] = chessg.fen()
+						global.chessg = new chess.Chess(chessGame[chatId]['fen'])
+						await getGame(chatId)
+					} else await getGame(chatId)
+					if (chessGame[chatId] !== null) {
+						if (chessg.in_draw()) return await kill.reply(from, `O jogo terminou em empate!`, id)
+						if (chessg.in_stalemate()) return await kill.reply(from, `O jogo terminou em afogamento!`, id)
+						if (chessg.insufficient_material()) return await kill.reply(from, `O jogo terminou em empate por falta de peças!`, id)
+						if (chessg.in_checkmate()) return await kill.reply(from, `O jogo terminou em xeque-mate!`, id)
+						if (chessg.in_check()) return await kill.reply(from, `O jogo não pode continuar pois está em xeque-mate!`, id)
+						if (chessg.game_over()) return await kill.reply(from, `O jogo terminou, incie outro com ${prefix}Chess -new`, id)
+					}
+				break
+				
+				case 'speed':
+					var decryptedMedia = await decryptMedia(encryptMedia)
+					var format = (isMedia && isVideo || isQuotedVideo) ? 'mp4' : 'mp3'
+					if (isMedia && isVideo || isQuotedVideo || isMedia && isAudio || isQuotedAudio || isPtt || isQuotedPtt) {
+						await tools('ffmpeg').speed(decryptedMedia, kill, message, Number(args[0]), format)
+					} else return await kill.reply(from, `Use esse comando com audios e vídeos, se tentar usar em outro tipo de mídia não funcionará (use marcando!).`, id)
+				break
+				
+				case 'reverse':
+					var decryptedMedia = await decryptMedia(encryptMedia)
+					var format = (isMedia && isVideo || isQuotedVideo) ? 'mp4' : 'mp3'
+					if (isMedia && isVideo || isQuotedVideo || isMedia && isAudio || isQuotedAudio || isPtt || isQuotedPtt) {
+						await tools('ffmpeg').reverse(decryptedMedia, kill, message, args, format)
+					} else return await kill.reply(from, `Use esse comando com audios e vídeos, se tentar usar em outro tipo de mídia não funcionará (use marcando!).`, id)
 				break
 
 				/*Para usar a base remova o "/*" e o "* /" e bote um nome dentro das aspas da case e em seguida sua mensagem dentro das aspas na frente do from */
@@ -5422,7 +5642,7 @@ module.exports = kconfig = async (kill, message) => {
 
 				default:
 					if (isCmd && prefix != "@" && /[a-zA-Z]/.test(command)) {
-						if (Object.keys(cmds).includes(chatId) && Object.keys(cmds['global']).includes(command)) {
+						if (Object.keys(cmds).includes(chatId) && Object.keys(cmds[chatId]).includes(command)) {
 							await kill.reply(from, cmds[chatId][command], id)
 						} else if (Object.keys(cmds['global']).includes(command)) {
 							await kill.reply(from, cmds['global'][command], id)
@@ -5445,7 +5665,7 @@ module.exports = kconfig = async (kill, message) => {
 			}
 
 			// Sistema que roda múltiplos comandos de uma vez
-			if (!tools('others').isUrl(cmdtorun[i]) && cmdtorun.length < 2 || !tools('others').isUrl(cmdtorun[i]) && !isOwner || cmdtorun.length >= config.Max_Commands) {
+			if (config.Multitasking && !tools('others').isUrl(cmdtorun[i]) && cmdtorun.length < 2 || !tools('others').isUrl(cmdtorun[i]) && !isOwner || cmdtorun.length >= config.Max_Commands) {
 				break
 			}
 		}

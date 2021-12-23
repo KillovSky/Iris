@@ -18,10 +18,10 @@ var setLimit = {
 	oneFake: 0,
 	broadc: 0
 }
-const axios = require('axios')
-const config = require('./lib/config/Gerais/config.json')
 const fs = require('fs')
-const irisvs = require('./package.json')
+const axios = require('axios')
+const config = JSON.parse(fs.readFileSync('./lib/config/Gerais/config.json'))
+const irisvs = JSON.parse(fs.readFileSync('./package.json'))
 const kconfig = require('./config')
 const welcome = require('./lib/functions/welcome')
 const moment = require('moment-timezone')
@@ -101,7 +101,7 @@ const start = async (kill = new Client()) => {
 			console.log(tools('others').color('[RELOAD]', 'red'), tools('others').color('Estou recarregando a página pois a conexão mudou →', 'lime'), tools('others').color(state, 'yellow'))
 		})
 
-		// Parte principal responsavel pelos comandos, além da limpeza de cache
+		// Parte principal responsável pelos comandos, além da limpeza de cache
 		let IrisCMD = config.Bot_Commands ? 'onAnyMessage' : 'onMessage'
 		kill[IrisCMD](async (message) => {
 			if (config.Clear_Cache) {
@@ -208,4 +208,4 @@ const start = async (kill = new Client()) => {
 }
 
 // Cria uma sessão da Íris
-create(tools('options').options(start)).then((kill) => start(kill)).catch((err) => console.error(err))
+create(tools('options').options(start)).then(async (kill) => await start(kill)).catch((err) => console.error(err))
