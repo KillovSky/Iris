@@ -27,6 +27,7 @@ antiporn
 antitravas
 aptoide
 arquivar
+artist
 ass
 ativos
 attp
@@ -85,6 +86,7 @@ contar
 conv
 converter
 corno
+correios
 covid
 cpf
 create
