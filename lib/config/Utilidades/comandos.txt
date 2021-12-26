@@ -3,6 +3,7 @@
 03
 04
 05
+21
 2d
 3d
 8d
@@ -87,6 +88,7 @@ conv
 converter
 corno
 correios
+couple
 covid
 cpf
 create
