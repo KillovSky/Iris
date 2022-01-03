@@ -1,6 +1,6 @@
 {
 	"name": "iris",
-	"version": "3.2.5",
+	"version": "3.2.6",
 	"private": "true",
 	"description": "Íris, uma BOT para WhatsApp de código 100% aberto & customizável, possui 3 idiomas e mais de 400 funções.",
 	"main": "index.js",
@@ -31,8 +31,9 @@
 		"brainly-scraper-v2": "^2.0.9",
 		"canvacord": "^5.2.3",
 		"chalk": "^4.1.2",
-		"chess.js": "^0.12.0",
 		"chess-image-generator": "^1.0.9",
+		"chess.js": "^0.12.0",
+		"creditcard-generator": "^0.0.7",
 		"ddg-scraper": "^1.0.2",
 		"ddgimages-node": "^1.0.1",
 		"deepai": "^1.0.17",

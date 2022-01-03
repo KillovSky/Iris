@@ -45,65 +45,68 @@ const {
 } = require("xvdl")
 const {
 	Brainly
-} = require("brainly-scraper-v2")
+} = require('brainly-scraper-v2')
+const Pokemon = require('pokemon.js')
 const SpeechToTextV1 = require('ibm-watson/speech-to-text/v1')
+const TicTacToe = require('tictactoe-agent')
 const axios = require('axios')
 const bent = require('bent')
 const canvacord = require('canvacord')
 const canvas = require('canvas')
+const chess = require('chess.js')
+const chessImageGenerator = require('chess-image-generator')
+const creditCard = require('creditcard-generator')
+const ddg = require('ddg-scraper')
 const deepai = require('deepai')
+const duck = require('ddgimages-node')
 const fetch = require('node-fetch')
 const ffmpeg = require('fluent-ffmpeg')
 const fs = require('fs')
-const ddg = require('ddg-scraper')
-const duck = require("ddgimages-node")
+const genshin = require('genshin-db')
 const isPorn = require('is-porn')
+const maker = require('free-textmaker-alpha')
 const math = require('mathjs')
 const moment = require('moment-timezone')
 const ms = require('parse-ms')
 const nhentai = require('nhentai-js')
 const os = require('os')
 const petPetGif = require('pet-pet-gif')
-const Pokemon = require('pokemon.js')
 const removeAccents = require('remove-accents')
 const sharp = require('sharp')
-const sinesp = require('sinesp-api')
 const shell = require('shelljs')
+const sinesp = require('sinesp-api')
 const store = require("playstore-scraper")
 const text2png = require('text2png')
-const tts = require('node-gtts')
 const translate = require('@imlinhanchao/google-translate-api')
+const tts = require('node-gtts')
 const webp = require('webp-converter')
 const wordwrap = require('word-wrapper')
 const youtubedl = require('youtube-dl-exec')
 const ytsearch = require('yt-search')
-const maker = require('free-textmaker-alpha')
-const TicTacToe = require('tictactoe-agent')
-const genshin = require('genshin-db')
-const chess = require('chess.js')
-const chessImageGenerator = require("chess-image-generator")
 
 /*UTILIDADES*/
-const shop = require('./lib/functions/shop')
-const hentao = require('./lib/functions/nhentai')
 const {
 	mylang
 } = require('./lib/lang')
 const {
 	tools
 } = require('./lib/functions')
+const shop = require('./lib/functions/shop')
+const hentao = require('./lib/functions/nhentai')
 
 /*JSON'S*/
-const config = JSON.parse(fs.readFileSync('./lib/config/Gerais/config.json'))
-const shopconf = JSON.parse(fs.readFileSync('./lib/config/Gerais/shop.json'))
 const cmds = JSON.parse(fs.readFileSync('./lib/config/Gerais/cmds.json'))
+const config = JSON.parse(fs.readFileSync('./lib/config/Gerais/config.json'))
 const ctmprefix = JSON.parse(fs.readFileSync('./lib/config/Gerais/prefix.json'))
-const reward = JSON.parse(fs.readFileSync('./lib/config/Gerais/rewards.json'))
 const custom = JSON.parse(fs.readFileSync('./lib/config/Gerais/custom.json'))
 const deleted = JSON.parse(fs.readFileSync('./lib/config/Gerais/message.json'))
 const functions = JSON.parse(fs.readFileSync('./lib/config/Gerais/functions.json'))
 const hail = JSON.parse(fs.readFileSync('./lib/config/Gerais/greetings.json'))
 const languages = JSON.parse(fs.readFileSync('./lib/config/Gerais/lang.json'))
+const reward = JSON.parse(fs.readFileSync('./lib/config/Gerais/rewards.json'))
+const shopconf = JSON.parse(fs.readFileSync('./lib/config/Gerais/shop.json'))
+const blockcmd = JSON.parse(fs.readFileSync('./lib/config/Gerais/disable.json'))
+const afk = JSON.parse(fs.readFileSync('./lib/config/Gerais/AFK.json'))
 var nivel = JSON.parse(fs.readFileSync('./lib/config/Gerais/level.json'))
 
 /*ATIVADORES & CONFIGS EXTRAS*/
@@ -194,14 +197,14 @@ module.exports = kconfig = async (kill, message) => {
 		var daily = JSON.parse(fs.readFileSync('./lib/config/Gerais/limit.json'))
 		let name = chat.name || chat.formattedTitle || 'PV'
 		let pushname = sender.pushname || sender.verifiedName || sender.formattedName || '"Censored by Government"' // Caso der erros e.e
-		const botNumber = await kill.getHostNumber()
+		const botNumber = await kill.getHostNumber() + '@c.us'
 		const blockNumber = await kill.getBlockedIds()
 		const isOwner = config.Owner.includes(sender.id)
-		const isBot = sender.id == `${botNumber}@c.us`
+		const isBot = botNumber == sender.id
 		var groupMembersId = isGroupMsg ? await kill.getGroupMembersId(chatId) : false
 		const groupAdmins = isGroupMsg ? await kill.getGroupAdmins(chatId) : false
 		const isGroupAdmins = isGroupMsg ? groupAdmins.includes(sender.id) : false
-		const isBotGroupAdmins = isGroupMsg ? groupAdmins.includes(botNumber + '@c.us') : false
+		const isBotGroupAdmins = isGroupMsg ? groupAdmins.includes(botNumber) : false
 		const isNsfw = isGroupMsg ? functions.nsfw.includes(chatId) : false
 		const autoSticker = isGroupMsg ? functions.sticker.includes(chatId) : false
 		const dateOfDay = (new Date()).getHours()
@@ -235,6 +238,7 @@ module.exports = kconfig = async (kill, message) => {
 		const isGroupCreator = isGroupMsg ? sender.id == chat.groupMetadata.owner : false
 
 		/*OUTRAS*/
+		const allCommands = fs.readFileSync('./lib/config/Utilidades/comandos.txt').toString()
 		const pollfile = `./lib/media/poll/${chatId.replace('@g.us', '')}.json`
 		var side = tools('others').randomNumber(1, 2)
 		var lvpc = tools('others').randomNumber(1, 100)
@@ -293,6 +297,29 @@ module.exports = kconfig = async (kill, message) => {
 				'2': image2
 			}
 		}
+		
+		// Sistema de AFK
+		if (mentionedJidList.length !== 0 && Object.keys(afk).length !== 0) {
+			var afkMessage = ''
+			mentionedJidList.map((m) => {
+				if (Object.keys(afk).includes(m)) {
+					afkMessage += `\n💤 -> ${afk[m].name.replace(/@c.us/g, '')} está em modo AFK, ele pediu que eu enviasse uma mensagem quando alguém o marcasse.\n\n✉️ -> "${afk[m].message}"\n\n┉ / ― ╳ - \\ ♡ / ― ╳ - \\ ┉\n`
+				}
+			})
+			if (afkMessage !== '') {
+				await kill.reply(from, afkMessage, id)
+			}
+		}
+		
+		// Desativador de comandos específicos em grupos, FT. Pedro B.
+		if (isCmd && !isOwner) {
+			if (Object.keys(blockcmd.yes).includes(chatId) || blockcmd.global.length !== 0) {
+				if (blockcmd.yes[chatId].includes(command) && !isGroupAdmins || blockcmd.global.includes(command)) {
+					await kill.reply(from, 'Não posso executar esse comando pois um administrador / Meu dono requisitou sua desativação.', id)
+					return console.log(tools('others').color('> [DISABLED]', 'red'), tools('others').color(`Ignorando comando ${command.toUpperCase} de ${pushname} - [${sender.id.replace('@c.us', '')}] pois o comando foi desabilitado...`, 'yellow'))
+				}
+			}
+		}
 
 		/*Sistema que permite ignorar comandos de um grupo, caso você já possua um BOT nele e queira deixar a Íris desligada apenas lá, basta ativar*/
 		/*if (isGroupMsg && isCmd && !isOwner && !isBot && chatId == 'Insira a id do grupo') return*/
@@ -327,7 +354,7 @@ module.exports = kconfig = async (kill, message) => {
 		/*Para limpar automaticamente sem você verificar, adicione "await kill.clearChat(chatId)" onde quiser dentro do "if".*/
 
 		/*Anti Imagens pornográficas*/
-		if (isGroupMsg && !isGroupAdmins && isBotGroupAdmins && isAntiPorn && isMedia && isImage && !isCmd && !isOwner && objconfig.oneImage == 0 && !isBot) {
+		if (isGroupMsg && !isGroupAdmins && isBotGroupAdmins && isAntiPorn && isImage && !isCmd && !isOwner && objconfig.oneImage == 0 && !isBot) {
 			try {
 				objconfig.oneImage = 1
 				console.log(tools('others').color('[IMAGEM]', 'red'), tools('others').color('Verificando a imagem por pornografia...', 'yellow'))
@@ -447,8 +474,8 @@ module.exports = kconfig = async (kill, message) => {
 		}
 
 		/*Ensina a rodar comandos pelo WhatsApp da BOT*/
-		if (isBot && isCmd && chatId !== `${botNumber}@c.us`) {
-			await kill.reply(config.Owner[0], mess.howtorun(`wa.me/+${botNumber}`), id)
+		if (isBot && isCmd && chatId !== `${botNumber}`) {
+			await kill.reply(config.Owner[0], mess.howtorun(`wa.me/+${botNumber.replace('@c.us', '')}`), id)
 		}
 
 		/*Mantém a BOT escrevendo caso o dono queira*/
@@ -470,7 +497,6 @@ module.exports = kconfig = async (kill, message) => {
 				} else if (myGuildN.toUpperCase() !== 'NO_GUILD') {
 					gainedXP = parseInt(gainedXP + (usuarioLevel * 2), 10) /* Guildas genéricas ganham 2X */
 				}
-				myGuildN = myGuildN !== '' ? `\n➸ *Guilda:* ${myGuildN.toUpperCase()}` : ''
 				tools('gaming').addValue(sender.id, gainedXP, nivel, chatId, 'xp')
 				const haveXptoUp = tools('gaming').getValue(sender.id, nivel, chatId, 'xp')
 				if (tools('gaming').LevelEXP(checkLvL) <= haveXptoUp) {
@@ -495,12 +521,12 @@ module.exports = kconfig = async (kill, message) => {
 		}
 		
 		/* Insere a Íris no ranking */
-		tools('gaming').addValue(botNumber+'@c.us', 100, nivel, chatId, 'coin')
+		tools('gaming').addValue(botNumber, 100, nivel, chatId, 'coin')
 
 		/*Auto-stickers de fotos*/
-		if (isGroupMsg && autoSticker && isMedia && isImage && !isCmd && !isBot) {
+		if (isGroupMsg && autoSticker && isImage && !isCmd && !isBot) {
 			let mediaData = await decryptMedia(encryptMedia)
-			await kill.sendImageAsSticker(from, tools('others').dataURI(mediaData), {
+			await kill.sendImageAsSticker(from, mediaData, {
 				author: config.Sticker_Author,
 				pack: config.Sticker_Pack,
 				keepScale: true
@@ -681,7 +707,7 @@ module.exports = kconfig = async (kill, message) => {
 				case 'setimage':
 					if (!isBotGroupAdmins) return await kill.reply(from, mess.botademira(), id)
 					if (isGroupMsg && isGroupAdmins || isGroupMsg && isOwner) {
-						if (isMedia && type == 'image' || isQuotedImage) {
+						if (isImage || isQuotedImage) {
 							const picgp = await kill.getProfilePicFromServer(chatId)
 							if (!tools('others').isUrl(picgp)) {
 								var backup = errorurl
@@ -771,7 +797,7 @@ module.exports = kconfig = async (kill, message) => {
 						if (!isBotGroupAdmins) return await kill.reply(from, mess.botademira(), id)
 						if (isGroupMsg && isGroupAdmins || isGroupMsg && isOwner) {
 							if (!quotedMsg) return await kill.reply(from, mess.nomark, id)
-							const unbanq = quotedMsgObj.sender.id
+							let unbanq = quotedMsgObj.sender.id
 							if (groupMembersId.includes(unbanq)) return await kill.reply(from, mess.janogp(), id)
 							await kill.sendTextWithMentions(from, mess.unban(unbanq))
 							await kill.addParticipant(chatId, unbanq)
@@ -788,22 +814,21 @@ module.exports = kconfig = async (kill, message) => {
 				case 'k':
 					if (!isBotGroupAdmins) return await kill.reply(from, mess.botademira(), id)
 					if (isGroupMsg && isGroupAdmins || isGroupMsg && isOwner) {
-						if (quotedMsg) {
-							const negquo = quotedMsgObj.sender.id
-							if (config.Owner.includes(negquo)) return await kill.reply(from, mess.vip(), id)
-							if (groupAdmins.includes(negquo)) return await kill.reply(from, mess.removeradm(), id)
-							if (!groupMembersId.includes(negquo)) return await kill.reply(from, mess.notongp(), id)
-							await kill.sendTextWithMentions(from, mess.ban(negquo))
-							await kill.removeParticipant(chatId, negquo)
-						} else {
-							if (mentionedJidList.length == 0) return await kill.reply(from, mess.semmarcar(), id)
-							await kill.sendTextWithMentions(from, mess.kick(mentionedJidList))
-							for (let i in mentionedJidList) {
-								if (config.Owner.includes(mentionedJidList[i])) return await kill.reply(from, mess.vip(), id)
-								if (groupAdmins.includes(mentionedJidList[i])) return await kill.reply(from, mess.removeradm(), id)
-								await kill.removeParticipant(chatId, mentionedJidList[i])
+						let wontBan = "Não foi possível banir os seguintes usuários por serem VIP's ou não estarem no grupo:\n"
+						let kickLength = 0
+						var banPerson = quotedMsg ? new Array(quotedMsgObj.sender.id) : (mentionedJidList ? mentionedJidList : false)
+						if (banPerson == false) return await kill.reply(from, mess.semmarcar(), id)
+						await kill.sendTextWithMentions(from, mess.kick(banPerson))
+						for (let i = 0; i < banPerson.length; i++) {
+							if (config.Owner.includes(banPerson[i]) || groupAdmins.includes(banPerson[i]) || botNumber.includes(banPerson[i]) || !groupMembersId.includes(banPerson[i])) {
+								wontBan += `-> @${banPerson[i].replace('@c.us', '')}\n`
+								if (banPerson.length == 1) return await kill.sendTextWithMentions(from, wontBan+'\n\nParando comando por falta de alvos.')
+							} else {
+								await kill.removeParticipant(chatId, banPerson[i])
+								kickLength++
 							}
 						}
+						if (wontBan !== "Não foi possível banir os seguintes usuários por serem VIP's ou não estarem no grupo:\n") return await kill.sendTextWithMentions(from, wontBan)
 					} else if (isGroupMsg) {
 						await kill.reply(from, mess.soademiro(), id)
 					} else return await kill.reply(from, mess.sogrupo(), id)
@@ -965,21 +990,45 @@ module.exports = kconfig = async (kill, message) => {
 				case 'softban':
 					try {
 						if (isGroupMsg && isGroupAdmins || isGroupMsg && isOwner) {
-							if (args.length == 0 || isNaN(args[0]) && isNaN(args[1]) || !quotedMsg && mentionedJidList.length == 0) return await kill.reply(from, mess.nomark() + ' + time/tempo (minutos/minutes)\n(Ex: 30)', id)
+							if (args.length == 0 || isNaN(args[0]) && isNaN(args[1]) || !quotedMsg && mentionedJidList.length == 0) return await kill.reply(from, mess.nomark() + ' + time/tempo (minutos/minutes)\n\nExemplo -> "${prefix}Softban 30 @user1 @user2"', id)
 							if (!isBotGroupAdmins) return await kill.reply(from, mess.botademira(), id)
-							const aatimep = quotedMsg ? Number(args[0] * 60000) : Number(args[1] * 60000)
-							var banThisGuy = quotedMsg ? quotedMsgObj.sender.id : mentionedJidList[0]
-							if (config.Owner.includes(banThisGuy) || groupAdmins.includes(banThisGuy) || botNumber.includes(banThisGuy)) return await kill.reply(from, mess.vip(), id)
-							if (!groupMembersId.includes(banThisGuy)) return await kill.reply(from, mess.notongp(), id)
-							await kill.sendTextWithMentions(from, mess.softban(banThisGuy, aatimep))
-							await tools('others').sleep(1000)
-							await kill.removeParticipant(chatId, banThisGuy)
-							await tools('others').sleep(aatimep)
+							var banThisGuy = quotedMsg ? new Array(quotedMsgObj.sender.id) : (mentionedJidList ? mentionedJidList : false)
+							if (banThisGuy == false) return await kill.reply(from, mess.nomark() + ' + time/tempo (minutos/minutes)\n\nExemplo -> "${prefix}Softban 30 @user1 @user2"', id)
+							await kill.sendTextWithMentions(from, mess.irritouml(banThisGuy, args))
+							let notBanned = "Não foi possível banir os seguintes usuários por serem VIP's ou não estarem no grupo:\n"
+							let banLength = 0
+							for (let i = 0; i < banThisGuy.length; i++) {
+								if (config.Owner.includes(banThisGuy[i]) || groupAdmins.includes(banThisGuy[i]) || botNumber.includes(banThisGuy[i]) || !groupMembersId.includes(banThisGuy[i])) {
+									notBanned += `\n-> @${banThisGuy[i].replace('@c.us', '')}`
+									if (banThisGuy.length == 1) return await kill.sendTextWithMentions(from, notBanned + '\n\nParando comando por falta de alvos.')
+								} else {
+									await kill.removeParticipant(chatId, banThisGuy[i])
+									banLength++
+								}
+							}
+							if (notBanned !== "Não foi possível banir os seguintes usuários por serem VIP's ou não estarem no grupo:\n") {
+								await kill.sendTextWithMentions(from, notBanned)
+							}
+							if (banLength == 0) return
+							await tools('others').sleep(Number(args[0] * 60000))
 							groupMembersId = await kill.getGroupMembersId(chatId)
-							if (groupMembersId.includes(banThisGuy)) return await kill.reply(from, mess.janogp(), id)
 							await kill.reply(from, mess.timeadd(), id)
-							await kill.addParticipant(chatId, banThisGuy)
-							await tools('others').sleep(Number(aatimep + 5000))
+							notBanned = "Os seguintes usuários já estavam no grupo e não foram inseridos novamente.\n"
+							banLength = 0
+							for (let i = 0; i < banThisGuy.length; i++) {
+								if (groupMembersId.includes(banThisGuy[i])) {
+									notBanned += `\n-> @${banThisGuy[i].replace('@c.us', '')}`
+									if (banThisGuy.length == 1) return await kill.sendTextWithMentions(from, notBanned + '\n\nParando comando por falta de alvos.')
+								} else {
+									await kill.addParticipant(chatId, banThisGuy[i])
+									banLength++
+								}
+							}
+							if (notBanned !== "Os seguintes usuários já estavam no grupo e não foram inseridos novamente.\n") {
+								await kill.sendTextWithMentions(from, notBanned)
+							}
+							if (banLength == 0) return
+							await tools('others').sleep(2000)
 							await kill.sendText(from, mess.voltargp())
 						} else if (isGroupMsg) {
 							await kill.reply(from, mess.soademiro(), id)
@@ -1104,7 +1153,7 @@ module.exports = kconfig = async (kill, message) => {
 					if (isNaN(args[0])) return await kill.reply(from, mess.onlynumber(), id)
 					if (isGroupMsg && isGroupAdmins || isOwner) {
 						try {
-							let lastMes = (await kill.getAllMessagesInChat(from, true)).filter(my => my.sender.id == botNumber + '@c.us' && my.type !== "revoked")
+							let lastMes = (await kill.getAllMessagesInChat(from, true)).filter(my => my.sender.id == botNumber && my.type !== "revoked")
 							lastMes.slice(Math.max(lastMes.length - Number(args[0]), 0)).map(async (m) => {
 								await kill.deleteMessage(from, m.id)
 							})
@@ -1123,24 +1172,23 @@ module.exports = kconfig = async (kill, message) => {
 					const isGroupC = await chatall.filter(group => group.includes('@g.us'))
 					const isPrivateC = await chatall.filter(privat => privat.includes('@c.us'))
 					try {
-						const sendQFileC = async (quotedMsgObj, ids) => {
-							let replyOnReply = await kill.getMessageById(quotedMsgObj.id)
-							let obj = replyOnReply.quotedMsgObj
-							if (/ptt|audio|video|image|document|sticker/.test(quotedMsgObj.type)) {
-								if (quotedMsgObj.animated) quotedMsgObj.mimetype = ''
-							} else if (obj && /ptt|audio|video|image/.test(obj.type)) {
-								quotedMsgObj = obj
-							} else return
-							let mediaData = await decryptMedia(quotedMsgObj)
-							await kill.sendFile(ids, tools('others').dataURI(quotedMsgObj.mimetype, mediaData), '', `> ${pushname}.`)
+						const transmiss = async (ids) => {
+							if (encryptMedia) {
+								let mediaData = await decryptMedia(encryptMedia)
+								if (isVideo || isQuotedVideo || isImage || isQuotedImage) {
+									await kill.sendFile(ids, tools('others').dataURI(encryptMedia.mimetype, mediaData), 'file.' + encryptMedia.mimetype, `[Transmissão de ${pushname} ]\n\n${body.slice(12)}`)
+								} else {
+									await kill.sendFile(ids, tools('others').dataURI(encryptMedia.mimetype, mediaData), 'file.' + encryptMedia.mimetype, '')
+									await kill.sendText(ids, `[Transmissão de ${pushname} ]\n\n${body.slice(12)}`)
+								}
+							} else await kill.sendText(ids, `[Transmissão de ${pushname} ]\n\n${body.slice(12)}`)
 						}
 						if (argl[0] == '-all') {
 							for (let ids of chatall) {
 								var cvk = await kill.getChatById(ids)
 								if (!cvk.isReadOnly) {
 									try {
-										await kill.sendText(ids, `[Transmissão de ${pushname} ]\n\n${body.slice(12)}`)
-										if (quotedMsgObj) return await sendQFileC(quotedMsgObj, ids)
+										await transmiss(ids)
 									} catch (error) {
 										console.log(tools('others').color('[BROADCAST]', 'crimson'), tools('others').color(`→ Uma das mensagens não foi enviada - Você pode ignorar.`, 'gold'))
 									}
@@ -1152,8 +1200,7 @@ module.exports = kconfig = async (kill, message) => {
 								var cvk = await kill.getChatById(ids)
 								if (!cvk.isReadOnly) {
 									try {
-										await kill.sendText(ids, `[Transmissão de ${pushname} ]\n\n${body.slice(12)}`)
-										if (quotedMsgObj) return await sendQFileC(quotedMsgObj, ids)
+										await transmiss(ids)
 									} catch (error) {
 										console.log(tools('others').color('[BROADCAST]', 'crimson'), tools('others').color(`→ Uma das mensagens não foi enviada - Você pode ignorar.`, 'gold'))
 									}
@@ -1163,8 +1210,7 @@ module.exports = kconfig = async (kill, message) => {
 						} else if (argl[0] == '-pvs') {
 							for (let ids of isPrivateC) {
 								try {
-									await kill.sendText(ids, `[Transmissão de ${pushname} ]\n\n${body.slice(12)}`)
-									if (quotedMsgObj) return await sendQFileC(quotedMsgObj, ids)
+									await transmiss(ids)
 								} catch (error) {
 									console.log(tools('others').color('[BROADCAST]', 'crimson'), tools('others').color(`→ Uma das mensagens não foi enviada - Você pode ignorar.`, 'gold'))
 								}
@@ -1341,14 +1387,14 @@ module.exports = kconfig = async (kill, message) => {
 				break
 
 				case 'botfoto':
-					if (isMedia && type == 'image' || isQuotedImage) {
+					if (isImage || isQuotedImage) {
 						if (!isOwner) return await kill.reply(from, mess.sodono(), id)
 						const bkmypic = await kill.getProfilePicFromServer(botNumber)
 						if (typeof bkmypic == 'object' || !tools('others').isUrl(bkmypic)) {
 							await kill.reply(from, `Não foi possível fazer backup da minha foto de perfil, se ela existir claro, irei ignorar o backup.`, id)
-						} else await kill.sendFileFromUrl(from, bkmypic, 'backup.jpg', 'Backup', id);
+						} else await kill.sendFileFromUrl(from, bkmypic, 'backup.jpg', 'Backup', id)
 						let mediaData = await decryptMedia(encryptMedia)
-						await kill.setProfilePic(mediaData)
+						await kill.setProfilePic(tools('others').dataURI(encryptMedia.mimetype, mediaData))
 						await kill.reply(from, mess.maked(), id)
 					} else return await kill.reply(from, mess.onlyimg(), id)
 				break
@@ -1436,6 +1482,20 @@ module.exports = kconfig = async (kill, message) => {
 					await kill.refresh()
 					await kill.reply(from, mess.refreshed(), id)
 				break
+				
+				case 'reboot':
+					if (!isOwner) return await kill.reply(from, mess.sodono(), id)
+					await kill.reply(from, `Aguarde, isso pode demorar bastante tempo, não irei avisar quando iniciar, por isso, rode um comando daqui 2 minutos, se não houver resposta, vá olhar o terminal.`, id)
+					try {
+						let isWorked = await shell.exec(`pm2 reload index`, {
+							silent: true
+						})
+						if (isWorked.stdout == '') return await kill.reply(from, `Você não possui PM2 instalado, para instalar PM2 no computador, você pode rodar "${prefix}CMD npm i -g pm2" ou digitar o comando manualmente no terminal do seu PC (recomendado).`, id)
+					} catch (error) {
+						tools('others').reportConsole(command, error)
+						await kill.reply(from, `Não foi possível reiniciar, veja detalhes abaixo.\n\n` + mess.fail(command, error, time), id)
+					}
+				break
 
 				case 'type':
 					if (isOwner) {
@@ -1497,7 +1557,7 @@ module.exports = kconfig = async (kill, message) => {
 							circle: isCircle
 						})
 					}
-					if (isMedia && isImage || isQuotedImage) {
+					if (isImage || isQuotedImage) {
 						let mediaData = await decryptMedia(encryptMedia)
 						var isCircle = arks.includes('-circle') ? true : false
 						var Cut = arks.includes('-cut') ? false : true
@@ -1745,9 +1805,8 @@ module.exports = kconfig = async (kill, message) => {
 				break
 
 				case 'msg':
-				case 'print':
 					if (args.length == 0) return await kill.reply(from, mess.noargs() + 'palavras/words/números/numbers.', id)
-					await kill.sendText(from, `${args.join(' ')}`)
+					await kill.sendText(from, `${body.slice(5)}`)
 				break
 
 				case 'id':
@@ -2842,31 +2901,23 @@ module.exports = kconfig = async (kill, message) => {
 				case 'enviar':
 					if (args.length == 0 || !arks.includes('|')) return await kill.reply(from, mess.noargs() + 'palavras/words/números/numbers.' + '\n\n' + mess.argsbar() + 'use 1 "|".', id)
 					try {
-						const sendAFile = async (quotedMsgObj, args, type, typeName) => {
-							let replyOnReply = await kill.getMessageById(quotedMsgObj.id)
-							let obj = replyOnReply.quotedMsgObj
-							if (/ptt|audio|video|image|document|sticker/.test(quotedMsgObj.type)) {
-								if (quotedMsgObj.animated) quotedMsgObj.mimetype = ''
-							} else if (obj && /ptt|audio|video|image/.test(obj.type)) {
-								quotedMsgObj = obj
-							} else return
-							let mediaData = await decryptMedia(quotedMsgObj)
-							await kill.sendFile(`${args[1]}` + type, `data:${quotedMsgObj.mimetype};base64,${mediaData.toString('base64')}`, '', `De/From ${typeName}`)
+						const sendMess = async (id, arg, type, back) => {
+							if (encryptMedia) {
+								let mediaData = await decryptMedia(encryptMedia)
+								if (isVideo || isQuotedVideo || isImage || isQuotedImage) {
+									await kill.sendFile(id, tools('others').dataURI(encryptMedia.mimetype, mediaData), 'file.' + encryptMedia.mimetype, `_Mensagem >_\n"${arg.split('|')[1]} "` + '\n\n_Quem enviou =_ ' + '\n*"' + typeName + '"*' + '\n\n_Como responder:_')
+								} else {
+									await kill.sendFile(id, tools('others').dataURI(encryptMedia.mimetype, mediaData), 'file.' + encryptMedia.mimetype, '')
+									await kill.sendText(id, `_Mensagem >_\n"${arg.split('|')[1]} "` + '\n\n_Quem enviou =_ ' + '\n*"' + typeName + '"*' + '\n\n_Como responder:_')
+								}
+							} else await kill.sendText(id, `_Mensagem >_\n"${arg.split('|')[1]} "` + '\n\n_Quem enviou =_ ' + '\n*"' + typeName + '"*' + '\n\n_Como responder:_')
+							await kill.sendText(id, `${prefix}enviar ${type} ${back} | Coloque sua resposta aqui`)
+							await kill.sendText(back, mess.maked())
 						}
 						if (argl[0] == '-gp') {
-							await kill.sendText(`${args[1]}` + '@g.us', `_Mensagem >_\n"${arg.split('|')[1]} "` + '\n\n_Quem enviou =_ ' + '\n*"' + typeName + '"*' + '\n\n_Como responder:_')
-							await kill.sendText(`${args[1]}` + '@g.us', `${prefix}enviar ${typeChat} ${typeId} | Coloque sua resposta aqui`)
-							await kill.reply(from, mess.maked(), id)
-							if (quotedMsgObj) {
-								await sendAFile(quotedMsgObj, args, '@g.us', typeName)
-							}
+							await sendMess(`${args[1]}@g.us`, arg, typeChat, typeId)
 						} else if (argl[0] == '-pv') {
-							await kill.sendText(`${args[1]}` + '@c.us', `_Mensagem >_\n"${arg.split('|')[1]}"` + '\n\n_Quem enviou =_ ' + '*' + typeName + '*' + '\n\n_Como responder:_')
-							await kill.sendText(`${args[1]}` + '@c.us', `${prefix}enviar ${typeChat} ${typeId} | Coloque sua resposta aqui`)
-							await kill.reply(from, mess.maked(), id)
-							if (quotedMsgObj) {
-								await sendAFile(quotedMsgObj, args, '@c.us', typeName)
-							}
+							await sendMess(`${args[1]}@c.us`, arg, typeChat, typeId)
 						} else return await kill.reply(from, mess.enviar(), id)
 					} catch (error) {
 						tools('others').reportConsole(command, error)
@@ -3335,8 +3386,7 @@ module.exports = kconfig = async (kill, message) => {
 							"text": "/Legião"
 						}
 					], mess.menu(pushname, time, theMsg, uzrXp, tools('gaming').LevelEXP(uzrlvl), uzrlvl, mping, patente))
-					const allCmds = fs.readFileSync('./lib/config/Utilidades/comandos.txt').toString()
-					await kill.reply(from, `Todos os comandos - All Commands\n ​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​${allCmds}`, id)
+					await kill.reply(from, `Todos os comandos - All Commands\n ​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​${allCommands.toString()}`, id)
 				break
 
 				case 'stickers':
@@ -3457,52 +3507,14 @@ module.exports = kconfig = async (kill, message) => {
 					let rankCard = await tools('canvas').ranking(ppLink, userXp, tools('gaming').LevelEXP(userLevel), userLevel, Object.keys(nivel[chatId]).indexOf(wdfWho), 0, `${tools('gaming').getPatent(userLevel)} - ${(tools('gaming').getValue(sender.id, nivel, chatId, 'guild')).toUpperCase()}`, yourName)
 					await kill.sendFile(from, rankCard, `${wdfWho.replace('@c.us', '')}_card.png`, `🔭 - ${yourName} - ${name}\n🎮 - ${userXp} / ${tools('gaming').LevelEXP(userLevel)} XP\n☄️ - Level ${userLevel}\n⏱️ - ${tools('gaming').getValue(wdfWho, nivel, chatId, 'msg')} Mensagens\n🃏 - ${tools('gaming').getPatent(userLevel)}\n💵 - ${tools('gaming').getValue(wdfWho, nivel, chatId, 'coin')} Í-coins\n⚔️ - ${(tools('gaming').getValue(sender.id, nivel, chatId, 'guild')).toUpperCase()}\n🔶 - ${tools('gaming').getValue(wdfWho, nivel, chatId, 'rubi')} Rubis\n💎 - ${tools('gaming').getValue(wdfWho, nivel, chatId, 'dima')} Diamantes`, id)
 				break
-
-				case 'ativos':
-					if (!isGroupMsg) return await kill.reply(from, mess.sogrupo(), id)
-					nivel[chatId] = tools('others').sort(nivel[chatId], 'msg')
-					let active = '-----[ *RANKING DOS ATIVOS* ]----\n\n'
-					let CountMsg = 0
-					try {
-						for (let i = Object.keys(nivel[chatId]).length; i > Object.keys(nivel[chatId]).length - 11; i--) {
-							if (Object.keys(nivel[chatId])[i] == null) return
-							Object.keys(nivel[chatId])[i] == null ? i = i - 1 : i = i
-							CountMsg++
-							const aRandVar = await kill.getContact(Object.keys(nivel[chatId])[i])
-							active += `${CountMsg} → *${aRandVar.pushname || 'wa.me/' + Object.keys(nivel[chatId])[i].replace('@c.us', '')}*\n➸ *Mensagens*: ${nivel[Object.keys(nivel[chatId])[i]]['msg']}\n\n`
-						}
-						await kill.sendText(from, active)
-					} catch (error) {
-						tools('others').reportConsole(command, error)
-						await kill.reply(from, mess.tenpeo() + '\n\n' + mess.fail(command, error, time), id)
-					}
-				break
-
-				case 'geral':
-					if (!isGroupMsg) return await kill.reply(from, mess.sogrupo(), id)
-					let geralRank = `-----[ *${name}* [${groupMembersId.length}]]----\n\n`
-					nivel[chatId] = tools('others').sort(nivel[chatId], 'xp')
-					try {
-						for (let i = Object.keys(nivel[chatId]).length; i > 0; i--) {
-							if (Object.keys(nivel[chatId])[i] == null) return
-							if (groupMembersId.includes(Object.keys(nivel[chatId])[i])) {
-								const bRandV = await kill.getContact(Object.keys(nivel[chatId])[i])
-								let userInfo = tools('gaming').getValue(Object.keys(nivel[chatId])[i], nivel, chatId, null)
-								geralRank += `${i + 1} → *${bRandV.pushname || 'wa.me/' + Object.keys(nivel[chatId])[i].replace('@c.us', '')}*\n➸ *Mensagens*: ${userInfo.msg}\n➸ *XP*: ${userInfo.xp} / ${tools('gaming').LevelEXP(userInfo.level)}\n➸ *Level*: ${userInfo.level}\n➸ *Í-Coin*: ${userInfo.coin}\n➸ *Patente*: ${tools('gaming').getPatent(userInfo.level)}\n\n`
-							}
-						}
-						await kill.sendText(from, geralRank)
-					} catch (error) {
-						tools('others').reportConsole(command, error)
-						await kill.reply(from, mess.tenpeo() + '\n\n' + mess.fail(command, error, time), id)
-					}
-				break
-
+				
+				// Remade by Pedro B.
 				case 'ranking':
 					if (!isGroupMsg) return await kill.reply(from, mess.sogrupo(), id)
-					nivel[chatId] = tools('others').sort(nivel[chatId], 'xp')
+					if (!['coin', 'msg', 'level', 'rubi', 'dima', 'xp'].includes(argl[0])) return await kill.reply(from, `O ranking precisa ser especificado, você pode selecionar entre:\n\n-> XP\n-> Coin\n-> MSG\n-> Rubi\n-> Dima\n-> Level\n\nUm exemplo de uso é "${prefix}Ranking coin".`, id)
+					nivel[chatId] = tools('others').sort(nivel[chatId], argl[0])
 					let CountUp = 0
-					let board = '-----[ *RANKING DE XP* ]----\n\n'
+					let board = `-----[ *RANKING DE ${argc[0]}* ]----\n\n`
 					try {
 						for (let i = Object.keys(nivel[chatId]).length; i > Object.keys(nivel[chatId]).length - 11; i--) {
 							CountUp++
@@ -3708,7 +3720,7 @@ module.exports = kconfig = async (kill, message) => {
 					} else return await kill.reply(from, mess.onlyst() + '\n\n' + mess.argsbar() + 'use 1 "|".', id)
 				break
 
-					/*Não deixe seus usuarios floodarem, caso contrario a bot pode desligar*/
+					/*Não deixe seus usuários floodarem, caso contrario a bot pode desligar*/
 				case 'sound':
 				case 'bass':
 					if (isMedia && isAudio || isQuotedAudio || isPtt || isQuotedPtt || isMedia && isVideo || isQuotedVideo) {
@@ -3718,7 +3730,7 @@ module.exports = kconfig = async (kill, message) => {
 					} else return await kill.reply(from, mess.onlyaudio(), id)
 				break
 
-					/*Não deixe seus usuarios floodarem, caso contrario a bot pode desligar*/
+					/*Não deixe seus usuários floodarem, caso contrario a bot pode desligar*/
 				case 'nightcore':
 					if (isMedia && isAudio || isQuotedAudio || isPtt || isQuotedPtt || isMedia && isVideo || isQuotedVideo) {
 						var format = (isMedia && isVideo || isQuotedVideo) ? 'mp4' : 'mp3'
@@ -3727,7 +3739,7 @@ module.exports = kconfig = async (kill, message) => {
 					} else return await kill.reply(from, mess.onlyaudio(), id)
 				break
 
-					/*Não deixe seus usuarios floodarem, caso contrario a bot pode desligar*/
+					/*Não deixe seus usuários floodarem, caso contrario a bot pode desligar*/
 				case 'audio':
 					if (isMedia && isVideo || isQuotedVideo) {
 						let mediaData = await decryptMedia(encryptMedia)
@@ -4072,13 +4084,24 @@ module.exports = kconfig = async (kill, message) => {
 				break
 
 				case 'gerador':
-					let genpeo = await shell.exec(`bash lib/functions/config.sh dados`, {
-						silent: true
-					})
-					if (genpeo.stdout == '') {
-						await kill.reply(from, mess.fail(command, genpeo.stderr, time), id)
-						console.log(genpeo.stderr)
-					} else return await kill.sendFileFromUrl(from, 'https://thispersondoesnotexist.com/image', 'image.jpg', genpeo.stdout, id)
+					try {
+						let fourDevs = await tools('fourDevs').generate()
+						let cardList = {
+							'cvv': tools('others').randomArr(tools('others').newArray(100, 999, 0, 7)),
+							'mouths': tools('others').randomArr(tools('others').newArray(Number(moment().add(3, 'month').format('MM')), 12, 0, 7)),
+							'years': tools('others').randomArr(tools('others').newArray(Number(moment().add(1, 'years').format('YY')), Number(moment().add(8, 'years').format('YY')), 0, 7))
+						}
+						await kill.sendFileFromUrl(from, 'https://thispersondoesnotexist.com/image', 'image.jpg', `Nome -> ${fourDevs.nome}\n\nIdade -> ${fourDevs.idade}\n\nCPF -> ${fourDevs.cpf}\n\nRG -> ${fourDevs.rg}\n\nData de nascimento -> ${fourDevs.data_nasc}\n\nSexo -> ${fourDevs.sexo}\n\nSigno -> ${fourDevs.signo}\n\nMãe -> ${fourDevs.mae}\n\nPai -> ${fourDevs.pai}\n\nEmail -> ${fourDevs.email}\n\nSenha -> ${fourDevs.senha}\n\nCEP -> ${fourDevs.cep}\n\nEndereço -> ${fourDevs.endereco}\n\nNúmero -> ${fourDevs.numero}\n\nBairro -> ${fourDevs.bairro}\n\nCidade -> ${fourDevs.cidade}\n\nEstado -> ${fourDevs.estado}\n\nTelefone fixo -> ${fourDevs.telefone_fixo}\n\nCelular -> ${fourDevs.celular}\n\nAltura -> ${fourDevs.altura}\n\nSangue -> ${fourDevs.tipo_sanguineo}\n\nCor favorita -> ${fourDevs.cor}\n\nCartão de Crédito VISA ->\nCódigo -> "${creditCard.GenCC("Visa")}"\nValidade -> "${cardList.mouths[0]}/${cardList.years[0]}"\nCVV -> "#${cardList.cvv[0]}"\n\nCartão de Crédito MASTERCARD ->\nCódigo -> "${creditCard.GenCC()}"\nValidade -> "${cardList.mouths[1]}/${cardList.years[1]}"\nCVV -> "${cardList.cvv[1]}"\n\nCartão de Crédito AMEX ->\nCódigo -> "${creditCard.GenCC("Amex")}"\nValidade -> "${cardList.mouths[2]}/${cardList.years[2]}"\nCVV -> "${cardList.cvv[2]}"\n\nCartão de Crédito Discover ->\nCódigo -> "${creditCard.GenCC("Discover")}"\nValidade -> "${cardList.mouths[3]}/${cardList.years[3]}"\nCVV -> "${cardList.cvv[3]}"\n\nCartão de Crédito ENROUTE ->\nCódigo -> "${creditCard.GenCC("EnRoute")}"\nValidade -> "${cardList.mouths[4]}/${cardList.years[4]}"\nCVV -> "${cardList.cvv[4]}"\n\nCartão de Crédito JCB ->\nCódigo -> "${creditCard.GenCC("JCB")}"\nValidade -> "${cardList.mouths[5]}/${cardList.years[5]}"\nCVV -> "${cardList.cvv[5]}"\n\nCartão de Crédito VOYAGER ->\nCódigo -> "${creditCard.GenCC("Voyager")}"\nValidade -> "${cardList.mouths[6]}/${cardList.years[6]}"\nCVV -> "${cardList.cvv[6]}"`, id)
+					} catch (error) {
+						console.log(error)
+						let genpeo = await shell.exec(`bash lib/functions/config.sh dados`, {
+							silent: true
+						})
+						if (genpeo.stdout == '') {
+							await kill.reply(from, mess.fail(command, genpeo.stderr, time), id)
+							console.log(genpeo.stderr)
+						} else await kill.sendFileFromUrl(from, 'https://thispersondoesnotexist.com/image', 'image.jpg', genpeo.stdout, id)
+					}
 				break
 
 				case 'movie':
@@ -4526,7 +4549,7 @@ module.exports = kconfig = async (kill, message) => {
 								tttSet[chatId].aiplaying[irissplice2] = 'O'
 							}
 						}
-						if (tttSet[chatId].thePlayerGameOld2 == botNumber + '@c.us') {
+						if (tttSet[chatId].thePlayerGameOld2 == botNumber) {
 							var model = new TicTacToe.Model(tttSet[chatId].aiplaying.join(''), 'O')
 							var recommendation = model.getRecommendation()
 							let irisJog = (tttSet[chatId].tttboard[recommendation.index] || tools('others').randVal(tttSet[chatId]['tictacplays']))
@@ -4553,10 +4576,10 @@ module.exports = kconfig = async (kill, message) => {
 							tttSet[chatId].thePlayerGame = tttSet[chatId].thePlayerGameOld
 							tttSet[chatId].thePlayerGame2 = 1
 						}
-						if (tttSet[chatId].thePlayerGameOld2 == botNumber + '@c.us') {
+						if (tttSet[chatId].thePlayerGameOld2 == botNumber) {
 							tttSet[chatId].thePlayerGame = tttSet[chatId].thePlayerGameOld
 							tttSet[chatId].thePlayerGame2 = 1
-						} else if (tttSet[chatId].thePlayerGameOld == botNumber + '@c.us') {
+						} else if (tttSet[chatId].thePlayerGameOld == botNumber) {
 							tttSet[chatId].thePlayerGame2 = tttSet[chatId].thePlayerGameOld2
 							tttSet[chatId].thePlayerGame = 1
 						}
@@ -5230,7 +5253,11 @@ module.exports = kconfig = async (kill, message) => {
 						await chessglate.loadFEN(chessGame[chatId]['fen'])
 						let imageBoard = await chessglate.generateBuffer()
 						try {
-							await kill.sendImage(from, tools('others').dataURI('image/png', imageBoard), 'chess.png', '', id)
+							await kill.sendImageAsSticker(from, tools('others').dataURI('image/png', imageBoard), {
+								author: config.Sticker_Author,
+								pack: config.Sticker_Pack,
+								keepScale: true
+							})
 							await kill.sendTextWithMentions(from, `Fiz minha jogada, sua vez @${chessGame[chatId][chessGame[chatId]['fen'].split(' ')[1]]}.\nVocê pode jogar nas seguintes posições [Digite igual] ->\n${chessg.moves().join(',  ')}`, id)
 						} catch (error) {
 							console.error(error)
@@ -5257,7 +5284,7 @@ module.exports = kconfig = async (kill, message) => {
 						await getGame(chatId)
 					}
 					global.chessg = new chess.Chess(chessGame[chatId]['fen'])
-					if (chessGame[chatId][chessGame[chatId]['fen'].split(' ')[1]] == botNumber + '@c.us') {
+					if (chessGame[chatId][chessGame[chatId]['fen'].split(' ')[1]] == botNumber) {
 						var chessJog = tools('others').randVal(chessg.moves())
 						let moved = chessg.move(chessJog)
 						chessGame[chatId]['fen'] = chessg.fen()
@@ -5265,12 +5292,15 @@ module.exports = kconfig = async (kill, message) => {
 						await getGame(chatId)
 					} else await getGame(chatId)
 					if (chessGame[chatId] !== null) {
-						if (chessg.in_draw()) return await kill.reply(from, `O jogo terminou em empate!`, id)
-						if (chessg.in_stalemate()) return await kill.reply(from, `O jogo terminou em afogamento!`, id)
-						if (chessg.insufficient_material()) return await kill.reply(from, `O jogo terminou em empate por falta de peças!`, id)
-						if (chessg.in_checkmate()) return await kill.reply(from, `O jogo terminou em xeque-mate!`, id)
-						if (chessg.in_check()) return await kill.reply(from, `O jogo não pode continuar pois está em xeque-mate!`, id)
-						if (chessg.game_over()) return await kill.reply(from, `O jogo terminou, incie outro com ${prefix}Chess -new`, id)
+						if (chessg.game_over()) {
+							if (chessg.in_draw()) return await kill.reply(from, `O jogo terminou em empate!`, id)
+							if (chessg.in_stalemate()) return await kill.reply(from, `O jogo terminou em afogamento!`, id)
+							if (chessg.insufficient_material()) return await kill.reply(from, `O jogo terminou em empate por falta de peças!`, id)
+							if (chessg.in_checkmate()) return await kill.reply(from, `O jogo terminou em xeque-mate!`, id)
+							if (chessg.in_check()) return await kill.reply(from, `Cuidado, você entrou em xeque!`, id)
+							if (chessg.game_over()) return await kill.reply(from, `O jogo terminou!`, id)
+							await kill.reply(from, `O jogo terminou, inicie outro com "${prefix}Chess -new @User Uma_Jogada"`, id)
+						}
 					}
 				break
 				
@@ -5336,10 +5366,10 @@ module.exports = kconfig = async (kill, message) => {
 								await checkPlayed()
 							}
 							if (bjConfig[chatId]['validPlayers'].length < 2) {
-								bjConfig[chatId].isPlaying == false
 								await kill.sendTextWithMentions(from, `O número de jogadores validos com cartas não é o suficiente para o jogo, portanto, @${bjConfig[chatId]['validPlayers'][0].replace('@c.us', '')} venceu este jogo.`)
+								return resetDeck()
 							}
-						} else return
+						}
 					}
 					if (argl[0] == '-start' && bjConfig[chatId].isPlaying == false) {
 						bjConfig[chatId].players.push(sender.id)
@@ -5347,17 +5377,15 @@ module.exports = kconfig = async (kill, message) => {
 						bjConfig[chatId].startedAt = moment().add(1, 'minutes').unix()
 						await tools('others').sleep(60000)
 						if (bjConfig[chatId].players.length < 2) {
-							resetDeck()
-							bjConfig[chatId]['isPlaying'] = false
-							return await kill.reply(from, `O número de jogadores não é o suficiente para o jogo, cancelarei o jogo por falta de players.`, id)
+							await kill.reply(from, `O número de jogadores não é o suficiente para o jogo, cancelarei o jogo por falta de players.`, id)
+							return resetDeck()
 						} else {
 							await kill.reply(from, `O jogo possui os requisitos, portanto, o jogo esta oficialmente aberto!\n\nVão ao meu privado e digitem "${prefix}21 -Mydeck" para receber suas cartas, vocês tem 1 minutos.`, id)
 							bjConfig[chatId]['isPlaying'] = true
 							await tools('others').sleep(60000)
 							if (bjConfig[chatId].validPlayers.length < 2) {
-								resetDeck()
-								bjConfig[chatId]['isPlaying'] = false
-								return await kill.reply(from, `O número de jogadores validos com cartas não é o suficiente para o jogo, cancelarei o jogo por falta de players.`, id)
+								await kill.reply(from, `O número de jogadores validos com cartas não é o suficiente para o jogo, cancelarei o jogo por falta de players.`, id)
+								return resetDeck()
 							} else {
 								bjConfig[chatId]['atualPlayer'] = bjConfig[chatId]['validPlayers'][0]
 								await kill.sendTextWithMentions(from, `As preparações terminaram, a vez da jogada é de @${bjConfig[chatId]['atualPlayer']}, o jogador tem 1 minuto para fazer a jogada, o jogo continuará após 1 minuto.\n\nVocê pode verificar suas cartas indo no meu privado e digitando "${prefix}21 -Mycard".\n\nQuando tiver finalizado, volte no grupo e escolha entre "stop", "drop", "pass" e "get".\n\nStop retira você do jogo, podendo vencer se tiver exatos 21.\n\nDrop dropará uma carta de sua escolha.\n\nPass faz com que você pule a rodada.\n\nGet faz você pegar uma carta.\n\nExemplo -> "${prefix}21 -Drop 2C"\n\nJogadores validos:\n-> ${bjConfig[chatId].validPlayers.map(g => g.toString().replace('@c.us', '')).join('\n-> ')}`)
@@ -5371,53 +5399,67 @@ module.exports = kconfig = async (kill, message) => {
 						if (userVal > 21) {
 							await kill.sendTextWithMentions(from, `O jogador "@{sender.id.replace('@c.us', '')}" possui mais de 21 pontos, portanto, ele saiu sem ganhar.\nEspere o tempo para a próxima jogada.`)
 						} else if (userVal == 21) {
-							resetDeck()
-							return bjConfig[chatId]['isPlaying'] = false
-							await kill.sendTextWithMentions(from, `O jogador "@{sender.id.replace('@c.us', '')}" possui exatos 21 pontos, portanto, ele venceu este jogo!`)
+							await kill.sendTextWithMentions(from, `O jogador "@${sender.id.replace('@c.us', '')}" possui exatos 21 pontos, portanto, ele venceu este jogo!`)
+							return resetDeck()
 						} else {
 							await kill.sendTextWithMentions(from, `O jogador "@{sender.id.replace('@c.us', '')}" desistiu da partida antes de ter ou passar de 21.\n\nEspere o tempo para a próxima jogada.`)
 						}
 						bjConfig[chatId]['validPlayers'] = bjConfig[chatId]['validPlayers'].filter(f => f !== bjConfig[chatId]['atualPlayer'])
 						if (bjConfig[chatId]['validPlayers'].length < 2) {
-							resetDeck()
-							bjConfig[chatId].isPlaying = false
 							await kill.sendTextWithMentions(from, `O número de jogadores validos com cartas não é o suficiente para o jogo, portanto, @${bjConfig[chatId]['validPlayers'][0].replace('@c.us', '')} venceu este jogo.`)
+							return resetDeck()
 						}
 					} else if (argl[0] == '-drop' && bjConfig[chatId]['validPlayers'].includes(bjConfig[chatId]['atualPlayer']) && bjConfig[chatId]['atualPlayer'] == sender.id) {
 						if (!bjConfig[chatId].deck[sender.id].includes(args[1])) return await kill.reply(from, `Você apenas pode dropar cartas que possui, você não possui a que informou, drope antes que o tempo acabe.`, id)
-						if (!bjConfig[chatId].deck[sender.id].length < 2) return await kill.reply(from, `Você não pode dropar sua ultima carta, passe ou pegue uma.`, id)
+						if (bjConfig[chatId].deck[sender.id].length <= 2) return await kill.reply(from, `Você não pode dropar enquanto tiver apenas duas cartas, passe ou pegue uma.`, id)
 						bjConfig[chatId].haveDeck.push(sender.id)
-						bjConfig[chatId].deck[sender.id].splice(args[1], 1)
-						await kill.sendStickerfromUrl(from, `https://github.com/KillovSky/Iris_Files/raw/main/Cards/${args[1]}.png`, {
+						bjConfig[chatId].deck[sender.id] = bjConfig[chatId].deck[sender.id].filter(h => h !== argc[1])
+						await kill.sendStickerfromUrl(from, `https://github.com/KillovSky/Iris_Files/raw/main/Cards/${argc[1]}.png`, {
 							method: 'get'
 						}, {
 							author: config.Sticker_Author,
 							pack: config.Sticker_Pack,
 							keepScale: true
 						})
-						await kill.sendTextWithMentions(from, `O jogador "@${sender.id.replace('@c.us', '')}" dropou um "${args[1].toUpperCase()}".\n\nO Deck atual é: ${tools('blackjack').getDeck(bjConfig[chatId])}\n\nEspere o tempo para a próxima jogada.`)
+						await kill.sendTextWithMentions(from, `O jogador "@${sender.id.replace('@c.us', '')}" dropou um "${args[1].toUpperCase()}".\n\nO Deck atual é: ${tools('blackjack').getDeck(bjConfig[chatId])}\nEspere o tempo para a próxima jogada.`)
 					} else if (argl[0] == '-get' && bjConfig[chatId]['validPlayers'].includes(bjConfig[chatId]['atualPlayer']) && bjConfig[chatId]['atualPlayer'] == sender.id) {
 						bjConfig[chatId].haveDeck.push(sender.id)
-						let newCard = tools('blackjack').randomDeck()
-						bjConfig[chatId].deck[sender.id].push(newCard[0])
+						let newCard = '5C'
+						const getCheck = () => {
+							newCard = tools('blackjack').randomDeck()[0]
+							if (bjConfig[chatId].deck[sender.id].includes(newCard)) {
+								getCheck()
+							}
+						}
+						getCheck()
+						bjConfig[chatId].deck[sender.id].push(newCard)
 						let checkWin = tools('blackjack').getValue(bjConfig[chatId], sender.id)
 						if (checkWin > 21) {
-							await kill.sendStickerfromUrl(from, `https://github.com/KillovSky/Iris_Files/raw/main/Cards/${newCard[0]}.png`, {
+							await kill.sendStickerfromUrl(from, `https://github.com/KillovSky/Iris_Files/raw/main/Cards/${newCard}.png`, {
 								method: 'get'
 							}, {
 								author: config.Sticker_Author,
 								pack: config.Sticker_Pack,
 								keepScale: true
 							})
-							await kill.reply(from, `Você recebeu um "${newCard[0]}" e seu valor passou de 21, você foi desclassificado por derrota.`, id)
+							await kill.reply(from, `Você recebeu um "${newCard}" e seu valor passou de 21, você foi desclassificado por derrota.`, id)
 							bjConfig[chatId]['validPlayers'] = bjConfig[chatId]['validPlayers'].filter(f => f !== bjConfig[chatId]['atualPlayer'])
 							if (bjConfig[chatId]['validPlayers'].length < 2) {
-								bjConfig[chatId].isPlaying = false
-								resetDeck()
 								await kill.sendTextWithMentions(from, `O número de jogadores validos com cartas não é o suficiente para o jogo, portanto, @${bjConfig[chatId]['validPlayers'][0].replace('@c.us', '')} venceu este jogo.`)
+								return resetDeck()
 							}
+						} else if (checkWin == 21) {
+							await kill.sendStickerfromUrl(from, `https://github.com/KillovSky/Iris_Files/raw/main/Cards/${newCard}.png`, {
+								method: 'get'
+							}, {
+								author: config.Sticker_Author,
+								pack: config.Sticker_Pack,
+								keepScale: true
+							})
+							await kill.sendTextWithMentions(from, `O jogador @${bjConfig[chatId]['validPlayers'][0].replace('@c.us', '')} venceu este jogo pois adquiriu 21 pontos.`)
+							return resetDeck()
 						} else {
-							await kill.sendStickerfromUrl(sender.id, `https://github.com/KillovSky/Iris_Files/raw/main/Cards/${newCard[0]}.png`, {
+							await kill.sendStickerfromUrl(sender.id, `https://github.com/KillovSky/Iris_Files/raw/main/Cards/${newCard}.png`, {
 								method: 'get'
 							}, {
 								author: config.Sticker_Author,
@@ -5438,7 +5480,7 @@ module.exports = kconfig = async (kill, message) => {
 					let playerExist = Object.keys(bjConfig).map(j => j).map(g => bjConfig[g].players.includes(sender.id)).indexOf(true)
 					if (playerExist == -1) return await kill.reply(from, `Você não esta participando de nenhum jogo.`, id)
 					let lugarJ = Object.keys(bjConfig)[playerExist]
-					if (argl[0] == '-mydeck' && bjConfig[lugarJ].isPlaying == true && bjConfig[lugarJ].players.includes(sender.id)) {
+					if (argl[0] == '-mydeck' && bjConfig[lugarJ].isPlaying == true && bjConfig[lugarJ].players.includes(sender.id) && !Object.keys(bjConfig[lugarJ].deck).includes(sender.id)) {
 						bjConfig[lugarJ].validPlayers.push(sender.id)
 						bjConfig[lugarJ].deck[sender.id] = tools('blackjack').randomDeck()
 						await kill.reply(from, `Você recebeu suas duas cartas, elas são:\n\n-> ${bjConfig[lugarJ].deck[sender.id][0]}\n-> ${bjConfig[lugarJ].deck[sender.id][1]}\n\nVolte ao grupo e siga as instruções para que continue com sua jogada antes que o seu tempo de jogo acabe.`, id)
@@ -5455,6 +5497,191 @@ module.exports = kconfig = async (kill, message) => {
 					let theCouple = tools('others').randomNumber(1, 113)
 					await kill.sendFileFromUrl(from, `https://github.com/KillovSky/Iris_Files/raw/main/Couple/${theCouple}.1.jpg`, 'couple.jpg', 'Você completa...', id)
 					await kill.sendFileFromUrl(from, `https://github.com/KillovSky/Iris_Files/raw/main/Couple/${theCouple}.2.jpg`, 'couple.jpg', '...meu coração.', id)
+				break
+				
+				// Feito por mim com ajuda de Pedro B.
+				case 'nocmd':
+					if (isGroupMsg && isGroupAdmins || isGroupMsg && isOwner) {
+						let failMessage = `Para desativar um comando insira o comando, subsistema e o comando a ser desativado, você também pode checar quais comandos estão desativados, abaixo segue exemplos.\n\n"${prefix}NoCMD off lolis" -> Desativa o comando "Lolis".\n\n"${prefix}NoCMD on lolis" -> Re-ativa o comando "Lolis".\n\n"${prefix}NoCMD show" -> Mostra comandos desativados.\n\n"${prefix}NoCMD disable waifu" -> Desativa o comando "Waifus" para todos os locais - somente dono.\n\n"${prefix}NoCMD enable waifu" -> Re-ativa o comando "Waifus" para todos os locais - somente dono.`
+						if (!['on', 'off', 'disable', 'enable', 'show'].includes(argl[0])) return await kill.reply(from, failMessage, id)
+						if (!allCommands.includes(argl[1]) || Object.keys(cmds['global']).includes(argl[1]) || blockcmd.no.includes(argl[1])) return await kill.reply(from, 'Não é possível desativar comandos inexistentes ou comandos importantes para o funcionamento geral.', id)
+						if (!Object.keys(blockcmd.yes).includes(chatId)) {
+							blockcmd.yes[chatId] = []
+						}
+						if (argl[0] == 'off') {
+							if (blockcmd.yes[chatId].includes(argl[1])) return await kill.reply(from, mess.jadisabled(), id)
+							blockcmd.yes[chatId].push(argl[1])
+							await kill.reply(from, mess.disabled(), id)
+							await fs.writeFileSync('./lib/config/Gerais/disable.json', JSON.stringify(blockcmd, null, "\t"))
+						} else if (argl[0] == 'on') {
+							if (!blockcmd.yes[chatId].includes(argl[1])) return await kill.reply(from, mess.jaenabled(), id)
+							blockcmd.yes[chatId] = blockcmd.yes[chatId].filter(d => d !== argl[1])
+							await kill.reply(from, mess.enabled(), id)
+							await fs.writeFileSync('./lib/config/Gerais/disable.json', JSON.stringify(blockcmd, null, "\t"))
+						} else if (argl[0] == 'disable') {
+							if (!isOwner) return await kill.reply(from, mess.sodono(), id)
+							if (blockcmd.global.includes(argl[1])) return await kill.reply(from, mess.jadisabled(), id)
+							blockcmd.global.push(argl[1])
+							await fs.writeFileSync('./lib/config/Gerais/disable.json', JSON.stringify(blockcmd, null, "\t"))
+						} else if (argl[0] == 'enable') {
+							if (!isOwner) return await kill.reply(from, mess.sodono(), id)
+							if (!blockcmd.global.includes(argl[1])) return await kill.reply(from, mess.jaenabled(), id)
+							blockcmd.global = blockcmd.global.filter(d => d !== argl[1])
+							await kill.reply(from, mess.enabled(), id)
+							await fs.writeFileSync('./lib/config/Gerais/disable.json', JSON.stringify(blockcmd, null, "\t"))
+						} else if (argl[0] == 'show') {
+							if (!blockcmd.yes[chatId].length == 0) return await kill.reply(from, `Não existem comandos desativados.`, id)
+							await kill.reply(from, `Os comandos desativados no momento são:\n\n-> ${blockcmd.yes[chatId].join('-> ')}`, id)
+						} else return await kill.reply(from, failMessage, id)
+					} else if (isGroupMsg) {
+						await kill.reply(from, mess.soademiro(), id)
+					} else return await kill.reply(from, mess.sogrupo(), id)
+				break
+				
+				// Feito por Pedro B. - daqui até...
+				case 'bolso1':
+					await kill.reply(from, mess.wait(), id)
+					let bolso1 = await getProfilePic()
+					await tools('canvas').bolso1(bolso1).then(async (buffer) => {
+						await kill.sendFile(from, tools('others').dataURI('image/png', buffer), `bolso1.png`, '', id)
+					})
+				break
+
+				case 'bolso2':
+					await kill.reply(from, mess.wait(), id)
+					let bolso2 = await getProfilePic()
+					await tools('canvas').bolso2(bolso2).then(async (buffer) => {
+						await kill.sendFile(from, tools('others').dataURI('image/png', buffer), `bolso2.png`, '', id)
+					})
+				break
+
+				case 'bolso3':
+					await kill.reply(from, mess.wait(), id)
+					let bolso3 = await getProfilePic()
+					await tools('canvas').bolso3(bolso3).then(async (buffer) => {
+						await kill.sendFile(from, tools('others').dataURI('image/png', buffer), `bolso3.png`, '', id)
+					})
+				break
+
+				case 'bob':
+				case 'esponja':
+				case 'sponge':
+					await kill.reply(from, mess.wait(), id)
+					let spongebobo = await getProfilePic()
+					await tools('canvas').sponge(spongebobo).then(async (buffer) => {
+						await kill.sendFile(from, tools('others').dataURI('image/png', buffer), `bolso3.png`, '', id)
+					})
+				break
+
+				case 'briggs':
+					await kill.reply(from, mess.wait(), id)
+					let briggs = await getProfilePic()
+					await tools('canvas').briggs(briggs).then(async (buffer) => {
+						await kill.sendFile(from, tools('others').dataURI('image/png', buffer), `briggs.png`, '', id)
+					})
+				break
+
+				case 'ednaldo':
+				case 'bandeira':
+					await kill.reply(from, mess.wait(), id)
+					let flag = await getProfilePic()
+					await tools('canvas').ednaldoBandeira(flag).then(async (buffer) => {
+						await kill.sendFile(from, tools('others').dataURI('image/png', buffer), `ednaldoEuTeAmo.png`, '', id)
+					})
+				break
+
+				case 'ednaldotv':
+				case 'tv':
+				case 'televisao':
+					await kill.reply(from, mess.wait(), id)
+					let tv = await getProfilePic()
+					await tools('canvas').ednaldoTV(tv).then(async (buffer) => {
+						await kill.sendFile(from, tools('others').dataURI('image/png', buffer), `ednaldoEuTeAmo.png`, '', id)
+					})
+				break
+
+				case 'mark':
+					await kill.reply(from, mess.wait(), id)
+					let markinho = await getProfilePic()
+					await tools('canvas').markSuckerberg(markinho).then(async (buffer) => {
+						await kill.sendFile(from, tools('others').dataURI('image/png', buffer), `markinho.png`, '', id)
+					})
+				break
+
+				case 'paper':
+					await kill.reply(from, mess.wait(), id)
+					let passpaper = await getProfilePic()
+					await tools('canvas').paper(passpaper).then(async (buffer) => {
+						await kill.sendFile(from, tools('others').dataURI('image/png', buffer), `passingpaper.png`, '', id)
+					})
+				break
+
+				case 'pepe':
+					await kill.reply(from, mess.wait(), id)
+					let peped = await getProfilePic()
+					await tools('canvas').pepe(peped).then(async (buffer) => {
+						await kill.sendFile(from, tools('others').dataURI('image/png', buffer), `pepe.png`, '', id)
+					})
+				break
+
+				case 'shot':
+					await kill.reply(from, mess.wait(), id)
+					let shot = await getProfilePic()
+					await tools('canvas').shotTV(shot).then(async (buffer) => {
+						await kill.sendFile(from, tools('others').dataURI('image/png', buffer), `shotTV.png`, '', id)
+					})
+				break
+
+				case 'romero':
+					await kill.reply(from, mess.wait(), id)
+					let romero = await getProfilePic()
+					await tools('canvas').romero(romero).then(async (buffer) => {
+						await kill.sendFile(from, tools('others').dataURI('image/png', buffer), `romero.png`, '', id)
+					})
+				break
+
+				// ...Aqui
+				case 'edit':
+					if (args.length == 0) return await kill.reply(from, tools('others').tablefy('Se informado uma proporção X:Y no primeiro arguumento redimensiona a imagem nessa proporção.\n*fit*: Centralizar a imagem redimensionada na proporção em um quadrado.\nSe não informada nenhuma proporção:\n*c/centre:* Corta na região central.\n*att/attention:* Corta na região de maior atenção.\n*ent/entropy:* Corta na região de maior entropia.\n*t/top*, *b/bottom*, *r/right* e *l/left*: Corta nas respectivas regiões.\n*fit:* Imagem no meio com fundo borrado.', 'Definição'), id)
+					var position = (arks.includes('at') || arks.includes('attention') || arks.includes('att')) ? 'attention' : (arks.includes('ent') || arks.includes('entropy')) ? 'entropy' : (arks.includes('top') || arks.includes('t')) ? 'top' : (arks.includes('right') || arks.includes('r')) ? 'right' : (arks.includes('bottom') || arks.includes('b')) ? 'bottom' : (arks.includes('left') || arks.includes('l')) ? 'left' : (arks.includes('centre') || arks.includes('c')) ? 'centre' : 'centre'
+					var decryptedMedia = await decryptMedia(encryptMedia)
+					if (arks.includes('fit') || args[0].includes(':')) {
+						return await tools('canvas').imgEditor(decryptedMedia, args[0].includes(':') ? args[0].split(':')[0] : 0, args[0].includes(':') ? args[0].split(':')[1] : 0, arks.includes('fit') ? true : false).then(async (buffer) => {
+							await kill.sendFile(from, tools('others').dataURI('image/png', buffer), `scale-to-fit.png`, '', id)
+						})
+					}
+					const image = await sharp(decryptedMedia)
+					image.metadata()
+					.then(async (metadata) => {
+						var width = metadata.width < metadata.height ? metadata.width : metadata.height
+						var height = metadata.width < metadata.height ? metadata.width : metadata.height
+						image.resize(width, height+2, {
+							fit: sharp.fit.cover,
+							position: position
+						})
+						.toFormat('png')
+						.toBuffer()
+						.then(async (resizedImageBuffer) => { await kill.sendImage(from, `data:image/png;base64,${resizedImageBuffer.toString('base64')}`, 'sharpimage.png', '', id) })
+					})
+				break
+				
+				case 'afk':
+					let afkHelp = `Para definir seu AFK Mode, insira o comando, on / off, o separador '|' e sua mensagem.\n\nExemplo -> "${prefix}AFK on | Estou dormindo".`
+					if (args.length <= 1 || !arks.includes('|') || argl[0] == '-help') return await kill.reply(from, afkHelp, id)
+					if (argl[0] == 'on') {
+						afk[sender.id] = {
+							name: (pushname || sender.id),
+							enabled: arg.split('|')[0].replace(' ', '') == 'on' ? true : false,
+							message: `${arg.split('|')[1]}`
+						}
+						fs.writeFileSync('./lib/config/Gerais/AFK.json', JSON.stringify(afk, null, "\t"))
+						await kill.reply(from, mess.enabled(), id)
+					} else if (argl[0] == 'off') {
+						if (!Object.keys(afk).includes(sender.id)) return await kill.reply(from, `Você não tem um AFK ativado.`, id)
+						afk[sender.id]['enabled'] = false
+						fs.writeFileSync('./lib/config/Gerais/AFK.json', JSON.stringify(afk, null, "\t"))
+						await kill.reply(from, mess.disabled(), id)
+					} else return await kill.reply(from, afkHelp, id)
 				break
 
 				/*Para usar a base remova o "/*" e o "* /" e bote um nome dentro das aspas da case e em seguida sua mensagem dentro das aspas na frente do from */

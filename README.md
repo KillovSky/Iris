@@ -1,67 +1,41 @@
 ### Projeto Íris
-Íris é uma bot em inglês, espanhol e português criada e mantida atualizada pelo Lucas R. - KillovSky para o grupo "Legião Z", ela tem mais de +300 comandos e atualização "frequente" com correções e novidades.
+O projeto Íris é um BOT para WhatsApp feita atualmente por [Lucas R. - KillovSky](https://github.com/KillovSky) e [Pedro Batistop](https://github.com/PedroBatistop), foi inicialmente construída para o grupo [Legião Z](https://bit.ly/BOT-IRIS), mas com o passar do tempo foi sendo aprimorada para ser utilizada por qualquer um, seu código é totalmente aberto, possuindo mais de 400 funções e atualizações 'frequentes' com novidades e correções.
 
 ### Outros idiomas
-if you want a English tutorial, open this [English Tutorial](https://github.com/KillovSky/iris/blob/main/.readme/en/README.md), si quieres en español, abre esta [Tutorial Español](https://github.com/KillovSky/iris/blob/main/.readme/es/README.md).
+Íris Dev is not usable in English or Spanish yet, because is not finished, you need to use only `Portuguese`.
+Íris Dev aún no se puede usar en inglés o español, porque no está terminado, solo puedes usar en `Portugués`.
+
+Íris 3.1.1 -> If you want an English tutorial, open this [English Tutorial](https://github.com/KillovSky/iris/blob/main/.readme/en/README.md), si quieres en español, abre esta [Tutorial Español](https://github.com/KillovSky/iris/blob/main/.readme/es/README.md).
 
 ### Nota Pessoal
-Esse software funciona sob a licença [MIT](http://escolhaumalicenca.com.br/licencas/mit/), sendo proibido a retirada de créditos, e lembre-se, eu gasto MUITO tempo ajudando todos que tem dúvidas e melhorando a BOT, mas sem ganhar nada nisso, por favor, não remova os créditos.
-Se você ver alguém roubando ou que tenha roubado, mostre a verdade, diga a ela que isso é plagio, esse é o único pedido que tenho.
+Esse software funciona sob a licença [MIT](http://escolhaumalicenca.com.br/licencas/mit/), sendo proibido a retirada de créditos.
+Eu e os colaboradores quebramos a cabeça par construir novos comandos e correções sem cobrar pelas mesmas, por isso, não deixe nosso esforço ser em vão, adicione os créditos.
 
 ### Erros & Bugs
-Você está vendo a versão em desenvolvimento, esta versão não possui um suporte especifico até que seja considerada estável, leia a [esclarecimentos](https://github.com/KillovSky/iris/discussions/416).
+Você está vendo a versão em desenvolvimento, esta versão não possui um suporte especifico para correções até que seja considerada estável, todavia, você pode informar bugs e esperar uma atualização, leia a [esclarecimentos](https://github.com/KillovSky/iris/discussions/416).
 
-### Funções (+300)
+### Funções (+400)
+Existem inúmeras funções na Íris para serem detalhadas adequadamente, você pode acessar o arquivo com os nomes de comandos [Aqui](https://raw.githubusercontent.com/KillovSky/iris/dev/lib/config/Utilidades/comandos.txt), isso pode ajudar a ter uma ideia melhor.
 
-| Função | Contém |
-| ------------- | ------------- |
-| Rodar WA-Automate/Functions dentro do WhatsApp |✅|
-| Administrar Grupos |✅|
-| Cassino/Jogo da Velha/Outros Jogos |✅|
-| Anti Porno & Imagem +18/Link de Chat |✅|
-| Ataques SMS/CALL/EMAIL |✅|
-| Bem Vindo/Adeus/Anti-Fake/Blacklist |✅|
-| Bloquear/Desbloquear/Rastrear pessoas |✅|
-| Buscar Anime/Letra de Música/Twitter/Instagram |✅|
-| Mandar mensagens a outros grupos |✅|
-| Conversar por texto/voz Sim-Simi/Local (ilimitado) |✅|
-| Deletar Mensagens do BOT |✅|
-| Downloads (Redes-Sociais e YouTube) |✅|
-| Falar 51 idiomas/Tradutor |✅|
-| Geração de Textos/Diário |✅|
-| Google/Google Play/Pinterest |✅|
-| Informações de Grupo/Perfil |✅|
-| Marcar todos/Remover Todos |✅|
-| Memes/Fazer Memes |✅|
-| Nasa, Brainly, Wikipédia |✅|
-| Pausar/Sair de Tudo/Transmissão/Apagar Tudo |✅|
-| Pesquisa Fotos/Dados/Covid |✅|
-| Printar Tela/Sites |✅||
-| Sticker de GIF/Sem-Fundo/Link/Palavras |✅|
-| Uploads de Fotos |✅|
-| Usar CMD/Terminal pelo WhatsApp |✅|
-| XP/Ranking/Level/Votações |✅|
-| Outras |✅|
+### Requisitos para Windows
 
-### Requisitos
+- [NodeJS](https://nodejs.org) - Ambiente de programação da Íris, use LTS.
+- [Chrome](https://www.google.com/chrome/) - Para enviar vídeos, fotos e outros.
+- [Gow](https://github.com/bmatzelle/gow/releases) - Para os comandos de Linux.
+- [Git](https://git-scm.com) - Para os comandos de Linux (2) / Terminal Bash.
+Pode ser necessário inserir o `bash.exe` ao `PATH` do Windows, para isso, faça o [Tutorial](https://github.com/KillovSky/iris/issues/456#issuecomment-1001087525) com muito cuidado.
 
-- [NodeJS](https://nodejs.org) - Ambiente de programação da Íris.
-- [Chrome](https://www.google.com/chrome/) - Para vídeos e fotos.
-- [Gow](https://github.com/bmatzelle/gow/releases) - Para as Unix-Tools.
-- [Git](https://git-scm.com) - Para outras Unix-Tools | Terminal - Cuidado.
-
-Para a instalação de tudo acima no Linux, você pode usar os comandos abaixo:
+### Instalação via APT - Apenas Linux
 
 ```bash
-> sudo apt update -y
-> sudo apt upgrade -y
+> sudo apt update && sudo apt upgrade -y
 > sudo apt install curl wget -y
 > wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 > curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo bash
 > sudo apt install nodejs python python3 python3-pip git build-essential ./google-chrome-stable_current_amd64.deb -y
 ```
 
-Em caso de erros, leia o tutorial [aqui](https://github.com/nodesource/distributions).
+Se obter erros na instalação do Node no Linux, tente usar a [Source](https://github.com/nodesource/distributions).
 
 ### Instalação
 Você precisa ter esse repositório, é simples, rode os comandos abaixo, em caso de erros, rode como sudo/administrador ou veja os [Tutoriais](https://github.com/KillovSky/iris/discussions/28).
@@ -82,7 +56,7 @@ Após a edição dos arquivos necessários, rode o comando abaixo e espere inici
 > npm start
 ```
 
-Você pode usar a inicialização do PM2 - recomendada mas usa CPU/RAM+ - em vez do `npm start` com:
+Você pode usar a inicialização do PM2 em vez do `npm start` com:
 
 ```bash
 > npm i pm2 -g
@@ -91,6 +65,9 @@ Você pode usar a inicialização do PM2 - recomendada mas usa CPU/RAM+ - em vez
 ```
 
 O `npm i pm2 -g` somente precisa ser executado uma única vez.
+
+### Por que usar PM2?
+PM2 faz com que o código seja automaticamente reiniciado em casos de erro, além disso, ele é essencial para o comando `Reboot`.
 
 ### Ver todos os comandos
 Digite no seu chat a mensagem, se você editou sua prefix, troque a '/' para o caractere que você utilizará.
@@ -101,7 +78,7 @@ Digite no seu chat a mensagem, se você editou sua prefix, troque a '/' para o c
 
 ### Desativar a auto-abertura de navegador do bomb
 Para fazer com que o navegador pare de abrir toda vez que iniciar a Íris, abra a pasta ```node_modules``` e vá em ```bomber-api```, abra o arquivo ```index.js``` e remova as linhas ```"open(`http://localhost:3000/`)"``` e ```"open(`http://localhost:${arguments.port}/`)"```, se você obteve problemas com a porta 3000, você pode editar a ```"app.listen(3000"``` para uma porta aleatória que não esteja em uso.
-Se quiser fazer isso com o terminal, basta rodar o seguinte comando após instalar o `Gow` ou `Git Bash`.
+Se quiser fazer isso com o terminal, basta rodar o seguinte comando após instalar o `Gow` ou `Git Bash`, no Linux não é necessário instalar nada.
 
 ```bash
 > cd node_modules/bomber-api && grep -v "http://localhost:" index.js > index2.js && rm -rf index.js && mv index2.js index.js && cd ../.. # Esse ultimo 'cd' faz voltar na pasta inicial da Íris
@@ -120,4 +97,5 @@ Se quiser fazer isso com o terminal, basta rodar o seguinte comando após instal
 - [PicPay](https://picpay.me/userlucas123)
 - [Ko-fi](https://ko-fi.com/killovsky)
 - [PIX] - fc270199-2d55-4d91-be5c-bfbd431cfad4 - **Brasil**
+- [Cripto-moedas](https://pastebin.com/raw/zvgvycJA)
 - [Grupo Oficial](https://bit.ly/BOT-IRIS)

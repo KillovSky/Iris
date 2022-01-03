@@ -143,7 +143,7 @@ const start = async (kill = new Client()) => {
 			if (chat.groupMetadata.participants.includes(config.Owner[0]) || chat.groupMetadata.participants.filter(c => functions.vips.includes(c)).length > 0) {
 				await kill.sendText(chat.id, mylang(config.Language).novogrupo()) // Permite a BOT ficar se o dono ou algum VIP estiver dentro do grupo
 			} else if (chat.groupMetadata.participants.length < config.Min_Membros || lmtgru.length > config.Max_Groups) {
-				await kill.sendText(chat.id, mylang(config.Language).noreq(chat.groupMetadata.participants.length, lmtgru))
+				await kill.sendText(chat.id, mylang(config.Language).noreq(chat.groupMetadata.participants.length, lmtgru.length))
 				await kill.deleteChat(id)
 				await kill.leaveGroup(id)
 			} else await kill.sendText(chat.id, mylang(config.Language).novogrupo())
@@ -175,33 +175,33 @@ const start = async (kill = new Client()) => {
 			})
 		}, config.Backup_Time * 60000)
 		
-		// Sistema de Transmissão de Emergência com atraso de 1 hora para evitar sobrecarga, basico mas funcional
+		// Sistema de Transmissão de Emergência com atraso de 1 hora para evitar sobrecarga, básico mas funcional
 		if (config.Enable_EAS) {
-			setInterval(async () => {
-				let govMessage = await axios.get("https://pastebin.com/raw/SCrrm68x")
+			const getTransmission = async () => {
+				let govMessage = await axios.get("https://pastebin.com/raw/mhDCmszg")
 				if (setLimit.broadc !== govMessage.data) {
 					setLimit.broadc = govMessage.data
 					if (config.Language == 'pt') {
 						console.log(tools('others').color('[KILLOVSKY]', 'magenta'), tools('others').color(govMessage.data, 'lime'))
 						if (config.Popup) {
-							await tools('others').sleep(5000)
 							tools('others').notify('KILLOVSKY', govMessage.data, './lib/media/img/kill.png')
 						}
 					} else {
 						await translate(govMessage.data, config.Language, {
 							to: region
-						}).then(async (msg) => {
+						}).then(msg => {
 							console.log(tools('others').color('[KILLOVSKY]', 'magenta'), tools('others').color(msg, 'lime'))
 							if (config.Popup) {
-								await tools('others').sleep(5000)
 								tools('others').notify('KILLOVSKY', msg, './lib/media/img/kill.png')
 							}
 						})
 					}
 				}
-			}, 3600000) /* Adquire informações transmitidas por mim de 1 em 1 hora */
+				await tools('others').sleep(3600000) /* Adquire informações transmitidas por mim de 1 em 1 hora */
+				await getTransmission()
+			}
+			getTransmission()
 		}
-
 	} catch (error) {
 		console.error(error)
 	}

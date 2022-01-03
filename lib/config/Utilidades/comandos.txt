@@ -12,6 +12,7 @@ add
 admins
 adms
 adult
+afk
 agiotar
 aki
 akinator
@@ -30,7 +31,6 @@ aptoide
 arquivar
 artist
 ass
-ativos
 attp
 audio
 autosticker
@@ -38,6 +38,7 @@ baby
 baguette
 baka
 ball
+bandeira
 bang
 bass
 batslap
@@ -54,6 +55,10 @@ block
 blocklist
 blowjob
 blur
+bob
+bolso1
+bolso2
+bolso3
 bolsonaro
 bomb
 boobs
@@ -63,6 +68,7 @@ botfoto
 botnome
 boy
 brainly
+briggs
 broad
 bsaa
 burn
@@ -128,11 +134,15 @@ drake
 drink
 duck
 dva
+edit
+ednaldo
+ednaldotv
 emoji
 encerrar
 encode
 encurtar
 enviar
+esponja
 everyone
 exec
 f
@@ -164,7 +174,6 @@ gender
 genero
 genshin
 gerador
-geral
 get
 getmeme
 getsticker
@@ -234,6 +243,7 @@ maker
 manga
 maps
 marcar
+mark
 market
 masturb
 math
@@ -272,6 +282,7 @@ nivel
 noadmin
 noadms
 nobg
+nocmd
 nolimit
 nsfw
 nsfwicon
@@ -285,9 +296,11 @@ opnion
 otaku
 outros
 paises
+paper
 pat
 patpat
 peb
+pepe
 perfil
 pet
 petpet
@@ -307,7 +320,6 @@ poll
 porn
 pornhub
 praga
-print
 profile
 promote
 ptt
@@ -323,6 +335,7 @@ randomwall
 rank
 ranking
 readqr
+reboot
 recado
 reedit
 reload
@@ -338,6 +351,7 @@ rip
 roleta
 rolette
 roll
+romero
 roubar
 rpd
 run
@@ -355,6 +369,7 @@ ship
 shit
 shold
 shop
+shot
 shutdown
 signo
 silence
@@ -369,6 +384,7 @@ spank
 speak
 speed
 spoiler
+sponge
 sporn
 stalkig
 stars
@@ -382,6 +398,7 @@ stt
 surprise
 tapa
 tela
+televisao
 termos
 thunder
 tictac
@@ -400,6 +417,7 @@ truth
 ttp
 tts
 tudo
+tv
 tweet
 type
 unban
