@@ -1,0 +1,166 @@
+"TUTORIAL" SIMPLES DE EDIÇÃO PARA 'NOVATOS' VERSÃO PT-BR
+
+Primeiramente antes de começarmos, gostaria de esclarecer que somente posso prover suporte para a BOT Íris e não irei poder ajuda-lo a editar BOT'S diferentes. - Então vamos começar a explicar sobre a construção da Íris!
+
+Existem diversos parâmetros bem calculados e necessários como veremos nos exemplos abaixo, isso se removido pode deixar sua BOT instável.
+
+Usarei nomes como "variáveis" se referindo a todas as declarações de dados, sejam constantes, parâmetros let, variáveis ou outros.
+
+Primeiro abra o arquivo que deseja editar - não remova os créditos haha - e procure o que deseja editar, se deseja editar as condições aqui vai uma pequena lista de coisas.
+
+Irei inserir o que procurar entre aspas, tenha em mente que você não necessitara de usa-las quando for fazer - a menos que eu diga.
+
+Estarei ensinando como fazer as edições com o Notepad++ que pode ser adquirido por aqui no Windows = https://notepad-plus-plus.org
+
+No Linux ele não existe, mas existem alternativas muito semelhantes como o NotepadQQ que você pode obter por aqui = https://notepadqq.com
+
+Se desejar pular para as partes mais diretas, aperte "CTRL + F" e busque pelo parâmetro desejado abaixo:
+
+1 - TUTORIAL DE CASE
+
+2 - TUTORIAL DE CONDIÇÕES
+
+3 - TUTORIAL DE CRIAR COMANDOS
+
+Ah, também leve em conta que sou um programador 'iniciante' então tem muita coisa que ainda não sei fazer ou entendo, estou me virando em base a sorte e criatividade - e ajuda dos contribuidores haha - vamos começar!
+
+----------------------------------------------------------------------------------------------------
+
+1 - TUTORIAL DE CASE
+
+A case é o nome do comando - pode se definir como a arquitetura completa - você pode inserir varias ou mudar o nome da atual, lembre-se de mudar depois também no menu que veremos mais tarde, as cases são encontradas no "CONFIG.JS".
+
+No caso de ser uma case completa como citei a arquitetura, significa que é algo que vai desde a 'case' até o break, veremos isso abaixo.
+
+Aperte CTRL + F e procure a sua case, lembre-se de usar o modo de pesquisa "normal" no notepad++, um exemplo de case é a "case 'groupinfo':".
+
+Localizando ela você pode editar a atual ou adicionar um outro nome simplesmente inserindo na frente = ";case 'nome':".
+
+Recomendo a de adicionar pois você não precisaria editar todo o menu depois.
+
+Um exemplo de como o resultado final ficaria é "case 'groupinfo':;case 'info':".
+
+Você também pode inserir em baixo da outra case.
+
+case 'groupinfo':
+case 'info':
+
+Fácil né? Tenha em mente que alguns comandos usam o tamanho da palavra, se possível coloque uma com a mesma quantidade de letras.
+
+Exemplo, "groupinfo" tem 9, logo você deve inserir uma palavra de 9 letras como "funcao123".
+
+Para saber se o comando precisa usar a mesma quantidade de letras, examine o código do comando desde o case até o break dele, procure por body.slice, se tiver um body.slice é necessário a mesma quantidade de letras caso você esteja adicionando outro nome, se estiver editando o atual você deve refazer a body.slice.
+
+A body.slice é uma junção do nome de comando + 2, que são o espaço e o inicio de comando, se você precisar mudar ele, conte as letras e some com 2 (desde que não tenha parâmetros extras como o sticker -circle, se tiver, some-os junto com os espaços).
+
+Exemplo, para 'groupinfo' a body.slice seria 11, 'groupinfo' = 9 + 2 == 11.
+
+E é isso, parabéns por conseguir uma edição de comando!
+
+-----------------------------------------------------------------------------------------------------
+
+2 - TUTORIAL DE CONDIÇÕES
+
+As condições são coisas que a BOT precisa ter para que execute o comando, alguns exemplos são ser ademira, ser um grupo, ser privado e assim vai, abaixo tem alguns exemplos completos e explicação do que servem e como remover/adicionar.
+
+Se você usar o '!' na condição, a Íris entenderá que deve analisar se a condição NÃO EXISTE, sem esse '!' ele ira analisar se a condição EXISTE.
+
+O 'return' faz com que feche o comando para caso ele caia em um 'if', ou seja, se você especificar que deseja apenas dono e adicionar o 'return' a um verificador 'if', ele vai fechar e não vai permitir que o membro comum rode o comando mesmo recebendo a mensagem de bloqueio, veremos mais abaixo.
+
+Vamos demonstrar com o "if (!isGroupMsg) return await kill.reply(from, mess.sogrupo(), id)".
+
+Ele limita os comandos apenas a grupos, tenha em mente que comandos como 'groupinfo' devem ter isso pois é muito necessário para o funcionamento dele.
+
+Se você remover o '!', a Íris entenderá como "apenas privados", deixando o '!' ela entende como 'apenas grupos'.
+
+Ao remover o 'return', ele dirá que precisa ser um grupo MAS ele não irá parar a execução do comando após isso, caso a pessoa utilize como por exemplo, no PV, isso te dará um erro de execução depois pois o comando vai continuar rodando mesmo com a mensagem de aviso.
+
+O await significa criar uma função assíncrona, ou seja, esperar que o comando finalize para continuar, por exemplo.
+
+await kill.reply(from, 'Oi!', id)
+console.log('Oi amigo!')
+
+O await faz com que ele espere o 'kill.reply' terminar para que o 'console.log' rode em seguida, tirar o await faz com que não espere, podendo causar erros ou sobrecarga dependendo do uso.
+
+O 'isGroupMsg' é um parâmetro que criei pra verificar se é um grupo, você pode obter os parâmetros no finalzinho deste tutorial.
+
+Basicamente isso é tudo, abaixo segue um 'if' que você apenas precisa moldar.
+
+"if (condição) return await Uma_Função"
+
+Se deseja entender sobre qual é a sua função mais conveniente, como 'kill.reply' e outros pule para o "3 - TUTORIAL DE CRIAR COMANDOS".
+
+Exemplos de condições já prontas - lembre-se do pra que serve o '!', no caso, o mess.var() deve ser trocado, irei explicar no tutorial 3 como achar o ideal e criar um.
+
+"if (!isGroupMsg) return await kill.reply(from, mess.sopv(), id)" = Identifica se é ou não um grupo.
+
+"if (!isGroupAdmins) return await kill.reply(from, mess.soademiro(), id)" = Verifica se quem usou é um ademiro ou não.
+
+"if (!isBotGroupAdmins) return await kill.reply(from, mess.botademira(), id)" = Verifica se a Íris é uma ademira ou não.
+
+"if (args.length == 0) return await kill.reply(from, mess.noargs() + 'o que ele precisa.', id)" = Verifica se o comando possui argumentos suficientes ou não para seu uso, o 0 verifica caso não possua nada além do comando.
+
+"if (!isOwner) return await kill.reply(from, mess.sodono(), id)" = Verifica se o usuario é um dos donos.
+
+'condição'.length se refere ao tamanho da resposta, comando e outros.
+
+'condição'.includes analisa se algo já feito com muitos dados possui um dado especifico.
+
+Para ver outras condições abra a "CONFIG.JS" e verifique as constantes, variáveis e let's que eu escrevi lá.
+
+Essa já foi mais difícil né? Não se preocupe, você se acostuma, espero que tenha aprendido algo!
+
+-----------------------------------------------------------------------------------------------------
+
+3 - TUTORIAL DE CRIAR COMANDOS
+
+Iremos usar o "await kill.reply(from, mess.sogrupo(), id)" para termos uma noção básica das funções.
+
+O 'kill.reply' é uma função da Wa-Automate que responde a uma mensagem já existente.
+
+o 'from' se refere ao grupo atual, você pode usar a ID do grupo ou o número de alguém - não esqueça de inserir o '@g.us' ou '@c.us', entretanto, precisará especificar o local pela sua ID e tudo mais, por isso não recomendo mexer com a reply em casos de privado ou não saber a ID de resposta.
+
+O mess.var() se refere a uma module exports da pasta lang, existem 3 dela pois a Íris tem 3 idiomas, futuramente podendo ter mais, no caso, abra a pasta "Lang" e selecione o seu arquivo de linguagem, nesse caso usaremos a "pt.js".
+
+Nele terá todos os diálogos da Íris, procure o que deseja de lá ou crie um seguindo o exemplo abaixo.
+
+exports.nome = () => `mensagem`
+
+Dentro das () você pode inserir variáveis que colocou dentro da case na "config.js", ou seja, você estará importando seus dados para outro arquivo.
+
+const a = '9'
+
+Se você inserir esse a dentro da kill.reply e da exports ele será transferido para outro arquivo, por exemplo...
+
+await kill.reply(from, mess.seila(a), id)
+
+exports.seila = (a) => `O valor recebido é o ${a}`
+
+Ele vai enviar o 9 de volta para o kill.reply e assim enviar o 9 no WhatsApp.
+
+O `${var}` se refere a uma variável, para importar suas variável sempre use `${nome}`, existem outras formas de usar uma variável mas na Íris essa é a mais usada.
+
+O id se refere a mensagem que recebeu, muitos parâmetros da Wa-Automate podem usar ele, um dos exemplos é a reply, que como já dissemos é responsável por responder a uma mensagem existente, já parâmetros como sendText não respondem a uma mensagem e sim enviam uma, eles não precisam do id.
+
+await kill.sendText(from, `Bem vindos ao tutorial!`)
+
+Tenha em mente sempre que as parenteses na frente de sendText se referem a rodar uma function com ou sem uma exportação de dados, ou seja, estamos rodando uma função e enviando dados - ou não - para que a função funcione perfeitamente, os que descrevi acima são exemplos.
+
+Para continuarmos, descrevi as criações de comandos, você deve sempre mesclar as condições com a criação para um maior desempenho e estabilidade, também não se esqueça de sempre inserir um "break" no final da sua case.
+
+o "break" é responsável por parar o funcionamento de um comando, isso se dá para que ele não rode a case seguinte, é quase a mesma coisa que um return, mas ele deve ser inserido no final do código, inserir antes fará que o código feche antes da hora.
+
+case 'teste':
+	if (condição == valor) return await kill.reply(from, `Mensagem de condição não cumprida`, id)
+	await kill.reply(from, `O teste foi um sucesso capitão!`, id)
+	break
+	
+E assim temos uma case.
+
+No caso de comandos de media e outros do tipo, pode ser necessário inserir valores adicionais na função, um dos exemplos é a kill.sendFile, que necessita de id, local, formato, descrição e mensagem, por exemplo.
+
+await kill.sendFile(from, './imagem.jpg', 'foto.jpg', 'Olha só isso!', id)
+
+Entendeu? Como descrito acima, existem parâmetros que precisam de dados extras, mas como saber qual precisa? Simples!
+
+Acesse aqui e procure pela função desejada, esta página da Wa-Automate possui tudo - Obs, sempre saiba um pouco de inglês haha! - https://docs.openwa.dev/classes/api_Client.Client.html

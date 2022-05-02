@@ -1,126 +1,154 @@
 ### Proyecto Íris
-Íris es un bot en inglés, español y portugués creado y actualizado por Lucas R. - KillovSky para el grupo "Legião Z", tiene +300 comandos y actualizaciones frecuentes con correcciones y novedades.
+Íris es un BOT en Inglés, Español y Portugués para WhatsApp.
+Tiene una gran cantidad de comandos diferentes y recibe actualizaciones 'frecuentes' con muchas funciones nuevas, correcciones y mejoras.
 
-### Otros idiomas
-if you want a English tutorial, open this [English Tutorial](https://github.com/KillovSky/iris/blob/main/.readme/en/README.md), para um português use o [Tutorial PT-BR](https://github.com/KillovSky/iris/blob/main/README.md).
+### Otro idioma
+If you want a tutorial in English [Click Here](https://github.com/KillovSky/iris/blob/main/.readme/en/README.md).
+Para um tutorial em Português [Clique Aqui](https://github.com/KillovSky/iris/blob/main/README.md).
 
-### Nota personal 
-Este software funciona bajo la licencia [MIT](https://eligelicencia.github.io/eligeUnaLicencia/licenses/mit/), teniendo prohibido retirar créditos, y recuerda, paso MUCHO tiempo ayudando a todos los que tienen dudas y mejorando el BOT, pero sin ganar nada en esto, por favor no quites los créditos.
-Si ves a alguien robando o que ha robado, muéstrales la verdad, diles que es plagio, es el único deseo que tengo.
+### 'Página' de Íris
+Creé una página 'diferente' para alojar información de Iris, puedes acceder a la versión de Github [Desde Aquí](http://htmlpreview.github.io/?https://github.com/KillovSky/iris/blob/main/.readme/donates/page.html), solo se actualizará cuando publique una nueva actualización de Íris.
+También puede acceder a la página local ('igual' que Github), descargando Iris y abriendo la carpeta ".readme", luego "donates" y abriendo el archivo "page.html", esto es mucho mejor para mostrar.
+Si desea obtener la página actualizada, consulte la [Versión JS Fiddle](https://jsfiddle.net/KillovSky/mgp6ed3x/show).
 
-### Errores
-Si observa errores, lea el [Discussions](https://github.com/KillovSky/iris/discussions), si no resuelve, háblame por los medios que se encuentran en la parte inferior de la página o infórmalo en [Issues](https://github.com/KillovSky/iris/issues), y por supuesto, asegúrese de haber instalado Chrome y leer TODO lo escrito abajo.
-Descarga Chrome en Windows por [aqui](https://www.google.com/chrome), en linux use los siguientes comandos. 
+### Nota personal
+Este software utiliza la [MIT](https://choosealicense.com/licenses/mit/) licencia.
+Está prohibida la eliminación de créditos, dedico MUCHO tiempo a mejorar esto para todos los usuarios.
+Por favor, no quite los créditos de mi BOT.
+Si ves a alguien robando o que ha robado, muéstrale la verdad, dile que es plagio.
 
-```bash
-> wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-> sudo apt install ./google-chrome-stable_current_amd64.deb
-```
+### Errores, Bugs, Soluciones, Mejoras y Sugerencias
+Si obtiene un error, falla, tiene soluciones, mejoras o sugerencias, publíquelas [Aquí](https://github.com/KillovSky/iris/issues/q=), estaré apoyando en esta página, pero recuerda, esto es solo para Project Íris, no apoyo otros programas.
+No cree ninguna pull-request, serás rechazado, pero su idea será analizada y se insertará manualmente en futuras actualizaciones, con créditos para usted.
+Si es posible, crea un archivo TXT con el código y publícalo en los problemas.
 
-### Funciones (+300)
-| Función | Contiene|
-| ------------- | ------------- |
-| Ejecute Wa-Automate/Functions dentro de WhatsApp |✅|
-| Administrar Grupos |✅|
-| Tic-Tac-Toe/Casino/Otros juegos |✅|
-| Anti Porno - Imagen +18/Enlaces de Chat |✅|
-| Ataques SMS/CALL/EMAIL |✅|
-| Bienvenido/Adiós/Anti-Fake/Blacklist |✅|
-| Bloquear/Desbloquear/Rastrear personas |✅|
-| Buscar Anime/Letra de Música/Twitter/Instagram |✅|
-| Mandar mensagens a otros grupos |✅|
-| Conversa por texto/voz Sim-Simi/Local (ilimitado) |✅|
-| Eliminar mensajes del BOT |✅|
-| Descargas (Redes-Sociales y YouTube) |✅|
-| Hablar 51 idiomas/Tradutor |✅|
-| Generación de Textos/Diário |✅|
-| Google/Google Play/Pinterest |✅|
-| Información de Grupo/Perfil |✅|
-| Marcar todo/Prohibir todo |✅|
-| Memes/Hacer Memes |✅|
-| Nasa, Brainly, Wikipédia |✅|
-| Pausar/Salir de Tudo/Transmitir/Eliminar Tudo |✅|
-| Pesquisa Fotos/Datos/Covid |✅|
-| Printar Pantalla/Sitios WEB |✅||
-| Sticker GIF/Sin-Fondo/URLS/Palabras |✅|
-| Uploads de Fotos |✅|
-| Use CMD/Terminal en WhatsApp |✅|
-| XP/Ranking/Level/Votaciónes |✅|
-| Outros |✅|
+### Funciones
+Iris tiene muchos comandos, no puedo describirlos todos en esta página en este momento, pero puede consultar [Este archivo](https://raw.githubusercontent.com/KillovSky/iris/lib/config/Utilidades/Comandos_Automate.txt) con los nombres de los comandos para tener una idea.
 
-### Requisitos
-- Dos números en WhatsApp, uno para propietario y otro para BOT.
-- [NodeJS](https://nodejs.org) - Recomiendo la LTS.
-- [Git](https://git-scm.com) - Para las Unix-Tools - Cuidado.
-- [FFmpeg](https://ffmpeg.org) - Para conversiones.
-- [Libwebp](https://developers.google.com/speed/webp/download) - Ayuda en FFmpeg y otras cosas.
-- Para um tutorial de instalação do FFmpeg no Windows 7/8, veja [WikiHow](https://pt.wikihow.com/Instalar-o-FFmpeg-no-Windows), en el caso de Windows 10 vea al [SoundArtifacts](https://soundartifacts.com/pt/how-to/186-how-to-install-ffmpeg-on-windows-10-amp-add-ffmpeg-to-windows-path.html).
-- Para instalar LibWebP sigue los mismos pasos, pero cambiando el nombre de la carpeta a LibWebP en lugar de FFmpeg.
+### Requisitos de Windows [Descargas]
+- [NodeJS](https://nodejs.org) - La programación de Iris, utilice LTS.
 
-Para la instalación de todo en Linux, puede usar el siguiente comando:
+- [Chrome](https://www.google.com/chrome/) - Para enviar videos, fotos y otros archivos - Opcional, pero muy recomendable.
+
+- [Gow](https://github.com/bmatzelle/gow/releases) - Para comandos de Linux y GNU/BASH.
+
+- [Git](https://git-scm.com) - Para obtener otras herramientas de GNU/BASH y el Shell Console.
+
+Si tiene algún problema con los comandos de Íris Shell en Windows, use `Git Bash`, funcionará, si desea usar CMD, PowerShell u otra consola, debe ingresar el `bash.exe` en su PATH de Windows, puedes [Seguir Esto](https://github.com/KillovSky/iris/issues/456#issuecomment-1001087525) para insertar, **pero tenga mucho cuidado.**
+
+### Requisitos de Linux [Instalar del terminal]
+
+Para instalar todos los requisitos por el terminal estándar, ábrelo y usa estos comandos (puedes copiar todo y pegar):
 
 ```bash
-> sudo apt install nodejs git ffmpeg libwebp -y
+# Actualizar el repositorio y los programas de Linux
+sudo apt update && sudo apt upgrade -y
+
+# Instale cURL y WGET para obtener Chrome y Node Source
+sudo apt install curl wget -y
+
+# Descarga la última versión stable de Chrome (solo 64x)
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+
+# Instale el repositorio Node.js LTS en APT Sources
+curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo bash
+
+# Instala todos los programas necesarios
+sudo apt install nodejs python python3 python3-pip git build-essential ./google-chrome-stable_current_amd64.deb -y
 ```
 
-Si obtiene errores con la versión del node en su repositorio de Linux, use el [Node Source](https://github.com/nodesource/distributions), recuerde, LTS (14).
+Si obtiene `sudo: command not found`, elimine `sudo` del comando e intente.
 
-### Instalación 
-Necesita tener este repositorio, es simple, ejecute los comandos abajo, en caso de errores, intente como sudo/administrador o vea los [Tutoriales](https://github.com/KillovSky/iris/discussions/28).
+Si obtiene `apt: command not found`, intenta usar `apt-get`.
+
+Si `apt-get` también no funciona, tienes que compilar `apt` en su sistema, simplemente [Vea esto - 'Usuarios Avanzados'](https://askubuntu.com/questions/860375/installing-apt-get), o cambia tu distro, yo utilice y recomiendo `Anti-X` o `Xubuntu Minimal`, son las mejores distribuciones para **Low-end PC** en mi opinión, pero `Windows 8.1` o superior también es bueno, recientemente solo utilizo `Windows 8.1`.
+
+### Instalación
+Para descargar Iris - [Después de instalar los requisitos] - vea los [Tutoriales Aquí](https://github.com/KillovSky/iris/discussions/28) o [Aquí](http://htmlpreview.github.io/?https://github.com/KillovSky/iris/blob/main/.readme/donates/page.html), también puede utilizar los siguientes comandos:
 
 ```bash
-> git clone https://github.com/KillovSky/iris.git
-> cd iris
-> npm i
+# Descarga los archivos
+git clone https://github.com/KillovSky/iris.git
+
+# Entrar en la carpeta Íris
+cd iris
+
+# Instala módulos
+npm i
 ```
 
-### Cambios OBLIGATORIOS
-Edite toda la información necesaria [Aqui](https://github.com/KillovSky/iris/blob/main/.readme/es/config.md) antes de comenzar.
+### Cambios Obligatorios
+Antes de comenzar, debe editar toda la información no opcional descrita [aquí](https://github.com/KillovSky/iris/blob/main/.readme/en/config.md), de lo contrario, no podrá utilizar algunos comandos.
 
-### Comenzar
-Después de editar los archivos necesarios, ejecute el siguiente comando y espere para comenzar, luego escane el código QR.
+### Ejecutarse
+Hay tres formas de abrir Iris, puedes mirar y elegir a mejor, recuerda de tener el terminal abierto en la carpeta:
 
 ```bash
-> npm start
+# Método 1 - The A.I.O Toolbox - El mejor (In portugués)
+# Esto incluye varios métodos para comenzar, incluye el Método 1 y 2 también
+bash tools.sh
+# Or use:
+./tools.sh
+
+# Método 2 - El estándar - Simple pero bueno
+npm start
+# Or use:
+node start.js
+
+# Método 3 - El método PM2 - Reinicia en cada "error" atascado - Pesa
+# Esto requiere PM2, puede instalarlo desde el Método 1 o escriba: 'npm i -g pm2'
+pm2 start start.js --name iris
+
+# Para reiniciar PM2 cada 6 horas para mejorar el rendimiento, use el Método 1 o escriba:
+pm2 start start.js --name iris --cron-restart="0 */6 * * *"
 ```
 
-Puedes usar al PM2 - recomendado, pero usa +RAM/CPU - en lugar de `npm start` con:
+### Revisa todos los comandos
+Tenga en cuenta que los menús aún están desactualizados, puedes consultar [Este Archivo](https://raw.githubusercontent.com/KillovSky/iris/lib/config/Utilidades/Comandos_Automate.txt) para los comandos actualizados.
+
+Si desea ver el menú obsoleto, pero hermoso, envíe `/menu` a Íris.
+
+Para obtener el menú más "actualizado", envíe `/menut` a Íris.
+
+### Hacer nuevos comandos
+Para crear comandos **con prefijo**, usa [Esta Base](https://github.com/KillovSky/iris/blob/main/lib/functions/config.js#L6289), simplemente elimine "/\*" y "\*/" y edite el código, puede consultar el [Tutorial PT-BR](https://github.com/KillovSky/iris/blob/main/Tutorial%20de%20Edi%C3%A7%C3%A3o%20PT-BR.txt) para obtener mejores instrucciones sobre cómo crear `cases`.
+
+Para crear comandos **sin prefijo**, utiliza [Esta Base](https://github.com/KillovSky/iris/blob/main/lib/functions/config.js#L683), puede utilizar quitando "/\*" y "\*/" y editando el código, pero si recomienda crear un `case`.
+
+Consulte la página de [WA-Automate](https://docs.openwa.dev/classes/api_Client.Client.html) para todas las funciones que Íris puede usar.
+
+### Deshabilitar el auto abrir navegador en Bomber-API
+Puede hacer esto de dos maneras:
+
+1. Abra el `Git Bash` en la carpeta Íris y escriba `bash tools.sh`, selecciona el `Desativar navegador Bomber-API`, espera el `done` y pronto - Recomendado.
+
+2. Abra la carpeta ```node_modules```, va a ```bomber-api```, abre el archivo ```index.js``` y elimina las lineas ```"open(`http://localhost:3000/`)"``` & ```"open(`http://localhost:${arguments.port}/`)"```.
+
+Tienes que editar esto cada vez que ejecutes `npm update`, `npm i` or `npm install`.
+
+### Error en el puerto 3000
+Puedes hacerlo de dos formas:
+
+1. Edita el número `3000` en la línea ```"app.listen(3000"```, situada en `node_modules/Bomber-API/index.js` - mismo lugar para deshabilitar el inicio automático del navegador - pero recuerda de editar `Bomber_Port` en `config.json`.
+
+2. Abra el `Git Bash` en la carpeta Íris y escriba `bash tools.sh`, selecciona el `Mudar porta do Bomber-API`, escriba el número, espera el `done` y pronto - Recomendado.
+
+### Actualizar Íris, Módulos o Más
+Puedes hacer **TODO** usando el Método 1, pero si quieres hacerlo manualmente, esta es la manera, recuerda abrir la terminal en la carpeta Íris.
 
 ```bash
-> npm i pm2 -g
-> pm2 start index.js
-> pm2 monit
+# Uso de 'Tools.sh' - La mejor - Todo en uno
+bash tools.sh
+
+# Actualizar Módulos
+npm update
+
+# Debes actualizar a Íris solo cuando diga "[UPDATE]" al arrancar.
+# Actualizar Íris y 'Guardar Configuración' solo está disponible en 'Tools.sh'.
+# Si desea actualizar sin guardar, hace la instalación nuevamente..
 ```
 
-El `npm i pm2 -g` solo necesita ejecutarse una vez.
-
-### Ver todos los comandos
-Escriba en su chat el mensaje, si editó su prefijo, cambie la '/' al carácter que usará.
-
-```bash
-> /menu
-```
-
-### Crea tus comandos
-Hay una base simple para sus creaciones por [aqui](https://github.com/KillovSky/iris/blob/main/config.js#L4384), sin Prefix [here](https://github.com/KillovSky/iris/blob/main/config.js#L331), solo tienes que quitar el "/\*" e la "\*/" para usarlo, si necesita otros tipos, puede ver sobre ellos para [aqui](https://docs.openwa.dev/classes/api_client.client.html), si tienes dificultades vea [aqui](https://bit.ly/3owVJoB).
-
-### Alertas en WhatsApp
-Para recibir también mensajes de error de Iris a través de WhatsApp, elimine el "//" de la línea [Catch](https://github.com/KillovSky/iris/blob/main/config.js#L4403).
-
-### Deshabilitar la auto-apertura de el navegador en bomb
-Para que el navegador deje de abrirse cada vez que inicie Iris, abra la carpeta ```node_modules```, va a ```bomber-api```, abre el archivo ```index.js``` y elimina las líneas ```"open(`http://localhost:3000/`)"``` & ```"open(`http://localhost:${arguments.port}/`)"```, Si tiene problemas con la puerta 3000, puede editar el ```"app.listen(3000"``` a una puerta aleatoria que no está en uso.
-
-### Agradecimientos:
-- [Open-WA](https://github.com/open-wa)
-- [ArugaZ](https://github.com/ArugaZ)
-- [MhankBarBar](https://github.com/MhankBarBar)
-- [SlavyanDesu](https://github.com/SlavyanDesu)
-- [Contribuidores](https://github.com/KillovSky/iris/graphs/contributors)
-- Les agradezco calurosamente a todos!
-
-### Donar y Apoyo
-- [Doações] - Este proyecto se mantiene sólo por mí de forma gratuita y sin cobrar nada, si es posible, dona algo ❤️
-- [PicPay](https://picpay.me/userlucas123)
-- [Ko-fi](https://ko-fi.com/killovsky)
-- [PIX] - fc270199-2d55-4d91-be5c-bfbd431cfad4 - **Brazil**
-- [Grupo Oficial](https://bit.ly/3owVJoB)
+### Gracias, Donates y Ayuda
+- [Donates] - Este proyecto siempre será gratuito, si puedes, dona algo ❤️
+- Puedes consultar toda la información al [Tocar Aquí](http://htmlpreview.github.io/?https://github.com/KillovSky/iris/blob/main/.readme/donates/page.html).
+- Gracias de corazón para todos!

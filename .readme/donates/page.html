@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<!-- https://github.com/KillovSky/iris | Feito por KillovSky -->
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Donut's</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://use.fontawesome.com/releases/v6.0.0/css/all.css" rel="stylesheet">
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+	<script>
+		function unhideQR(div, hdiv, sdiv) {
+			var x = document.getElementById(div)
+			if (hdiv !== null) {
+				var y = document.getElementById(hdiv)
+				y.style.display == "block" ? y.style.display = "none" : false
+			}
+			if (sdiv !== null) {
+				var z = document.getElementById(sdiv)
+				z.style.display == "block" ? z.style.display = "none" : false
+			}
+			x.style.display == "none" ? x.style.display = "block" : x.style.display = "none"
+		}
+		function setURL(id, url){
+			document.getElementById(id).src = url
+		}
+	</script>
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+			font-family: 'Poppins', sans-serif
+		}
+
+		a {
+			text-decoration: none
+		}
+
+		body {
+			background-color: #121212
+		}
+		
+		ul.chButton	{
+			display: flex;
+			list-style-type: none;
+			align-items: center;
+			padding: 0px;
+			margin: 0px;
+		}
+		
+		button.chBut {
+			background-color: transparent;
+			border: 2px solid #2D4059;
+			color: #ffffff;
+			padding: 5px;
+			margin: 5px;
+		}
+		
+		button.chBut:hover {
+			background-color: #224772
+		}
+
+		pixDiv {
+			color: #000000
+		}
+
+		details+details {
+			padding-top: 10px
+		}
+
+		details>summary {
+			padding: 5px;
+			color: #ffffff;
+			width: 100%;
+			background-color: #383838;
+			border: 1px solid #506680;
+			letter-spacing: 1px;
+			box-shadow: 1px 1px 2px #383838;
+			cursor: pointer;
+		}
+
+		details>div>p {
+			letter-spacing: 1px;
+			background-color: #202d3d;
+			color: #ffffff;
+			border: 1px solid #506680;
+			padding: 5px;
+			padding-top: 10px;
+			box-shadow: 1px 1px 2px #383838;
+		}
+
+		details>p {
+			letter-spacing: 1px;
+			background-color: #202d3d;
+			color: #ffffff;
+			border: 1px solid #506680;
+			padding: 5px;
+			padding-top: 10px;
+			box-shadow: 1px 1px 1px #383838;
+		}
+
+		img {
+			height: 150px;
+			width: 150px;
+			border: 8px solid #eee;
+			position: absolute;
+			left: 50%;
+			top: 0;
+			transform: translate(-50%, -50%)
+		}
+
+		.card {
+			position: relative;
+			width: 100%;
+			padding: 3px;
+			border: none
+		}
+
+		.text-center {
+			background-color: #383838
+		}
+
+		.name {
+			color: #ffffff;
+			letter-spacing: 1px;
+			font-size: 20px;
+			margin-bottom: 6px;
+			padding-top: 90px
+		}
+
+		.job {
+			color: #ffffff;
+			letter-spacing: 1px;
+			font-size: 12px;
+			font-weight: 500;
+			margin-bottom: 16px
+		}
+
+		.container .card .icons .icon {
+			font-size: 20px;
+			width: 50px;
+			height: 50px;
+			color: white;
+			background-color: #fa2525;
+			border-radius: 50%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			cursor: pointer
+		}
+
+		.dis {
+			color: #ffffff;
+			line-height: 2;
+			margin: 20px;
+			letter-spacing: 1px;
+		}
+
+		.container .card:hover .icons .icon {
+			background-color: #0d6efd
+		}
+
+		.container .card:hover .text-center {
+			background-color: #4b5359;
+			color: #ffffff
+		}
+
+		.container .card:hover .job {
+			color: #ffffff
+		}
+
+		.container .card:hover .name {
+			color: #ffffff
+		}
+
+		.container .card:hover .dis {
+			color: #ffffff
+		}
+
+		.container .card .icons .icon:hover {
+			background-color: rgb(235, 123, 103)
+		}
+
+		.mt-80 {
+			margin-top: 100px
+		}
+	</style>
+</head>
+
+<details>
+	<summary>Quais os planos para a Íris?</summary>
+	<p>KillovSky -> "Íris é algo especial, mas, não é como se eu tivesse um plano ou meta a ser adquirida, apenas tive uma ideia e a coloquei em pratica, nada além disso, apenas programo a Íris para matar meu tédio e me distrair com algo difícil [amo isso!], não sei quanto aos outros desenvolvedores, mas, aparentemente eles também amam programar a Íris."</p>
+</details>
+<details>
+	<summary>Qual é a licença de uso da Íris?</summary>
+	<p>Selecione a sua linguagem, a licença será inserida aqui.</p>
+	<ul class="chButton">
+		<li> <button class="chBut" onclick="unhideQR('ptbrLicence', 'engLicence', 'espLicence')">LICENÇA EM PORTUGUÊS</button> </li>
+		<li> <button class="chBut" onclick="unhideQR('espLicence', 'engLicence', 'ptbrLicence')">LICENCIA EN ESPAÑOL</button> </li>
+		<li> <button class="chBut" onclick="unhideQR('engLicence', 'ptbrLicence', 'espLicence')">LICENSE IN ENGLISH</button> </li>
+		<li> <button class="chBut" onclick="window.open('https://raw.githubusercontent.com/KillovSky/iris/f1b533c2481a35ec1552fe921f32e41acb42f0f2/lib/media/img/licenca.png', '_blank').focus();">TUDO - IMG [NOVA ABA]</button> </li>
+	</ul>
+	<div id="ptbrLicence" style="display:none">
+		<p>É utilizado a MIT License, abaixo segue a Licença Oficial.<br><br>Copyright (c) 2021 KillovSky - Lucas R.<br><br>Por meio deste, a permissão é concedida, gratuitamente, a qualquer pessoa que obtenha uma cópia deste software e arquivos de documentação associados (o "Software"), para lidar com o Software sem restrição, incluindo, sem limitação, os direitos de usar, copiar, modificar, mesclar, publicar, distribuir, sublicenciar e/ou vender cópias do Software e permitir que as pessoas a quem o Software é fornecido o façam, sujeito às seguintes condições:<br><br>O aviso de direitos autorais acima e este aviso de permissão deverão ser incluídos em todas as cópias ou partes substanciais do Software.<br><br>O SOFTWARE É FORNECIDO "NO ESTADO EM QUE SE ENCONTRA", SEM OUTRA GARANTIA DE QUALQUER TIPO, EXPRESSA OU IMPLÍCITA, INCLUINDO, MAS NÃO SE LIMITANDO ÀS GARANTIAS DE PADRÃO DE COMERCIALIZAÇÃO, ADEQUAÇÃO A UM DETERMINADO PROPÓSITO OU NÃO VIOLAÇÃO. EM NENHUMA HIPÓTESE OS AUTORES OU DETENTORES DOS DIREITOS AUTORAIS SERÃO RESPONSÁVEIS POR QUALQUER RECLAMAÇÃO, DANOS OU OUTRA RESPONSABILIDADE, SEJA EM UMA AÇÃO DE CONTRATO, ATO ILÍCITO OU DE OUTRA FORMA, DECORRENTE OU ASSOCIADA COM O SOFTWARE OU O USO OU OUTRAS NEGOCIAÇÕES NO PROGRAMA.</p>
+	</div>
+	<div id="engLicence" style="display:none">
+		<p>The MIT License is used, below follows the Official License.<br><br>Copyright (c) 2021 KillovSky - Lucas R.<br><br>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:<br><br>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.<br><br>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+	</div>
+	<div id="espLicence" style="display:none">
+		<p>Se utiliza la licencia MIT, a continuación sigue la licencia oficial.<br><br>Copyright (c) 2021 KillovSky - Lucas R.<br><br>Por la presente se concede permiso, libre de cargos, a cualquier persona que obtenga una copia de este software y de los archivos de documentación asociados (el "Software"), a utilizar el Software sin restricción, incluyendo sin limitación los derechos a usar, copiar, modificar, fusionar, publicar, distribuir, sublicenciar, y/o vender copias del Software, y a permitir a las personas a las que se les proporcione el Software a hacer lo mismo, sujeto a las siguientes condiciones:<br><br>El aviso de copyright anterior y este aviso de permiso se incluirán en todas las copias o partes sustanciales del Software.<br><br>EL SOFTWARE SE PROPORCIONA "COMO ESTA", SIN GARANTÍA DE NINGÚN TIPO, EXPRESA O IMPLÍCITA, INCLUYENDO PERO NO LIMITADO A GARANTÍAS DE COMERCIALIZACIÓN, IDONEIDAD PARA UN PROPÓSITO PARTICULAR E INCUMPLIMIENTO. EN NINGÚN CASO LOS AUTORES O PROPIETARIOS DE LOS DERECHOS DE AUTOR SERÁN RESPONSABLES DE NINGUNA RECLAMACIÓN, DAÑOS U OTRAS RESPONSABILIDADES, YA SEA EN UNA ACCIÓN DE CONTRATO, AGRAVIO O CUALQUIER OTRO MOTIVO, DERIVADAS DE, FUERA DE O EN CONEXIÓN CON EL SOFTWARE O SU USO U OTRO TIPO DE ACCIONES EN EL SOFTWARE.</p>
+	</div>
+</details>
+<details>
+	<summary>Como fazer a configuração?</summary>
+	<p>Selecione a sua linguagem, isso abrirá uma nova aba com o tutorial:</p>
+	<ul class="chButton">
+		<li> <button class="chBut" onclick="window.open('https://github.com/KillovSky/iris/blob/dev/.readme/en/config.md', '_blank').focus();">TUTORIAL ENGLISH</button> </li>
+		<li> <button class="chBut" onclick="window.open('https://github.com/KillovSky/iris/blob/dev/.readme/es/config.md', '_blank').focus();">TUTORIAL ESPAÑOL</button> </li>
+		<li> <button class="chBut" onclick="window.open('https://github.com/KillovSky/iris/blob/dev/.readme/pt/config.md', '_blank').focus();">TUTORIAL PORTUGUÊS</button> </li>
+	</ul>
+</details>
+<details>
+	<summary>Como fazer a instalação?</summary>
+	<p>Clique na opção que deseja utilizar:</p>
+	<ul class="chButton">
+		<li> <button class="chBut" onclick="unhideQR('Tuto_Win', 'Tuto_ETC', 'Tuto_Linux')">TUTORIAL WINDOWS</button> </li>
+		<li> <button class="chBut" onclick="unhideQR('Tuto_Linux', 'Tuto_ETC', 'Tuto_Win')">TUTORIAL LINUX</button> </li>
+		<li> <button class="chBut" onclick="unhideQR('Tuto_ETC', 'Tuto_Linux', 'Tuto_Win')">TUTORIAL CELULAR</button> </li>
+		<li> <button class="chBut" onclick="window.open('https://github.com/KillovSky/iris/discussions/28', '_blank').focus();">OUTROS TUTORIAIS (NOVA ABA)</button> </li>
+	</ul>
+	<div id="Tuto_Win" style="display:none">
+		<ul class="chButton">
+			<li> <button class="chBut" onclick="setURL('Win_Tuto_Iframe', 'https://www.youtube.com/embed/_0MI-WE1EcA?&theme=dark&autohide=2')">PARTE 1</li>
+			<li> <button class="chBut" onclick="setURL('Win_Tuto_Iframe', 'https://www.youtube.com/embed/BGnJAunA1Jc?&theme=dark&autohide=2')">PARTE 2</li>
+			<li> <button class="chBut" onclick="setURL('Win_Tuto_Iframe', 'https://www.youtube.com/embed/z5_hsn3udw4?&theme=dark&autohide=2')">PARTE 3</li>
+		</ul>
+		<iframe width='500' height='294' style="position:relative;" id="Win_Tuto_Iframe" src="https://www.youtube.com/embed/_0MI-WE1EcA?&theme=dark&autohide=2" allowFullScreen="allowFullScreen" frameborder="0"></iframe>
+	</div>
+	<div id="Tuto_Linux" style="display:none">
+		<iframe width='500' height='294' style="position:relative;" src="https://www.youtube.com/embed/_CpGs-mZ72I?&theme=dark&autohide=2" allowFullScreen="allowFullScreen" frameborder="0"></iframe>
+	</div>
+	<div id="Tuto_ETC" style="display:none">
+		<iframe width='500' height='294' style="position:relative;" src="https://www.youtube.com/embed/PkaWGV84fhk?&theme=dark&autohide=2" allowFullScreen="allowFullScreen" frameborder="0"></iframe>
+	</div>
+</details>
+<details>
+	<summary>Quais são os atuais contribuidores?</summary>
+	<p>Abaixo estão as pessoas que desenvolvem a Íris atualmente e prestam suporte a ela.</p>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-3 col-md-6 col-sm-6 mt-80">
+				<div class="card bg-white d-flex align-items-center justify-content-center">
+					<div class="w-100"><img src="https://avatars.githubusercontent.com/u/55511420?v=4" alt="" class="rounded-circle" loading="lazy"></div>
+					<div class="text-center">
+						<p class="name">KILLOVSKY</p>
+						<p class="job">FUNDADOR E PROGRAMADOR #1</p>
+						<ul class="d-flex align-items-center justify-content-center list-unstyled icons">
+							<li> <a href="https://bit.ly/33QDaGa"> <i class="icon me-2 fa-brands fa-cc-paypal"></i> </a> </li>
+							<li> <a href="https://picpay.me/userlucas123"> <i class="icon me-2 fa-solid fa-p"></i> </a> </li>
+							<li> <a href="https://ko-fi.com/killovsky"> <i class="icon me-2 fa-solid fa-mug-saucer"></i> </a> </li>
+							<li> <a onclick="unhideQR('pixDiv', null, null)"> <i class="icon me-2 fa-brands fa-pix"></i> </a> </li>
+						</ul>
+						<p class="dis pb-4">"Me chamo Lucas e tenho 19 anos, fundei o projeto Íris quando adolescente, espero ter feito a escolha certa e que ela (Íris) possa ajudar a todos."</p>
+					</div>
+				</div>
+			</div>
+			<div id="pixDiv" class="col-lg-3 col-md-6 col-sm-6 mt-80" style="display:none">
+				<div class="card bg-white d-flex align-items-center justify-content-center">
+					<div class="w-100"><img src="https://i.ibb.co/fQwM0TM/qrcode-pix-1.png" alt="" class="mx-auto d-block" loading="lazy"></div>
+					<div class="text-center ">
+						<p class="name">KILLOVSKY</p>
+						<ul class="d-flex align-items-center justify-content-center list-unstyled icons">
+							<li> <a href="https://github.com/KillovSky"> <i class="icon me-2 fa-brands fa-github"></i> </a> </li>
+						</ul>
+						<p class="dis pb-4">fc270199-2d55-4d91-be5c-bfbd431cfad4</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6 col-sm-6 mt-80">
+				<div class="card bg-white d-flex align-items-center justify-content-center">
+					<div class="w-100"><img src="https://avatars.githubusercontent.com/u/80703967?v=4" alt="" class="rounded-circle" loading="lazy"></div>
+					<div class="text-center">
+						<p class="name">PEDRO BATISTOP</p>
+						<p class="job">PROGRAMADOR #2</p>
+						<ul class="d-flex align-items-center justify-content-center list-unstyled icons">
+							<li> <a href="https://url.gratis/Batistop"> <i class="icon me-2 fa-brands fa-cc-paypal"></i> </a> </li>
+							<li> <a href="https://picpay.me/pedrobatistop"> <i class="icon me-2 fa-solid fa-p"></i> </a> </li>
+							<li> <a href="https://github.com/PedroBatistop"> <i class="icon me-2 fa-brands fa-github"></i> </a> </li>
+							<li> <a onclick="unhideQR('pixDiv2', null, null)"> <i class="icon me-2 fa-brands fa-pix"></i> </a> </li>
+						</ul>
+						<p class="dis pb-4">"Sou um estudante de 18 anos e programador da Íris, entrei no mundo da programação graças a ela e aprendi grande parte do que sei hoje."</p>
+					</div>
+				</div>
+			</div>
+			<div id="pixDiv2" class="col-lg-3 col-md-6 col-sm-6 mt-80" style="display:none">
+				<div class="card bg-white d-flex align-items-center justify-content-center">
+					<div class="w-100"><img src="https://i.ibb.co/VQqxsn6/Pedro.png" alt="" class="mx-auto d-block" loading="lazy"></div>
+					<div class="text-center">
+						<p class="name">PEDRO BATISTOP</p>
+						<p class="dis pb-4">5bcd0726-4cf5-4889-b906-c95a5e9a917c</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</details>
+<details>
+	<summary>Outros contribuidores do Projeto Íris</summary>
+	<p>Abaixo estão pessoas que contribuíram com códigos, fizeram doações ou corrigiram BUG's atualmente ou há bastante tempo.</p>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-3 col-md-6 col-sm-6 mt-80">
+				<div class="card bg-white d-flex align-items-center justify-content-center ">
+					<div class="w-100"><img src="https://avatars.githubusercontent.com/u/67817684?v=4" alt="" class="rounded-circle" loading="lazy"></div>
+					<div class="text-center">
+						<p class="name">TIO DAS TREVAS</p>
+						<p class="job">BETA-TESTER E CONTRIBUIDOR</p>
+						<ul class="d-flex align-items-center justify-content-center list-unstyled icons">
+							<li> <a href="https://twitter.com/TioDasTrevas_"> <i class="icon me-2 fa-brands fa-twitter"></i> </a> </li>
+							<li> <a href="https://github.com/TioDasTrevas1"> <i class="icon me-2 fa-brands fa-github"></i> </a> </li>
+						</ul>
+						<p class="dis pb-4">"Sou um estudante do Ensino Médio, iniciante em programação e apaixonado por leitura e filosofia. Criador da 'Sabrina', uma BOT baseada na Íris."</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6 col-sm-6 mt-80">
+				<div class="card bg-white d-flex align-items-center justify-content-center ">
+					<div class="w-100"><img src="https://avatars.githubusercontent.com/u/68270215?v=4" alt="" class="rounded-circle" loading="lazy"></div>
+					<div class="text-center">
+						<p class="name">JONN</p>
+						<p class="job">BETA-TESTER E CONTRIBUIDOR</p>
+						<ul class="d-flex align-items-center justify-content-center list-unstyled icons">
+							<li> <a href="https://github.com/Jonn001"> <i class="icon me-2 fa-brands fa-github"></i> </a> </li>
+						</ul>
+						<p class="dis pb-4">"Apenas um amante de programação e tecnologia, estou tentando aprender novas coisas todos os dias para aumentar meu conhecimento."</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6 col-sm-6 mt-80">
+				<div class="card bg-white d-flex align-items-center justify-content-center ">
+					<div class="w-100"><img src="https://avatars.githubusercontent.com/u/65615269?v=4" alt="" class="rounded-circle" loading="lazy"></div>
+					<div class="text-center">
+						<p class="name">POLUX</p>
+						<p class="job">BETA-TESTER E CONTRIBUIDOR</p>
+						<ul class="d-flex align-items-center justify-content-center list-unstyled icons">
+							<li> <a href="https://github.com/Poluxin21"> <i class="icon me-2 fa-brands fa-github"></i> </a> </li>
+						</ul>
+						<p class="dis pb-4">"Sou um programador de 17 anos por diversão e conhecimento. Estou me formando em Java, JS, C/C++/C# e outras usadas em aplicações e sites."</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6 col-sm-6 mt-80">
+				<div class="card bg-white d-flex align-items-center justify-content-center ">
+					<div class="w-100"><img src="https://avatars.githubusercontent.com/u/79275944?v=4" alt="" class="rounded-circle" loading="lazy"></div>
+					<div class="text-center">
+						<p class="name">PAOLO PROKDA</p>
+						<p class="job">BETA-TESTER</p>
+						<ul class="d-flex align-items-center justify-content-center list-unstyled icons">
+							<li> <a href="https://steamcommunity.com/profiles/76561198038881309"> <i class="icon me-2 fa-brands fa-steam"></i> </a> </li>
+							<li> <a href="https://github.com/prokda"> <i class="icon me-2 fa-brands fa-github"></i> </a> </li>
+						</ul>
+						<p class="dis pb-4">"Sou um iniciante em programação, gasto meu tempo livre jogando ótimos video-games e bebendo a clássica e deliciosa coca-cola."</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6 col-sm-6 mt-80">
+				<div class="card bg-white d-flex align-items-center justify-content-center ">
+					<div class="w-100"><img src="https://user-images.githubusercontent.com/55511420/155991110-f9d0acfe-b2ab-415f-8199-9e0285b96cb2.jpg" alt="" class="rounded-circle" loading="lazy"></div>
+					<div class="text-center">
+						<p class="name">DAVI BISGOS</p>
+						<p class="job">BETA-TESTER E CONTRIBUIDOR</p>
+						<ul class="d-flex align-items-center justify-content-center list-unstyled icons">
+							<li> <a href="https://www.youtube.com/user/yiusgosbisgos"> <i class="icon me-2 fa-brands fa-youtube"></i> </a> </li>
+							<li> <a href="https://github.com/Bisgos"> <i class="icon me-2 fa-brands fa-github"></i> </a> </li>
+						</ul>
+						<p class="dis pb-4">"Meu nome é Bisgos, sou um millennial curioso, atualmente sou um estudante de tecnologia e estou apaixonado pela Íris. Fundador da BOT Akami."</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6 col-sm-6 mt-80">
+				<div class="card bg-white d-flex align-items-center justify-content-center ">
+					<div class="w-100"><img src="https://user-images.githubusercontent.com/55511420/156011178-cbc7debc-4f58-46ec-aff5-04ec7b12e007.jpg" alt="" class="rounded-circle" loading="lazy"></div>
+					<div class="text-center">
+						<p class="name">YUNO - Yuno#8126</p>
+						<p class="job">HTML VISUAL TESTER</p>
+						<ul class="d-flex align-items-center justify-content-center list-unstyled icons">
+							<li> <a href="https://discordapp.com/users/947880393787465798"> <i class="icon me-2 fa-brands fa-discord"></i></a></li>
+						</ul>
+						<p class="dis pb-4">"Sou apenas um amante de animes, música e fã da Íris, ajudei por fora dos códigos no design das cores e elementos da página, não sou um programador."</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6 col-sm-6 mt-80">
+				<div class="card bg-white d-flex align-items-center justify-content-center ">
+					<div class="w-100"><img src="https://user-images.githubusercontent.com/55511420/155894443-8e9db44b-0100-43db-8998-e340efc7aa01.jpg" alt="" class="rounded-circle" loading="lazy"></div>
+					<div class="text-center">
+						<p class="name">GUILHERME XAVIER</p>
+						<p class="job">DOADOR</p>
+						<ul class="d-flex align-items-center justify-content-center list-unstyled icons">
+							<li> <a href="https://www.instagram.com/guilhermetga1993"> <i class="icon me-2 fa-brands fa-instagram"></i> </a> </li>
+							<li> <a href="https://github.com/Guixaviertgz"> <i class="icon me-2 fa-brands fa-github"></i> </a> </li>
+						</ul>
+						<p class="dis pb-4">"Tenho 20 e estou aprendendo programação para melhorar meu conhecimento, patrocinei duas vezes a Íris para que o projeto pudesse continuar."</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6 col-sm-6 mt-80">
+				<div class="card bg-white d-flex align-items-center justify-content-center ">
+					<div class="w-100"><img src="https://avatars.githubusercontent.com/u/83078790?v=4" alt="" class="rounded-circle" loading="lazy"></div>
+					<div class="text-center">
+						<p class="name">Edvam Santos</p>
+						<p class="job">TRADUTOR DO ESPANHOL</p>
+						<ul class="d-flex align-items-center justify-content-center list-unstyled icons">
+							<li> <a href="https://github.com/EdvamSantos"> <i class="icon me-2 fa-brands fa-github"></i></a></li>
+						</ul>
+						<p class="dis pb-4">"Sou bastante curioso e fanatico por computadores, gosto sempre de aprimorar meus conhecimentos e quero café, muito café, quero ter sonhos com café!"</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6 col-sm-6 mt-80">
+				<div class="card bg-white d-flex align-items-center justify-content-center ">
+					<div class="w-100"><img src="https://media-exp1.licdn.com/dms/image/C5603AQH0cY3Sh2HkmQ/profile-displayphoto-shrink_200_200/0/1575932928279?e=1651708800&v=beta&t=oZuhDmWMnu32PWPI4VWNkSQNn2rKrz0z0Z_2NBhXbI8" alt="" class="rounded-circle" loading="lazy"></div>
+					<div class="text-center">
+						<p class="name">GABRIEL DIAS</p>
+						<p class="job">BETA-TESTER, CONTRIBUIDOR E DOADOR</p>
+						<ul class="d-flex align-items-center justify-content-center list-unstyled icons">
+							<li> <a href="https://www.linkedin.com/in/gabrieldiaspereira"> <i class="icon me-2 fa-brands fa-linkedin"></i> </a> </li>
+							<li> <a href="https://github.com/gabrieldiaspereira"> <i class="icon me-2 fa-brands fa-github"></i> </a> </li>
+						</ul>
+						<p class="dis pb-4">"Sou um desenvolvedor 'Full Stack' há mais de 3 anos, contribuo para projetos 'Open-Source' como a Íris para poder expandir meus conhecimentos."</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6 col-sm-6 mt-80">
+				<div class="card bg-white d-flex align-items-center justify-content-center ">
+					<div class="w-100"><img src="https://avatars.githubusercontent.com/u/76814929?v=4" alt="" class="rounded-circle" loading="lazy"></div>
+					<div class="text-center">
+						<p class="name">LEONARDO HENRIQUE</p>
+						<p class="job">BETA-TESTER, CONTRIBUIDOR E DOADOR</p>
+						<ul class="d-flex align-items-center justify-content-center list-unstyled icons">
+							<li> <a href="https://github.com/LeonardoConstantino"> <i class="icon me-2 fa-brands fa-github"></i> </a> </li>
+						</ul>
+						<p class="dis pb-4">"Atualmente sou um programador por hobby, contribui para a Íris e espero um dia poder falar que o 'JavaScript' me deu tudo que tenho."</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6 col-sm-6 mt-80">
+				<div class="card bg-white d-flex align-items-center justify-content-center ">
+					<div class="w-100"><img src="https://i.imgur.com/9tCdAns_d.webp?maxwidth=760&fidelity=grand" alt="" class="rounded-circle" loading="lazy"></div>
+					<div class="text-center">
+						<p class="name">RUAN P. - DUCK</p>
+						<p class="job">BETA-TESTER, CONTRIBUIDOR E DOADOR</p>
+						<ul class="d-flex align-items-center justify-content-center list-unstyled icons">
+							<li> <a href="https://www.instagram.com/rp.xyz"> <i class="icon me-2 fa-brands fa-instagram"></i> </a> </li>
+							<li> <a href="https://github.com/ruanpablodev"> <i class="icon me-2 fa-brands fa-github"></i> </a> </li>
+							<li> <a href="https://wa.me/+553172271466"> <i class="icon me-2 fa-brands fa-whatsapp"></i> </a> </li>
+						</ul>
+						<p class="dis pb-4">"Sou apenas um garoto apaixonado em programação, contribui para a Íris algumas vezes e espero um dia obter um ótimo conhecimento geral."</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6 col-sm-6 mt-80">
+				<div class="card bg-white d-flex align-items-center justify-content-center ">
+					<div class="w-100"><img src="https://user-images.githubusercontent.com/55511420/155895226-02c90840-4a22-4a19-9aad-b04cc286b288.jpg" alt="" class="rounded-circle" loading="lazy"></div>
+					<div class="text-center">
+						<p class="name">WESLEY</p>
+						<p class="job">BETA-TESTER<br><br></p>
+						<ul class="d-flex align-items-center justify-content-center list-unstyled icons">
+							<li> <a href="https://github.com/wesley0209"> <i class="icon me-2 fa-brands fa-github"></i> </a> </li>
+							<li> <a href="https://bit.ly/WESLEYWADEV"> <i class="icon me-2 fa-solid fa-link"></i> </a> </li>
+						</ul>
+						<p class="dis pb-4">"Sou um programador iniciante e devo tudo que aprendi hoje para a Íris, ela me ajudou a aprender programação e ter um conhecimento maior."</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6 col-sm-6 mt-80">
+				<div class="card bg-white d-flex align-items-center justify-content-center ">
+					<div class="w-100"><img src="https://avatars.githubusercontent.com/u/56519014?v=4" alt="" class="rounded-circle" loading="lazy"></div>
+					<div class="text-center">
+						<p class="name">ALFRED</p>
+						<p class="job">BETA-TESTER</p>
+						<ul class="d-flex align-items-center justify-content-center list-unstyled icons">
+							<li> <a href="https://github.com/coelhobugado"> <i class="icon me-2 fa-brands fa-github"></i> </a> </li>
+						</ul>
+						<p class="dis pb-4">"Não sou ninguém em especial, acompanho a Íris e suas novidades de perto, ajudei a testar varias delas, mas, não dei inicio na programação."</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6 col-sm-6 mt-80">
+				<div class="card bg-white d-flex align-items-center justify-content-center ">
+					<div class="w-100"><img src="https://i.ibb.co/N3yLc6d/31064fc8-1866-496c-9ffa-9704351f39a4.jpg" alt="" class="rounded-circle" loading="lazy"></div>
+					<div class="text-center">
+						<p class="name">SEN MENDIS - SENU</p>
+						<p class="job">TRADUTOR DE INGLÊS</p>
+						<ul class="d-flex align-items-center justify-content-center list-unstyled icons">
+							<li> <a href="https://twitter.com/SenTheHollow"> <i class="icon me-2 fa-brands fa-twitter"></i> </a> </li>
+						</ul>
+						<p class="dis pb-4">"Ima dropout, nonbeliever and a weeb Who's only interested in 2d beautiful girls, I'm glad to work with Project Íris xDxDxD"<br></p>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6 col-sm-6 mt-80">
+				<div class="card bg-white d-flex align-items-center justify-content-center ">
+					<div class="w-100"><img src="https://i.ibb.co/P92GRCr/4a7ddc28-f5fc-4e83-98f7-28d85f281adc.jpg" alt="" class="rounded-circle" loading="lazy"></div>
+					<div class="text-center">
+						<p class="name">THALSE</p>
+						<p class="job">BETA-TESTER</p>
+						<ul class="d-flex align-items-center justify-content-center list-unstyled icons">
+							<li> <a href="https://www.instagram.com/thales_lira_pimentel"> <i class="icon me-2 fa-brands fa-instagram"></i> </a> </li>
+						</ul>
+						<p class="dis pb-4">"Sou um estudante de medicina que adquiriu amor a programação após conhecer a Íris, acompanho e ajudo a testar suas novidades."<br><br></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</details>
+<details>
+	<summary>Agradecimentos especiais</summary>
+	<p>Não é exagero dizer que a Íris não existiria sem eles.</p>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-3 col-md-6 col-sm-6 mt-80">
+				<div class="card bg-white d-flex align-items-center justify-content-center ">
+					<div class="w-100"><img src="https://www.listagrupos.com/img-400.400.100-4acfee0af6030cc6bdc2c900e4bc200c.jpg" alt="" class="rounded-circle" loading="lazy"></div>
+					<div class="text-center">
+						<p class="name">MEMBROS - LEGIÃO Z</p>
+						<p class="job">GRUPO OFICIAL DOS TESTES</p>
+						<ul class="d-flex align-items-center justify-content-center list-unstyled icons">
+							<li> <a href="https://chat.whatsapp.com/Ji5JLEVkL0MGRReVvDoubL"> <i class="icon me-2 fa-brands fa-whatsapp"></i> </a> </li>
+						</ul>
+						<p class="dis pb-4">"Somos o grupo de onde a Íris foi fundada, falamos de muitos assuntos, sejam polêmicos ou não, aqui prezamos a liberdade e privacidade."</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6 col-sm-6 mt-80">
+				<div class="card bg-white d-flex align-items-center justify-content-center ">
+					<div class="w-100"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Earth_Western_Hemisphere_transparent_background.png/480px-Earth_Western_Hemisphere_transparent_background.png" alt="" class="rounded-circle" loading="lazy"></div>
+					<div class="text-center">
+						<p class="name">'TODO O MUNDO'</p>
+						<p class="job">USUARIOS</p>
+						<ul class="d-flex align-items-center justify-content-center list-unstyled icons">
+							<li> <a href="https://github.com/KillovSky/iris/network/members"> <i class="icon me-2 fa-brands fa-github"></i> </a> </li>
+						</ul>
+						<p class="dis pb-4">"Sessão dedicada a todos os usuários da Íris, especialmente aqueles que apoiam e fazem este projeto acontecer e seguir em frente."</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6 col-sm-6 mt-80">
+				<div class="card bg-white d-flex align-items-center justify-content-center ">
+					<div class="w-100"><img src="https://avatars.githubusercontent.com/u/5903821?v=4" alt="" class="rounded-circle" loading="lazy"></div>
+					<div class="text-center">
+						<p class="name">MOHAMMED SHAH</p>
+						<p class="job">CRIADOR DA WA-AUTOMATE</p>
+						<ul class="d-flex align-items-center justify-content-center list-unstyled icons">
+							<li> <a href="https://github.com/smashah"> <i class="icon me-2 fa-brands fa-github"></i> </a> </li>
+							<li> <a href="https://twitter.com/smashah"> <i class="icon me-2 fa-brands fa-twitter"></i> </a> </li>
+						</ul>
+						<p class="dis pb-4">"Mohammed é o criador da 'WA-Automate', API para automatização do WhatsApp na Íris. Ele é um desenvolvedor 'Full-Stack' de Londres, Reino Unido."</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6 col-sm-6 mt-80">
+				<div class="card bg-white d-flex align-items-center justify-content-center ">
+					<div class="w-100"><img src="https://cdn3.iconfinder.com/data/icons/popular-services-brands/512/node-512.png" alt="" class="rounded-circle" loading="lazy"></div>
+					<div class="text-center">
+						<p class="name">NODE.JS</p>
+						<p class="job">JAVASCRIPT RUNTIME</p>
+						<ul class="d-flex align-items-center justify-content-center list-unstyled icons">
+							<li> <a href="https://nodejs.org"> <i class="icon me-2 fa-solid fa-link"></i> </a> </li>
+							<li> <a href="https://github.com/nodejs"> <i class="icon me-2 fa-brands fa-github"></i> </a> </li>
+							<li> <a href="https://twitter.com/nodejs"> <i class="icon me-2 fa-brands fa-twitter"></i> </a> </li>
+						</ul>
+						<p class="dis pb-4">"É onde a Íris roda, graças a essa criação de diversas pessoas envolvidas, a Íris existe hoje, basicamente, é a base de execução dos códigos da Íris."</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6 col-sm-6 mt-80">
+				<div class="card bg-white d-flex align-items-center justify-content-center ">
+					<div class="w-100"><img src="https://assets.dryicons.com/uploads/icon/svg/8397/b7904883-3f02-47a0-b5ca-ab72eec42a91.svg" alt="" class="rounded-circle" loading="lazy"></div>
+					<div class="text-center">
+						<p class="name">WHATSAPP</p>
+						<p class="job">APLICATIVO DE MENSAGENS</p>
+						<ul class="d-flex align-items-center justify-content-center list-unstyled icons">
+							<li> <a href="https://www.whatsapp.com"> <i class="icon me-2 fa-solid fa-link"></i> </a> </li>
+						</ul>
+						<p class="dis pb-4">"É o mensageiro utilizado pela Íris e Mohammed para automatização, é um aplicativo de mensagens instantâneas como o 'Telegram'."</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6 col-sm-6 mt-80">
+				<div class="card bg-white d-flex align-items-center justify-content-center ">
+					<div class="w-100"><img src="https://brandeps.com/icon-download/N/Npm-icon-vector-05.svg" alt="" class="rounded-circle" loading="lazy"></div>
+					<div class="text-center">
+						<p class="name">MÓDULOS</p>
+						<p class="job">SISTEMAS UTILIZADOS</p>
+						<ul class="d-flex align-items-center justify-content-center list-unstyled icons">
+							<li> <a href="https://github.com/KillovSky/iris/network/dependencies"> <i class="icon me-2 fa-brands fa-github"></i> </a> </li>
+						</ul>
+						<p class="dis pb-4">"Lugar reservado para todos os módulos utilizados na Íris, são muitos para detalhar aqui, portanto, deixo meu agradecimento a todos eles em um só local."</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6 col-sm-6 mt-80">
+				<div class="card bg-white d-flex align-items-center justify-content-center ">
+					<div class="w-100"><img src="https://pbs.twimg.com/profile_images/1190150808135966720/3bCQdeFm_400x400.jpg" alt="" class="rounded-circle" loading="lazy"></div>
+					<div class="text-center">
+						<p class="name">KAYKY - NUWANDA</p>
+						<p class="job">2° FUNDADOR DO LEGIÃO Z</p>
+						<ul class="d-flex align-items-center justify-content-center list-unstyled icons">
+							<li> <a href="https://twitter.com/KaykyMattos7"> <i class="icon me-2 fa-brands fa-twitter"></i> </a> </li>
+						</ul>
+						<p class="dis pb-4">"É a pessoa que fundou o grupo 'Legião Z' junto a 'KillovSky', o inicio da Íris se deve graças aos incentivos iniciais dele em relação ao Legião Z."</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</details>
+<p></p> <!-- Pula uma linha pra details dar certo -->
+</body>
+
+</html>

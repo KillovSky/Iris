@@ -1,0 +1,30 @@
+{
+	"Enable_Chrome_Args": false,
+	"Standart_Chromium_Args": [
+		"--aggressive-cache-discard",
+		"--aggressive-tab-discard",
+		"--disable-accelerated-2d-canvas",
+		"--disable-application-cache",
+		"--disable-cache",
+		"--disable-dev-shm-usage",
+		"--disable-gpu",
+		"--disable-offline-load-stale-cache",
+		"--disable-setuid-sandbox",
+		"--disable-setuid-sandbox",
+		"--disk-cache-size=0",
+		"--ignore-certificate-errors",
+		"--no-first-run",
+		"--no-sandbox",
+		"--no-zygote"
+	],
+	"Safest_Chromium_Args": [
+		"--no-sandbox",
+		"--disable-setuid-sandbox",
+		"--aggressive-cache-discard",
+		"--disable-cache",
+		"--disable-gl-drawing-for-tests",
+		"--disable-application-cache",
+		"--disable-offline-load-stale-cache",
+		"--disk-cache-size=0"
+	]
+}

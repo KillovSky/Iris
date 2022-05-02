@@ -1,0 +1,57 @@
+{
+	"description": "Nenhum",
+	"typeEvent": "coin",
+	"eventName": "[UNCOMMON EVENT]",
+	"startedAt": 1646748864394,
+	"eventIndex": 1,
+	"lastType": "coin",
+	"lastName": "[UNCOMMON EVENT]",
+	"lastTime": 1646748864394,
+	"lastIndex": 1,
+	"groups": [],
+	"eventOnline": false,
+	"events": [
+		{
+			"name": "[COMMON EVENT]",
+			"desc": "Evento comum, os valores de ganhos são aumentados em '1.3' vezes durante um período de '2' horas, aqueles que possuem guildas e efeitos terão o valor somado a multiplicação, ganhando maiores bônus.\nAs chances desse evento acontecer são de 100%, se nenhum evento tiver sua porcentagem considerada válida antes deste evento ser efetuado.",
+			"rarity": 100,
+			"time": 7200000,
+			"multiplier": 1.3
+		},
+		{
+			"name": "[UNCOMMON EVENT]",
+			"desc": "Evento incomum, os valores de ganhos são aumentados em '1.5' vezes durante um período de '1' hora e '30' minutos, aqueles que possuem guildas e efeitos terão o valor somado a multiplicação, ganhando maiores bônus.\nAs chances desse evento acontecer são de 75%, se nenhum evento tiver sua porcentagem considerada válida antes deste evento ser efetuado.",
+			"rarity": 75,
+			"time": 5400000,
+			"multiplier": 1.5
+		},
+		{
+			"name": "[RARE EVENT]",
+			"desc": "Evento raro, os valores de ganhos são aumentados em '2' vezes durante um período de '1' hora, aqueles que possuem guildas e efeitos terão o valor somado a multiplicação, ganhando maiores bônus.\nAs chances desse evento acontecer são de 25%, se nenhum evento tiver sua porcentagem considerada válida antes deste evento ser efetuado.",
+			"rarity": 25,
+			"time": 3600000,
+			"multiplier": 2
+		},
+		{
+			"name": "[EPIC EVENT]",
+			"desc": "Evento épico, os valores de ganhos são aumentados em '3' vezes durante um período de '40' minutos, aqueles que possuem guildas e efeitos terão o valor somado a multiplicação, ganhando maiores bônus.\nAs chances desse evento acontecer são de 15%, se nenhum evento tiver sua porcentagem considerada válida antes deste evento ser efetuado.",
+			"rarity": 15,
+			"time": 2400000,
+			"multiplier": 3
+		},
+		{
+			"name": "[LEGENDARY EVENT]",
+			"desc": "Evento legendário, os valores de ganhos são aumentados em '5' vezes durante um período de '30' minutos, aqueles que possuem guildas e efeitos terão o valor somado a multiplicação, ganhando maiores bônus.\nAs chances desse evento acontecer são de 5%, se nenhum evento tiver sua porcentagem considerada válida antes deste evento ser efetuado.",
+			"rarity": 5,
+			"time": 1800000,
+			"multiplier": 5
+		},
+		{
+			"name": "[NOT EVENT]",
+			"desc": "Nenhum evento aconteceu ainda.",
+			"rarity": 0,
+			"time": 0,
+			"multiplier": 0
+		}
+	]
+}

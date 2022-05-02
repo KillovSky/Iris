@@ -1,0 +1,178 @@
+{
+	"cidade":{
+		"pousada":{
+			"msg":"Você está em uma pousada, o que deseja fazer agora?",
+			"actions":[
+				"o1 - Pedir um quarto.",
+				"o2 - Falar com um NPC.",
+				"o3 - Comprar algo.",
+				"o4 - Sair da pousada.",
+				"o5 - Roubar a pousada.",
+				"o6 - Roubar um NPC.",
+				"o7 - Causar uma briga.",
+				"o8 - Escutar conversas.",
+				"o9 - Invadir um quarto ou local de funcionários.",
+				"o10 - Esperar que alguém venha até você."
+			],
+			"place":"cidade.pousada",
+			"checkpoint":"cidade.pousada",
+			"o1":{
+				"work":{
+					"msg":"Bom dia, seu quarto será o número 6, favor seguir o corredor até ver o quarto com o número na porta.",
+					"actions":[
+						"o1 - Ir ao quarto.",
+						"o2 - Sair da pousada.",
+						"o3 - Falar com NPC.",
+						"o4 - Tentar abrir um quarto diferente."
+					],
+					"place":"cidade.pousada",
+					"checkpoint":"cidade.pousada.o1.work",
+					"o1":{
+						"work":{
+							"msg":"Você entrou em seu quarto, fechando ele assim que entra, você então pensa sobre o que deve fazer a seguir.",
+							"actions":[
+								"o1 - Dormir.",
+								"o2 - Vasculhar o local.",
+								"o3 - Se suicidar.",
+								"o4 - Chamar um NPC."
+							],
+							"checkpoint":"cidade.pousada.o1.work.o1.work",
+							"place":"cidade.pousada",
+							"o1":{
+								"work":{
+									"msg":"Você dormiu e recuperou sua energia, o que deseja fazer a seguir?",
+									"actions":[
+										"o1 - Roubar a pousada.",
+										"o2 - Sair da pousada.",
+										"o3 - Falar com um NPC."
+									],
+									"place":"cidade.pousada",
+									"checkpoint":"cidade.pousada.o1.work.o1.work",
+									"o1":{
+										"work":{
+											"msg":"Você roubou com sucesso a pousada, o que deseja fazer agora?",
+											"actions":[
+												"o1 - Sair do local.",
+												"o2 - Falar com NPC."
+											],
+											"place":"cidade.pousada",
+											"checkpoint":"cidade.pousada.o1.work.o1.work.o1.work",
+											"o1":{
+												"work":{
+													"msg":"Você sai da pousada e começa a pensar sobre onde ir.",
+													"actions":[
+														"o1 - Ir para o beco da cidade.",
+														"o2 - Ir para a taberna.",
+														"o3 - Ir para o armeiro.",
+														"o4 - Ir para uma loja geral.",
+														"o5 - Sair da cidade e ir para a floresta.",
+														"o6 - Sair da cidade e ir para o oceano."
+													],
+													"place":"any",
+													"checkpoint":"cidade.pousada.o1.work.o1.work.o1.work.o1.work",
+													"work":{
+														"go":{
+															"o1":{
+																"msg":"Você caminha até o beco, você sente que este lugar é perigoso e é preciso ter cautela.",
+																"place":"cidade.beco"
+															},
+															"o2": {
+																"msg":"Você vai até a taberna é possível sentir o cheiro de álcool no ar e canções misticas sendo tocadas por um bardo.",
+																"place":"cidade.taberna"
+															},
+															"o3": {
+																"msg":"Você vai até o armeiro, o som de ferro sendo forjado é viciante e você pensa sobre como as faíscas te lembram da vida em si.",
+																"place":"cidade.armeiro"
+															},
+															"o4": {
+																"msg":"Você vai até uma loja geral, eles tem de tudo por aqui, remédios, poções, comida e outros itens.",
+																"place":"cidade.loja"
+															},
+															"o5": {
+																"msg":"Você sai da cidade e vai até uma floresta, ela parece sombria, você considera se é uma boa ideia seguir adiante, pois está de noite e o local é perfeito para oportunidades.",
+																"place":"floresta"
+															},
+															"o6": {
+																"msg":"Você sai da cidade e vai até uma praia, você percebe diversas conchas, estrelas do mar e a luz radiante da lua na água, você admira o local por uns instantes antes de decidir o que fazer.",
+																"place":"praia"
+															}
+														}
+													},
+													"nowork":{
+														"msg":"De-repente você é agarrado pelo braço e a dona da pousada com guardas vasculha você, achando os itens roubados que você pegou, você decide então...",
+														"actions":[
+															"o1 - Fugir",
+															"o2 - Se entregar",
+															"o3 - Lutar com os guardas"
+														],
+														"place":"cidade.pousada",
+														"checkpoint":"cidade.pousada.o1.work.o1.work.o1.work.o1.work.o1.work.nowork",
+														"o1":{
+															"work":{
+																"msg":"Você fugiu até o beco da cidade, você sente que o lugar é perigoso e deve ter cautela.",
+																"place":"cidade.beco"
+															}
+														},
+														"nowork":{
+															"msg":"Você é pego pelos guardas e eles te levam até a cadeia, o que você decide fazer?",
+															"actions":[
+																"o1 - Pagar a fiança (100 moedas)",
+																"o2 - Cumprir pena."
+															],
+															"o1":{
+																"work":{
+																	"msg":"Você paga a fiança e é solta, seus equipamentos, restante de dinheiro e itens foram devolvidos, exceto os roubados, o guarda te advertiu para ficar longe da pousada por uns tempos, onde deseja ir?"
+																},
+																"nowork":{
+																	"msg":"Você não pagou a fiança, então teve que cumprir a pena, você manteve o dinheiro, itens e equipamentos que tinha antes, exceto os roubados, o guarda disse para você ficar longe da pousada por uns tempos."
+																},
+																"place":"any"
+															},
+															"actions":[
+																"o1 - Ir para o beco da cidade.",
+																"o2 - Ir para a taberna.",
+																"o3 - Ir para o armeiro.",
+																"o4 - Ir para uma loja geral.",
+																"o5 - Sair da cidade e ir para a floresta.",
+																"o6 - Sair da cidade e ir para a praia."
+															],
+															"place":"any",
+															"o1":{
+																"msg":"Você caminha até o beco, você sente que este lugar é perigoso e é preciso ter cautela.",
+																"place":"cidade.beco"
+															},
+															"o2": {
+																"msg":"Você vai até a taberna é possível sentir o cheiro de álcool no ar e canções misticas sendo tocadas por um bardo.",
+																"place":"cidade.taberna"
+															},
+															"o3": {
+																"msg":"Você vai até o armeiro, o som de ferro sendo forjado é viciante e você pensa sobre como as faíscas te lembram da vida em si.",
+																"place":"cidade.armeiro"
+															},
+															"o4": {
+																"msg":"Você vai até uma loja geral, eles tem de tudo por aqui, remédios, poções, comida e outros itens.",
+																"place":"cidade.loja"
+															},
+															"o5": {
+																"msg":"Você sai da cidade e vai até uma floresta, ela parece sombria, você considera se é uma boa ideia seguir adiante, pois está de noite e o local é perfeito para oportunidades.",
+																"place":"floresta"
+															},
+															"o6": {
+																"msg":"Você sai da cidade e vai até uma praia, você percebe diversas conchas, estrelas do mar e a luz radiante da lua na água, você admira o local por uns instantes antes de decidir o que fazer.",
+																"place":"praia"
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
