@@ -1,0 +1,1 @@
+Arquivo 'vazio' para evitar que a GitHub mande o commit com uma pasta faltando.
