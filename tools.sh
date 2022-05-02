@@ -140,6 +140,7 @@ if [[ "$isCorrect" == *"start.js"* && "$isCorrect" == *"lib"* && "$isCorrect" ==
 					;;
 
 					# Executa o método de execução feito por Gabriel Dias, a diferença é que não se usa PM2.
+					# Todos os créditos disso a ele -> https://github.com/gabrieldiaspereira | https://github.com/KillovSky/iris/pull/531
 					"7")
 						printf "\n[ÍRIS] → Função executada, output (se existir) -> "
 						while : ; do
