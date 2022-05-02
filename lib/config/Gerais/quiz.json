@@ -1,0 +1,3657 @@
+{
+	"Total_Questions": 913,
+	"All_Questions": {
+		"0": {
+			"Question": "Horoscopes accurately predict future events 85% of the time.",
+			"Awnser": false
+		},
+		"1": {
+			"Question": "The National Weather Service will pay $30 for the rights to any original photograph of lightning. ",
+			"Awnser": false
+		},
+		"2": {
+			"Question": "Liberace was a notorious womanizer. ",
+			"Awnser": false
+		},
+		"3": {
+			"Question": "Due to a calendar mix-up, there were two years in a row identified as \"1973\". ",
+			"Awnser": false
+		},
+		"4": {
+			"Question": "Contrary to popular belief, the white is not the healthiest part of an egg. It's actually the shell. ",
+			"Awnser": false
+		},
+		"5": {
+			"Question": "Intelligent people have more zinc and copper in their hair.",
+			"Awnser": true
+		},
+		"6": {
+			"Question": "The Spanish word esposa means \"wife.\" The plural, esposas, means \"wives,\" but also \"handcuffs.\"",
+			"Awnser": true
+		},
+		"7": {
+			"Question": "Every member of the Australian band Men at Work is currently unemployed.",
+			"Awnser": false
+		},
+		"8": {
+			"Question": "In England, the Speaker of the House is not allowed to speak.",
+			"Awnser": true
+		},
+		"9": {
+			"Question": "About 20% of gift cards never are redeemed at the full value of the card.",
+			"Awnser": true
+		},
+		"10": {
+			"Question": "The only electrical equipment the Amish are allowed to use is a Panini press.",
+			"Awnser": false
+		},
+		"11": {
+			"Question": "The Q-Tip was developed after serious design flaws were found in both the O-Tip and the P-Tip.",
+			"Awnser": false
+		},
+		"12": {
+			"Question": "Superman is featured on every episode of \"Seinfeld\", either by name or pictures on Jerry's refrigerator.",
+			"Awnser": true
+		},
+		"13": {
+			"Question": "In Bangladesh, kids as young as 15 can be jailed for cheating on their finals.",
+			"Awnser": true
+		},
+		"14": {
+			"Question": "A 150-pound person weighs 165 pounds in Canada. ",
+			"Awnser": false
+		},
+		"15": {
+			"Question": "The highest point in Pennsylvania is lower than the lowest point in Colorado.",
+			"Awnser": true
+		},
+		"16": {
+			"Question": "George W. Bush, who presents himself as a man of faith, rarely goes to church. Yet he received votes from nearly two out of three voters who attend church at least once a week.",
+			"Awnser": true
+		},
+		"17": {
+			"Question": "No one in Canada has a birthday on March 16th.",
+			"Awnser": false
+		},
+		"18": {
+			"Question": "In the early 1950s, Philip Morris spent millions of dollars trying to teach dogs to smoke.",
+			"Awnser": false
+		},
+		"19": {
+			"Question": "In 21 states, Wal-Mart is the single largest employer.",
+			"Awnser": true
+		},
+		"20": {
+			"Question": "Pond's cold cream has an ingredient which is comprised of material which is found in pond scum.",
+			"Awnser": false
+		},
+		"21": {
+			"Question": "One out of five people in the world (1.1 billion people) live on less than $1 per day.",
+			"Awnser": true
+		},
+		"22": {
+			"Question": "For the first time in history, the number of people on the planet aged 60 or over will soon surpass those under 5.",
+			"Awnser": true
+		},
+		"23": {
+			"Question": "The original name of Bank of America was Bank of Italy. ",
+			"Awnser": true
+		},
+		"24": {
+			"Question": "Rome wasn't built in a day, although the contractor told them it would be.",
+			"Awnser": false
+		},
+		"25": {
+			"Question": "The elephant is the only mammal that can't jump.",
+			"Awnser": true
+		},
+		"26": {
+			"Question": "In the early 70s, McDonalds briefly offered customers a choice of French fries or consomme.",
+			"Awnser": false
+		},
+		"27": {
+			"Question": "Soldiers from every country salute with their right hand.",
+			"Awnser": true
+		},
+		"28": {
+			"Question": "A potato isn't a vegetable. It's a large bean.",
+			"Awnser": false
+		},
+		"29": {
+			"Question": "America once issued a 5-cent bill.",
+			"Awnser": true
+		},
+		"30": {
+			"Question": "Strains of bacteria similar to E. coli have been found in used printer cartridges - but only in the color cyan. Scientists have no explanation. ",
+			"Awnser": false
+		},
+		"31": {
+			"Question": "At the first World Cup championship in Uruguay, 1930, the soccer balls were actually monkey skulls wrapped in paper and leather. ",
+			"Awnser": false
+		},
+		"32": {
+			"Question": "Belt loops were invented fifty years earlier than the first belt.",
+			"Awnser": false
+		},
+		"33": {
+			"Question": "The shoe Nikita Khrushchev used to bang on the United Nations table was purchased by Thom McAn.",
+			"Awnser": false
+		},
+		"34": {
+			"Question": "Because he forgot his boots, Buzz Aldrin walked barefoot on the moon.",
+			"Awnser": false
+		},
+		"35": {
+			"Question": "Each year, sixteen million gallons of oil run off pavement into streams, rivers and eventually oceans in the United States. This is more oil than was spilled by the Exxon Valdez.",
+			"Awnser": true
+		},
+		"36": {
+			"Question": "The record for most appearances on the cover of Time Magazine is 26 by Tom Arnold.",
+			"Awnser": false
+		},
+		"37": {
+			"Question": "G-rated family films earn more money than any other rating. Yet only 3% of Hollywood's output is G-rated.",
+			"Awnser": true
+		},
+		"38": {
+			"Question": "Crate & Barrel once considered a merge with Linens & Things, forming a new chain \"Linens & Barrels\".",
+			"Awnser": false
+		},
+		"39": {
+			"Question": "Sylvia Miles had the shortest performance ever nominated for an Oscar with \"Midnight Cowboy.\" Her entire role lasted only six minutes.",
+			"Awnser": true
+		},
+		"40": {
+			"Question": "So far, Congress has authorized $152,600,000,000 for the Iraq war. This is enough to build over 17,500 elementary schools.",
+			"Awnser": true
+		},
+		"41": {
+			"Question": "The wobble in the rotation of the earth is causing a shift in its magnetic field. By the year 2327, the magnetic North Pole will be located in mid-Kansas, while the South Pole will be just off the coast of East Africa. ",
+			"Awnser": false
+		},
+		"42": {
+			"Question": "The Boeing 747 is capable of flying upside-down, except the wings would shear off when trying to roll it over. ",
+			"Awnser": false
+		},
+		"43": {
+			"Question": "In Salt Lake City, Utah, all TGIFriday's restaurants must close at 6 pm on Friday.",
+			"Awnser": false
+		},
+		"44": {
+			"Question": "In 2003, the Transportation Security Administration dropped a requirement that air marshals pass a marksmanship test. Some applicants were even hired after they repeatedly shot flight attendants in mock hijacking episodes.",
+			"Awnser": true
+		},
+		"45": {
+			"Question": "The New York City subway system, in an effort to raise revenue, is considering selling sponsorships of individual stations to corporations. Riders could soon be getting off at Nike Grand Central Station or Sony Times Square.",
+			"Awnser": true
+		},
+		"46": {
+			"Question": "Apple is working on a solar-powered iPod. The only drawback is that the solar panels make the unit the size of a large pizza box.",
+			"Awnser": false
+		},
+		"47": {
+			"Question": "The Venezuelan brown bat can detect and dodge individual raindrops in mid-flight, arriving safely back at his cave completely dry.",
+			"Awnser": false
+		},
+		"48": {
+			"Question": "On EBay, there are an average of $680 worth of transactions each second.",
+			"Awnser": true
+		},
+		"49": {
+			"Question": "Between 1942 and 1944, Academy Awards were made of plaster.",
+			"Awnser": true
+		},
+		"50": {
+			"Question": "If you were to spell out numbers, you would you have to go until 1,000 until you would find the letter \"A\".",
+			"Awnser": true
+		},
+		"51": {
+			"Question": "To ensure prompt delivery of e-mail, the post office recommends affixing a 41-cent stamp to your computer. ",
+			"Awnser": false
+		},
+		"52": {
+			"Question": "If you keep a goldfish in the dark room, it will eventually turn white.",
+			"Awnser": true
+		},
+		"53": {
+			"Question": "35 Billion e-mails are sent each day throughout the world.",
+			"Awnser": true
+		},
+		"54": {
+			"Question": "The least popular song to make love to: Taps.",
+			"Awnser": false
+		},
+		"55": {
+			"Question": "A Nigerian woman was caught entering the UK with 104 kg of snails in her baggage.",
+			"Awnser": true
+		},
+		"56": {
+			"Question": "In England, in the 1880's, \"Pants\" was considered a dirty word.",
+			"Awnser": true
+		},
+		"57": {
+			"Question": "Larry the Cable Guy has an illegal cable hook-up. ",
+			"Awnser": false
+		},
+		"58": {
+			"Question": "Most of the deck chairs on the Queen Mary 2 have had to be replaced because overweight Americans were breaking them.",
+			"Awnser": true
+		},
+		"59": {
+			"Question": "When George Lucas was mixing the American Graffiti soundtrack, he numbered the reels of film starting with an R and numbered the dialog starting with a D. Sound designer Walter Murch asked George for Reel 2, Dialog 2 by saying \"R2D2\". George liked the way that sounded so much he integrated that into another project he was working on.",
+			"Awnser": true
+		},
+		"60": {
+			"Question": "The \"UL\" designation (popular in the late 20th century, but not widely used now) was purchased by Consumer Reports in 1995. ",
+			"Awnser": false
+		},
+		"61": {
+			"Question": "David Bowie thinks he is being stalked by someone who is dressed like a giant pink rabbit. Bowie has noticed the fan at several recent concerts, but he became alarmed when he got on a plane and the bunny was on board.",
+			"Awnser": true
+		},
+		"62": {
+			"Question": "Fish have \"dandruff\" caused by their scales that flake off, and it is impossible to filter all traces of it from drinking water. ",
+			"Awnser": false
+		},
+		"63": {
+			"Question": "Solid structures (parking lots, roads, buildings) in the United States cover an area the size of Ohio.",
+			"Awnser": true
+		},
+		"64": {
+			"Question": "After he was President, Harry S. Truman briefly coached the Boston Celtics. (thanks to Eric Snyder) ",
+			"Awnser": false
+		},
+		"65": {
+			"Question": "The Mars Rover \"Spirit\" is powered by six small motors the size of \"C\" batteries. It has a top speed of 0.1 mph.",
+			"Awnser": true
+		},
+		"66": {
+			"Question": "Burt Reynolds was originally cast to be Han Solo in the first Star Wars film. He dropped out before filming.",
+			"Awnser": true
+		},
+		"67": {
+			"Question": "Chewing gum while peeling onions will keep you from crying.",
+			"Awnser": true
+		},
+		"68": {
+			"Question": "Average life span of a major league baseball: 7 pitches",
+			"Awnser": true
+		},
+		"69": {
+			"Question": "A private elementary school in Alexandria, Virginia, accidentally served margaritas to its schoolchildren, thinking it was limeade.",
+			"Awnser": true
+		},
+		"70": {
+			"Question": "Eleven top executives of the Direct Marketing Association (the telemarketers' group that is trying to kill the federal \"Do Not Call\" list) have registered for the list themselves.",
+			"Awnser": true
+		},
+		"71": {
+			"Question": "Percentage of men who say they are happier after their divorce or separation: 58",
+			"Awnser": true
+		},
+		"72": {
+			"Question": "Osama bin Laden had seen Woody Allen's \"Annie Hall\" 15 times.",
+			"Awnser": false
+		},
+		"73": {
+			"Question": "Johnny Plessey batted .331 for the Cleveland Spiders in 1891, even though he spent the entire season batting with a rolled-up, lacquered copy of the Toledo Post-Dispatch. ",
+			"Awnser": false
+		},
+		"74": {
+			"Question": "More than 2,500 left-handed people are killed each year from using products that are made for right-handed people.",
+			"Awnser": true
+		},
+		"75": {
+			"Question": "American Airlines saved $40,000 in 1987 by eliminating one olive from each salad served in first class.",
+			"Awnser": true
+		},
+		"76": {
+			"Question": "For every ton of fish that is caught in all the oceans on our planet, there are three tons of garbage dumped into the oceans.",
+			"Awnser": true
+		},
+		"77": {
+			"Question": "Iceland consumes more Coca-Cola per capita than any other nation.",
+			"Awnser": true
+		},
+		"78": {
+			"Question": "There has been no mail delivery in Canada on Saturday for the last thirty five years.",
+			"Awnser": true
+		},
+		"79": {
+			"Question": "Lou Ferrigno complains that years after \"The Hulk\" went off the air, he'd still turn green when angered. ",
+			"Awnser": false
+		},
+		"80": {
+			"Question": "When you flip the 2005 Minnesota statehood quarter, heads will come up 61% of the time instead of the expected 50%. ",
+			"Awnser": false
+		},
+		"81": {
+			"Question": "British pop singer Baby Spice is the great-great-great-great-great-great-grandniece of Archduke William Pinkley-Hogue of Staffordshire, making her 103rd in line for the throne of England. ",
+			"Awnser": false
+		},
+		"82": {
+			"Question": "During a nine month strike in 2002, the Weather Channel broadcast reruns.",
+			"Awnser": false
+		},
+		"83": {
+			"Question": "There is a Starbucks in Myungdong, South Korea that is five stories tall.",
+			"Awnser": true
+		},
+		"84": {
+			"Question": "It is nearly three miles farther to fly from Amarillo, Texas to Louisville, Kentucky than it is to return from Louisville to Amarillo. ",
+			"Awnser": false
+		},
+		"85": {
+			"Question": "Citizens in Ohio unsuccessfully tried to start a charitable organization called \"The Salvation Coast Guard\". (thanks to Eric Snyder) ",
+			"Awnser": false
+		},
+		"86": {
+			"Question": "Thomas Edison was the first person ever to say \"does my voice really sound like that?\"",
+			"Awnser": false
+		},
+		"87": {
+			"Question": "Due to a horse shortage, the 1936 Kentucky Derby was run with giraffes.",
+			"Awnser": false
+		},
+		"88": {
+			"Question": "The practice of putting a letter \"e\" in front of words to mean \"web-based\" (e.g., eBusiness, eLearning, etc.) was patented by Microsoft in 1992. They are waiting until their anti-trust trial has been officially completed to begin enforcing it. ",
+			"Awnser": false
+		},
+		"89": {
+			"Question": "Alexander Graham Bell (who invented the telephone) also set a world water-speed record of over seventy miles an hour at the age of 72.",
+			"Awnser": true
+		},
+		"90": {
+			"Question": "Over 1,000 birds a year die from smashing into windows.",
+			"Awnser": true
+		},
+		"91": {
+			"Question": "82% of Americans made a purchase at Wal-Mart in 2002.",
+			"Awnser": true
+		},
+		"92": {
+			"Question": "In comic strips, the person on the left always speaks first.",
+			"Awnser": true
+		},
+		"93": {
+			"Question": "The weight of air in a milk glass is about the same as the weight of an aspirin tablet.",
+			"Awnser": true
+		},
+		"94": {
+			"Question": "22% of airline pilots have a child named \"Roger\".",
+			"Awnser": false
+		},
+		"95": {
+			"Question": "Until last year, National Hockey League games that ended in a tie were settled by the Vice President. ",
+			"Awnser": false
+		},
+		"96": {
+			"Question": "If you hook Jell-O up to an EEG, it registers movements almost identical to a human adult's brain waves.",
+			"Awnser": true
+		},
+		"97": {
+			"Question": "The ant, when intoxicated, will always fall over to its right side.",
+			"Awnser": true
+		},
+		"98": {
+			"Question": "The little hole in the sink that lets the water drain out, instead of flowing over the side, is called a \"porcelator.\"",
+			"Awnser": true
+		},
+		"99": {
+			"Question": "Elastic in underwear will last twice as long if you refrigerate your underwear after washing.",
+			"Awnser": false
+		},
+		"100": {
+			"Question": "A bad case of laryngitis forced Abraham Lincoln to lip-sync the Gettysburg Address. The speech was actually delivered by an aide hidden beneath the stage. ",
+			"Awnser": false
+		},
+		"101": {
+			"Question": "When you hear a bullwhip snap, it's because the tip is traveling faster than the speed of sound.",
+			"Awnser": true
+		},
+		"102": {
+			"Question": "The US Army is handing out $2,500 to Fallujah residents whose property was destroyed by US planes and artillery.",
+			"Awnser": true
+		},
+		"103": {
+			"Question": "The first Egyptian chariots were powered by sails. (thanks to Eric Snyder) ",
+			"Awnser": false
+		},
+		"104": {
+			"Question": "Anthropologists have discovered a tribe of South American monkeys with a rudimentary system of government analogous to our own three-branch form of government. ",
+			"Awnser": false
+		},
+		"105": {
+			"Question": "32 out of 33 samples of well-known brands of milk purchased in Los Angeles and Orange counties in California had trace amounts of perchlorate. Perchlorate is the explosive component in rocket fuel.",
+			"Awnser": true
+		},
+		"106": {
+			"Question": "85% of the men that die while having sex are cheating on their wives. (thanks to Barbara Bassett) ",
+			"Awnser": true
+		},
+		"107": {
+			"Question": "Electronics merchant Radio Shack may have to change its name because of a pending lawsuit from Shaquille O'Neal.",
+			"Awnser": false
+		},
+		"108": {
+			"Question": "Al Gore's roommate in college (Harvard, class of 1969) was Tommy Lee Jones.",
+			"Awnser": true
+		},
+		"109": {
+			"Question": "The Nixon-Kennedy debates of 1960 used a laugh track.",
+			"Awnser": false
+		},
+		"110": {
+			"Question": "Oscar Mayer's wife divorced him because he always came home smelling like bologna. ",
+			"Awnser": false
+		},
+		"111": {
+			"Question": "It's against the law to slam your car door in Switzerland.",
+			"Awnser": true
+		},
+		"112": {
+			"Question": "M & Ms were candy-coated peas during a chocolate shortage in the 1950s.",
+			"Awnser": false
+		},
+		"113": {
+			"Question": "Percentage of mammal species that are monogamous: 3",
+			"Awnser": true
+		},
+		"114": {
+			"Question": "One third of the land in the United States is owned by the government.",
+			"Awnser": true
+		},
+		"115": {
+			"Question": "One out of ten children in Europe are conceived on an IKEA bed.",
+			"Awnser": true
+		},
+		"116": {
+			"Question": "Although the publisher Scholastic Books expected more, the last Harry Potter book sold only 320 copies in the first day of sales.",
+			"Awnser": false
+		},
+		"117": {
+			"Question": "Because Rosie O'Donnell has fronted the money for the rock group Kiss's reunion tour next year, the tour will be known as \"Rosie's Kiss\".",
+			"Awnser": false
+		},
+		"118": {
+			"Question": "Polar bears can eat as many as 22 penguins in a single sitting. ",
+			"Awnser": false
+		},
+		"119": {
+			"Question": "Owls are the only birds who can see the color blue.",
+			"Awnser": true
+		},
+		"120": {
+			"Question": "The Don Corleone role in the movie \"The Godfather\" originally was going to be played by Andy Dick.",
+			"Awnser": false
+		},
+		"121": {
+			"Question": "At least two Alamo car rental locations in Texas are managed by descendants of Davy Crockett. ",
+			"Awnser": false
+		},
+		"122": {
+			"Question": "60 Minutes correspondent Mike Wallace owns and operates a chain of karate schools. ",
+			"Awnser": false
+		},
+		"123": {
+			"Question": "Bats always turn left when exiting a cave.",
+			"Awnser": true
+		},
+		"124": {
+			"Question": "A Wisconsin forklift operator for a Miller beer distributor was fired when a picture was published in a newspaper showing him drinking a Bud Light.",
+			"Awnser": true
+		},
+		"125": {
+			"Question": "Gary Busey has won more Academy Awards than any other actor.",
+			"Awnser": false
+		},
+		"126": {
+			"Question": "Richard Hatch, winner of the first \"Survivor\" reality series, has been charged with tax evasion for failing to report his $1,000,000 prize.",
+			"Awnser": true
+		},
+		"127": {
+			"Question": "No NCAA basketball team from a school located in its state's capitol has ever won the national championship. ",
+			"Awnser": false
+		},
+		"128": {
+			"Question": "If the Nile River were stretched across the United States, it would run nearly from New York to Los Angeles.",
+			"Awnser": true
+		},
+		"129": {
+			"Question": "People with initials that spell out GOD or ACE are likely to live longer than people whose initials spell out words like APE, PIG, or RAT.",
+			"Awnser": true
+		},
+		"130": {
+			"Question": "20% of Americans think that the sun orbits around the Earth.",
+			"Awnser": true
+		},
+		"131": {
+			"Question": "There are more 100 dollar bills in Russia currently than there are in the United States.",
+			"Awnser": true
+		},
+		"132": {
+			"Question": "Peanuts are one of the ingredients in dynamite.",
+			"Awnser": true
+		},
+		"133": {
+			"Question": "A Native American tribe in South Dakota collects bottle caps left by campers, using them as currency. Several banks in the area now recognize the caps as legal tender. ",
+			"Awnser": false
+		},
+		"134": {
+			"Question": "Two-thirds of the world's eggplant is grown in New Jersey.",
+			"Awnser": true
+		},
+		"135": {
+			"Question": "The \"you are here\" arrow on maps is called an ideo locator.",
+			"Awnser": true
+		},
+		"136": {
+			"Question": "Barry Bonds uses American Sign Language to sign the words \"Five Eggs\" towards left field after each home run.",
+			"Awnser": false
+		},
+		"137": {
+			"Question": "Over the last two decades, more Americans died of heart attacks while watching horror movies in movie theaters than died while sky-diving. ",
+			"Awnser": false
+		},
+		"138": {
+			"Question": "The \"nine lives\" attributed to cats is probably due to their having nine primary whiskers. ",
+			"Awnser": false
+		},
+		"139": {
+			"Question": "In many Eskimo schools, they don't teach multiplication. Division is taught, however.",
+			"Awnser": false
+		},
+		"140": {
+			"Question": "The city of Slaughter, Texas (population: 11,284), has never had a homicide occur within its boundaries. ",
+			"Awnser": false
+		},
+		"141": {
+			"Question": "The average child recognizes over 200 company logos by the time he enters first grade.",
+			"Awnser": true
+		},
+		"142": {
+			"Question": "If current trends continue, Medicare costs will absorb 51% of all income tax revenues by 2042.",
+			"Awnser": true
+		},
+		"143": {
+			"Question": "The first Fords had engines made by Dodge.",
+			"Awnser": true
+		},
+		"144": {
+			"Question": "The recent tsunami in Southeast Asia has apparently affected the sugar cane crop - the yield is unexpectedly way up, which will in turn lower prices for the next several years.",
+			"Awnser": false
+		},
+		"145": {
+			"Question": "A party boat filled with 60 men and women capsized in Texas after all the passengers rushed to one side as the boat passed a nude beach.",
+			"Awnser": true
+		},
+		"146": {
+			"Question": "Every time you lick a stamp, you're consuming 1/10 of a calorie.",
+			"Awnser": true
+		},
+		"147": {
+			"Question": "The average chocolate bar has 8 insect legs in it.",
+			"Awnser": true
+		},
+		"148": {
+			"Question": "The next Survivor reality TV show will take place in Central Park, New York.",
+			"Awnser": false
+		},
+		"149": {
+			"Question": "In an eighteen month period in 1973-1974, since there was renovation work on the Capitol building in St. Paul, Minnesota, state government was actually run out of an office building in River Falls, Wisconsin.",
+			"Awnser": false
+		},
+		"150": {
+			"Question": "100% of all lottery winners gain weight.",
+			"Awnser": true
+		},
+		"151": {
+			"Question": "Until 1970, the IRS taxed Monopoly winnings. ",
+			"Awnser": false
+		},
+		"152": {
+			"Question": "There are 150,000,000 cell phones in use in the United States, more than one per every two human beings in the country.",
+			"Awnser": true
+		},
+		"153": {
+			"Question": "A tank can only be used to hold helium for three fillings (depending on tank size) before being recycled. The very small helium atom actually leaks out of the tank - in between the molecules of the steel tank - in effect actually \"eating away\" the tank walls.",
+			"Awnser": false
+		},
+		"154": {
+			"Question": "The role of Don Corleone in the Godfather was offered to Andy Griffith before it was offered to Marlon Brando.",
+			"Awnser": false
+		},
+		"155": {
+			"Question": "The two-foot long bird called a Kea that lives in New Zealand likes to eat the strips of rubber around car windows.",
+			"Awnser": true
+		},
+		"156": {
+			"Question": "A female ferret will die if it goes into heat and cannot find a mate.",
+			"Awnser": true
+		},
+		"157": {
+			"Question": "Singer Bruno Mars was born Bruno Venus.",
+			"Awnser": false
+		},
+		"158": {
+			"Question": "A snail can have about 25,000 teeth.",
+			"Awnser": true
+		},
+		"159": {
+			"Question": "Barbie's full name is Barbara Millicent Roberts.",
+			"Awnser": true
+		},
+		"160": {
+			"Question": "During your lifetime, you'll eat about 60,000 pounds of food. That's the weight of about 6 elephants.",
+			"Awnser": true
+		},
+		"161": {
+			"Question": "Half of all Americans live within 50 miles of their birthplace.",
+			"Awnser": true
+		},
+		"162": {
+			"Question": "Some ribbon worms will eat themselves if they can't find any food.",
+			"Awnser": true
+		},
+		"163": {
+			"Question": "French author Michel Thaler published a 233 page novel which has no verbs.",
+			"Awnser": true
+		},
+		"164": {
+			"Question": "Delaware is the only state whose lemon law only applies to actual lemons. ",
+			"Awnser": false
+		},
+		"165": {
+			"Question": "After extensive study of the Shroud of Turin, it has now been theorized that Jesus had muttonchops.",
+			"Awnser": false
+		},
+		"166": {
+			"Question": "A Frisbee has been stuck on the top of Washington Monument since 1988.",
+			"Awnser": false
+		},
+		"167": {
+			"Question": "By 2012, Pizza Hut hopes to focus less on pizza sales and more on its hut business. ",
+			"Awnser": false
+		},
+		"168": {
+			"Question": "In China, John Steinbeck's \"The Grapes of Wrath\" is translated as \"Angry Berries.\"",
+			"Awnser": false
+		},
+		"169": {
+			"Question": "Shortly before his execution, Timothy McVeigh constructed a scale model of the Lincoln Memorial with popsicle sticks. ",
+			"Awnser": false
+		},
+		"170": {
+			"Question": "The most downloaded song on iTunes in 2007 was \"Afternoon Delight\" by the Starland Vocal Band. ",
+			"Awnser": false
+		},
+		"171": {
+			"Question": "During the Civil War, America had a demand for poodles that was not met until the mid-1920s. ",
+			"Awnser": false
+		},
+		"172": {
+			"Question": "Prior to the discovery of Penicillin in 1928, laughter really was the best medicine. ",
+			"Awnser": false
+		},
+		"173": {
+			"Question": "Lightning strikes about 6,000 times per minute on this planet.",
+			"Awnser": true
+		},
+		"174": {
+			"Question": "The international telephone dialing code for Antarctica is 672.",
+			"Awnser": true
+		},
+		"175": {
+			"Question": "A Swiss ski resort announced it would combat global warming by wrapping its mountain glaciers in aluminum foil to keep them from melting.",
+			"Awnser": true
+		},
+		"176": {
+			"Question": "71% of office workers stopped on the street for a survey agreed to give up their computer passwords in exchange for a chocolate bar.",
+			"Awnser": true
+		},
+		"177": {
+			"Question": "A strict vegan will not indicate nonsense by using the word \"baloney\". ",
+			"Awnser": false
+		},
+		"178": {
+			"Question": "When eaten, long vegetables (such as carrots, celery, etc.) that have been sliced lengthwise have double the vitamins absorbed by the body.",
+			"Awnser": false
+		},
+		"179": {
+			"Question": "In her later years, Florence Nightingale kept a pet owl in her pocket.",
+			"Awnser": true
+		},
+		"180": {
+			"Question": "The chicken is one of the few things that man eats before it's born and after it's dead.",
+			"Awnser": true
+		},
+		"181": {
+			"Question": "Newscaster Jim Lehrer is married to the woman who plays Elvira, Mistress of the Dark.",
+			"Awnser": false
+		},
+		"182": {
+			"Question": "41% of Chinese people eat at least once a week at a fast food restaurant. 35% of Americans do.",
+			"Awnser": true
+		},
+		"183": {
+			"Question": "In 1960, a then-unknown Dan Rather auditioned for the voice of cartoon character Dudley Do-Right but was turned down by animator/director Jay Ward. ",
+			"Awnser": false
+		},
+		"184": {
+			"Question": "Actor Bruce Willis has filed a lawsuit against the movie studio that produced his film \"Tears of the Sun\", alleging he was struck in the forehead by a fake bullet. Since 2002 (when the movie was in production), the lawsuit claims he has endured \"extreme mental, physical, and emotional pain and suffering\".",
+			"Awnser": true
+		},
+		"185": {
+			"Question": "55% of Americans claim they would continue working even if they received a $10,000,000 lottery prize.",
+			"Awnser": true
+		},
+		"186": {
+			"Question": "A toothpick is the object most often choked on by Americans.",
+			"Awnser": true
+		},
+		"187": {
+			"Question": "Contrary to popular belief, if you drive backwards, the odometer does not go backwards. It actually makes the odometer less accurate - up to 10% for each six miles driven backwards. ",
+			"Awnser": false
+		},
+		"188": {
+			"Question": "If a statue in the park of a person on a horse has both front legs in the air, the person died in battle; if the horse has one front leg in the air, the person died as a result of wounds received in battle; if the horse has all four legs on the ground, the person died of natural causes.",
+			"Awnser": true
+		},
+		"189": {
+			"Question": "One of pitcher Nolan Ryan's jockstraps recently sold at auction for $25,000.",
+			"Awnser": true
+		},
+		"190": {
+			"Question": "In an Egyptian tomb, archeologists have discovered a figure that looks amazingly like Papa Smurf.",
+			"Awnser": false
+		},
+		"191": {
+			"Question": "65% of Elvis impersonators are of Asian descent.",
+			"Awnser": true
+		},
+		"192": {
+			"Question": "Goldfish are neither gold nor fish.",
+			"Awnser": false
+		},
+		"193": {
+			"Question": "June Foray did the voice for Rocky the Flying Squirrel and the Chatty Cathy dolls.",
+			"Awnser": true
+		},
+		"194": {
+			"Question": "You'll eat about 35,000 cookies in your lifetime.",
+			"Awnser": true
+		},
+		"195": {
+			"Question": "J. Edgar Hoover's last act as the director of the FBI was writing the warning that appears at the start of movies.",
+			"Awnser": false
+		},
+		"196": {
+			"Question": "Pain is measured in units of \"dols\". The instrument used to measure pain is a \"dolorimeter\".",
+			"Awnser": true
+		},
+		"197": {
+			"Question": "Scuba divers cannot pass gas at depths of 33 feet or below. ",
+			"Awnser": false
+		},
+		"198": {
+			"Question": "Life expectancy for Russian men has actually gone down over the past 40 years. A Russian male born today can expect to live an average 58 years.",
+			"Awnser": true
+		},
+		"199": {
+			"Question": "In 1997, a woman in Bradenton, Florida lost her cat. In 2004, she got a call from the local animal shelter. The cat turned up wandering the streets in San Francisco, California. The cat's identity was proven with a microchip that had been implanted prior to 1997.",
+			"Awnser": true
+		},
+		"200": {
+			"Question": "At thirteen hospitals around the country, there is a Dr. Pepper on staff.",
+			"Awnser": false
+		},
+		"201": {
+			"Question": "The second Saturday in September is usually a popular time for weddings. Not in 2004, as most couples did not want their anniversaries on September 11.",
+			"Awnser": true
+		},
+		"202": {
+			"Question": "Russian scientists have developed a new drug that prolongs drunkenness and enhances intoxication.",
+			"Awnser": true
+		},
+		"203": {
+			"Question": "All of David Letterman's suits are custom made - there are no creases in his suit trousers.",
+			"Awnser": true
+		},
+		"204": {
+			"Question": "One in every 4 Americans has appeared on television.",
+			"Awnser": true
+		},
+		"205": {
+			"Question": "Bonnie and Clyde had another partner named Harold who was unfortunately killed in their first holdup. (thanks to Fray Pascual) ",
+			"Awnser": false
+		},
+		"206": {
+			"Question": "In 1993, David McLean developed lung cancer. He died on October 12, 1995. McLean's death made him the second Marlboro Man to die of lung cancer. Another actor, Wayne McLaren, died in 1992 at the age of 51 from lung cancer.",
+			"Awnser": true
+		},
+		"207": {
+			"Question": "Nobody born in Kentucky has ever been elected to Congress. ",
+			"Awnser": false
+		},
+		"208": {
+			"Question": "Evian water got its name from the first founder of the company, who remarked, \"People have got to be really naive to buy bottled water\". The name stuck; Evian is naive backwards.",
+			"Awnser": false
+		},
+		"209": {
+			"Question": "People who live together for extended periods end up blinking at the same time.",
+			"Awnser": false
+		},
+		"210": {
+			"Question": "The Toltec calendar was based on a 360-day year, with each day being about 24 hours and 20 minutes long. ",
+			"Awnser": false
+		},
+		"211": {
+			"Question": "Montpelier, Vermont is the only state capitol without a McDonald's.",
+			"Awnser": true
+		},
+		"212": {
+			"Question": "You can get blood from a stone, but only if contains at least 17 percent bauxite.",
+			"Awnser": false
+		},
+		"213": {
+			"Question": "The youngest pope was 11 years old.",
+			"Awnser": true
+		},
+		"214": {
+			"Question": "The inner core of most standard golf balls is made of nougat, which helps the balls remain aloft longer. ",
+			"Awnser": false
+		},
+		"215": {
+			"Question": "The FBI's eleventh most wanted fugitive is Lyle Lovett.",
+			"Awnser": false
+		},
+		"216": {
+			"Question": "Vice President Dick Cheney had electrolysis in 2005 to remove his eyebrows. The ones you see now are tattooed on.",
+			"Awnser": false
+		},
+		"217": {
+			"Question": "Larry King attributes his youthful looks to his diet of broccoli and Red Vines.",
+			"Awnser": false
+		},
+		"218": {
+			"Question": "A giraffe can clean its ears with its 21-inch tongue.",
+			"Awnser": true
+		},
+		"219": {
+			"Question": "Teddy Roosevelt was an avid hunter. On one safari, he bagged 16 Avids.",
+			"Awnser": false
+		},
+		"220": {
+			"Question": "Our shortest president was James Madison at 3 feet, 11 inches. ",
+			"Awnser": false
+		},
+		"221": {
+			"Question": "In the early 1940s, Heinz produced a version of Alphabetti Spaghetti especially for the German market that consisted only of little pasta swastikas.",
+			"Awnser": false
+		},
+		"222": {
+			"Question": "Square bologna (to fit properly on square bread) has failed each time that Oscar Mayer has test-marketed it.",
+			"Awnser": false
+		},
+		"223": {
+			"Question": "Hall of Fame catcher Johnny Bench sleeps in the crouching position.",
+			"Awnser": false
+		},
+		"224": {
+			"Question": "The world's youngest parents were 8 and 9 and lived in China in 1910.",
+			"Awnser": true
+		},
+		"225": {
+			"Question": "23% of employees say they have had sex in the office.",
+			"Awnser": true
+		},
+		"226": {
+			"Question": "Like George W. Bush, in college, Saddam Hussein was a cheerleader.",
+			"Awnser": false
+		},
+		"227": {
+			"Question": "60% of all US potato products originate in Idaho.",
+			"Awnser": true
+		},
+		"228": {
+			"Question": "A Georgia company will mix your loved one's ashes with cement and drop it into the ocean to form an artificial reef.",
+			"Awnser": true
+		},
+		"229": {
+			"Question": "Home Depot has an arrangement with American Express that if you pay with an AmEx card and the purchase comes to that day's exact American Express's closing stock price, you get the item for free.",
+			"Awnser": false
+		},
+		"230": {
+			"Question": "Ben Franklin actually coined the phrase \"Live Long and Prosper\". (thanks to Eric Snyder) ",
+			"Awnser": false
+		},
+		"231": {
+			"Question": "The only people whose likenesses adorn Pez dispensers are Betsy Ross and Paul Revere.",
+			"Awnser": true
+		},
+		"232": {
+			"Question": "Topless saleswomen are legal in Liverpool, England, but only in tropical fish stores.",
+			"Awnser": true
+		},
+		"233": {
+			"Question": "In some parts of Wyoming, it's legal to hunt the elderly. ",
+			"Awnser": false
+		},
+		"234": {
+			"Question": "Zeppo Marx (the unfunny one of the Marx Brothers) had a patent for a wristwatch with a heart monitor.",
+			"Awnser": true
+		},
+		"235": {
+			"Question": "If you disassembled the Great Pyramid of Cheops, you would get enough stones to encircle the earth with a brick wall twenty inches high.",
+			"Awnser": true
+		},
+		"236": {
+			"Question": "Rhode Island is the only state without an active volcano.",
+			"Awnser": false
+		},
+		"237": {
+			"Question": "Jimmy Carter once reported a UFO in Georgia.",
+			"Awnser": true
+		},
+		"238": {
+			"Question": "The last dinosaur roamed the earth in 1946.",
+			"Awnser": false
+		},
+		"239": {
+			"Question": "More than 8,100 US troops are still listed as missing in action from the Korean war.",
+			"Awnser": true
+		},
+		"240": {
+			"Question": "Ten years ago, only 500 people in China could ski. This year, an estimated 5,000,000 Chinese will visit ski resorts.",
+			"Awnser": true
+		},
+		"241": {
+			"Question": "Archimedes' screw was the basis for Max Factor's invention of the twisting lipstick holder. ",
+			"Awnser": false
+		},
+		"242": {
+			"Question": "In 1993, the board of governors at Carl Karcher Enterprises voted (5 to 2) to fire Carl Karcher. Carl Karcher is the founder of Carls Jr. restaurants.",
+			"Awnser": true
+		},
+		"243": {
+			"Question": "The biggest dog on record was an Old English Mastiff that weighed 343 pounds. He was 8 feet, 3 inches from nose to tail.",
+			"Awnser": true
+		},
+		"244": {
+			"Question": "In 1982, Kim Jong Il was a contestant on \"Tic Tac Dough\".",
+			"Awnser": false
+		},
+		"245": {
+			"Question": "Each year, over 1,000,000 people fail to itemize out the mortgage interest deduction on their income taxes. Last year, this amounted to $473,000,000 in   taxes.",
+			"Awnser": true
+		},
+		"246": {
+			"Question": "Barbara Walters is part owner of two NHL teams. She is prohibited from attending when the teams play each other.",
+			"Awnser": false
+		},
+		"247": {
+			"Question": "The actual Godzilla was only 5 feet tall and was killed by Japanese soldiers within seconds.",
+			"Awnser": false
+		},
+		"248": {
+			"Question": "Prior to their current ad campaign, Geico saved its policyholders an average of 25% on their car insurance.",
+			"Awnser": false
+		},
+		"249": {
+			"Question": "Only 6% of the autographs in circulation from members of the Beatles are estimated to be real.",
+			"Awnser": true
+		},
+		"250": {
+			"Question": "Isaac Newton invented the game Hopscotch. (thanks to Eric Snyder) ",
+			"Awnser": false
+		},
+		"251": {
+			"Question": "Americans take an average of just ten days per year vacation. In France, the law guarantees everyone five weeks of vacation, and most full-time workers get two full months vacation.",
+			"Awnser": true
+		},
+		"252": {
+			"Question": "Babe Ruth's last words were, \"the money's on the dresser.\" ",
+			"Awnser": false
+		},
+		"253": {
+			"Question": "In the Blackfoot Indian language, there is no translation for the name \"Clarence\".  (thanks to Eric Snyder) ",
+			"Awnser": false
+		},
+		"254": {
+			"Question": "The New York Jets were unable to find hotel rooms for a game in Indianapolis recently because they had all been booked up by people attending Gencon, a gaming convention.",
+			"Awnser": true
+		},
+		"255": {
+			"Question": "The most common greeting in Holland is \"Hey, nice hat!\"",
+			"Awnser": false
+		},
+		"256": {
+			"Question": "Two out of five Americans shower with a bathing suit on. (thanks to Matthew Kreimoyer",
+			"Awnser": false
+		},
+		"257": {
+			"Question": "Until 1955, traffic signals also included a purple light which meant \"up to you\". ",
+			"Awnser": false
+		},
+		"258": {
+			"Question": "All Costco locations are closed each July 1 for inventory.",
+			"Awnser": false
+		},
+		"259": {
+			"Question": "The province of Alberta, Canada is completely free of rats.",
+			"Awnser": true
+		},
+		"260": {
+			"Question": "The St. Valentine's Massacre was set up by Hallmark in the hopes of selling more cards.  (thanks to Fray Pascual) ",
+			"Awnser": false
+		},
+		"261": {
+			"Question": "Sports Illustrated magazine allows subscribers to opt out of receiving the famous swimsuit issue each year. Fewer than 1% choose this option.",
+			"Awnser": true
+		},
+		"262": {
+			"Question": "Romanian firefighters could not get their trucks close enough to a burning building, so they put out the fire by throwing snowballs at it.",
+			"Awnser": true
+		},
+		"263": {
+			"Question": "If the entire population of earth was reduced to exactly 100 people, 51% would be female, 49% male; 50% of the world's currency would be held by 6 people, one person would be nearly dead, one nearly born.",
+			"Awnser": true
+		},
+		"264": {
+			"Question": "The Westminster Kennel Club also hosts an annual Kangaroo Show.",
+			"Awnser": false
+		},
+		"265": {
+			"Question": "Before coming to power, Slobodan Milosevic hosted a radio talk show about soccer.",
+			"Awnser": false
+		},
+		"266": {
+			"Question": "In 1987, baseball Hall of Famer George Brett was thrown out of a game for wearing argyle socks.",
+			"Awnser": false
+		},
+		"267": {
+			"Question": "President Richard Nixon was an avid CB radio user.",
+			"Awnser": false
+		},
+		"268": {
+			"Question": "A deployed air bag adds as much as $2,000 to the cost of repairing a vehicle. That's enough for insurance companies to often declare the car \"totaled\".",
+			"Awnser": true
+		},
+		"269": {
+			"Question": "One of every two thousand babies is born fully clothed. ",
+			"Awnser": false
+		},
+		"270": {
+			"Question": "If you have three quarters, four dimes and four cents, you have $1.19. But you cannot make exact change for a dollar.",
+			"Awnser": true
+		},
+		"271": {
+			"Question": "If you fill a standard 750ml wine bottle with live hornets, their angry buzzing will resonate at precisely the right frequency to shatter the glass. ",
+			"Awnser": false
+		},
+		"272": {
+			"Question": "The most frequently used word in the English language is \"biscuit.\"",
+			"Awnser": false
+		},
+		"273": {
+			"Question": "Yellow Hi-liter is an excellent source of Vitamin C. ",
+			"Awnser": false
+		},
+		"274": {
+			"Question": "Van Halen singer David Lee Roth trained to be an EMT in New York City, and planned to be certified by November 2004.",
+			"Awnser": true
+		},
+		"275": {
+			"Question": "Almonds are members of the peach family.",
+			"Awnser": true
+		},
+		"276": {
+			"Question": "At General Motors, the cost of health care for employees now exceeds the cost of steel.",
+			"Awnser": true
+		},
+		"277": {
+			"Question": "To enhance the home theatre experience, some installation companies will even install a sticky floor.",
+			"Awnser": false
+		},
+		"278": {
+			"Question": "In an effort to improve the nutritional value of its \"Shamrock shakes,\" McDonald's colors them with broccoli extract. ",
+			"Awnser": false
+		},
+		"279": {
+			"Question": "The flush toilet was invented in Flushing, NY. ",
+			"Awnser": false
+		},
+		"280": {
+			"Question": "Rapid deforestation has decreased the friction of the surface of the Earth, causing it to spin infinitesimally faster and thereby cool the air, combating global warming. ",
+			"Awnser": false
+		},
+		"281": {
+			"Question": "Kim Jong Il has a star on the walk of fame in Hollywood.",
+			"Awnser": false
+		},
+		"282": {
+			"Question": "Almost 20% of the billions of dollars American taxpayers are spending to rebuild Iraq are lost to theft, kickbacks and corruption.",
+			"Awnser": true
+		},
+		"283": {
+			"Question": "Television stations hung banners at the 2004 Democratic National Convention, including Al-Jazeera, until it was noticed and taken down.",
+			"Awnser": true
+		},
+		"284": {
+			"Question": "There are over 52.6 million dogs in the U.S.",
+			"Awnser": true
+		},
+		"285": {
+			"Question": "Villanova University's commencement speaker this year is the actor who plays Big Bird.",
+			"Awnser": true
+		},
+		"286": {
+			"Question": "Mark Twain didn't graduate from elementary school.",
+			"Awnser": true
+		},
+		"287": {
+			"Question": "There is no literal translation for \"boss\" in Japanese, so in Tokyo, Bruce Springsteen is known as \"The Supervisor\".",
+			"Awnser": false
+		},
+		"288": {
+			"Question": "John Kerry's hometown newspaper, the Lowell Sun, endorsed George W. Bush for president in 2004. Bush's hometown newspaper, the Lone Star Iconoclast, endorsed John Kerry for president in 2004.",
+			"Awnser": true
+		},
+		"289": {
+			"Question": "The brand name \"Jelly Belly\" was created in 1982 after Nancy Reagan made a much-publicized quip about her husband's 20-pound weight gain, mostly due to his penchant for jelly beans.",
+			"Awnser": false
+		},
+		"290": {
+			"Question": "The chance that you will die on the way to buy your lottery ticket is greater than the chance of you winning the big prize in most lotteries.",
+			"Awnser": true
+		},
+		"291": {
+			"Question": "There is a regulation size half-court where employees can play basketball inside the Matterhorn at Disneyland.",
+			"Awnser": true
+		},
+		"292": {
+			"Question": "You're most likely to be stung by a bee in windy weather.",
+			"Awnser": false
+		},
+		"293": {
+			"Question": "The thong accounts for 25% of the United States women's underwear market.",
+			"Awnser": true
+		},
+		"294": {
+			"Question": "Author Hunter S. Thompson, who committed suicide recently, wanted to be cremated and his ashes to be shot out of a cannon on his ranch.",
+			"Awnser": true
+		},
+		"295": {
+			"Question": "Ostriches are the only birds that occasionally have 2 birds in one egg.",
+			"Awnser": false
+		},
+		"296": {
+			"Question": "Fewer than half of the 16,200 major league baseball players have ever hit a home run.",
+			"Awnser": true
+		},
+		"297": {
+			"Question": "No death-row inmate has ever asked for tofu as his last meal. ",
+			"Awnser": false
+		},
+		"298": {
+			"Question": "John F. Kennedy was an accomplished ventriloquist. ",
+			"Awnser": false
+		},
+		"299": {
+			"Question": "In 1920, Babe Ruth broke the single season home run record, with 29. The same year, he became the first major leaguer to hit 30 home runs. The same year, he became the first major leaguer to hit 40 home runs. The same year, he became the first major leaguer to hit 50 home runs.",
+			"Awnser": true
+		},
+		"300": {
+			"Question": "If you take the sugar and flavoring out of Cool Whip, the result is molecularly very close to the plastic used in ping pong balls.",
+			"Awnser": false
+		},
+		"301": {
+			"Question": "The Motel 6 lodging chain got its name from the nine partners who founded the chain. Unfortunately, the original partnership paperwork was filled out upside-down.",
+			"Awnser": false
+		},
+		"302": {
+			"Question": "The chameleon has a tongue that is one and a half times the length of his body.",
+			"Awnser": true
+		},
+		"303": {
+			"Question": "Actor James Woods actually served as the governor of Idaho for a week while researching a movie role in the late 1990s.",
+			"Awnser": false
+		},
+		"304": {
+			"Question": "The average person burns 19 calories giving someone the finger. ",
+			"Awnser": false
+		},
+		"305": {
+			"Question": "In the Cherokee language, there are only three numbers - one, two and plenty. (thanks to Eric Snyder) ",
+			"Awnser": false
+		},
+		"306": {
+			"Question": "The Harlem Globetrotters actually lost a game to the Washington Generals (July 5, 1989).",
+			"Awnser": false
+		},
+		"307": {
+			"Question": "Since the release of the movie \"The Bucket List\", bucket sales have quadrupled.",
+			"Awnser": false
+		},
+		"308": {
+			"Question": "If you notify the flight attendant that it's your birthday, most airlines will let you exit the plane on the inflatable slide.",
+			"Awnser": false
+		},
+		"309": {
+			"Question": "A cucumber is 96% water and 4% cucumber.",
+			"Awnser": false
+		},
+		"310": {
+			"Question": "A ten year old mattress weighs double what it did when it was new, because of the -ahem- debris which is absorbed through the years. That debris includes dust mites (their droppings and their decaying bodies), mold, millions of dead skin cells, dandruff, animal and human hair, secretions, excretions, lint, pollen, dust, soil, sand and a lot of perspiration, of which the average person loses a quart per day. Good night!",
+			"Awnser": true
+		},
+		"311": {
+			"Question": "More people in the United States die during the first week of the month than during the last, an increase that may be a result of the abuse of substances purchased with benefit checks that come at the beginning of each month.",
+			"Awnser": true
+		},
+		"312": {
+			"Question": "American made parts account for only 1% of the Chrysler Crossfire. 96% of the Ford F-150 Heritage Truck is American.",
+			"Awnser": true
+		},
+		"313": {
+			"Question": "Some dogs can predict when a child will have an epileptic seizure, and even protect the child from injury. They're not trained to do this, they simply learn to respond after observing at least one attack.",
+			"Awnser": true
+		},
+		"314": {
+			"Question": "There is enough fuel in a full tank of a jumbo jet to drive an average car four times around the world.",
+			"Awnser": true
+		},
+		"315": {
+			"Question": "The longest words in the English language with only one syllable are the nine-letter \"screeched\" and \"strengths\".",
+			"Awnser": true
+		},
+		"316": {
+			"Question": "Albert Einstein died on a mattress in a Serta showroom.",
+			"Awnser": false
+		},
+		"317": {
+			"Question": "Osama Bin-Laden had a lifetime subscription to Mad magazine. (thanks to Eric Snyder) ",
+			"Awnser": false
+		},
+		"318": {
+			"Question": "The last words of 47% of American men are \"Hey, watch this!\".",
+			"Awnser": false
+		},
+		"319": {
+			"Question": "Comic duo Cheech and Chong were originally known as Spic and Span before changing due to pressure from Chicano organizations. ",
+			"Awnser": false
+		},
+		"320": {
+			"Question": "Until 1796, there was a state in the United States called Franklin. Today it is known as Tennessee.",
+			"Awnser": true
+		},
+		"321": {
+			"Question": "Thomas Edison, light bulb inventor, was afraid of the dark.",
+			"Awnser": true
+		},
+		"322": {
+			"Question": "Isaac Newton invented the game Hopscotch. (thanks to Eric Snyder) ",
+			"Awnser": false
+		},
+		"323": {
+			"Question": "Putting a stick of margarine in a diesel engine will increase mileage by approximately 10%. (thanks to Eric Snyder) ",
+			"Awnser": false
+		},
+		"324": {
+			"Question": "To the Vikings, it was considered rude to kill someone wearing green. (thanks to Eric Snyder) ",
+			"Awnser": false
+		},
+		"325": {
+			"Question": "Albert Einstein was an avid body builder.  (thanks to Eric Snyder) ",
+			"Awnser": false
+		},
+		"326": {
+			"Question": "All pencils are painted with a bitter-tasting white primer before the top color coat goes on. This is why the bite marks always are distasteful and are white.",
+			"Awnser": false
+		},
+		"327": {
+			"Question": "Only 26% of ranchers actually use ranch dressing.",
+			"Awnser": false
+		},
+		"328": {
+			"Question": "Human saliva has a boiling point twice that of regular water. ",
+			"Awnser": false
+		},
+		"329": {
+			"Question": "\"Wheel of Fortune\" has been rerunning the same 12 episodes since 1998. ",
+			"Awnser": false
+		},
+		"330": {
+			"Question": "In addition to Post Offices and Immigration Offices, you can renew a passport at Denny's.",
+			"Awnser": false
+		},
+		"331": {
+			"Question": "Just as Larry is short for Lawrence, Gary is short for Gawrence.",
+			"Awnser": false
+		},
+		"332": {
+			"Question": "Approximately 200,000 drivers a year are seriously burned by EZ-pass sensors. ",
+			"Awnser": false
+		},
+		"333": {
+			"Question": "The word \"apple\" comes from the Latin word meaning \"apple\".",
+			"Awnser": false
+		},
+		"334": {
+			"Question": "The glue on Israeli postage stamps is certified kosher.",
+			"Awnser": true
+		},
+		"335": {
+			"Question": "Female monkeys recognize their children by height and weight, not necessarily by their facial characteristics.",
+			"Awnser": false
+		},
+		"336": {
+			"Question": "In 1983, General Mills in Battle Creek, Michigan had to stop making Cheerios due to the drill press operator strike.  (thanks to Eric Snyder) ",
+			"Awnser": false
+		},
+		"337": {
+			"Question": "Singer/Actor Kris Kristofferson is considering a run for president to confuse New Jersey governor Chris Christie's supporters. ",
+			"Awnser": false
+		},
+		"338": {
+			"Question": "An average of 100 people choke to death on ball point pens each year.",
+			"Awnser": true
+		},
+		"339": {
+			"Question": "Shishkabobs were invented when a Turkish mathematician tried to make an abacus out of meat.",
+			"Awnser": false
+		},
+		"340": {
+			"Question": "In the White House, there are 13,092 knives, forks and spoons.",
+			"Awnser": true
+		},
+		"341": {
+			"Question": "The RIAA sued an 83 year old woman for downloading music illegally, even though a copy of her death certificate was sent to the RIAA a week before it filed the suit.",
+			"Awnser": true
+		},
+		"342": {
+			"Question": "New data suggests that so-called global warming may be due to a batch of faulty thermometers.",
+			"Awnser": false
+		},
+		"343": {
+			"Question": "The hummingbird is the only bird that can fly backwards.",
+			"Awnser": true
+		},
+		"344": {
+			"Question": "There are less than 100 surviving American World War I veterans.",
+			"Awnser": true
+		},
+		"345": {
+			"Question": "A snowflake can take up to a hour to fall from the cloud to the surface of the Earth.",
+			"Awnser": true
+		},
+		"346": {
+			"Question": "One of Hewlett Packard's first ideas was an automatic urinal flusher.",
+			"Awnser": true
+		},
+		"347": {
+			"Question": "To combat global warming, the United States government is suggesting that when Daylight Savings time ends, Americans set the clocks and thermometers back.",
+			"Awnser": false
+		},
+		"348": {
+			"Question": "You can actually sharpen the blades on a pencil sharpener by wrapping your pencils in aluminum foil before inserting them.",
+			"Awnser": false
+		},
+		"349": {
+			"Question": "In 1983, the major league baseball all-star game was played without a ball. ",
+			"Awnser": false
+		},
+		"350": {
+			"Question": "Gerald Ford once worked as a cover model for Cosmopolitan magazine.",
+			"Awnser": true
+		},
+		"351": {
+			"Question": "Newborn babies are given to the wrong mother in the hospital 12 times a day worldwide.",
+			"Awnser": true
+		},
+		"352": {
+			"Question": "The first remote control took 8 minutes to change channels.",
+			"Awnser": false
+		},
+		"353": {
+			"Question": "One person in two billion will live to be 116 or older.",
+			"Awnser": true
+		},
+		"354": {
+			"Question": "Abraham Lincoln was wearing his stovepipe hat when he lost his virginity. ",
+			"Awnser": false
+		},
+		"355": {
+			"Question": "Teddy Roosevelt was the last president to wear a hat in the shower.",
+			"Awnser": false
+		},
+		"356": {
+			"Question": "The Swedish pop group ABBA recently turned down an offer of $2 billion to reunite.",
+			"Awnser": true
+		},
+		"357": {
+			"Question": "Snakes are true carnivores as they eat nothing but other animals. They do not eat any type of plant material.",
+			"Awnser": true
+		},
+		"358": {
+			"Question": "One-third of explorers who've visited both the North and South Poles developed bipolar disorder.",
+			"Awnser": false
+		},
+		"359": {
+			"Question": "Percentage of Africa that is wilderness: 28",
+			"Awnser": true
+		},
+		"360": {
+			"Question": "An average American will spend an average of 6 months during his lifetime waiting at red lights.",
+			"Awnser": true
+		},
+		"361": {
+			"Question": "World War II veterans are now dying at the rate of about 1,100 each day.",
+			"Awnser": true
+		},
+		"362": {
+			"Question": "Biblical scholars recently unearthed a previously unknown gospel written by a disciple named \"Rusty\".",
+			"Awnser": false
+		},
+		"363": {
+			"Question": "Amusement park attendance goes up after a fatal accident. It seems many people want to ride upon the same ride that killed someone.",
+			"Awnser": true
+		},
+		"364": {
+			"Question": "Lizzie Borden went crazy because her husband put ketchup on his liver and onions. (thanks to Fray Pascual) ",
+			"Awnser": false
+		},
+		"365": {
+			"Question": "Centuries ago, purchasing real estate often required having one or more limbs amputated in order to prevent the purchaser from running away to avoid repayment of the loan. Hence an expensive purchase was said to cost \"an arm and a leg.\" ",
+			"Awnser": false
+		},
+		"366": {
+			"Question": "As of January 1, 2004, the population of the United States increases by one person every 12 seconds. There is a birth every eight seconds, an immigrant is added every 25 seconds, but a death every 13 seconds.",
+			"Awnser": true
+		},
+		"367": {
+			"Question": "There is a company that will (for $14,000) take your ashes, compress them into a synthetic diamond to be set in jewelry for a loved one.",
+			"Awnser": true
+		},
+		"368": {
+			"Question": "According to market research firm NPD Fashionworld, fifty percent of all lingerie purchases are returned to the store.",
+			"Awnser": true
+		},
+		"369": {
+			"Question": "The fertility rate in states that voted for George Bush is 12% higher than states that favored John Kerry.",
+			"Awnser": true
+		},
+		"370": {
+			"Question": "60.7 percent of eligible voters participated in the 2004 presidential election, the highest percentage in 36 years. However, more than 78 million did not vote. This means President Bush won re-election by receiving votes from less than 31% of all eligible voters in the United States.",
+			"Awnser": true
+		},
+		"371": {
+			"Question": "There are over 87,000 Americans on waiting lists for organ transplants.",
+			"Awnser": true
+		},
+		"372": {
+			"Question": "The Bible has been translated into Klingon.",
+			"Awnser": true
+		},
+		"373": {
+			"Question": "The largest ocean liners pay a $250,000 toll for each trip through the Panama Canal. The canal generates fully one-third of Panama's entire economy.",
+			"Awnser": true
+		},
+		"374": {
+			"Question": "A starfish can turn its stomach inside out.",
+			"Awnser": true
+		},
+		"375": {
+			"Question": "In 1920, Babe Ruth out-homered every American League team.",
+			"Awnser": true
+		},
+		"376": {
+			"Question": "Most dust particles in your house are made from dead skin.",
+			"Awnser": true
+		},
+		"377": {
+			"Question": "The Pentagon has twice as many restrooms as necessary. When it was built, segregation was still in place in Virginia, so separate restrooms for blacks and whites were required by law.",
+			"Awnser": true
+		},
+		"378": {
+			"Question": "The UK's best selling hiking magazine published faulty coordinates for descending Scotland's tallest peak (Ben Nevis), and recommended a route that leads climbers off the edge of a cliff.",
+			"Awnser": true
+		},
+		"379": {
+			"Question": "Hostess Twinkies were originally filled with banana filling. The filling was changed during World War II when the United States experienced a banana shortage.",
+			"Awnser": true
+		},
+		"380": {
+			"Question": "Shania Twain is Mark Twain's great-granddaughter. (thanks to Eric Snyder)",
+			"Awnser": false
+		},
+		"381": {
+			"Question": "Satellite radio receivers (XM, Sirius) will occasionally disrupt radar guns (K-band) used by police to catch speeders.",
+			"Awnser": false
+		},
+		"382": {
+			"Question": "When Mahatma Gandhi died, an autopsy revealed five gold Krugerrands in his small intestine. ",
+			"Awnser": false
+		},
+		"383": {
+			"Question": "When Mary Kate and Ashley Olsen turned 18 in mid-2004, they took official control of a company worth more than the gross national product of Mongolia. Their earnings in 2003 topped $1 billion.",
+			"Awnser": true
+		},
+		"384": {
+			"Question": "Owls only lose feathers during daylight hours, usually when they're sleeping.",
+			"Awnser": false
+		},
+		"385": {
+			"Question": "To help reduce budget deficits, several states have begun reducing the amount of food served to prison inmates. In Texas, the number of daily calories served to prisoners was cut by 300, saving the state $6,000,000 per year.",
+			"Awnser": true
+		},
+		"386": {
+			"Question": "Percentage of American women who say they would marry the same man: 50",
+			"Awnser": true
+		},
+		"387": {
+			"Question": "The National Weather Service has three employees who do nothing but watch for clouds that look like animals. ",
+			"Awnser": false
+		},
+		"388": {
+			"Question": "Abraham Lincoln's dog, Fido, was assassinated too.",
+			"Awnser": true
+		},
+		"389": {
+			"Question": "It is possible to lead a cow upstairs but not downstairs.",
+			"Awnser": true
+		},
+		"390": {
+			"Question": "When in heat, female hippopotami secrete an oil with a flavor similar to strawberries. Kalahari bushmen use the oil to make flat-bread treats for children. ",
+			"Awnser": false
+		},
+		"391": {
+			"Question": "Mr. T makes his own jewelry. (thanks to Eric Snyder) ",
+			"Awnser": false
+		},
+		"392": {
+			"Question": "Before microwave ovens were popular, KitchenAid experimented with an oven that cooked food with compressed air.",
+			"Awnser": false
+		},
+		"393": {
+			"Question": "The strength of early lasers was measured in Gillettes, the number of blue razor blades a given beam could puncture.",
+			"Awnser": true
+		},
+		"394": {
+			"Question": "In space, astronauts cannot cry, because there is no gravity, so the tears can't flow.",
+			"Awnser": true
+		},
+		"395": {
+			"Question": "The National Anthem of Greece has 158 verses.",
+			"Awnser": true
+		},
+		"396": {
+			"Question": "In the early 1800s, a flush beat a full house in poker.",
+			"Awnser": false
+		},
+		"397": {
+			"Question": "They have square watermelons in Japan - they stack better.",
+			"Awnser": true
+		},
+		"398": {
+			"Question": "The New York Times reports that in February 2004, 62% of all e-mail was spam.",
+			"Awnser": true
+		},
+		"399": {
+			"Question": "The Main Library at Indiana University sinks over an inch every year because when it was built engineers failed to take into account the weight of all the books that would occupy the building.",
+			"Awnser": true
+		},
+		"400": {
+			"Question": "22% of Americans say that if it were legal, they might try cannibalism.",
+			"Awnser": false
+		},
+		"401": {
+			"Question": "In 1997, Tony Bennett had a heart transplant in San Francisco's Mercy Hospital.",
+			"Awnser": false
+		},
+		"402": {
+			"Question": "The average American drinks about 600 sodas a year.",
+			"Awnser": true
+		},
+		"403": {
+			"Question": "Orthodox rabbis warned that New York City drinking water might not be kosher; it contains harmless micro-organisms that are technically shellfish.",
+			"Awnser": true
+		},
+		"404": {
+			"Question": "Chicago is closer to Moscow than it is to Rio de Janeiro.",
+			"Awnser": true
+		},
+		"405": {
+			"Question": "Jim Carrey voted in 2004 at the Beverly Hills City Hall. He had an assistant wait in line for him, however.",
+			"Awnser": true
+		},
+		"406": {
+			"Question": "During \"Happy Days\" mania, nearly half of all newborns in the United States were named \"Fonzie\".",
+			"Awnser": false
+		},
+		"407": {
+			"Question": "Winston Churchill was born with a third nipple, which he removed himself with nail-clippers at the age of 14. ",
+			"Awnser": false
+		},
+		"408": {
+			"Question": "With the exception of a small 200-square-mile section of Antarctica, every single square kilometer of dry land on the planet has been walked on by at least one human being. ",
+			"Awnser": false
+		},
+		"409": {
+			"Question": "North Dakota has never had an earthquake.",
+			"Awnser": true
+		},
+		"410": {
+			"Question": "As a rule, tall people attract fewer mosquitoes.",
+			"Awnser": false
+		},
+		"411": {
+			"Question": "In a nod to astronauts, Texas is the only state that permits residents to cast absentee ballots from space.",
+			"Awnser": true
+		},
+		"412": {
+			"Question": "Austin High School in Texas has removed candy from its vending machines. Now some enterprising students are earning $200 per week dealing in black market candy.",
+			"Awnser": true
+		},
+		"413": {
+			"Question": "Dan Castellaneta, the voice of Homer Simpson, is getting older, and he can no longer properly voice the characteristic \"D'oh!\". From the sixth season of \"The Simpsons\" to the present, whenever you hear \"D'oh\", it's either a dub from an episode originally aired in seasons 1-5, or digitally created on a Macintosh computer.",
+			"Awnser": false
+		},
+		"414": {
+			"Question": "Dolly Parton once lost a Dolly Parton Look-Alike contest.",
+			"Awnser": true
+		},
+		"415": {
+			"Question": "One-A-Day vitamins have tested a \"hot-and-spicy\" chewable vitamin.",
+			"Awnser": false
+		},
+		"416": {
+			"Question": "The Starbucks at the highest elevation is on Main Street in Breckenridge, Colorado.",
+			"Awnser": true
+		},
+		"417": {
+			"Question": "Dean Kamen, inventor of the Segway, can solve a Rubik's cube blindfolded.",
+			"Awnser": false
+		},
+		"418": {
+			"Question": "Studies show newborns will recognize their mother's face more readily if their mother wears glasses.",
+			"Awnser": false
+		},
+		"419": {
+			"Question": "As of January 2004, the United States economy now borrows $1,500,000,000 each day from foreign investors.",
+			"Awnser": true
+		},
+		"420": {
+			"Question": "The term \"bank teller\" originated in the wake of the 1929 stock market crash, when banks began hiring low-paid workers to \"tell\" frantic depositors that their money was gone.",
+			"Awnser": false
+		},
+		"421": {
+			"Question": "The Washington Times newspaper is owned by the Rev. Sun Myung Moon.",
+			"Awnser": true
+		},
+		"422": {
+			"Question": "In Tempe, Arizona, it is illegal to yell 'Yahtzee' in a crowded theater.",
+			"Awnser": false
+		},
+		"423": {
+			"Question": "Since the formula changed in 1998, Silly Putty is 23% less silly.",
+			"Awnser": false
+		},
+		"424": {
+			"Question": "Profanity is typically cut from in-flight movies to make them suitable for general audiences. Fox Searchlight Pictures has substituted \"Ashcroft\" for \"A**hole\" in the movie Sideways when dubbed for Aerolineas Argentinas flights.",
+			"Awnser": true
+		},
+		"425": {
+			"Question": "In 1955, during the horse shortage, the Kentucky Derby was won by a mule.",
+			"Awnser": false
+		},
+		"426": {
+			"Question": "Researchers have found that doctors who spend at least three hours a week playing video games make about 37% fewer mistakes in laparoscopic surgery than surgeons who didn't play video games.",
+			"Awnser": true
+		},
+		"427": {
+			"Question": "It is physically impossible for pigs to look up into the sky.",
+			"Awnser": true
+		},
+		"428": {
+			"Question": "Fortune cookies were actually invented in America, in 1918, by Charles Jung.",
+			"Awnser": true
+		},
+		"429": {
+			"Question": "Five years ago, 60% of all retail purchases were made with cash or check. Now it's 50%. By 2010, 39% of purchases will be made by cash or check.",
+			"Awnser": true
+		},
+		"430": {
+			"Question": "Human tonsils are so dense that they can bounce higher than a rubber ball of similar weight and size, but only for the first 30 minutes after they've been removed. ",
+			"Awnser": false
+		},
+		"431": {
+			"Question": "Scientists estimate that sleep lost due to daylight saving time reduces the average lifespan by nearly two full months. ",
+			"Awnser": false
+		},
+		"432": {
+			"Question": "George Washington died of a wig infection. ",
+			"Awnser": false
+		},
+		"433": {
+			"Question": "People in China and Japan die disproportionately on the 4th of each month because the words death and four sound alike, and they are represented by the same symbol.",
+			"Awnser": true
+		},
+		"434": {
+			"Question": "As part of a charity event, 500 cats were spayed and neutered in the cafeteria of an elementary school. School was cancelled for days and $10,000 was spent on cleaning and sterilizing the room.",
+			"Awnser": true
+		},
+		"435": {
+			"Question": "3.9% of all women surveyed say they never wear underwear.",
+			"Awnser": true
+		},
+		"436": {
+			"Question": "Fidel Castro's brother Raul has a large collection of Beanie Babies. ",
+			"Awnser": false
+		},
+		"437": {
+			"Question": "At any given moment, 93% of American TIVOs contain at least one episode of \"Sanford & Son\".",
+			"Awnser": false
+		},
+		"438": {
+			"Question": "Q is the only letter in the alphabet that does not appear in the name of any of the United States.",
+			"Awnser": true
+		},
+		"439": {
+			"Question": "Tommy Lee Jones and Kim Jong Il were freshman roommates at Harvard.",
+			"Awnser": false
+		},
+		"440": {
+			"Question": "90% of Canada's 31,000,000 citizens live within 100 miles of the U.S. border.",
+			"Awnser": true
+		},
+		"441": {
+			"Question": "During a banana shortage in the summer of 1958, banana splits were made with zucchini or carrots.",
+			"Awnser": false
+		},
+		"442": {
+			"Question": "Spam filters that catch the word \"cialis\" will not allow many work-related e-mails through because that word is embedded inside the word \"specialist\".",
+			"Awnser": true
+		},
+		"443": {
+			"Question": "At a Phoenician city dig, archeologists found a primitive version of the game Chutes and Ladders. (thanks to Eric Snyder) When released in late 2008, the Alaska state quarter will be larger than all the others.",
+			"Awnser": false
+		},
+		"444": {
+			"Question": "All major league baseball umpires must wear black underwear while on the job (in case their pants split).",
+			"Awnser": true
+		},
+		"445": {
+			"Question": "Last December, the House of Representatives earmarked $50,000,000 to create an indoor rain forest in Iowa.",
+			"Awnser": true
+		},
+		"446": {
+			"Question": "The longest human pregnancy on record was 37 months.",
+			"Awnser": false
+		},
+		"447": {
+			"Question": "For the last ten years, Henry Kissinger worked for college art classes as a nude model. ",
+			"Awnser": false
+		},
+		"448": {
+			"Question": "Orville Wright was the first member of the mile-high club. ",
+			"Awnser": false
+		},
+		"449": {
+			"Question": "At the last supper, Jesus was automatically billed eighteen percent gratuity because his party included six or more people.",
+			"Awnser": false
+		},
+		"450": {
+			"Question": "After you die, your tongue continues to grow.",
+			"Awnser": false
+		},
+		"451": {
+			"Question": "Customs officials have dogs that are trained to distinguish between Cuban cigars and all other cigars. ",
+			"Awnser": false
+		},
+		"452": {
+			"Question": "In 1963, baseball pitcher Gaylord Perry remarked, \"They'll put a man on the moon before I hit a home run.\" On July 20, 1969, a few hours after Neil Armstrong set foot on the moon, Gaylord Perry hit his first (and only) home run.",
+			"Awnser": true
+		},
+		"453": {
+			"Question": "Motorists traveling outside Salem, Oregon saw one of the \"litter cleanup\" signs crediting the American Nazi party. Marion County officials had no choice but to let that group into the adopt-a-road program. The $500 per sign was picked up by Oregon taxpayers. The Ku Klux Klan is also involved in the adopt-a-road program in the state of Arkansas.",
+			"Awnser": true
+		},
+		"454": {
+			"Question": "A flamingo can eat only when its head is upside down.",
+			"Awnser": true
+		},
+		"455": {
+			"Question": "The estates of 22 dead celebrities earned over $5 million in 2004. These celebrities include Elvis Presley, Dr. Seuss, Charles Schulz, J.R.R. Tolkien and John Lennon.",
+			"Awnser": true
+		},
+		"456": {
+			"Question": "The busiest shopping hour of the holiday season is between 3:00 pm and 4:00 pm on Christmas Eve.",
+			"Awnser": true
+		},
+		"457": {
+			"Question": "Fidel Castro once hosted \"Saturday Night Live\".",
+			"Awnser": false
+		},
+		"458": {
+			"Question": "In an effort to encourage the use of nuclear energy, the United States lent highly enriched uranium to countries all over the world between 1950 and 1988. Enough weapons-grade material to make 1,000 nuclear bombs has still not been returned by such countries as Pakistan, Iran, Israel and South Africa.",
+			"Awnser": true
+		},
+		"459": {
+			"Question": "Due to a clerical error, from 1931 to 1932 Delaware had a dog for Governor.",
+			"Awnser": false
+		},
+		"460": {
+			"Question": "Antarctica is the only continent without reptiles or snakes.",
+			"Awnser": true
+		},
+		"461": {
+			"Question": "George W. Bush is a member of the mile-high club in Air Force One.",
+			"Awnser": false
+		},
+		"462": {
+			"Question": "90% of the Chuck Norris jokes you see around were written by Chuck Norris. (thanks to Eric Snyder) ",
+			"Awnser": false
+		},
+		"463": {
+			"Question": "To date, \"Hee Haw\" is the only TV show title based on a sound made by a donkey. ",
+			"Awnser": false
+		},
+		"464": {
+			"Question": "For every person on earth, there are an estimated 200 million insects.",
+			"Awnser": true
+		},
+		"465": {
+			"Question": "For $25, New York City allows you to name a pothole.",
+			"Awnser": false
+		},
+		"466": {
+			"Question": "Glamorous movie star Brad Pitt once had a summer job posting warning signs at coal mine entrances. ",
+			"Awnser": false
+		},
+		"467": {
+			"Question": "\"Planet of the Apes\" is based on a true story.",
+			"Awnser": false
+		},
+		"468": {
+			"Question": "\"60 Minutes\" on CBS is the only TV show to not have a theme song or music.",
+			"Awnser": true
+		},
+		"469": {
+			"Question": "The remains of 125 people will be launched into space where they will orbit the Earth for centuries.",
+			"Awnser": true
+		},
+		"470": {
+			"Question": "In the weightlessness of space a frozen pea will explode if it comes in contact with a carbonated beverage.",
+			"Awnser": false
+		},
+		"471": {
+			"Question": "The world's smallest winged insect is the Tanzanian parasitic wasp. It's smaller than the eye of a housefly.",
+			"Awnser": true
+		},
+		"472": {
+			"Question": "Beethoven dipped his head in cold water before he composed.",
+			"Awnser": true
+		},
+		"473": {
+			"Question": "If you make a cow laugh hard enough, milk will come out of its nose. ",
+			"Awnser": false
+		},
+		"474": {
+			"Question": "Frank Sinatra didn't want to record the song \"My Way\" but was forced to by his record label.",
+			"Awnser": false
+		},
+		"475": {
+			"Question": "Now and then Queen Elizabeth lights up a # 10 Downing Street cigar. (thanks to Eric Snyder)",
+			"Awnser": false
+		},
+		"476": {
+			"Question": "Mark Twain was born on a day in 1835 when Halley's Comet came into view. When he died in 1910, Halley's Comet was in view again.",
+			"Awnser": true
+		},
+		"477": {
+			"Question": "In September 2004, a Minnesota state trooper issued a speeding ticket to a motorcyclist who was clocked at 205 mph.",
+			"Awnser": true
+		},
+		"478": {
+			"Question": "China is the world's largest market for BMW's top of the line 760Li. This car sells for $200,000 in China - more than almost all people in China make in a lifetime.",
+			"Awnser": true
+		},
+		"479": {
+			"Question": "111,111,111 x 111,111,111 = 12,345,678,987,654,321",
+			"Awnser": true
+		},
+		"480": {
+			"Question": "By 2025, zoologists believe that the kangaroo will have an additional pouch for his iPod. ",
+			"Awnser": false
+		},
+		"481": {
+			"Question": "Chimps are the only animals that can recognize themselves in a mirror.",
+			"Awnser": true
+		},
+		"482": {
+			"Question": "More people study English in China than speak it in the United States of America (300 million).",
+			"Awnser": true
+		},
+		"483": {
+			"Question": "Labrador retrievers dream about bananas. ",
+			"Awnser": false
+		},
+		"484": {
+			"Question": "An embarrassed David Blaine had to call AAA when he locked his keys in his car in 2006.",
+			"Awnser": false
+		},
+		"485": {
+			"Question": "Kevin Spacey's older brother is a professional Rod Stewart impersonator.",
+			"Awnser": true
+		},
+		"486": {
+			"Question": "Cranberry Jell-O is the only flavor that contains real fruit flavoring.",
+			"Awnser": true
+		},
+		"487": {
+			"Question": "If you put a compass in a blender for thirty seconds, it will point to the lost cash of D.B. Cooper. (thanks to Fray Pascual) ",
+			"Awnser": false
+		},
+		"488": {
+			"Question": "The only golf course on the island nation of Tonga has 15 holes, and there's no penalty if a monkey steals your golf ball.",
+			"Awnser": false
+		},
+		"489": {
+			"Question": "Costco is the largest wine retailer in the United States. Annual wine sales are about $700 million.",
+			"Awnser": true
+		},
+		"490": {
+			"Question": "Your ribs move about 5 million times a year, every time you breathe.",
+			"Awnser": true
+		},
+		"491": {
+			"Question": "During his famous \"Blue Period\", Pablo Picasso invented the substance that eventually became known as Play-Doh. ",
+			"Awnser": false
+		},
+		"492": {
+			"Question": "The Yanomami tribesmen of the Amazon basin can track game birds by the slight difference in warmth their shadows create on the forest floor as they fly by, for up to an hour after the birds have departed. ",
+			"Awnser": false
+		},
+		"493": {
+			"Question": "If the recent U.S. election was held in Canada, John Kerry would have beaten George Bush in a landslide - 64% to 19%.",
+			"Awnser": true
+		},
+		"494": {
+			"Question": "Scientists have discovered a link between the name \"Carl\" and obesity.",
+			"Awnser": false
+		},
+		"495": {
+			"Question": "A city councilman (Carl Freeborn) from Asheville, North Carolina is attempting to legally change his name to \"Arack Bobama\" to perhaps ride on the coattails of another famous politician. ",
+			"Awnser": false
+		},
+		"496": {
+			"Question": "Don Ho spent six years in prison for strangling a tourist with a lei.",
+			"Awnser": false
+		},
+		"497": {
+			"Question": "The Nike swoosh was designed by a Portland State University student, and purchased by Nike for $35.",
+			"Awnser": true
+		},
+		"498": {
+			"Question": "To create a nurturing, non-judgmental atmosphere, many math teachers now tell children that no numbers are truly negative. ",
+			"Awnser": false
+		},
+		"499": {
+			"Question": "King Henry VIII slept with a gigantic axe. ",
+			"Awnser": false
+		},
+		"500": {
+			"Question": "According to Genesis 1:20-22 the chicken came before the egg.",
+			"Awnser": true
+		},
+		"501": {
+			"Question": "There are an average of 18,000,000 items for sale at any time on EBay.",
+			"Awnser": true
+		},
+		"502": {
+			"Question": "To present a more modern image, Planters has given Mr. Peanut a single contact lens.",
+			"Awnser": false
+		},
+		"503": {
+			"Question": "San Francisco cable cars are the only National Monuments that move.",
+			"Awnser": true
+		},
+		"504": {
+			"Question": "Eric Clapton did not play the very famous first riff on the song \"Layla\". That was Duane Allman. Clapton comes in later.",
+			"Awnser": true
+		},
+		"505": {
+			"Question": "The original Fruit of the Loom logo included a turkey leg. ",
+			"Awnser": false
+		},
+		"506": {
+			"Question": "Nutritionally speaking, bananas are a wonderful source of banana peels.",
+			"Awnser": false
+		},
+		"507": {
+			"Question": "The spring thaw finally allows cemeteries in Alaska to start digging graves for those who died during the winter.",
+			"Awnser": true
+		},
+		"508": {
+			"Question": "A Tokyo inventor has developed a laptop computer whose battery is recharged by energy generated from the movement of the user's mouse, yet Sony lawyers have successfully blocked every attempt to produce a product using the technology. ",
+			"Awnser": false
+		},
+		"509": {
+			"Question": "The New Yorker magazine now has more subscribers in California than New York.",
+			"Awnser": true
+		},
+		"510": {
+			"Question": "In the early drafts of \"Moby Dick\", Moby Dick was a turtle. ",
+			"Awnser": false
+		},
+		"511": {
+			"Question": "At 5 feet, 9.2 inches, Tim Felder of Provo, Utah holds the Guinness Record for the most average height. ",
+			"Awnser": false
+		},
+		"512": {
+			"Question": "In 2004, Former President George H. W. Bush voted for John Kerry.",
+			"Awnser": false
+		},
+		"513": {
+			"Question": "When you first open a jar of cold cream, because of the chemical reaction with air, it actually is ice cold to the touch. ",
+			"Awnser": false
+		},
+		"514": {
+			"Question": "John Quincy Adams, sixth president of the United States, loved to skinny dip in the Potomac River.",
+			"Awnser": true
+		},
+		"515": {
+			"Question": "The day after President George W. Bush was reelected, Canada's main immigration website had 115,000 visitors. Before Bush's re-election, this site averaged about 20,000 visitors each day.",
+			"Awnser": true
+		},
+		"516": {
+			"Question": "Nearly one third of New York City public school teachers send their own children to private schools.",
+			"Awnser": true
+		},
+		"517": {
+			"Question": "Thomas the Tank Engine has inspired County Cork in Ireland to decorate all their locomotives with faces. ",
+			"Awnser": false
+		},
+		"518": {
+			"Question": "L L Cool J once marketed a line of mail-order clothing, under the name \"L L Cool Bean\".",
+			"Awnser": false
+		},
+		"519": {
+			"Question": "Tom Selleck is a part owner of a bakery in Hawaii called \"Magnum PIe\".",
+			"Awnser": false
+		},
+		"520": {
+			"Question": "Cats can hear ultrasound.",
+			"Awnser": true
+		},
+		"521": {
+			"Question": "The average person has over 1,460 dreams a year.",
+			"Awnser": true
+		},
+		"522": {
+			"Question": "Century 21 actually owns all those trademark yellow blazers; when an agent leaves his/her employ, the blazer must be burned.",
+			"Awnser": false
+		},
+		"523": {
+			"Question": "Heinz Catsup leaving the bottle travels at 25 miles per year.",
+			"Awnser": true
+		},
+		"524": {
+			"Question": "It is possible to stand an egg up on its end, but only at the equator, on the day of the Summer Solstice.",
+			"Awnser": false
+		},
+		"525": {
+			"Question": "Everyone knows that staring at a solar eclipse can blind you. But staring at a lunar eclipse can also harm you - the eye is fooled into allowing too much infrared light into the eye, which can result in red-green color blindness.",
+			"Awnser": false
+		},
+		"526": {
+			"Question": "Legislators in Santa Fe, New Mexico, are considering a law that would require pets to wear seat belts when traveling in a car.",
+			"Awnser": true
+		},
+		"527": {
+			"Question": "Elvis impersonators account for much more annual tax revenue than Elvis ever did.",
+			"Awnser": false
+		},
+		"528": {
+			"Question": "Slugs have 4 noses.",
+			"Awnser": true
+		},
+		"529": {
+			"Question": "Moisture, not air, causes super glue to dry.",
+			"Awnser": true
+		},
+		"530": {
+			"Question": "Actor Bill Murray doesn't have a publicist or an agent.",
+			"Awnser": true
+		},
+		"531": {
+			"Question": "La Paz, Bolivia is the world's most fireproof city. At 12,000 feet about sea level, the amount of oxygen in the air barely supports a flame.",
+			"Awnser": true
+		},
+		"532": {
+			"Question": "It is physically impossible to do an impression of Rich Little.",
+			"Awnser": false
+		},
+		"533": {
+			"Question": "Pilgrims ate popcorn at the first Thanksgiving dinner.",
+			"Awnser": true
+		},
+		"534": {
+			"Question": "If a cricket were the size of Mount Rushmore, it could jump to the moon. ",
+			"Awnser": false
+		},
+		"535": {
+			"Question": "The most common liquid confiscated by airport security is honey mustard.",
+			"Awnser": false
+		},
+		"536": {
+			"Question": "Most toothaches can be prevented by flossing daily for forty-five minutes.",
+			"Awnser": false
+		},
+		"537": {
+			"Question": "A perfect SAT score is 1600 combined. Bill Gates scored 1590 on his SAT. Paul Allen, Bill's partner in Microsoft, scored a perfect 1600. Bill Cosby scored less than 500 combined.",
+			"Awnser": true
+		},
+		"538": {
+			"Question": "Over 8 years, this happened 284 times: \"Cosmo\" Kramer went through Jerry Seinfeld's apartment door.",
+			"Awnser": true
+		},
+		"539": {
+			"Question": "Americans on the average eat 18 acres of pizza every day. ",
+			"Awnser": true
+		},
+		"540": {
+			"Question": "Dogs and cats consume almost $7 billion worth of pet food a year.",
+			"Awnser": true
+		},
+		"541": {
+			"Question": "Aardvarks are allergic to radishes, but only during summer months.",
+			"Awnser": false
+		},
+		"542": {
+			"Question": "A house in Baghdad worth $15,000 before the Iraq war now sells for $120,000 to $150,000.",
+			"Awnser": true
+		},
+		"543": {
+			"Question": "Febreze, the product that removes odors from fabric, will not work on wide wale corduroy.",
+			"Awnser": false
+		},
+		"544": {
+			"Question": "On average, 40% of all hotel rooms in the United States remain empty every night.",
+			"Awnser": true
+		},
+		"545": {
+			"Question": "In San Diego, California, it is illegal to have a garage sale unless you are selling an exercise bike.",
+			"Awnser": false
+		},
+		"546": {
+			"Question": "More than 30% of the world's salt is used to garnish margaritas. ",
+			"Awnser": false
+		},
+		"547": {
+			"Question": "The Pentagon in Washington, D. C. has five sides, five stories, and five acres in the middle.",
+			"Awnser": true
+		},
+		"548": {
+			"Question": "Pope John Paul II was named an \"Honorary Harlem Globetrotter\" in 2000.",
+			"Awnser": true
+		},
+		"549": {
+			"Question": "Einstein taught that space and time are the same thing. He discovered this when he kept showing up three miles late for meetings.",
+			"Awnser": false
+		},
+		"550": {
+			"Question": "In late 2012, Earth and Mars will be in an encounter that will culminate in the closest approach between the two planets in recorded history. Mars will look as large as the full moon to the naked eye.",
+			"Awnser": false
+		},
+		"551": {
+			"Question": "72% of Americans sign their pets' names on greeting cards they send out.",
+			"Awnser": true
+		},
+		"552": {
+			"Question": "In Canada, Cool Whip is called Miracle Whip; Miracle Whip is called Caulk. ",
+			"Awnser": false
+		},
+		"553": {
+			"Question": "The curved shape of a hockey stick is a throwback to prehistoric use of mastodon tusks in a similar game. ",
+			"Awnser": false
+		},
+		"554": {
+			"Question": "Pinocchio is Italian for \"pine eye\".",
+			"Awnser": true
+		},
+		"555": {
+			"Question": "Because the Japanese language has several thousand characters, each episode of Japan's \"Wheel of Fortune\" can last several days.",
+			"Awnser": false
+		},
+		"556": {
+			"Question": "\"El Torito\" in English means \"The Torito\".",
+			"Awnser": false
+		},
+		"557": {
+			"Question": "3,400,000 Americans are considered \"Extreme Commuters\". These people commute over 90 minutes round trip every day to work.",
+			"Awnser": true
+		},
+		"558": {
+			"Question": "The State of Florida is bigger than England.",
+			"Awnser": true
+		},
+		"559": {
+			"Question": "For every minute you stand in front of the refrigerator with the door open, you could feed a child in Africa for a year. (thanks to Kriston Slayton)",
+			"Awnser": false
+		},
+		"560": {
+			"Question": "Only 939 of the 1,400,000 high school seniors who took the SAT in 2004 got a perfect score of 1600. Two of them are twin brothers Dillon and Jesse Smith from Long Island, NY.",
+			"Awnser": true
+		},
+		"561": {
+			"Question": "Rosie O'Donnell was recently offered $1,000,000 to pose nude for Playboy.",
+			"Awnser": false
+		},
+		"562": {
+			"Question": "Every Tuesday and Thursday at 4 PM, President Bush has a banjo lesson. ",
+			"Awnser": false
+		},
+		"563": {
+			"Question": "Toto was paid $125 per week while filming the \"Wizard of Oz\".",
+			"Awnser": true
+		},
+		"564": {
+			"Question": "As of April 1st, 2007, only 4 Segway scooters have ever been sold.",
+			"Awnser": false
+		},
+		"565": {
+			"Question": "Physicists have already performed a simple type of teleportation, transferring the quantum characteristics of one atom onto another atom at a different location.",
+			"Awnser": true
+		},
+		"566": {
+			"Question": "In the northern hemisphere, water goes down the drain clockwise. In the southern hemisphere - counterclockwise. On the equator, water flows both ways, depending on the moon's phases. ",
+			"Awnser": false
+		},
+		"567": {
+			"Question": "The Count of Monte Cristo died from cardiac arrest after eating too many Monte Cristo sandwiches.",
+			"Awnser": false
+		},
+		"568": {
+			"Question": "The flashing warning light on the cylindrical Capitol Records tower spells out HOLLYWOOD in Morse code.",
+			"Awnser": true
+		},
+		"569": {
+			"Question": "Illinois has the most personalized license plates of any state.",
+			"Awnser": true
+		},
+		"570": {
+			"Question": "Honeybees have hair on their eyes.",
+			"Awnser": true
+		},
+		"571": {
+			"Question": "Two 1903 paintings recently sold at auction for $590,000 - the paintings were in the famous \"Dogs Playing Poker\" series.",
+			"Awnser": true
+		},
+		"572": {
+			"Question": "Singer Cat Stevens is allergic to cats.",
+			"Awnser": false
+		},
+		"573": {
+			"Question": "It is physically impossible to urinate and give blood at the same time. ",
+			"Awnser": false
+		},
+		"574": {
+			"Question": "The 11th president, James K. Polk, did not speak English.",
+			"Awnser": false
+		},
+		"575": {
+			"Question": "A Dutch court ruled that a bank robber could deduct the 2,000 Euros he paid for his pistol from the 6,600 Euros he has to return to the bank he robbed.",
+			"Awnser": true
+		},
+		"576": {
+			"Question": "The Dalai Lama's birth name is Doug Reynolds, Jr. ",
+			"Awnser": false
+		},
+		"577": {
+			"Question": "George W. Bush and John Kerry are 16th cousins, three times removed.",
+			"Awnser": true
+		},
+		"578": {
+			"Question": "When immersed in liquid, a dead sparrow will make a sound like a crying baby. ",
+			"Awnser": false
+		},
+		"579": {
+			"Question": "Toxic house plants poison more children than household chemicals.",
+			"Awnser": true
+		},
+		"580": {
+			"Question": "Composer Marvin Hamlisch spends much of his free time collecting aluminum cans.",
+			"Awnser": false
+		},
+		"581": {
+			"Question": "The cruise liner Queen Elizabeth 2 moves only six inches for each gallon of diesel fuel that it burns.",
+			"Awnser": true
+		},
+		"582": {
+			"Question": "Until 1978, Camel cigarettes contained small particles of real camel dung. ",
+			"Awnser": false
+		},
+		"583": {
+			"Question": "People who constantly chew on a toothpick have a greater risk of reoccurring bladder infections.",
+			"Awnser": false
+		},
+		"584": {
+			"Question": "An employee of the Alabama Department of Transportation installed spyware on his boss's computer and proved that the boss spent 10% of his time working (20% of time checking stocks and 70% of the time playing solitaire). The employee was fired, the boss kept his job.",
+			"Awnser": true
+		},
+		"585": {
+			"Question": "If you yelled for 8 years, 7 months and 6 days, you would have produced enough sound energy to heat one cup of coffee.",
+			"Awnser": true
+		},
+		"586": {
+			"Question": "There are two credit cards for every person in the United States.",
+			"Awnser": true
+		},
+		"587": {
+			"Question": "In Norway, pickled herring is a separate food group. (thanks to Eric Snyder) ",
+			"Awnser": false
+		},
+		"588": {
+			"Question": "The average vending machine candy bar is four-and-a-half years old. ",
+			"Awnser": false
+		},
+		"589": {
+			"Question": "Mr. Rogers was a sniper in the Vietnam war.",
+			"Awnser": false
+		},
+		"590": {
+			"Question": "One out of three employees who received a promotion use a coffee mug with the company logo on it.",
+			"Awnser": true
+		},
+		"591": {
+			"Question": "Armadillos can be housebroken.",
+			"Awnser": true
+		},
+		"592": {
+			"Question": "The city of Tupelo, Mississippi has an experimental program with mounted police using llamas.",
+			"Awnser": false
+		},
+		"593": {
+			"Question": "The original episode of the situation comedy \"One Day at a Time\" was 24-hours long. ",
+			"Awnser": false
+		},
+		"594": {
+			"Question": "A hippo can open its mouth wide enough to fit a 4 foot tall child inside.",
+			"Awnser": true
+		},
+		"595": {
+			"Question": "Other than man, the elk is the only animal that celebrates birthdays.",
+			"Awnser": false
+		},
+		"596": {
+			"Question": "Each year, more people are killed by teddy bears than by grizzly bears.",
+			"Awnser": true
+		},
+		"597": {
+			"Question": "The richest self-made American under 40 is Michael Dell, chairman of Dell Computers. He is worth $18 billion.",
+			"Awnser": true
+		},
+		"598": {
+			"Question": "Because of their unusual shape, Hershey's Kisses contain more calories per ounce than the same amount of chocolate in other forms. ",
+			"Awnser": false
+		},
+		"599": {
+			"Question": "The average American will eat about 11.9 pounds of cereal per year.",
+			"Awnser": true
+		},
+		"600": {
+			"Question": "The world's oldest piece of chewing gum is 9000 years old.",
+			"Awnser": true
+		},
+		"601": {
+			"Question": "A company in Taiwan makes dinnerware out of wheat, so you can eat your plate.",
+			"Awnser": true
+		},
+		"602": {
+			"Question": "Al Capone's business card said he was a used furniture dealer.",
+			"Awnser": true
+		},
+		"603": {
+			"Question": "The LEGO group, creators of the children's building blocks, actually considered making full size Lego blocks to be used by Habitat for Humanity in building homes for third-world countries.",
+			"Awnser": false
+		},
+		"604": {
+			"Question": "A strand from the web of a golden spider is as strong as a steel wire of the same size.",
+			"Awnser": true
+		},
+		"605": {
+			"Question": "There are 1,008 McDonald's franchises in France.",
+			"Awnser": true
+		},
+		"606": {
+			"Question": "The trucking company Elvis Presley where worked as a young man was owned by Frank Sinatra. ",
+			"Awnser": false
+		},
+		"607": {
+			"Question": "The Chilean hummingbird has been known to suck blood from animals like a giant mosquito.",
+			"Awnser": false
+		},
+		"608": {
+			"Question": "Rachael Ray is a convicted felon.",
+			"Awnser": false
+		},
+		"609": {
+			"Question": "If you know a (male) millionaire who happens to be married, The most likely profession of his wife is a teacher.",
+			"Awnser": true
+		},
+		"610": {
+			"Question": "The number of words in the Bible divided by the number of verses equals exactly 666. ",
+			"Awnser": false
+		},
+		"611": {
+			"Question": "The wingspan of a Boeing 747 jet is longer than the Wright Brothers' first flight.",
+			"Awnser": true
+		},
+		"612": {
+			"Question": "The most common street name in America is 13th Street.",
+			"Awnser": false
+		},
+		"613": {
+			"Question": "According to the United States Treasury, there are four 15-dollar bills in circulation.",
+			"Awnser": false
+		},
+		"614": {
+			"Question": "Although Thursday is historically thought of as being named after the god Thor, it was actually named for his brother Thur. (thanks to Eric Snyder) ",
+			"Awnser": false
+		},
+		"615": {
+			"Question": "Erosion at the base of Niagara Falls (USA) undermines the shale cliffs and as a result, the falls have receded approximately 7 miles over the last 10,000 years.",
+			"Awnser": true
+		},
+		"616": {
+			"Question": "Mel Gibson has personally earned almost $400,000,000 from his movie \"The Passion of the Christ\".",
+			"Awnser": true
+		},
+		"617": {
+			"Question": "Ironically, the show \"American Bandstand\" had a bandstand created in China.",
+			"Awnser": false
+		},
+		"618": {
+			"Question": "Michael Jordan makes more money from Nike each year than all the Nike factory workers in Malaysia combined.",
+			"Awnser": true
+		},
+		"619": {
+			"Question": "CBS's fine for Janet Jackson's \"wardrobe malfunction\" in the 2004 Super Bowl show was $550,000. This could be paid with only 7.5 seconds of commercial time during the same Super Bowl telecast.",
+			"Awnser": true
+		},
+		"620": {
+			"Question": "Dick Cheney and George Bush own a Quizno's franchise in Houston, Texas.",
+			"Awnser": false
+		},
+		"621": {
+			"Question": "Proportional to their weight, men are stronger than horses.",
+			"Awnser": true
+		},
+		"622": {
+			"Question": "If you tar and feather a 2x4 and place it in your yard, it will ward off bats. ",
+			"Awnser": false
+		},
+		"623": {
+			"Question": "Percentage of North America that is wilderness: 38",
+			"Awnser": true
+		},
+		"624": {
+			"Question": "There is a new television show on a British cable called \"Watching Paint Dry\". Viewers watch in real-time. Gloss, semi-gloss, matte, satin, you name it. Then viewers vote out their least favorite.",
+			"Awnser": true
+		},
+		"625": {
+			"Question": "Homing pigeons use roads where possible to help find their way home. In fact, some pigeons followed roads so closely that they actually flew around traffic circles before choosing the exit that led them home.",
+			"Awnser": true
+		},
+		"626": {
+			"Question": "Winston Churchill was born in a ladies' room during a dance.",
+			"Awnser": true
+		},
+		"627": {
+			"Question": "The California Department of Motor Vehicles has issued six driver's licenses to six different people named Jesus Christ.",
+			"Awnser": true
+		},
+		"628": {
+			"Question": "Cats really do land on their feet, except when they're in heat.",
+			"Awnser": false
+		},
+		"629": {
+			"Question": "Archeologists have found evidence in the Middle East that in the Stone Age, mankind had developed a primitive Swiffer.",
+			"Awnser": false
+		},
+		"630": {
+			"Question": "30% of women who apply makeup while driving have accidentally swallowed a tube of lipstick.",
+			"Awnser": false
+		},
+		"631": {
+			"Question": "About a third of all Americans flush the toilet while they're still sitting on it.",
+			"Awnser": true
+		},
+		"632": {
+			"Question": "There is an ATM at McMurdo Station in Antarctica, which has a winter population of 200.",
+			"Awnser": true
+		},
+		"633": {
+			"Question": "The first FAX machine was patented in 1843, 33 years before Alexander Graham Bell demonstrated the telephone.",
+			"Awnser": true
+		},
+		"634": {
+			"Question": "Only 5 percent of the ocean floor has been mapped in as much detail as the surface of Mars.",
+			"Awnser": true
+		},
+		"635": {
+			"Question": "If you part your hair on the right side, you were born to be carnivorous. If you part it on the left, your physical and psychological make-up is that of a vegetarian. ",
+			"Awnser": false
+		},
+		"636": {
+			"Question": "After he resigned from the Presidency, Richard Nixon could often be found on the beaches of San Clemente, with his ever-present metal detector.",
+			"Awnser": false
+		},
+		"637": {
+			"Question": "40% of people who believe the moon landing was faked also believe the moon isn't real.",
+			"Awnser": false
+		},
+		"638": {
+			"Question": "1 pound of lemons contain more sugar than 1 pound of strawberries.",
+			"Awnser": true
+		},
+		"639": {
+			"Question": "Due to his constant name changes, Diddy hasn't received mail since 1977.",
+			"Awnser": false
+		},
+		"640": {
+			"Question": "A chef's hat is shaped the way it is for a reason: its shape allows air to circulate around the scalp, keeping the head cool in a hot kitchen.",
+			"Awnser": true
+		},
+		"641": {
+			"Question": "1.5 million Americans are charged with drunk driving each year.",
+			"Awnser": true
+		},
+		"642": {
+			"Question": "U.K. telecom provider Telewest Broadband is testing a device that hooks to your PC and wafts a scent when certain e-mails arrive.",
+			"Awnser": true
+		},
+		"643": {
+			"Question": "Fewer divorces occur in families in which the children wake their parents before 6 a.m. on Saturdays. ",
+			"Awnser": false
+		},
+		"644": {
+			"Question": "Percentage of women who say they are happier: 85",
+			"Awnser": true
+		},
+		"645": {
+			"Question": "An estimated 800,000 senior citizens voluntarily give up their driving privileges each year. The average age at which they surrender the wheel is 85.",
+			"Awnser": true
+		},
+		"646": {
+			"Question": "Thomas Edison, among his many other inventions, also invented break dancing.  (thanks to Eric Snyder) ",
+			"Awnser": false
+		},
+		"647": {
+			"Question": "The first prototype defibrillators delivered 1,200 joules of electrical energy instead of the now standard 360, occasionally causing dead bodies to sit upright momentarily as though they were still alive.",
+			"Awnser": false
+		},
+		"648": {
+			"Question": "McDonald's restaurants will buy 54,000,000 pounds of fresh apples this year. Two years ago, McDonald's purchased 0 pounds of apples. This is attributed to the shift to more healthy menu options (the Apple Pie, which has been at McDonald's for years uses processed Apple Pie Filling).",
+			"Awnser": true
+		},
+		"649": {
+			"Question": "In America, motorists drive on the right side of the road. In the UK, motorists drive on the left side of the road. In Norway, they drive in the middle.",
+			"Awnser": false
+		},
+		"650": {
+			"Question": "Maine is the only state whose name is just one syllable.",
+			"Awnser": true
+		},
+		"651": {
+			"Question": "Only 14% of Americans say they've skinny dipped with the opposite sex.",
+			"Awnser": true
+		},
+		"652": {
+			"Question": "Two original members of the musical group \"Three Dog Night\" died after eating tainted pet food.",
+			"Awnser": false
+		},
+		"653": {
+			"Question": "Albert Einstein never knew how to drive a car.",
+			"Awnser": true
+		},
+		"654": {
+			"Question": "Only 3% of American homes are equipped with a telegraph. ",
+			"Awnser": false
+		},
+		"655": {
+			"Question": "No one in Pontiac, Michigan owns a Pontiac car. (thanks to Eric Snyder) ",
+			"Awnser": false
+		},
+		"656": {
+			"Question": "BMW is developing a side-view mirror in which objects may be farther away than they appear.",
+			"Awnser": false
+		},
+		"657": {
+			"Question": "In 1965, auditions were held for the \"Monkees\" TV show. Some of the people who responded (but were not hired) were Stephen Stills, Harry Nilsson, Paul Williams and Charles Manson.",
+			"Awnser": true
+		},
+		"658": {
+			"Question": "Talk show host Tom Snyder died while mowing neighbors' lawns for extra cash.",
+			"Awnser": false
+		},
+		"659": {
+			"Question": "Paul Marcarelli, an actor from New York City, plays the \"can you hear me now guy\" for Verizon Wireless. He actually has cell phone service with T-Mobile as Verizon does not have adequate coverage in his home area of Queens.",
+			"Awnser": false
+		},
+		"660": {
+			"Question": "The egg of a hummingbird will actually float in mid-air in foggy conditions.",
+			"Awnser": false
+		},
+		"661": {
+			"Question": "All radios in North Korea have been rigged so listeners can only receive a North Korean government station. The United States recently announced plans to smuggle $2,000,000 worth of small radios into the country so North Koreans can get a taste of (what their government calls) \"rotten imperialist reactionary culture\".",
+			"Awnser": true
+		},
+		"662": {
+			"Question": "The top three names for female babies born in China last year were Huan, Jia, and Tiffany. ",
+			"Awnser": false
+		},
+		"663": {
+			"Question": "A hummingbird weighs less than a penny.",
+			"Awnser": true
+		},
+		"664": {
+			"Question": "The universal size of the credit card is based entirely on the size of the 1960s US Communist Party membership card. Credit cards were designed so that they wouldn't cause the Communist Party card to stand out. ",
+			"Awnser": false
+		},
+		"665": {
+			"Question": "Rubbing Tabasco on one's upper lip before bedtime is an effective temporary cure for sleep apnea. ",
+			"Awnser": false
+		},
+		"666": {
+			"Question": "None of the actors who play characters on the television show \"All My Children\" have children.",
+			"Awnser": false
+		},
+		"667": {
+			"Question": "Billboard magazine has recently launched a top 20 chart of cell phone ringtones.",
+			"Awnser": true
+		},
+		"668": {
+			"Question": "The original plans for the Statue of Liberty called for the statue to wave but France did not want to spend the money. ",
+			"Awnser": false
+		},
+		"669": {
+			"Question": "Ballpoint pens were invented by a Michigan scientist attempting to reduce the number of birds killed for their quills. ",
+			"Awnser": false
+		},
+		"670": {
+			"Question": "Broadway's Nathan Lane actually lives on Nathan Lane in East Hampton, New York.",
+			"Awnser": false
+		},
+		"671": {
+			"Question": "Never hold your nose and cover your mouth when sneezing, as it can blow out your eyeballs. ",
+			"Awnser": false
+		},
+		"672": {
+			"Question": "Jeffrey Dahmer used Presto's Fry Daddy to dispose of his father's remains.",
+			"Awnser": false
+		},
+		"673": {
+			"Question": "An iceberg the size of Long Island, New York, has broken off Antarctica and has blocked sea lanes used by both ships and penguins.",
+			"Awnser": true
+		},
+		"674": {
+			"Question": "By law, all globes in Australia are displayed upside down. (thanks to Eric Snyder) ",
+			"Awnser": false
+		},
+		"675": {
+			"Question": "The Mongolian pony is the only animal other than an elephant capable of fending off an attack by a healthy adult tiger. ",
+			"Awnser": false
+		},
+		"676": {
+			"Question": "In 1950, President Harry Truman threw out the first ball twice at the opening day Washington DC baseball game; once right handed and once left handed.",
+			"Awnser": true
+		},
+		"677": {
+			"Question": "The Internal Revenue Service audits 87 percent of women who claim breast implants as tax deductions. ",
+			"Awnser": false
+		},
+		"678": {
+			"Question": "George W. Bush has negotiated with the governor of South Dakota to get his face added to Mount Rushmore. Construction is scheduled to start in 2012. ",
+			"Awnser": false
+		},
+		"679": {
+			"Question": "Fire escapes, windshield wipers and laser printers were all invented by women.",
+			"Awnser": true
+		},
+		"680": {
+			"Question": "There are no venomous snakes in Maine.",
+			"Awnser": true
+		},
+		"681": {
+			"Question": "In order to become licensed, a courtroom sketch artist must demonstrate the ability to make defendants look \"shifty\". ",
+			"Awnser": false
+		},
+		"682": {
+			"Question": "The IRS admits that one in five people who call their help line get the wrong answer to their question.",
+			"Awnser": true
+		},
+		"683": {
+			"Question": "Gerald Ford is the only United States president to have walked on the moon. ",
+			"Awnser": false
+		},
+		"684": {
+			"Question": "The winter of 1932 was so cold that Niagara Falls froze completely solid.",
+			"Awnser": true
+		},
+		"685": {
+			"Question": "The leg bones of a bat are so thin that no bat can walk.",
+			"Awnser": true
+		},
+		"686": {
+			"Question": "Harry S Truman's middle name was S. Just S, without the period. (thanks to Eric Snyder)",
+			"Awnser": true
+		},
+		"687": {
+			"Question": "In 2015, it is estimated that half the federal budget will be spent on programs for the elderly.",
+			"Awnser": true
+		},
+		"688": {
+			"Question": "Officially, if you say \"Have a nice day\" to someone after 5 PM, it refers to the next day.",
+			"Awnser": false
+		},
+		"689": {
+			"Question": "The prison system is the largest supplier of mental health services in America, with 250,000 Americans with mental illness living there.",
+			"Awnser": true
+		},
+		"690": {
+			"Question": "More people than you would imagine accidentally swallow their keys.",
+			"Awnser": false
+		},
+		"691": {
+			"Question": "Every 23 seconds, someone is having sex in a carpet store. ",
+			"Awnser": false
+		},
+		"692": {
+			"Question": "The New York City Police Department has a $3.3 billion annual budget, larger than all but 19 of the world's armies.",
+			"Awnser": true
+		},
+		"693": {
+			"Question": "Baby robins eat 14 feet of earthworms every day.",
+			"Awnser": true
+		},
+		"694": {
+			"Question": "Every common food product, with the exception of fish, contains some traces of peanuts. ",
+			"Awnser": false
+		},
+		"695": {
+			"Question": "\"Hello Kitty\" began as part of a covert propaganda campaign originally proposed by Prime Minister Tojo during World War II. ",
+			"Awnser": false
+		},
+		"696": {
+			"Question": "The Weddell seal can travel underwater for seven miles without surfacing for air.",
+			"Awnser": true
+		},
+		"697": {
+			"Question": "Larry King wears suspenders in the shower.",
+			"Awnser": false
+		},
+		"698": {
+			"Question": "Osama Bin Laden has ordered fleece jackets with the Al Qaeda logo.",
+			"Awnser": false
+		},
+		"699": {
+			"Question": "Anyone convicted of animal cruelty in Sedalia, Missouri, is sentenced to a month's confinement in the county animal shelter. ",
+			"Awnser": false
+		},
+		"700": {
+			"Question": "61,000 people are airborne over the US at any given time.",
+			"Awnser": true
+		},
+		"701": {
+			"Question": "Due to a misprint, some Gideon Bibles list \"the Gospel according to Mark\" as \"the Gospel according to Marv\". ",
+			"Awnser": false
+		},
+		"702": {
+			"Question": "President George W. Bush has locked himself out of the Oval Office fifteen times in his presidency.",
+			"Awnser": false
+		},
+		"703": {
+			"Question": "Chances that a burglary in the United States will be solved: 1 in 7",
+			"Awnser": true
+		},
+		"704": {
+			"Question": "From 1970 through 1972, the penny actually showed Abraham Lincoln with a mustache but no beard.",
+			"Awnser": false
+		},
+		"705": {
+			"Question": "Shaquille O'Neal was conceived in a Radio Shack. ",
+			"Awnser": false
+		},
+		"706": {
+			"Question": "In the Caribbean there are oysters that can climb trees.",
+			"Awnser": true
+		},
+		"707": {
+			"Question": "Two-thirds of all the world's coriander comes from a single valley in Italy. ",
+			"Awnser": false
+		},
+		"708": {
+			"Question": "No one named Tony has ever won a Tony Award.",
+			"Awnser": false
+		},
+		"709": {
+			"Question": "The largest home in the United States, North Carolina's Biltmore House, was originally intended to be the official residence of a new monarchy to be established when the South rose again. ",
+			"Awnser": false
+		},
+		"710": {
+			"Question": "Albert Einstein was an avid bodybuilder.",
+			"Awnser": false
+		},
+		"711": {
+			"Question": "The dot that appears over the letter \"i\" is called a tittle.",
+			"Awnser": true
+		},
+		"712": {
+			"Question": "Double-yolk eggs, while larger than normal hen's eggs, actually have less nutritional value per ounce, but take about half as long to cook.",
+			"Awnser": false
+		},
+		"713": {
+			"Question": "Hillary Clinton has a CD of old standard love songs coming out in late 2008, just in time for the election.",
+			"Awnser": false
+		},
+		"714": {
+			"Question": "Every year in the fall, Niagara Falls is shut down for maintenance for 24 hours. The flow is diverted using a massive series of pipes and spigots built for this purpose in 1837. ",
+			"Awnser": false
+		},
+		"715": {
+			"Question": "A Brussels Airlines flight to Vienna was aborted because the pilot was attacked in the cockpit. The attacker was a passenger's cat, who got out of its travel bag.",
+			"Awnser": true
+		},
+		"716": {
+			"Question": "Two very popular and common objects have the same function, but one has thousands of moving parts, while the other has absolutely no moving parts - an hourglass and a sundial.",
+			"Awnser": true
+		},
+		"717": {
+			"Question": "Richard Versalle, a tenor performing at New York's Metropolitan Opera House, suffered a heart attack and fell 10 feet from a ladder to the stage just after singing the line \"You can only live so long.\"",
+			"Awnser": true
+		},
+		"718": {
+			"Question": "The drive-through line on opening day at the McDonald's restaurant in Kuwait City, Kuwait was at times seven miles long.",
+			"Awnser": true
+		},
+		"719": {
+			"Question": "A Boeing 767 airliner is made of 3,100,000 separate parts.",
+			"Awnser": true
+		},
+		"720": {
+			"Question": "If you place a fresh Viagra tablet in a houseplant's soil every six months, the plant will not wilt.  ",
+			"Awnser": false
+		},
+		"721": {
+			"Question": "The typical American child receives 70 new toys a year, most of them during the holiday season.",
+			"Awnser": true
+		},
+		"722": {
+			"Question": "Ted Turner owns 5% of New Mexico.",
+			"Awnser": true
+		},
+		"723": {
+			"Question": "If the Earth was put on a scale, scientists would be puzzled by the presence of that scale.",
+			"Awnser": false
+		},
+		"724": {
+			"Question": "All of Queen Anne's 17 children died before she did.",
+			"Awnser": true
+		},
+		"725": {
+			"Question": "Ingesting small doses of ink over an extended period of time will change your eye color slightly. ",
+			"Awnser": false
+		},
+		"726": {
+			"Question": "Jim Gordon, drummer of Derek and the Dominos (\"Layla\"), killed his mother with a claw hammer.",
+			"Awnser": true
+		},
+		"727": {
+			"Question": "The Olympic flag's colors are always red, black, blue, green and yellow rings on a field of white. This is because at least one of those colors appears on the flag of every nation on the planet.",
+			"Awnser": true
+		},
+		"728": {
+			"Question": "There are more cars in Southern California than there are cows in India.",
+			"Awnser": true
+		},
+		"729": {
+			"Question": "SUV sales are up 18% in the first quarter of 2004 vs. the same period of 2003, even though gas prices are skyrocketing. Consumer surveys show that gas prices would have to hit $3.75 per gallon before there will be any real impact on SUV sales.",
+			"Awnser": true
+		},
+		"730": {
+			"Question": "Fast food provider Hardee's has recently introduced the Monster Thickburger. It has 1,420 calories and 107 grams of fat.",
+			"Awnser": true
+		},
+		"731": {
+			"Question": "The Eiffel Tower shrinks 6 inches in winter.",
+			"Awnser": true
+		},
+		"732": {
+			"Question": "Nolan Ryan once threw a fastball so hard it killed both the catcher and the umpire.",
+			"Awnser": false
+		},
+		"733": {
+			"Question": "Only a single dissenting vote prevented the death penalty in Texas from being carried out by immersing the convicted person in a nest of fire ants. ",
+			"Awnser": false
+		},
+		"734": {
+			"Question": "The most common name in the world is Mohammed.",
+			"Awnser": true
+		},
+		"735": {
+			"Question": "Silica gel, when mixed in with asphalt, makes highways that actually absorb rainfall. A side effect is that automobile tires would last two to three times as long when used on this type pavement. The tire industry has fought this breakthrough.",
+			"Awnser": false
+		},
+		"736": {
+			"Question": "In the early 1900s, a dozen actually was a measurement based on weight. Only in 1933 did the Department of Weights and Measures come up with an item count of twelve as a definition. ",
+			"Awnser": false
+		},
+		"737": {
+			"Question": "A Wisconsin man was beaten by an angry mob because he asked for \"no cheese\" on his Whopper.",
+			"Awnser": false
+		},
+		"738": {
+			"Question": "In all three Godfather films, when you see oranges, there is a death (or a very close call) coming up soon.",
+			"Awnser": true
+		},
+		"739": {
+			"Question": "After breaking his promise not to raise taxes, George H. W. Bush used some of the money to buy a Donkey Kong machine for the White House. ",
+			"Awnser": false
+		},
+		"740": {
+			"Question": "The father of the famous murderer \"Son of Sam\" actually was named Percy.",
+			"Awnser": false
+		},
+		"741": {
+			"Question": "Before he had his own show, Jerry Seinfeld appeared on three episodes of the TV show \"Benson\" as the governor's speechwriter.",
+			"Awnser": true
+		},
+		"742": {
+			"Question": "Pope John Paul II is the world's Scrabble champion in the over-70 category.",
+			"Awnser": true
+		},
+		"743": {
+			"Question": "In ancient Greece, children of wealthy families were dipped in olive oil at birth to keep them hairless throughout their lives. ",
+			"Awnser": false
+		},
+		"744": {
+			"Question": "Moths are unable to fly during an earthquake. ",
+			"Awnser": false
+		},
+		"745": {
+			"Question": "Because of an onion allergy, the singer Meatloaf can't eat meatloaf.",
+			"Awnser": false
+		},
+		"746": {
+			"Question": "40% of all people who come to a party in your home snoop in your medicine cabinet.",
+			"Awnser": true
+		},
+		"747": {
+			"Question": "A mole can dig a tunnel 300 feet long in just one night.",
+			"Awnser": true
+		},
+		"748": {
+			"Question": "More people are killed by donkeys annually than are killed in plane crashes.",
+			"Awnser": true
+		},
+		"749": {
+			"Question": "Each year, 48 customers are accidentally electrocuted at a Circuit City. ",
+			"Awnser": false
+		},
+		"750": {
+			"Question": "There are 2,000,000 millionaires in the United States.",
+			"Awnser": true
+		},
+		"751": {
+			"Question": "The lead role for the movie \"Gandhi\" originally was offered to Burt Reynolds.",
+			"Awnser": false
+		},
+		"752": {
+			"Question": "There are between 5,000 and 7,000 tigers kept as pets in the United States.",
+			"Awnser": true
+		},
+		"753": {
+			"Question": "Oprah Winfrey and Elvis Presley are distant cousins.",
+			"Awnser": true
+		},
+		"754": {
+			"Question": "The rhesus monkey is the only animal that can be taught to hum a tune. ",
+			"Awnser": false
+		},
+		"755": {
+			"Question": "More Americans choke to death on bathmats than die in auto accidents.",
+			"Awnser": false
+		},
+		"756": {
+			"Question": "The first item ever patented at the United States Patent Office was the patent application form. ",
+			"Awnser": false
+		},
+		"757": {
+			"Question": "Mel Blanc (voice of Bugs Bunny) was allergic to carrots.",
+			"Awnser": true
+		},
+		"758": {
+			"Question": "An ostrich's eye is bigger than its brain.",
+			"Awnser": true
+		},
+		"759": {
+			"Question": "The worst air polluter in the entire state of Washington is Mount St. Helens.",
+			"Awnser": true
+		},
+		"760": {
+			"Question": "There once was a town named \"6\" in West Virginia.",
+			"Awnser": true
+		},
+		"761": {
+			"Question": "To thank the French for the Statue of Liberty, in early caricatures of \"Uncle Sam\", he always wore a beret (instead of the trademark stovepipe hat).",
+			"Awnser": false
+		},
+		"762": {
+			"Question": "Former British Prime Minister Margaret Thatcher helped invent soft-serve ice cream.",
+			"Awnser": false
+		},
+		"763": {
+			"Question": "The United States has five percent of the world's population, but twenty-five percent of the world's prison population.",
+			"Awnser": true
+		},
+		"764": {
+			"Question": "During Bill Clinton's entire eight year presidency, he only sent two e-mails. One was to John Glenn when he was aboard the space shuttle, and the other was a test of the e-mail system.",
+			"Awnser": true
+		},
+		"765": {
+			"Question": "Adding baking soda and vinegar will make your scrambled eggs fluffier. ",
+			"Awnser": false
+		},
+		"766": {
+			"Question": "A snail can also sleep for three years.",
+			"Awnser": true
+		},
+		"767": {
+			"Question": "The blue whale can produce sounds up to 188 decibels. This is the loudest sound produced by a living animal and has been detected as far away as 530 miles.",
+			"Awnser": true
+		},
+		"768": {
+			"Question": "Barbara Walters was once arrested for playing golf naked. ",
+			"Awnser": false
+		},
+		"769": {
+			"Question": "Truth or Consequences, New Mexico is one of two United States towns named after a game show. The other is Password, Nevada. ",
+			"Awnser": false
+		},
+		"770": {
+			"Question": "According to a recently found artifact, it appears that Mary and Joseph's second choice for a name was Larry.  (thanks to Eric Snyder) ",
+			"Awnser": false
+		},
+		"771": {
+			"Question": "Only 30% of stolen artwork worth more than $1,000,000 each is recovered.",
+			"Awnser": true
+		},
+		"772": {
+			"Question": "Three out of ten doctors admit to licking the tongue depressors before using them. ",
+			"Awnser": false
+		},
+		"773": {
+			"Question": "The CNN Christmas party is held at Denny's.",
+			"Awnser": false
+		},
+		"774": {
+			"Question": "Although difficult, it's possible to start a fire by rapidly rubbing together two Cool Ranch Doritos. ",
+			"Awnser": false
+		},
+		"775": {
+			"Question": "In 1984, an Ohio family visiting New York City stood at a broken DON'T WALK sign for three days.",
+			"Awnser": false
+		},
+		"776": {
+			"Question": "The company that manufactures the greatest number of women's dresses each year is Mattel. Barbie's got to wear something.",
+			"Awnser": true
+		},
+		"777": {
+			"Question": "Percentage of bird species that are monogamous: 90",
+			"Awnser": true
+		},
+		"778": {
+			"Question": "Larry Bird has never eaten chicken. (thanks to Eric Snyder) ",
+			"Awnser": false
+		},
+		"779": {
+			"Question": "The first movie that had sound was a documentary on \"The History of Gallaudet University\". (thanks to Tim Garcia)",
+			"Awnser": false
+		},
+		"780": {
+			"Question": "Penguins can smell toothpaste from several miles away.",
+			"Awnser": false
+		},
+		"781": {
+			"Question": "John Madden is an accomplished ballroom dancer.",
+			"Awnser": true
+		},
+		"782": {
+			"Question": "In a recent survey, Americans revealed that banana was their favorite smell.",
+			"Awnser": true
+		},
+		"783": {
+			"Question": "Levi-Strauss lost millions when they marketed a line of blue jeans for horses. ",
+			"Awnser": false
+		},
+		"784": {
+			"Question": "Queen Elizabeth has seen the movie \"Spaceballs\" at least twelve times.",
+			"Awnser": false
+		},
+		"785": {
+			"Question": "To prepare for her studies with gorillas, Jane Goodall spent two years living in a Best Buy Electronics Store appliance section.",
+			"Awnser": false
+		},
+		"786": {
+			"Question": "The number of US college students studying Latin is three times the number studying Arabic.",
+			"Awnser": true
+		},
+		"787": {
+			"Question": "Oslo, Norway is the world's most expensive city. A gallon on gas costs almost $5, and it costs $1.32 to use the public restrooms.",
+			"Awnser": true
+		},
+		"788": {
+			"Question": "There are seven words in Tagalog that mean \"wet\". (thanks to Eric Snyder) ",
+			"Awnser": false
+		},
+		"789": {
+			"Question": "There are only three types of snakes on the island of Tasmania and all three are deadly poisonous.",
+			"Awnser": true
+		},
+		"790": {
+			"Question": "65% of all automobile accidents take place within five miles of an Arby's restaurant.",
+			"Awnser": false
+		},
+		"791": {
+			"Question": "The K in K-Mart stands for K-Mart.",
+			"Awnser": false
+		},
+		"792": {
+			"Question": "Contestants on the reality show \"Survivor\" quietly receive a case of Quaker granola bars to eat if they're really hungry.",
+			"Awnser": false
+		},
+		"793": {
+			"Question": "The only English words ending in the letters \"mt\" are dreamt and flemt.",
+			"Awnser": false
+		},
+		"794": {
+			"Question": "Jennifer Aniston's first acting job was in a Rice Krispies commercial. The commercial never aired because the actress quickly had welts all over her body due to an allergic reaction.",
+			"Awnser": false
+		},
+		"795": {
+			"Question": "4 out of 5 men have gotten their arm stuck in a vending machine. ",
+			"Awnser": false
+		},
+		"796": {
+			"Question": "The Hyundai Elantra is China's best selling car, but \"Elantra\" in some dialects of Mandarin Chinese means \"Violation\", so the car is actually named \"Guana\".",
+			"Awnser": false
+		},
+		"797": {
+			"Question": "The word spelled most incorrectly in regional middle-school spelling bees is \"status\".",
+			"Awnser": false
+		},
+		"798": {
+			"Question": "Edward R. Murrow's middle name was Rhonda.",
+			"Awnser": false
+		},
+		"799": {
+			"Question": "The original Mickey Mouse cartoon was in the Mouse language, with English subtitles.",
+			"Awnser": false
+		},
+		"800": {
+			"Question": "Every United States President with a beard has been a Republican. ",
+			"Awnser": false
+		},
+		"801": {
+			"Question": "In the film Forrest Gump, all the still photos show Forrest with his eyes closed.",
+			"Awnser": true
+		},
+		"802": {
+			"Question": "Sheep ranchers counting the number of animals in their herd often doze off.",
+			"Awnser": false
+		},
+		"803": {
+			"Question": "Police lineups always put the guilty guy in the middle.",
+			"Awnser": false
+		},
+		"804": {
+			"Question": "More people use blue toothbrushes than red ones.",
+			"Awnser": true
+		},
+		"805": {
+			"Question": "It is believed that Shakespeare was 46 around the time that the King James Version of the Bible was written. In Psalms 46, the 46th word from the first word is \"shake\" and the 46th word from the last word is \"spear\".",
+			"Awnser": true
+		},
+		"806": {
+			"Question": "There is a bar in London that sells vaporized vodka, which is inhaled instead of sipped.",
+			"Awnser": true
+		},
+		"807": {
+			"Question": "Socrates is thought to be the first to use the phrase \"a bad case of the Mondays\".",
+			"Awnser": false
+		},
+		"808": {
+			"Question": "Leonardo da Vinci drew up plans for the first novelty set of chattering teeth. ",
+			"Awnser": false
+		},
+		"809": {
+			"Question": "Scientists predict that in late 2008 the television show \"Mythbusters\" will run out of myths.",
+			"Awnser": false
+		},
+		"810": {
+			"Question": "Alan Shepard was the only astronaut to leave his wallet on the moon.",
+			"Awnser": false
+		},
+		"811": {
+			"Question": "In 2003, there were 86 days of below-freezing weather in Hell, Michigan.",
+			"Awnser": true
+		},
+		"812": {
+			"Question": "All of the clocks in the movie \"Pulp Fiction\" read 4:20.",
+			"Awnser": true
+		},
+		"813": {
+			"Question": "There are 40,000 New York City cab drivers, who collectively drive more than a million miles each day.",
+			"Awnser": true
+		},
+		"814": {
+			"Question": "The lead singer of The Knack, famous for \"My Sharona,\" and Jack Kevorkian's lead defense attorney are brothers, Doug and Jeffrey Feiger.",
+			"Awnser": true
+		},
+		"815": {
+			"Question": "All polar bears are left handed.",
+			"Awnser": true
+		},
+		"816": {
+			"Question": "Pat Sajak can't read.",
+			"Awnser": false
+		},
+		"817": {
+			"Question": "To research his role in \"Tootsie\", Dustin Hoffman spent two years living as a woman. ",
+			"Awnser": false
+		},
+		"818": {
+			"Question": "Mailmen in Russia now carry revolvers after a recent decision by the government.",
+			"Awnser": true
+		},
+		"819": {
+			"Question": "At the height of \"Star Wars\" mania, Jimmy Carter gave an oval office address in a Chewbacca costume. ",
+			"Awnser": false
+		},
+		"820": {
+			"Question": "Gillette spent $1,000,000 to place razor samples in the welcome bags handed out at the Democratic National Convention, only to have them confiscated as they were considered a threat. This caused huge delays at all security checkpoints.",
+			"Awnser": true
+		},
+		"821": {
+			"Question": "Bob Saget lives in the old set of \"Full House\".",
+			"Awnser": false
+		},
+		"822": {
+			"Question": "In a 1996 phone book, AT&T; accidentally listed a Pizza Hut in Iowa with the phone number of a funeral home in Dallas, Texas.",
+			"Awnser": false
+		},
+		"823": {
+			"Question": "Even today, 90% of the continental United States is still open space or farmland.",
+			"Awnser": true
+		},
+		"824": {
+			"Question": "Former keyboard player for Jethro Tull David Palmer is now a woman named Dee Palmer. He waited until his wife died before going through with his longtime desire for a sex change.",
+			"Awnser": true
+		},
+		"825": {
+			"Question": "The largest McDonald's is in Beijing, China - measuring 28,000 square feet. It has twenty nine cash registers.",
+			"Awnser": true
+		},
+		"826": {
+			"Question": "About 3000 years ago, most Egyptians died by the time they were 30.",
+			"Awnser": true
+		},
+		"827": {
+			"Question": "An eagle can kill a young deer and fly away with it.",
+			"Awnser": true
+		},
+		"828": {
+			"Question": "George Washington spent about 7% of his annual salary on liquor.",
+			"Awnser": true
+		},
+		"829": {
+			"Question": "Ancient Egyptians slept on pillows made of stone.",
+			"Awnser": true
+		},
+		"830": {
+			"Question": "Recycling one glass jar saves enough energy to watch TV for 3 hours.",
+			"Awnser": true
+		},
+		"831": {
+			"Question": "Beethoven wasn't really deaf, but only pretended to be deaf when his mother-in-law was around.",
+			"Awnser": false
+		},
+		"832": {
+			"Question": "Ted Williams' last words: \"I was kidding about being frozen\";.",
+			"Awnser": false
+		},
+		"833": {
+			"Question": "Calvin, of the \"Calvin and Hobbes\" comic strip, was patterned after President Calvin Coolidge, who had a pet tiger as a boy. ",
+			"Awnser": false
+		},
+		"834": {
+			"Question": "The only member of the band ZZ Top without a beard has the last name Beard.",
+			"Awnser": true
+		},
+		"835": {
+			"Question": "The earliest rocking chairs only rocked forward. ",
+			"Awnser": false
+		},
+		"836": {
+			"Question": "Every day more money is printed for Monopoly than for the US Treasury.",
+			"Awnser": true
+		},
+		"837": {
+			"Question": "Half and half is actually closer to 60-40.",
+			"Awnser": false
+		},
+		"838": {
+			"Question": "Molecularly speaking, water is actually much drier than sand. ",
+			"Awnser": false
+		},
+		"839": {
+			"Question": "The leading cause of on-the-job deaths in workplaces in America is homicide.",
+			"Awnser": true
+		},
+		"840": {
+			"Question": "The Army Corps of Engineers has spent millions of dollars trying to cross a bridge before they come to it. ",
+			"Awnser": false
+		},
+		"841": {
+			"Question": "The Chicago Cubs are suing former Hartford Courant newspaper carrier Mark Guthrie to get back $301,000 in pay that was intended to go to a Cubs pitcher with the same name. The Tribune Company owns both the Hartford Courant and the Chicago Cubs.",
+			"Awnser": true
+		},
+		"842": {
+			"Question": "Experts predict that by 2009, every television commercial will feature Peyton Manning.",
+			"Awnser": false
+		},
+		"843": {
+			"Question": "President Harry S. Truman would often go on vacation and secretly have his identical twin Larry run the country.",
+			"Awnser": false
+		},
+		"844": {
+			"Question": "If you stretch a standard Slinky out flat it measures 87 feet long.",
+			"Awnser": true
+		},
+		"845": {
+			"Question": "Atlanta Falcon star Michael Vick got involved in dogfighting because cockfighting wasn't what he thought it was.",
+			"Awnser": false
+		},
+		"846": {
+			"Question": "The average American adult weighs 250 pounds.",
+			"Awnser": false
+		},
+		"847": {
+			"Question": "In 2002, women earned 742,000 bachelor's degrees. Men earned only 550,000 during the same year. The difference is growing so large that many colleges now practice (quietly) affirmative action for male applicants.",
+			"Awnser": true
+		},
+		"848": {
+			"Question": "Surprisingly, famous astronomer Carl Sagan couldn't count to 100.  (thanks to Eric Snyder) ",
+			"Awnser": false
+		},
+		"849": {
+			"Question": "Quebec City, Canada, has about as much street crime as Disney World.",
+			"Awnser": true
+		},
+		"850": {
+			"Question": "Dogs have two sets of teeth, just like humans. They first have 30 \"puppy\" teeth, then 42 adult teeth.",
+			"Awnser": true
+		},
+		"851": {
+			"Question": "If all Americans used one third less ice in their drinks the United States would become a net exporter instead of an importer of energy.",
+			"Awnser": true
+		},
+		"852": {
+			"Question": "Hawaii is moving toward Japan 4 inches every year.",
+			"Awnser": true
+		},
+		"853": {
+			"Question": "The time spent deleting SPAM costs United States businesses $21.6 billion annually.",
+			"Awnser": true
+		},
+		"854": {
+			"Question": "Watching an hour-long soap opera burns more calories than watching a three-hour baseball game. ",
+			"Awnser": false
+		},
+		"855": {
+			"Question": "Donald Trump's hair has its own zip code.",
+			"Awnser": false
+		},
+		"856": {
+			"Question": "The volume of water that the Giant Sequoia tree consumes in a 24-hour period contains enough suspended minerals to pave 16 feet of a 4-lane concrete freeway. ",
+			"Awnser": false
+		},
+		"857": {
+			"Question": "You are more likely to be charged by a rhino than to be pulled over for not wearing your seatbelt. ",
+			"Awnser": false
+		},
+		"858": {
+			"Question": "Fleas can jump 130 times higher than their own height. In human terms this is equal to a 6 foot person jumping 780 feet into the air.",
+			"Awnser": true
+		},
+		"859": {
+			"Question": "In 1998, more fast-food employees were murdered on the job than police officers.",
+			"Awnser": true
+		},
+		"860": {
+			"Question": "Percentage of American men who say they would marry the same woman if they had it to do all over again: 80",
+			"Awnser": true
+		},
+		"861": {
+			"Question": "Vice President Dick Cheney is an accomplished studio musician, and has played trumpet and woodwinds for the likes of Tony Bennett, Frank Sinatra and (most recently) Paul Anka.",
+			"Awnser": false
+		},
+		"862": {
+			"Question": "In the original plot of \"NYPD Blue\", Sipowitz was killed while stopping five losers trying to rob Mick Jagger.",
+			"Awnser": false
+		},
+		"863": {
+			"Question": "A Costa Rican worker who makes baseballs earns about $2,750 annually. The average American pro baseball player earns $2,377,000 per year.",
+			"Awnser": true
+		},
+		"864": {
+			"Question": "Point Roberts in Washington State is cut off from the rest of the state by British Columbia, Canada. If you wish to travel from Point Roberts to the rest of the state or vice versa, you must pass through Canada, including both Canadian and U.S. customs.",
+			"Awnser": true
+		},
+		"865": {
+			"Question": "Replying more than 100 times to the same piece of spam e-mail will overwhelm the sender's system and interfere with their ability to send any more spam. ",
+			"Awnser": false
+		},
+		"866": {
+			"Question": "The microwave oven was invented by mistake when an engineer testing a magnetron tube noticed that the radiation from it melted the chocolate bar he had in his pocket.",
+			"Awnser": true
+		},
+		"867": {
+			"Question": "John Wayne's real name was Lydia Schiffman.",
+			"Awnser": false
+		},
+		"868": {
+			"Question": "During the height of the hula-hoop craze, manufacturer Wham-O was making 20 each and every day.",
+			"Awnser": false
+		},
+		"869": {
+			"Question": "In 2018, the month of February will not have a full moon.",
+			"Awnser": true
+		},
+		"870": {
+			"Question": "Time Magazine's 1951 Man of the Year was Moe.",
+			"Awnser": false
+		},
+		"871": {
+			"Question": "In Tokyo, they sell toupees for dogs.",
+			"Awnser": true
+		},
+		"872": {
+			"Question": "The videogame Donkey Kong is based on a true story.",
+			"Awnser": false
+		},
+		"873": {
+			"Question": "A 9-volt battery contains roughly the same amount of kinetic energy as a bowl of Lucky Charms. ",
+			"Awnser": false
+		},
+		"874": {
+			"Question": "Babe Ruth wore a cabbage leaf under his cap to keep him cool. He changed it every 2 innings.",
+			"Awnser": true
+		},
+		"875": {
+			"Question": "There wasn't a single pony in the Pony Express, just horses.",
+			"Awnser": true
+		},
+		"876": {
+			"Question": "Microsoft threatened 17 year old Mike Rowe with a lawsuit after the young man launched a website named MikeRoweSoft.com. ",
+			"Awnser": true
+		},
+		"877": {
+			"Question": "The Hoover Dam was built to last 2,000 years. Its concrete will not be fully cured for another 500 years.",
+			"Awnser": true
+		},
+		"878": {
+			"Question": "Male ladybugs always have an odd number of spots, and one spot will always be white.",
+			"Awnser": false
+		},
+		"879": {
+			"Question": "Christopher Columbus actually had four ships: Nina, Pinta, Santa Maria and \"Life's a Beach\".",
+			"Awnser": false
+		},
+		"880": {
+			"Question": "The treasury department has more than twenty people assigned to catching people who violate the trade and tourism embargo with Cuba. In contrast, it has only four employees assigned to track the assets of Osama bin Laden and Saddam Hussein.",
+			"Awnser": true
+		},
+		"881": {
+			"Question": "The world's largest book, \"Bhutan: A Visual Odyssey\" is in a Chicago public library. The book measures 5 feet tall by 7 feet wide when open. It weighs 133 pounds.",
+			"Awnser": true
+		},
+		"882": {
+			"Question": "The entire fleet of Unicoi County Tennessee's salt trucks was rendered out of commission in one accident. All three trucks were badly damaged when one of them began skidding down a road, causing a chain reaction accident. Officials blamed road conditions.",
+			"Awnser": true
+		},
+		"883": {
+			"Question": "The pitches that Babe Ruth hit for his last-ever homerun and that Joe DiMaggio hit for his first-ever homerun where thrown by the same man.",
+			"Awnser": true
+		},
+		"884": {
+			"Question": "Touch-tone telephone keypads were originally planned to have buttons for Police and Fire Departments, but they were replaced with * and # when the project was cancelled in favor of developing the 911 system. ",
+			"Awnser": false
+		},
+		"885": {
+			"Question": "Round bread (to fit properly with round bologna) has succeeded each time it has been test-marketed, but the difficulty and expense in baking a round loaf of bread makes it unprofitable for bakeries.",
+			"Awnser": false
+		},
+		"886": {
+			"Question": "Nancy Reagan can palm a basketball.",
+			"Awnser": false
+		},
+		"887": {
+			"Question": "George W. Bush is probably going to be the eighth president in US history to have completed a term in office without ever having issued a single veto.",
+			"Awnser": true
+		},
+		"888": {
+			"Question": "The praying mantis is the only insect that can turn its head.",
+			"Awnser": true
+		},
+		"889": {
+			"Question": "A quarter has 119 grooves on its edge, a dime has one less groove.",
+			"Awnser": true
+		},
+		"890": {
+			"Question": "In February 2004, a Disney World employee was killed when he fell from a parade float and was trapped between two float sections. OSHA termed this a serious workplace violation, but Disney was fined only $6,300.",
+			"Awnser": true
+		},
+		"891": {
+			"Question": "In 2004, Virgin Atlantic Airlines introduced a double bed for first class passengers who fly together.",
+			"Awnser": true
+		},
+		"892": {
+			"Question": "A Canadian study has shown that if you choose a baby's name before it is born, the baby will most likely be female.",
+			"Awnser": false
+		},
+		"893": {
+			"Question": "Japanese and Chinese people die on the fourth of the month more often than any other dates. The reason may be that they are \"scared to death\" by the number four. The words four and death sound alike in both Chinese and Japanese.",
+			"Awnser": true
+		},
+		"894": {
+			"Question": "Before Charles DeGaulle was the French President, he was a bounty hunter. (thanks to Eric Snyder)",
+			"Awnser": false
+		},
+		"895": {
+			"Question": "There are more collect calls on Father's Day than any other day of the year.",
+			"Awnser": true
+		},
+		"896": {
+			"Question": "The Australian aborigine language has over 30 words for \"dust.\" ",
+			"Awnser": false
+		},
+		"897": {
+			"Question": "Tuesday didn't exist on calendars until 1955. ",
+			"Awnser": false
+		},
+		"898": {
+			"Question": "Winnie the Pooh was originally named \"Winnie the Pee\". (thanks to Eric Snyder) ",
+			"Awnser": false
+		},
+		"899": {
+			"Question": "Manatees possess vocal chords which give them the ability to speak almost like humans, but don't speak because they have no ears with which to hear the sound. ",
+			"Awnser": false
+		},
+		"900": {
+			"Question": "Prior to statehood, North Carolina was called South Virginia. ",
+			"Awnser": false
+		},
+		"901": {
+			"Question": "If you put a bee in a film canister for two hours, it will go blind.",
+			"Awnser": false
+		},
+		"902": {
+			"Question": "There are more plastic flamingoes in the United States than real ones.",
+			"Awnser": true
+		},
+		"903": {
+			"Question": "Airport security agents at Logan Airport in Boston, Massachusetts caught a passenger trying to sneak a severed seal head onto a plane inside a cooler. The man said he was a biology professor and had found the dead animal on the beach.",
+			"Awnser": true
+		},
+		"904": {
+			"Question": "Married men change their underwear twice as often as single men.",
+			"Awnser": true
+		},
+		"905": {
+			"Question": "Every 46 seconds, someone is scalded at Starbucks. ",
+			"Awnser": false
+		},
+		"906": {
+			"Question": "The earliest English Muffins contained nooks but no crannies.",
+			"Awnser": false
+		},
+		"907": {
+			"Question": "Most boat owners name their boats. The most popular boat name requested is Obsession.",
+			"Awnser": true
+		},
+		"908": {
+			"Question": "A jellyfish is 95 percent water.",
+			"Awnser": true
+		},
+		"909": {
+			"Question": "Ants stretch when they wake up in the morning.",
+			"Awnser": true
+		},
+		"910": {
+			"Question": "La Paz, Bolivia has an average annual temperature below 50 degrees Fahrenheit. However, it has never recorded a zero-degree temperature. Same for Stanley, Falkland Islands and Punta Arenas, Chile.",
+			"Awnser": true
+		},
+		"911": {
+			"Question": "The entire town of Capena, Italy (including children as young as 2 years old) lights up cigarettes each year in honor of St. Anthony's Day. This tradition is centuries old.",
+			"Awnser": true
+		},
+		"912": {
+			"Question": "A woman was chewing what was left of her chocolate bar when she entered a Metro station in Washington DC. She was arrested and handcuffed; eating is prohibited in Metro stations.",
+			"Awnser": true
+		}
+	}
+}

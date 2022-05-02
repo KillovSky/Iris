@@ -1,0 +1,1253 @@
+{
+	"races":[
+		"humano",
+		"elfo",
+		"gnomo",
+		"orc",
+		"anao",
+		"demonio",
+		"alien",
+		"goblin",
+		"reptil"
+	],
+	"classes":[
+		"templario",
+		"monge",
+		"guerreiro",
+		"feiticeiro",
+		"ladrao",
+		"clerigo",
+		"arqueiro",
+		"bardo"
+	],
+	"gender":[
+		"mulher",
+		"homem"
+	],
+	"allEnemies":{
+		"list":[
+			"aranha",
+			"arquiteto",
+			"batman",
+			"bear",
+			"blacksmitch",
+			"bruxo",
+			"canibal",
+			"cat",
+			"dettlaff",
+			"drunk",
+			"ei",
+			"enderDragon",
+			"enderman",
+			"freedy",
+			"ghost",
+			"ghost2",
+			"goblin",
+			"golem",
+			"herobrine",
+			"hiluchurl",
+			"jason",
+			"kairagi",
+			"lagarta",
+			"lava",
+			"loli",
+			"loli2",
+			"loli3",
+			"monika",
+			"natsuki",
+			"oceanid",
+			"pigsy",
+			"pillager",
+			"ronin",
+			"sayori",
+			"skeleton",
+			"slime",
+			"witch",
+			"yuri",
+			"zombie",
+			"zombie2",
+			"zombie3"
+		],
+		"loli":{
+			"image":"https://i.pinimg.com/originals/92/28/77/922877fffc1d08ac33d494f83d5b983f.jpg",
+			"from":"Horror Anime/Manga Photo: Sunako Kirishiki | Shiki",
+			"stats":{
+				"vit":200,
+				"str":35
+			}
+		},
+		"ghost":{
+			"image":"https://c0.klipartz.com/pngpicture/225/127/gratis-png-super-mario-world-super-mario-bros-super-mario-3d-land-nuevo-super-mario-bros-fantasma.png",
+			"from":"Ghost - Super Mario Bros - Também em [World/Outros]",
+			"stats":{
+				"vit":180,
+				"str":25
+			}
+		},
+		"freedy":{
+			"image":"https://w7.pngwing.com/pngs/31/315/png-transparent-five-nights-at-freddy-s-4-five-nights-at-freddy-s-2-five-nights-at-freddy-s-sister-location-fnaf-world-freddy-drawing.png",
+			"from":"Freedy - Five Nights at Freedy",
+			"stats":{
+				"vit":300,
+				"str":50
+			}
+		},
+		"zombie":{
+			"image":"https://static.wikia.nocookie.net/residentevil/images/0/0d/Resident-evil-zero-zombie.jpg",
+			"from":"Resident Evil Zero - First Zombie",
+			"stats":{
+				"vit":150,
+				"str":15
+			}
+		},
+		"cat":{
+			"image":"https://darksouls-portuguese.wiki.fextralife.com/file/Dark-Souls---Portuguese/alvina-of-the-darkroot-wood.png",
+			"from":"Alvina of the Darkroot Wood - Dark Souls",
+			"stats":{
+				"vit":240,
+				"str":40
+			}
+		},
+		"loli2":{
+			"image":"https://i.pinimg.com/originals/14/6a/cd/146acd0e7a3a022121b5ba4413e38e69.jpg",
+			"from":"Hatoba Tsugu - Virtual YouTuber",
+			"stats":{
+				"vit":180,
+				"str":25
+			}
+		},
+		"zombie2":{
+			"image":"https://images.gamebanana.com/img/ico/sprays/unbenannt-1_14.jpg",
+			"from":"Dog - Quase em todos os Resident Evil's",
+			"stats":{
+				"vit":150,
+				"str":15
+			}
+		},
+		"ronin":{
+			"image":"https://static0.srcdn.com/wordpress/wp-content/uploads/2021/02/Last-Ronin-Comic.jpg",
+			"from":"Michelangelo - The Last Ronin (The Mutant Ninja Turtles)",
+			"stats":{
+				"vit":300,
+				"str":50
+			}
+		},
+		"loli3":{
+			"image":"https://i.pinimg.com/originals/a6/af/c6/a6afc6740888a25482978324e2d89fca.jpg",
+			"from":"Genshin Impact - Diona",
+			"stats":{
+				"vit":240,
+				"str":35
+			}
+		},
+		"drunk":{
+			"image":"https://2e.aonprd.com/Images/NPCs/Publican_Drunkard.png",
+			"from":"Pathfinder 2nd Edition - Drunkard",
+			"stats":{
+				"vit":125,
+				"str":20
+			}
+		},
+		"slime":{
+			"image":"https://pm1.narvii.com/6820/c8a632a6c855b305517ab77343b0d11896713d51v2_hq.jpg",
+			"from":"Desconhecido",
+			"stats":{
+				"vit":115,
+				"str":15
+			}
+		},
+		"dettlaff":{
+			"image":"https://static.wikia.nocookie.net/witcher/images/f/f6/Tw3_journal_dettlaff.png",
+			"from":"Dettlaff - The Witcher 3 - DLC Blood And Wine",
+			"stats":{
+				"vit":300,
+				"str":50
+			}
+		},
+		"golem":{
+			"image":"https://static.wikia.nocookie.net/liberproeliis/images/7/77/Irom_Golem.png",
+			"from":"Iron Golem - Minecraft",
+			"stats":{
+				"vit":160,
+				"str":35
+			}
+		},
+		"blacksmitch":{
+			"image":"https://static.wikia.nocookie.net/skyrim_gamepedia/images/3/39/EorlundGray-Mane.png",
+			"from":"Eorlund Gray-Mane - The Elder Scrolls: Skyrim",
+			"stats":{
+				"vit":240,
+				"str":50
+			}
+		},
+		"lava":{
+			"image":"https://static.wikia.nocookie.net/megaman/images/b/b8/Lava_Demon.jpg",
+			"from":"Demonio de Lava - Mega Man ZX",
+			"stats":{
+				"vit":200,
+				"str":25
+			}
+		},
+		"bruxo":{
+			"image":"https://static.wikia.nocookie.net/tsrd/images/b/bc/F3e084010b6d10c5a9fb808114648cba.jpg",
+			"from":"Bruxo - Tormenta RPG",
+			"stats":{
+				"vit":200,
+				"str":25
+			}
+		},
+		"pillager":{
+			"image":"https://www.pngitem.com/pimgs/b/144-1445449_elf-on-the-shelf-png.png",
+			"from":"Pillager - Minecraft",
+			"stats":{
+				"vit":150,
+				"str":35
+			}
+		},
+		"lagarta":{
+			"image":"https://e7.pngegg.com/pngimages/113/287/png-clipart-super-mario-sunshine-super-mario-world-super-mario-64-ds-mario-bros-super-mario-rpg-un-mario-wiki-food-boss.png",
+			"from":"Lagarto(?) - Super Mario Sunshine",
+			"stats":{
+				"vit":180,
+				"str":15
+			}
+		},
+		"witch":{
+			"image":"https://www.seekpng.com/png/full/235-2358922_the-witch-from-left-4-dead-left-4.png",
+			"from":"Witch - Left 4 Dead 2",
+			"stats":{
+				"vit":180,
+				"str":50
+			}
+		},
+		"arquiteto":{
+			"image":"https://picfiles.alphacoders.com/398/398126.png",
+			"from":"O Arquiteto - Solo Leveling",
+			"stats":{
+				"vit":300,
+				"str":50
+			}
+		},
+		"aranha":{
+			"image":"https://e7.pngegg.com/pngimages/772/763/png-clipart-monstrous-spider-dungeons-dragons-pathfinder-roleplaying-game-giant-huntsman-spider-spider-game-seafood.png",
+			"from":"Spider - Dungeons & Dragons",
+			"stats":{
+				"vit":200,
+				"str":25
+			}
+		},
+		"ghost2":{
+			"image":"https://w7.pngwing.com/pngs/685/645/png-transparent-dungeons-dragons-rolls-royce-wraith-pathfinder-roleplaying-game-ghost-demon-s-souls-dungeons-amp-dragons.png",
+			"from":"Soul's Demon - Dungeons & Dragons",
+			"stats":{
+				"vit":180,
+				"str":15
+			}
+		},
+		"jason":{
+			"image":"https://www.pngfind.com/pngs/m/34-343144_jason-voorhees-png-freddy-vs-jason-jason-transparent.png",
+			"from":"Jason Voorhees - Sexta-Feira 13",
+			"stats":{
+				"str":50,
+				"vit":300
+			}
+		},
+		"bear":{
+			"image":"https://i.pinimg.com/564x/76/dd/78/76dd788df9b9c3408de8408ad539850f.jpg",
+			"from":"Urso Polar - Ursos sem Curso (Cartoon)",
+			"stats":{
+				"vit":150,
+				"str":35
+			}
+		},
+		"oceanid":{
+			"image":"https://static.wikia.nocookie.net/gensin-impact/images/2/27/Enemy_Oceanid.png",
+			"from":"Rhodeia of Loch [Oceanid] - Genshin Impact",
+			"stats":{
+				"vit":150,
+				"str":20
+			}
+		},
+		"canibal":{
+			"image":"https://cdn.imgbin.com/11/5/23/imgbin-the-forest-masked-mutant-cannibalism-mask-ZWp58PL65LPdmU34nTRJdJxeX.jpg",
+			"from":"Mutante - The Forest",
+			"stats":{
+				"vit":130,
+				"str":20
+			}
+		},
+		"batman":{
+			"image":"https://wallpapercave.com/wp/wp8077381.jpg",
+			"from":"Batman que Ri - Fanmade",
+			"stats":{
+				"vit":300,
+				"str":50
+			}
+		},
+		"pigsy":{
+			"image":"https://static.wikia.nocookie.net/manhunt/images/8/8f/Porkypiggsy5ro.jpg",
+			"from":"Pigsy - Manhunt",
+			"stats":{
+				"vit":200,
+				"str":30
+			}
+		},
+		"monika":{
+			"image":"https://www.seekpng.com/png/full/144-1449012_edited-mediahorror-monika-ddlc-anime.png",
+			"from":"Monika (Fan-made Horror) - Doki Doki Literature Club",
+			"stats":{
+				"str":50,
+				"vit":320
+			}
+		},
+		"sayori":{
+			"image":"https://i.redd.it/06y825r4uul11.png",
+			"from":"Sayori (Love Mode) - Doki Doki Literature Club (SayoriDate MOD)",
+			"stats":{
+				"str":30,
+				"vit":230
+			}
+		},
+		"yuri":{
+			"image":"https://i.redd.it/ddf9dvvzmcs01.png",
+			"from":"Yuri (Fan-made Horror) - Doki Doki Literature Club",
+			"stats":{
+				"str":30,
+				"vit":280
+			}
+		},
+		"natsuki":{
+			"image":"https://www.nicepng.com/png/full/944-9445218_doki-literature-club-wiki-doki-doki-natsuki-death.png",
+			"from":"Natsuki - Doki Doki Literature Club",
+			"stats":{
+				"str":25,
+				"vit":210
+			}
+		},
+		"enderDragon":{
+			"image":"https://www.seekpng.com/png/full/618-6187013_ender-dragon-png.png",
+			"from":"Ender Dragon - Minecraft",
+			"stats":{
+				"str":40,
+				"vit":170
+			}
+		},
+		"enderman":{
+			"image":"https://i.redd.it/wq96uzzf2y251.png",
+			"from":"Enderman - Minecraft",
+			"stats":{
+				"str":25,
+				"vit":230
+			}
+		},
+		"skeleton":{
+			"image":"https://static.wikia.nocookie.net/minecraft_gamepedia/images/b/b6/Skeleton_Aiming_JE2_BE3.png",
+			"from":"Esqueleto - Minecraft",
+			"stats":{
+				"str":20,
+				"vit":120
+			}
+		},
+		"zombie3":{
+			"image":"https://static.wikia.nocookie.net/minecraft_gamepedia/images/6/63/Baby_Zombified_Piglin_JE8.png",
+			"from":"Piglin - Minecraft",
+			"stats":{
+				"str":15,
+				"vit":150
+			}
+		},
+		"herobrine":{
+			"image":"https://www.pikpng.com/pngl/b/199-1999825_herobrine-png-minecraft-herobrine-noob-clipart.png",
+			"from":"Herobrine - Minecraft",
+			"stats":{
+				"str":50,
+				"vit":200
+			}
+		},
+		"ei":{
+			"image":"https://static.wikia.nocookie.net/gensin-impact/images/6/6b/Character_Raiden_Shogun_Game.png",
+			"from":"Raiden Shogun (EI) - Genshin Impact",
+			"stats":{
+				"str":50,
+				"vit":300
+			}
+		},
+		"goblin":{
+			"image":"https://vignette.wikia.nocookie.net/finalfantasy/images/f/fb/Goblin-ff1-art.png",
+			"from":"Goblin - Final Fantasy",
+			"stats":{
+				"str":15,
+				"vit":140
+			}
+		},
+		"hiluchurl":{
+			"image":"https://static.zerochan.net/Hilichurl.full.3369088.png",
+			"from":"Hiluchurl - Genshin Impact",
+			"stats":{
+				"str":15,
+				"vit":120
+			}
+		},
+		"kairagi":{
+			"image":"https://static.wikia.nocookie.net/gensin-impact/images/0/02/Enemy_Kairagi_Dancing_Thunder.png",
+			"from":"Kairagi - Genshin Impact",
+			"stats":{
+				"str":25,
+				"vit":150
+			}
+		}
+	},
+	"base":{
+		"all":[
+			"str",
+			"vit",
+			"dex",
+			"int",
+			"per",
+			"car"
+		],
+		"str":10,
+		"vit":150,
+		"dex":10,
+		"int":10,
+		"per":10,
+		"car":10
+	},
+	"effect":{
+		"templario":{
+			"str":10,
+			"vit":15,
+			"dex":2,
+			"int":1,
+			"per":1,
+			"car":1
+		},
+		"monge":{
+			"str":10,
+			"vit":10,
+			"dex":5,
+			"int":2,
+			"per":2,
+			"car":1
+		},
+		"feiticeiro":{
+			"str":5,
+			"vit":2,
+			"dex":5,
+			"int":15,
+			"per":2,
+			"car":1
+		},
+		"guerreiro":{
+			"str":20,
+			"vit":5,
+			"dex":2,
+			"int":1,
+			"per":1,
+			"car":1
+		},
+		"ladrao":{
+			"str":10,
+			"vit":2,
+			"dex":15,
+			"int":1,
+			"per":1,
+			"car":1
+		},
+		"clerigo":{
+			"str":2,
+			"vit":10,
+			"dex":3,
+			"int":10,
+			"per":2,
+			"car":3
+		},
+		"arqueiro":{
+			"str":10,
+			"vit":2,
+			"dex":5,
+			"int":2,
+			"per":10,
+			"car":1
+		},
+		"bardo":{
+			"str":10,
+			"vit":3,
+			"dex":3,
+			"int":2,
+			"per":2,
+			"car":10
+		}
+	},
+	"levelup":{
+		"person":{
+			"all":10,
+			"vit":50
+		},
+		"enemies":{
+			"all":12,
+			"vit":60
+		}
+	},
+	"skills":{
+		"per":{
+			"effect":10,
+			"list":[
+				"Explorer's Dream",
+				"Eye of a God",
+				"The Invisible"
+			],
+			"desc":{
+				"Explorer's Dream":{
+					"history":"Durante a historia desse mundo, diversos tesouros foram perdidos a vastidão do tempo, embora historiadores tenham procurado, muitos dos tesouros seguem perdidos e esperam por um aventureiro que os ache.",
+					"skill":"Aumenta a percepção sobre este mundo em 10+ pontos, permitindo que os usuários achem mais tesouros."
+				},
+				"Eye of a God":{
+					"history":"Antes da própria existência do mundo, havia um Deus que olhava pelas suas criações, antes de seu desaparecimento, houve um ultimo presente deste Deus, seu olho divino, não há relatos de quem recebeu este presente, mas ele existe há diversas gerações, esperando pela próxima pessoa que irá o ganhar.",
+					"skill":"Os usuários desta skill podem, durante um pequeno período, se permitido, olhar além do tempo e antecipar o futuro, a skill aumenta a percepção em 10 pontos."
+				},
+				"The Invisible":{
+					"history":"A muito tempo, existiram conceitos que definiam como a alma, energia e vento se pareciam, até os dias de hoje existem desenhos de pessoas que retratam sobre como eles são, mas se você pudesse vê-los em sua forma verdadeira, como se sentiria?",
+					"skill":"Permite que você veja coisas que são impossíveis para pessoas 'comuns', a skill aumenta a percepção em 10 pontos, mas cuidado, talvez você possa ver até mesmos fantasmas!"
+				}
+			}
+		},
+		"int":{
+			"effect":10,
+			"list":[
+				"The Book of God",
+				"The Magical Fate",
+				"Beyond the Time"
+			],
+			"desc":{
+				"The Book of God":{
+					"history":"Um dia, um Deus desconhecido deixou cair seu caderno no mundo, desde então, mistérios rondam esse caderno que é mais escuro que a noite, tudo que se sabe sobre ele é que quem o tiver ganha uma grande inteligência, embora não se saiba onde estão seus antigos usuários.",
+					"skill":"A inteligência do usuário do caderno aumenta em 10+ pontos, ganhando o poder de ler livros proibidos com facilidade."
+				},
+				"The Magical Fate":{
+					"history":"Já dizia nossos antepassados que a magia era real e única nesse mundo, mas seus usuários foram mortos por serem considerados anormais, assim se imagina segundo a historia, o que ninguém sabe é que a magia não foi perdida no tempo e segue viva e em utilização por aqueles que aceitam seu destino.",
+					"skill":"A inteligência aumenta em 10 e o usuário ganha a capacidade de usar magias lendárias que apenas os grandes magos podem utilizar."
+				},
+				"Beyond the Time":{
+					"history":"Desde o desenvolvimento humano, a inteligência foi sendo evoluída em grande capacidade, em algum período, uma certa garota estrategista resolveu que antes de morrer, iria passar todo seu conhecimento estratégico a frente, seus herdeiros então, graças a estrategista, obtiveram habilidades de prever todos os eventos possíveis a seus alcances, embora a habilidade atual esteja longe da original.",
+					"skill":"Sua inteligência aumenta 10 pontos lhe dando a capacidade de prever as ações do seu oponente e seus efeitos, além de prever eventos."
+				}
+			}
+		},
+		"str":{
+			"effect":10,
+			"list":[
+				"The right-hand of God",
+				"Power of a Hero",
+				"One for All"
+			],
+			"desc":{
+				"The right-hand of God":{
+					"history":"Antes da ascensão de Deus como governante supremo, houve uma guerra pelo controle, durante este período, o atual Deus deu a seus soldados a habilidade de sua força e venceu a guerra, embora após a guerra, Deus tenha sido traído por um de seus mais fieis arcanjos, ele então venceu o arcanjo e o jogou no mundo dos mortais, o arcanjo então passou a sua habilidade para os seres mortais que o apelidaram como Anjo-Caído devido a aura obscura que ganhou em seu combate contra Deus.",
+					"skill":"A força do usuário ganha 10 pontos e seus ataques se tornam mais poderosos, podendo vencer até de mãos nuas, caso o usuário esteja usando magia de força, ela ganhará 10 pontos."
+				},
+				"Power of a Hero":{
+					"history":"Durante a era das trevas que soltou demônios no mundo, houve um herói lendário que com sua espada pesada e longa e sua absurda força de combate, deu fim a guerra vencendo os demônios, os contos dizem que este herói descansa em paz em algum lugar do mundo junto a sua espada legendaria que foi apelidada de 'matadora de dragões' por seu criador.",
+					"skill":"A força ganha 10 pontos, caso o usuário porte uma espada pesada, o dano da espada terá um adicional de 10 pontos."
+				},
+				"One for All":{
+					"history":"Muitas gerações atrás, um certo vilão deu uma habilidade para seu inimigo, este poder foi catalisado como uma super força que é passada de geração em geração para aqueles que são reconhecidos como herdeiros pelos seus usuários.",
+					"skill":"A força ganha 10 pontos, se o usuário lutar usando punhos ou chutes, seus golpes darão um dano de 10 pontos adicionais."
+				}
+			}
+		},
+		"car":{
+			"effect":10,
+			"list":[
+				"Songs of God",
+				"Children's Dream",
+				"Manipulation Ethics"
+			],
+			"desc":{
+				"Songs of God":{
+					"history":"Desde os tempos antigos, a música é uma benção para aqueles que entendem seu significado, na guerra, os Deuses vitoriosos comemoravam com uma música e um banquete, após o fim da guerra, suas músicas se tornaram lendárias para os mortais e eles as cantam em harmonia sempre que podem.",
+					"skill":"Seu carisma aumenta em 10 pontos, se o personagem for um bardo, esse efeito aumentará o poder do buff e debuff, se não, sempre que o personagem tocar uma música ele pode receber informações de NPC's sobre personagens."
+				},
+				"Children's Dream":{
+					"history":"As crianças são puras e tem uma inocência linda de se admirar, cada criança tem um sonho que quer realizar, e por isso, algumas pessoas bondosas sempre se esforçam pra deixar a criança realizar seus sonhos, talvez você encontre alguém que pode realizar seu sonho.",
+					"skill":"Seu carisma aumenta em 10 pontos, as barganhas terão mais chances de darem certo, podendo ganhar itens gratuitos de alguns NPC's."
+				},
+				"Manipulation Ethics":{
+					"history":"Nesse mundo, todos os seres podem manipular magia, armas e outros itens e ações, todavia, são poucos aqueles que conseguem manipular a mente e ações de seres vivos apenas ao falar, já considerou o que poderia acontecer se alguém fizesse o que você pedisse sempre que quiser?",
+					"skill":"Aumenta o carisma em 10 pontos, fazendo com que os NPC's possam cumprir ações por você e inimigos possam fugir ao manipular e impor medo em suas mentes."
+				}
+			}
+		},
+		"vit":{
+			"effect":20,
+			"list":[
+				"God's Life",
+				"The Resistence",
+				"Grand Passion"
+			],
+			"desc":{
+				"God's Life":{
+					"history":"Todos sabemos que aqueles chamados de Deuses não são simplesmente fortes mas também cheios de energia, segundo a mitologia, aqueles que detêm o sangue de um Deus tem uma vitalidade muito maior que a de um ser comum, boatos dizem que é possível viver quase mais de 1000 anos com esta vitalidade divina.",
+					"effect":"A vitalidade aumenta 20 pontos, a saúde dos usuários dessa skill irão regenerar sempre que não estiver em combate."
+				},
+				"The Resistence":{
+					"history":"Durante a guerra dos Deuses, um grupo de resistência foi formado pelos que eram contra o envolvimento dos mortais na guerra, seu principal foco era um treinamento angustiante de resistência para que pudessem resistir aos golpes divinos, mas, infelizmente o grupo de resistência não foi forte o bastante e sua ilha foi completamente destruída pelos Deuses, alguns participantes conseguiram fugir e graças a isso, passaram seu treinamento adiante para aqueles que desejam desafios.",
+					"effect":"A vitalidade aumenta em 20 pontos, se o inimigo atacar com magia ou arma embutida em magia, o dano dela diminuirá em 10 pontos."
+				},
+				"Grand Passion":{
+					"history":"Sempre foi dito que aqueles que tem uma grande paixão podem transcender os limites e chegar a seus objetivos, até os dias de hoje essas habilidades movidas a paixão continuam existindo, quanto maior a paixão do usuário do poder, maior é a capacidade, pois tal pessoa desconhece os limites.",
+					"effect":"A vitalidade aumenta em 20 pontos, sempre que o personagem ouve ou toca uma música sua vitalidade e magia é recuperada parcialmente desde que não esteja em combate."
+				}
+			}
+		},
+		"dex":{
+			"effect":10,
+			"list":[
+				"Assassin's Desire",
+				"The Light of God",
+				"Escape and Live"
+			],
+			"desc":{
+				"Assassin's Desire":{
+					"desc":"'Nada é verdade, tudo é permitido.', disse um sábio uma vez, esta metáfora inspirou diversas pessoas a criarem um clã de assassinos, seu poder era assassinar nas sombras, sua agilidade e silencio eram absolutos, não havia erros em seus assassinatos, este clã segue hoje em total sigilo em algum lugar do mundo, mas suas habilidades são conhecidas e muitas pessoas tentam replica-las.",
+					"effect":"Aumenta a destreza em 10 pontos, os passos são mais silenciosos e permitem que a pessoa roube ou assassine com mais facilidade."
+				},
+				"The Light of God":{
+					"desc":"Na guerra dos Deuses, muitos guerreiros muito rápidos matavam grupos de guerreiros com suas habilidades, o atual Deus vendo a magnificência de tais habilidades, deu aos mortais um poder semelhante para que pudessem correr mais rapidamente, visando usar-los em outra guerra.",
+					"effect":"Aumenta a destreza em 10 pontos, permitindo que os lutadores deem mais de um golpe se sortudos o bastante no combate."
+				},
+				"Escape and Live":{
+					"desc":"Não importa onde se vá neste mundo, sempre haverá guerras, mas existem formas de impedir-las, uma delas é fugindo, afinal, o vencedor se trata daquele que sai vivo de uma batalha e não aquele que tenta e perde sua vida.",
+					"effect":"Aumenta a destreza em 10 pontos, permitindo que as fugas tenham maiores chances de sucesso."
+				}
+			}
+		}
+	},
+	"places":{
+		"list":[
+			"cidade",
+			"floresta",
+			"unknown"
+		],
+		"cidade":{
+			"list":[
+				"pousada",
+				"beco",
+				"taberna",
+				"armeiro",
+				"loja"
+			],
+			"pousada":{
+				"imagem":"https://static.wikia.nocookie.net/elderscrolls/images/d/d1/Sleeping_Giant_Inn.png",
+				"from":"Sleeping Giant Inn - The Elder Scrolls: Skyrim",
+				"bosses":[
+					"loli",
+					"zombie",
+					"ghost",
+					"freedy"
+				],
+				"enemy":{
+					"loli":{
+						"image":"https://i.pinimg.com/originals/92/28/77/922877fffc1d08ac33d494f83d5b983f.jpg",
+						"from":"Horror Anime/Manga Photo: Sunako Kirishiki | Shiki",
+						"stats":{
+							"vit":200,
+							"str":35
+						}
+					},
+					"ghost":{
+						"image":"https://c0.klipartz.com/pngpicture/225/127/gratis-png-super-mario-world-super-mario-bros-super-mario-3d-land-nuevo-super-mario-bros-fantasma.png",
+						"from":"Ghost - Super Mario Bros - Também em [World/Outros]",
+						"stats":{
+							"vit":180,
+							"str":25
+						}
+					},
+					"freedy":{
+						"image":"https://w7.pngwing.com/pngs/31/315/png-transparent-five-nights-at-freddy-s-4-five-nights-at-freddy-s-2-five-nights-at-freddy-s-sister-location-fnaf-world-freddy-drawing.png",
+						"from":"Freedy - Five Nights at Freedy",
+						"stats":{
+							"vit":300,
+							"str":50
+						}
+					},
+					"zombie":{
+						"image":"https://static.wikia.nocookie.net/residentevil/images/0/0d/Resident-evil-zero-zombie.jpg",
+						"from":"Resident Evil Zero - First Zombie",
+						"stats":{
+							"vit":150,
+							"str":15
+						}
+					}
+				}
+			},
+			"beco":{
+				"imagem":"https://static.wikia.nocookie.net/residentevil/images/4/45/Resident_Evil_3_background_-_Uptown_-_warehouse_back_alley_c1_-_R10202.jpg",
+				"from":"Resident Evil 3 - Atalho do estacionamento",
+				"bosses":[
+					"cat",
+					"zombie",
+					"loli",
+					"ronin"
+				],
+				"enemy":{
+					"cat":{
+						"image":"https://darksouls-portuguese.wiki.fextralife.com/file/Dark-Souls---Portuguese/alvina-of-the-darkroot-wood.png",
+						"from":"Alvina of the Darkroot Wood - Dark Souls",
+						"stats":{
+							"vit":240,
+							"str":40
+						}
+					},
+					"loli":{
+						"image":"https://i.pinimg.com/originals/14/6a/cd/146acd0e7a3a022121b5ba4413e38e69.jpg",
+						"from":"Hatoba Tsugu - Virtual YouTuber",
+						"stats":{
+							"vit":180,
+							"str":25
+						}
+					},
+					"zombie":{
+						"image":"https://images.gamebanana.com/img/ico/sprays/unbenannt-1_14.jpg",
+						"from":"Dog - Quase em todos os Resident Evil's",
+						"stats":{
+							"vit":150,
+							"str":15
+						}
+					},
+					"ronin":{
+						"image":"https://static0.srcdn.com/wordpress/wp-content/uploads/2021/02/Last-Ronin-Comic.jpg",
+						"from":"Michelangelo - The Last Ronin (The Mutant Ninja Turtles)",
+						"stats":{
+							"vit":300,
+							"str":50
+						}
+					}
+				}
+			},
+			"taberna":{
+				"imagem":"https://static.wikia.nocookie.net/witcher/images/7/76/Tavern-at-harviken.jpg",
+				"from":"The Witcher 3 - Harviken",
+				"bosses":[
+					"slime",
+					"drunk",
+					"loli",
+					"dettlaff"
+				],
+				"enemy":{
+					"loli":{
+						"image":"https://i.pinimg.com/originals/a6/af/c6/a6afc6740888a25482978324e2d89fca.jpg",
+						"from":"Genshin Impact - Diona",
+						"stats":{
+							"vit":240,
+							"str":35
+						}
+					},
+					"drunk":{
+						"image":"https://2e.aonprd.com/Images/NPCs/Publican_Drunkard.png",
+						"from":"Pathfinder 2nd Edition - Drunkard",
+						"stats":{
+							"vit":125,
+							"str":20
+						}
+					},
+					"slime":{
+						"image":"https://pm1.narvii.com/6820/c8a632a6c855b305517ab77343b0d11896713d51v2_hq.jpg",
+						"from":"Desconhecido",
+						"stats":{
+							"vit":115,
+							"str":15
+						}
+					},
+					"dettlaff":{
+						"image":"https://static.wikia.nocookie.net/witcher/images/f/f6/Tw3_journal_dettlaff.png",
+						"from":"Dettlaff - The Witcher 3 - DLC Blood And Wine",
+						"stats":{
+							"vit":300,
+							"str":50
+						}
+					}
+				}
+			},
+			"armeiro":{
+				"imagem":"https://static.wikia.nocookie.net/elderscrolls/images/d/dd/Sky_Forge.png",
+				"from":"The Elder Scrolls: Skyrim - The Sky Forge (Companions Guild)",
+				"bosses":[
+					"golem",
+					"blacksmitch",
+					"lava"
+				],
+				"enemy":{
+					"golem":{
+						"image":"https://static.wikia.nocookie.net/liberproeliis/images/7/77/Irom_Golem.png",
+						"from":"Iron Golem - Minecraft",
+						"stats":{
+							"vit":160,
+							"str":35
+						}
+					},
+					"blacksmitch":{
+						"image":"https://static.wikia.nocookie.net/skyrim_gamepedia/images/3/39/EorlundGray-Mane.png",
+						"from":"Eorlund Gray-Mane - The Elder Scrolls: Skyrim",
+						"stats":{
+							"vit":300,
+							"str":50
+						}
+					},
+					"lava":{
+						"image":"https://static.wikia.nocookie.net/megaman/images/b/b8/Lava_Demon.jpg",
+						"from":"Demonio de Lava - Mega Man ZX",
+						"stats":{
+							"vit":200,
+							"str":25
+						}
+					}
+				}
+			},
+			"loja":{
+				"imagem":"https://images.saymedia-content.com/.image/c_limit%2Ccs_srgb%2Cq_auto:eco%2Cw_700/MTc0Mjc0MjU0MzQ5NTQzMjky/the-general-store-in-buried-call-of-duty-black-ops-2-zombies.webp",
+				"from":"General Store - Call of Duty Black Ops 2",
+				"bosses":[
+					"bruxo",
+					"pillager",
+					"lagarta",
+					"witch"
+				],
+				"enemy":{
+					"bruxo":{
+						"image":"https://static.wikia.nocookie.net/tsrd/images/b/bc/F3e084010b6d10c5a9fb808114648cba.jpg",
+						"from":"Bruxo - Tormenta RPG",
+						"stats":{
+							"vit":200,
+							"str":25
+						}
+					},
+					"pillager":{
+						"image":"https://www.pngitem.com/pimgs/b/144-1445449_elf-on-the-shelf-png.png",
+						"from":"Pillager - Minecraft",
+						"stats":{
+							"vit":150,
+							"str":35
+						}
+					},
+					"lagarta":{
+						"image":"https://e7.pngegg.com/pngimages/113/287/png-clipart-super-mario-sunshine-super-mario-world-super-mario-64-ds-mario-bros-super-mario-rpg-un-mario-wiki-food-boss.png",
+						"from":"Lagarto(?) - Super Mario Sunshine",
+						"stats":{
+							"vit":180,
+							"str":15
+						}
+					},
+					"witch":{
+						"image":"https://www.seekpng.com/png/full/235-2358922_the-witch-from-left-4-dead-left-4.png",
+						"from":"Witch - Left 4 Dead 2",
+						"stats":{
+							"vit":300,
+							"str":50
+						}
+					}
+				}
+			}
+		},
+		"floresta":{
+			"list":[
+				"santuário",
+				"lago",
+				"caverna"
+			],
+			"santuario":{
+				"image":"https://static.wikia.nocookie.net/rezero/images/b/bf/Echidnas_Tomb_ep.27_10.jpg",
+				"from":"Sanctuary of Kremaldy - RE-Zero",
+				"bosses":[
+					"arquiteto",
+					"aranha",
+					"ghost"
+				],
+				"enemy":{
+					"arquiteto":{
+						"image":"https://picfiles.alphacoders.com/398/398126.png",
+						"from":"O Arquiteto - Solo Leveling",
+						"stats":{
+							"vit":300,
+							"str":50
+						}
+					},
+					"aranha":{
+						"image":"https://e7.pngegg.com/pngimages/772/763/png-clipart-monstrous-spider-dungeons-dragons-pathfinder-roleplaying-game-giant-huntsman-spider-spider-game-seafood.png",
+						"from":"Spider - Dungeons & Dragons",
+						"stats":{
+							"vit":200,
+							"str":25
+						}
+					},
+					"ghost":{
+						"image":"https://w7.pngwing.com/pngs/685/645/png-transparent-dungeons-dragons-rolls-royce-wraith-pathfinder-roleplaying-game-ghost-demon-s-souls-dungeons-amp-dragons.png",
+						"from":"Soul's Demon - Dungeons & Dragons",
+						"stats":{
+							"vit":180,
+							"str":15
+						}
+					}
+				}
+			},
+			"lago":{
+				"image":"https://static.wikia.nocookie.net/fridaythe13th/images/7/79/Gamecamp.jpg",
+				"from":"Camp Crystal Lake - Sexta-Feira 13",
+				"bosses":[
+					"jason",
+					"bear",
+					"oceanid"
+				],
+				"enemy":{
+					"jason":{
+						"image":"https://www.pngfind.com/pngs/m/34-343144_jason-voorhees-png-freddy-vs-jason-jason-transparent.png",
+						"from":"Jason Voorhees - Sexta-Feira 13",
+						"stats":{
+							"str":50,
+							"vit":300
+						}
+					},
+					"bear":{
+						"image":"https://i.pinimg.com/564x/76/dd/78/76dd788df9b9c3408de8408ad539850f.jpg",
+						"from":"Urso Polar - Ursos sem Curso (Cartoon)",
+						"stats":{
+							"vit":150,
+							"str":35
+						}
+					},
+					"oceanid":{
+						"image":"https://static.wikia.nocookie.net/gensin-impact/images/2/27/Enemy_Oceanid.png",
+						"from":"Rhodeia of Loch [Oceanid] - Genshin Impact",
+						"stats":{
+							"vit":150,
+							"str":20
+						}
+					}
+				}
+			},
+			"caverna":{
+				"image":"https://static.wikia.nocookie.net/theforest_gamepedia/images/b/b7/Walkincaveentrance.png",
+				"from":"Cave - The Forest",
+				"bosses":[
+					"canibal",
+					"batman",
+					"pigsy"
+				],
+				"enemy":{
+					"canibal":{
+						"image":"https://cdn.imgbin.com/11/5/23/imgbin-the-forest-masked-mutant-cannibalism-mask-ZWp58PL65LPdmU34nTRJdJxeX.jpg",
+						"from":"Mutante - The Forest",
+						"stats":{
+							"vit":130,
+							"str":20
+						}
+					},
+					"batman":{
+						"image":"https://wallpapercave.com/wp/wp8077381.jpg",
+						"from":"Batman que Ri - Fanmade",
+						"stats":{
+							"vit":300,
+							"str":50
+						}
+					},
+					"pigsy":{
+						"image":"https://static.wikia.nocookie.net/manhunt/images/8/8f/Porkypiggsy5ro.jpg",
+						"from":"Pigsy - Manhunt",
+						"stats":{
+							"vit":200,
+							"str":30
+						}
+					}
+				}
+			}
+		},
+		"unknown":{
+			"list":[
+				"room",
+				"end",
+				"euthymia"
+			],
+			"room":{
+				"image":"https://64.media.tumblr.com/315678062bd8cf215cd9eed62616e853/tumblr_ozc5z7AuOT1whk690o4_1280.png",
+				"from":"Monika's Room - Doki Doki Literature Club",
+				"bosses":[
+					"monika",
+					"sayori",
+					"natsuki",
+					"yuri"
+				],
+				"enemy":{
+					"monika":{
+						"image":"https://www.seekpng.com/png/full/144-1449012_edited-mediahorror-monika-ddlc-anime.png",
+						"from":"Monika (Fan-made Horror) - Doki Doki Literature Club",
+						"stats":{
+							"str":50,
+							"vit":300
+						}
+					},
+					"sayori":{
+						"image":"https://i.redd.it/06y825r4uul11.png",
+						"from":"Sayori (Love Mode) - Doki Doki Literature Club (SayoriDate MOD)",
+						"stats":{
+							"str":30,
+							"vit":230
+						}
+					},
+					"yuri":{
+						"image":"https://i.redd.it/ddf9dvvzmcs01.png",
+						"from":"Yuri (Fan-made Horror) - Doki Doki Literature Club",
+						"stats":{
+							"str":30,
+							"vit":280
+						}
+					},
+					"natsuki":{
+						"image":"https://www.nicepng.com/png/full/944-9445218_doki-literature-club-wiki-doki-doki-natsuki-death.png",
+						"from":"Natsuki - Doki Doki Literature Club",
+						"stats":{
+							"str":25,
+							"vit":210
+						}
+					}
+				}
+			},
+			"end":{
+				"image":"https://static.wikia.nocookie.net/minecraft_gamepedia/images/b/b6/ChorusFields.png",
+				"from":"The End - Minecraft",
+				"bosses":[
+					"enderDragon",
+					"enderman",
+					"skeleton",
+					"zombie",
+					"herobrine"
+				],
+				"enemy":{
+					"enderDragon":{
+						"image":"https://www.seekpng.com/png/full/618-6187013_ender-dragon-png.png",
+						"from":"Ender Dragon - Minecraft",
+						"stats":{
+							"str":40,
+							"vit":170
+						}
+					},
+					"enderman":{
+						"image":"https://i.redd.it/wq96uzzf2y251.png",
+						"from":"Enderman - Minecraft",
+						"stats":{
+							"str":25,
+							"vit":230
+						}
+					},
+					"skeleton":{
+						"image":"https://static.wikia.nocookie.net/minecraft_gamepedia/images/b/b6/Skeleton_Aiming_JE2_BE3.png",
+						"from":"Esqueleto - Minecraft",
+						"stats":{
+							"str":20,
+							"vit":120
+						}
+					},
+					"zombie":{
+						"image":"https://static.wikia.nocookie.net/minecraft_gamepedia/images/6/63/Baby_Zombified_Piglin_JE8.png",
+						"from":"Piglin - Minecraft",
+						"stats":{
+							"str":15,
+							"vit":150
+						}
+					},
+					"herobrine":{
+						"image":"https://www.pikpng.com/pngl/b/199-1999825_herobrine-png-minecraft-herobrine-noob-clipart.png",
+						"from":"Herobrine - Minecraft",
+						"stats":{
+							"str":50,
+							"vit":300
+						}
+					}
+				}
+			},
+			"euthymia":{
+				"image":"https://static.wikia.nocookie.net/gensin-impact/images/d/d9/Plane_of_Euthymia.png",
+				"from":"Plane of Euthymia (Shogun Raiden | EI) - Genshin Impact",
+				"bosses":[
+					"ei",
+					"goblin",
+					"hiluchurl",
+					"kairagi"
+				],
+				"enemy":{
+					"ei":{
+						"image":"https://static.wikia.nocookie.net/gensin-impact/images/6/6b/Character_Raiden_Shogun_Game.png",
+						"from":"Raiden Shogun (EI) - Genshin Impact",
+						"stats":{
+							"str":50,
+							"vit":300
+						}
+					},
+					"goblin":{
+						"image":"https://vignette.wikia.nocookie.net/finalfantasy/images/f/fb/Goblin-ff1-art.png",
+						"from":"Goblin - Final Fantasy",
+						"stats":{
+							"str":15,
+							"vit":140
+						}
+					},
+					"hiluchurl":{
+						"image":"https://static.zerochan.net/Hilichurl.full.3369088.png",
+						"from":"Hiluchurl - Genshin Impact",
+						"stats":{
+							"str":15,
+							"vit":120
+						}
+					},
+					"kairagi":{
+						"image":"https://static.wikia.nocookie.net/gensin-impact/images/0/02/Enemy_Kairagi_Dancing_Thunder.png",
+						"from":"Kairagi - Genshin Impact",
+						"stats":{
+							"str":25,
+							"vit":150
+						}
+					}
+				}
+			}
+		}
+	},
+	"npcs":{
+		"set":{
+			"yn":[
+				"sim",
+				"não"
+			],
+			"family":[
+				"meu papai",
+				"minha mamãe",
+				"meu irmão",
+				"minha irma",
+				"minha família"
+			]
+		},
+		"desire":[
+			"Desde que #AWN morreu em doença, quero ser o maior médico da cidade.",
+			"Quando #AWN morreu, ele queria que eu me tornasse um aventureiro, darei de tudo pra ser o melhor!",
+			"Meu sonho é ser um padeiro assim como os cozinheiros dessa cidade!",
+			"Quero fugir de toda essa realidade.",
+			"Não gosto de responsabilidades, eu adoraria fugir delas.",
+			"Eu quero achar #AWN perdida...",
+			"Espero conseguir aprendiz magia...",
+			"Vou matar aqueles que assassinaram #AWN.",
+			"#AWN cometi um crime, agora tenho que fugir dele...",
+			"Seria ótimo ter dinheiro suficiente...",
+			"Quero provar para mim mesmo que sou forte!",
+			"A justiça deve ser feita!",
+			"Alguém precisa limpar esse mundo...",
+			"Estou ansioso para começar meu trabalho."
+		],
+		"event":[
+			"#AWN ficou irritado!",
+			"#AWN ficou feliz.",
+			"#AWN ficou surpreso.",
+			"#AWN ficou triste.",
+			"#AWN ficou em desespero."
+		],
+		"actions":[
+			"#AWN está bebendo algo.",
+			"#AWN está afiando equipamento.",
+			"#AWN está olhando para você.",
+			"#AWN está chorando.",
+			"#AWN está rindo.",
+			"#AWN está falando algo sozinho.",
+			"#AWN está em desespero."
+		]
+	},
+	"items":{
+		"list":[
+			"sword",
+			"bow",
+			"greatSword",
+			"greatBow",
+			"grimoire",
+			"axe",
+			"greatAxe",
+			"iron",
+			"steel",
+			"rock",
+			"paper",
+			"dima",
+			"rubi",
+			"gold",
+			"potion"
+		],
+		"sword":{
+			"types":[
+				"rare",
+				"normal"
+			],
+			"names":{
+				"normal":[
+					"Steel Sword",
+					"Stone Sword",
+					"Iron Sword"
+				],
+				"rare":[
+					"Bleed Sword",
+					"Moon Sword",
+					"Flame Sword",
+					"Excalibur"
+				]
+			},
+			"desc":{
+				"normal":{
+					"Steel Sword":{
+						"history":"Uma espada adquirida apartir do aço damasco, sua forma de forjamento original é desconhecida, sua lamina é cheia de ondas devido a seu forjamento, as espadas de aço damasco foram bastante usadas no Oriente Medio antes de perder seu uso aproximadamente nos anos 1750. [Real]",
+						"image":"https://m.media-amazon.com/images/I/31OntZucIVL._AC_SX425_.jpg",
+						"from":"Mundo Real",
+						"power":5,
+						"effect":"Quando usada causa 5 pontos de dano adicionais, não possui propriedades especiais."
+					},
+					"Stone Sword":{
+						"history":"Uma espada feita apartir de pedras largas que foram afiadas, seu trabalho de criação é bastante arduo e geralmente leva horas para se conseguir uma simples espada de pedra, que por si só, era fragil e pesada embora pequena, por isso, raramente era utilizada. [Real]",
+						"image":"https://static.wikia.nocookie.net/dragonquest/images/0/03/DQVIII_-_Stone_sword.png",
+						"from":"Dragon Quest",
+						"power":3,
+						"effect":"Quando usada causa 3 pontos de dano adicionais, não possui efeitos especiais."
+					},
+					"Iron Sword":{
+						"history":"Uma espada feita a partir de ferro, sua técnica de criação existe até mesmo em relatos de 1000 anos antes de Jesus Cristo, nesta época, o ferro era usado para tudo, inclusive a forja de armas como essa. [Real]",
+						"image":"https://static.wikia.nocookie.net/skyrim_gamepedia/images/0/09/IronSwordofSoulTrap.png",
+						"from":"Skyrim",
+						"power":4,
+						"effect":"Quando usada causa 4 pontos de dano adicionais, não possui efeitos especiais."
+					}
+				},
+				"rare":{
+					"Bleed Sword":{
+						"history":"Uma espada de aço que foi encantada com o poder de causar feridas graves que só podem ser fechadas com magia, dizem os relatos antigos que os danos de sagramento persistem até mesmo depois da morte do alvo. [Não Real]",
+						"image":"https://darksouls3.wiki.fextralife.com/file/Dark-Souls-3/bloodlust.png",
+						"from":"Dark Souls 3",
+						"power":7,
+						"effect":"Quando usada causa 7 pontos de dano adicionais, sua utilização pode causar um efeito de sangramento que a cada 1 minuto reduz 7 pontos de saúde até uma mágia de cura ser usada."
+					},
+					"Moon Sword":{
+						"history":"Uma espada lunar feita com minerios da lua, dizem que o poder da lua pode travar temporariamente o alvo, isso, se o golpe for bem sucedido. [Não Real]",
+						"image":"https://static.wikia.nocookie.net/elderscrolls/images/6/6b/Elvensword.png",
+						"from":"Skyrim",
+						"power":10,
+						"effect":"Quando usada causa 10 pontos de dano adicionais, caso seja um golpe bem sucedido, o alvo será paralisado."
+					},
+					"Flame Sword":{
+						"history":"Uma espada naturalmente em chamas, diz a biblia que ela foi criada por Deus para proteger os portões do céu após o banimento de Adão e Eva, depois disso, os humanos replicaram seus efeitos usando combustiveis. [Real]",
+						"image":"https://static.wikia.nocookie.net/queen-of-seducers-and-destruction/images/9/95/Ulfberht.jpg",
+						"from":"Rose of God",
+						"power":8,
+						"effect":"Quando usada causa 8 pontos de dano adicionais, a cada minuto o alvo sofre 8 de dano pelas chamas."
+					},
+					"Excalibur":{
+						"history":"Excalibur foi a espada do rei Arthur, removida de uma rocha da qual estava inficada, dizem que ela possui efeitos magicos, no entanto, não se tem qualquer indicio, nem mesmo de sua existencia em toda a historia. [Real]",
+						"image":"https://w7.pngwing.com/pngs/695/178/png-transparent-black-handled-excalibur-king-arthur-knife-sword-excalibur-weapon-sword-scabbard-angle-simple-shield.png",
+						"from":"'Mundo Real'",
+						"power":9,
+						"effect":"Essa espada permite que você mate inimigos que não podem ser atingidos, como os fantasmas, também permite que os zumbis fiquem mortos, fora isso, causa 9 de dano adicional."
+					}
+				}
+			}
+		}
+	}
+}

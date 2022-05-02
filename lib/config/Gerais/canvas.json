@@ -19,5 +19,6 @@
 	"Title_GoodBye": "ADEUS",
 	"Chat_GoodBye": "SAIU DO {server}",
 	"Member_GoodBye": "ELE FOI O MEMBRO N° {count}",
-	"Sound_Goodbye": "https://media1.vocaroo.com/mp3/1aNWZ9vQa2CT"
+	"Sound_Goodbye": "https://media1.vocaroo.com/mp3/1aNWZ9vQa2CT",
+	"User_Image": "https://raw.githubusercontent.com/KillovSky/Iris_Files/main/Assets/user.png"
 }

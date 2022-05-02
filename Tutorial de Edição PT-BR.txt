@@ -102,36 +102,6 @@ Exemplos de condições já prontas - lembre-se do pra que serve o '!', no caso,
 
 "if (!isOwner) return await kill.reply(from, mess.sodono(), id)" = Verifica se o usuario é um dos donos.
 
-Agora seguindo o tutorial de criação ali em cima, aqui estão uma explicação das constantes da Íris fora as já citadas, não todas mas as principais.
-
-'isNsfw' = Verifica se o grupo permite pornografia (caso tenham ativado ou não o NSFW).
-
-'isCmd' = Verifica se a mensagem é um comando (ou tudo que tenha o 'prefix' no começo).
-
-'isBlocked' = Verifica se a pessoa está bloqueada.
-
-'isQuotedImage' = Verifica se contém uma imagem numa mensagem marcada.
-
-'isQuotedVideo' = Verifica se contém um video numa mensagem marcada.
-
-'isQuotedSticker' = Verifica se contém um sticker numa mensagem marcada.
-
-'isQuotedGif' = Verifica se contém um gif numa mensagem marcada.
-
-'isQuotedAudio' = Verifica se contém um áudio numa mensagem marcada.
-
-'isQuotedPtt' = Verifica se contém uma mensagem de voz numa mensagem marcada.
-
-'isImage' = Verifica se recebeu uma imagem.
-
-'isVideo' = Verifica se recebeu um video.
-
-'isAudio' = Verifica se recebeu um áudio.
-
-'isPtt' = Verifica se recebeu uma gravação de voz.
-
-'isGif' = Verifica se recebeu um GIF.
-
 'condição'.length se refere ao tamanho da resposta, comando e outros.
 
 'condição'.includes analisa se algo já feito com muitos dados possui um dado especifico.
@@ -154,9 +124,7 @@ O mess.var() se refere a uma module exports da pasta lang, existem 3 dela pois a
 
 Nele terá todos os diálogos da Íris, procure o que deseja de lá ou crie um seguindo o exemplo abaixo.
 
-exports.nome = () => {
-	return `mensagem`
-}
+exports.nome = () => `mensagem`
 
 Dentro das () você pode inserir variáveis que colocou dentro da case na "config.js", ou seja, você estará importando seus dados para outro arquivo.
 
@@ -166,9 +134,7 @@ Se você inserir esse a dentro da kill.reply e da exports ele será transferido 
 
 await kill.reply(from, mess.seila(a), id)
 
-exports.seila = (a) => {
-	return `O valor recebido é o ${a}`
-}
+exports.seila = (a) => `O valor recebido é o ${a}`
 
 Ele vai enviar o 9 de volta para o kill.reply e assim enviar o 9 no WhatsApp.
 

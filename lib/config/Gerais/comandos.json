@@ -1,0 +1,5870 @@
+{
+	"allMenus": [
+		"games",
+		"admins",
+		"configs",
+		"otaku",
+		"dados",
+		"music",
+		"twitter",
+		"genshin",
+		"down",
+		"rpg",
+		"guild",
+		"maker",
+		"image",
+		"memes",
+		"video",
+		"outros",
+		"suporte",
+		"menu",
+		"midia",
+		"dono",
+		"stickers",
+		"police",
+		"adult"
+	],
+	"commands": {
+		"kick": {
+			"alias": [
+				"k"
+			],
+			"emoji": "🦵",
+			"media": [
+				"@user",
+				"mensagem"
+			],
+			"menus": [
+				"admins"
+			],
+			"description": {
+				"en": "Eject a drunk from the pub.",
+				"es": "Expulsa borrachos del bar.",
+				"pt": "Expulse bebados do bar."
+			}
+		},
+		"promote": {
+			"emoji": "🆙",
+			"media": [
+				"@user",
+				"mensagem"
+			],
+			"menus": [
+				"admins"
+			],
+			"description": {
+				"en": "Make a manager drunk.",
+				"es": "Hace los borrachos de gerente.",
+				"pt": "Transforme bebados em administradores."
+			}
+		},
+		"sair": {
+			"emoji": "👋",
+			"media": [],
+			"menus": [
+				"admins"
+			],
+			"description": {
+				"en": "I need to go?.",
+				"es": "Si quieres puedo dejar el bar.",
+				"pt": "Se quiser eu saio do barzinho."
+			}
+		},
+		"onlyadms": {
+			"emoji": "🚫",
+			"media": [
+				"on",
+				"off"
+			],
+			"menus": [
+				"admins"
+			],
+			"description": {
+				"en": "Close Group to administration or vice versa.",
+				"es": "Cierre su pub solo a administración y viceversa.",
+				"pt": "Feche seu bar para Administradores e vice versa."
+			}
+		},
+		"demote": {
+			"emoji": "❌",
+			"media": [
+				"@user",
+				"mensagem"
+			],
+			"menus": [
+				"admins"
+			],
+			"description": {
+				"en": "Dimiss manager drunkers.",
+				"es": "Despide al gerente del bar.",
+				"pt": "Demita o gerente do barzinho."
+			}
+		},
+		"everyone": {
+			"emoji": "🔇",
+			"media": [
+				"assunto"
+			],
+			"menus": [
+				"admins"
+			],
+			"description": {
+				"en": "Mark all drunkers to a fight.",
+				"es": "Marca a todos los borrachos para una paliza.",
+				"pt": "Marque todos os bebados para uma porradaria!"
+			}
+		},
+		"delete": {
+			"alias": [
+				"del"
+			],
+			"emoji": "🗑️",
+			"media": [
+				"bot message"
+			],
+			"menus": [
+				"admins"
+			],
+			"description": {
+				"en": "Delete my messages.",
+				"es": "Borra mis mensajes.",
+				"pt": "Delete minhas mensagens."
+			}
+		},
+		"dellast": {
+			"alias": [],
+			"emoji": "🗑️",
+			"media": [
+				"Number of messages"
+			],
+			"menus": [
+				"admins"
+			],
+			"description": {
+				"en": "Delete the last specified messages.",
+				"es": "Eliminar los últimos mensajes especificados.",
+				"pt": "Apague as últimas mensagens especificadas."
+			}
+		},
+		"setimage": {
+			"emoji": "🆕",
+			"media": [
+				"Imagem",
+				"Link"
+			],
+			"menus": [
+				"admins"
+			],
+			"description": {
+				"en": "Give your pub a new look!",
+				"es": "Dale a tu bar un nuevo aspecto!",
+				"pt": "Dê ao seu bar uma cara nova!"
+			}
+		},
+		"revoke": {
+			"emoji": "🔪",
+			"media": [],
+			"menus": [
+				"admins"
+			],
+			"description": {
+				"en": "Close the Pub's link.",
+				"es": "Restablecer el enlace de lo pub.",
+				"pt": "Resete o link do bar."
+			}
+		},
+		"bomb": {
+			"emoji": "💣",
+			"media": [
+				"-help"
+			],
+			"menus": [
+				"admins"
+			],
+			"description": {
+				"en": "Attack the jokers.",
+				"es": "Envie para los que hacen mierda.",
+				"pt": "Ataque engraçadinhos."
+			}
+		},
+		"blacklist": {
+			"emoji": "⌛",
+			"media": [
+				"On",
+				"Off"
+			],
+			"menus": [
+				"admins"
+			],
+			"description": {
+				"en": "Kick a member of list at entrace.",
+				"es": "Quita borrachos de lista cuando se unan al grupo.",
+				"pt": "Bane os bebados dela ao entrarem no grupo."
+			}
+		},
+		"fake": {
+			"emoji": "👤",
+			"media": [
+				"On",
+				"Off"
+			],
+			"menus": [
+				"admins",
+				"configs"
+			],
+			"description": {
+				"en": "Kick non-country/fake peoples.",
+				"es": "Quita números de fuera de su país.",
+				"pt": "Bane números de fora do seu país."
+			}
+		},
+		"bklist": {
+			"emoji": "🔏",
+			"media": [
+				"On Número",
+				"Off Número"
+			],
+			"menus": [
+				"admins",
+				"configs"
+			],
+			"description": {
+				"en": "Add a people on blacklist.",
+				"es": "Agrega o elimina personas de lista negra.",
+				"pt": "Adicione ou remova pessoas da Blacklist."
+			}
+		},
+		"mute": {
+			"alias": [
+				"silence"
+			],
+			"emoji": "🔇",
+			"media": [
+				"On",
+				"Off"
+			],
+			"menus": [
+				"admins",
+				"configs"
+			],
+			"description": {
+				"es": "Evita que llamen al camarera Iris.",
+				"pt": "Impede de chamarem a barman Íris.",
+				"en": "Mute the pub to not drink."
+			}
+		},
+		"unkick": {
+			"alias": [
+				"unban"
+			],
+			"emoji": "🔙",
+			"media": [
+				"message"
+			],
+			"menus": [
+				"admins"
+			],
+			"description": {
+				"en": "Back in time adding the people again.",
+				"es": "Retrocede el tiempo, agregando a la persona de nuevo.",
+				"pt": "Volta no tempo, voltando a pessoa junto."
+			}
+		},
+		"welcome": {
+			"emoji": "👋🏻",
+			"media": [
+				"On",
+				"Off"
+			],
+			"menus": [
+				"admins",
+				"configs"
+			],
+			"description": {
+				"en": "Enable my waiter mode.",
+				"es": "Activar mi modo de camarera.",
+				"pt": "Ative o meu modo garçom."
+			}
+		},
+		"goodbye": {
+			"emoji": "👋🏻",
+			"media": [
+				"On",
+				"Off"
+			],
+			"menus": [
+				"admins",
+				"configs"
+			],
+			"description": {
+				"en": "I say goodbye to people who left.",
+				"es": "Me despido de las personas que se fueron.",
+				"pt": "Me despeço de pessoas que sairam."
+			}
+		},
+		"bye": {
+			"emoji": "👋🏻",
+			"media": [
+				"message | on/off",
+				"-help"
+			],
+			"menus": [
+				"admins",
+				"configs"
+			],
+			"description": {
+				"en": "Define a custom goodbye message.",
+				"es": "Defina un mensaje de despedida personalizado.",
+				"pt": "Defina uma mensagem customizada de adeus."
+			}
+		},
+		"rank": {
+			"emoji": "🎮",
+			"media": [
+				"On",
+				"Off"
+			],
+			"menus": [
+				"admins",
+				"configs"
+			],
+			"description": {
+				"en": "Enable the gaming to your users!",
+				"es": "Active el \"pool\" virtual para clientes!",
+				"pt": "Ative a \"sinuca\" virtual pros clientes!"
+			}
+		},
+		"antiporn": {
+			"emoji": "🤖",
+			"media": [
+				"On",
+				"Off"
+			],
+			"menus": [
+				"admins",
+				"configs"
+			],
+			"description": {
+				"en": "Blocks pornography visual and links.",
+				"es": "Prohibe la pornografía visual y enlaces.",
+				"pt": "Bane pornografia visual e Links."
+			}
+		},
+		"softban": {
+			"emoji": "⏱️",
+			"media": [
+				"@user",
+				"mensagem",
+				"tempom"
+			],
+			"menus": [
+				"admins"
+			],
+			"description": {
+				"en": "Expels customers for your desire yime.",
+				"es": "Expulsa clientes durante 30 minutos.",
+				"pt": "Expulsa clientes pelo tempo que desejar."
+			}
+		},
+		"add": {
+			"emoji": "➕",
+			"media": [
+				"número"
+			],
+			"menus": [
+				"admins"
+			],
+			"description": {
+				"en": "Add more people.",
+				"es": "Agrega más clientes.",
+				"pt": "Adicione mais clientes."
+			}
+		},
+		"autosticker": {
+			"emoji": "🎆",
+			"media": [
+				"on",
+				"off"
+			],
+			"menus": [
+				"admins",
+				"configs"
+			],
+			"description": {
+				"en": "Makes auto-stickers of photos/gifs/videos without commands.",
+				"es": "Stickers fotos/videos/GIF automaticos.",
+				"pt": "Stickers fotos/videos/GIF automaticos."
+			}
+		},
+		"ghost": {
+			"emoji": "👻",
+			"media": [
+				"Quantidade"
+			],
+			"menus": [
+				"admins"
+			],
+			"description": {
+				"en": "Kick ghosts from group (careful).",
+				"es": "Expulsa ghosts del grupo.",
+				"pt": "Expulse ghosts do grupo (cuidado)."
+			}
+		},
+		"antilinks": {
+			"emoji": "🪟",
+			"media": [
+				"on",
+				"off"
+			],
+			"menus": [
+				"admins",
+				"configs"
+			],
+			"description": {
+				"en": "Block WhatsApp group links.",
+				"es": "Prohíbe los enlaces de grupo.",
+				"pt": "Bane Links de grupo do WhatsApp."
+			}
+		},
+		"antitravas": {
+			"emoji": "🪟",
+			"media": [
+				"on",
+				"off"
+			],
+			"menus": [
+				"admins",
+				"configs"
+			],
+			"description": {
+				"en": "Block the bug messages.",
+				"es": "Bloques 'trava-zap' jugados en el grupo.",
+				"pt": "Bloqueia travas jogadas no grupo."
+			}
+		},
+		"destrava": {
+			"emoji": "🪟",
+			"media": [],
+			"menus": [
+				"admins"
+			],
+			"description": {
+				"en": "A Shrek unbug message.",
+				"es": "Obtén una 'destrava' de Shrek.",
+				"pt": "Obtenha uma destrava do Shrek."
+			}
+		},
+		"greet": {
+			"emoji": "👐",
+			"media": [
+				"-help"
+			],
+			"menus": [
+				"admins",
+				"configs"
+			],
+			"description": {
+				"en": "Custom your welcome message.",
+				"es": "Personaliza tu mensaje de bienvenida.",
+				"pt": "Customize sua mensagem de welcome."
+			}
+		},
+		"newprefix": {
+			"emoji": "⏱️",
+			"media": [
+				"prefix"
+			],
+			"menus": [
+				"admins",
+				"configs"
+			],
+			"description": {
+				"en": "Change the group Prefix.",
+				"es": "Cambia al Prefix.",
+				"pt": "Mude o Prefix."
+			}
+		},
+		"newlang": {
+			"emoji": "🇧🇷",
+			"media": [
+				"en",
+				"pt",
+				"es"
+			],
+			"menus": [
+				"admins",
+				"configs"
+			],
+			"description": {
+				"en": "Change group Language.",
+				"es": "Cambia el idioma de BOT.",
+				"pt": "Mude a linguagem da BOT."
+			}
+		},
+		"nsfw": {
+			"emoji": "🇧🇷",
+			"media": [
+				"on",
+				"off"
+			],
+			"menus": [
+				"admins",
+				"configs"
+			],
+			"description": {
+				"en": "Enable +18 commands.",
+				"es": "Habilitar +18 comandos.",
+				"pt": "Habilitar comandos +18."
+			}
+		},
+		"nocmd": {
+			"emoji": "🇧🇷",
+			"media": [
+				"Command to disable"
+			],
+			"menus": [
+				"admins",
+				"configs"
+			],
+			"description": {
+				"en": "Disable specific commands.",
+				"es": "Deshabilitar comandos específicos.",
+				"pt": "Desativar comandos específicos."
+			}
+		},
+		"noadms": {
+			"emoji": "🇧🇷",
+			"media": [],
+			"menus": [
+				"admins"
+			],
+			"description": {
+				"en": "Fire all group admins.",
+				"es": "Despedir a todos los administradores del grupo.",
+				"pt": "Demitir todos os administradores do grupo."
+			}
+		},
+		"deleted": {
+			"emoji": "🇧🇷",
+			"media": [
+				"-log",
+				"-nolog",
+				"-show"
+			],
+			"menus": [
+				"admins"
+			],
+			"description": {
+				"en": "See deleted messages.",
+				"es": "Ver mensajes eliminados.",
+				"pt": "Veja mensagens apagadas."
+			}
+		},
+		"anime": {
+			"emoji": "🔍",
+			"media": [
+				"name"
+			],
+			"menus": [
+				"otaku"
+			],
+			"description": {
+				"en": "With that you search for an anime.",
+				"es": "Con eso buscas un anime.",
+				"pt": "Com isso você pesquisa um anime."
+			}
+		},
+		"loli": {
+			"emoji": "👧🏻",
+			"media": [],
+			"menus": [
+				"otaku"
+			],
+			"description": {
+				"en": "Lolis are to give love and affection...",
+				"es": "Lolis son para dar amor y cariño...",
+				"pt": "Lolis são pra dar amor e carinho..."
+			}
+		},
+		"waifu": {
+			"emoji": "🧒🏻",
+			"media": [],
+			"menus": [
+				"otaku"
+			],
+			"description": {
+				"en": "With that I send a photo of beautiful waifus.",
+				"es": "Waifus hermosas.",
+				"pt": "Com isso eu mando foto de waifus lindas."
+			}
+		},
+		"neko": {
+			"emoji": "🐈",
+			"media": [],
+			"menus": [
+				"otaku"
+			],
+			"description": {
+				"en": "Well...a neko sometimes goes well right?",
+				"es": "Bien...una neko es buena?",
+				"pt": "Bom...uma neko as vezes cai bem né?"
+			}
+		},
+		"randomanime": {
+			"emoji": "🖼️",
+			"media": [],
+			"menus": [
+				"otaku"
+			],
+			"description": {
+				"en": "I will send random anime photos.",
+				"es": "Imágenes aleatorias de anime.",
+				"pt": "Enviarei fotos aleatorias de anime."
+			}
+		},
+		"husb": {
+			"emoji": "👦🏻",
+			"media": [],
+			"menus": [
+				"otaku"
+			],
+			"description": {
+				"en": "Waifu, but in a male version.",
+				"es": "Waifu, pero masculina.",
+				"pt": "Waifu, mas em versão homem."
+			}
+		},
+		"search": {
+			"emoji": "🕵🏻‍♀️",
+			"media": [
+				"Foto"
+			],
+			"menus": [
+				"otaku"
+			],
+			"description": {
+				"en": "Search prints to find the anime name.",
+				"es": "Buscar prints para encontrar el nombre del anime.",
+				"pt": "Pesquisar prints para achar o nome do anime."
+			}
+		},
+		"randomwall": {
+			"emoji": "🎎",
+			"media": [],
+			"menus": [
+				"otaku"
+			],
+			"description": {
+				"en": "Character wallpapers.",
+				"es": "Wallpapers de personajes.",
+				"pt": "Wallpapers de personagens."
+			}
+		},
+		"pokemon": {
+			"emoji": "🐲",
+			"media": [],
+			"menus": [
+				"otaku"
+			],
+			"description": {
+				"en": "A random Pokemon.",
+				"es": "Un Pokemon aleatorio.",
+				"pt": "Um Pokemon aleatorio."
+			}
+		},
+		"dva": {
+			"emoji": "👩🏻",
+			"media": [],
+			"menus": [
+				"otaku"
+			],
+			"description": {
+				"en": "Get photos of the DVA of OverWatch.",
+				"es": "Reciba fotos de DVA de OverWatch.",
+				"pt": "Isso e pra obter fotos da DVA do OverWatch."
+			}
+		},
+		"hug": {
+			"emoji": "🙅🏼‍♀️",
+			"media": [],
+			"menus": [
+				"otaku"
+			],
+			"description": {
+				"en": "Hug with anime characters.",
+				"es": "Abrazo con personajes de anime.",
+				"pt": "Da abraço com personagens de anime."
+			}
+		},
+		"baguette": {
+			"emoji": "🥖",
+			"media": [],
+			"menus": [
+				"otaku"
+			],
+			"description": {
+				"en": "It's time for my baguette?!",
+				"es": "Es hora de mi pannn?",
+				"pt": "Já é hora do meu pãozinho?!"
+			}
+		},
+		"yuri": {
+			"emoji": "👭🏻",
+			"media": [],
+			"menus": [
+				"otaku"
+			],
+			"description": {
+				"en": "Two girls \"taking\" without +18!",
+				"es": "Dos chicas \"besándose\" sin +18!",
+				"pt": "Duas garotas se \"pegando\" sem +18!"
+			}
+		},
+		"baka": {
+			"emoji": "🗣️",
+			"media": [],
+			"menus": [
+				"otaku"
+			],
+			"description": {
+				"en": "\"Bakaaa!\"",
+				"es": "\"Bakaaa!\"",
+				"pt": "\"Bakaaa!\""
+			}
+		},
+		"cocegas": {
+			"emoji": "😂",
+			"media": [],
+			"menus": [
+				"otaku"
+			],
+			"description": {
+				"en": "Hmmm, tickling anime I think ...",
+				"es": "Hmmm, cosquillas en el anime creo...",
+				"pt": "Hmmm, cocegas em anime eu acho..."
+			}
+		},
+		"food": {
+			"emoji": "🍔",
+			"media": [],
+			"menus": [
+				"otaku"
+			],
+			"description": {
+				"en": "Events related to food in anime.",
+				"es": "Eventos de comida en anime.",
+				"pt": "Eventos que tem haver com comida em animes."
+			}
+		},
+		"poke": {
+			"emoji": "👌",
+			"media": [],
+			"menus": [
+				"otaku"
+			],
+			"description": {
+				"en": "Take some \"tack\"!",
+				"es": "Leve uns petelecos!",
+				"pt": "Tome uns petelecos!"
+			}
+		},
+		"cafune": {
+			"emoji": "ღ",
+			"media": [],
+			"menus": [
+				"otaku"
+			],
+			"description": {
+				"en": "We all love cafune...",
+				"es": "Todos amamos cafune...",
+				"pt": "Todos amamos cafune..."
+			}
+		},
+		"kisu": {
+			"emoji": "💋",
+			"media": [],
+			"menus": [
+				"otaku"
+			],
+			"description": {
+				"en": "A few kiss pictures...",
+				"es": "Unas fotos de besos.",
+				"pt": "Umas fotinhas de beijo..."
+			}
+		},
+		"tapa": {
+			"emoji": "🤦🏻‍♀️",
+			"media": [],
+			"menus": [
+				"otaku"
+			],
+			"description": {
+				"en": "Get a pats photo!",
+				"es": "Fotos de tapinhas!",
+				"pt": "Fotos de tapinhas!"
+			}
+		},
+		"truth": {
+			"emoji": "☑️",
+			"media": [],
+			"menus": [
+				"otaku"
+			],
+			"description": {
+				"en": "Anime and Science.",
+				"es": "Algunas verdades sobre animes.",
+				"pt": "Animes e Ciência."
+			}
+		},
+		"icon": {
+			"emoji": "🗽",
+			"media": [],
+			"menus": [
+				"otaku"
+			],
+			"description": {
+				"en": "Get a some Icons.",
+				"es": "Iconos para poner en perfil.",
+				"pt": "Icones para por no perfil."
+			}
+		},
+		"face": {
+			"emoji": "☺️",
+			"media": [],
+			"menus": [
+				"otaku"
+			],
+			"description": {
+				"en": "Anime girls face icon.",
+				"es": "Icono de cara de chicas en anime.",
+				"pt": "Icon do rosto de garotas de anime."
+			}
+		},
+		"yaoi": {
+			"emoji": "😝",
+			"media": [],
+			"menus": [
+				"otaku"
+			],
+			"description": {
+				"en": "Yaoi without hentai.",
+				"es": "Yaoi sin hentai.",
+				"pt": "Yaoi sem hentai."
+			}
+		},
+		"look": {
+			"emoji": "👀",
+			"media": [],
+			"menus": [
+				"otaku"
+			],
+			"description": {
+				"en": "Eyes on the screen eheheh",
+				"es": "Ojos en pantalla eheheh",
+				"pt": "Olhos na tela eheheh"
+			}
+		},
+		"holo": {
+			"emoji": "💝",
+			"media": [],
+			"menus": [
+				"otaku"
+			],
+			"description": {
+				"en": "Holo character pictures.",
+				"es": "Imágenes de la holo.",
+				"pt": "Fotinhas da personagem Holo."
+			}
+		},
+		"manga": {
+			"emoji": "🥭",
+			"media": [
+				"nome"
+			],
+			"menus": [
+				"otaku"
+			],
+			"description": {
+				"en": "Search manga.",
+				"es": "Busque mangás.",
+				"pt": "Busque mangás."
+			}
+		},
+		"lolireal": {
+			"emoji": "🥭",
+			"media": [],
+			"menus": [
+				"otaku"
+			],
+			"description": {
+				"en": "A real loli video (Hello, its FBI?).",
+				"es": "Obtenga videos reales de lolis (Hola, FBI?).",
+				"pt": "Adquira videos de lolis reais (Alô, FBI?)."
+			}
+		},
+		"couple": {
+			"emoji": "🥭",
+			"media": [],
+			"menus": [
+				"otaku"
+			],
+			"description": {
+				"en": "Couple photo.",
+				"es": "Foto de pareja.",
+				"pt": "Fotinha de casal."
+			}
+		},
+		"2d": {
+			"emoji": "🥭",
+			"media": [],
+			"menus": [
+				"otaku",
+				"dados"
+			],
+			"description": {
+				"en": "Search for anime characters.",
+				"es": "Busca personajes de anime.",
+				"pt": "Pesquise por personagens de anime."
+			}
+		},
+		"sip": {
+			"emoji": "📍",
+			"media": [
+				"<IPV4>"
+			],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "Get information from a IP.",
+				"es": "Puedo obtener información de IP.",
+				"pt": "Posso conseguir informações de um IP."
+			}
+		},
+		"scep": {
+			"emoji": "🗺️",
+			"media": [
+				"CEP"
+			],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "I can search for a zip code.",
+				"es": "Puedo buscar un código postal.",
+				"pt": "Posso pesquisar sobre um CEP."
+			}
+		},
+		"mac": {
+			"emoji": "📱",
+			"media": [
+				"MAC"
+			],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "Get the name of company has made this mac.",
+				"es": "Con eso busco la marca de MAC.",
+				"pt": "Com isso eu pesquiso a marca do MAC."
+			}
+		},
+		"placa": {
+			"emoji": "🚗",
+			"media": [
+				"aaa1111"
+			],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "",
+				"es": "",
+				"pt": "Puxe informações de veiculos."
+			}
+		},
+		"scnpj": {
+			"emoji": "🏢",
+			"media": [
+				"CNPJ"
+			],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "",
+				"es": "",
+				"pt": "Puxe dados de um CNPJ."
+			}
+		},
+		"criador": {
+			"emoji": "🏅",
+			"media": [],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "Meet the guy has made me and the host!",
+				"es": "Conoce al chico que me construyó!",
+				"pt": "Conheça o carinha legal que me construiu!"
+			}
+		},
+		"ping": {
+			"emoji": "🏓",
+			"media": [],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "My informations.",
+				"es": "Mis informaciones.",
+				"pt": "Minhas informações."
+			}
+		},
+		"groupinfo": {
+			"alias": [
+				"info"
+			],
+			"emoji": "ℹ️",
+			"media": [],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "See the group informations.",
+				"es": "Ver las información de este grupo.",
+				"pt": "Veja algumas informações desse grupo."
+			}
+		},
+		"link": {
+			"emoji": "🍺",
+			"media": [],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "Get the pub's link.",
+				"es": "Obtén la URL de este Pub.",
+				"pt": "Obtenha o link desse bar."
+			}
+		},
+		"adms": {
+			"emoji": "👷🏼",
+			"media": [],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "Call or meet the managers.",
+				"es": "Llame o averigue quiénes son los gerentes.",
+				"pt": "Chame ou saiba quem são os gerentes."
+			}
+		},
+		"id": {
+			"emoji": "🆔",
+			"media": [],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "Get the ID of this Pub.",
+				"es": "Obtenga la ID de boutique.",
+				"pt": "Adquira a ID do buteco."
+			}
+		},
+		"grupos": {
+			"alias": [
+				"allid"
+			],
+			"emoji": "🚪",
+			"media": [],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "Get all groups ID.",
+				"es": "Obtener ID de todos los grupos.",
+				"pt": "Pega as IDs de todos os grupos."
+			}
+		},
+		"chefe": {
+			"emoji": "👨🏻‍🍳",
+			"media": [],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "Know who are the group creator.",
+				"es": "Conoce al propietario del grupo.",
+				"pt": "Saiba sobre o dono do grupo."
+			}
+		},
+		"wame": {
+			"emoji": "📩",
+			"media": [
+				"@user",
+				"mensagem"
+			],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "Create wame links.",
+				"es": "Crear wame de las personas.",
+				"pt": "Crie wame de pessoas."
+			}
+		},
+		"data": {
+			"alias": [
+				"date"
+			],
+			"emoji": "📆",
+			"media": [],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "The system date.",
+				"es": "Fecha del sistema.",
+				"pt": "Data do sistema."
+			}
+		},
+		"idiomas": {
+			"emoji": "🗣️",
+			"media": [],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "The languages of TTS.",
+				"es": "Informa los idiomas de TTS.",
+				"pt": "Informa as linguas do TTS."
+			}
+		},
+		"marcar": {
+			"emoji": "🔄",
+			"media": [],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "Marks you (copy and paste).",
+				"es": "Marca tu (copiar y pegar).",
+				"pt": "Marca você (copie e cole)."
+			}
+		},
+		"gender": {
+			"alias": [
+				"genero"
+			],
+			"emoji": "🧬",
+			"media": [
+				"nome"
+			],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "Get gender by the name.",
+				"es": "Descubra el género por nombre.",
+				"pt": "Saiba o gênero pelo nome."
+			}
+		},
+		"death": {
+			"alias": [
+				"morte"
+			],
+			"emoji": "☠️",
+			"media": [
+				"nome"
+			],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "Calculate the day of death.",
+				"es": "Calcularé su edad de muerte.",
+				"pt": "Calcularei a idade de morte dela."
+			}
+		},
+		"contar": {
+			"emoji": "🧮",
+			"media": [
+				"mensagem"
+			],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "Count the message letters and words.",
+				"es": "Calcular letras y palabras en el mensaje.",
+				"pt": "Calcule letras e palavras da mensagem."
+			}
+		},
+		"inverter": {
+			"emoji": "🔙",
+			"media": [
+				"mensagem"
+			],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "Reverse the message.",
+				"es": "Invierte los mensajes.",
+				"pt": "Inverta as mensagens."
+			}
+		},
+		"google": {
+			"emoji": "🔍",
+			"media": [
+				"pesquisa"
+			],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "Search at google.",
+				"es": "Busca cosas en Google.",
+				"pt": "Pesquise coisas no Google."
+			}
+		},
+		"brainly": {
+			"emoji": "🎒",
+			"media": [
+				"pergunta"
+			],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "Search at brainly.",
+				"es": "Buscar en Brainly.",
+				"pt": "Pesquise no Brainly."
+			}
+		},
+		"stalkig": {
+			"emoji": "🕵🏼",
+			"media": [
+				"username"
+			],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "Stalk someone from instagram.",
+				"es": "Stalkeie alguien de Instagram.",
+				"pt": "Stalkeie alguém do Instagram."
+			}
+		},
+		"maps": {
+			"emoji": "🗺️",
+			"media": [
+				"local"
+			],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "Show the map of place.",
+				"es": "Muestra lo mapa de un lugar.",
+				"pt": "Mostra o mapa de um local."
+			}
+		},
+		"clima": {
+			"emoji": "🌤️",
+			"media": [
+				"cidade"
+			],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "Get the current climate of your city.",
+				"es": "Infórmate del clima actual de tu ciudad.",
+				"pt": "Saiba sobre o clima atual da sua cidade."
+			}
+		},
+		"nasa": {
+			"emoji": "🛰️",
+			"media": [
+				"-data [ano/mês/dia]"
+			],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "Get nasa information.",
+				"es": "Obtener información de la nasa.",
+				"pt": "Obtenha informações da nasa."
+			}
+		},
+		"converter": {
+			"alias": [
+				"conv"
+			],
+			"emoji": "#️⃣",
+			"media": [
+				"-h"
+			],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "Convert temperature or distance.",
+				"es": "Convertir temperatura o distancia.",
+				"pt": "Converta temperatura ou distância."
+			}
+		},
+		"fatos": {
+			"emoji": "🧾",
+			"media": [],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "Tell animal facts.",
+				"es": "Cuenta hechos de animales.",
+				"pt": "Conta fatos de animais."
+			}
+		},
+		"curiosidade": {
+			"emoji": "💬",
+			"media": [
+				"-g",
+				"algo\\"
+			],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "It tells curiosities in general.",
+				"es": "Cuenta curiosidades en general.",
+				"pt": "Conta curiosidades em geral."
+			}
+		},
+		"valor": {
+			"emoji": "💱",
+			"media": [
+				"Moeda",
+				"Quantia",
+				"Moeda"
+			],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "Convert monetary values.",
+				"es": "Convertir valor monetario.",
+				"pt": "Converta o valor monetário."
+			}
+		},
+		"coins": {
+			"emoji": "🪙",
+			"media": [],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "Lista de sigla de moedas.",
+				"es": "Lista de sigla de moedas.",
+				"pt": "Lista de sigla de moedas."
+			}
+		},
+		"trecho": {
+			"emoji": "💭",
+			"media": [
+				"-g",
+				"nome"
+			],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "Philosophical phrases of people.",
+				"es": "Frases filosóficas de personas.",
+				"pt": "Frases filosóficas de pessoas."
+			}
+		},
+		"letra": {
+			"emoji": "🎼",
+			"media": [
+				"nome",
+				"da",
+				"música"
+			],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "Search for music letters.",
+				"es": "Buscar letras de canción.",
+				"pt": "Busque letras de música."
+			}
+		},
+		"encode": {
+			"emoji": "0️⃣",
+			"media": [
+				"mensagem"
+			],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "Convert text to binary.",
+				"es": "Convertir frases y números a Binario.",
+				"pt": "Converta frases e números para Binario."
+			}
+		},
+		"decode": {
+			"emoji": "1️⃣",
+			"media": [
+				"nome"
+			],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "Translate binary to text.",
+				"es": "Traducir códigos de binario.",
+				"pt": "Traduza códigos em Binario."
+			}
+		},
+		"covid": {
+			"emoji": "🦠",
+			"media": [
+				"País",
+				"em",
+				"Inglês"
+			],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "Get the count of Corona-Virus.",
+				"es": "Ver los casos de covid.",
+				"pt": "Obtenha os casos do Covid-19."
+			}
+		},
+		"paises": {
+			"emoji": "🎏",
+			"media": [],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "The list of countrys in english.",
+				"es": "Lista de países en inglés.",
+				"pt": "Lista de países em inglês."
+			}
+		},
+		"encurtar": {
+			"alias": [
+				"tinyurl"
+			],
+			"emoji": "🔙",
+			"media": [
+				"link"
+			],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "Short a link without advises.",
+				"es": "Acortar enlaces y SIN publicidad.",
+				"pt": "Encurte links e SEM propagandas."
+			}
+		},
+		"signo": {
+			"alias": [
+				"horoscopo"
+			],
+			"emoji": "🦀",
+			"media": [
+				"signo"
+			],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "Get a Ganesha horoscope.",
+				"es": "Obtén el horóscopo del día (Ganesha).",
+				"pt": "Adquira o horoscopo do dia (Ganesha)."
+			}
+		},
+		"translate": {
+			"emoji": "🤔",
+			"media": [
+				"sigla",
+				"frase"
+			],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "Translate messages or phrases.",
+				"es": "Traducir mensajes a otros idiomass.",
+				"pt": "Traduza mensagens para outros idiomas."
+			}
+		},
+		"alarme": {
+			"emoji": "⏰",
+			"media": [],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "Set an alarm to remind you.",
+				"es": "Pon una alarma para recordarte.",
+				"pt": "Programe um alarme pra te lembrar."
+			}
+		},
+		"book": {
+			"emoji": "📚",
+			"media": [],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "Search for books.",
+				"es": "Buscar libros.",
+				"pt": "Busque por livros."
+			}
+		},
+		"frase": {
+			"emoji": "🌟",
+			"media": [],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "",
+				"es": "Quieres frases inspiradoras o divertidas?",
+				"pt": "ᐳDeseja frases inspiradoras ou zoadas?."
+			}
+		},
+		"cpf": {
+			"emoji": "👛",
+			"media": [
+				"CPF"
+			],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "",
+				"es": "",
+				"pt": "Saiba somente o nome do dono dele."
+			}
+		},
+		"github": {
+			"emoji": "🧑🏻‍💻",
+			"media": [
+				"username"
+			],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "Get information about a github DEV.",
+				"es": "Obtener información de desarrolladores.",
+				"pt": "Obtenha informações de desenvolvedores."
+			}
+		},
+		"biblia": {
+			"alias": [
+				"bible"
+			],
+			"emoji": "📖",
+			"media": [
+				"-g",
+				"palavra"
+			],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "",
+				"es": "Busque frases en bíblia (usa inglês).",
+				"pt": "Busque frases na bíblia (use inglês)."
+			}
+		},
+		"readqr": {
+			"emoji": "🧐",
+			"media": [
+				"Foto"
+			],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "Read the QR-Code content.",
+				"es": "Ver el contenido de un QR-Code.",
+				"pt": "Veja o conteúdo de um QR-Code."
+			}
+		},
+		"trending": {
+			"emoji": "🔝",
+			"media": [],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "See the trendings of the moment!",
+				"es": "Vea las tendencias del momento!",
+				"pt": "Veja os trendings do momento!"
+			}
+		},
+		"market": {
+			"emoji": "✈️",
+			"media": [],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "Search in Mercado Livre.",
+				"es": "Búsqueda en Mercado Libre.",
+				"pt": "Procure produtos no Mercado Livre."
+			}
+		},
+		"profile": {
+			"emoji": "💁",
+			"media": [],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "Get your information.",
+				"es": "Ver tu información.",
+				"pt": "Veja informações suas."
+			}
+		},
+		"mymsg": {
+			"emoji": "🐸",
+			"media": [
+				"Descrição"
+			],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "Put custom messages on profile.",
+				"es": "Agrega mensajes personalizados a tu perfil.",
+				"pt": "Adicione mensagens customizadas a sua Profile."
+			}
+		},
+		"meal": {
+			"emoji": "🍔",
+			"media": [
+				"Nome"
+			],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "Search for food.",
+				"es": "Buscar comida - Inglés.",
+				"pt": "Busque por comidas - Inglês."
+			}
+		},
+		"drink": {
+			"emoji": "🍹",
+			"media": [
+				"Nome"
+			],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "Search Drinks.",
+				"es": "Buscar bebidas - Inglés.",
+				"pt": "Busque por bebidas - Inglês."
+			}
+		},
+		"dark": {
+			"emoji": "👮",
+			"media": [
+				"Pesquisa"
+			],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "Search at Deep/Dark WEB.",
+				"es": "Buscar sitios en Dark/Deep WEB.",
+				"pt": "Pesquise sites na Deep/Dark WEB."
+			}
+		},
+		"tweet": {
+			"emoji": "💬",
+			"media": [
+				"@username"
+			],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "Get latest post from user.",
+				"es": "Obtener la última mensaje de usuario.",
+				"pt": "Obtenha o ultimo post do usuário."
+			}
+		},
+		"news": {
+			"emoji": "📰",
+			"media": [
+				"Tema"
+			],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "Get the News.",
+				"es": "Recibe las noticias, incluso antiguas.",
+				"pt": "Adquira as noticias - Até antigas."
+			}
+		},
+		"movie": {
+			"emoji": "🎬",
+			"media": [
+				"Nome"
+			],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "Get movie info.",
+				"es": "Más información sobre películas.",
+				"pt": "Saiba mais de filmes."
+			}
+		},
+		"gerador": {
+			"emoji": "🚓",
+			"media": [],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "Generate personal information.",
+				"es": "Obtener datos falsos como CPF'S.",
+				"pt": "Obtenha dados falsos como CPF'S."
+			}
+		},
+		"views": {
+			"emoji": "👀",
+			"media": [
+				"Mensagem",
+				"BOT"
+			],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "View who as read the message.",
+				"es": "Saber quién vio mi mensaje.",
+				"pt": "Saiba quem viu a minha mensagem."
+			}
+		},
+		"ddd": {
+			"emoji": "📱",
+			"media": [
+				"DDD"
+			],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "",
+				"es": "",
+				"pt": "Saiba de onde é o DDD."
+			}
+		},
+		"game": {
+			"alias": [
+				"jogo",
+				"jogos"
+			],
+			"emoji": "🎮",
+			"media": [
+				"Jogo"
+			],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "Information about the game.",
+				"es": "Información sobre el juego.",
+				"pt": "Informações sobre o jogo."
+			}
+		},
+		"wiki": {
+			"emoji": "🎮",
+			"media": [
+				"search"
+			],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "Search on Wiki.",
+				"es": "Pesquisa en Wiki.",
+				"pt": "Pesquisa na Wiki."
+			}
+		},
+		"perfil": {
+			"emoji": "🎮",
+			"media": [
+				"@user",
+				"mensagem",
+				"Ø"
+			],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "Your profile information.",
+				"es": "La información de tu perfil.",
+				"pt": "Informações do seu perfil."
+			}
+		},
+		"artist": {
+			"emoji": "🎮",
+			"media": [
+				"band",
+				"artist"
+			],
+			"menus": [
+				"dados",
+				"music"
+			],
+			"description": {
+				"en": "Information about bands or artists.",
+				"es": "Información sobre bandas o artistas.",
+				"pt": "Informações sobre bandas ou artistas."
+			}
+		},
+		"feriados": {
+			"emoji": "🎮",
+			"media": [
+				"year"
+			],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "List of Brazilian holidays.",
+				"es": "Lista de feriados brasileños.",
+				"pt": "Lista de feriados brasileiros."
+			}
+		},
+		"correios": {
+			"emoji": "🎮",
+			"media": [
+				"track code"
+			],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "Track objects sent by the Correios.",
+				"es": "Seguimiento de objetos enviados por Correios.",
+				"pt": "Rastrear objetos enviados pelo Correios."
+			}
+		},
+		"duck": {
+			"emoji": "🎮",
+			"media": [
+				"search"
+			],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "Do research using DuckDuckGo.",
+				"es": "Investigue usando DuckDuckGo.",
+				"pt": "Faça pesquisas utilizando o DuckDuckGo."
+			}
+		},
+		"fipe": {
+			"emoji": "🎮",
+			"media": [
+				"FIPE code"
+			],
+			"menus": [
+				"dados"
+			],
+			"description": {
+				"en": "Brazilian car prices in the FIPE table.",
+				"es": "Precios de automóviles brasileños en la tabla FIPE.",
+				"pt": "Preço de carros brasileiros na tabela FIPE."
+			}
+		},
+		"trends": {
+			"emoji": "🎮",
+			"media": [
+				"-global",
+				"country"
+			],
+			"menus": [
+				"dados",
+				"twitter"
+			],
+			"description": {
+				"en": "Get top 10 trends from Twitter.",
+				"es": "Obtener las 10 principales tendencias de Twitter.",
+				"pt": "Receba o top 10 trends do Twitter."
+			}
+		},
+		"genshin": {
+			"emoji": "🎮",
+			"media": [
+				"-char",
+				"-weapon",
+				"-obj",
+				"-art",
+				"-boss",
+				"-food",
+				"-dom",
+				"-talent",
+				"-cos",
+				"-ment",
+				"-type",
+				"-tal"
+			],
+			"menus": [
+				"dados",
+				"genshin"
+			],
+			"description": {
+				"en": "Search for information from genshin.",
+				"es": "Buscar información de genshin.",
+				"pt": "Busque informações do genshin."
+			}
+		},
+		"play": {
+			"emoji": "🎵",
+			"media": [
+				"Nome",
+				"Link"
+			],
+			"menus": [
+				"down"
+			],
+			"description": {
+				"es": "Descarga mp3 de YouTube por nombre o link.",
+				"pt": "Baixe musicas pelo nome ou link no YouTube."
+			}
+		},
+		"video": {
+			"emoji": "🎬",
+			"media": [
+				"Nome",
+				"Link"
+			],
+			"menus": [
+				"down"
+			],
+			"description": {
+				"en": "Download YouTube video with name or url.",
+				"es": "Descarga mp4 de YouTube por nombre o link.",
+				"pt": "Baixe videos pelo nome ou link no YouTube."
+			}
+		},
+		"ytsearch": {
+			"emoji": "🔍",
+			"media": [
+				"nome"
+			],
+			"menus": [
+				"down"
+			],
+			"description": {
+				"en": "Search a video to get the URL.",
+				"es": "Búsqueda vídeos por lo Link.",
+				"pt": "Busque videos para usar no /mp3/mp4."
+			}
+		},
+		"downaudio": {
+			"emoji": "🎸",
+			"media": [
+				"Link"
+			],
+			"menus": [
+				"down"
+			],
+			"description": {
+				"en": "Download áudio from links.",
+				"es": "Descarga audios por enlaces.",
+				"pt": "Baixe audios por Links."
+			}
+		},
+		"downvideo": {
+			"emoji": "📷",
+			"media": [
+				"Link"
+			],
+			"menus": [
+				"down"
+			],
+			"description": {
+				"en": "Download videos from links.",
+				"es": "Descarga video por enlaces.",
+				"pt": "Baixe videos por Links."
+			}
+		},
+		"deezer": {
+			"emoji": "🎶",
+			"media": [
+				"Nome"
+			],
+			"menus": [
+				"down"
+			],
+			"description": {
+				"en": "Search music at Deezer.",
+				"es": "Buscar música en Deezer.",
+				"pt": "Busque músicas no Deezer."
+			}
+		},
+		"cassino": {
+			"emoji": "🎰",
+			"media": [
+				"valor"
+			],
+			"menus": [
+				"games"
+			],
+			"description": {
+				"en": "Bet at the casino to earn XP! ~or lose...~",
+				"es": "Apueste en el casino para ganar XP! ~o perder...~",
+				"pt": "Jogue a roleta para ganhar XP. ~ou perder...~"
+			}
+		},
+		"roleta": {
+			"alias": [
+				"rolette"
+			],
+			"emoji": "🔫",
+			"media": [
+				"valor"
+			],
+			"menus": [
+				"games"
+			],
+			"description": {
+				"en": "Play Russian-Rolete to earn or lose XP.",
+				"es": "Juega a la ruleta rusa para ganar o perder XP.",
+				"pt": "Jogue Roleta-Russa para ganhar ou perder XP."
+			}
+		},
+		"gamemode": {
+			"emoji": "⛏",
+			"media": [
+				"type"
+			],
+			"menus": [
+				"games"
+			],
+			"description": {
+				"en": "",
+				"es": "Un comando de Minecraft, inútil.",
+				"pt": "Um comando inutil de Minecraft."
+			}
+		},
+		"roll": {
+			"emoji": "🎲",
+			"media": [],
+			"menus": [
+				"games"
+			],
+			"description": {
+				"en": "",
+				"es": "Un juego de dados, sin XP.",
+				"pt": "Jogo de dados, sem XP."
+			}
+		},
+		"level": {
+			"emoji": "📈",
+			"media": [],
+			"menus": [
+				"games"
+			],
+			"description": {
+				"en": "Get XP & more in discord style.",
+				"es": "Obtén su XP y más en estilo discord.",
+				"pt": "Pegue seu XP em formato Discord."
+			}
+		},
+		"flip": {
+			"emoji": "🪙",
+			"media": [
+				[
+					"cara",
+					"coroa"
+				],
+				"valor"
+			],
+			"menus": [
+				"games"
+			],
+			"description": {
+				"en": "The classic flip a coin game.",
+				"es": "El clásico juego de lanzar una moneda.",
+				"pt": "O clássico cara ou coroa."
+			}
+		},
+		"store": {
+			"emoji": "🏬",
+			"media": [
+				"nome"
+			],
+			"menus": [
+				"games"
+			],
+			"description": {
+				"en": "Search Play-Store for games & apps.",
+				"es": "Busca juegos y aplicaciones en Play-Store..",
+				"pt": "Procure jogos e apps na Play-Store."
+			}
+		},
+		"tord": {
+			"emoji": "🎉",
+			"media": [],
+			"menus": [
+				"games"
+			],
+			"description": {
+				"en": "Play Truth or Dare.",
+				"es": "",
+				"pt": "Jogue verdade ou desafio."
+			}
+		},
+		"aptoide": {
+			"emoji": "🕹️",
+			"media": [
+				"Nome"
+			],
+			"menus": [
+				"games"
+			],
+			"description": {
+				"en": "Search and download at Aptoide.",
+				"es": "",
+				"pt": "Baixe jogos pelo Aptoide."
+			}
+		},
+		"akinator": {
+			"alias": [
+				"aki"
+			],
+			"emoji": "🤖",
+			"media": [],
+			"menus": [
+				"games"
+			],
+			"description": {
+				"en": "Play Akinator, more instructions after.",
+				"es": "Juega Akinator, más instrucciones después.",
+				"pt": "Jogue akinator, instruções vem depois."
+			}
+		},
+		"nivel": {
+			"emoji": "🆙",
+			"media": [],
+			"menus": [
+				"games"
+			],
+			"description": {
+				"en": "Get your XP & more in text format.",
+				"es": "Obtenga su XP y más en formato de texto.",
+				"pt": "Adquira seu XP e outros em forma de texto."
+			}
+		},
+		"ativos": {
+			"emoji": "📧",
+			"media": [],
+			"menus": [
+				"games"
+			],
+			"description": {
+				"en": "Verify who as sended more messages.",
+				"es": "Ver quién ha enviado más mensajes.",
+				"pt": "Veja quem mandou mais mensagens."
+			}
+		},
+		"geral": {
+			"emoji": "🎉",
+			"media": [],
+			"menus": [
+				"games"
+			],
+			"description": {
+				"en": "Get the ranking of this group.",
+				"es": "Obtén el ranking de ese grupo.",
+				"pt": "Adquira o ranking apenas desse grupo."
+			}
+		},
+		"nunca": {
+			"emoji": "🎉",
+			"media": [],
+			"menus": [
+				"games"
+			],
+			"description": {
+				"en": "Play \"Never have, I ever\".",
+				"es": "Juega \"Yo ya, yo nunca\".",
+				"pt": "Jogue \"Eu já, Eu nunca\"."
+			}
+		},
+		"steal": {
+			"emoji": "💰",
+			"media": [],
+			"menus": [
+				"games"
+			],
+			"description": {
+				"en": "Try to steal someone XP.",
+				"es": "Intenta robar la XP de alguien.",
+				"pt": "Tente roubar o XP de alguém."
+			}
+		},
+		"doar": {
+			"emoji": "💸",
+			"media": [
+				"quantidade"
+			],
+			"menus": [
+				"games"
+			],
+			"description": {
+				"en": "Donate your XP to a person.",
+				"es": "Dona su XP a una persona.",
+				"pt": "Doe seu XP para uma pessoa."
+			}
+		},
+		"jokenpo": {
+			"emoji": "🌟",
+			"media": [],
+			"menus": [
+				"games"
+			],
+			"description": {
+				"en": "Play jokenpo with me!",
+				"es": "Juega jokenpo conmigo!",
+				"pt": "Jogue jokenpo comigo!"
+			}
+		},
+		"guild": {
+			"alias": [
+				"guilda"
+			],
+			"emoji": "⚔️",
+			"media": [
+				"-help"
+			],
+			"menus": [
+				"games"
+			],
+			"description": {
+				"en": "Join a guild to get benefits!",
+				"es": "Únete a un gremio para obtener beneficios!",
+				"pt": "Entre em uma guilda para ter benefícios!"
+			}
+		},
+		"tictac": {
+			"emoji": "❌",
+			"media": [
+				"-help"
+			],
+			"menus": [
+				"games"
+			],
+			"description": {
+				"en": "Play Tic Tac Toe Right Here!",
+				"es": "Juega Tic Tac Toe aquí mismo!",
+				"pt": "Jogue Jogo da Velha aqui mesmo!"
+			}
+		},
+		"agiotar": {
+			"emoji": "🔫",
+			"media": [],
+			"menus": [
+				"games"
+			],
+			"description": {
+				"en": "Pawn XP for someone!",
+				"es": "Sea un usurero de XP!",
+				"pt": "Agiote seu XP para alguém!"
+			}
+		},
+		"thieves": {
+			"emoji": "💰",
+			"media": [],
+			"menus": [
+				"games"
+			],
+			"description": {
+				"en": "Learn about Thieves Guild Players!",
+				"es": "Conoce a los Players de Thieves!",
+				"pt": "Saiba os Players da Guilda Thieves!"
+			}
+		},
+		"companions": {
+			"emoji": "👮",
+			"media": [],
+			"menus": [
+				"games"
+			],
+			"description": {
+				"en": "Learn about Guild Companions Players!",
+				"es": "Conoce a los Players de Companions!",
+				"pt": "Saiba os Players da Guilda Companions!"
+			}
+		},
+		"time": {
+			"emoji": "👮",
+			"media": [],
+			"menus": [
+				"games"
+			],
+			"description": {
+				"en": "Know how long it takes to use certain commands.",
+				"es": "Cuánto tiempo lleva para poder usar ciertos comandos.",
+				"pt": "Saiba quanto tempo falta para usar certos comandos."
+			}
+		},
+		"shop": {
+			"emoji": "👮",
+			"media": [
+				"Ø",
+				"Shop item number"
+			],
+			"menus": [
+				"games"
+			],
+			"description": {
+				"en": "~Paimon~ Iris Bargain Shop.",
+				"es": "Tienda de ofertas de ~Paimon~ Iris.",
+				"pt": "Loja de Barganhas da ~Paimon~ Íris."
+			}
+		},
+		"ranking": {
+			"emoji": "👮",
+			"media": [
+				"coin",
+				"msg",
+				"level",
+				"rubi",
+				"dima",
+				"xp"
+			],
+			"menus": [
+				"games"
+			],
+			"description": {
+				"en": "Shows the best classifieds.",
+				"es": "Muestra los mejores clasificados.",
+				"pt": "Mostra os  melhores classificados."
+			}
+		},
+		"allguild": {
+			"emoji": "👮",
+			"media": [],
+			"menus": [
+				"games",
+				"rpg",
+				"guild"
+			],
+			"description": {
+				"en": "List all guilds.",
+				"es": "Enumere todos los gremios.",
+				"pt": "Lista todas as guildas."
+			}
+		},
+		"newguild": {
+			"emoji": "👮",
+			"media": [
+				"guild  name"
+			],
+			"menus": [
+				"games",
+				"rpg",
+				"guild"
+			],
+			"description": {
+				"en": "Create a new guild.",
+				"es": "Crear un nuevo gremio.",
+				"pt": "Criar uma nova guilda."
+			}
+		},
+		"myguild": {
+			"emoji": "👮",
+			"media": [
+				"guild  name"
+			],
+			"menus": [
+				"games",
+				"rpg",
+				"guild"
+			],
+			"description": {
+				"en": "Guild information.",
+				"es": "Información del gremio.",
+				"pt": "Informações sobre a guilda."
+			}
+		},
+		"mix": {
+			"emoji": "👮",
+			"media": [
+				"Ø",
+				"-new [Ø|fruta|empresa|pais]",
+				"-placar"
+			],
+			"menus": [
+				"games"
+			],
+			"description": {
+				"en": "Unscramble the words.",
+				"es": "Descifrar las palabras.",
+				"pt": "Desembaralhar as palavras."
+			}
+		},
+		"loteria": {
+			"emoji": "👮",
+			"media": [
+				"Ø",
+				"-buy",
+				"-time"
+			],
+			"menus": [
+				"games"
+			],
+			"description": {
+				"en": "Iris Lottery.",
+				"es": "Lotería de Iris.",
+				"pt": "Loteria da Íris."
+			}
+		},
+		"daily": {
+			"alias": [
+				"diario"
+			],
+			"emoji": "👮",
+			"media": [],
+			"menus": [
+				"games"
+			],
+			"description": {
+				"en": "Receive a daily prize.",
+				"es": "Recibe un premio diario.",
+				"pt": "Receba um prêmio diário."
+			}
+		},
+		"chess": {
+			"emoji": "👮",
+			"media": [
+				"-help",
+				"-new",
+				"-play",
+				"-show"
+			],
+			"menus": [
+				"games"
+			],
+			"description": {
+				"en": "Play chess by Whatsapp!",
+				"es": "¡Juega al ajedrez por Whatsapp!",
+				"pt": "Jogue xadrez pelo Whatsapp!"
+			}
+		},
+		"forca": {
+			"emoji": "👮",
+			"media": [
+				"-r",
+				"-new",
+				"-dica",
+				"-allin"
+			],
+			"menus": [
+				"games"
+			],
+			"description": {
+				"en": "Play hangman game on Whatsapp!",
+				"es": "¡Juega al juego del ahorcado por Whatsapp!",
+				"pt": "Jogue o jogo da forca pelo Whatsapp!"
+			}
+		},
+		"21": {
+			"emoji": "👮",
+			"media": [
+				"-start",
+				"-stop",
+				"-drop",
+				"-get",
+				"-pass",
+				"-join",
+				"-mydeck"
+			],
+			"menus": [
+				"games"
+			],
+			"description": {
+				"en": "Play Blackjack by Whatsapp!",
+				"es": "¡Juega Blackjack por Whatsapp!",
+				"pt": "Jogue 21 pelo Whatsapp!"
+			}
+		},
+		"Light": {
+			"emoji": "🎴",
+			"media": [
+				"Phrase"
+			],
+			"menus": [
+				"maker",
+				"image"
+			],
+			"description": {
+				"en": "A neon logo in light.",
+				"es": "Uma logo de neon em luz.",
+				"pt": "Uma logo de neon em luz."
+			}
+		},
+		"edit": {
+			"emoji": "🎴",
+			"media": [
+				"Ø",
+				"@user",
+				"mensagem",
+				"foto"
+			],
+			"menus": [
+				"maker",
+				"image"
+			],
+			"description": {
+				"en": "Edit images by Whatsapp.",
+				"es": "Editar imágenes por Whatsapp.",
+				"pt": "Edite imagens por Whatsapp."
+			}
+		},
+		"ednaldo": {
+			"alias": [
+				"bandeira"
+			],
+			"emoji": "🎴",
+			"media": [
+				"@user",
+				"mensagem",
+				"foto"
+			],
+			"menus": [
+				"maker",
+				"image"
+			],
+			"description": {
+				"en": "Ednaldo Pereira's flag.",
+				"es": "Bandera de Ednaldo Pereira.",
+				"pt": "Bandeira do Ednaldo Pereira."
+			}
+		},
+		"quote": {
+			"emoji": "🗾",
+			"media": [
+				"frase",
+				"autor"
+			],
+			"menus": [
+				"maker"
+			],
+			"description": {
+				"en": "Create your own Phrase.",
+				"es": "Crie sua propria frase.",
+				"pt": "Crie sua propria frase."
+			}
+		},
+		"make": {
+			"emoji": "🎑",
+			"media": [
+				"frase"
+			],
+			"menus": [
+				"maker"
+			],
+			"description": {
+				"en": "Write in my diary ~Death Note~.",
+				"es": "Escreva no meu diario ~Death Note~.",
+				"pt": "Escreva no meu diario ~Death Note~."
+			}
+		},
+		"slogan": {
+			"emoji": "🏞️",
+			"media": [
+				"Nome"
+			],
+			"menus": [
+				"maker"
+			],
+			"description": {
+				"en": "Make cute slogans.",
+				"es": "Faça slogans bonitinhos.",
+				"pt": "Faça slogans bonitinhos."
+			}
+		},
+		"3d": {
+			"emoji": "🌅",
+			"media": [
+				"texto"
+			],
+			"menus": [
+				"maker"
+			],
+			"description": {
+				"en": "Make 3D slogans.",
+				"es": "Crie textos em 3D.",
+				"pt": "Crie textos em 3D."
+			}
+		},
+		"logo": {
+			"emoji": "🌄",
+			"media": [
+				"nome"
+			],
+			"menus": [
+				"maker"
+			],
+			"description": {
+				"en": "Create black and pink logos.",
+				"es": "Crie logos em preto e pink.",
+				"pt": "Crie logos em preto e pink."
+			}
+		},
+		"gaming": {
+			"emoji": "🌠",
+			"media": [
+				"nome"
+			],
+			"menus": [
+				"maker"
+			],
+			"description": {
+				"en": "Create player logos.",
+				"es": "Crie logos de jogador.",
+				"pt": "Crie logos de jogador."
+			}
+		},
+		"pornhub": {
+			"emoji": "🟧",
+			"media": [
+				"text 1",
+				"text 2"
+			],
+			"menus": [
+				"maker"
+			],
+			"description": {
+				"en": "Create your own PornHub logo.",
+				"es": "Crea tu logo de PornHub.",
+				"pt": "Crie sua propria logo do PornHub."
+			}
+		},
+		"thunder": {
+			"emoji": "🌁",
+			"media": [
+				"frase"
+			],
+			"menus": [
+				"maker"
+			],
+			"description": {
+				"en": "A sky logo with thunder.",
+				"es": "Una logo de cielo con truenos.",
+				"pt": "Uma logo do céu com trovões."
+			}
+		},
+		"wolf": {
+			"emoji": "🌉",
+			"media": [
+				"Frase1",
+				"Frase2"
+			],
+			"menus": [
+				"maker"
+			],
+			"description": {
+				"en": "Logo of Wolves.",
+				"es": "Una Logo de lobos.",
+				"pt": "Logo de Lobos."
+			}
+		},
+		"neon": {
+			"emoji": "🏮",
+			"media": [
+				"Frase1",
+				"Frase2",
+				"Frase3"
+			],
+			"menus": [
+				"maker"
+			],
+			"description": {
+				"en": "A hackerman-style neon logo.",
+				"es": "Una Logo neón estilo hackerman.",
+				"pt": "Uma logo de neon estilo hackerman."
+			}
+		},
+		"qr": {
+			"emoji": "🌃",
+			"media": [
+				"Texto"
+			],
+			"menus": [
+				"maker"
+			],
+			"description": {
+				"en": "Create QR Codes with texts.",
+				"es": "Crea códigos QR con textos.",
+				"pt": "Cria QR Codes com textos."
+			}
+		},
+		"wasted": {
+			"emoji": "🏙️",
+			"media": [
+				"foto"
+			],
+			"menus": [
+				"maker"
+			],
+			"description": {
+				"en": "Create a wasted image just like GTA V.",
+				"es": "Crea una imagen \"wasted\" como GTA V.",
+				"pt": "Cria uma imagem de wasted igual ao GTA V."
+			}
+		},
+		"gtav": {
+			"emoji": "🌆",
+			"media": [
+				"foto"
+			],
+			"menus": [
+				"maker"
+			],
+			"description": {
+				"en": "Create the cover for the new PS2 GTA V.",
+				"es": "Crie a capa do novo GTA V de PS2.",
+				"pt": "Crie a capa do novo GTA V de PS2."
+			}
+		},
+		"reverter": {
+			"alias": [
+				"rev"
+			],
+			"emoji": "🌇",
+			"media": [
+				"foto"
+			],
+			"menus": [
+				"maker"
+			],
+			"description": {
+				"en": "Revert a photo.",
+				"es": "Revertir una foto.",
+				"pt": "Reverta uma foto."
+			}
+		},
+		"phcom": {
+			"emoji": "💬",
+			"media": [
+				"Username",
+				"Comentário",
+				"Foto"
+			],
+			"menus": [
+				"maker"
+			],
+			"description": {
+				"en": "Fake PornHub comments.",
+				"es": "Comentarios falsos de PornHub.",
+				"pt": "Falsifique comentários no PornHub."
+			}
+		},
+		"ytcom": {
+			"emoji": "▶️",
+			"media": [
+				"Username",
+				"Comentário",
+				"Foto"
+			],
+			"menus": [
+				"maker"
+			],
+			"description": {
+				"en": "Fake YouTube comments.",
+				"es": "Comentarios falsos en YouTube.",
+				"pt": "Falsifique comentários no YouTube."
+			}
+		},
+		"water": {
+			"emoji": "💦",
+			"media": [
+				"frase"
+			],
+			"menus": [
+				"maker"
+			],
+			"description": {
+				"en": "Create logos in water.",
+				"es": "Crea logotipos en el agua.",
+				"pt": "Crie logos em água."
+			}
+		},
+		"trigger": {
+			"emoji": "💢",
+			"media": [
+				"frase"
+			],
+			"menus": [
+				"maker"
+			],
+			"description": {
+				"en": "Triggered 😡.",
+				"es": "Triggered 😡.",
+				"pt": "Triggered 😡."
+			}
+		},
+		"hitler": {
+			"emoji": "卍",
+			"media": [
+				"@user/mensagem",
+				"foto"
+			],
+			"menus": [
+				"maker"
+			],
+			"description": {
+				"en": "🌝 Hitler!",
+				"es": "🌝 Hitler!",
+				"pt": "🌝 Hitler!"
+			}
+		},
+		"trash": {
+			"emoji": "🚮",
+			"media": [
+				"@user/mensagem",
+				"foto"
+			],
+			"menus": [
+				"maker"
+			],
+			"description": {
+				"en": "Make a meme about trash.",
+				"es": "Haz un meme sobre la basura.",
+				"pt": "Faça um meme sobre lixo."
+			}
+		},
+		"shit": {
+			"emoji": "💩",
+			"media": [
+				"@user/mensagem",
+				"foto"
+			],
+			"menus": [
+				"maker"
+			],
+			"description": {
+				"en": "Ughh, poop!",
+				"es": "Vaya, caca!",
+				"pt": "Eca, coco!"
+			}
+		},
+		"rip": {
+			"emoji": "💀",
+			"media": [
+				"@user/mensagem",
+				"foto"
+			],
+			"menus": [
+				"maker"
+			],
+			"description": {
+				"en": "Rip, F.",
+				"es": "Rip, F.",
+				"pt": "Rip, F."
+			}
+		},
+		"retro": {
+			"emoji": "🕴🏻",
+			"media": [
+				"Frase1",
+				"Frase2",
+				"Frase3"
+			],
+			"menus": [
+				"maker"
+			],
+			"description": {
+				"en": "Make a 80's year logo.",
+				"es": "Logos retro das antigas.",
+				"pt": "Logos retro das antigas."
+			}
+		},
+		"meme": {
+			"emoji": "Ⓜ️",
+			"media": [
+				"Foto",
+				"Frase1",
+				"Frase2"
+			],
+			"menus": [
+				"maker"
+			],
+			"description": {
+				"en": "Memes creator from WhatsApp.",
+				"es": "Hacer memes por WhatsApp.",
+				"pt": "Faça memes pelo WhatsApp."
+			}
+		},
+		"jail": {
+			"emoji": "🌞",
+			"media": [
+				"@user",
+				"mensagem",
+				"foto"
+			],
+			"menus": [
+				"maker"
+			],
+			"description": {
+				"en": "Make someone a prisoner.",
+				"es": "Hacer prisioneros.",
+				"pt": "Faça alguém de preso."
+			}
+		},
+		"beijo": {
+			"emoji": "💑",
+			"media": [
+				"@user",
+				"mensagem",
+				"foto"
+			],
+			"menus": [
+				"maker"
+			],
+			"description": {
+				"en": "Kiss someone in the meme version!",
+				"es": "Besa a alguien - meme!",
+				"pt": "Beije alguém na versão meme!"
+			}
+		},
+		"bed": {
+			"emoji": "👾",
+			"media": [
+				"@user",
+				"mensagem",
+				"foto"
+			],
+			"menus": [
+				"maker"
+			],
+			"description": {
+				"en": "Monsters, grr.",
+				"es": "Monstrinhos, grr.",
+				"pt": "Monstrinhos, grr."
+			}
+		},
+		"clyde": {
+			"emoji": "💬",
+			"media": [
+				"Mensagem"
+			],
+			"menus": [
+				"maker"
+			],
+			"description": {
+				"en": "Make a meme with Clyde from Discord.",
+				"es": "Hacer un meme con Clyde de Discord.",
+				"pt": "Faça um meme com o Clyde do Discord."
+			}
+		},
+		"spank": {
+			"emoji": "Ⓜ️",
+			"media": [
+				"@user",
+				"mensagem",
+				"foto"
+			],
+			"menus": [
+				"maker"
+			],
+			"description": {
+				"en": "Spank ( ͡° ͜ʖ ͡°).",
+				"es": "Azotar ( ͡° ͜ʖ ͡°).",
+				"pt": "Espanque ( ͡° ͜ʖ ͡°)."
+			}
+		},
+		"batslap": {
+			"emoji": "🦇",
+			"media": [
+				"@user",
+				"mensagem",
+				"foto"
+			],
+			"menus": [
+				"maker"
+			],
+			"description": {
+				"en": "Slap your robin.",
+				"es": "Abofetear su robin.",
+				"pt": "Dê um tapa na sua Robin."
+			}
+		},
+		"distract": {
+			"emoji": "👀",
+			"media": [
+				"@User1",
+				"@User2",
+				"@User3"
+			],
+			"menus": [
+				"maker"
+			],
+			"description": {
+				"en": "The old meme of looking at another e.e.",
+				"es": "El viejo meme de mirar a otra e.e.",
+				"pt": "O velho meme de olhar pra outra e.e."
+			}
+		},
+		"joke": {
+			"emoji": "😜",
+			"media": [
+				"@user",
+				"mensagem",
+				"foto"
+			],
+			"menus": [
+				"maker"
+			],
+			"description": {
+				"en": "Make someone a joke.",
+				"es": "Hazle una broma a alguien.",
+				"pt": "Faça alguém ser uma piada."
+			}
+		},
+		"mind": {
+			"emoji": "💭",
+			"media": [
+				"mensagem"
+			],
+			"menus": [
+				"maker"
+			],
+			"description": {
+				"en": "Change my Mind!",
+				"es": "Change my Mind!",
+				"pt": "Change my Mind!"
+			}
+		},
+		"ohno": {
+			"emoji": "🪶",
+			"media": [
+				"mensagem"
+			],
+			"menus": [
+				"maker"
+			],
+			"description": {
+				"en": "Stupid dog :D.",
+				"es": "Perro estúpido :D.",
+				"pt": "Cachorro idiota :D."
+			}
+		},
+		"baby": {
+			"emoji": "👶",
+			"media": [
+				"@user",
+				"mensagem",
+				"foto"
+			],
+			"menus": [
+				"maker"
+			],
+			"description": {
+				"en": "It doesn't affect my baby e.e.",
+				"es": "No afecta a mi bebe e.e.",
+				"pt": "Isso não afeta meu bebê não e.e."
+			}
+		},
+		"fuse": {
+			"emoji": "💦",
+			"media": [
+				"@User1",
+				"@User2"
+			],
+			"menus": [
+				"maker"
+			],
+			"description": {
+				"en": "Make a photo fusion!",
+				"es": "Haz una fusión de fotos!",
+				"pt": "Faça uma fusão de fotos!"
+			}
+		},
+		"beauty": {
+			"emoji": "🌹",
+			"media": [
+				"@user",
+				"mensagem",
+				"foto"
+			],
+			"menus": [
+				"maker"
+			],
+			"description": {
+				"en": "Oh My God, this is...",
+				"es": "Oh My God, this is...",
+				"pt": "Oh My God, this is..."
+			}
+		},
+		"pixel": {
+			"emoji": "⛏️",
+			"media": [
+				"@user",
+				"mensagem",
+				"foto"
+			],
+			"menus": [
+				"maker"
+			],
+			"description": {
+				"en": "Pixelate a photo.",
+				"es": "Pixela una foto.",
+				"pt": "Pixelize uma foto."
+			}
+		},
+		"reward": {
+			"emoji": "🏆",
+			"media": [
+				"@user",
+				"mensagem",
+				"foto"
+			],
+			"menus": [
+				"maker"
+			],
+			"description": {
+				"en": "Wanted ~married~ people.",
+				"es": "Busca ~casadas~ personas.",
+				"pt": "Procura-se ~casadas~ pessoas."
+			}
+		},
+		"sharp": {
+			"emoji": "🔪",
+			"media": [
+				"@user",
+				"Msg",
+				"foto",
+				"Quantidade"
+			],
+			"menus": [
+				"maker"
+			],
+			"description": {
+				"en": "Let the photo with a strong tone.",
+				"es": "Deja la foto con un tono fuerte.",
+				"pt": "Deixe a foto com tom forte."
+			}
+		},
+		"burn": {
+			"emoji": "🔥",
+			"media": [
+				"@user",
+				"Msg",
+				"foto",
+				"Quantidade"
+			],
+			"menus": [
+				"maker"
+			],
+			"description": {
+				"en": "Burn the texture of a photo.",
+				"es": "Quemar la textura de una foto.",
+				"pt": "Queime a textura de uma foto."
+			}
+		},
+		"shold": {
+			"emoji": "🥵",
+			"media": [
+				"@user",
+				"Msg",
+				"foto",
+				"Quantidade"
+			],
+			"menus": [
+				"maker"
+			],
+			"description": {
+				"en": "Mix with the heat of the photo.",
+				"es": "Editar el calor de la foto.",
+				"pt": "Mexa com o calor da foto."
+			}
+		},
+		"opnion": {
+			"emoji": "🤝",
+			"media": [
+				"@user",
+				"Mensagem"
+			],
+			"menus": [
+				"maker"
+			],
+			"description": {
+				"en": "I respect my son!",
+				"es": "Respeto a mi hijo!",
+				"pt": "Eu respeito meu filhão!"
+			}
+		},
+		"sepia": {
+			"emoji": "🔭",
+			"media": [
+				"@user",
+				"mensagem",
+				"foto"
+			],
+			"menus": [
+				"maker"
+			],
+			"description": {
+				"en": "Apply sepia effect to photos.",
+				"es": "Aplicar efecto sepia a las fotos.",
+				"pt": "Aplique o efeito sepia em fotos."
+			}
+		},
+		"medal": {
+			"emoji": "🥇",
+			"media": [
+				"@user",
+				"mensagem",
+				"foto"
+			],
+			"menus": [
+				"maker"
+			],
+			"description": {
+				"en": "Be the Obama in a meme.",
+				"es": "Sé el Obama en un meme.",
+				"pt": "Seja o Obama em um meme."
+			}
+		},
+		"wolverine": {
+			"emoji": "🥇",
+			"media": [
+				"@user",
+				"mensagem",
+				"foto"
+			],
+			"menus": [
+				"maker"
+			],
+			"description": {
+				"en": "Wolverine meme.",
+				"es": "Meme del wolverine.",
+				"pt": "Meme do wolverine."
+			}
+		},
+		"ednaldotv": {
+			"alias": [
+				"tv",
+				"televisao"
+			],
+			"emoji": "🥇",
+			"media": [
+				"@user",
+				"mensagem",
+				"foto"
+			],
+			"menus": [
+				"maker"
+			],
+			"description": {
+				"en": "Ednaldo Pereira watching TV.",
+				"es": "Ednaldo Pereira viendo la televisión.",
+				"pt": "Ednaldo Pereira assistindo TV."
+			}
+		},
+		"sponge": {
+			"alias": [
+				"bob",
+				"esponja"
+			],
+			"emoji": "🥇",
+			"media": [
+				"@user",
+				"mensagem",
+				"foto"
+			],
+			"menus": [
+				"maker"
+			],
+			"description": {
+				"en": "Spongebob burning the photo.",
+				"es": "Bob Esponja quemando la foto.",
+				"pt": "Bob Esponja queimando a foto."
+			}
+		},
+		"speed": {
+			"alias": [],
+			"emoji": "🥇",
+			"media": [
+				"Audio",
+				"Video"
+			],
+			"menus": [
+				"maker"
+			],
+			"description": {
+				"en": "Change speed.",
+				"es": "Cambiar de velocidad.",
+				"pt": "Altere a velocidade."
+			}
+		},
+		"shot": {
+			"alias": [],
+			"emoji": "🥇",
+			"media": [
+				"@user",
+				"mensagem",
+				"foto"
+			],
+			"menus": [
+				"maker"
+			],
+			"description": {
+				"en": "Shoot the television.",
+				"es": "Dispara a la televisión.",
+				"pt": "Atire na televisão."
+			}
+		},
+		"romero": {
+			"alias": [],
+			"emoji": "🥇",
+			"media": [
+				"@user",
+				"mensagem",
+				"foto"
+			],
+			"menus": [
+				"maker"
+			],
+			"description": {
+				"en": "Be a painting by Romero Britto.",
+				"es": "Ser un cuadro de Romero Britto.",
+				"pt": "Seja uma pintura do Romero Britto."
+			}
+		},
+		"reverse": {
+			"alias": [],
+			"emoji": "🥇",
+			"media": [
+				"Audio",
+				"Video"
+			],
+			"menus": [
+				"maker"
+			],
+			"description": {
+				"en": "Back forwards.",
+				"es": "Atrás adelante.",
+				"pt": "De frente pra trás."
+			}
+		},
+		"morrepraga": {
+			"alias": [
+				"morre",
+				"praga",
+				"die",
+				"plague",
+				"dieplague"
+			],
+			"emoji": "🥇",
+			"media": [
+				"@user",
+				"mensagem",
+				"foto"
+			],
+			"menus": [
+				"maker"
+			],
+			"description": {
+				"en": "Mario meme.",
+				"es": "Meme del Mario.",
+				"pt": "Meme do Mário."
+			}
+		},
+		"pepe": {
+			"alias": [],
+			"emoji": "🥇",
+			"media": [
+				"@user",
+				"mensagem",
+				"foto"
+			],
+			"menus": [
+				"maker",
+				"memes"
+			],
+			"description": {
+				"en": "The reality tends to be disappointing.",
+				"es": "La realidad tiende a ser decepcionante.",
+				"pt": "A realidade tende a ser decepcionante."
+			}
+		},
+		"paper": {
+			"alias": [],
+			"emoji": "🥇",
+			"media": [
+				"@user",
+				"mensagem",
+				"foto"
+			],
+			"menus": [
+				"maker",
+				"memes"
+			],
+			"description": {
+				"en": "Meme passing the paper.",
+				"es": "Meme pasando el papel.",
+				"pt": "Meme passando o papel."
+			}
+		},
+		"ojjo": {
+			"alias": [],
+			"emoji": "🥇",
+			"media": [
+				"@user",
+				"mensagem",
+				"foto"
+			],
+			"menus": [
+				"maker",
+				"memes"
+			],
+			"description": {
+				"en": "Reflects the image at middle.",
+				"es": "Refleja la imagen por la mitad.",
+				"pt": "Reflete a imagem ao meio."
+			}
+		},
+		"jooj": {
+			"alias": [],
+			"emoji": "🥇",
+			"media": [
+				"@user",
+				"mensagem",
+				"foto"
+			],
+			"menus": [
+				"maker",
+				"memes"
+			],
+			"description": {
+				"en": "Reflects the image at middle.",
+				"es": "Refleja la imagen por la mitad.",
+				"pt": "Reflete a imagem ao meio."
+			}
+		},
+		"mark": {
+			"alias": [],
+			"emoji": "🥇",
+			"media": [
+				"@user",
+				"mensagem",
+				"foto"
+			],
+			"menus": [
+				"maker",
+				"memes"
+			],
+			"description": {
+				"en": "What's on Mark Zuckerberg's screen?",
+				"es": "¿Qué hay en la pantalla de Mark Zuckerberg?",
+				"pt": "O que está na tela do Mark Zuckerberg?"
+			}
+		},
+		"gay": {
+			"alias": [
+				"lgbt"
+			],
+			"emoji": "🥇",
+			"media": [
+				"@user",
+				"mensagem",
+				"foto"
+			],
+			"menus": [
+				"maker",
+				"memes"
+			],
+			"description": {
+				"en": "See what kind of gay you are.",
+				"es": "Mira qué tipo de gay eres.",
+				"pt": "Veja que tipo de gay você é."
+			}
+		},
+		"gray": {
+			"alias": [
+				"bew",
+				"peb",
+				"alpha"
+			],
+			"emoji": "🥇",
+			"media": [
+				"Photo",
+				"Video"
+			],
+			"menus": [
+				"maker",
+				"video"
+			],
+			"description": {
+				"en": "Turns to black and white.",
+				"es": "Hace en blanco y negro.",
+				"pt": "Torna em preto e branco."
+			}
+		},
+		"mutevideo": {
+			"alias": [
+				"mutev"
+			],
+			"emoji": "🥇",
+			"media": [
+				"Video"
+			],
+			"menus": [
+				"maker",
+				"video"
+			],
+			"description": {
+				"en": "Mute the video.",
+				"es": "Silenciar el vídeo.",
+				"pt": "Retira o som do video."
+			}
+		},
+		"invert": {
+			"alias": [
+				"mutev"
+			],
+			"emoji": "🥇",
+			"media": [
+				"@user",
+				"mensagem",
+				"foto"
+			],
+			"menus": [
+				"maker",
+				"image"
+			],
+			"description": {
+				"en": "Reflect the image.",
+				"es": "Refleja la imagen.",
+				"pt": "Refletir a imagem."
+			}
+		},
+		"drake": {
+			"alias": [],
+			"emoji": "🥇",
+			"media": [
+				"@user",
+				"mensagem",
+				"foto"
+			],
+			"menus": [
+				"maker",
+				"image"
+			],
+			"description": {
+				"en": "Famous Drake meme.",
+				"es": "Famoso meme de Drake.",
+				"pt": "Famoso meme do Drake."
+			}
+		},
+		"bolsonaro": {
+			"alias": [],
+			"emoji": "🥇",
+			"media": [
+				"@user",
+				"mensagem",
+				"foto"
+			],
+			"menus": [
+				"maker",
+				"image"
+			],
+			"description": {
+				"en": "Drake meme but with Bolsonaro.",
+				"es": "Meme de Drake pero con Bolsonaro.",
+				"pt": "Meme do Drake só que com o Bolsonaro."
+			}
+		},
+		"bolso1": {
+			"alias": [],
+			"emoji": "🥇",
+			"media": [
+				"@user",
+				"mensagem",
+				"foto"
+			],
+			"menus": [
+				"maker",
+				"image"
+			],
+			"description": {
+				"en": "Bolsonaro watching TV.",
+				"es": "Bolsonaro viendo la tele.",
+				"pt": "Bolsonaro vendo TV."
+			}
+		},
+		"bolso2": {
+			"alias": [],
+			"emoji": "🥇",
+			"media": [
+				"@user",
+				"mensagem",
+				"foto"
+			],
+			"menus": [
+				"maker",
+				"image"
+			],
+			"description": {
+				"en": "Bolsonaro lifting a painting.",
+				"es": "Bolsonaro levantando un cuadro.",
+				"pt": "Bolsonaro levantando um quadro."
+			}
+		},
+		"bolso3": {
+			"alias": [],
+			"emoji": "🥇",
+			"media": [
+				"@user",
+				"mensagem",
+				"foto"
+			],
+			"menus": [
+				"maker",
+				"image"
+			],
+			"description": {
+				"en": "Bolsonaro watching TV.",
+				"es": "Bolsonaro viendo la tele.",
+				"pt": "Bolsonaro vendo TV."
+			}
+		},
+		"briggs": {
+			"alias": [],
+			"emoji": "🥇",
+			"media": [
+				"@user",
+				"mensagem",
+				"foto"
+			],
+			"menus": [
+				"maker",
+				"image"
+			],
+			"description": {
+				"en": "Guilherme Briggs meme.",
+				"es": "Guilherme Briggs meme.",
+				"pt": "Meme do Guilherme Briggs."
+			}
+		},
+		"termos": {
+			"emoji": "🧑🏻‍✈️",
+			"media": [],
+			"menus": [
+				"outros",
+				"suporte"
+			],
+			"description": {
+				"en": "Read the terms of this BOT or donate.",
+				"es": "Lea los términos de este BOT o done.",
+				"pt": "Leia os termos dessa BOT ou doe."
+			}
+		},
+		"about": {
+			"emoji": "👫🏻",
+			"media": [],
+			"menus": [
+				"outros",
+				"suporte"
+			],
+			"description": {
+				"en": "Learn more about this BOT and Dev's.",
+				"es": "Saiba más de este BOT y su programador.",
+				"pt": "Saiba mais da BOT e seu programador."
+			}
+		},
+		"legiao": {
+			"emoji": "🏆",
+			"media": [],
+			"menus": [
+				"outros",
+				"suporte"
+			],
+			"description": {
+				"en": "Meet the official group.",
+				"es": "Conoce al grupo oficial.",
+				"pt": "Conheça o grupo oficial."
+			}
+		},
+		"help": {
+			"emoji": "🆘",
+			"media": [
+				"Mensagem"
+			],
+			"menus": [
+				"outros",
+				"suporte"
+			],
+			"description": {
+				"en": "Report the errors.",
+				"es": "Informe cualquier error que encuentre.",
+				"pt": "Informe os erros que encontrar."
+			}
+		},
+		"menu": {
+			"emoji": "🚪",
+			"media": [
+				"Ø",
+				"menu"
+			],
+			"menus": [
+				"outros"
+			],
+			"description": {
+				"en": "Shows all my menus.",
+				"es": "Muestra todos mis menús.",
+				"pt": "Mostra todos os meus menus."
+			}
+		},
+		"stickers": {
+			"emoji": "🏖️",
+			"media": [],
+			"menus": [
+				"menu"
+			],
+			"description": {
+				"en": "Commands that use stickers.",
+				"es": "Comandos que usam stickers.",
+				"pt": "Comandos que usam stickers."
+			}
+		},
+		"down": {
+			"emoji": "🌐",
+			"media": [],
+			"menus": [
+				"menu"
+			],
+			"description": {
+				"en": "Commands of Downloads.",
+				"es": "Comandos de Descarga.",
+				"pt": "Comandos de Downloads."
+			}
+		},
+		"dono": {
+			"emoji": "🔐",
+			"media": [],
+			"menus": [
+				"menu"
+			],
+			"description": {
+				"en": "Commands for Owner.",
+				"es": "Comandos que solo mi dueño puede usar.",
+				"pt": "Comandos que só meu dono pode usar."
+			}
+		},
+		"admins": {
+			"emoji": "🧑🏼‍💻",
+			"media": [],
+			"menus": [
+				"menu"
+			],
+			"description": {
+				"en": "Commands for administrators.",
+				"es": "Comandos para administradores.",
+				"pt": "Comandos para administradores."
+			}
+		},
+		"games": {
+			"emoji": "🎰",
+			"media": [],
+			"menus": [
+				"menu"
+			],
+			"description": {
+				"en": "Mini Games to play!",
+				"es": "Minijuegos para jugar!",
+				"pt": "Mini-Jogos para jogar!"
+			}
+		},
+		"adult": {
+			"emoji": "🔞",
+			"media": [],
+			"menus": [
+				"menu"
+			],
+			"description": {
+				"en": "Command list +18!",
+				"es": "Una lista +18!",
+				"pt": "Lista de comandos +18!"
+			}
+		},
+		"maker": {
+			"emoji": "🖨️",
+			"media": [],
+			"menus": [
+				"menu"
+			],
+			"description": {
+				"en": "A images maker!",
+				"es": "Fábrica de imágenes!",
+				"pt": "Fabrica de imagens!"
+			}
+		},
+		"otaku": {
+			"emoji": "🍙",
+			"media": [],
+			"menus": [
+				"menu"
+			],
+			"description": {
+				"en": "A list of anime commands!",
+				"es": "Lista de comandos de Anime!",
+				"pt": "Lista de comandos de Anime!"
+			}
+		},
+		"dados": {
+			"emoji": "ℹ️",
+			"media": [],
+			"menus": [
+				"menu"
+			],
+			"description": {
+				"en": "Informative commands!",
+				"es": "Comandos Informativos!",
+				"pt": "Comandos Informativos!"
+			}
+		},
+		"midia": {
+			"emoji": "🎬",
+			"media": [],
+			"menus": [
+				"menu"
+			],
+			"description": {
+				"en": "Media commands!",
+				"es": "Comandos de Medios!",
+				"pt": "Comandos de Mídia!"
+			}
+		},
+		"outros": {
+			"emoji": "🚪",
+			"media": [],
+			"menus": [
+				"menu"
+			],
+			"description": {
+				"en": "Another commands!",
+				"es": "Otros comandos!",
+				"pt": "Outros comandos!"
+			}
+		},
+		"tudo": {
+			"emoji": "🚪",
+			"media": [],
+			"menus": [
+				"menu"
+			],
+			"description": {
+				"en": "All commands!",
+				"es": "Todos los comandos!",
+				"pt": "Todos os comandos!"
+			}
+		},
+		"dog": {
+			"emoji": "🐶",
+			"media": [],
+			"menus": [
+				"midia"
+			],
+			"description": {
+				"en": "I LOVE DOGS! Do you love?",
+				"es": "Amas a los cachorros? Porque me encanta!",
+				"pt": "Você adora cachorrinhos? Pois eu amo!"
+			}
+		},
+		"getmeme": {
+			"emoji": "😆",
+			"media": [],
+			"menus": [
+				"midia"
+			],
+			"description": {
+				"en": "Enjoy some memes!",
+				"es": "Vamos a ver memes!",
+				"pt": "Por que não curtir uns memes né?"
+			}
+		},
+		"wallpaper": {
+			"alias": [
+				"wallhaven"
+			],
+			"emoji": "🖼️",
+			"media": [
+				"nome"
+			],
+			"menus": [
+				"midia"
+			],
+			"description": {
+				"en": "Want's wallpapers? I get!",
+				"es": "Obtener Wallpapers!",
+				"pt": "Quer obter uns wallpapers? Deixe comigo!"
+			}
+		},
+		"screenshot": {
+			"emoji": "🖨️",
+			"media": [],
+			"menus": [
+				"midia"
+			],
+			"description": {
+				"en": "Screenshot the inside of site!",
+				"es": "Puedo mostrar el interior de URL!",
+				"pt": "Posso mostrar o site por dentro!"
+			}
+		},
+		"girl": {
+			"emoji": "👱🏻‍♀️",
+			"media": [],
+			"menus": [
+				"midia"
+			],
+			"description": {
+				"en": "Quer uma garota bonitinha?",
+				"es": "Quieres una linda chica?",
+				"pt": "Quer uma garota bonitinha?"
+			}
+		},
+		"boy": {
+			"emoji": "👱🏻‍♀️",
+			"media": [],
+			"menus": [
+				"midia",
+				"image"
+			],
+			"description": {
+				"en": "Photo of a boy.",
+				"es": "Foto de un niño.",
+				"pt": "Foto de um menino."
+			}
+		},
+		"fox": {
+			"emoji": "🦊",
+			"media": [],
+			"menus": [
+				"midia"
+			],
+			"description": {
+				"en": "Beaultiful fox'es (Not the Kurama!).",
+				"es": "Simpáticos zorritos (no es Kurama!).",
+				"pt": "Raposinhas bonitas (Não é o Kurama!)."
+			}
+		},
+		"image": {
+			"emoji": "🏗️",
+			"media": [
+				"nome"
+			],
+			"menus": [
+				"midia"
+			],
+			"description": {
+				"en": "Search photos on pinterest.",
+				"es": "Buscar cosas en Pinterest.",
+				"pt": "Pesquise coisas no Pinterest."
+			}
+		},
+		"gato": {
+			"alias": [
+				"cat"
+			],
+			"emoji": "🐱",
+			"media": [],
+			"menus": [
+				"midia"
+			],
+			"description": {
+				"en": "Cats! I love cats!",
+				"es": "Gatos, simplemente gatos!.",
+				"pt": "Gatos velho, simplesmente gatos!."
+			}
+		},
+		"send": {
+			"emoji": "📠",
+			"media": [
+				"link"
+			],
+			"menus": [
+				"midia"
+			],
+			"description": {
+				"en": "Send photos from a link.",
+				"es": "Obtener las fotos de una URL.",
+				"pt": "Receba as fotos de um link."
+			}
+		},
+		"macaco": {
+			"alias": [
+				"monkey"
+			],
+			"emoji": "🦧",
+			"media": [],
+			"menus": [
+				"midia"
+			],
+			"description": {
+				"en": "Sends a monkey photo.",
+				"es": "Obtén fotos de monos aquí.",
+				"pt": "Pegue umas fotos de macacos aqui."
+			}
+		},
+		"simg": {
+			"emoji": "❓",
+			"media": [
+				"foto"
+			],
+			"menus": [
+				"midia"
+			],
+			"description": {
+				"en": "Search a image at google.",
+				"es": "Buscar imágenes en Google.",
+				"pt": "Pesquise imagens no Google."
+			}
+		},
+		"upimg": {
+			"emoji": "🔝",
+			"media": [
+				"foto"
+			],
+			"menus": [
+				"midia"
+			],
+			"description": {
+				"en": "Make a photo upload.",
+				"es": "Subir imagenes en una URL.",
+				"pt": "Upe imagens por 1 semana."
+			}
+		},
+		"lizard": {
+			"emoji": "🦎",
+			"media": [],
+			"menus": [
+				"midia"
+			],
+			"description": {
+				"en": "Gets a lizard level 99!",
+				"es": "Que tal un lagarto LVL° 99?",
+				"pt": "Vai uma largatixa level 99?"
+			}
+		},
+		"quack": {
+			"emoji": "🦆",
+			"media": [],
+			"menus": [
+				"midia"
+			],
+			"description": {
+				"en": "Ducks...or geese?.",
+				"es": "Patos...o ganços?.",
+				"pt": "Patos...ou ganços?."
+			}
+		},
+		"ptt": {
+			"emoji": "👧🏻",
+			"media": [
+				"audio"
+			],
+			"menus": [
+				"midia"
+			],
+			"description": {
+				"en": "I can record audios as my own.",
+				"es": "Puedo grabar audios como mi propios.",
+				"pt": "Posso regravar audios como meus."
+			}
+		},
+		"reedit": {
+			"emoji": "📠",
+			"media": [
+				"nome"
+			],
+			"menus": [
+				"midia"
+			],
+			"description": {
+				"en": "Get posts from any subreddit.",
+				"es": "Obtén publicaciones de un subreddit.",
+				"pt": "Obtenha publicações de algum subreedit."
+			}
+		},
+		"tts": {
+			"emoji": "🔈",
+			"media": [
+				"Sigla",
+				"Frase"
+			],
+			"menus": [
+				"midia"
+			],
+			"description": {
+				"en": "I can do mime too! By voice!",
+				"es": "También puedo imitar! Por voz!",
+				"pt": "Eu também posso fazer mimica! Por voz!"
+			}
+		},
+		"kiss": {
+			"emoji": "💋",
+			"media": [
+				"@user"
+			],
+			"menus": [
+				"midia"
+			],
+			"description": {
+				"en": "Kiss your beaultiful girl/man!",
+				"es": "Que tal besar a la morena(o)?",
+				"pt": "Que tal beijar a morena(o)?"
+			}
+		},
+		"slap": {
+			"emoji": "👏🏻",
+			"media": [
+				"@user"
+			],
+			"menus": [
+				"midia"
+			],
+			"description": {
+				"en": "Come on slap someone!",
+				"es": "Vamos bofetear a los demás!",
+				"pt": "Vamos dar um tapasso nos outros!"
+			}
+		},
+		"speak": {
+			"emoji": "🎤",
+			"media": [
+				"-g",
+				"mensagem"
+			],
+			"menus": [
+				"midia"
+			],
+			"description": {
+				"en": "Chat me, but i'm awnser in voice!",
+				"es": "Hablemos por voz?",
+				"pt": "Vamos conversar por voz?"
+			}
+		},
+		"get": {
+			"emoji": "⬇️",
+			"media": [
+				"arquivo"
+			],
+			"menus": [
+				"midia"
+			],
+			"description": {
+				"es": "Vuelve un archivo cargado.",
+				"pt": "Receba de volta um arquivo enviado."
+			}
+		},
+		"blur": {
+			"emoji": "👓",
+			"media": [
+				"@user/mensagem",
+				"foto"
+			],
+			"menus": [
+				"midia"
+			],
+			"description": {
+				"en": "Blur a image.",
+				"es": "Desenfoca una imagen.",
+				"pt": "Desfoca as imagens."
+			}
+		},
+		"sound": {
+			"alias": [
+				"bass"
+			],
+			"emoji": "🔊",
+			"media": [
+				"Audio",
+				"Quantidade"
+			],
+			"menus": [
+				"midia"
+			],
+			"description": {
+				"en": "Increase or decrease bass.",
+				"es": "Aumente ou diminua grave/bass.",
+				"pt": "Aumente ou diminua grave/bass."
+			}
+		},
+		"nightcore": {
+			"emoji": "⚡",
+			"media": [
+				"Audio"
+			],
+			"menus": [
+				"midia"
+			],
+			"description": {
+				"en": "Make Nightcore Songs.",
+				"es": "Faça músicas Nightcore.",
+				"pt": "Faça músicas Nightcore."
+			}
+		},
+		"audio": {
+			"emoji": "📻",
+			"media": [
+				"Video"
+			],
+			"menus": [
+				"midia"
+			],
+			"description": {
+				"en": "Take the audio from a video.",
+				"es": "Pegue o audio de um video.",
+				"pt": "Pegue o audio de um video."
+			}
+		},
+		"surprise": {
+			"emoji": "😎",
+			"media": [],
+			"menus": [
+				"midia"
+			],
+			"description": {
+				"en": "Receive a random audio.",
+				"es": "",
+				"pt": "Receba um áudio aleatório."
+			}
+		},
+		"detect": {
+			"emoji": "❓",
+			"media": [
+				"Audio"
+			],
+			"menus": [
+				"midia"
+			],
+			"description": {
+				"en": "Get name of music.",
+				"es": "Saber el nombre de una cancióna.",
+				"pt": "Saiba o nome de uma música."
+			}
+		},
+		"8d": {
+			"emoji": "📀",
+			"media": [
+				"Audio"
+			],
+			"menus": [
+				"midia"
+			],
+			"description": {
+				"en": "Immersive sound.",
+				"es": "Sonido envolvente.",
+				"pt": "Som imersivo."
+			}
+		},
+		"stt": {
+			"alias": [
+				"watson"
+			],
+			"emoji": "🎙️",
+			"media": [
+				"Audio"
+			],
+			"menus": [
+				"midia"
+			],
+			"description": {
+				"en": "Audio to text.",
+				"es": "Audio a texto.",
+				"pt": "Áudio para texto."
+			}
+		},
+		"vblur": {
+			"emoji": "🎙️",
+			"media": [
+				"Video"
+			],
+			"menus": [
+				"midia"
+			],
+			"description": {
+				"en": "Blur the video.",
+				"es": "Embaça o vídeo.",
+				"pt": "Embaça o vídeo."
+			}
+		},
+		"iris": {
+			"emoji": "🍀",
+			"media": [
+				"[-g] message"
+			],
+			"menus": [
+				"outros"
+			],
+			"description": {
+				"en": "Want to chat with me?",
+				"es": "Quieres hablar un poco?",
+				"pt": "Quer conversar um pouco?"
+			}
+		},
+		"poll": {
+			"emoji": "🗳️",
+			"media": [],
+			"menus": [
+				"outros"
+			],
+			"description": {
+				"en": "Check if a poll exists.",
+				"es": "Consultar encuestas activas.",
+				"pt": "Verifique enquentes ativas."
+			}
+		},
+		"vote": {
+			"emoji": "➕",
+			"media": [
+				"número"
+			],
+			"menus": [
+				"outros"
+			],
+			"description": {
+				"en": "Vote on a existing poll...",
+				"es": "Vote en una encuesta si tiene una...",
+				"pt": "Vote numa enquete, se estiver tendo uma..."
+			}
+		},
+		"newpoll": {
+			"emoji": "🆕",
+			"media": [
+				"nome"
+			],
+			"menus": [
+				"outros"
+			],
+			"description": {
+				"en": "Create a new poll to vote.",
+				"es": "Crea una encuesta para que otros voten.",
+				"pt": "Crie uma enquete para os outros votarem."
+			}
+		},
+		"ins": {
+			"emoji": "👤",
+			"media": [
+				"nome"
+			],
+			"menus": [
+				"outros"
+			],
+			"description": {
+				"en": "Add options to vote.",
+				"es": "Agregue opciones de votación en la encuesta.",
+				"pt": "Adicione opções de voto na enquete."
+			}
+		},
+		"math": {
+			"emoji": "➗",
+			"media": [
+				"expressão"
+			],
+			"menus": [
+				"outros"
+			],
+			"description": {
+				"en": "Make math accounts.",
+				"es": "Realiza cálculos matemáticos.",
+				"pt": "Realiza cálculos matemáticos."
+			}
+		},
+		"life": {
+			"emoji": "📜",
+			"media": [],
+			"menus": [
+				"outros"
+			],
+			"description": {
+				"en": "Let's go stalk someone of world!",
+				"es": "Acechemos la vida de alguien!",
+				"pt": "Vamos stalkear vidas!"
+			}
+		},
+		"random": {
+			"emoji": "♾️",
+			"media": [
+				"assunto"
+			],
+			"menus": [
+				"outros"
+			],
+			"description": {
+				"en": "Get a random user of chat.",
+				"es": "Elige alguien aleatorio del grupo.",
+				"pt": "Pegue alguém aleatorio do grupo."
+			}
+		},
+		"msg": {
+			"emoji": "📨",
+			"media": [
+				"frase"
+			],
+			"menus": [
+				"outros"
+			],
+			"description": {
+				"en": "Let's play mime by text?",
+				"es": "Jugar la mímica por texto?",
+				"pt": "Vamos brincar de mimica por texto?"
+			}
+		},
+		"ship": {
+			"emoji": "💌",
+			"media": [
+				"@user",
+				"@user"
+			],
+			"menus": [
+				"outros"
+			],
+			"description": {
+				"en": "Want to know how much your friends match?",
+				"es": "Quieres saber cuánto coinciden tus amigos?",
+				"pt": "Quer saber o quanto seus amigos combinam?"
+			}
+		},
+		"resposta": {
+			"emoji": "💬",
+			"media": [
+				"frase"
+			],
+			"menus": [
+				"outros"
+			],
+			"description": {
+				"en": "Add replys to Íris.",
+				"es": "Agregue respuestas en Iris.",
+				"pt": "Adicione respostas na Íris."
+			}
+		},
+		"corno": {
+			"emoji": "🐂",
+			"media": [
+				"@user"
+			],
+			"menus": [
+				"outros"
+			],
+			"description": {
+				"en": "Get type and percent of a cuckold.",
+				"es": "",
+				"pt": "Veja qual tipo e quanto ela é corna."
+			}
+		},
+		"oculto": {
+			"emoji": "❔",
+			"media": [],
+			"menus": [
+				"outros"
+			],
+			"description": {
+				"en": "Error, error, error...???",
+				"es": "Error, error, error...???",
+				"pt": "Erro, error, erro...???"
+			}
+		},
+		"detector": {
+			"emoji": "📡",
+			"media": [],
+			"menus": [
+				"outros"
+			],
+			"description": {
+				"en": "Detect hot girls on here.",
+				"es": "Detecta chicas calientes del grupo.",
+				"pt": "Detecta gostosas no grupo."
+			}
+		},
+		"chance": {
+			"emoji": "💯",
+			"media": [
+				"algo"
+			],
+			"menus": [
+				"outros"
+			],
+			"description": {
+				"en": "Want's calculate the odds?",
+				"es": "Quieres que calcule las probabilidades?",
+				"pt": "Quer que eu calcule as chances?"
+			}
+		},
+		"enviar": {
+			"emoji": "📠",
+			"media": [
+				"-help"
+			],
+			"menus": [
+				"outros"
+			],
+			"description": {
+				"en": "Send messages to a group without join.",
+				"es": "Hablar con otros grupos sin unirte.",
+				"pt": "Fale com outros grupos sem entrar neles."
+			}
+		},
+		"email": {
+			"emoji": "📧",
+			"media": [
+				"Email",
+				"Assunto",
+				"Texto"
+			],
+			"menus": [
+				"outros"
+			],
+			"description": {
+				"en": "Send a anonymous email.",
+				"es": "Envia un email anónimo a alguien.",
+				"pt": "Mande um email anônimo para alguém."
+			}
+		},
+		"piada": {
+			"emoji": "🤣",
+			"media": [],
+			"menus": [
+				"outros"
+			],
+			"description": {
+				"en": "Tell a joke.",
+				"es": "Contar una broma.",
+				"pt": "Conta uma piada."
+			}
+		},
+		"policia": {
+			"emoji": "🚓",
+			"media": [],
+			"menus": [
+				"outros"
+			],
+			"description": {
+				"en": "Make a some reports.",
+				"es": "Para hacer algunas quejas.",
+				"pt": "Faça algumas queixas."
+			}
+		},
+		"sort": {
+			"emoji": "♾️",
+			"media": [
+				"Opção",
+				"Opção2..."
+			],
+			"menus": [
+				"outros"
+			],
+			"description": {
+				"en": "Make a sort of something!",
+				"es": "Haz un sorteo con opciones!",
+				"pt": "Faça um sorteio com opções!"
+			}
+		},
+		"cantada": {
+			"emoji": "💕",
+			"media": [],
+			"menus": [
+				"outros"
+			],
+			"description": {
+				"en": "Receive a pickup for use.",
+				"es": "Reciba una cantada.",
+				"pt": "Adquira cantadas pra usar."
+			}
+		},
+		"bang": {
+			"emoji": "🔫",
+			"media": [
+				"@User"
+			],
+			"menus": [
+				"outros"
+			],
+			"description": {
+				"en": "Shoot someone.",
+				"es": "Dispara en alguien.",
+				"pt": "Baleie alguém."
+			}
+		},
+		"ctt": {
+			"emoji": "💥",
+			"media": [
+				"Número",
+				"Nome"
+			],
+			"menus": [
+				"outros"
+			],
+			"description": {
+				"en": "Make contacts, never use trava-zaps!",
+				"es": "Crear contactos - no se recomiendan trava-zap!",
+				"pt": "Crie contatos - Travas não são recomendadas!"
+			}
+		},
+		"number": {
+			"emoji": "🔢",
+			"media": [
+				"Mínimo",
+				"Máximo"
+			],
+			"menus": [
+				"outros"
+			],
+			"description": {
+				"en": "Get a random number.",
+				"es": "Generar un número aleatório.",
+				"pt": "Gere um número aleatório."
+			}
+		},
+		"casal": {
+			"emoji": "💏",
+			"media": [
+				"Quantidade"
+			],
+			"menus": [
+				"outros"
+			],
+			"description": {
+				"en": "Make a couple!",
+				"es": "Formar nuevas parejas!",
+				"pt": "Monte novos casais!"
+			}
+		},
+		"top": {
+			"emoji": "🔝",
+			"media": [
+				"Nome",
+				"Quantidade"
+			],
+			"menus": [
+				"outros"
+			],
+			"description": {
+				"en": "Create a TOP ranking.",
+				"es": "Crear un TOP ranking de algo.",
+				"pt": "Crie um TOP ranking de algo."
+			}
+		},
+		"custom": {
+			"emoji": "🔀",
+			"media": [
+				"Comando",
+				"Mensagem"
+			],
+			"menus": [
+				"outros"
+			],
+			"description": {
+				"en": "Create commands on WhatsApp.",
+				"es": "Crea comandos por el WhatsApp.",
+				"pt": "Crie comandos pelo WhatsApp."
+			}
+		},
+		"run": {
+			"emoji": "🏃",
+			"media": [
+				"Nome"
+			],
+			"menus": [
+				"outros"
+			],
+			"description": {
+				"en": "Run commands of #25!",
+				"es": "Ejecute comandos creados con el #25!",
+				"pt": "Rode comandos criados com o #25!"
+			}
+		},
+		"cmds": {
+			"emoji": "🔎",
+			"media": [],
+			"menus": [
+				"outros"
+			],
+			"description": {
+				"en": "Learn the commands to run on #26.",
+				"es": "Saber los comandos para el #26.",
+				"pt": "Saiba os comandos para rodar no #26."
+			}
+		},
+		"spoiler": {
+			"emoji": "🦅",
+			"media": [],
+			"menus": [
+				"outros"
+			],
+			"description": {
+				"en": "Hide your spoilers.",
+				"es": "Esconde tus spoilers.",
+				"pt": "Oculte seus spoilers."
+			}
+		},
+		"join": {
+			"emoji": "🦅",
+			"media": [
+				"group link"
+			],
+			"menus": [
+				"outros"
+			],
+			"description": {
+				"en": "Invite me to your groups.",
+				"es": "Invitadme a vuestros grupos.",
+				"pt": "Convide-me para seus grupos."
+			}
+		},
+		"afk": {
+			"emoji": "🦅",
+			"media": [
+				"on | status",
+				"off"
+			],
+			"menus": [
+				"outros"
+			],
+			"description": {
+				"en": "Set an away message.",
+				"es": "Establecer un mensaje de ausencia.",
+				"pt": "Defina uma mensagem de ausência."
+			}
+		},
+		"Clear": {
+			"emoji": "🧹",
+			"media": [],
+			"menus": [
+				"dono"
+			],
+			"description": {
+				"en": "I will delete all messages.",
+				"es": "Borraré todos las mensajes.",
+				"pt": "Limparei todas as mensagens."
+			}
+		},
+		"broad": {
+			"emoji": "✉️",
+			"media": [
+				"-all",
+				"-gps",
+				"-pvs",
+				"mensagem",
+				"midia"
+			],
+			"menus": [
+				"dono"
+			],
+			"description": {
+				"en": "Transmission (Send files by mark them).",
+				"es": "Transmisión (envíe archivos marcándolos).",
+				"pt": "Transmissão (Envie arquivos marcando eles)."
+			}
+		},
+		"leave": {
+			"emoji": "👋",
+			"media": [],
+			"menus": [
+				"dono"
+			],
+			"description": {
+				"en": "If you desire, i'm quit all groups.",
+				"es": "Si desea que i saire los grupos.",
+				"pt": "Se desejar saio de todos os grupos."
+			}
+		},
+		"tela": {
+			"emoji": "💬",
+			"media": [],
+			"menus": [
+				"dono"
+			],
+			"description": {
+				"en": "",
+				"es": "Captura la pantalla de conversaciones.",
+				"pt": "Peça-me um print da tela de conversas."
+			}
+		},
+		"blocklist": {
+			"emoji": "🚫",
+			"media": [],
+			"menus": [
+				"dono"
+			],
+			"description": {
+				"en": "",
+				"es": "Averigua quién intentó llamarme, atacarme o abúsame.",
+				"pt": "Saiba quem tentou me ligar, atacar ou floodar."
+			}
+		},
+		"mutepv": {
+			"emoji": "🔇",
+			"media": [
+				"número",
+				"sem",
+				"+",
+				"ou",
+				"-"
+			],
+			"menus": [
+				"dono"
+			],
+			"description": {
+				"en": "Maybe you need i'm mute someone?",
+				"es": "Quieres que ignore a alguien en el PV?",
+				"pt": "Quer que eu ignore alguém no PV?"
+			}
+		},
+		"shutdown": {
+			"alias": [
+				"encerrar"
+			],
+			"emoji": "🔘",
+			"media": [],
+			"menus": [
+				"dono"
+			],
+			"description": {
+				"en": "Needs to shutdown me?.",
+				"es": "Puedo colgar si lo necesita.",
+				"pt": "Posso me desligar se precisar."
+			}
+		},
+		"give": {
+			"emoji": "🆙",
+			"media": [
+				[
+					"-XP",
+					"-Level",
+					"-Coin"
+				],
+				"@Pessoa",
+				"Quantidade"
+			],
+			"menus": [
+				"dono"
+			],
+			"description": {
+				"es": "Envia XP, para quitar use <-cantidad>.",
+				"pt": "Envie valores, para remover use <-quantidade>."
+			}
+		},
+		"arquivar": {
+			"emoji": "🔪",
+			"media": [],
+			"menus": [
+				"dono"
+			],
+			"description": {
+				"en": "",
+				"es": "Quieres eliminar a todos los miembros? Yo ayudo!",
+				"pt": "Quer remover todos os membros? Eu ajudo!"
+			}
+		},
+		"cmd": {
+			"emoji": "💻",
+			"media": [
+				"comando"
+			],
+			"menus": [
+				"dono"
+			],
+			"description": {
+				"en": "Run CMD or Linux Terminal at WhatsApp.",
+				"es": "Qué tal ejecutar CMD o Linux Terminal en WhatsApp?",
+				"pt": "Rode CMD/Terminal Linux aqui."
+			}
+		},
+		"block": {
+			"emoji": "🔒",
+			"media": [
+				[
+					"número",
+					"marcar"
+				],
+				"mensagem"
+			],
+			"menus": [
+				"dono"
+			],
+			"description": {
+				"en": "Block someone from my WhatsApp.",
+				"es": "Quieres bloquear a alguien en mi WhatsApp?",
+				"pt": "Quer bloquear alguém no meu WhatsApp?"
+			}
+		},
+		"unblock": {
+			"emoji": "🔓",
+			"media": [
+				[
+					"número",
+					"marcar"
+				],
+				"mensagem"
+			],
+			"menus": [
+				"dono"
+			],
+			"description": {
+				"es": "Quieres desbloquear a alguien que estaba en el bloque?",
+				"pt": "Quer desbloquear alguém que estava no block?"
+			}
+		},
+		"botnome": {
+			"emoji": "✏️",
+			"media": [
+				"Nome"
+			],
+			"menus": [
+				"dono"
+			],
+			"description": {
+				"en": "",
+				"es": "Quieres darme un nuevo nombre?",
+				"pt": "Quer me dar um novo nome?"
+			}
+		},
+		"recado": {
+			"emoji": "📜",
+			"media": [
+				"descrição"
+			],
+			"menus": [
+				"dono"
+			],
+			"description": {
+				"en": "",
+				"es": "Qué tal un nuevo mensaje de perfil?",
+				"pt": "Que tal um novo recado de perfil?"
+			}
+		},
+		"botfoto": {
+			"emoji": "🖼️",
+			"media": [
+				"Foto"
+			],
+			"menus": [
+				"dono"
+			],
+			"description": {
+				"en": "",
+				"es": "Inseres una foto de perfil en mi.",
+				"pt": "Você tem uma nova imagem de perfil pra mim?"
+			}
+		},
+		"exec": {
+			"emoji": "🌟",
+			"media": [
+				"func",
+				"case",
+				"var",
+				"let",
+				"const..."
+			],
+			"menus": [
+				"dono"
+			],
+			"description": {
+				"en": "Run JS programming from WhatsApp.",
+				"es": "Ejecuta programación js de WhatsApp.",
+				"pt": "Execute programação JS pelo WhatsApp."
+			}
+		},
+		"nolimit": {
+			"emoji": "🎯",
+			"media": [],
+			"menus": [
+				"dono"
+			],
+			"description": {
+				"en": "Reset the playing limit.",
+				"es": "Restablece el límite del juego.",
+				"pt": "Desligue o limite de apostas."
+			}
+		},
+		"muteall": {
+			"emoji": "🙊",
+			"media": [
+				"on",
+				"off"
+			],
+			"menus": [
+				"dono"
+			],
+			"description": {
+				"en": "Mute all - Resets after shutdown.",
+				"es": "Muta todos - Restablece al apagar.",
+				"pt": "Muta todos - Reseta ao desligar."
+			}
+		},
+		"alladmin": {
+			"alias": [
+				"alladms"
+			],
+			"emoji": "🎁",
+			"media": [],
+			"menus": [
+				"dono"
+			],
+			"description": {
+				"en": "Make everyone a ademir.",
+				"es": "Convierte todos en ademiros.",
+				"pt": "Transforme todos em ademiros."
+			}
+		},
+		"noadmin": {
+			"emoji": "0️⃣",
+			"media": [],
+			"menus": [
+				"dono"
+			],
+			"description": {
+				"en": "Remove the ADM from all.",
+				"es": "Elimina lo ADM de todos.",
+				"pt": "Retire o adm de todos."
+			}
+		},
+		"create": {
+			"emoji": "➕",
+			"media": [
+				"Nome",
+				"@Users"
+			],
+			"menus": [
+				"dono"
+			],
+			"description": {
+				"es": "Crea grupos con personas.",
+				"pt": "Crie grupos com pessoas."
+			}
+		},
+		"reload": {
+			"emoji": "🔄",
+			"media": [],
+			"menus": [
+				"dono"
+			],
+			"description": {
+				"en": "Reload Íris.",
+				"es": "Recarga el BOT.",
+				"pt": "Recarregue a BOT."
+			}
+		},
+		"type": {
+			"emoji": "✍️",
+			"media": [
+				"On",
+				"Off"
+			],
+			"menus": [
+				"dono"
+			],
+			"description": {
+				"en": "Use Íris to scribbe forever.",
+				"es": "Hacer que BOT escriba para siempre.",
+				"pt": "Faça a BOT escrever eternamente."
+			}
+		},
+		"darkmode": {
+			"emoji": "⚫",
+			"media": [
+				"On",
+				"Off"
+			],
+			"menus": [
+				"dono"
+			],
+			"description": {
+				"en": "Enable Dark Mode on WhatsApp Web.",
+				"es": "Activar el modo oscuro en WhatsApp Web.",
+				"pt": "Ativa o modo escuro no WhatsApp Web."
+			}
+		},
+		"upload": {
+			"emoji": "📁",
+			"media": [
+				"Local",
+				"Nome.Formato"
+			],
+			"menus": [
+				"dono"
+			],
+			"description": {
+				"en": "Send files from your PC.",
+				"es": "Sube archivos de su computador.",
+				"pt": "Envie arquivos do seu computador."
+			}
+		},
+		"reboot": {
+			"emoji": "📁",
+			"media": [],
+			"menus": [
+				"dono"
+			],
+			"description": {
+				"en": "Restart Iris (only with PM2).",
+				"es": "Reinicie la Iris (solo con PM2).",
+				"pt": "Reinicie a Íris (apenas com PM2)."
+			}
+		},
+		"sticker": {
+			"alias": [
+				"stiker",
+				"s",
+				"f",
+				"g",
+				"gif",
+				"gifsticker",
+				"stickergif",
+				"figurinha",
+				"fig"
+			],
+			"emoji": "🖼️",
+			"media": [
+				"Foto",
+				"Link",
+				"-circle",
+				"-fill",
+				"-cut"
+			],
+			"menus": [
+				"stickers"
+			],
+			"description": {
+				"en": "Make sticker with media.",
+				"es": "Converta midia em sticker.",
+				"pt": "Converta midia em sticker."
+			}
+		},
+		"img": {
+			"emoji": "♾️",
+			"media": [
+				"Sticker"
+			],
+			"menus": [
+				"stickers"
+			],
+			"description": {
+				"en": "Converts sticker to photo.",
+				"es": "Es para convertir la etiqueta en foto.",
+				"pt": "É para converter sticker em foto."
+			}
+		},
+		"ttp": {
+			"emoji": "🔤",
+			"media": [
+				"Mensagem"
+			],
+			"menus": [
+				"stickers"
+			],
+			"description": {
+				"en": "Convert phrases on sticker.",
+				"es": "Transforme frases em stickers.",
+				"pt": "Transforme frases em stickers."
+			}
+		},
+		"attp": {
+			"emoji": "🖍️",
+			"media": [
+				"Mensagem"
+			],
+			"menus": [
+				"stickers"
+			],
+			"description": {
+				"en": "",
+				"es": "Crie sticker animados por frases.",
+				"pt": "Crie sticker animados por frases."
+			}
+		},
+		"nobg": {
+			"emoji": "📷",
+			"media": [
+				"Foto"
+			],
+			"menus": [
+				"stickers"
+			],
+			"description": {
+				"en": "",
+				"es": "Esse faz stickers sem fundo!",
+				"pt": "Esse faz stickers sem fundo!"
+			}
+		},
+		"getsticker": {
+			"emoji": "🔎",
+			"media": [
+				"Busca"
+			],
+			"menus": [
+				"stickers"
+			],
+			"description": {
+				"en": "Get a sticker by the name!",
+				"es": "Faz stickers sem fundo!",
+				"pt": "Faz stickers sem fundo!"
+			}
+		},
+		"giphy": {
+			"emoji": "🔖",
+			"media": [
+				"Link"
+			],
+			"menus": [
+				"stickers"
+			],
+			"description": {
+				"en": "Use the Giphy site to make stickers.",
+				"es": "Use o Giphy para fazer stickers.",
+				"pt": "Use o Giphy para fazer stickers."
+			}
+		},
+		"emoji": {
+			"emoji": "😍",
+			"media": [
+				"Emoji"
+			],
+			"menus": [
+				"stickers"
+			],
+			"description": {
+				"en": "Make stickers with +10 types of emoji.",
+				"es": "Crea stickers de +10 tipos de emoji.",
+				"pt": "Faça stickers de 10+ tipos de emoji."
+			}
+		},
+		"cosplay": {
+			"emoji": "🪧",
+			"media": [
+				"Link"
+			],
+			"menus": [
+				"stickers"
+			],
+			"description": {
+				"en": "Make sexy \"cosplays\".",
+				"es": "Haz plaquinhas sexys.",
+				"pt": "Faça plaquinhas sensuais."
+			}
+		},
+		"ball": {
+			"emoji": "🖼️",
+			"media": [],
+			"menus": [
+				"stickers"
+			],
+			"description": {
+				"en": "A 8 Ball awnser.",
+				"es": "Respuestas 8 Ball.",
+				"pt": "8 Ball de respostas."
+			}
+		},
+		"roubar": {
+			"emoji": "✍🏻",
+			"media": [
+				"Pack",
+				"Autor"
+			],
+			"menus": [
+				"stickers"
+			],
+			"description": {
+				"en": "Steal sticker to your name!",
+				"es": "Roba un sticker para ti!",
+				"pt": "Roube sticker para você!"
+			}
+		},
+		"patpat": {
+			"alias": [
+				"pat",
+				"pet",
+				"petpet"
+			],
+			"emoji": "🥰",
+			"media": [
+				"Image",
+				"@user"
+			],
+			"menus": [
+				"stickers"
+			],
+			"description": {
+				"en": "pat!",
+				"es": "Cafuné!",
+				"pt": "Cafuné!"
+			}
+		},
+		"01": {
+			"emoji": "",
+			"media": [
+				"@User"
+			],
+			"menus": [
+				"police"
+			],
+			"description": {
+				"en": "Report Lolicons, Shotacons, Trapcons, etc.",
+				"es": "Denuncie Lolicons, Shotacons, Trapcons, etc.",
+				"pt": "Denuncie Lolicons, Shotacons, Trapcons, etc."
+			}
+		},
+		"02": {
+			"emoji": "🙌",
+			"media": [],
+			"menus": [
+				"police"
+			],
+			"description": {
+				"en": "Surrender yourself.",
+				"es": "Rendirse.",
+				"pt": "Se entregue."
+			}
+		},
+		"03": {
+			"emoji": "👶",
+			"media": [
+				"@User"
+			],
+			"menus": [
+				"police"
+			],
+			"description": {
+				"en": "Report Lolis, Shotas, Traps, etc",
+				"es": "Denuncie Lolis, Shotas, Traps, etc",
+				"pt": "Denuncie Lolis, Shotas, Traps, etc"
+			}
+		},
+		"04": {
+			"emoji": "📖",
+			"media": [
+				"@User",
+				"Crime"
+			],
+			"menus": [
+				"police"
+			],
+			"description": {
+				"en": "Report crimes of people.",
+				"es": "Denuncie delitos de personas.",
+				"pt": "Denuncie crimes de pessoas."
+			}
+		},
+		"05": {
+			"emoji": "🏳️‍🌈",
+			"media": [
+				"@User"
+			],
+			"menus": [
+				"police"
+			],
+			"description": {
+				"en": "Report a LGBT's.",
+				"es": "Denuncie os LGBT's.",
+				"pt": "Denuncie os LGBT's."
+			}
+		},
+		"fbi": {
+			"emoji": "👨🏿‍💻",
+			"media": [],
+			"menus": [
+				"police"
+			],
+			"description": {
+				"en": "See the reported pedophiles.",
+				"es": "Ver los pedófilos denunciados.",
+				"pt": "Veja os pedófilos denunciados."
+			}
+		},
+		"cia": {
+			"emoji": "🕵🏻",
+			"media": [],
+			"menus": [
+				"police"
+			],
+			"description": {
+				"en": "See minors reported.",
+				"es": "Ver menores denunciados.",
+				"pt": "Veja os menores denunciados."
+			}
+		},
+		"rpd": {
+			"emoji": "🦹🏻‍♂️",
+			"media": [],
+			"menus": [
+				"police"
+			],
+			"description": {
+				"en": "Know who surrendered.",
+				"es": "Saber quién se rindió.",
+				"pt": "Saiba quem se entregou."
+			}
+		},
+		"bsaa": {
+			"emoji": "☢",
+			"media": [],
+			"menus": [
+				"police"
+			],
+			"description": {
+				"en": "Check out a list of reported LGBT'S.",
+				"es": "Vea la lista de LGBT denunciados.",
+				"pt": "Confira uma lista de LGBT'S denunciados."
+			}
+		},
+		"stars": {
+			"emoji": "☣️",
+			"media": [],
+			"menus": [
+				"police"
+			],
+			"description": {
+				"en": "A list of reported crimes.",
+				"es": "Una lista de delitos denunciados.",
+				"pt": "Uma lista de crimes reportados."
+			}
+		},
+		"resetall": {
+			"emoji": "👤",
+			"media": [],
+			"menus": [
+				"police"
+			],
+			"description": {
+				"en": "Resets all crimes and reports.",
+				"es": "Restablece todos los delitos e informes.",
+				"pt": "Reseta todos os crimes e denuncias."
+			}
+		},
+		"RandomNeko": {
+			"emoji": "🐕",
+			"media": [],
+			"menus": [
+				"adult",
+				"otaku"
+			],
+			"description": {
+				"en": "Nekos hentai around here e.e",
+				"es": "Hentai de nekos por aqui e.e",
+				"pt": "Hentai de nekos por aqui e.e"
+			}
+		},
+		"ihentai": {
+			"emoji": "👢",
+			"media": [],
+			"menus": [
+				"adult",
+				"otaku"
+			],
+			"description": {
+				"en": "We have random's!",
+				"es": "También tenemos aleatorios!",
+				"pt": "Temos aleatorios também!"
+			}
+		},
+		"nh": {
+			"emoji": "⬇",
+			"media": [
+				"Código"
+			],
+			"menus": [
+				"adult",
+				"otaku"
+			],
+			"description": {
+				"en": "Need a hentai manga?",
+				"es": "Quieres descargar manga hentai?",
+				"pt": "Quer baixar uns mangás hentai?"
+			}
+		},
+		"trap": {
+			"emoji": "🍆",
+			"media": [],
+			"menus": [
+				"adult",
+				"otaku"
+			],
+			"description": {
+				"en": "You like the traps? e.e",
+				"es": "Para los amantes de Trap e.e",
+				"pt": "Se você gosta de traps, isso é pra você e.e"
+			}
+		},
+		"blowjob": {
+			"alias": [
+				"boquete"
+			],
+			"emoji": "🥺",
+			"media": [],
+			"menus": [
+				"adult"
+			],
+			"description": {
+				"en": "A some blowjob in anime.",
+				"es": "Fotinhas de BlowJob en anime.",
+				"pt": "Fotinhas de BlowJob em anime."
+			}
+		},
+		"iecchi": {
+			"emoji": "👙",
+			"media": [],
+			"menus": [
+				"adult",
+				"otaku"
+			],
+			"description": {
+				"en": "Ecchi photos...",
+				"es": "Fotos de ecchi...",
+				"pt": "Umas fotos de ecchi que tenho aqui..."
+			}
+		},
+		"feet": {
+			"emoji": "🦶🏻",
+			"media": [],
+			"menus": [
+				"adult"
+			],
+			"description": {
+				"en": "A feet hentai pack.",
+				"es": "Hentai para amantes de pies.",
+				"pt": "Hentai para os amantes de pezinho."
+			}
+		},
+		"lick": {
+			"emoji": "👅",
+			"media": [],
+			"menus": [
+				"adult",
+				"otaku"
+			],
+			"description": {
+				"en": "\"Lick lick...\"",
+				"es": "\"Lamiendo...\"",
+				"pt": "\"Lambidinha...\""
+			}
+		},
+		"femdom": {
+			"emoji": "👩",
+			"media": [],
+			"menus": [
+				"adult"
+			],
+			"description": {
+				"en": "A lesbian couple...hentai...",
+				"es": "Como un yuri...hentai...",
+				"pt": "Meio que um yuri...hentai..."
+			}
+		},
+		"futanari": {
+			"emoji": "🍌",
+			"media": [],
+			"menus": [
+				"adult",
+				"otaku"
+			],
+			"description": {
+				"en": "Want's futanari photos?",
+				"es": "Vaya un futanari?",
+				"pt": "Vai uma futanari?"
+			}
+		},
+		"boobs": {
+			"emoji": "🌰",
+			"media": [],
+			"menus": [
+				"adult"
+			],
+			"description": {
+				"en": "Look the boobss...",
+				"es": "Mira tetinhaaa...",
+				"pt": "Olha a tetinhaaa..."
+			}
+		},
+		"masturb": {
+			"emoji": "☝️",
+			"media": [],
+			"menus": [
+				"adult"
+			],
+			"description": {
+				"en": "When the girl are alone...",
+				"es": "Hmmm, chicas solas...",
+				"pt": "Hmmm, garotas sozinhas..."
+			}
+		},
+		"anal": {
+			"emoji": "🔌",
+			"media": [],
+			"menus": [
+				"adult"
+			],
+			"description": {
+				"en": "I prefer to not comment...",
+				"es": "Hentai \"estándar\" de anal.",
+				"pt": "Hentai \"padrão\" de anal."
+			}
+		},
+		"nsfwicon": {
+			"emoji": "🗼",
+			"media": [],
+			"menus": [
+				"adult",
+				"otaku"
+			],
+			"description": {
+				"en": "Adult icons here...",
+				"es": "Foto de perfil +18 por aqui...",
+				"pt": "Foto de perfil +18 por aqui..."
+			}
+		},
+		"randomloli": {
+			"emoji": "👧🏻",
+			"media": [],
+			"menus": [
+				"adult",
+				"otaku"
+			],
+			"description": {
+				"en": "Here is the Lolicon hentai.",
+				"es": "Hentai Lolicon.",
+				"pt": "Hentai do tipo Lolicon."
+			}
+		},
+		"hard": {
+			"emoji": "😧",
+			"media": [],
+			"menus": [
+				"adult",
+				"otaku"
+			],
+			"description": {
+				"en": "Diciplination hentai.",
+				"es": "Hentai de diciplinización.",
+				"pt": "Hentai de diciplinação."
+			}
+		},
+		"pezinho": {
+			"emoji": "👣",
+			"media": [],
+			"menus": [
+				"adult",
+				"otaku"
+			],
+			"description": {
+				"en": "A foot's photo.",
+				"es": "Fotos de pezinho.",
+				"pt": "Fotos de pezinho."
+			}
+		},
+		"porn": {
+			"emoji": "👫",
+			"media": [],
+			"menus": [
+				"adult"
+			],
+			"description": {
+				"en": "\"Normal porn for normal people\".",
+				"es": "Porno real.",
+				"pt": "Pornografia real."
+			}
+		},
+		"lesbian": {
+			"emoji": "⚢",
+			"media": [],
+			"menus": [
+				"adult"
+			],
+			"description": {
+				"en": "Real lesbians at the moment h.",
+				"es": "Lesbianas reales \"besandose\".",
+				"pt": "Lesbicas reais se pegando."
+			}
+		},
+		"pgay": {
+			"emoji": "🍄",
+			"media": [],
+			"menus": [
+				"adult"
+			],
+			"description": {
+				"en": "A gays porn for someone want.",
+				"es": "Porno gay para quién gusta.",
+				"pt": "Pornografia gay para quem curte."
+			}
+		},
+		"tits": {
+			"emoji": "🍒",
+			"media": [],
+			"menus": [
+				"adult"
+			],
+			"description": {
+				"en": "Beaultiful tits for people sad.",
+				"es": "Fotos de pechos reales.",
+				"pt": "Fotos de peitos reais."
+			}
+		},
+		"bdsm": {
+			"emoji": "🔥",
+			"media": [],
+			"menus": [
+				"adult"
+			],
+			"description": {
+				"en": "BDSM Photos.",
+				"es": "Fotos BDSM.",
+				"pt": "Fotos BDSM."
+			}
+		},
+		"milf": {
+			"emoji": "🏀",
+			"media": [],
+			"menus": [
+				"adult"
+			],
+			"description": {
+				"en": "Real Milfs.",
+				"es": "Milfs reales.",
+				"pt": "Milfs reais."
+			}
+		},
+		"pussy": {
+			"emoji": "🍎",
+			"media": [],
+			"menus": [
+				"adult"
+			],
+			"description": {
+				"en": "A \"apple\"...",
+				"es": "Una manzana...in mitad.",
+				"pt": "Belas maças cortadas pela metade..."
+			}
+		},
+		"ass": {
+			"emoji": "🍑",
+			"media": [],
+			"menus": [
+				"adult"
+			],
+			"description": {
+				"en": "If you like asses...",
+				"es": "No quiero hablar...",
+				"pt": "Bundas..."
+			}
+		},
+		"sporn": {
+			"emoji": "🙆🏻‍♀️",
+			"media": [],
+			"menus": [
+				"adult"
+			],
+			"description": {
+				"en": "Search the Xvideos.",
+				"es": "Buscar en Xvideos.",
+				"pt": "Pesquise no Xvideos."
+			}
+		},
+		"xvideos": {
+			"emoji": "🙅",
+			"media": [
+				"link"
+			],
+			"menus": [
+				"adult"
+			],
+			"description": {
+				"en": "Download Xvideos.",
+				"es": "Descarga de lo Xvideos.",
+				"pt": "Baixe pornografia do xvideos."
+			}
+		},
+		"colorfy": {
+			"emoji": "🎨",
+			"media": [
+				"foto"
+			],
+			"menus": [
+				"maker"
+			],
+			"description": {
+				"en": "Add colors to a old photo.",
+				"es": "Agregar color a fotos antiguas.",
+				"pt": "Colore as fotos antigas."
+			}
+		},
+		"toon": {
+			"emoji": "📺",
+			"media": [
+				"foto",
+				"link",
+				"user"
+			],
+			"menus": [
+				"maker"
+			],
+			"description": {
+				"en": "Convert any person to a toon show.",
+				"es": "Convertir personas en dibujos animados.",
+				"pt": "Converte pessoas em desenhos animados."
+			}
+		},
+		"maketext": {
+			"emoji": "📺",
+			"media": [
+				"foto",
+				"link",
+				"user"
+			],
+			"menus": [
+				"maker"
+			],
+			"description": {
+				"en": "Convert any person to a toon show.",
+				"es": "Convertir personas en dibujos animados.",
+				"pt": "Converte pessoas em desenhos animados."
+			}
+		},
+		"ocr": {
+			"emoji": "🖼️",
+			"media": [
+				"foto"
+			],
+			"menus": [
+				"image",
+				"midia"
+			],
+			"description": {
+				"en": "Read any image text.",
+				"es": "Convertir imagen a texto.",
+				"pt": "Adquira o texto que está dentro de uma imagem."
+			}
+		}
+	}
+}

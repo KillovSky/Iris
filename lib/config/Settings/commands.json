@@ -1,0 +1,35 @@
+{
+	"MOD_Commands": [
+		"add",
+		"admins",
+		"antilinks",
+		"antiporn",
+		"antitravas",
+		"autosticker",
+		"bklist",
+		"blacklist",
+		"bomb",
+		"chatbot",
+		"del",
+		"deleted",
+		"dellast",
+		"destrava",
+		"everyone",
+		"fake",
+		"goodbye",
+		"ins",
+		"kick",
+		"link",
+		"nocmd",
+		"nsfw",
+		"onlyadms",
+		"rank",
+		"softban",
+		"welcome"
+	],
+	"VIP_Commands": [
+		"admins",
+		"destrava",
+		"everyone"
+	]
+}
