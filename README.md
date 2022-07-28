@@ -43,6 +43,8 @@ Para instalar todos os requisitos basta rodar estes comandos (você pode copiar 
   
 ```bash  
 # Atualiza os repositórios e programas do Linux  
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FKillovSky%2Firis.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FKillovSky%2Firis?ref=badge_shield)
+
 sudo apt update && sudo apt upgrade -y  
   
 # Instala cURL e WGET para baixar o Chrome e Node.js LTS  
@@ -156,3 +158,6 @@ npm update
 - [Doações] - Esse projeto é mantido de graça e não possui foco lucrativo, doe se você puder ❤️  
 - Todas as informações estão disponíveis [Clicando Aqui](http://htmlpreview.github.io/?https://github.com/KillovSky/iris/blob/main/.readme/donates/page.html).  
 - Agradeço do meu coração a todos!  
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FKillovSky%2Firis.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FKillovSky%2Firis?ref=badge_large)
