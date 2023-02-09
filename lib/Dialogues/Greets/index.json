@@ -1,0 +1,183 @@
+{
+    "pt": {
+        "Goodbye": [
+            "Um minuto de silencio pelo membro {userm}, que acabou de sair de nossa vida...",
+            "Adeus {userm}, você foi o melhor ~gado~ membro que poderia ser..."
+        ],
+        "Welcome": [
+            "Olá {userm}! 🥰 \n\nSeja bem vindo ao {groupm} 😎 \n\nDesejamos que se divirta e obviamente que siga nossas regras! ✅ \n\nCaso precise, chame um Administrador ou use meus comandos. 👨🏻‍💻"
+        ],
+        "Blacklist": [
+            "Adeus {userm}, você não é bem vindo no {groupm} por estar na blacklist!",
+            "Foi mal meu amigo, mas você acaba de ser barrado pela gerente do estabelecimento 😎"
+        ],
+        "Antifake": [
+            "Adeus {userm}, você não é bem vindo no {groupm} por ser gringo ou fake!"
+        ]
+    },
+    "jp": {
+        "Goodbye": [
+            "私たちの人生を去ったばかりのメンバー {userm} への黙祷...",
+            "さようなら {userm}, あなたは最高の ~牛~ メンバーでした..."
+        ],
+        "Welcome": [
+            "こんにちは {userm} さん! 🥰 \n\n{groupm} へようこそ 😎 \n\n楽しんでいただき、もちろんルールに従っていただきたいと思います! ✅ \n\n必要に応じて、管理者に電話するか確認してくださいコマンドメニュー👨🏻‍💻"
+        ],
+        "Blacklist": [
+            "さようなら {userm}、ブラックリストに登録されているため、{groupm} には歓迎されません!"
+        ],
+        "Antifake": [
+            "さようなら {userm}。グリンゴまたは偽物であるという理由で、{groupm} には歓迎されません!"
+        ]
+    },
+    "en": {
+        "Goodbye": [
+            "A moment of silence for member {userm}, who just walked out of our lives...",
+            "Goodbye {userm}, you were the best ~slave~ member that could be..."
+        ],
+        "Welcome": [
+            "Hello {userm}! 🥰 \n\nWelcome to {groupm} 😎 \n\nWe want you to have fun and obviously follow our rules! ✅ \n\nIf you need to, call an Administrator or check my command menus. 👨🏻‍💻"
+        ],
+        "Blacklist": [
+            "Goodbye {userm}, you are not welcome in {groupm} for being blacklisted!"
+        ],
+        "Antifake": [
+            "Goodbye {userm}, you are not welcome in {groupm} for being outside country or fake!"
+        ]
+    },
+    "fr": {
+        "Goodbye": [
+            "Une minute de silence pour le membre {userm}, qui vient de sortir de nos vies...",
+            "Au revoir {userm}, tu étais le meilleur membre ~cattle~ qui pouvait être..."
+        ],
+        "Welcome": [
+            "Bonjour {userm}! 🥰 \n\nBienvenue dans {groupm} 😎 \n\nNous voulons que vous vous amusiez et respectez évidemment nos règles! ✅ \n\nSi vous en avez besoin, appelez un administrateur ou vérifiez mes menus de commande. 👨🏻‍💻"
+        ],
+        "Blacklist": [
+            "Au revoir {userm}, vous n'êtes pas le bienvenu dans {groupm} pour être sur la liste noire !"
+        ],
+        "Antifake": [
+            "Au revoir {userm}, vous n'êtes pas le bienvenu dans {groupm} pour être gringo ou faux !"
+        ]
+    },
+    "es": {
+        "Goodbye": [
+            "Un minuto de silencio por el miembro {userm}, que acaba de salir de nuestras vidas...",
+            "Adiós {userm}, fuiste el mejor miembro de ~ganado~ que podría haber..."
+        ],
+        "Welcome": [
+            "Hola {userm}! 🥰 \n\nBienvenido a {groupm} 😎 \n\nQueremos que te diviertas y obviamente sigas nuestras reglas! ✅ \n\nSi lo necesitas, llama a un administrador o verifica mis menús de comando. 👨🏻‍💻"
+        ],
+        "Blacklist": [
+            "Adiós {userm}, no eres bienvenido en {groupm} por estar en la lista negra!"
+        ],
+        "Antifake": [
+            "Adiós {userm}, no eres bienvenido en {groupm} por ser gringo o falso!"
+        ]
+    },
+    "id": {
+        "Goodbye": [
+            "Satu menit hening untuk anggota {userm}, yang baru saja keluar dari hidup kami...",
+            "Selamat tinggal {userm}, Anda adalah anggota ~ternak~ terbaik yang mungkin..."
+        ],
+        "Welcome": [
+            "Halo {userm}! 🥰 \n\nSelamat datang di {groupm} 😎 \n\nKami ingin Anda bersenang-senang dan jelas mengikuti aturan kami! ✅ \n\nJika perlu, hubungi Administrator atau periksa menu perintah saya. 👨🏻‍💻"
+        ],
+        "Blacklist": [
+            "Selamat tinggal {userm}, Anda tidak diterima di {groupm} karena masuk daftar hitam!"
+        ],
+        "Antifake": [
+            "Selamat tinggal {userm}, Anda tidak diterima di {groupm} karena gringo atau palsu!"
+        ]
+    },
+    "ms": {
+        "Goodbye": [
+            "Sesaat berdiam diri untuk ahli {userm}, yang baru sahaja meninggalkan hidup kami...",
+            "Selamat tinggal {userm}, anda adalah ahli ~lembu~ terbaik yang boleh jadi..."
+        ],
+        "Welcome": [
+            "Hello {userm}! 🥰 \n\nSelamat datang ke {groupm} 😎 \n\nKami mahu anda berseronok dan jelas mematuhi peraturan kami! ✅ \n\nJika anda perlu, hubungi Pentadbir atau semak menu arahan saya. 👨🏻‍💻"
+        ],
+        "Blacklist": [
+            "Selamat tinggal {userm}, anda tidak dialu-alukan dalam {groupm} kerana disenaraihitamkan!"
+        ],
+        "Antifake": [
+            "Selamat tinggal {userm}, anda tidak dialu-alukan dalam {groupm} kerana gringo atau palsu!"
+        ]
+    },
+    "hi": {
+        "Goodbye": [
+            "सदस्य {userm} के लिए एक मिनट का मौन, जो अभी-अभी हमारे जीवन से चले गए...",
+            "अलविदा {userm}, आप सबसे अच्छे ~मवेशी~ सदस्य थे जो हो सकते थे..."
+        ],
+        "Welcome": [
+            "हैलो {userm}! 🥰 \n\n {groupm} में आपका स्वागत है 😎 \n\nहम चाहते हैं कि आप मज़े करें और स्पष्ट रूप से हमारे नियमों का पालन करें! ✅ \n\nयदि आपको आवश्यकता हो, तो किसी व्यवस्थापक को कॉल करें या जांचें मेरे आदेश मेनू। 👨🏻‍💻"
+        ],
+        "Blacklist": [
+            "अलविदा {userm}, ब्लैकलिस्ट किए जाने के कारण आपका {groupm} में स्वागत नहीं है!"
+        ],
+        "Antifake": [
+            "अलविदा {userm}, ग्रिंगो या नकली होने के लिए आपका {groupm} में स्वागत नहीं है!"
+        ]
+    },
+    "de": {
+        "Goodbye": [
+            "Eine Schweigeminute für Mitglied {userm}, das gerade aus unserem Leben gegangen ist...",
+            "Auf Wiedersehen {userm}, du warst das beste ~Rinder~ Mitglied, das es geben konnte..."
+        ],
+        "Welcome": [
+            "Hallo {userm}! 🥰 \n\nWillkommen bei {groupm} 😎 \n\nWir möchten, dass du Spaß hast und natürlich unsere Regeln befolgst! ✅ \n\nFalls nötig, rufe einen Administrator an oder überprüfe es meine Befehlsmenüs. 👨🏻‍💻"
+        ],
+        "Blacklist": [
+            "Auf Wiedersehen {userm}, du bist in {groupm} nicht willkommen, weil er auf der schwarzen Liste steht!"
+        ],
+        "Antifake": [
+            "Auf Wiedersehen {userm}, du bist in {groupm} nicht willkommen, weil du ein Gringo oder ein Fake bist!"
+        ]
+    },
+    "it": {
+        "Goodbye": [
+            "Un minuto di silenzio per il membro {userm}, che è appena uscito dalle nostre vite...",
+            "Addio {userm}, sei stato il miglior membro di ~bestiame~ che potesse essere..."
+        ],
+        "Welcome": [
+            "Ciao {userm}! 🥰 \n\nBenvenuto in {groupm} 😎 \n\nVogliamo che tu ti diverta e ovviamente segua le nostre regole! ✅ \n\nSe necessario, chiama un amministratore o controlla i miei menu di comando. 👨🏻‍💻"
+        ],
+        "Blacklist": [
+            "Arrivederci {userm}, non sei il benvenuto in {groupm} per essere stato inserito nella blacklist!"
+        ],
+        "Antifake": [
+            "Arrivederci {userm}, non sei il benvenuto in {groupm} perché sei gringo o fake!"
+        ]
+    },
+    "ru": {
+        "Goodbye": [
+            "Минута молчания для участника {userm}, который только что ушел из нашей жизни...",
+            "До свидания {userm}, вы были лучшим ~скот~ участником, который только мог быть..."
+        ],
+        "Welcome": [
+            "Здравствуйте, {userm}! 🥰 \n\nДобро пожаловать в {groupm} 😎 \n\nМы хотим, чтобы вы весело провели время и явно следовали нашим правилам! ✅ \n\nЕсли вам нужно, позвоните администратору или проверьте мои командные меню. 👨🏻‍💻"
+        ],
+        "Blacklist": [
+            "До свидания {userm}, вам не рады в {groupm} за то, что вы попали в черный список!"
+        ],
+        "Antifake": [
+            "До свидания {userm}, вам не рады в {groupm} за то, что вы гринго или подделка!"
+        ]
+    },
+    "lat": {
+        "Goodbye": [
+            "Momentum silentii sodalis {userm}, qui modo vitam nostram reliquit...",
+            "Vale {userm}, fuisti optimus socius ~gado qui esse potuit..."
+        ],
+        "Welcome": [
+            "Salve {userm}! 🥰 \n\nWelcome to {groupm} 😎\n\nVos habere fun et manifesto sequi regulas nostras! ✅ \n\nSi opus est, Administratorem voca vel menus meum inspice. 👨🏻💻"
+        ],
+        "Blacklist": [
+            "Vale {userm}, non excipitur in {groupm} notarat!"
+        ],
+        "Antifake": [
+            "Vale {userm}, in {groupm} gringo vel fictum."
+        ]
+    }
+}

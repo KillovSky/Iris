@@ -1,0 +1,122 @@
+{
+    "pt": {
+        "Standard": [
+            "Dica: Evite falar com letras maiúsculas, é como se estivesse gritando comigo, isso assusta...",
+            "Oi, como vai? Sabia que escrever com letras mais culas é como estar gritando?",
+            "Essas mensagens com letras maiúsculas realmente assustam, podem parar? Por favor..."
+        ],
+        "Test": [
+            "_⚠️ → Ops, o comando_ *'{command}'* _não existe oficialmente ou no sistema de geração de comandos, se quiser, você pode criar ele com o comando_ *'{prefix}Custom {command} | Resposta'* _, também confira nossa lista de comandos atuais no_ *'{prefix}Menu'* _antes de continuar._\n\n_ℹ️ → Recomendação de comando para você:_ *'{suggestCMD}'*"
+        ]
+    },
+    "jp": {
+        "Standard": [
+            "ヒント: 大文字の使用は避けてください。怒鳴っているようなものです。怖いです...",
+            "こんにちは、お元気ですか？太字で書くのは怒鳴るようなものだって知っていましたか？",
+            "大文字のメッセージは本当に怖いです。やめてくれませんか？お願いします..."
+        ],
+        "Test": [
+            "_⚠️ → おっと、コマンド_ *'{command}'* _は正式には存在しないか、コマンド生成システムにはありません。必要に応じて、コマンドで作成できます_ *'{prefix}Custom {command} | Answer'* _, また、続行する前に_ *'{prefix}Menu'* _で現在のコマンドのリストを確認してください._\n\n_ℹ️ → コマンドの推奨事項:_ *'{suggestCMD}'*"
+        ]
+    },
+    "en": {
+        "Standard": [
+            "Tip: Avoid using capital letters, it's like you're yelling at me, it scares...",
+            "Hi, how are you? Did you know that writing in bold letters is like yelling?",
+            "These messages with capital letters are really scary, will you stop? Please..."
+        ],
+        "Test": [
+            "_⚠️ → Oops, the command_ *'{command}'* _does not officially exist or in the command generation system, if you want, you can create it with the command_ *'{prefix}Custom {command} | Answer'* _, also check out our list of current commands in the_ *'{prefix}Menu'* _before continuing._\n\n_ℹ️ → Command recommendation for you:_ *'{suggestCMD}'*"
+        ]
+    },
+    "fr": {
+        "Standard": [
+            "Astuce: évitez les majuscules, c'est comme si vous me criiez dessus, ça fait peur...",
+            "Salut, comment vas-tu ? Saviez-vous qu'écrire en gras, c'est comme crier?",
+            "Ces messages avec des majuscules font vraiment peur, tu vas arrêter? S'il te plait..."
+        ],
+        "Test": [
+            "_⚠️ → Oups, la commande_ *'{command}'* _n'existe pas officiellement ou dans le système de génération de commandes, si vous le souhaitez, vous pouvez la créer avec la commande_ *'{prefix}Custom {command} | Answer'* _, consultez également notre liste de commandes actuelles dans le_ *'{prefix}Menu'* _avant de continuer._\n\n_ℹ️ → Recommandation de commande pour vous :_ *'{suggestCMD}'*"
+        ]
+    },
+    "es": {
+        "Standard": [
+            "Tip: Evita usar mayúsculas, es como si me estuvieras gritando, da miedo...",
+            "Hola, ¿cómo estás? ¿Sabías que escribir en negrita es como gritar?",
+            "Estos mensajes con mayúsculas dan mucho miedo, ¿quieres parar? Por favor..."
+        ],
+        "Test": [
+            "_⚠️ → Ups, el comando_ *'{command}'* _no existe oficialmente ni en el sistema de generación de comandos, si quieres puedes crearlo con el comando_ *'{prefix}Custom {command} | Respuesta'* _, consulte también nuestra lista de comandos actuales en el_ *'{prefijo}Menu'* _antes de continuar._\n\n_ℹ️ → Comando recomendado para usted:_ *'{suggestCMD}'*"
+        ]
+    },
+    "id": {
+        "Standard": [
+            "Tips: Hindari penggunaan huruf kapital, kayaknya kamu membentak saya, takut...",
+            "Hai, apa kabar? Tahukah kamu bahwa menulis dengan huruf tebal itu seperti berteriak?",
+            "Pesan dengan huruf kapital ini benar-benar menakutkan, maukah kamu berhenti? Tolong ..."
+        ],
+        "Test": [
+            "_⚠️ → Ups, command_ *'{command}'* _tidak resmi ada atau dalam sistem pembuatan perintah, jika mau, Anda dapat membuatnya dengan command_ *'{prefix}Custom {command} | Answer'* _, lihat juga daftar perintah saat ini di_ *'{prefix}Menu'* _sebelum melanjutkan._\n\n_ℹ️ → Rekomendasi perintah untuk Anda:_ *'{suggestCMD}'*"
+        ]
+    },
+    "ms": {
+        "Standard": [
+            "Tips: Elakkan guna huruf besar, macam nak maki saya, takut...",
+            "Hai, apa khabar? Adakah anda tahu bahawa menulis dalam huruf tebal adalah seperti menjerit?",
+            "Mesej dengan huruf besar ini benar-benar menakutkan, bolehkah anda berhenti? Tolong..."
+        ],
+        "Test": [
+            "_⚠️ → Oops, perintah_ *'{command}'* _tidak wujud secara rasmi atau dalam sistem penjanaan arahan, jika anda mahu, anda boleh menciptanya dengan arahan_ *'{prefix}Custom {command} | Answer'* _, lihat juga senarai arahan semasa kami dalam_ *'{prefix}Menu'* _sebelum meneruskan._\n\n_ℹ️ → Syor arahan untuk anda:_ *'{suggestCMD}'*"
+        ]
+    },
+    "hi": {
+        "Standard": [
+            "युक्ति: बड़े अक्षरों का उपयोग करने से बचें, यह ऐसा है जैसे आप मुझ पर चिल्ला रहे हैं, यह डराता है...",
+            "हाय, कैसे हो? क्या आप जानते हैं कि मोटे अक्षरों में लिखना चिल्लाने जैसा है?",
+            "बड़े अक्षरों वाले ये संदेश वाकई डरावने हैं, क्या आप रुकेंगे? कृपया..."
+        ],
+        "Test": [
+            "_⚠️ → उफ़, कमांड_ *'{command}'* _आधिकारिक तौर पर या कमांड जेनरेशन सिस्टम में मौजूद नहीं है, अगर आप चाहें तो इसे कमांड से बना सकते हैं_ *'{prefix}Custom {command} | उत्तर'* _, जारी रखने से पहले_ *'{prefix}Menu'*_ में हमारे मौजूदा कमांड की सूची भी देखें।_\n\n_ℹ️ → आपके लिए कमांड की सिफारिश:_ *'{suggestCMD}'*"
+        ]
+    },
+    "de": {
+        "Standard": [
+            "Tipp: Vermeide Großbuchstaben, das ist, als würdest du mich anschreien, es macht Angst...",
+            "Hallo, wie geht es dir? Wusstest du, dass das Schreiben in Fettschrift wie Schreien ist?",
+            "Diese Nachrichten mit Großbuchstaben sind wirklich beängstigend, hörst du auf? Bitte..."
+        ],
+        "Test": [
+            "_⚠️ → Hoppla, der Befehl_ *'{command}'* _existiert weder offiziell noch im Befehlsgenerierungssystem, wenn Sie möchten, können Sie ihn mit dem Befehl_ *'{prefix}Custom {command} | Answer' erstellen* _, sehen Sie sich auch unsere Liste der aktuellen Befehle im_ *'{prefix}Menu'* an, _bevor Sie fortfahren._\n\n_ℹ️ → Befehlsempfehlung für Sie:_ *'{suggestCMD}'*"
+        ]
+    },
+    "it": {
+        "Standard": [
+            "Suggerimento: evita di usare lettere maiuscole, è come se mi stessi urlando contro, fa paura...",
+            "Ciao, come stai? Lo sapevi che scrivere in grassetto è come urlare?",
+            "Questi messaggi con le lettere maiuscole fanno davvero paura, vuoi smetterla? Per favore..."
+        ],
+        "Test": [
+            "_⚠️ → Oops, il comando_ *'{command}'* _non esiste ufficialmente o nel sistema di generazione dei comandi, se vuoi puoi crearlo con il comando_ *'{prefix}Custom {command} | Answer'* _, controlla anche il nostro elenco di comandi correnti nel_ *'{prefix}Menu'* _prima di continuare._\n\n_ℹ️ → Consiglio di comando per te:_ *'{suggestCMD}'*"
+        ]
+    },
+    "ru": {
+        "Standard": [
+            "Совет: не используйте заглавные буквы, это как будто вы кричите на меня, это пугает...",
+            "Привет, как дела? Ты знал, что писать жирным шрифтом - это как орать?",
+            "Эти сообщения с заглавными буквами действительно пугают, вы можете прекратить? Пожалуйста..."
+        ],
+        "Test": [
+            "_⚠️ → Упс, команда_ *'{command}'* _не существует ни официально, ни в системе генерации команд, если хотите, можете создать ее командой_ *'{prefix}Custom {command} | Ответ'* _, также ознакомьтесь со списком текущих команд в_ *'{prefix}Menu'* _прежде чем продолжить._\n\n_ℹ️ → Рекомендации по командам для вас:_ *'{suggestCMD}'*"
+        ]
+    },
+    "lat": {
+        "Standard": [
+            "Consilium: Vitare litteris capitalibus, simile est apud me clamas, terret...",
+            "Salve, quomodo es? Scisne scribentem in audacibus litteris simile esse vociferationis?",
+            "Haec epistulae cum litteris capitalibus vere formidulosus sunt, cessas? Rogo..."
+        ],
+        "Test": [
+            "_⚠️ → Oops, mandatum_ *'{command}'* _non est publice neque in praecepto generationis, si vis, cum imperio creare potes_ *'{prefix}Custom {command} | Answer'* _, etiam indicem nostrum mandatorum currentium in the_ *'{prefix}Menu'* _antequam continuam._\n\n_ℹ️ → Mandatum tibi:_ *'{suggestCMD}'*"
+        ]
+    }
+}

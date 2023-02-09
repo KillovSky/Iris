@@ -1,0 +1,146 @@
+{
+    "pt": {
+        "Updated": [
+            "Parabéns por me manter atualizada.",
+            "Sua versão continua atualizada, parabéns!",
+            "Obrigada por manter tudo atualizado com as melhorias!"
+        ],
+        "Available": [
+            "Uma nova versão da Íris foi lançada, atualize para obter melhorias e correções!",
+            "Saiu uma atualização, que tal baixar?",
+            "Chegou uma nova atualização, vá dar uma olhada!"
+        ]
+    },
+    "jp": {
+        "Updated": [
+            "最新情報をお寄せいただきありがとうございます。",
+            "お使いのバージョンは最新です。おめでとうございます!",
+            "すべてを最新の状態に保ち、改善していただきありがとうございます!"
+        ],
+        "Available": [
+            "Iris の新しいバージョンがリリースされました。改善と修正のために更新してください!",
+            "アップデートが出たのでダウンロードしてみませんか？",
+            "新しいアップデートが到着しました。チェックしてください！"
+        ]
+    },
+    "en": {
+        "Updated": [
+            "Congratulations for keeping me updated.",
+            "Your version is still up to date, congratulations!",
+            "Thanks for keeping everything up to date with the improvements!"
+        ],
+        "Available": [
+            "A new version of Iris has been released, please update for improvements and fixes!",
+            "An update came out, how about downloading it?",
+            "A new update has arrived, go check it out!"
+        ]
+    },
+    "fr": {
+        "Updated": [
+            "Félicitations de m'avoir tenu au courant.",
+            "Votre version est toujours à jour, félicitations!",
+            "Merci d'avoir tout mis à jour avec les améliorations!"
+        ],
+        "Available": [
+            "Une nouvelle version d'Iris a été publiée, veuillez mettre à jour pour des améliorations et des correctifs!",
+            "Une mise à jour est sortie, que diriez-vous de la télécharger?",
+            "Une nouvelle mise à jour est arrivée, allez la voir!"
+        ]
+    },
+    "es": {
+        "Updated": [
+            "Gracias por mantenerme actualizado.",
+            "Tu versión aún está actualizada, gracias!",
+            "Gracias por mantener todo actualizado con las mejoras!"
+        ],
+        "Available": [
+            "Se ha lanzado una nueva versión de Iris, ¡actualice para obtener mejoras y correcciones!",
+            "Salió una actualización, ¿qué tal si la descargamos?",
+            "Ha llegado una nueva actualización, ¡ve a verla!"
+        ]
+    },
+    "id": {
+        "Updated": [
+            "Selamat karena terus memperbarui saya.",
+            "Versi Anda masih up to date, selamat!",
+            "Terima kasih telah selalu memperbarui semuanya dengan peningkatan!"
+        ],
+        "Available": [
+            "Versi baru Iris telah dirilis, harap perbarui untuk peningkatan dan perbaikan!",
+            "Pembaruan keluar, bagaimana kalau mengunduhnya?",
+            "Pembaruan baru telah tiba, periksa!"
+        ]
+    },
+    "ms": {
+        "Updated": [
+            "Tahniah kerana memastikan saya sentiasa dikemas kini.",
+            "Versi anda masih terkini, tahniah!",
+            "Terima kasih kerana memastikan segala-galanya dikemas kini dengan penambahbaikan!"
+        ],
+        "Available": [
+            "Versi baharu Iris telah dikeluarkan, sila kemas kini untuk penambahbaikan dan pembetulan!",
+            "Kemas kini telah keluar, bagaimana dengan memuat turunnya?",
+            "Kemas kini baharu telah tiba, pergi semak!"
+        ]
+    },
+    "hi": {
+        "Updated": [
+            "मुझे अपडेट रखने के लिए बधाई।",
+            "आपका संस्करण अभी भी अद्यतित है, बधाई हो!",
+            "सब कुछ सुधारों के साथ अद्यतित रखने के लिए धन्यवाद!"
+        ],
+        "Available": [
+            "आइरिस का एक नया संस्करण जारी किया गया है, कृपया सुधारों और सुधारों के लिए अपडेट करें!",
+            "एक अपडेट आया, इसे डाउनलोड करने के बारे में क्या ख्याल है?",
+            "एक नया अपडेट आ गया है, इसे देखें!"
+        ]
+    },
+    "de": {
+        "Update": [
+            "Herzlichen Glückwunsch, dass Sie mich auf dem Laufenden halten.",
+            "Ihre Version ist immer noch aktuell, herzlichen Glückwunsch!",
+            "Danke, dass Sie alles über die Verbesserungen auf dem Laufenden halten!"
+        ],
+        "Available": [
+            "Eine neue Version von Iris wurde veröffentlicht, bitte aktualisieren Sie für Verbesserungen und Korrekturen!",
+            "Ein Update ist erschienen, wie wäre es mit einem Download?",
+            "Ein neues Update ist da, schau es dir an!"
+        ]
+    },
+    "it": {
+        "Updated": [
+            "Congratulazioni per avermi tenuto aggiornato.",
+            "La tua versione è ancora aggiornata, congratulazioni!",
+            "Grazie per tenere tutto aggiornato con i miglioramenti!"
+        ],
+        "Available": [
+            "È stata rilasciata una nuova versione di Iris, aggiornare per miglioramenti e correzioni!",
+            "È uscito un aggiornamento, che ne dici di scaricarlo?",
+            "È arrivato un nuovo aggiornamento, vai a dare un'occhiata!"
+        ]
+    },
+    "ru": {
+        "Updated": [
+            "Поздравляю, что держишь меня в курсе.",
+            "Ваша версия актуальна, поздравляем!",
+            "Спасибо, что держите все в курсе улучшений!"
+        ],
+        "Available": [
+            "Выпущена новая версия Iris, пожалуйста, обновите для улучшения и исправления!",
+            "Вышло обновление, как его скачать?",
+            "Пришло новое обновление, иди проверь!"
+        ]
+    },
+    "lat": {
+        "Updated": [
+            "Gratulor mihi renovatum servando",
+            "Versio tua usque hodie gratulatur!",
+            "Gratias tibi habendo omnia usque ad diem cum emendationibus!"
+        ],
+        "Available": [
+            "Nova Iris versio dimissa est, quaeso, renovatio pro emendationibus et figmentis!",
+            "An renovatio exivit, quam de deprimendo?",
+            "Novum advenit renovatio, egredere reprehendo!"
+        ]
+    }
+}

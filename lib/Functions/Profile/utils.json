@@ -1,0 +1,240 @@
+{
+    "name": "Mugshot",
+    "description": "Sistema que escolhe uma imagem adequada para o uso.",
+    "usage": {
+        "general": "[RESTRITO] - Verifique o 'examples' para usos inseguros.",
+        "examples": [
+            "Mugshot.env()",
+            "Mugshot.perfil('kill', 'has image', 'encryptMedia', 'quotedMsg', 'quotedMsgObj', 'mentionedJidList', 'groupMembersId')",
+            "Mugshot.lookup('kill', 'user', 'groupMembersId')",
+            "Mugshot.aleator('kill', 'groupMembersId')",
+            "Mugshot.reset()",
+            "Mugshot.env().functions.perfil.value('kill', 'has image', 'encryptMedia', 'quotedMsg', 'quotedMsgObj', 'mentionedJidList', 'groupMembersId')",
+            "Mugshot.env().functions.lookup.value('kill', 'user', 'groupMembersId')",
+            "Mugshot.env().functions.aleator.value('kill', 'groupMembersId')",
+            "Mugshot.env().functions.revert.value()"
+        ]
+    },
+    "license": "MIT",
+    "helps": [
+        "Você pode mudar os parâmetros da exports enviando o valor da Object que deseja editar ao resetar, por exemplo → Mugshot.reset({ name: 'Body'}) ← Isso mudaria o module de Tree para Body, o uso então passaria ser: → Body.funcão ← Isso também permite que você edita a função usando o mesmo método.",
+        "Você pode mudar o que os códigos rodam, em tempo real, basta usar a 'env', por exemplo → Mugshot.env().name = 'Body' ← Mas este método não atualizará o sistema, somente a Object, os sistemas permanecem intactos.",
+        "Você pode configurar o tempo de reset dos resultados ou se eles devem ser resetados usando a env, por exemplo → Mugshot.env().settings.wait = 10000 ← Isso mudaria o tempo de espera para 10 segundos, o tempo deve ser em milissegundos.",
+        "Alguém lê essas dicas? Se sim, torne-se um programador, ler os tutoriais é de suma importância e poucos desenvolvedores o fazem...",
+        "Existem infinitas formas de uso secretas, explore os códigos para descobrir os mistérios dos sistemas!",
+        "Todas as funções tem valores padrão, então você não sofrerá erros por esquecer de enviar um parâmetro ou similar."
+    ],
+    "exports": {
+        "env": "env",
+        "messedup": "messedup",
+        "perfil": "perfil",
+        "aleator": "aleator",
+        "lookup": "lookup",
+        "reset": "reset",
+        "poswork": "finish"
+    },
+    "developer": "KillovSky",
+    "files": {
+        "index.js": "Sistema que determina a imagem que deve usar nos comandos.",
+        "utils.json": "Dados de fábrica da envInfo."
+    },
+    "modules": {
+        "fs": "Leitura de diretórios e arquivos.",
+        "path": "Para obter o nome da pasta.",
+        "@killovsky/telegraph": "Faz o upload de imagens em nuvem.",
+        "@open-wa/wa-decrypt": "Decripta as imagens de URL's do WhatsApp."
+    },
+    "functions": {
+        "ambient": {
+            "arguments": false,
+            "description": "Retorna as variáveis e sistemas do arquivo.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "messedup": {
+            "arguments": {
+                "error": {
+                    "description": "Instância de erro para formatação.",
+                    "type": "Boolean / Error",
+                    "value": false
+                }
+            },
+            "description": "Ajusta os valores de erro.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "perfil": {
+            "arguments": {
+                "kill": {
+                    "description": "Funções de controle da raiz da Íris.",
+                    "type": "Boolean / Object",
+                    "value": false
+                },
+                "hasImage": {
+                    "description": "Diz se tem uma imagem já pronta pra usar.",
+                    "type": "Boolean",
+                    "value": false
+                },
+                "encryptMedia": {
+                    "description": "Dados da imagem, caso uma pronta exista.",
+                    "type": "Boolean / Object",
+                    "value": false
+                },
+                "qtmsg": {
+                    "description": "Mensagem de marcação recebida.",
+                    "type": "Boolean / Object",
+                    "value": false
+                },
+                "qmsgobj": {
+                    "description": "Mensagem de marcação com objeto recebida.",
+                    "type": "Boolean / Object",
+                    "value": false
+                },
+                "menjls": {
+                    "description": "Menções na mensagem recebida.",
+                    "type": "Boolean / Array",
+                    "value": false
+                },
+                "gmemid": {
+                    "description": "Participantes do grupo.",
+                    "type": "Boolean / Array",
+                    "value": false
+                }
+            },
+            "description": "Adquire todas as imagens de perfil necessárias para uso.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "poswork": {
+            "arguments": {
+                "response": {
+                    "description": "Resultados de uma função.",
+                    "type": "Any",
+                    "value": false
+                }
+            },
+            "description": "Verifica se pode resetar a envInfo e retorna o resultado da função.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "aleator": {
+            "arguments": {
+                "kill": {
+                    "description": "Funções de controle da raiz.",
+                    "type": "Boolean / Object",
+                    "value": false
+                },
+                "randUsers": {
+                    "description": "Array de usuários aleatórios.",
+                    "type": "Boolean / Array",
+                    "value": false
+                }
+            },
+            "description": "Busca uma foto funcional de aleatórios 'x' vezes, retornando a de erro se não conseguir.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "lookup": {
+            "arguments": {
+                "kill": {
+                    "description": "Funções de controle da raiz.",
+                    "type": "Boolean / Object",
+                    "value": false
+                },
+                "userFind": {
+                    "description": "Número da pessoa com a foto a pegar.",
+                    "type": "Boolean / String",
+                    "value": false
+                },
+                "randUsers": {
+                    "description": "Array de usuários aleatórios, caso o especifico falhe.",
+                    "type": "Boolean / Array",
+                    "value": false
+                }
+            },
+            "description": "Adquire a foto de um usuário especifico ou de um aleatório.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "revert": {
+            "arguments": {
+                "changeKey": {
+                    "description": "Uma Object com valores que existem na envInfo, ela será usada para substituir o sistema em tempo real.",
+                    "type": "Object value",
+                    "anyValue": false
+                }
+            },
+            "description": "Reseta a envInfo para a Object padrão.",
+            "type": "Boolean / Function",
+            "value": false
+        }
+    },
+    "settings": {
+        "wait": {
+            "description": "Tempo em MS que deve esperar antes de resetar.",
+            "type": "Number",
+            "value": 5000
+        },
+        "error": {
+            "description": "Define se pode printar qualquer erro.",
+            "type": "Boolean",
+            "value": false
+        },
+        "ender": {
+            "description": "Define se deve resetar a cada erro.",
+            "type": "Boolean",
+            "value": true
+        },
+        "finish": {
+            "description": "Define se deve resetar a cada finalização.",
+            "type": "Boolean",
+            "value": true
+        }
+    },
+    "parameters": {
+        "images": {
+            "description": "Define as imagens padrões.",
+            "type": "Array",
+            "value": [
+                "https://thispersondoesnotexist.com/image",
+                "https://http.cat/418.jpg",
+                "https://http.dog/418.jpg",
+                "https://http.cat/503.jpg",
+                "https://http.dog/503.jpg",
+                "https://http.cat/404.jpg",
+                "https://http.dog/404.jpg"
+            ]
+        },
+        "failed": {
+            "description": "Define a imagem padrão de erro.",
+            "type": "String",
+            "value": "https://http.cat/204"
+        },
+        "uses": {
+            "description": "Quantas tentativas deve fazer para obter uma imagem, caso ocorra erro, a URL acima é usada.",
+            "type": "Number",
+            "value": 5
+        },
+        "location": {
+            "description": "Local onde o módulo pode ser encontrado.",
+            "type": "Boolean / String",
+            "value": "./index"
+        },
+        "code": {
+            "description": "Código do erro que obter.",
+            "type": "Boolean / String / Number",
+            "value": false
+        },
+        "message": {
+            "description": "Armazena a mensagem do último erro recebido.",
+            "type": "Boolean / String",
+            "value": false
+        }
+    },
+    "results": {
+        "description": "Resultado final da função.",
+        "success": true,
+        "type": "Array",
+        "value": ["https://thispersondoesnotexist.com/image"]
+    }
+}

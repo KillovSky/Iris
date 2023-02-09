@@ -1,0 +1,209 @@
+{
+	"madeMeme": [
+		"Wolve1",
+		"Praga1",
+		"Drake1"
+	],
+	"Base64": "data:image/gif;base64,R0lGODlhAQABAAAAACw=",
+	"BolsoDrake": "https://i.ibb.co/RyhGXt6/bolsodrake.png",
+	"Bolso1": {
+		"Image": "https://raw.githubusercontent.com/KillovSky/Iris_Files/main/Memes/bolsonaro/template.png",
+		"Blur": 5,
+		"Bright": "0.5",
+		"Param1": 275,
+		"Param2": 155,
+		"Param3": 107,
+		"Param4": 8,
+		"Param5": 0,
+		"Param6": 0
+	},
+	"Bolso2": {
+		"Image": "https://raw.githubusercontent.com/KillovSky/Iris_Files/main/Memes/bolso_frame/template.png",
+		"Blur": 5,
+		"Bright": "0.5",
+		"Param1": 100,
+		"Param2": 120,
+		"Param3": 300,
+		"Param4": 36,
+		"Param5": 0,
+		"Param6": 0
+	},
+	"Bolso3": {
+		"Image": "https://raw.githubusercontent.com/KillovSky/Iris_Files/main/Memes/bolsonaro2/template.png",
+		"Blur": 5,
+		"Bright": "0.5",
+		"Param1": 222,
+		"Param2": 130,
+		"Param3": 213,
+		"Param4": 35,
+		"Param5": 0,
+		"Param6": 0
+	},
+	"Sponge1": {
+		"Image": "https://raw.githubusercontent.com/KillovSky/Iris_Files/main/Memes/bob_burning_paper/template.png",
+		"Blur": 5,
+		"Bright": "0.5",
+		"Param1": 102,
+		"Param2": 135,
+		"Param3": 27,
+		"Param4": 36,
+		"Param5": 0,
+		"Param6": 0
+	},
+	"Briggs1": {
+		"Image": "https://raw.githubusercontent.com/KillovSky/Iris_Files/main/Memes/briggs_cover/template.png",
+		"Blur": 5,
+		"Bright": "0.5",
+		"Param1": 165,
+		"Param2": 200,
+		"Param3": 218,
+		"Param4": 67,
+		"Param5": 0,
+		"Param6": 0
+	},
+	"Edban1": {
+		"Image": "https://raw.githubusercontent.com/KillovSky/Iris_Files/main/Memes/ednaldo_bandeira/template.png",
+		"Blur": 5,
+		"Bright": "0.5",
+		"Param1": 425,
+		"Param2": 333,
+		"Param3": 46,
+		"Param4": 178,
+		"Param5": 0,
+		"Param6": 0
+	},
+	"EdTV1": {
+		"Image": "https://raw.githubusercontent.com/KillovSky/Iris_Files/main/Memes/ednaldo_tv/template.png",
+		"Blur": 5,
+		"Bright": "0.5",
+		"Param1": 142,
+		"Param2": 105,
+		"Param3": 270,
+		"Param4": 21,
+		"Param5": 0,
+		"Param6": 0
+	},
+	"Suckerberg1": {
+		"Image": "https://raw.githubusercontent.com/KillovSky/Iris_Files/main/Memes/mark_meta/template.png",
+		"Blur": 5,
+		"Bright": "0.5",
+		"Param1": 412,
+		"Param2": 300,
+		"Param3": 513,
+		"Param4": 88,
+		"Param5": 0,
+		"Param6": 0
+	},
+	"Paper1": {
+		"Image": "https://raw.githubusercontent.com/KillovSky/Iris_Files/main/Memes/passing_paper/template.png",
+		"Blur": 5,
+		"Bright": "0.5",
+		"Param1": 135,
+		"Param2": 101,
+		"Param3": 178,
+		"Param4": 216,
+		"Param5": 0,
+		"Param6": 0
+	},
+	"Pepe1": {
+		"Image": "https://raw.githubusercontent.com/KillovSky/Iris_Files/main/Memes/pepe_dream/template.png",
+		"Blur": 5,
+		"Bright": "0.5",
+		"Param1": 100,
+		"Param2": 100,
+		"Param3": 81,
+		"Param4": 1,
+		"Param5": 0,
+		"Param6": 0
+	},
+	"ShotTV1": {
+		"Image": "https://raw.githubusercontent.com/KillovSky/Iris_Files/main/Memes/rip_tv/rip_tv_og.png",
+		"Blur": 5,
+		"Bright": "0.5",
+		"Param1": 155,
+		"Param2": 108,
+		"Param3": 558,
+		"Param4": 66,
+		"Param5": 0,
+		"Param6": 0
+	},
+	"Romero1": {
+		"Image": "https://raw.githubusercontent.com/KillovSky/Iris_Files/main/Memes/romero_britto/template.png",
+		"Blur": 5,
+		"Bright": "0.5",
+		"Param1": 186,
+		"Param2": 276,
+		"Param3": 16,
+		"Param4": 18,
+		"Param5": 0,
+		"Param6": 0
+	},
+	"Praga1": {
+		"Image": "https://i.ibb.co/zRVt8hm/morrepraga.jpg",
+		"Param1": 170,
+		"Param2": 220,
+		"Param3": 330,
+		"Param4": 330,
+		"Param5": 0,
+		"Param6": 0
+	},
+	"Wolve1": {
+		"Image": "https://i.ibb.co/jvvCmdk/wolverine.png",
+		"Param1": 160,
+		"Param2": 460,
+		"Param3": 380,
+		"Param4": 380,
+		"Param5": 0,
+		"Param6": 0
+	},
+	"Invert1": {
+		"Param1": 0,
+		"Param2": -1,
+		"Param3": 1,
+		"Param4": 0,
+		"Param5": 0
+	},
+	"Drake1": {
+		"Image": "https://i.ibb.co/ZK2X21z/drake.jpg",
+		"Param1": 0,
+		"Param2": 0,
+		"Param3": 0
+	},
+	"Ojjo1": {
+		"Param1": 0,
+		"Param2": 0,
+		"Param3": -1,
+		"Param4": 1,
+		"Param5": 0
+	},
+	"Jooj1": {
+		"Param1": 0,
+		"Param2": -1,
+		"Param3": 1,
+		"Param4": 0,
+		"Param5": 0,
+		"Param6": 0,
+		"Param7": -1,
+		"Param8": 1,
+		"Param9": 0,
+		"Param10": 0,
+		"Param11": 0,
+		"Param12": 0
+	},
+	"Medal1": {
+		"Image": "https://i.ibb.co/XbLtr51/obama.jpg",
+		"Param1": 5,
+		"Param2": 5,
+		"Param3": 10,
+		"Param4": 0,
+		"Param5": 0,
+		"Param6": 160,
+		"Param7": 96,
+		"Param8": 200,
+		"Param9": 200,
+		"Param10": 380,
+		"Param11": 10,
+		"Param12": 200,
+		"Param13": 200
+	}
+}

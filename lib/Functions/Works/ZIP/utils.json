@@ -1,0 +1,174 @@
+{
+    "name": "Archive",
+    "description": "Faz backups de segurança dos arquivos da database e também faz a limpeza.",
+    "usage": {
+        "general": "[RESTRITO] - Verifique o 'examples' para usos inseguros.",
+        "examples": [
+            "Archive.env()",
+            "Archive.clear()",
+            "Archive.create()",
+            "Archive.runner()",
+            "Archive.reset()",
+            "Archive.env().functions.clear.value()",
+            "Archive.env().functions.create.value()",
+            "Archive.env().functions.runner.value()",
+            "Archive.env().functions.revert.value()"
+        ]
+    },
+    "license": "MIT",
+    "helps": [
+        "Você pode mudar os parâmetros da exports enviando o valor da Object que deseja editar ao resetar, por exemplo → Archive.reset({ name: 'Body'}) ← Isso mudaria o module de Tree para Body, o uso então passaria ser: → Body.funcão ← Isso também permite que você edita a função usando o mesmo método.",
+        "Você pode mudar o que os códigos rodam, em tempo real, basta usar a 'env', por exemplo → Archive.env().name = 'Body' ← Mas este método não atualizará o sistema, somente a Object, os sistemas permanecem intactos.",
+        "Você pode configurar o tempo de reset dos resultados ou se eles devem ser resetados usando a env, por exemplo → Archive.env().settings.wait = 10000 ← Isso mudaria o tempo de espera para 10 segundos, o tempo deve ser em milissegundos.",
+        "Alguém lê essas dicas? Se sim, torne-se um programador, ler os tutoriais é de suma importância e poucos desenvolvedores o fazem...",
+        "Existem infinitas formas de uso secretas, explore os códigos para descobrir os mistérios dos sistemas!",
+        "Todas as funções tem valores padrão, então você não sofrerá erros por esquecer de enviar um parâmetro ou similar."
+    ],
+    "exports": {
+        "env": "env",
+        "runner": "runner",
+        "clear": "clear",
+        "messedup": "messedup",
+        "create": "create",
+        "reset": "reset",
+        "poswork": "finish"
+    },
+    "developer": "KillovSky",
+    "files": {
+        "index.js": "Sistema com funções referentes ao backup.",
+        "utils.json": "Dados de fábrica da envInfo."
+    },
+    "modules": {
+        "fs": "Leitura de diretórios e arquivos.",
+        "child_process": "Para executar o comando bash 'ZIP'.",
+        "path": "Para obter o nome da pasta.",
+        "../../../index": "Para usar funções de outros arquivos."
+    },
+    "functions": {
+        "ambient": {
+            "arguments": false,
+            "description": "Retorna as variáveis e sistemas do arquivo.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "messedup": {
+            "arguments": {
+                "error": {
+                    "description": "Instância de erro para formatação.",
+                    "type": "Boolean / Error",
+                    "value": false
+                }
+            },
+            "description": "Retorna as variáveis e sistemas do arquivo.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "create": {
+            "arguments": false,
+            "description": "Cria um backup sem usar a envInfo ou setInterval, útil para usos manuais.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "runner": {
+            "arguments": false,
+            "description": "Função que cria um repetidor para a geração de Backups.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "clear": {
+            "arguments": false,
+            "description": "Faz a limpeza dos backups ao ligar ou quando usar manualmente essa função.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "poswork": {
+            "arguments": {
+                "response": {
+                    "description": "Resultados de uma função.",
+                    "type": "Any",
+                    "value": false
+                }
+            },
+            "description": "Verifica se pode resetar a envInfo e retorna o resultado da função.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "revert": {
+            "arguments": {
+                "changeKey": {
+                    "description": "Uma Object com valores que existem na envInfo, ela será usada para substituir o sistema em tempo real.",
+                    "type": "Object value",
+                    "anyValue": false
+                }
+            },
+            "description": "Reseta a envInfo para a Object padrão.",
+            "type": "Boolean / Function",
+            "value": false
+        }
+    },
+    "settings": {
+        "wait": {
+            "description": "Tempo em MS que deve esperar antes de resetar.",
+            "type": "Number",
+            "value": 5000
+        },
+        "error": {
+            "description": "Define se pode printar qualquer erro.",
+            "type": "Boolean",
+            "value": false
+        },
+        "ender": {
+            "description": "Define se deve resetar a cada erro.",
+            "type": "Boolean",
+            "value": true
+        },
+        "finish": {
+            "description": "Define se deve resetar a cada finalização.",
+            "type": "Boolean",
+            "value": false
+        }
+    },
+    "parameters": {
+        "maxBackups": {
+            "description": "Quantidade máxima de arquivos na pasta de backups.",
+            "type": "Number",
+            "value": 5
+        },
+        "backupFolder": {
+            "description": "Localização da pasta de backups.",
+            "type": "String",
+            "value": "./lib/Backups"
+        },
+        "enableBackups": {
+            "description": "Define se o backup deve ser executado.",
+            "type": "Boolean",
+            "value": true
+        },
+        "backupTime": {
+            "description": "Tempo em que o backup deve ser executado.",
+            "type": "Number",
+            "value": 3600000
+        },
+        "location": {
+            "description": "Local onde o módulo pode ser encontrado.",
+            "type": "Boolean / String",
+            "value": "./index"
+        },
+        "code": {
+            "description": "Código do erro que obter.",
+            "type": "Boolean / String / Number",
+            "value": false
+        },
+        "message": {
+            "description": "Armazena a mensagem do último erro recebido.",
+            "type": "Boolean / String",
+            "value": false
+        }
+    },
+    "results": {
+        "description": "Resultado final da função.",
+        "success": true,
+        "type": "Boolean / String",
+        "value": false
+    }
+}

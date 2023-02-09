@@ -1,0 +1,470 @@
+{
+    "pt": {
+        "Start": [
+            "Aguarde, estou carregando os arquivos básicos de inicialização...",
+            "Só um segundo, estou carregando os sistemas...",
+            "Inicialização em andamento, carregando arquivos do sistema..."
+        ],
+        "Granted": [
+            "Nova conexão no IP:",
+            "Um IP se conectou ao terminal:",
+            "Conexão realizada pelo IP:"
+        ],
+        "Refuse": [
+            "Tentativa de conexão incorreta executada pelo IP:",
+            "Possível invasor detectado no IP:",
+            "Falha de conexão no IP:"
+        ],
+        "Pass": [
+            "Para mudar a senha, rode no Terminal WEB o comando abaixo:",
+            "Mude sua senha via WEB usando o código:",
+            "Use o terminal para mudar sua senha digitando:"
+        ],
+        "Safety": [
+            "Erros de certificado são comuns na localhost, apenas ignore-os se ocorrer...",
+            "Se obter um erro de conexão insegura ou similar, apenas ignore, é seguro...",
+            "Erros ao acessar o terminal são comuns, a conexão é segura, basta ignorar..."
+        ],
+        "Goodbye": [
+            "{userm} saiu ou foi banido do grupo {groupm}..."
+        ],
+        "Welcome": [
+            "{userm} entrou ou foi adicionado no grupo {groupm}..."
+        ],
+        "Blacklist": [
+            "{userm} foi banido do {groupm} por estar na blacklist..."
+        ],
+        "Antifake": [
+            "{userm} foi banido do {groupm} por ter DDI não permitido..."
+        ]
+    },
+    "jp": {
+        "Start": [
+            "待ってください。基本的な初期化ファイルを読み込んでいます...",
+            "ちょっと待ってください。システムを読み込んでいます...",
+            "初期化中、システムファイルを読み込んでいます..."
+        ],
+        "Granted": [
+            "IP上の新しい接続:",
+            "端末に接続されたIP:",
+            "IP による接続:"
+        ],
+        "Refuse": [
+            "IPによって実行された不正な接続試行:",
+            "IP で検出された可能性のある攻撃者:",
+            "IP で接続に失敗しました:"
+        ],
+        "Pass": [
+            "パスワードを変更するには、WEBターミナルで以下のコマンドを実行してください:",
+            "コードを使用してWEB経由でパスワードを変更してください:",
+            "ターミナルを使用して、次のように入力してパスワードを変更します。"
+        ],
+        "Safety": [
+            "証明書エラーは localhost では一般的です。エラーが発生した場合は無視してください...",
+            "安全でない接続または同様のエラーが発生した場合は、無視してください。安全です...",
+            "ターミナルへのアクセスエラーはよくあることです。接続は安全です。無視してください..."
+        ],
+        "Goodbye": [
+            "{userm} はグループ {groupm} から脱退したか、追放されました..."
+        ],
+        "Welcome": [
+            "{userm} はグループ {groupm} に参加したか、グループに追加されました..."
+        ],
+        "Blacklist": [
+            "{userm} は、ブラックリストに登録されているため、{groupm} から追放されました..."
+        ],
+        "Antifake": [
+            "{userm} は、DDI が許可されていないため、{groupm} から追放されました..."
+        ]
+    },
+    "en": {
+        "Start": [
+            "Wait, I'm loading the basic initialization files...",
+            "Just a sec, I'm loading the systems...",
+            "Initialization in progress, loading system files..."
+        ],
+        "Granted": [
+            "New connection on IP:",
+            "An IP connected to the terminal:",
+            "Connection made by IP:"
+        ],
+        "Refuse": [
+            "Bad connection attempt performed by IP:",
+            "Possible attacker detected on IP:",
+            "Connection Failed on IP:"
+        ],
+        "Pass": [
+            "To change the password, run the command below in the WEB Terminal:",
+            "Change your password via WEB using the code:",
+            "Use the terminal to change your password by typing:"
+        ],
+        "Safety": [
+            "Certificate errors are common on localhost, just ignore them if they occur...",
+            "If you get an insecure connection or similar error, just ignore it, it's safe...",
+            "Errors accessing the terminal are common, the connection is secure, just ignore..."
+        ],
+        "Goodbye": [
+            "{userm} has left or been banned from the group {groupm}..."
+        ],
+        "Welcome": [
+            "{userm} has joined or been added to the group {groupm}..."
+        ],
+        "Blacklist": [
+            "{userm} was banned from {groupm} for being blacklisted..."
+        ],
+        "Antifake": [
+            "{userm} was banned from {groupm} for not having DDI allowed..."
+        ]
+    },
+    "fr": {
+        "Start": [
+            "Attendez, je charge les fichiers d'initialisation de base...",
+            "Juste une seconde, je charge les systèmes...",
+            "Initialisation en cours, chargement des fichiers système..."
+        ],
+        "Granted": [
+            "Nouvelle connexion sur IP:",
+            "Une IP connectée au terminal:",
+            "Connexion établie par IP:"
+        ],
+        "Refuse": [
+            "Tentative de connexion incorrecte effectuée par IP:",
+            "Possible attaquant détecté sur IP:",
+            "Échec de la connexion sur:"
+        ],
+        "Pass": [
+            "Pour changer le mot de passe, lancez la commande ci-dessous dans le Terminal WEB:",
+            "Modifiez votre mot de passe via WEB en utilisant le code:",
+            "Utilisez le terminal pour changer votre mot de passe en tapant:"
+        ],
+        "Safety": [
+            "Erros de certificado são comuns na localhost, apenas ignore-os se ocorrer...",
+            "Se obter um erro de conexão insegura ou similar, apenas ignore, é seguro...",
+            "Erros ao acessar o terminal são comuns, a conexão é segura, basta ignorar..."
+        ],
+        "Goodbye": [
+            "{userm} a quitté ou a été banni du groupe {groupm}..."
+        ],
+        "Welcome": [
+            "{userm} a rejoint ou a été ajouté au groupe {groupm}..."
+        ],
+        "Blacklist": [
+            "{userm} a été banni de {groupm} pour être sur la liste noire..."
+        ],
+        "Antifake": [
+            "{userm} a été banni de {groupm} pour ne pas avoir DDI autorisé..."
+        ]
+    },
+    "es": {
+        "Start": [
+            "Espera, estoy cargando los archivos básicos de inicialización...",
+            "Un momento, estoy cargando los sistemas...",
+            "Inicialización en curso, cargando archivos del sistema..."
+        ],
+        "Granted": [
+            "Nueva conexión en IP:",
+            "Una IP conectada al terminal:",
+            "Conexión realizada por IP:"
+        ],
+        "Refuse": [
+            "Mal intento de conexión realizado por IP:",
+            "Posible atacante detectado en IP:",
+            "Error de conexión en IP:"
+        ],
+        "Pass": [
+            "Para cambiar la contraseña, ejecute el siguiente comando en la Terminal WEB:",
+            "Cambia tu contraseña vía WEB usando el código:",
+            "Use la terminal para cambiar su contraseña escribiendo:"
+        ],
+        "Safety": [
+            "Los errores de certificado son comunes en localhost, simplemente ignórelos si ocurren...",
+            "Si obtiene una conexión insegura o un error similar, simplemente ignórelo, es seguro...",
+            "Los errores de acceso a la terminal son comunes, la conexión es segura, simplemente ignore..."
+        ],
+        "Goodbye": [
+            "{userm} se ha ido o ha sido expulsado del grupo {groupm}..."
+        ],
+        "Welcome": [
+            "{userm} se ha unido o ha sido añadido al grupo {groupm}..."
+        ],
+        "Blacklist": [
+            "{userm} fue expulsado de {groupm} por estar en la lista negra..."
+        ],
+        "Antifake": [
+            "{userm} fue baneado de {groupm} por no tener DDI permitido..."
+        ]
+    },
+    "id": {
+        "Start": [
+            "Tunggu, saya sedang memuat file inisialisasi dasar...",
+            "Tunggu sebentar, saya sedang memuat sistem...",
+            "Inisialisasi sedang berlangsung, memuat file sistem..."
+        ],
+        "Granted": [
+            "Koneksi baru di IP:",
+            "IP yang terhubung ke terminal:",
+            "Koneksi dibuat oleh IP:"
+        ],
+        "Refuse": [
+            "Upaya koneksi buruk dilakukan oleh IP:",
+            "Kemungkinan penyerang terdeteksi di IP:",
+            "Koneksi Gagal di IP:"
+        ],
+        "Pass": [
+            "Untuk mengganti kata sandi, jalankan perintah di bawah ini di Terminal WEB:",
+            "Ubah kata sandi Anda melalui WEB menggunakan kode:",
+            "Gunakan terminal untuk mengubah kata sandi Anda dengan mengetik:"
+        ],
+        "Safety": [
+            "Kesalahan sertifikat biasa terjadi di localhost, abaikan saja jika terjadi...",
+            "Jika Anda mendapatkan koneksi tidak aman atau kesalahan serupa, abaikan saja, aman...",
+            "Kesalahan mengakses terminal adalah hal biasa, koneksi aman, abaikan saja..."
+        ],
+        "Goodbye": [
+            "{userm} telah keluar atau dicekal dari grup {groupm}..."
+        ],
+        "Welcome": [
+            "{userm} telah bergabung atau ditambahkan ke grup {groupm}..."
+        ],
+        "Blacklist": [
+            "{userm} dilarang dari {groupm} karena masuk daftar hitam..."
+        ],
+        "Antifake": [
+            "{userm} dilarang dari {groupm} karena DDI tidak diizinkan..."
+        ]
+    },
+    "ms": {
+        "Start": [
+            "Tunggu, saya sedang memuatkan fail permulaan asas...",
+            "Sekejap, saya sedang memuatkan sistem...",
+            "Pemulaan sedang berjalan, memuatkan fail sistem..."
+        ],
+        "Granted": [
+            "Sambungan baharu pada IP:",
+            "IP yang disambungkan ke terminal:",
+            "Sambungan dibuat oleh IP:"
+        ],
+        "Refuse": [
+            "Percubaan sambungan buruk dilakukan oleh IP:",
+            "Kemungkinan penyerang dikesan pada IP:",
+            "Sambungan Gagal pada IP:"
+        ],
+        "Pass": [
+            "Untuk menukar kata laluan, jalankan arahan di bawah dalam Terminal WEB:",
+            "Tukar kata laluan anda melalui WEB menggunakan kod:",
+            "Gunakan terminal untuk menukar kata laluan anda dengan menaip:"
+        ],
+        "Safety": [
+            "Ralat sijil adalah perkara biasa pada localhost, abaikan sahaja jika ia berlaku...",
+            "Jika anda mendapat sambungan yang tidak selamat atau ralat serupa, abaikan sahaja, ia selamat...",
+            "Ralat semasa mengakses terminal adalah perkara biasa, sambungannya selamat, abaikan sahaja..."
+        ],
+        "Goodbye": [
+            "{userm} telah meninggalkan atau dilarang daripada kumpulan {groupm}..."
+        ],
+        "Welcome": [
+            "{userm} telah menyertai atau telah ditambahkan pada kumpulan {groupm}..."
+        ],
+        "Blacklist": [
+            "{userm} telah diharamkan daripada {groupm} kerana disenaraihitamkan..."
+        ],
+        "Antifake": [
+            "{userm} telah diharamkan daripada {groupm} kerana tidak mempunyai DDI dibenarkan..."
+        ]
+    },
+    "hi": {
+        "Start": [
+            "रुको, मैं बुनियादी इनिशियलाइज़ेशन फ़ाइलें लोड कर रहा हूँ...",
+            "बस एक सेकंड, मैं सिस्टम लोड कर रहा हूँ...",
+            "इनिशियलाइज़ेशन प्रगति पर है, सिस्टम फ़ाइलें लोड हो रही हैं..."
+        ],
+        "Granted": [
+            "आईपी पर नया कनेक्शन:",
+            "टर्मिनल से जुड़ा एक आईपी:",
+            "आईपी द्वारा बनाया गया कनेक्शन:"
+        ],
+        "Refuse": [
+            "आईपी द्वारा किया गया खराब कनेक्शन प्रयास:",
+            "आईपी पर संभावित हमलावर का पता चला:",
+            "आईपी पर कनेक्शन विफल:"
+        ],
+        "Pass": [
+            "पासवर्ड बदलने के लिए, वेब टर्मिनल में नीचे दी गई कमांड चलाएँ:",
+            "कोड का उपयोग करके WEB के माध्यम से अपना पासवर्ड बदलें:",
+            "टाइप करके अपना पासवर्ड बदलने के लिए टर्मिनल का उपयोग करें:"
+        ],
+        "Safety": [
+            "लोकलहोस्ट पर प्रमाणपत्र त्रुटियां आम हैं, अगर वे होती हैं तो उन्हें अनदेखा करें...",
+            "यदि आपको असुरक्षित कनेक्शन या समान त्रुटि मिलती है, तो इसे अनदेखा करें, यह सुरक्षित है...",
+            "टर्मिनल तक पहुँचने में त्रुटियाँ आम हैं, कनेक्शन सुरक्षित है, बस अनदेखा करें..."
+        ],
+        "Goodbye": [
+            "{userm} ने {groupm} समूह छोड़ दिया है या उससे प्रतिबंधित कर दिया गया है..."
+        ],
+        "Welcome": [
+            "{userm} शामिल हो गया है या समूह {groupm} में जोड़ा गया है..."
+        ],
+        "Blacklist": [
+            "{userm} को ब्लैकलिस्ट किए जाने के कारण {groupm} से प्रतिबंधित कर दिया गया था..."
+        ],
+        "Antifake": [
+            "{userm} को DDI की अनुमति नहीं होने के कारण {groupm} से प्रतिबंधित कर दिया गया था..."
+        ]
+    },
+    "de": {
+        "Start": [
+            "Warte, ich lade die grundlegenden Initialisierungsdateien...",
+            "Moment mal, ich lade die Systeme...",
+            "Initialisierung läuft, Systemdateien werden geladen..."
+        ],
+        "Granted": [
+            "Neue Verbindung auf IP:",
+            "Eine mit dem Terminal verbundene IP:",
+            "Verbindung über IP hergestellt:"
+        ],
+        "Refuse": [
+            "Fehlerhafter Verbindungsversuch von IP durchgeführt:",
+            "Möglicher Angreifer auf IP erkannt:",
+            "Verbindung auf IP fehlgeschlagen:"
+        ],
+        "Pass": [
+            "Um das Passwort zu ändern, führen Sie den folgenden Befehl im WEB-Terminal aus:",
+            "Ändern Sie Ihr Passwort über WEB mit dem Code:",
+            "Verwenden Sie das Terminal, um Ihr Passwort zu ändern, indem Sie Folgendes eingeben:"
+        ],
+        "Safety": [
+            "Zertifikatsfehler sind auf localhost üblich, ignorieren Sie sie einfach, wenn sie auftreten...",
+            "Wenn Sie eine unsichere Verbindung oder einen ähnlichen Fehler erhalten, ignorieren Sie ihn einfach, es ist sicher...",
+            "Fehler beim Zugriff auf das Terminal sind häufig, die Verbindung ist sicher, einfach ignorieren..."
+        ],
+        "Goodbye": [
+            "{userm} hat die Gruppe {groupm} verlassen oder wurde aus ihr ausgeschlossen..."
+        ],
+        "Welcome": [
+            "{userm} ist der Gruppe {groupm} beigetreten oder wurde ihr hinzugefügt..."
+        ],
+        "Blacklist": [
+            "{userm} wurde von {groupm} gesperrt, weil er auf der schwarzen Liste steht..."
+        ],
+        "Antifake": [
+            "{userm} wurde von {groupm} gesperrt, weil DDI nicht erlaubt war..."
+        ]
+    },
+    "it": {
+        "Start": [
+            "Aspetta, sto caricando i file di inizializzazione di base...",
+            "Solo un secondo, sto caricando i sistemi...",
+            "Inizializzazione in corso, caricamento file di sistema..."
+        ],
+        "Granted": [
+            "Nuova connessione su IP:",
+            "Un IP connesso al terminale:",
+            "Connessione effettuata tramite IP:"
+        ],
+        "Refuse": [
+            "Tentativo di connessione errato eseguito da IP:",
+            "Possibile aggressore rilevato su IP:",
+            "Connessione non riuscita su IP:"
+        ],
+        "Pass": [
+            "Per modificare la password, eseguire il comando seguente nel terminale WEB:",
+            "Cambia la tua password via WEB utilizzando il codice:",
+            "Usa il terminale per cambiare la tua password digitando:"
+        ],
+        "Safety": [
+            "Gli errori di certificato sono comuni su localhost, ignorali se si verificano...",
+            "Se ricevi una connessione non sicura o un errore simile, ignoralo, è sicuro...",
+            "Gli errori di accesso al terminale sono comuni, la connessione è sicura, basta ignorare..."
+        ],
+        "Goodbye": [
+            "{userm} è uscito o è stato bannato dal gruppo {groupm}..."
+        ],
+        "Welcome": [
+            "{userm} si è unito o è stato aggiunto al gruppo {groupm}..."
+        ],
+        "Blacklist": [
+            "{userm} è stato bannato da {groupm} per essere stato inserito nella blacklist..."
+        ],
+        "Antifake": [
+            "{userm} è stato bannato da {groupm} per non aver consentito il DDI..."
+        ]
+    },
+    "ru": {
+        "Start": [
+            "Подождите, я загружаю основные файлы инициализации...",
+            "Секундочку, загружаю системы...",
+            "Идет инициализация, загружаются системные файлы..."
+        ],
+        "Granted": [
+            "Новое подключение по IP:",
+            "IP-адрес, подключенный к терминалу:",
+            "Соединение установлено по IP:"
+        ],
+        "Refuse": [
+            "Неудачная попытка подключения с IP:",
+            "Возможный злоумышленник обнаружен на IP:",
+            "Ошибка подключения по IP:"
+        ],
+        "Pass": [
+            "Чтобы изменить пароль, выполните команду ниже в веб-терминале:",
+            "Измените пароль через WEB с помощью кода:",
+            "Используйте терминал, чтобы изменить свой пароль, набрав:"
+        ],
+        "Safety": [
+            "Ошибки сертификата распространены на локальном хосте, просто игнорируйте их, если они происходят...",
+            "Если вы получаете небезопасное соединение или подобную ошибку, просто игнорируйте ее, это безопасно...",
+            "Ошибки доступа к терминалу распространены, соединение защищено, просто игнорируйте..."
+        ],
+        "Goodbye": [
+            "{userm} покинул или был забанен в группе {groupm}..."
+        ],
+        "Welcome": [
+            "{userm} присоединился или был добавлен в группу {groupm}..."
+        ],
+        "Blacklist": [
+            "{userm} был забанен в {groupm} за то, что попал в черный список..."
+        ],
+        "Antifake": [
+            "{userm} был забанен в {groupm} за то, что не разрешен DDI..."
+        ]
+    },
+    "lat": {
+        "Start": [
+            "Exspecta, ego fasciculos initializationes oneratam...",
+            "Sicut a sec, ego systemata oneratam...",
+            "Initialization in progressu, lima ratio onerata..."
+        ],
+        "Granted": [
+            "Novum nexum in IP:",
+            "IP annexa terminatio:",
+            "Connexio facta ab IP:"
+        ],
+        "Refuse": [
+            "Malum nexus conatus per IP:",
+            "Percussor in IP:",
+            "Connexionem Deficio in IP:"
+        ],
+        "Pass": [
+            "Tesseram mutare, imperium currere infra in Web Terminal:",
+            "Mutare password per WEB utens codice:",
+            "Utere termino mutandi es tesserae per typing"
+        ],
+        "Safety": [
+            "Errores certificandi communes sunt in locali exercitui, sicut negligunt eos, si occurrunt...",
+            "Si nexum incertum aut similem errorem accipias, tantum ignorare, tutum est...",
+            "Errores in accessu terminali communes sunt, nexus securus, iustus ignorare..."
+        ],
+        "Goodbye": [
+            "{userm} relictum vel interdictum e grege {groupm}..."
+        ],
+        "Welcome": [
+            "{userm} sodalitati {groupm} iunxit vel adiectum est..."
+        ],
+        "Blacklist": [
+            "{userm} vetuit ab {groupm} notari..."
+        ],
+        "Antifake": [
+            "Interdictum fuit ab {groupm}, quod DDI non licet..."
+        ]
+    }
+}

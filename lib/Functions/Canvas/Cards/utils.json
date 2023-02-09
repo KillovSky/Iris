@@ -1,0 +1,294 @@
+{
+    "name": "Leveler",
+    "description": "Gera Cards de informação sobre um usuário.",
+    "usage": {
+        "general": "[RESTRITO] - Verifique o 'examples' para usos inseguros.",
+        "examples": [
+            "Leveler.env()",
+            "Leveler.level('avatar', 'XP', 'required XP', 'leve', 'rank', 'guild', 'nick', 'team')",
+            "Leveler.greets('username', 'rank', 'groupName', 'members size', 'avatar', 'event')",
+            "Leveler.reset()",
+            "Leveler.env().functions.level.value('avatar', 'XP', 'required XP', 'leve', 'rank', 'guild', 'nick', 'team')",
+            "Leveler.env().functions.greets.value('username', 'rank', 'groupName', 'members size', 'avatar', 'event')",
+            "Leveler.env().functions.revert.value()"
+        ]
+    },
+    "license": "MIT",
+    "helps": [
+        "Você pode mudar os parâmetros da exports enviando o valor da Object que deseja editar ao resetar, por exemplo → Leveler.reset({ name: 'Body'}) ← Isso mudaria o module de Tree para Body, o uso então passaria ser: → Body.funcão ← Isso também permite que você edita a função usando o mesmo método.",
+        "Você pode mudar o que os códigos rodam, em tempo real, basta usar a 'env', por exemplo → Leveler.env().name = 'Body' ← Mas este método não atualizará o sistema, somente a Object, os sistemas permanecem intactos.",
+        "Você pode configurar o tempo de reset dos resultados ou se eles devem ser resetados usando a env, por exemplo → Leveler.env().settings.wait = 10000 ← Isso mudaria o tempo de espera para 10 segundos, o tempo deve ser em milissegundos.",
+        "Alguém lê essas dicas? Se sim, torne-se um programador, ler os tutoriais é de suma importância e poucos desenvolvedores o fazem...",
+        "Existem infinitas formas de uso secretas, explore os códigos para descobrir os mistérios dos sistemas!",
+        "Todas as funções tem valores padrão, então você não sofrerá erros por esquecer de enviar um parâmetro ou similar."
+    ],
+    "exports": {
+        "env": "env",
+        "messedup": "messedup",
+        "greets": "greets",
+        "level": "level",
+        "reset": "reset",
+        "poswork": "finish"
+    },
+    "developer": "KillovSky",
+    "files": {
+        "index.js": "Sistema que gera informações de usuários em formato de imagens.",
+        "utils.json": "Dados de fábrica da envInfo."
+    },
+    "modules": {
+        "fs": "Leitura de diretórios e arquivos.",
+        "path": "Para obter o nome da pasta.",
+        "canvacord": "Fabrica as imagens."
+    },
+    "functions": {
+        "ambient": {
+            "arguments": false,
+            "description": "Retorna as variáveis e sistemas do arquivo.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "messedup": {
+            "arguments": {
+                "error": {
+                    "description": "Instância de erro para formatação.",
+                    "type": "Boolean / Error",
+                    "value": false
+                }
+            },
+            "description": "Ajusta os valores de erro.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "greets": {
+            "arguments": {
+                "userName": {
+                    "description": "Nome do usuário que utilizará o greets.",
+                    "type": "String",
+                    "value": "User"
+                },
+                "rank": {
+                    "description": "Discriminador do ranking do usuário.",
+                    "type": "String",
+                    "value": "1234"
+                },
+                "groupName": {
+                    "description": "Nome do grupo da pessoa que ativou o greets.",
+                    "type": "String",
+                    "value": "WhatsApp"
+                },
+                "members": {
+                    "description": "Quantidade atual de participantes do grupo.",
+                    "type": "Number",
+                    "value": 2
+                },
+                "avatar": {
+                    "description": "Imagem de perfil do greets.",
+                    "type": "String",
+                    "value": "https://raw.githubusercontent.com/KillovSky/Iris_Files/main/Assets/user.png"
+                },
+                "event": {
+                    "description": "Tipo de evento do greets atual.",
+                    "type": "String",
+                    "value": "add"
+                }
+            },
+            "description": "Faz um cartão de membro para quando alguém sair ou entrar de grupos.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "level": {
+            "arguments": {
+                "avatar": {
+                    "description": "Imagem de perfil do player.",
+                    "type": "String",
+                    "value": "https://raw.githubusercontent.com/KillovSky/Iris_Files/main/Assets/user.png"
+                },
+                "guild": {
+                    "description": "Nome da guilda do player.",
+                    "type": "String",
+                    "value": "WhatsApp"
+                },
+                "level": {
+                    "description": "Nivel atual do player.",
+                    "type": "Number",
+                    "value": 1
+                },
+                "nextXP": {
+                    "description": "Quantidade de XP necessária para upar de nível.",
+                    "type": "Number",
+                    "value": 1000
+                },
+                "nick": {
+                    "description": "Nome do usuário que utilizará o ranking.",
+                    "type": "String",
+                    "value": "User"
+                },
+                "rank": {
+                    "description": "Discriminador do ranking do usuário.",
+                    "type": "Number",
+                    "value": 1234
+                },
+                "team": {
+                    "description": "Posição do ranking que o usuário se encontra.",
+                    "type": "Number",
+                    "value": 1
+                },
+                "XP": {
+                    "description": "Quantidade atual de XP que o usuário possui.",
+                    "type": "Number",
+                    "value": 1
+                }
+            },
+            "description": "Constrói um cartão de jogador com detalhes dele.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "poswork": {
+            "arguments": {
+                "response": {
+                    "description": "Resultados de uma função.",
+                    "type": "Any",
+                    "value": false
+                }
+            },
+            "description": "Verifica se pode resetar a envInfo e retorna o resultado da função.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "revert": {
+            "arguments": {
+                "changeKey": {
+                    "description": "Uma Object com valores que existem na envInfo, ela será usada para substituir o sistema em tempo real.",
+                    "type": "Object value",
+                    "anyValue": false
+                }
+            },
+            "description": "Reseta a envInfo para a Object padrão.",
+            "type": "Boolean / Function",
+            "value": false
+        }
+    },
+    "settings": {
+        "wait": {
+            "description": "Tempo em MS que deve esperar antes de resetar.",
+            "type": "Number",
+            "value": 5000
+        },
+        "error": {
+            "description": "Define se pode printar qualquer erro.",
+            "type": "Boolean",
+            "value": false
+        },
+        "ender": {
+            "description": "Define se deve resetar a cada erro.",
+            "type": "Boolean",
+            "value": true
+        },
+        "finish": {
+            "description": "Define se deve resetar a cada finalização.",
+            "type": "Boolean",
+            "value": true
+        }
+    },
+    "parameters": {
+        "stockImage": {
+            "description": "Define a imagem padrão, para casos de faltar definir uma.",
+            "type": "String",
+            "value": "https://raw.githubusercontent.com/KillovSky/Iris_Files/main/Assets/user.png"
+        },
+        "leveling": {
+            "description": "Define as opções de design padrão.",
+            "type": "Object",
+            "value": {
+                "profile": "https://raw.githubusercontent.com/KillovSky/Iris_Files/main/Assets/user.png",
+                "username": "#D2E6FA",
+                "useEmojis": true,
+                "status": "#23087D",
+                "discriminator": "#50B33A",
+                "background": {
+                    "image": "https://user-images.githubusercontent.com/55511420/200402294-51d85a0b-c405-4cfa-b316-db651dd00e7e.jpg",
+                    "format": "IMAGE"
+                },
+                "level": {
+                    "name": "#D2E6FA",
+                    "value": "#50B33A"
+                },
+                "overlay": {
+                    "color": "#151E29",
+                    "opacity": 0.4,
+                    "enable": true
+                },
+                "progress": {
+                    "colorEnd": "#00008B",
+                    "colorStart": "#C200C1",
+                    "type": "GRADIENT",
+                    "rounded": true,
+                    "track": "#D2E6FA"
+                },
+                "rank": {
+                    "name": "#D2E6FA",
+                    "value": "#50B33A",
+                    "enable": true
+                },
+                "XP": {
+                    "needed": "#50B33A",
+                    "almost": "#F0DA53",
+                    "smaller": "#F05353"
+                }
+            }
+        },
+        "greetings": {
+            "description": "Define a imagem padrão de erro.",
+            "type": "Object",
+            "value": {
+                "welcome": {
+                    "apply": true,
+                    "title": "BEM VINDO",
+                    "chat": "",
+                    "members": "VOCÊ É O MEMBRO N° {count}"
+                },
+                "goodbye": {
+                    "apply": true,
+                    "title": "ADEUS",
+                    "chat": "",
+                    "members": "ELE/A FOI O MEMBRO N° {count}"
+                },
+                "contColor": "#0047ab",
+                "borderColor": "#000000",
+                "nameColor": "#0047ab",
+                "discColor": "#0047ab",
+                "hashtagColor": "#1F51FF",
+                "titleColor": "#0047ab",
+                "userOpacity": "0.5",
+                "discOpacity": "0.5",
+                "borderOpacity": "0.4"
+            }
+        },
+        "baseImage": {
+            "description": "Quantas tentativas deve fazer para obter uma imagem, caso ocorra erro, a URL acima é usada.",
+            "type": "String",
+            "value": "data:image/gif;base64,R0lGODlhAQABAAAAACw="
+        },
+        "location": {
+            "description": "Local onde o módulo pode ser encontrado.",
+            "type": "Boolean / String",
+            "value": "./index"
+        },
+        "code": {
+            "description": "Código do erro que obter.",
+            "type": "Boolean / String / Number",
+            "value": false
+        },
+        "message": {
+            "description": "Armazena a mensagem do último erro recebido.",
+            "type": "Boolean / String",
+            "value": false
+        }
+    },
+    "results": {
+        "description": "Resultado final da função.",
+        "success": true,
+        "type": "Any",
+        "value": false
+    }
+}

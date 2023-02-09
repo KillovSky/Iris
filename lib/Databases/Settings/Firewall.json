@@ -1,0 +1,10 @@
+{
+	"Max_Product": 10,
+	"Max_Vcard_Size": 1000,
+	"Max_Contacts": 10,
+	"Max_Characters": 3000,
+	"Max_Doc_Size": 500,
+	"Porn_Percent": 85,
+	"Block": true,
+	"Mention_Admins": true
+}

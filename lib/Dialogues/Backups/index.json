@@ -1,0 +1,206 @@
+{
+    "pt": {
+        "Start": [
+            "Iniciando a tarefa de backup...",
+            "O Backup começou a executar...",
+            "Estou fazendo um backup..."
+        ],
+        "Error": [
+            "O Backup obteve problemas, ignore se desejar...",
+            "Algo de errado aconteceu nos Backups...",
+            "Os Backups não puderam ser feitos por algum problema..."
+        ],
+        "Success": [
+            "Um Backup dos arquivos foi feito com sucesso!",
+            "Realizei o Backup de segurança!",
+            "O backup foi feito sem problemas!"
+        ]
+    },
+    "jp": {
+        "Start": [
+            "バックアップタスクを開始しています...",
+            "バックアップの実行が開始されました...",
+            "バックアップしてます…"
+        ],
+        "Error": [
+            "バックアップに問題がありました。必要に応じて無視してください...",
+            "バックアップで問題が発生しました...",
+            "問題が発生したため、バックアップを作成できませんでした..."
+        ],
+        "Success": [
+            "ファイルのバックアップが正常に作成されました!",
+            "セキュリティバックアップを実行しました!",
+            "バックアップがうまくいきました!"
+        ]
+    },
+    "en": {
+        "Start": [
+            "Starting backup task...",
+            "Backup has started running...",
+            "I'm making a backup..."
+        ],
+        "Error": [
+            "Backup had problems, ignore if you wish...",
+            "Something went wrong with the Backups...",
+            "Backups could not be made due to some problem..."
+        ],
+        "Success": [
+            "A backup of the files was made successfully!",
+            "I performed the security backup!",
+            "The backup ran without a hitch!"
+        ]
+    },
+    "fr": {
+        "Start": [
+            "Démarrage de la tâche de sauvegarde...",
+            "La sauvegarde a commencé à s'exécuter...",
+            "Je fais une sauvegarde..."
+        ],
+        "Error": [
+            "La sauvegarde a eu des problèmes, ignorez si vous le souhaitez...",
+            "Quelque chose s'est mal passé avec les sauvegardes...",
+            "Les sauvegardes n'ont pas pu être effectuées en raison d'un problème..."
+        ],
+        "Success": [
+            "Une sauvegarde des fichiers a été effectuée avec succès !",
+            "J'ai effectué la sauvegarde de sécurité !",
+            "La sauvegarde s'est déroulée sans accroc !"
+        ]
+    },
+    "es": {
+        "Start": [
+            "Iniciando tarea de copia de seguridad...",
+            "La copia de seguridad ha comenzado a ejecutarse...",
+            "Estoy haciendo una copia de seguridad..."
+        ],
+        "Error": [
+            "La copia de seguridad tuvo problemas, ignóralos si lo deseas...",
+            "Algo salió mal con las copias de seguridad...",
+            "No se pudieron hacer copias de seguridad debido a algún problema..."
+        ],
+        "Success": [
+            "Se realizó correctamente una copia de seguridad de los archivos!",
+            "Realicé la copia de seguridad de seguridad!",
+            "La copia de seguridad funcionó sin problemas!"
+        ]
+    },
+    "id": {
+        "Start": [
+            "Memulai pekerjaan pencadangan...",
+            "Pencadangan sudah mulai berjalan...",
+            "Aku membuat cadangan..."
+        ],
+        "Error": [
+            "Cadangan mengalami kesalahan, abaikan jika Anda mau...",
+            "Ada yang salah dengan pencadangan...",
+            "Tidak dapat mencadangkan karena beberapa masalah..."
+        ],
+        "Success": [
+            "Cadangan berjalan lancar!",
+            "Oke, saya membuat cadangan!",
+            "Pencadangan bekerja dengan sempurna!"
+        ]
+    },
+    "ms": {
+        "Start": [
+            "Memulakan tugas sandaran...",
+            "Sandaran telah mula berjalan...",
+            "Saya sedang melakukan sandaran..."
+        ],
+        "Error": [
+            "Sandaran mempunyai masalah, abaikan jika anda mahu...",
+            "Sesuatu telah berlaku dengan Sandaran...",
+            "Sandaran tidak dapat dibuat kerana beberapa masalah..."
+        ],
+        "Success": [
+            "Sandaran fail telah berjaya dibuat!",
+            "Saya melakukan sandaran keselamatan!",
+            "Sandaran berjalan tanpa halangan!"
+        ]
+    },
+    "hi": {
+        "Start": [
+            "बैकअप कार्य प्रारंभ हो रहा है...",
+            "बैकअप शुरू हो गया...",
+            "मैं एक बैकअप बना रहा हूँ ..."
+        ],
+        "Error": [
+            "बैकअप में समस्या थी, अगर आप चाहें तो नज़रअंदाज़ करें ...",
+            "बैकअप के साथ कुछ गलत हो गया...",
+            "किसी समस्या के कारण बैकअप नहीं बनाया जा सका..."
+        ],
+        "Success": [
+            "फ़ाइलों का सफलतापूर्वक बैकअप लिया गया!",
+            "मैंने एक सुरक्षा बैकअप बनाया!",
+            "बैकअप बिना किसी रोक-टोक के चला गया!"
+        ]
+    },
+    "de": {
+        "Start": [
+            "Sicherungsaufgabe wird gestartet...",
+            "Sicherung hat begonnen zu laufen...",
+            "Ich führe ein Backup durch..."
+        ],
+        "Error": [
+            "Sicherung hatte Probleme, ignorieren, wenn Sie möchten...",
+            "Etwas ist mit den Backups schief gelaufen...",
+            "Aufgrund eines Problems konnten keine Sicherungen erstellt werden..."
+        ],
+        "Success": [
+            "Ein Backup der Dateien wurde erfolgreich erstellt!",
+            "Ich habe das Sicherheits-Backup durchgeführt!",
+            "Das Backup lief reibungslos!"
+        ]
+    },
+    "it": {
+        "Start": [
+            "Avvio attività di backup...",
+            "Il backup ha iniziato a funzionare...",
+            "Sto facendo un backup..."
+        ],
+        "Error": [
+            "Il backup ha avuto problemi, ignora se lo desideri...",
+            "Qualcosa è andato storto con i backup...",
+            "Non è stato possibile eseguire i backup a causa di un problema..."
+        ],
+        "Success": [
+            "Un backup dei file è stato eseguito correttamente!",
+            "Ho eseguito con successo un backup!",
+            "Il backup è stato eseguito senza intoppi!"
+        ]
+    },
+    "ru": {
+        "Start": [
+            "Запуск задачи резервного копирования...",
+            "Резервное копирование запущено...",
+            "Я делаю резервную копию..."
+        ],
+        "Error": [
+            "При резервном копировании возникли проблемы, игнорируйте, если хотите...",
+            "Что-то пошло не так с резервными копиями...",
+            "Резервные копии не могут быть созданы из-за какой-то проблемы..."
+        ],
+        "Success": [
+            "Резервное копирование файлов успешно выполнено!",
+            "Я выполнил резервное копирование безопасности!",
+            "Резервное копирование прошло без сучка и задоринки!"
+        ]
+    },
+    "lat": {
+        "Start": [
+            "Satus tergum file negotium...",
+            "Tergum file est cucurrisse...",
+            "Tergum file facio... "
+        ],
+        "Error": [
+            "Tergum file habuit problemata, ignorare si vis...",
+            "Aliquid in Tergum file abiit iniuriam...",
+            "Tergum file non potuit fieri propter aliquam quaestionem..."
+        ],
+        "Success": [
+            "Tergum file lima feliciter factum est!",
+            "Tergum file securitatem feci!",
+            "Currebat tergum file sine Crispi!"
+        ]
+    }
+}

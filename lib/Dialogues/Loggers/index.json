@@ -1,0 +1,146 @@
+{
+    "pt": {
+        "Error": [
+            "A função obteve erros, ignorando...",
+            "Algum erro ocorreu, ignorando...",
+            "Essa função deu algum erro, pulando..."
+        ],
+        "Done": [
+            "A função foi executada com sucesso, prosseguindo...",
+            "Função finalizada, prosseguindo...",
+            "Tudo certo, continuando execução..."
+        ]
+    },
+    "jp": {
+        "Error": [
+            "関数でエラーが発生しました。無視します...",
+            "エラーが発生しました。無視します...",
+            "この関数でエラーが発生しました。スキップしています..."
+        ],
+        "Done": [
+            "関数は正常に実行されました。続行します...",
+            "関数は終了しました。続行します...",
+            "よし、処刑続行……"
+        ]
+    },
+    "en": {
+        "Error": [
+            "Function got errors, ignoring...",
+            "An error occurred, ignoring...",
+            "This function gave some error, skipping..."
+        ],
+        "Done": [
+            "The function was executed successfully, continuing...",
+            "Function finished, continuing...",
+            "All right, continuing execution..."
+        ]
+    },
+    "fr": {
+        "Error": [
+            "La fonction a des erreurs, ignorant...",
+            "Une erreur s'est produite, ignorer...",
+            "Cette fonction a donné une erreur, saute..."
+        ],
+        "Done": [
+            "Fonction exécutée avec succès, continuez...",
+            "Fonction terminée, continuez...",
+            "Très bien, l'exécution continue..."
+        ]
+    },
+    "es": {
+        "Error": [
+            "La función tiene errores, ignorando...",
+            "Ocurrió un error, ignorando...",
+            "Esta función dio un error, omitiendo..."
+        ],
+        "Done": [
+            "La función se ejecutó con éxito, continuando...",
+            "Función finalizada, continuando...",
+            "Todo bien, continuando con la ejecución..."
+        ]
+    },
+    "id": {
+        "Error": [
+            "Fungsi mendapat kesalahan, mengabaikan...",
+            "Terjadi kesalahan, mengabaikan...",
+            "Fungsi ini memberikan beberapa kesalahan, melewatkan ..."
+        ],
+        "Done": [
+            "Fungsi berhasil dijalankan, melanjutkan...",
+            "Fungsi selesai, melanjutkan...",
+            "Baiklah, melanjutkan eksekusi..."
+        ]
+    },
+    "ms": {
+        "Error": [
+            "Fungsi mendapat ralat, mengabaikan...",
+            "Ralat berlaku, mengabaikan...",
+            "Fungsi ini memberikan sedikit ralat, melangkau..."
+        ],
+        "Done": [
+            "Fungsi telah dilaksanakan dengan jayanya, meneruskan...",
+            "Fungsi selesai, diteruskan...",
+            "Baiklah, meneruskan pelaksanaan..."
+        ]
+    },
+    "hi": {
+        "Error": [
+            "फ़ंक्शन में त्रुटियां हैं, अनदेखा कर रहा है...",
+            "एक त्रुटि हुई, अनदेखी...",
+            "इस फ़ंक्शन ने कुछ त्रुटि दी, स्किप किया जा रहा है..."
+        ],
+        "Done": [
+            "फ़ंक्शन सफलतापूर्वक निष्पादित किया गया था, जारी है ...",
+            "कार्य समाप्त, जारी ...",
+            "ठीक है, आगे बढ़ते हैं..."
+        ]
+    },
+    "de": {
+        "Error": [
+            "Funktion hat Fehler, ignoriert...",
+            "Ein Fehler ist aufgetreten, ich ignoriere...",
+            "Diese Funktion hat einen Fehler verursacht, sie wurde übersprungen..."
+        ],
+        "Done": [
+            "Die Funktion wurde erfolgreich abgeschlossen, weiter...",
+            "Funktion beendet, wird fortgesetzt...",
+            "In Ordnung, weiter geht's..."
+        ]
+    },
+    "it": {
+        "Error": [
+            "La funzione ha ricevuto errori, ignorando...",
+            "Si è verificato un errore, ignorando...",
+            "Questa funzione ha dato qualche errore, saltando..."
+        ],
+        "Done": [
+            "La funzione è stata eseguita correttamente, continuando...",
+            "Funzione terminata, continuazione...",
+            "Va bene, continuando l'esecuzione..."
+        ]
+    },
+    "ru": {
+        "Error": [
+            "У функции есть ошибки, игнорирование...",
+            "Произошла ошибка, игнорирование...",
+            "Эта функция выдала какую-то ошибку, пропуская..."
+        ],
+        "Done": [
+            "Функция выполнена успешно, продолжается...",
+            "Функция завершена, продолжается...",
+            "Хорошо, продолжаю казнь..."
+        ]
+    },
+    "lat": {
+        "Error": [
+            "Munus errores obtinuit, ignorans...",
+            "Error occurrit, ignorans...",
+            " Hoc munus errori omissis quidam dedit..."
+        ],
+        "Actum": [
+            "Munus feliciter peractum est, continuans...",
+            "Munus peractum est, continuans...",
+            "Licet, continuata executione..."
+        ]
+    }
+}

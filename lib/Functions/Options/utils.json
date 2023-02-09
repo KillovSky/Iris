@@ -1,0 +1,278 @@
+{
+    "name": "Ambient",
+    "description": "Gera as opções de inicialização da wa-automate.",
+    "usage": {
+        "general": "[RESTRITO] - Verifique o 'examples' para usos inseguros.",
+        "examples": [
+            "Ambient.env()",
+            "Ambient.create()",
+            "Ambient.env().functions.create.value()",
+            "Ambient.env().functions.revert.value()"
+        ]
+    },
+    "license": "MIT",
+    "helps": [
+        "Você pode mudar os parâmetros da exports enviando o valor da Object que deseja editar ao resetar, por exemplo → Ambient.reset({ name: 'Body'}) ← Isso mudaria o module de Tree para Body, o uso então passaria ser: → Body.funcão ← Isso também permite que você edita a função usando o mesmo método.",
+        "Você pode mudar o que os códigos rodam, em tempo real, basta usar a 'env', por exemplo → Ambient.env().name = 'Body' ← Mas este método não atualizará o sistema, somente a Object, os sistemas permanecem intactos.",
+        "Você pode configurar o tempo de reset dos resultados ou se eles devem ser resetados usando a env, por exemplo → Ambient.env().settings.wait = 10000 ← Isso mudaria o tempo de espera para 10 segundos, o tempo deve ser em milissegundos.",
+        "Alguém lê essas dicas? Se sim, torne-se um programador, ler os tutoriais é de suma importância e poucos desenvolvedores o fazem...",
+        "Existem infinitas formas de uso secretas, explore os códigos para descobrir os mistérios dos sistemas!",
+        "Todas as funções tem valores padrão, então você não sofrerá erros por esquecer de enviar um parâmetro ou similar."
+    ],
+    "exports": {
+        "env": "env",
+        "messedup": "messedup",
+        "create": "create",
+        "exit": "exit",
+        "reset": "reset",
+        "poswork": "finish"
+    },
+    "developer": "KillovSky",
+    "files": {
+        "index.js": "Sistema que permite obter os parâmetros de inicialização.",
+        "utils.json": "Dados de fábrica da envInfo."
+    },
+    "modules": {
+        "fs": "Leitura de diretórios e arquivos.",
+        "path": "Para obter o nome da pasta.",
+        "../../../index": "Para rodar funções de outros arquivos."
+    },
+    "functions": {
+        "ambient": {
+            "arguments": false,
+            "description": "Retorna as variáveis e sistemas do arquivo.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "exit": {
+            "arguments": false,
+            "description": "Função substituta para reinicio, JAMAIS USE EM PLENO FUNCIONAMENTO, ISSO DESLIGARÁ A IRIS!!!",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "messedup": {
+            "arguments": {
+                "error": {
+                    "description": "Instância de erro para formatação.",
+                    "type": "Boolean / Error",
+                    "value": false
+                }
+            },
+            "description": "Ajusta os valores de erro.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "create": {
+            "arguments": {
+                "kill": {
+                    "description": "Função de execução raiz da Íris, permite enviar mensagens e tudo mais.",
+                    "type": "Object",
+                    "value": {}
+                }
+            },
+            "description": "Faz a alteração do status conforme o dono configurar no comando.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "poswork": {
+            "arguments": {
+                "response": {
+                    "description": "Resultados de uma função.",
+                    "type": "Any",
+                    "value": false
+                }
+            },
+            "description": "Verifica se pode resetar a envInfo e retorna o resultado da função.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "revert": {
+            "arguments": {
+                "changeKey": {
+                    "description": "Uma Object com valores que existem na envInfo, ela será usada para substituir o sistema em tempo real.",
+                    "type": "Object value",
+                    "anyValue": false
+                }
+            },
+            "description": "Reseta a envInfo para a Object padrão.",
+            "type": "Boolean / Function",
+            "value": false
+        }
+    },
+    "settings": {
+        "wait": {
+            "description": "Tempo em MS que deve esperar antes de resetar.",
+            "type": "Number",
+            "value": 5000
+        },
+        "error": {
+            "description": "Define se pode printar qualquer erro.",
+            "type": "Boolean",
+            "value": false
+        },
+        "ender": {
+            "description": "Define se deve resetar a cada erro.",
+            "type": "Boolean",
+            "value": true
+        },
+        "finish": {
+            "description": "Define se deve resetar a cada finalização.",
+            "type": "Boolean",
+            "value": true
+        }
+    },
+    "parameters": {
+        "settings": {
+            "description": "Opcões de inicialização.",
+            "type": "Object",
+            "value": {
+                "chromePath": {
+                    "darwin": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+                    "linuxChrome": "/usr/bin/google-chrome",
+                    "linuxChromeStable": "/usr/bin/google-chrome-stable",
+                    "win32": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+                    "win64": "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
+                },
+                "unsafeOptions": [
+                    "aggressiveGarbageCollection",
+                    "blockAssets",
+                    "skipBrokenMethodsCheck",
+                    "useStealth",
+                    "chromiumArgs",
+                    "ensureHeadfulIntegrity",
+                    "idCorrection",
+                    "ignoreNuke",
+                    "keepUpdated",
+                    "legacy",
+                    "skipBrokenMethodsCheck"
+                ],
+                "chromeOptions": {
+                    "enableOptions": false,
+                    "forcedMode": false,
+                    "defaultArgs": [
+                        "--aggressive-cache-discard",
+                        "--aggressive-tab-discard",
+                        "--disable-accelerated-2d-canvas",
+                        "--disable-application-cache",
+                        "--disable-cache",
+                        "--disable-dev-shm-usage",
+                        "--disable-gpu",
+                        "--disable-offline-load-stale-cache",
+                        "--disable-setuid-sandbox",
+                        "--disk-cache-size=0",
+                        "--ignore-certificate-errors",
+                        "--no-first-run",
+                        "--no-sandbox",
+                        "--no-zygote"
+                    ],
+                    "safeArgs": [
+                        "--no-sandbox",
+                        "--disable-setuid-sandbox",
+                        "--aggressive-cache-discard",
+                        "--disable-cache",
+                        "--disable-gl-drawing-for-tests",
+                        "--disable-application-cache",
+                        "--disable-offline-load-stale-cache",
+                        "--disk-cache-size=0"
+                    ]
+                },
+                "sessionSettings": {
+                    "comment": "LEIA PARA CONFIGURAR CORRETAMENTE, MÁ CONFIGURAÇÃO POSSUI RISCOS! - Local das explicações de configuração -> https://docs.openwa.dev/interfaces/apimodelconfig.ConfigObject.html",
+                    "aggressiveGarbageCollection": "Opcional | True | False",
+                    "authTimeout": "Opcional | Number",
+                    "autoEmoji": "Opcional",
+                    "blockAssets": "Opcional | True | False",
+                    "blockCrashLogs": "Opcional | True | False",
+                    "browserRevision": "Opcional | Number",
+                    "bypassCSP": "Opcional | True | False",
+                    "cachedPatch": "Opcional | True | False",
+                    "cacheEnabled": "Opcional | True | False",
+                    "callTimeout": "Opcional | Number",
+                    "corsFix": "Opcional | True | False",
+                    "customUserAgent": "Opcional",
+                    "deleteSessionDataOnLogout": "Opcional | True | False",
+                    "devTools": "Opcional | True | False",
+                    "disableSpins": true,
+                    "discordID": "Opcional",
+                    "ensureHeadfulIntegrity": "Opcional | True | False",
+                    "eventMode": "Opcional | True | False",
+                    "executablePath": "INSIRA O LOCAL DO EXECUTAVEL DO CHROME",
+                    "ezQR": "Opcional | True | False",
+                    "ghPatch": "Opcional | True | False",
+                    "headless": "Opcional | True | False",
+                    "hostNotificationLang": "PTBR",
+                    "idCorrection": "Opcional | True | False",
+                    "ignoreNuke": "Opcional | True | False",
+                    "keepUpdated": "Opcional | True | False",
+                    "killClientOnBrowserClose": "Opcional | True | False",
+                    "killClientOnLogout": "Opcional | True | False",
+                    "killClientOnTimeout": "Opcional | True | False",
+                    "legacy": "Opcional | True | False",
+                    "logConsole": "Opcional | True | False",
+                    "logConsoleErrors": "Opcional | True | False",
+                    "logFile": "Opcional | True | False",
+                    "logDebugInfoAsObject": "Opcional | True | False",
+                    "maxChats": "Opcional | Number",
+                    "maxMessages": "Opcional | Number",
+                    "qrMax": "Opcional | Number",
+                    "multiDevices": true,
+                    "popupPort": "Opcional | Number",
+                    "popup": "Opcional | True | False",
+                    "qrFormat": "Opcional | String",
+                    "qrLogSkip": "Opcional | True | False",
+                    "qrPopUpOnly": "Opcional | True | False",
+                    "qrQuality": "Opcional | Number",
+                    "qrTimeout": "Opcional | Number",
+                    "raspi": "Opcional | True | False",
+                    "resizable": "Opcional | True | False",
+                    "restartOnCrash": "Opcional | True | False",
+                    "safeMode": "Opcional | True | False",
+                    "screenshotError": "Opcional | True | False",
+                    "useCustomSessionPath": true,
+                    "sessionDataPath": "./lib/Sessions",
+                    "useCustomSessionID": true,
+                    "sessionID": [
+                        "Iris_Login_QR"
+                    ],
+                    "skipBrokenMethodsCheck": "Opcional | True | False",
+                    "skipSessionSave": "Opcional | True | False",
+                    "skipUpdateCheck": "Opcional | True | False",
+                    "useStealth": "Opcional | True | False",
+                    "useCustomStickerServer": "Opcional | True | False",
+                    "stickerServerEndpoint": "https://sticker-api.openwa.dev",
+                    "throwErrorOnTosBlock": "Opcional | True | False",
+                    "throwOnExpiredSessionData": "Opcional | True | False",
+                    "useCustomDataDir": true,
+                    "useChrome": true,
+                    "useNativeProxy": "Opcional | True | False",
+                    "viewPortHeight": 0,
+                    "viewPortWidth": 0,
+                    "waitForRipeSession": "Opcional | True | False",
+                    "licenseKey": "Opcional",
+                    "comment2": "KEY opcional pois não usamos os recursos pagos, por mais interessantes que eles sejam..."
+                }
+            }
+        },
+        "location": {
+            "description": "Local onde o módulo pode ser encontrado.",
+            "type": "Boolean / String",
+            "value": "./index"
+        },
+        "code": {
+            "description": "Código do erro que obter.",
+            "type": "Boolean / String / Number",
+            "value": false
+        },
+        "message": {
+            "description": "Armazena a mensagem do último erro recebido.",
+            "type": "Boolean / String",
+            "value": false
+        }
+    },
+    "results": {
+        "description": "Resultado final da função.",
+        "success": true,
+        "type": "Object",
+        "value": false
+    }
+}

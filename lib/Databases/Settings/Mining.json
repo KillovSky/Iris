@@ -1,0 +1,10 @@
+{
+	"Mining_Time": 1,
+	"Mining_Rate_Win": 1.5,
+	"Diamond_Rarity": 8,
+	"Rubi_Rarity": 6,
+	"Gold_Rarity": 4,
+	"Iron_Rarity": 3,
+	"Stone_Rarity": 2,
+	"Min_Mining_Win": 100
+}

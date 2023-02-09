@@ -1,0 +1,398 @@
+{
+    "pt": {
+        "Start": [
+            "Meus comandos estão prontos para serem utilizados!",
+            "Estou online, pronta para ajudar todos vocês!",
+            "A inicialização foi concluída, já podem usar meus comandos!"
+        ],
+        "Status": [
+            "Olá, a mensagem de status que pediram pra eu usar ao ligar é muito grande, podem chamar meu dono e avisar que o limite são 250 letras? Obrigadaa!",
+            "Oi, não consigo mudar meu recado pois a mensagem passou de 250 letras, podem avisar meu dono para ele arrumar isso? Grataa!"
+        ],
+        "Choice": [
+            "Escolha uma das opções abaixo ou digite '{first}', '{two}' ou '{three}' no grupo, antes que o tempo acabe [{time} minutos]"
+        ],
+        "ButtonStop": [
+            "Caso isto não seja o valor que você desejava, clique em '{three}'."
+        ],
+        "Continue": [
+            "Entendido, aguarde que eu finalize o resto das tarefas, não utilize novamente até que eu termine o atual, obrigada!"
+        ],
+        "Cancel": [
+            "Você escolheu cancelar este comando, se mudar de ideia é só me procurar novamente."
+        ],
+        "Wait": [
+            "Peço que aguarde, os comandos são verificados em vários sistemas, para evitar que sofram erros, por isso é comum que demorem, se puder esperar finalizar antes de usar novamente, serei muito grataa!",
+            "Entendido amore, até lá, espere enquanto faço isso, pode demorar um pouquinho, por isso, evite usar comandos demorados ou pesados até terminar, obrigadaa por esperar! <3"
+        ],
+        "Defined": [
+            "Esse comando já está configurado com o valor desejado, não é necessário usar o comando novamente."
+        ],
+        "Finished": [
+            "O comando terminou de rodar, não houveram problemas aparentes, então o que você pediu deve ter sido realizado com sucesso!"
+        ]
+    },
+    "jp": {
+        "Start": [
+            "私のコマンドを使用する準備ができました!",
+            "オンラインになりました。皆さんを助ける準備ができています!",
+            "初期化が完了しました。私のコマンドを使用できるようになりました!"
+        ],
+        "Status": [
+            "こんにちは。通話時に使用するように求められたステータス メッセージが長すぎます。所有者に電話して、制限が 250 文字であることを知らせてもらえますか?ありがとう!",
+            "こんにちは、メッセージが 250 文字を超えているため、メッセージを変更できません。修正できるように、所有者に知らせてもらえますか? ありがとうございます!"
+        ],
+        "Choice": [
+            "タイマーが切れる前に、以下のオプションのいずれかを選択するか、'{first}', '{two}', または '{three}' をグループに入力してください [{time} 分]"
+        ],
+        "ButtonStop": [
+            "これが希望の値でない場合は '{three}' をクリックしてください。"
+        ],
+        "Continue": [
+            "わかりました。残りのタスクを完了するまで待ってください。現在のタスクを完了するまで、二度と使用しないでください。ありがとう!"
+        ],
+        "Cancel": [
+            "このコマンドをキャンセルすることを選択しました。気が変わった場合は、もう一度私に連絡してください。"
+        ],
+        "Wait": [
+            "お待ちください。コマンドはいくつかのシステムでチェックされ、エラーが発生するのを防ぎます。そのため、しばらく時間がかかるのが一般的です。完了するまで待ってから再度使用してください。非常に感謝します!",
+            "了解しました。それまでは、これを行うまでお待ちください。少し時間がかかる場合があります。完了するまで、長いコマンドや面倒なコマンドを使用しないでください。お待たせしました! <3"
+        ],
+        "Defined": [
+            "このコマンドは既に目的の値に設定されています。コマンドを再度使用する必要はありません。"
+        ],
+        "Finished": [
+            "コマンドの実行が終了しました。明らかな問題はなかったので、要求したことは正常に実行されたに違いありません!"
+        ]
+    },
+    "en": {
+        "Start": [
+            "My commands are ready to be used!",
+            "I'm online, ready to help you all!",
+            "Initialization is complete, you can use my commands now!"
+        ],
+        "Status": [
+            "Hello, the status message they asked me to use when calling is too long, can you call my owner and let him know that the limit is 250 letters? Thankss!",
+            "Hi, I can't change my message because the message has exceeded 250 letters, can you let my owner know so he can fix it? Grateful!"
+        ],
+        "Choice": [
+            "Choose one of the options below or type '{first}', '{two}' or '{three}' into the group before the timer expires [{time} minutes]"
+        ],
+        "ButtonStop": [
+            "If this is not the value you wanted, click '{three}'."
+        ],
+        "Continue": [
+            "Understood, wait for me to finish the rest of the tasks, don't use again until I finish the current one, thanks!"
+        ],
+        "Cancel": [
+            "You chose to cancel this command, if you change your mind, just contact me again."
+        ],
+        "Wait": [
+            "I ask you to wait, the commands are checked on several systems, to prevent them from suffering errors, so it is common for them to take a while, if you can wait to finish before using them again, I will be very grateful!",
+            "Understood amore, until then, wait while I do this, it might take a little while, so please avoid using lengthy or cumbersome commands until I'm done, thanks for waiting! <3"
+        ],
+        "Defined": [
+            "This command is already set to the desired value, no need to use the command again."
+        ],
+        "Finished": [
+            "The command finished running, there were no apparent problems, so what you asked for must have been done successfully!"
+        ]
+    },
+    "fr": {
+        "Start": [
+            "Mes commandes sont prêtes à être utilisées!",
+            "Je suis en ligne, prêt à vous aider!",
+            "L'initialisation est terminée, vous pouvez utiliser mes commandes maintenant!"
+        ],
+        "Status": [
+            "Bonjour, le message d'état qu'ils m'ont demandé d'utiliser lors de l'appel est trop long, pouvez-vous appeler mon propriétaire et me faire savoir que la limite est de 250 lettres ? Merci !",
+            "Bonjour, je ne peux pas modifier mon message car le message a dépassé 250 lettres, pouvez-vous en informer mon propriétaire afin qu'il puisse le corriger ? Merci !"
+        ],
+        "Choice": [
+            "Choisissez l'une des options ci-dessous ou tapez '{first}', '{two}' ou '{three}' dans le groupe avant que le minuteur n'expire [{time} minutes]"
+        ],
+        "ButtonStop": [
+            "Si ce n'est pas la valeur que vous vouliez, cliquez sur '{three}'."
+        ],
+        "Continue": [
+            "Compris, attendez que je finisse le reste des tâches, ne réutilisez pas tant que je n'ai pas terminé celle en cours, merci!"
+        ],
+        "Cancel": [
+            "Vous avez choisi d'annuler cette commande, si vous changez d'avis, recontactez-moi."
+        ],
+        "Wait": [
+            "Je vous demande d'attendre, les commandes sont vérifiées sur plusieurs systèmes, pour éviter qu'elles ne souffrent d'erreurs, il est donc courant qu'elles prennent un certain temps, si vous pouvez attendre de terminer avant de les utiliser à nouveau, je sera très reconnaissant !",
+            "Je comprends mieux, jusque-là, attendez pendant que je fais cela, cela peut prendre un peu de temps, alors évitez d'utiliser des commandes longues ou fastidieuses jusqu'à ce que j'aie terminé, merci d'avoir attendu ! <3"
+        ],
+        "Defined": [
+            "Cette commande est déjà définie sur la valeur souhaitée, pas besoin d'utiliser à nouveau la commande."
+        ],
+        "Finished": [
+            "La commande a fini de s'exécuter, il n'y avait aucun problème apparent, donc ce que vous avez demandé doit avoir été fait avec succès!"
+        ]
+    },
+    "es": {
+        "Start": [
+            "Mis comandos están listos para usarse!",
+            "Estoy en línea, listo para ayudarlos a todos!",
+            "La inicialización está completa, pueden usar mis comandos ahora!"
+        ],
+        "Status": [
+            "Hola, el mensaje de estado que me pidieron que usara al llamar es demasiado largo, puedes llamar a mi dueño y decir que el límite es de 250 letras? Graciass!",
+            "Hola, no puedo cambiar mi mensaje porque el mensaje ha excedido las 250 letras, puedes avisar a mi dueño para que lo arregle? Graciass!"
+        ],
+        "Choice": [
+            "Elija una de las opciones a continuación o escriba '{first}', '{two}' o '{three}' en el grupo antes de que expire el temporizador [{time} minutos]"
+        ],
+        "ButtonStop": [
+            "Si este no es el valor que desea, haga clic en '{three}'."
+        ],
+        "Continue": [
+            "Entendido, espera a que termine el resto de las tareas, no vuelvas a usar hasta que termine la actual, gracias!"
+        ],
+        "Cancel": [
+            "Elegiste cancelar este comando, si cambias de opinión, solo contáctame de nuevo."
+        ],
+        "Wait": [
+            "Te pido que esperes, los comandos están revisados ​​en varios sistemas, para evitar que sufran errores, por lo que es común que tarden un poco, si puedes esperar a que terminen antes de volver a usarlos, yo ¡Estaré muy agradecido!",
+            "Entendido amore, hasta entonces, espera mientras hago esto, podría tomar un poco de tiempo, así que evita usar comandos largos o engorrosos hasta que termine, ¡gracias por esperar! <3"
+        ],
+        "Defined": [
+            "Este comando ya está configurado en el valor deseado, no es necesario volver a usar el comando."
+        ],
+        "Finished": [
+            "El comando terminó de ejecutarse, no hubo problemas aparentes, así que lo que pediste debe haberse hecho con éxito!"
+        ]
+    },
+    "id": {
+        "Start": [
+            "Perintah saya siap digunakan!",
+            "Saya online, siap membantu Anda semua!",
+            "Inisialisasi selesai, Anda dapat menggunakan perintah saya sekarang!"
+        ],
+        "Status": [
+            "Halo, pesan status yang mereka minta saya gunakan saat menelepon terlalu panjang, bisakah Anda menelepon pemilik saya dan memberi tahu saya bahwa batasnya adalah 250 huruf? Terima kasih!",
+            "Hai, saya tidak dapat mengubah pesan saya karena pesannya telah melebihi 250 huruf, dapatkah Anda memberi tahu pemilik saya agar dia dapat memperbaikinya? Terima kasih!"
+        ],
+        "Choice": [
+            "Escolha uma das opções abaixo ou digite '{first}', '{two}' ou '{three}' no grupo, antes que o tempo acabe [{time} minutos]"
+        ],
+        "ButtonStop": [
+            "Jika ini bukan nilai yang Anda inginkan, klik '{three}'."
+        ],
+        "Continue": [
+            "Dimengerti, tunggu saya menyelesaikan sisa tugas, jangan gunakan lagi sampai saya menyelesaikan yang sekarang, terima kasih!"
+        ],
+        "Cancel": [
+            "Anda memilih untuk membatalkan perintah ini, jika Anda berubah pikiran, hubungi saya lagi."
+        ],
+        "Wait": [
+            "Saya meminta Anda untuk menunggu, perintah diperiksa pada beberapa sistem, untuk mencegahnya mengalami kesalahan, jadi biasanya perlu waktu beberapa saat, jika Anda dapat menunggu hingga selesai sebelum menggunakannya lagi, saya akan sangat berterima kasih!",
+            "Dimengerti lagi, sampai saat itu, tunggu sementara saya melakukan ini, mungkin perlu sedikit waktu, jadi tolong hindari menggunakan perintah yang panjang atau rumit sampai saya selesai, terima kasih telah menunggu! <3"
+        ],
+        "Defined": [
+            "Perintah ini sudah disetel ke nilai yang diinginkan, tidak perlu menggunakan perintah lagi."
+        ],
+        "Finished": [
+            "Perintah selesai dijalankan, tidak ada masalah yang terlihat, jadi apa yang Anda minta pasti telah berhasil dilakukan!"
+        ]
+    },
+    "ms": {
+        "Start": [
+            "Arahan saya sedia untuk digunakan!",
+            "Saya dalam talian, sedia membantu anda semua!",
+            "Permulaan selesai, anda boleh menggunakan arahan saya sekarang!"
+        ],
+        "Status": [
+            "Helo, mesej status yang mereka minta saya gunakan semasa membuat panggilan terlalu panjang, bolehkah anda menghubungi pemilik saya dan beritahu saya bahawa hadnya ialah 250 huruf? Terima kasih!",
+            "Hai, saya tidak boleh menukar mesej saya kerana mesej telah melebihi 250 huruf, bolehkah awak beritahu pemilik saya supaya dia boleh membetulkannya? Terima kasih!"
+        ],
+        "Choice": [
+            "Pilih salah satu pilihan di bawah atau taip '{first}', '{two}' atau '{three}' ke dalam kumpulan sebelum pemasa tamat tempoh [{time} minit]"
+        ],
+        "ButtonStop": [
+            "Jika ini bukan nilai yang anda inginkan, klik '{three}'."
+        ],
+        "Continue": [
+            "Difahamkan, tunggu saya menyelesaikan tugasan yang lain, jangan gunakan lagi sehingga saya menyelesaikan tugasan sekarang, terima kasih!"
+        ],
+        "Cancel": [
+            "Anda memilih untuk membatalkan arahan ini, jika anda berubah fikiran, hubungi saya sekali lagi."
+        ],
+        "Wait": [
+            "Saya meminta anda untuk menunggu, arahan diperiksa pada beberapa sistem, untuk mengelakkan mereka daripada mengalami ralat, jadi adalah perkara biasa untuk mereka mengambil sedikit masa, jika anda boleh menunggu untuk selesai sebelum menggunakannya semula, saya akan sangat berterima kasih!",
+            "Difahamkan lagi, sehingga itu, tunggu sementara saya melakukan ini, mungkin mengambil sedikit masa, jadi sila elakkan menggunakan arahan yang panjang atau menyusahkan sehingga saya selesai, terima kasih kerana menunggu! <3"
+        ],
+        "Defined": [
+            "Arahan ini telah ditetapkan kepada nilai yang dikehendaki, tidak perlu menggunakan arahan itu lagi."
+        ],
+        "Finished": [
+            "Arahan selesai dijalankan, tidak ada masalah yang jelas, jadi apa yang anda minta mesti berjaya dilakukan!"
+        ]
+    },
+    "hi": {
+        "Start": [
+            "मेरे आदेश उपयोग के लिए तैयार हैं!",
+            "मैं ऑनलाइन हूं, आप सभी की सहायता के लिए तैयार हूं!",
+            "प्रारंभिकीकरण पूरा हो गया है, अब आप मेरे आदेशों का उपयोग कर सकते हैं!"
+        ],
+        "Status": [
+            "नमस्कार, कॉल करते समय उन्होंने मुझे जिस स्थिति संदेश का उपयोग करने के लिए कहा, वह बहुत लंबा है, क्या आप मेरे स्वामी को कॉल कर सकते हैं और मुझे बता सकते हैं कि सीमा 250 अक्षरों की है? धन्यवाद!",
+            "हाय, मैं अपना संदेश नहीं बदल सकता क्योंकि संदेश में 250 से अधिक अक्षर हैं, क्या आप मेरे स्वामी को बता सकते हैं ताकि वह इसे ठीक कर सके? धन्यवाद!"
+        ],
+        "Choice": [
+            "टाइमर के [{time} मिनट] समाप्त होने से पहले नीचे दिए गए विकल्पों में से एक चुनें या समूह में '{first}', '{two}' या '{three}' टाइप करें"
+        ],
+        "ButtonStop": [
+            "यदि यह वह मान नहीं है जो आप चाहते थे, तो '{three}' पर क्लिक करें।"
+        ],
+        "Continue": [
+            "समझ गया, बाकी कार्यों को पूरा करने के लिए मेरी प्रतीक्षा करें, जब तक मैं वर्तमान को पूरा नहीं कर लेता, तब तक दोबारा उपयोग न करें, धन्यवाद!"
+        ],
+        "Cancel": [
+            "आपने इस आदेश को रद्द करना चुना है, यदि आप अपना विचार बदलते हैं, तो मुझसे दोबारा संपर्क करें।"
+        ],
+        "Wait": [
+            "मैं आपसे प्रतीक्षा करने के लिए कहता हूं, आदेशों को कई प्रणालियों पर जांचा जाता है, ताकि उन्हें त्रुटियों से पीड़ित होने से रोका जा सके, इसलिए उनके लिए कुछ समय लेना आम बात है, यदि आप उन्हें फिर से उपयोग करने से पहले समाप्त करने के लिए प्रतीक्षा कर सकते हैं, मैं मैं बहुत आभारी रहूंगा!",
+            "अब और समझ गया, तब तक प्रतीक्षा करें जब तक मैं ऐसा करता हूं, इसमें थोड़ा समय लग सकता है, इसलिए कृपया जब तक मैं पूरा नहीं कर लेता, तब तक लंबे या बोझिल आदेशों का उपयोग करने से बचें, प्रतीक्षा करने के लिए धन्यवाद! <3"
+        ],
+        "Defined": [
+            "यह कमांड पहले से वांछित मान पर सेट है, फिर से कमांड का उपयोग करने की आवश्यकता नहीं है।"
+        ],
+        "Finished": [
+            "कमांड चलना समाप्त हो गया, कोई स्पष्ट समस्या नहीं थी, इसलिए आपने जो मांगा था वह सफलतापूर्वक किया जाना चाहिए!"
+        ]
+    },
+    "de": {
+        "Start": [
+            "Meine Befehle können verwendet werden!",
+            "Ich bin online, bereit, Ihnen allen zu helfen!",
+            "Initialisierung ist abgeschlossen, Sie können jetzt meine Befehle verwenden!"
+        ],
+        "Status": [
+            "Hallo, die Statusnachricht, die ich beim Anrufen verwenden soll, ist zu lang. Können Sie meinen Besitzer anrufen und mir mitteilen, dass das Limit 250 Zeichen beträgt? Danke!",
+            "Hallo, ich kann meine Nachricht nicht ändern, da die Nachricht 250 Buchstaben überschritten hat. Können Sie meinem Besitzer Bescheid geben, damit er sie korrigieren kann? Danke!"
+        ],
+        "Choice": [
+            "Wählen Sie eine der folgenden Optionen oder geben Sie '{first}', '{two}' oder '{three}' in die Gruppe ein, bevor der Timer abläuft [{time} Minuten]"
+        ],
+        "ButtonStop": [
+            "Wenn dies nicht der gewünschte Wert ist, klicken Sie auf '{three}'."
+        ],
+        "Continue": [
+            "Verstanden, warten Sie, bis ich die restlichen Aufgaben erledigt habe, verwenden Sie sie erst wieder, wenn ich die aktuelle erledigt habe, danke!"
+        ],
+        "Cancel": [
+            "Du hast dich entschieden, diesen Befehl abzubrechen, falls du deine Meinung änderst, kontaktiere mich einfach erneut."
+        ],
+        "Wait": [
+            "Ich bitte Sie zu warten, die Befehle werden auf mehreren Systemen überprüft, um zu verhindern, dass sie Fehler erleiden, daher ist es üblich, dass sie eine Weile dauern, wenn Sie warten können, bevor Sie sie erneut verwenden, ich wäre sehr dankbar!",
+            "Verstanden, amore, bis dahin, warte, während ich das mache, es kann eine Weile dauern, also vermeide bitte langwierige oder umständliche Befehle, bis ich fertig bin, danke fürs Warten! <3"
+        ],
+        "Defined": [
+            "Dieser Befehl ist bereits auf den gewünschten Wert gesetzt, Sie müssen den Befehl nicht erneut verwenden."
+        ],
+        "Finished": [
+            "Der Befehl wurde beendet, es gab keine offensichtlichen Probleme, also muss das, worum Sie gebeten haben, erfolgreich ausgeführt worden sein!"
+        ]
+    },
+    "it": {
+        "Start": [
+            "I miei comandi sono pronti per essere usati!",
+            "Sono online, pronto ad aiutarvi tutti!",
+            "L'inizializzazione è completa, ora potete usare i miei comandi!"
+        ],
+        "Status": [
+            "Ciao, il messaggio di stato che mi hanno chiesto di utilizzare durante la chiamata è troppo lungo, puoi chiamare il mio proprietario e farmi sapere che il limite è di 250 lettere? Grazie!",
+            "Ciao, non posso modificare il mio messaggio perché il messaggio ha superato le 250 lettere, puoi informare il mio proprietario in modo che possa aggiustarlo? Grazie!"
+        ],
+        "Choice": [
+            "Scegli una delle opzioni di seguito o digita '{first}', '{two}' o '{three}' nel gruppo prima che il timer scada [{time} minuti]"
+        ],
+        "ButtonStop": [
+            "Se questo non è il valore desiderato, fai clic su '{three}'."
+        ],
+        "Continue": [
+            "Capito, aspetta che finisca il resto dei compiti, non usare di nuovo finché non avrò finito quello attuale, grazie!"
+        ],
+        "Cancel": [
+            "Hai scelto di annullare questo comando, se cambi idea, contattami di nuovo."
+        ],
+        "Wait": [
+            "Ti chiedo di aspettare, i comandi vengono controllati su diversi sistemi, per evitare che subiscano errori, quindi è comune che impieghino un po' di tempo, se puoi aspettare che finiscano prima di usarli di nuovo, io sarà molto grato!",
+            "Ho capito amore, fino ad allora, aspetta mentre lo faccio, potrebbe volerci un po' di tempo, quindi per favore evita di usare comandi lunghi o ingombranti finché non ho finito, grazie per l'attesa! <3"
+        ],
+        "Defined": [
+            "Questo comando è già impostato sul valore desiderato, non è necessario utilizzare nuovamente il comando."
+        ],
+        "Finished": [
+            "L'esecuzione del comando è terminata, non ci sono stati problemi apparenti, quindi quello che hai chiesto deve essere stato eseguito correttamente!"
+        ]
+    },
+    "ru": {
+        "Start": [
+            "Мои команды готовы к использованию!",
+            "Я в сети, готов всем вам помочь!",
+            "Инициализация завершена, теперь вы можете использовать мои команды!"
+        ],
+        "Status": [
+            "Здравствуйте, сообщение о статусе, которое они попросили использовать при звонке, слишком длинное, вы можете позвонить моему владельцу и сообщить, что ограничение составляет 250 писем? Спасибо!",
+            "Привет, я не могу изменить свое сообщение, потому что сообщение превысило 250 букв, вы можете сообщить моему владельцу, чтобы он мог это исправить? Спасибо!"
+        ],
+        "Choice": [
+            "Выберите один из вариантов ниже или введите '{first}', '{two}' или '{three}' в группу до истечения таймера [{time} минут]"
+        ],
+        "ButtonStop": [
+            "Если это не то значение, которое вы хотели, нажмите '{three}'."
+        ],
+        "Continue": [
+            "Понятно, подождите, пока я закончу остальные задачи, больше не используйте, пока я не закончу текущую, спасибо!"
+        ],
+        "Cancel": [
+            "Вы решили отменить эту команду, если передумаете, просто свяжитесь со мной снова."
+        ],
+        "Wait": [
+            "Я прошу вас подождать, команды проверяются на нескольких системах, чтобы избежать ошибок, поэтому обычно они занимают некоторое время, если вы можете подождать, чтобы закончить, прежде чем использовать их снова, я буду очень благодарен!",
+            "Понятно, amore, до тех пор, подождите, пока я это сделаю, это может занять некоторое время, поэтому, пожалуйста, не используйте длинные или громоздкие команды, пока я не закончу, спасибо за ожидание! <3"
+        ],
+        "Defined": [
+            "Для этой команды уже установлено нужное значение, нет необходимости использовать команду снова."
+        ],
+        "Finished": [
+            "Команда завершилась, видимых проблем не было, значит, то, о чем вы просили, должно быть выполнено успешно!"
+        ]
+    },
+    "lat": {
+        "Start": [
+            "Mandata mea parata sunt utenda!",
+            "Im online, paratus sum ut omnes te adiuvet!",
+            "Initiationis plena est, nunc meis praeceptis uti potes!"
+        ],
+        "Status": [
+            "Salve, status nuntium rogaverunt me uti cum nimis longum sit, dominum meum appellare potes et sciam me modum 250 litterarum esse? Gratias tibi!",
+            "Salve, nuntium meum mutare non possum quia nuntius CCL litteras excessit, dominus meus scire potes ut illud reficere possit? Gratias tibi!"
+        ],
+        "Choice": [
+            "Elige unam ex optionibus infra vel typus '{first}', '{two}' vel '{three}' in coetum antequam timor exspirat [{time} minuta]"
+        ],
+        "ButtonStop": [
+            "Si hoc non valere volebas, preme '{three}'."
+        ],
+        "Continue": [
+            "Intellige, expecta me ut reliqua negotia perficiam, ne iterum utar donec currentem ago gratias!"
+        ],
+        "Cancel": [
+            "Hoc mandatum rescindere velles, si mentem mutas, mox me iterum tange."
+        ],
+        "Wait": [
+            "Rogo vos expectare, ut mandata in pluribus systematibus cohibeantur, ne errores patiamur, ut commune sit illis tempus sumere, si exspectem, antequam utendo rursus perficiatis, I. Valde gratus erit!",
+            "Intellige amorem, donec tunc, dum hoc faciam, ut modicum capiat, ita quaeso, ne diuturnis vel gravia praeceptis utaris, donec egero, exspectando gratias! <3"
+        ],
+        "Defined": [
+            "Hoc mandatum iam ad valorem desideratum constitutum, imperio iterum uti non opus est."
+        ],
+        "Finished": [
+            "Mandatum curriculum confeci, nullae apparentes quaestiones, quae postulasti feliciter evenisse!"
+        ]
+    }
+}

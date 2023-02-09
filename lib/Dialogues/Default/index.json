@@ -1,0 +1,86 @@
+{
+    "pt": {
+        "Default": [
+            "Algo na execução dos diálogos falhou, usando padrão...",
+            "Houve erros nos diálogos, usarei textos padrões...",
+            "Algo de errado ocorreu nas falas, usando o padrão..."
+        ]
+    },
+    "jp": {
+        "Default": [
+            "デフォルトを使用して、ダイアログの実行中に何かが失敗しました...",
+            "ダイアログにエラーがありました。標準のテキストを使用します...",
+            "標準を使用して、行に問題が発生しました..."
+        ]
+    },
+    "en": {
+        "Default": [
+            "Something in the execution of the dialogs failed, using default...",
+            "There were errors in the dialogues, I will use standard texts...",
+            "Something went wrong with the dialogues, using the standard..."
+        ]
+    },
+    "fr": {
+        "Default": [
+            "Quelque chose dans l'exécution des boîtes de dialogue a échoué, en utilisant la valeur par défaut...",
+            "Il y avait des erreurs dans les dialogues, je vais utiliser des textes standards...",
+            "Quelque chose s'est mal passé avec les dialogues, en utilisant la norme..."
+        ]
+    },
+    "es": {
+        "Default": [
+            "Algo falló en la ejecución de los diálogos, usando el estándar...",
+            "Hubo errores en los diálogos, usaré textos estándar...",
+            "Algo salió mal con los diálogos, usando el estándar..."
+        ]
+    },
+    "id": {
+        "Default": [
+            "Terjadi kesalahan saat menjalankan percakapan, menggunakan default...",
+            "Ada kesalahan dalam balasan, saya akan menggunakan teks default...",
+            "Ada yang salah dengan dialogku, menggunakan pola..."
+        ]
+    },
+    "ms": {
+        "Default": [
+            "Sesuatu dalam pelaksanaan dialog gagal, menggunakan lalai...",
+            "Terdapat ralat dalam dialog, saya akan menggunakan teks standard...",
+            "Sesuatu yang tidak kena dengan dialog, menggunakan standard..."
+        ]
+    },
+    "hi": {
+        "Default": [
+            "डिफ़ॉल्ट का उपयोग करते हुए, संवाद के निष्पादन में कुछ विफल हुआ ...",
+            "संवादों में त्रुटियां थीं, मैं मानक ग्रंथों का उपयोग करूंगा ...",
+            "मानक का उपयोग करने वाले संवादों में कुछ गलत हो गया ..."
+        ]
+    },
+    "de": {
+        "Default": [
+            "Etwas bei der Ausführung der Dialoge ist fehlgeschlagen, Verwendung von Standard...",
+            "Es gab Fehler in den Dialogen, ich werde Standardtexte verwenden ...",
+            "Etwas ist mit den Dialogen schief gelaufen, bei der Verwendung des Standards..."
+        ]
+    },
+    "it": {
+        "Default": [
+            "Qualcosa nell'esecuzione delle finestre di dialogo non è riuscito, utilizzando l'impostazione predefinita...",
+            "Ci sono stati errori nei dialoghi, userò testi standard...",
+            "Qualcosa è andato storto con i dialoghi, usando lo standard..."
+        ]
+    },
+    "ru": {
+        "Default": [
+            "Что-то при выполнении диалогов не удалось, используя по умолчанию...",
+            "В диалогах были ошибки, буду использовать стандартные тексты...",
+            "Что-то пошло не так с диалогами, используя стандартный..."
+        ]
+    },
+    "lat": {
+        "Default": [
+            "Aliquid in dialogorum executione defecit, utendo defalta ...",
+            "Fuerunt errores in dialogis, utar in textibus regulae...",
+            "Aliquid in dialogis erravit utens norma..."
+        ]
+    }
+}
