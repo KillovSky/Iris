@@ -1,0 +1,56 @@
+{
+	"wood": {
+		"pt": "Existem diversos tipos de madeira pelo mundo, são geralmente utilizadas em decorações, casas ou utensílios, embora possam ser feitas ferramentas, este tipo de material não tem boa resistência, poder e durabilidade para isso.",
+		"en": "There are several types of wood around the world, they are generally used in decorations, houses or utensils, although tools can be made, this type of material does not have good resistance, power and durability for it.",
+		"es": "Existen varios tipos de madera alrededor del mundo, generalmente se utilizan en decoraciones, casas o utensilios, aunque se pueden fabricar herramientas, este tipo de material no tiene buena resistencia, potencia y durabilidad por ello.",
+		"image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/0/0b/Wooden_Pickaxe_JE2_BE2.png",
+		"power": 1,
+        "quantity": 0,
+		"durability": 4
+	},
+	"stone": {
+		"pt": "Pedras são feitas de diversos tipos de materiais minerais sólidos, são encontrados por todos os locais do mundo, elas foram bastante utilizadas por nossos antepassados na 'Era da Pedra', cerca de 2.6 milhões de anos atrás.",
+		"en": "Stones are made of various solid mineral materials, found all over the world, they were used extensively by our ancestors in the 'Stone Age', about 2.6 million years ago.",
+		"es": "Las piedras son hechas de varios materiales minerales sólidos, que se encuentran en todo el mundo, fueron utilizadas ampliamente por nuestros antepasados ​​en la 'Edad de Piedra', hace unos 2,6 millones de años.",
+		"image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/c/c4/Stone_Pickaxe_JE2_BE2.png",
+		"power": 2,
+        "quantity": 0,
+		"durability": 8
+	},
+	"gold": {
+		"pt": "O ouro é um metal nobre [raro], bastante utilizado em moedas, decorações, área tecnológica e até mesmo em implantes, é formado por meio das fusões nucleares, sendo uma delas a colisão entre duas estrelas de nêutrons ou uma estrela de nêutrons com um buraco negro, embora possam ser ferramentas, o ouro puro é normalmente muito mole, precisando ser endurecido com prata ou cobre.",
+		"en": "Gold is a [rare] noble metal, widely used in coins, decorations, technology and even in implants, it is formed through nuclear fusion, one of which is the collision between two neutron stars or a neutron star with a black hole, although they can be tools, pure yellow is usually very soft, needing to be hardened with silver or copper.",
+		"es": "El oro es un metal noble [raro], muy utilizado en monedas, decoraciones, tecnología e incluso en implantes, se forma a través de la fusión nuclear, una de las cuales es la colisión entre dos estrellas de neutrones o una estrella de neutrones con un agujero negro, aunque pueden ser herramientas, el oro puro suele ser muy blando, necesitando ser endurecido con plata o cobre.",
+		"image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/a/a6/Golden_Pickaxe_JE4_BE3.png",
+		"power": 3,
+        "quantity": 0,
+		"durability": 12
+	},
+	"iron": {
+		"pt": "Ferro é o metal mais usado no mundo, é usado em quase tudo, sendo a principal fonte para construção de ferramentas e outros itens, tendo importância até no organismo humano, é bem maleável, comum e possui resistência mediana [4/10] segundo a escala Mohs.",
+		"en": "Iron is the most used metal in the world, it is used in almost everything, being the main source for the construction of tools and other items, being important even in the human body, it is very malleable, common and has medium strength [4/10] according to the Mohs scale.",
+		"es": "El hierro es el metal más utilizado en el mundo, se utiliza en casi todo, siendo la principal fuente para la construcción de herramientas y otros itens, siendo importante incluso en el cuerpo humano, es muy maleable, común y de resistencia media [4/10] según la escala de Mohs.",
+		"image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/d/d1/Iron_Pickaxe_JE3_BE2.png",
+		"power": 4,
+        "quantity": 0,
+		"durability": 16
+	},
+	"rubi": {
+		"pt": "O rubi é uma pedra preciosa que vai de tons de vermelho a tons de cor de rosa, possui uma resistência excelente, perdendo apenas para o diamante, é geralmente utilizado em joias de beleza singulares, geralmente não é utilizado para fazer ferramentas, por ser pouco maleável e raro.",
+		"en": "Ruby is a gemstone that ranges from shades of red to shades of pink, it has excellent resistance, lose only to diamond, it is usually used in singular beauty jewelry, it is generally not used to make tools, for being less malleable and rare.",
+		"es": "El rubí es una piedra preciosa que va desde tonos de rojo hasta tonos de rosa, tiene una excelente resistencia, solo superada por el diamante, generalmente se usa en joyería de singular belleza, generalmente no se usa para hacer herramientas, por ser menos maleable y raro.",
+		"image": "http://novask.in/3586663178.png",
+		"power": 5,
+        "quantity": 0,
+		"durability": 20
+	},
+	"dima": {
+		"pt": "Diamante é um cristal muito raro, possui uma resistência máxima na escala Mohs, só podendo ser arranhado por outro diamante, quanto mais incolor for, mais valioso se torna, sua pureza é calculada pela quantidade, tamanho e cor, seu uso pode variar de laminas, chips de computador, decoração e muitos outros usos.",
+		"en": "Diamond is a very rare crystal, it has a maximum resistance on the Mohs scale, it can only be scratched by another diamond, the more colorless it is, the more valuable it becomes, its purity is calculated by the amount, size and color, its use can vary from blades , computer chips, decoration and many other uses.",
+		"es": "El diamante es un cristal muy raro, tiene una resistencia máxima en la escala de Mohs, solo puede ser rayado por otro diamante, cuanto más incoloro es, más valioso se vuelve, su pureza se calcula por la cantidad, el tamaño y el color, su uso puede variar desde aspas, chips de computadora, decoración y muchos otros usos.",
+		"image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/e/e7/Diamond_Pickaxe_JE3_BE3.png",
+		"power": 6,
+        "quantity": 0,
+		"durability": 24
+	}
+}

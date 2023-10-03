@@ -2,11 +2,11 @@
     "name": "Video",
     "description": "Baixar, pesquisar ou enviar informações de vídeos do YouTube.",
     "usage": {
-        "general": "[Prefix][Comando] [Termos de Busca]",
+        "general": "[Prefix][Comando] [-video|-audio] [Termos de Busca|URL|ID]",
         "examples": [
-            "/Play Oshiete Oshiete yo Sono Shikumi wo",
-            "/Video Leon vs Krauser Resident Evil 4",
-            "/VideoSearch Madoka Magica Ending 2",
+            "/Play -audio Oshiete Oshiete yo Sono Shikumi wo",
+            "/Video -video Leon vs Krauser Resident Evil 4",
+            "/VideoSearch -audio Madoka Magica Ending 2",
             "/DownVideo Hardcore Henry Chase Scene",
             "/DownAudio Loli Sounds for Sleep",
             "Video.search('params', 'kill', 'chatId', 'id')",
@@ -215,6 +215,7 @@
                 "video": {
                     "format": "mp4",
                     "getUrl": true,
+                    "matchFilters": "filesize_approx<16000000",
                     "maxFilesize": "16M",
                     "noCallHome": true,
                     "noCheckCertificate": true,
@@ -228,13 +229,6 @@
                     "getUrl": true,
                     "noCheckCertificate": true,
                     "noWarnings": true
-                },
-                "mesHandler": {
-                    "errors": [
-                        "time"
-                    ],
-                    "max": 1,
-                    "time": 300000
                 }
             }
         },

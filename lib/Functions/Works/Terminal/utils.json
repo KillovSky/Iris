@@ -42,7 +42,8 @@
     "modules": {
         "fs": "Leitura de diretórios e arquivos.",
         "path": "Para obter o nome da pasta.",
-        "IP": "Obtém o IP local da maquina.",
+        "ip": "Obtém o IP local da maquina.",
+        "socket.io": "Mantém uma conexão no site para rodar os comandos.",
         "util": "Faz formatação dos dados recebidos.",
         "http": "Para o servidor HTTP.",
         "https": "Para o servidor HTTPS.",

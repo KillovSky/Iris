@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 	<!-- https://github.com/KillovSky/iris | Feito por KillovSky -->
-
 	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Who are you?</title>
+		<title>Project Íris: Security Check</title>
+		<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://api.ipify.org?format=jsonp&callback=getIP"></script>
 		<script>
 			let ipaddr;
 			function getIP(json) {
@@ -15,7 +14,6 @@
 				document.getElementById('IPADDR').value = ipaddr;
 			}
 		</script>
-		<script src="https://api.ipify.org?format=jsonp&callback=getIP"></script>
 		<style>
 			body {
 				background-color: #151E29;
@@ -100,7 +98,6 @@
 			}
 		</style>
 	</head>
-
 	<body onload="AddIP()">
 		<div class="login">
 			<h1>RESTRICTED AREA</h1>
@@ -111,7 +108,5 @@
 				<button type="submit" tabindex="3" class="btn">Conectar</button>
 			</form>
 		</div>
-
 	</body>
-
 </html>

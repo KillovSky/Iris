@@ -1,10 +1,9 @@
 {
   "name": "iris",
   "version": "1.0.0",
-  "tempCommentary": "Irei resetar a versão por se tratar de uma update zerada, com código totalmente novo, mas não mudarei o nome, pois a Íris sempre continuará sendo a Íris.",
-  "build_date": "09-02-2023",
+  "build_date": "22-09-2023",
   "private": "true",
-  "description": "Projeto Íris Remake, uma nova edição do Projeto Íris antigo, totalmente refeita do zero, com melhorias em 12 idiomas e centenas de comandos novos ou reconstruídos, sendo um projeto totalmente novo, aberto e sem nenhum foco lucrativo.",
+  "description": "Novo Projeto Íris, uma versão totalmente nova feita com novas APIs, sistemas e muito mais, sendo um projeto novo, aberto e sem nenhum foco lucrativo.",
   "main": "lib/Initialize/index.js",
   "scripts": {
     "start": "node lib/Initialize/index.js",
@@ -13,32 +12,34 @@
   "author": "KillovSky",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/KillovSky/iris.git"
+    "url": "git+https://github.com/KillovSky/Iris.git"
   },
   "bugs": {
-    "url": "https://github.com/KillovSky/iris/issues"
+    "url": "https://github.com/KillovSky/Iris/issues"
   },
-  "homepage": "https://github.com/KillovSky/iris",
+  "homepage": "https://github.com/KillovSky/Iris",
   "license": "MIT",
   "dependencies": {
+    "@adiwajshing/baileys": "github:WhiskeySockets/Baileys",
     "@ffmpeg-installer/ffmpeg": "^1.1.0",
-    "@killovsky/telegraph": "^1.0.1",
-    "@open-wa/wa-automate": "^4.25.1",
-    "@open-wa/wa-decrypt": "^4.3.1",
-    "axios": "^0.24.0",
-    "body-parser": "^1.20.1",
-    "canvacord": "^5.4.8",
-    "canvas": "^2.10.2",
+    "@hapi/boom": "^10.0.1",
+    "axios": "^1.5.0",
+    "baileys-bottle": "^2.1.2",
+    "body-parser": "^1.20.2",
     "chokidar": "^3.5.3",
-    "colors": "^1.4.0",
     "express": "^4.18.2",
-    "ip": "^1.1.8",
-    "moment-timezone": "^0.5.34",
+    "fluent-ffmpeg": "^2.1.2",
+    "ip": "^2.0.0",
+    "pino": "^8.12.1",
     "pretty-num": "^0.5.2",
-    "remove-accents": "^0.4.2",
-    "sharp": "0.27.2",
-    "youtube-dl-exec": "^2.1.10",
-    "yt-search": "^2.10.2"
+    "qrcode-terminal": "^0.12.0",
+    "remove-accents": "^0.5.0",
+    "sharp": "^0.30.7",
+    "socket.io": "^4.7.2",
+    "sqlite3": "^5.1.6",
+    "wa-sticker-formatter": "^4.4.4",
+    "youtube-dl-exec": "^2.4.13",
+    "yt-search": "^2.10.4"
   },
   "funding": [
     {

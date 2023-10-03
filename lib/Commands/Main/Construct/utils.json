@@ -120,7 +120,7 @@
         "error": {
             "description": "Define se pode printar qualquer erro.",
             "type": "Boolean",
-            "value": false
+            "value": true
         },
         "ender": {
             "description": "Define se deve resetar a cada erro.",
@@ -140,6 +140,9 @@
             "value": {
                 "Default": [
                     "default"
+                ],
+                "Ping": [
+                    "ping"
                 ],
                 "Stickers": [
                     "sticker",

@@ -8,6 +8,21 @@
         ],
         "Restrict": [
             "Esse comando é restrito para somente administradores, dono de grupo, meu chefe ou moderadores, quem sabe um dia você entre em uma dessas listas."
+        ],
+        "Timestamp": [
+            "{days} dias | {hours} horas | {minutes} minutos | {seconds} segundos"
+        ],
+        "Memorystamp": [
+            "{used} MB em uso | {free} MB livres | {total} MB totais"
+        ],
+        "Ping": [
+            "🏓 Pong!\n\n──── Informações de Runtime ────\n\n⚙️ {botName} V{version} (BUILD: {build})\n\n🐌 Velocidade de Leitura → '{readTime}'\n\n⚡ Velocidade de Execução → '{execTime}'\n\n⌛ Online faz → '{processUptime}"
+        ],
+        "Pingdev": [
+            "──── Informações Extras [Mensagem] ────\n\n📊 Mensagens após inicio → '{messagesReceived}'\n\n👤 Mensagens em grupo → '{groupSize}'\n\n👥 Mensagens no PV → '{privateSize}'\n\n📈 Total de grupos → '{groupLeng}'\n\n✉️ Mensagens [incluindo eu] → '{overallSize}'\n\n💬 Mensagens minhas → '{botSize}'\n\n──── Informações Extras [{botName}] ────\n\n🦓 ID → '{phoneInfo.id}'\n\n💬 Name → '{phoneInfo.pushname}'\n\n📲 Tipo de conexão → '{phoneInfo.type}'\n\n👌 Status → '{phoneInfo.status}'\n\n📷 Colocado em → '{phoneInfo.statusWhen}'\n\n🤑 Tipo de user → '{phoneInfo.server}'\n\n🏡 Número → '{phoneInfo.number}'\n\n🍪 Aparelho → '{phoneInfo.phone}'\n\n──── Informações Extras [Sessão/PC] ────\n\n📅 Tempo de inicialização → '{sessionInfo.launchSeconds}' segundos\n\n💻​ PC ligado faz → '{computerInfo.uptime.overall}'\n\n🪀 Versão WhatsApp → '{sessionInfo.WA_VERSION}'\n\n🔙 Iniciado as → '{sessionInfo.startedAt}'"
+        ],
+        "Pingsecret": [
+            "──── Informações Secretas [PC] ────\n\n🌡️ CPU → '{computerInfo.cpu}'\n\n IPV6 → '{process.features.ipv6}'\n\n🔒 TLS → '{process.features.tls}'\n\n💎 Quantidade de CPUs → '{computerInfo.cores}' Cores\n\n🍃 Velocidade → '{computerInfo.speed}' MHz\n\n🖥️ Sistema Operacional → '{computerInfo.so}'\n\n🛍️ Versão do S.O → '{computerInfo.version}'\n\n⚙️ Arquitetura → '{computerInfo.arch}'\n\n🏄 Plataforma → '{computerInfo.platform}'\n\n🤖 Kernel → '{computerInfo.kernel}'\n\n💾 RAM → '{memoryInfo.overall}\n\n👑 Username → '{computerInfo.username}' ['{userName}']\n\n🏠 Home → '{computerInfo.home}'\n\n👪 GID → '{computerInfo.groupId}'\n\n👤 UID → '{computerInfo.userId}'\n\n🐚 Shell → '{computerInfo.shell}'\n\n❓ Hostname → '{computerInfo.hostname}'\n\n😲 Extremidade → '{computerInfo.endianness}'\n\n──── Informações Secretas [Node.js] ────\n\n🥑 Node.js → '{process.version}'\n\n📎 Local do Node.js → '{process.execPath}'\n\n⛓️ Argv do Node.js →\n{process.argv}\n\n📄 Title do Node.js → '{process.title}'\n\n🆔 ID do processo → '{process.pid}'\n\n👶 ID de sub-processo → '{process.ppid}'\n\n👍 Consumo de memoria [Node Only] → '{memoryInfo.node.overall}'\n\n📁 Arquitetura do Node.js → '{process.arch}'\n\n🖥️ Plataforma do Node.js → '{process.platform}'\n\n🔎 Release do Node.js → '{process.release.name} {process.release.lts}'\n\n🌐 URL do Node.js atual → '{process.release.sourceUrl}'\n\n👒 URL do Header do Node.js → '{process.release.headersUrl}'\n\n🦶 URL da Lib do Node.js → '{process.release.libUrl}'\n\n🕵️ Inspector → '{process.features.inspector}'\n\n🔢 Debug → '{process.features.debug}'\n\n🤖 Async UV I/O → '{process.features.uv}'\n\n──── Informações de S.O [Modules/Node] ────\n{process.versions}\n\n──── Informações de S.O [PC/Env] ────\n{process.env}"
         ]
     },
     "jp": {
@@ -19,6 +34,15 @@
         ],
         "Restrict": [
             "このコマンドは、管理者、グループ所有者、私の上司、またはモデレーターのみに制限されています。いつか、これらのリストの 1 つに入るかもしれません。"
+        ],
+        "Timestamp": [
+            "{days} 日 | {hours} 時間 | {minutes} 分 | {seconds} 秒"
+        ],
+        "Memorystamp": [
+            "{used} MB 使用中 | {free} MB フリー | {total} MB 合計"
+        ],
+        "Ping": [
+            "🏓 Pong!\n\n──── ランタイム情報 ────\n\n⚙️ {botName} V{version} (BUILD: {build})\n\n🐌 読み取り速度 → '{readTime}'\n\n⚡ 実行速度 → '{execTime}'\n\n⌛ オンライン時間 → '{processUptime}"
         ]
     },
     "en": {
@@ -30,6 +54,15 @@
         ],
         "Restrict": [
             "This command is restricted to only admins, group owner, my boss or moderators, maybe one day you'll get on one of those lists."
+        ],
+        "Timestamp": [
+            "{days} days | {hours} hours | {minutes} minutes | {seconds} seconds"
+        ],
+        "Memorystamp": [
+            "{used} MB in use | {free} MB free | {total} MB total"
+        ],
+        "Ping": [
+            "🏓 Pong!\n\n──── Runtime Information ────\n\n⚙️ {botName} V{version} (BUILD: {build})\n\n🐌 Speed of Reading → '{readTime}'\n\n⚡ Execution Speed → '{execTime}'\n\n⌛ Online time → '{processUptime}"
         ]
     },
     "fr": {
@@ -41,6 +74,15 @@
         ],
         "Restrict": [
             "Cette commande est réservée aux seuls administrateurs, propriétaires de groupe, mon patron ou modérateurs, peut-être qu'un jour vous serez sur l'une de ces listes."
+        ],
+        "Timestamp": [
+            "{days} jours | {hours} heures | {minutes} minutes | {seconds} secondes"
+        ],
+        "Memorystamp": [
+            "{used} MB utilisé | {free} MB libre | {total} MB total"
+        ],
+        "Ping": [
+            "🏓 Pong !\n\n──── Informations d'exécution ────\n\n⚙️ {botName} V{version} (Build: {build})\n\n🐌 Vitesse de lecture → '{readTime}'\n\n⚡ Vitesse d'exécution → '{execTime}'\n\n⌛ Temps en ligne → '{processUptime}"
         ]
     },
     "es": {
@@ -52,6 +94,15 @@
         ],
         "Restrict": [
             "Este comando está restringido solo a los administradores, al propietario del grupo, a mi jefe o a los moderadores, tal vez algún día aparezcas en una de esas listas."
+        ],
+        "Timestamp": [
+            "{days} días | {hours} horas | {minutes} minutos | {seconds} segundos"
+        ],
+        "Memorystamp": [
+            "{used} MB en uso | {free} MB libres | {total} MB totales"
+        ],
+        "Ping": [
+            "🏓 Pong!\n\n──── Información de tiempo de ejecución ────\n\n⚙️ {botName} V{version} (BUILD: {build})\n\n🐌 Velocidad de lectura → '{readTime}'\n\n⚡ Velocidad de ejecución → '{execTime}'\n\n⌛ Tiempo en línea → '{processUptime}"
         ]
     },
     "id": {
@@ -63,6 +114,15 @@
         ],
         "Restrict": [
             "Perintah ini dibatasi hanya untuk admin, pemilik grup, atasan atau moderator saya, mungkin suatu hari Anda akan masuk ke salah satu daftar tersebut."
+        ],
+        "Timestamp": [
+            "{days} hari | {jam} jam | {minutes} menit | {seconds} detik"
+        ],
+        "Memorystamp": [
+            "{used} MB sedang digunakan | {free} MB gratis | {total} MB total"
+        ],
+        "Ping": [
+            "🏓 Pong!\n\n──── Informasi Waktu Proses ────\n\n⚙️ {botName} V{version} (BUILD: {build})\n\n🐌 Kecepatan Membaca → '{readTime}'\n\n⚡ Kecepatan Eksekusi → '{execTime}'\n\n⌛ Waktu online → '{processUptime}"
         ]
     },
     "ms": {
@@ -74,6 +134,15 @@
         ],
         "Restrict": [
             "Arahan ini terhad kepada hanya pentadbir, pemilik kumpulan, bos saya atau penyederhana, mungkin suatu hari nanti anda akan mendapat salah satu daripada senarai tersebut."
+        ],
+        "Timestamp": [
+            "{days} hari | {hours} jam | {minutes} minit | {seconds} saat"
+        ],
+        "Memorystamp": [
+            "{used} MB sedang digunakan | {free} MB percuma | {total} MB jumlah"
+        ],
+        "Ping": [
+            "🏓 Pong!\n\n──── Maklumat Masa Jalan ────\n\n⚙️ {botName} V{version} (BINA: {build})\n\n🐌 Kelajuan Membaca → '{readTime}'\n\n⚡ Kelajuan Pelaksanaan → '{execTime}'\n\n⌛ Masa dalam talian → '{processUptime}"
         ]
     },
     "hi": {
@@ -85,6 +154,15 @@
         ],
         "Restrict": [
             "यह आदेश केवल व्यवस्थापकों, समूह के स्वामी, मेरे बॉस या मॉडरेटर तक ही सीमित है, हो सकता है कि एक दिन आप उन सूचियों में से किसी एक पर पहुंचें।"
+        ],
+        "Timestamp": [
+            "{days} दिन | {hours} घंटे | {minutes} मिनट | {seconds} सेकंड"
+        ],
+        "Memorystamp": [
+            "{used} MB उपयोग में है | {free} MB मुफ़्त | {total} MB कुल"
+        ],
+        "Ping": [
+            "🏓 पोंग!\n\n──── रनटाइम जानकारी ────\n\n⚙️ {botName} V{version} (निर्मित: {build})\n\n🐌 पढ़ने की गति → '{readTime}'\n\n⚡ निष्पादन गति → '{execTime}'\n\n⌛ ऑनलाइन समय → '{processUptime}"
         ]
     },
     "de": {
@@ -96,6 +174,15 @@
         ],
         "Restrict": [
             "Dieser Befehl ist nur auf Administratoren, Gruppenbesitzer, meinen Chef oder Moderatoren beschränkt, vielleicht kommst du eines Tages auf eine dieser Listen."
+        ],
+        "Timestamp": [
+            "{days} Tage | {hours} Stunden | {minutes} Minuten | {seconds} Sekunden"
+        ],
+        "Memorystamp": [
+            "{used} MB belegt | {free} MB frei | {total} MB insgesamt"
+        ],
+        "Ping": [
+            "🏓 Pong!\n\n──── Laufzeitinformationen ────\n\n⚙️ {botName} V{version} (BUILD: {build})\n\n🐌 Lesegeschwindigkeit → '{readTime}'\n\n⚡ Ausführungsgeschwindigkeit → '{execTime}'\n\n⌛ Onlinezeit → '{processUptime}"
         ]
     },
     "it": {
@@ -107,6 +194,15 @@
         ],
         "Restrict": [
             "Questo comando è limitato solo agli amministratori, al proprietario del gruppo, al mio capo o ai moderatori, forse un giorno entrerai in una di quelle liste."
+        ],
+        "Timestamp": [
+            "{days} giorni | {hours} ore | {minutes} minuti | {seconds} secondi"
+        ],
+        "Memorystamp": [
+            "{used} MB in uso | {free} MB liberi | {total} MB totali"
+        ],
+        "Ping": [
+            "🏓 Pong!\n\n──── Informazioni sul tempo di esecuzione ────\n\n⚙️ {botName} V{version} (BUILD: {build})\n\n🐌 Velocità di lettura → '{readTime}'\n\n⚡ Velocità di esecuzione → '{execTime}'\n\n⌛ Tempo online → '{processUptime}"
         ]
     },
     "ru": {
@@ -118,6 +214,15 @@
         ],
         "Restrict": [
             "Questo comando è limitato solo agli amministratori, al proprietario del gruppo, al mio capo o ai moderatori, forse un giorno entrerai in una di quelle liste."
+        ],
+        "Timestamp": [
+            "{days} дней | {hours} часов | {minutes} минут | {seconds} секунд"
+        ],
+        "Memorystamp": [
+            "{used} МБ используется | {free} МБ бесплатно | {total} МБ всего"
+        ],
+        "Ping": [
+            "🏓 Pong!\n\n──── Информация о времени выполнения ────\n\n⚙️ {botName} V{version} (СТРОЙКА: {build})\n\n🐌 Скорость чтения → '{readTime}'\n\n⚡ Скорость выполнения → '{execTime}'\n\n⌛ Онлайн-время → '{processUptime}"
         ]
     },
     "lat": {
@@ -129,6 +234,15 @@
         ],
         "Restrict": [
             "Hoc mandatum restringitur ad solum admins, dominus coetus, dominus meus vel moderator, fortasse unus dies in unum ex illis tabulas habebitis."
+        ],
+        "Timestamp": [
+            "{days} dies | {hours} horae | {minutes} minuta | {seconds} seconds"
+        ],
+        "Memorystamp": [
+            "{used} MB in usu | {free} MB liberum | {total} MB total"
+        ],
+        "Ping": [
+            "🏓 Pong!\n\n──── Runtime Information ────\n\n⚙️ {botName} V{version} (BUILD: {ædifice})\n\n🐌 Celeritas Lectionis → '{readTime}'\n\n⚡ Execution Speed → '{execTime}'\n\n⌛ Online tempus → '{processUptime}"
         ]
     }
 }

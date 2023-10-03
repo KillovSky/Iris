@@ -1,0 +1,357 @@
+{
+    "Default": {
+        "place": "./Functions/Default",
+        "alias": [
+            "default"
+        ]
+    },
+    "Arrays": {
+        "place": "./Functions/Arrays/index",
+        "alias": [
+            "arrays",
+            "array"
+        ]
+    },
+    "Block": {
+        "place": "./Functions/Verifiers/Blocker/index",
+        "alias": [
+            "block",
+            "blocker",
+            "blockers",
+            "autoblock",
+            "autoblocker"
+        ]
+    },
+    "Cards": {
+        "place": "./Functions/Canvas/Cards/index",
+        "alias": [
+            "cards",
+            "leveling",
+            "rank",
+            "leaver",
+            "welcomer"
+        ]
+    },
+    "Cases": {
+        "place": "./Commands/Main/index",
+        "alias": [
+            "commands",
+            "case",
+            "cases",
+            "prefix",
+            "noprefix"
+        ]
+    },
+    "CMDs": {
+        "place": "./Functions/Works/CMDs/index",
+        "alias": [
+            "cmds",
+            "comandos"
+        ]
+    },
+    "Clear": {
+        "place": "./Functions/Clear/index",
+        "alias": [
+            "destroy",
+            "expurge",
+            "clear",
+            "remove",
+            "clean"
+        ]
+    },
+    "Construct": {
+        "place": "./Commands/Main/Construct/index",
+        "alias": [
+            "construct",
+            "message",
+            "parsing",
+            "collect"
+        ]
+    },
+    "Colors": {
+        "place": "./Functions/Colors/index",
+        "alias": [
+            "hex",
+            "rgb",
+            "color",
+            "colors",
+            "palette"
+        ]
+    },
+    "Editor": {
+        "place": "./Functions/Canvas/Editor/index",
+        "alias": [
+            "editor",
+            "crop",
+            "sharp",
+            "cut",
+            "images"
+        ]
+    },
+    "Events": {
+        "place": "./Functions/Works/Events/index",
+        "alias": [
+            "events",
+            "evento"
+        ]
+    },
+    "Memes": {
+        "place": "./Functions/Canvas/Memes/index",
+        "alias": [
+            "memes",
+            "haha"
+        ]
+    },
+    "Metrics": {
+        "place": "./Functions/Metrics/index",
+        "alias": [
+            "metrics",
+            "convert",
+            "calculate"
+        ]
+    },
+    "Numbers": {
+        "place": "./Functions/Numbers/index",
+        "alias": [
+            "numbers",
+            "number",
+            "numeros",
+            "numero",
+            "nb"
+        ]
+    },
+    "onError": {
+        "place": "./Functions/Plugins/onError/index",
+        "alias": [
+            "error",
+            "onerror",
+            "fail",
+            "aterror",
+            "failed"
+        ]
+    },
+    "Welcome": {
+        "place": "./Functions/Plugins/onParticipantsChanged/Keep/index",
+        "alias": [
+            "welcome",
+            "bemvindo",
+            "bienvenido",
+            "novomembro"
+        ]
+    },
+    "Goodbye": {
+        "place": "./Functions/Plugins/onParticipantsChanged/Keep/index",
+        "alias": [
+            "abayo",
+            "goodbye",
+            "adeus",
+            "sayonara"
+        ]
+    },
+    "Fake": {
+        "place": "./Functions/Plugins/onParticipantsChanged/Remove/index",
+        "alias": [
+            "ddi",
+            "country",
+            "fake",
+            "antifake"
+        ]
+    },
+    "Blacklist": {
+        "place": "./Functions/Plugins/onParticipantsChanged/Remove/index",
+        "alias": [
+            "blacklist",
+            "blacklisted",
+            "noentrance",
+            "blockenter"
+        ]
+    },
+    "onParticipantsChanged": {
+        "place": "./Functions/Plugins/onParticipantsChanged/index",
+        "alias": [
+            "onparticipantschanged",
+            "greetings",
+            "newmember"
+        ]
+    },
+    "onStateChanged": {
+        "place": "./Functions/Plugins/onStateChanged/index",
+        "alias": [
+            "states",
+            "state",
+            "onstatechanged"
+        ]
+    },
+    "Options": {
+        "place": "./Functions/Options/index",
+        "alias": [
+            "session",
+            "waautomate",
+            "start",
+            "options"
+        ]
+    },
+    "Others": {
+        "place": "./Functions/Others/index",
+        "alias": [
+            "others",
+            "outros",
+            "other",
+            "another"
+        ]
+    },
+    "Owner": {
+        "place": "./Functions/Works/Owner/index",
+        "alias": [
+            "owner",
+            "dono",
+            "jids",
+            "fixer"
+        ]
+    },
+    "Profile": {
+        "place": "./Functions/Profile/index",
+        "alias": [
+            "profile",
+            "perfil",
+            "picture"
+        ]
+    },
+    "RegExp": {
+        "place": "./Functions/RegExp/index",
+        "alias": [
+            "regexp",
+            "match",
+            "expr",
+            "regex"
+        ]
+    },
+    "Terminal": {
+        "place": "./Functions/Works/Terminal/index",
+        "alias": [
+            "terminal",
+            "ubuntu",
+            "webterm",
+            "express"
+        ]
+    },
+    "Transmission": {
+        "place": "./Functions/Works/Transmission/index",
+        "alias": [
+            "ota",
+            "transmission",
+            "killovsky",
+            "pastebin",
+            "notices"
+        ]
+    },
+    "Tree": {
+        "place": "./Functions/Tree/index",
+        "alias": [
+            "tree",
+            "folders",
+            "list",
+            "files"
+        ]
+    },
+    "Recents": {
+        "place": "./Functions/Recents/index",
+        "alias": [
+            "recent",
+            "recents",
+            "recentes",
+            "classify"
+        ]
+    },
+    "Reload": {
+        "place": "./Functions/Reload/index",
+        "alias": [
+            "reload",
+            "module",
+            "unrequire"
+        ]
+    },
+    "Shell": {
+        "place": "./Functions/Shell/index",
+        "alias": [
+            "bash",
+            "childprocess",
+            "child",
+            "shell",
+            "exec"
+        ]
+    },
+    "Spam": {
+        "place": "./Functions/Verifiers/Spam/index",
+        "alias": [
+            "spam",
+            "spammers",
+            "antispam",
+            "flood",
+            "antiflood"
+        ]
+    },
+    "Strings": {
+        "place": "./Functions/Strings/index",
+        "alias": [
+            "strings",
+            "string",
+            "str"
+        ]
+    },
+    "Starting": {
+        "place": "./Functions/Works/Starting/index",
+        "alias": [
+            "safeboot",
+            "booting",
+            "starting"
+        ]
+    },
+    "Status": {
+        "place": "./Functions/Works/Status/index",
+        "alias": [
+            "status",
+            "recado"
+        ]
+    },
+    "SQL": {
+        "place": "./Functions/SQL/index",
+        "alias": [
+            "sql",
+            "sequelize",
+            "database"
+        ]
+    },
+    "Update": {
+        "place": "./Functions/Works/Update/index",
+        "alias": [
+            "update",
+            "github",
+            "package"
+        ]
+    },
+    "YouTube": {
+        "place": "./Commands/YouTube/index",
+        "alias": [
+            "youtube",
+            "downvideo",
+            "play",
+            "video",
+            "ytsearch"
+        ]
+    },
+    "ZIP": {
+        "place": "./Functions/Works/ZIP/index",
+        "alias": [
+            "backup",
+            "clear",
+            "zip"
+        ]
+    },
+    "recode": {
+        "alias": [
+            "recode"
+        ],
+        "place": "./Functions/recode"
+    }
+}

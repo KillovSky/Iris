@@ -19,6 +19,7 @@
             "Units.env().functions.isint.value('number')",
             "Units.env().functions.randnum.value('number', 'number')",
             "Units.env().functions.process.value('timestamp')",
+            "Units.env().functions.format.value('ms')",
             "Units.env().functions.expand.value('exponent number', 'use accent', 'resize', 'resize index')",
             "Units.env().functions.revert.value()"
         ]
@@ -41,6 +42,7 @@
         "compact": "compact",
         "isint": "isint",
         "randnum": "randnum",
+        "format": "format",
         "process": "process",
         "expand": "expand",
         "reset": "reset",
@@ -107,6 +109,18 @@
                 }
             },
             "description": "Estende números compactos com siglas.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "format": {
+            "arguments": {
+                "upTimer": {
+                    "description": "Milissegundos para realizar a conversão em tempo real.",
+                    "type": "Number",
+                    "value": 0
+                }
+            },
+            "description": "Converte milissegundos em tempo real, como dias, minutos, horas e segundos.",
             "type": "Boolean / Function",
             "value": false
         },

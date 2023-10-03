@@ -2,11 +2,9 @@
     "name": "Stk",
     "description": "Fazer Stickers a partir de imagens, vídeos, GIFs e documentos similares.",
     "usage": {
-        "general": "[Prefix][Comando] [-cut|-circle] [Imagem|URL|Video|Gif|Doc]",
+        "general": "[Prefix][Comando] [-crop|-full|-rounded|-circle] [Imagem|URL|Video|Gif|Doc]",
         "examples": [
             "/Sticker Imagem|URL|Video|Gif|Doc",
-            "/Sticker -cut Imagem|Imagem URL",
-            "/Sticker -cut -circle Imagem|Imagem URL",
             "/Sticker -circle Imagem|Imagem URL",
             "Stk.execute('kill', 'params')",
             "Stk.env()",
@@ -37,7 +35,7 @@
     "modules": {
         "fs": "Leitura de diretórios e arquivos.",
         "path": "Para inserção do local na envInfo.",
-        "@open-wa/wa-decrypt": "Permite descriptografar as mensagens recebidas no WhatsApp.",
+        "wa-sticker-formatter": "Converte os stickers em buffer para enviar no Baileys.",
         "../../Dialogues/index": "Funções que retornam os diálogos necessários.",
         "../../index'": "Para rodar funções de outros arquivos."
     },
@@ -73,7 +71,7 @@
                     "value": false
                 }
             },
-            "description": "Redireciona a função correta para o arquivo correto.",
+            "description": "Executa o comando presente neste arquivo.",
             "type": "Boolean / Function",
             "value": false
         },

@@ -6,8 +6,13 @@
     },
     "extends": "airbnb-base",
 	"globals": {
+		"config": true,
+		"os": true,
 		"tasksComplete": true,
 		"region": true,
+		"startedTime": true,
+		"irisNumber": true,
+		"messagesCount": true,
 		"irisPath": true
 	},
     "overrides": [

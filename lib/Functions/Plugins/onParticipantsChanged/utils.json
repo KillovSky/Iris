@@ -1,20 +1,20 @@
 {
-    "name": "Boot",
+    "name": "OPC",
     "description": "Decide o que fazer quando alguém entrar ou sair de um grupo.",
     "usage": {
         "general": "[RESTRITO] - Verifique o 'examples' para usos inseguros.",
         "examples": [
-            "Boot.env()",
-            "Boot.inform()",
-            "Boot.env().functions.inform.value()",
-            "Boot.env().functions.revert.value()"
+            "OPC.env()",
+            "OPC.inform()",
+            "OPC.env().functions.inform.value()",
+            "OPC.env().functions.revert.value()"
         ]
     },
     "license": "MIT",
     "helps": [
-        "Você pode mudar os parâmetros da exports enviando o valor da Object que deseja editar ao resetar, por exemplo → Boot.reset({ name: 'Body'}) ← Isso mudaria o module de Tree para Body, o uso então passaria ser: → Body.funcão ← Isso também permite que você edita a função usando o mesmo método.",
-        "Você pode mudar o que os códigos rodam, em tempo real, basta usar a 'env', por exemplo → Boot.env().name = 'Body' ← Mas este método não atualizará o sistema, somente a Object, os sistemas permanecem intactos.",
-        "Você pode configurar o tempo de reset dos resultados ou se eles devem ser resetados usando a env, por exemplo → Boot.env().settings.wait = 10000 ← Isso mudaria o tempo de espera para 10 segundos, o tempo deve ser em milissegundos.",
+        "Você pode mudar os parâmetros da exports enviando o valor da Object que deseja editar ao resetar, por exemplo → OPC.reset({ name: 'Body'}) ← Isso mudaria o module de Tree para Body, o uso então passaria ser: → Body.funcão ← Isso também permite que você edita a função usando o mesmo método.",
+        "Você pode mudar o que os códigos rodam, em tempo real, basta usar a 'env', por exemplo → OPC.env().name = 'Body' ← Mas este método não atualizará o sistema, somente a Object, os sistemas permanecem intactos.",
+        "Você pode configurar o tempo de reset dos resultados ou se eles devem ser resetados usando a env, por exemplo → OPC.env().settings.wait = 10000 ← Isso mudaria o tempo de espera para 10 segundos, o tempo deve ser em milissegundos.",
         "Alguém lê essas dicas? Se sim, torne-se um programador, ler os tutoriais é de suma importância e poucos desenvolvedores o fazem...",
         "Existem infinitas formas de uso secretas, explore os códigos para descobrir os mistérios dos sistemas!",
         "Todas as funções tem valores padrão, então você não sofrerá erros por esquecer de enviar um parâmetro ou similar."
@@ -23,6 +23,7 @@
         "env": "env",
         "messedup": "messedup",
         "events": "events",
+        "runner": "runner",
         "reset": "reset",
         "poswork": "finish"
     },
@@ -34,7 +35,8 @@
     "modules": {
         "fs": "Leitura de diretórios e arquivos.",
         "path": "Para obter o nome da pasta.",
-        "../../../index": "Para rodar funções de outros arquivos."
+        "../../../index": "Para rodar funções de outros arquivos.",
+        "../../../Dialogues": "Os dialogos para as funções correspondentes."
     },
     "functions": {
         "ambient": {
@@ -65,6 +67,33 @@
                 "events": {
                     "description": "Informações sobre o evento recebido.",
                     "type": "Boolean / Object",
+                    "value": false
+                }
+            },
+            "description": "Redireciona a função correta para o arquivo correto.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+		"runner": {
+            "arguments": {
+                "kill": {
+                    "description": "Funções de controle raiz da Íris.",
+                    "type": "Boolean / Object",
+                    "value": false
+                },
+                "events": {
+                    "description": "Informações sobre o evento recebido.",
+                    "type": "Boolean / Object",
+                    "value": false
+                },
+				"functions": {
+                    "description": "Funções de controle raiz da Íris.",
+                    "type": "Boolean / Object",
+                    "value": false
+                },
+                "fireType": {
+                    "description": "Informações sobre o evento recebido.",
+                    "type": "Boolean / String",
                     "value": false
                 }
             },
@@ -106,7 +135,7 @@
         "error": {
             "description": "Define se pode printar qualquer erro.",
             "type": "Boolean",
-            "value": false
+            "value": true
         },
         "ender": {
             "description": "Define se deve resetar a cada erro.",
@@ -124,6 +153,34 @@
             "description": "Local onde o módulo pode ser encontrado.",
             "type": "Boolean / String",
             "value": "./index"
+        },
+		"timedate": {
+            "description": "Tempo em minutos de cooldown das mensagens.",
+            "type": "Object",
+            "value": {
+                "blacklist": 30,
+                "welcome": 30,
+                "goodbye": 30,
+                "antifake": 30
+            }
+        },
+		"toremove": {
+            "description": "Funções de tipo remove, ou seja, funções que removem pessoas especificas ao entrar.",
+            "type": "Array",
+            "value": [
+                "antifake",
+                "blacklist"
+            ]
+        },
+		"lasttext": {
+            "description": "Cooldown ativo do contador de mensagens, serve apenas de referência, não pode ser alterado.",
+            "type": "Object",
+            "value": {
+                "blacklist": 0,
+                "welcome": 0,
+                "goodbye": 0,
+                "antifake": 0
+            }
         },
         "code": {
             "description": "Código do erro que obter.",

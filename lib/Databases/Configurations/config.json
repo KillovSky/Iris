@@ -1,0 +1,67 @@
+{
+    "codeReload": {
+        "description": "Allows code to autoreload, no need to restart anymore",
+        "value": true
+    },
+    "language": {
+        "description": "The general language used for the system and any user not manually configured",
+        "value": "pt"
+    },
+    "owner": {
+        "description": "An array of users who can run any command",
+        "value": ["MyNumber@s.whatsapp.net"]
+    },
+    "secureGroup": {
+        "description": "A secure group to receive logs when the system fails to send to the correct person or chat, false is disabled",
+        "value": false
+    },
+	"botName": {
+		"description": "The BOT name",
+		"value": "Íris"
+	},
+	"yourName": {
+		"description": "The Owner name",
+		"value": "User"
+	},
+	"stickerAuthor": {
+		"description": "The author of the made stickers, set as default to create automatic names based on group and user names",
+		"value": "DONTEDITUSR - DONTEDITGPN"
+	},
+	"stickerPack": {
+		"description": "The pack of stickers, keep (optional) default to help oficial devs XD",
+		"value": "🔰 Legião Z [bit.ly/BOT-IRIS] Íris ⚜️"
+	},
+	"secretKey": {
+		"description": "The password used to ignore owner and admin requirements, never use default, create a VERY STRONG password, because this can be EXTREME DANGEROUS",
+		"value": "IrisBOT@Root#123"
+	},
+	"prefixes": {
+		"description": "The prefixes to be declared as a command, does not affect noprefix commands",
+		"value": [
+			"\\",
+			"/",
+			"$",
+			"#",
+			"^",
+			".",
+			"=",
+			"?",
+			"+",
+			"!",
+			"&",
+			":",
+			";",
+			"^",
+			">",
+			"<"
+		]
+	},
+	"perfomanceMode": {
+		"description": "If activated, Íris will execute everything without waiting for finishing the other tasks, this can cause several lags and bugs, but makes commands more faster",
+		"value": false
+	},
+	"waitMessage": {
+		"description": "If enabled, Íris will send a message to request user to wait command finish to avoid lags",
+		"value": true
+	}
+}

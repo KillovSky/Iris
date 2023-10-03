@@ -1,0 +1,98 @@
+{
+    "pt":{
+        "Urls":[
+            "enviar um link dentro de um/a '{type}' ou nickname"
+        ],
+        "Notice":[
+            "O usuário @{userFormated} foi removido por {notice}, quebrando a lei, ele não é mais bem vindo aqui, peço que um administrador verifique, caso isso tenha sido um erro."
+        ]
+    },
+    "jp":{
+        "Urls":[
+            "'{type}' またはニックネーム内のリンクを送信"
+        ],
+        "Notice":[
+            "ユーザー @{userFormated} は {notice} によって削除されました。法律に違反しています。彼はもはやここでは歓迎されません。これが間違いだった場合は、管理者に確認してください。"
+        ]
+    },
+    "en":{
+        "Urls":[
+            "send a link within a '{type}' or nickname"
+        ],
+        "Notice":[
+            "User @{userFormated} has been removed by {notice}, breaking the law, he is no longer welcome here, please have an admin check in case this was an error."
+        ]
+    },
+    "fr":{
+        "Urls":[
+            "envoyer un lien dans un '{type}' ou un surnom"
+        ],
+        "Notice":[
+            "L'utilisateur @{userFormated} a été supprimé par {notice}, enfreignant la loi, il n'est plus le bienvenu ici, veuillez demander à un administrateur de vérifier au cas où il s'agirait d'une erreur."
+        ]
+    },
+    "es":{
+        "Urls":[
+            "enviar un enlace dentro de un '{tipe}' o apodo"
+        ],
+        "Notice":[
+            "Usuario @{userFormated} ha sido eliminado por {notice}, infringiendo la ley, ya no es bienvenido aquí, haga que el administrador verifique en caso de que haya sido un error."
+        ]
+    },
+    "id":{
+        "Urls":[
+            "kirim tautan dalam '{type}' atau nama panggilan"
+        ],
+        "Notice":[
+            "Pengguna @{userFormated} telah dihapus oleh {notice}, melanggar hukum, dia tidak lagi diterima di sini, harap periksa admin jika ini adalah kesalahan."
+        ]
+    },
+    "ms":{
+        "Urls":[
+            "hantar pautan dalam '{type}' atau nama panggilan"
+        ],
+        "Notice":[
+            "Pengguna @{userFormated} telah dialih keluar oleh {notice}, melanggar undang-undang, dia tidak lagi dialu-alukan di sini, sila minta pentadbir menyemak sekiranya ini adalah kesilapan."
+        ]
+    },
+    "hi":{
+        "Urls":[
+            "एक '{type}' या उपनाम के भीतर एक लिंक भेजें"
+        ],
+        "Notice":[
+            "उपयोगकर्ता @{userFormated} को {notice} द्वारा हटा दिया गया है, कानून तोड़ते हुए, अब उनका यहां स्वागत नहीं है, कृपया व्यवस्थापक जांच करवाएं कि यह एक गलती थी।"
+        ]
+    },
+    "de":{
+        "Urls":[
+            "sende einen Link innerhalb eines '{type}' oder Spitznamens"
+        ],
+        "Notice":[
+            "Benutzer @{userFormated} wurde von {notice} entfernt, weil er gegen das Gesetz verstößt, er ist hier nicht mehr willkommen, bitte lassen Sie einen Administrator überprüfen, falls dies ein Fehler war."
+        ]
+    },
+    "it":{
+        "Urls":[
+            "invia un link all'interno di un '{type}' o nickname"
+        ],
+        "Notice":[
+            "L'utente @{userFormated} è stato rimosso da {notice}, infrangendo la legge, non è più il benvenuto qui, chiedi a un amministratore di verificare se si è trattato di un errore."
+        ]
+    },
+    "ru":{
+        "Urls":[
+            "отправить ссылку внутри '{type}' или псевдонима"
+        ],
+        "Notice":[
+            "Пользователь @{userFormated} был удален {notice} в нарушение закона, ему здесь больше не рады, пожалуйста, обратитесь к администратору, если это была ошибка."
+        ]
+    },
+    "lat":{
+        "Urls":[
+            "mittere nexum intra '{type}' vel cognomen"
+        ],
+        "Notice":[
+            "User @{userFormated} remotus est ab {notice}, praevaricationem legis, hic non amplius excipitur, quaeso, admin reprehendo in casu erroris."
+        ]
+    }
+}
