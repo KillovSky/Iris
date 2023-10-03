@@ -1,0 +1,611 @@
+{
+    "pt": {
+        "401": [
+            "Houve uma desconexão, re-escaneie o QR, se preciso...",
+            "Minha sessão desconectou, pode reconectar e escanear o QR novamente?",
+            "Você me desconectou? A sessão precisa ser escaneada novamente..."
+        ],
+        "408": [
+            "A sessão sofreu um timeout, recarregando...",
+            "O tempo de resposta esgotou, recarregando...",
+            "Recarregando a sessão por conta de um timeout..."
+        ],
+        "411": [
+            "A sessão salva não bate com a conexão salva, reiniciando sua sessão...",
+            "O arquivo de sessão parece incorreto, estou tentando recarregar...",
+            "Falha ao conectar, pois a sessão parece incorreta, recarregando..."
+        ],
+        "428": [
+            "A conexão fechou, sua internet pode ter caído? Tentando reconectar...",
+            "Não foi possível manter a conexão com o WhatsApp, tentando de novo...",
+            "Sua conexão com o WhatsApp parece ter caído, reconectando..."
+        ],
+        "440": [
+            "Outra sessão do WhatsApp Web foi aberta no meu número, feche-a...",
+            "Você possui outra sessão do WhatsApp no meu número? Fecha para usar...",
+            "Existem muitas sessões do WhatsApp conectadas no meu número, feche-as..."
+        ],
+        "500": [
+            "A sessão parece mal configurada, estarei tentando reconectar...",
+            "Uma reconexão será feita, pois a sessão foi considerada incorreta...",
+            "A sessão parece incorreta, a conexão estará sendo reinicializada..."
+        ],
+        "515": [
+            "Estou reiniciando, pois a sessão pediu que fosse atualizada...",
+            "O sistema pediu para reiniciar, estou fazendo isso automaticamente...",
+            "Meu código será reinicializado para estabilizar a conexão..."
+        ],
+        "open": [
+            "Pronto, a sessão foi conectada...",
+            "Terminei de conectar a sessão...",
+            "A sessão terminou de iniciar..."
+        ],
+        "connecting": [
+            "Recarregando a sessão do WhatsApp...",
+            "A sessão sera recarregada...",
+            "Atualizando a conexão..."
+        ]
+    },
+    "jp": {
+        "401": [
+            "切断がありました。必要に応じて QR を再スキャンしてください...",
+            "セッションが切断されました。再接続して QR をもう一度スキャンしてもらえますか?",
+            "ログアウトしましたか? セッションを再スキャンする必要があります..."
+        ],
+        "408": [
+            "セッション タイムアウト、リロード中...",
+            "応答がタイムアウトしました。リロードしています...",
+            "タイムアウトのため、セッションをリロードしています..."
+        ],
+        "411": [
+            "保存されたセッションは保存された接続と一致しません。セッションを再起動しています...",
+            "セッションファイルが正しくないようです。リロードしようとしています...",
+            "セッションの状態が悪いため、接続に失敗しました。リロード中です..."
+        ],
+        "428": [
+            "接続が切断されました。インターネットがダウンしている可能性がありますか?再接続を試みています...",
+            "WhatsApp との接続を維持できません。再試行しています...",
+            "WhatsApp 接続が切断されたようです。再接続しています..."
+        ],
+        "440": [
+            "別の WhatsApp Web セッションが私の番号で開かれました。閉じてください...",
+            "私の番号で別の WhatsApp セッションを利用していますか? 使用可能です...",
+            "私の番号に接続されている WhatsApp セッションが多すぎます。閉じてください..."
+        ],
+        "500": [
+            "セッションの設定が間違っているようです。再接続を試みます...",
+            "セッションが不良であることが判明したため、再接続が行われます...",
+            "セッションの状態が悪いようです。接続をリセットしています..."
+        ],
+        "515": [
+            "セッションが更新を要求したため、再起動しています...",
+            "システムが再起動を要求しました。私は自動的に再起動しています...",
+            "接続を安定させるためにコードをリセットします..."
+        ],
+        "open": [
+            "完了、セッションが接続されました...",
+            "セッションの開始が完了しました..."
+        ],
+        "connecting": [
+            "WhatsApp セッションをリロード中...",
+            "セッションをリロード中...",
+            "接続を更新中..."
+        ]
+    },
+    "en": {
+        "401": [
+            "There was a disconnection, rescan the QR if necessary...",
+            "My session disconnected, can you reconnect and scan the QR again?",
+            "Did you log me out? The session needs to be rescanned..."
+        ],
+        "408": [
+            "Session timed out, reloading...",
+            "Response timed out, reloading...",
+            "Reloading the session due to a timeout..."
+        ],
+        "411": [
+            "The saved session does not match the saved connection, restarting your session...",
+            "The session file looks incorrect, I'm trying to reload...",
+            "Failed to connect as session looks bad, reloading..."
+        ],
+        "428": [
+            "The connection was closed, could your internet be down? Trying to reconnect...",
+            "Unable to maintain connection with WhatsApp, trying again...",
+            "Your WhatsApp connection seems to have dropped, reconnecting..."
+        ],
+        "440": [
+            "Another WhatsApp Web session has been opened on my number, please close it...",
+            "Do you have another WhatsApp session on my number? Close to use...",
+            "There are too many WhatsApp sessions connected to my number, please close them..."
+        ],
+        "500": [
+            "Session looks misconfigured, I'll be trying to reconnect...",
+            "A reconnection will be done, as the session was found to be bad...",
+            "The session looks bad, the connection is being reset..."
+        ],
+        "515": [
+            "I'm restarting because the session asked to be updated...",
+            "The system asked to restart, I'm doing it automatically...",
+            "My code will be reset to stabilize the connection..."
+        ],
+        "open": [
+            "Done, the session has been connected...",
+            "I finished connecting the session...",
+            "The session has finished starting..."
+        ],
+        "connecting": [
+            "Reloading WhatsApp session...",
+            "Session will be reloading...",
+            "Updating connection..."
+        ]
+    },
+    "fr": {
+        "401": [
+            "Il y a eu une déconnexion, rescannez le QR si nécessaire...",
+            "Ma session s'est déconnectée, pouvez-vous vous reconnecter et scanner à nouveau le QR?",
+            "M'avez-vous déconnecté? La session doit être réanalysée..."
+        ],
+        "408": [
+            "Session expirée, rechargement...",
+            "La réponse a expiré, rechargement...",
+            "Rechargement de la session en raison d'un délai d'attente..."
+        ],
+        "411": [
+            "La session enregistrée ne correspond pas à la connexion enregistrée, redémarrage de votre session...",
+            "Le fichier de session semble incorrect, j'essaie de recharger...",
+            "Échec de la connexion car la session semble mauvaise, rechargement..."
+        ],
+        "428": [
+            "La connexion a été coupée, est-ce que votre internet est en panne? Tentative de reconnexion...",
+            "Impossible de maintenir la connexion avec WhatsApp, essayez à nouveau...",
+            "Votre connexion WhatsApp semble avoir chuté, reconnexion..."
+        ],
+        "440": [
+            "Une autre session Web WhatsApp a été ouverte sur mon numéro, veuillez la fermer...",
+            "Avez-vous une autre session WhatsApp sur mon numéro? Proche de l'utilisation...",
+            "Il y a trop de sessions WhatsApp connectées à mon numéro, veuillez les fermer..."
+        ],
+        "500": [
+            "La session semble mal configurée, je vais essayer de me reconnecter...",
+            "Une reconnexion va être faite, car la session a été jugée mauvaise...",
+            "La session semble mauvaise, la connexion est en cours de réinitialisation..."
+        ],
+        "515": [
+            "Je redémarre car la session a demandé à être mise à jour...",
+            "Le système a demandé à redémarrer, je le fais automatiquement...",
+            "Mon code va être réinitialisé pour stabiliser la connexion..."
+        ],
+        "open": [
+            "Terminé, la session a été connectée...",
+            "J'ai fini de connecter la session...",
+            "La session a fini de démarrer..."
+        ],
+        "connecting": [
+            "Rechargement de la session WhatsApp...",
+            "La session va être rechargée...",
+            "Mise à jour de la connexion..."
+        ]
+    },
+    "es": {
+        "401": [
+            "Hubo una desconexión, vuelva a escanear el QR si es necesario...",
+            "Mi sesión se desconectó, ¿puedes volver a conectarte y escanear el QR de nuevo?",
+            "¿Me desconectó? La sesión debe volver a escanearse..."
+        ],
+        "408": [
+            "Sesión agotada, recargando...",
+            "Se agotó el tiempo de respuesta, recargando...",
+            "Recargando la sesión debido a un tiempo de espera..."
+        ],
+        "411": [
+            "La sesión guardada no coincide con la conexión guardada, reiniciando su sesión...",
+            "El archivo de sesión parece incorrecto, estoy tratando de recargar...",
+            "Error al conectar porque la sesión se ve mal, recargando..."
+        ],
+        "428": [
+            "La conexión se cerró, ¿podría estar caído tu Internet? Intentando volver a conectar...",
+            "No se puede mantener la conexión con WhatsApp, intentándolo de nuevo...",
+            "Su conexión de WhatsApp parece haberse caído, volviendo a conectar..."
+        ],
+        "440": [
+            "Se ha abierto otra sesión de WhatsApp Web en mi número, ciérrela...",
+            "¿Tienes otra sesión de WhatsApp en mi número? Cerca de usar...",
+            "Hay demasiadas sesiones de WhatsApp conectadas a mi número, ciérralas..."
+        ],
+        "500": [
+            "La sesión parece mal configurada, intentaré volver a conectarme...",
+            "Se realizará una reconexión, ya que se encontró que la sesión era mala...",
+            "La sesión se ve mal, la conexión se está restableciendo..."
+        ],
+        "515": [
+            "Estoy reiniciando porque la sesión solicitó ser actualizada...",
+            "El sistema pidió reiniciar, lo estoy haciendo automáticamente...",
+            "Mi código se restablecerá para estabilizar la conexión..."
+        ],
+        "open": [
+            "Listo, la sesión se ha conectado...",
+            "Terminé de conectar la sesión...",
+            "La sesión ha terminado de iniciarse..."
+        ],
+        "connecting": [
+            "Recargando sesión de WhatsApp...",
+            "La sesión se estará recargando...",
+            "Actualizando conexión..."
+        ]
+    },
+    "id": {
+        "401": [
+            "Ada pemutusan, pindai ulang QR jika perlu...",
+            "Sesi saya terputus, bisakah Anda menghubungkan kembali dan memindai QR lagi?",
+            "Apakah Anda mengeluarkan saya? Sesi perlu dipindai ulang..."
+        ],
+        "408": [
+            "Waktu sesi habis, memuat ulang...",
+            "Tanggapan habis, memuat ulang...",
+            "Memuat ulang sesi karena batas waktu..."
+        ],
+        "411": [
+            "Sesi yang disimpan tidak cocok dengan koneksi yang disimpan, mulai ulang sesi Anda...",
+            "File sesi terlihat salah, saya mencoba memuat ulang...",
+            "Gagal terhubung karena sesi terlihat buruk, memuat ulang..."
+        ],
+        "428": [
+            "Koneksi terputus, apakah internet Anda mati? Mencoba menyambung kembali...",
+            "Tidak dapat mempertahankan koneksi dengan WhatsApp, coba lagi...",
+            "Koneksi WhatsApp Anda sepertinya terputus, menyambungkan kembali..."
+        ],
+        "440": [
+            "Sesi Web WhatsApp lain telah dibuka di nomor saya, harap tutup...",
+            "Apakah Anda memiliki sesi WhatsApp lain di nomor saya? Hampir menggunakan...",
+            "Ada terlalu banyak sesi WhatsApp yang terhubung ke nomor saya, harap tutup..."
+        ],
+        "500": [
+            "Sesi terlihat salah konfigurasi, saya akan mencoba menghubungkan kembali...",
+            "Koneksi ulang akan dilakukan, karena sesi ditemukan buruk...",
+            "Sesi terlihat buruk, koneksi sedang diatur ulang..."
+        ],
+        "515": [
+            "Saya memulai ulang karena sesi meminta untuk diperbarui...",
+            "Sistem meminta untuk memulai ulang, saya melakukannya secara otomatis...",
+            "Kode saya akan disetel ulang untuk menstabilkan koneksi..."
+        ],
+        "open": [
+            "Selesai, sesi telah terhubung...",
+            "Saya selesai menyambungkan sesi...",
+            "Sesi telah selesai dimulai..."
+        ],
+        "connecting": [
+            "Memuat ulang sesi WhatsApp...",
+            "Sesi akan dimuat ulang...",
+            "Memperbarui koneksi..."
+        ]
+    },
+    "ms": {
+        "401": [
+            "Terdapat pemotongan sambungan, imbas semula QR jika perlu...",
+            "Sesi saya terputus, bolehkah anda menyambung semula dan mengimbas QR sekali lagi?",
+            "Adakah anda log keluar saya? Sesi itu perlu diimbas semula..."
+        ],
+        "408": [
+            "Sesi tamat masa, memuat semula...",
+            "Tindak balas tamat masa, memuat semula...",
+            "Memuatkan semula sesi kerana tamat masa..."
+        ],
+        "411": [
+            "Sesi yang disimpan tidak sepadan dengan sambungan yang disimpan, memulakan semula sesi anda...",
+            "Fail sesi kelihatan tidak betul, saya cuba memuatkan semula...",
+            "Gagal disambungkan kerana sesi kelihatan buruk, memuatkan semula..."
+        ],
+        "428": [
+            "Sambungan telah ditutup, mungkinkah internet anda terputus? Cuba menyambung semula...",
+            "Tidak dapat mengekalkan sambungan dengan WhatsApp, cuba lagi...",
+            "Sambungan WhatsApp anda nampaknya terputus, menyambung semula..."
+        ],
+        "440": [
+            "Satu lagi sesi WhatsApp Web telah dibuka pada nombor saya, sila tutupnya...",
+            "Adakah anda mempunyai sesi WhatsApp lagi pada nombor saya? Dekat untuk digunakan...",
+            "Terlalu banyak sesi WhatsApp yang disambungkan ke nombor saya, sila tutupnya..."
+        ],
+        "500": [
+            "Sesi kelihatan tersalah konfigurasi, saya akan cuba menyambung semula...",
+            "Penyambungan semula akan dilakukan, kerana sesi itu didapati tidak baik...",
+            "Sesi kelihatan teruk, sambungan sedang ditetapkan semula..."
+        ],
+        "515": [
+            "Saya memulakan semula kerana sesi meminta untuk dikemas kini...",
+            "Sistem meminta untuk memulakan semula, saya melakukannya secara automatik...",
+            "Kod saya akan ditetapkan semula untuk menstabilkan sambungan..."
+        ],
+        "open": [
+            "Selesai, sesi telah disambungkan...",
+            "Saya selesai menyambung sesi..."
+        ],
+        "connecting": [
+            "Memuat semula sesi WhatsApp...",
+            "Sesi akan dimuat semula...",
+            "Mengemas kini sambungan..."
+        ]
+    },
+    "hi": {
+        "401": [
+            "एक डिस्कनेक्शन था, यदि आवश्यक हो तो क्यूआर को फिर से स्कैन करें...",
+            "मेरा सत्र डिस्कनेक्ट हो गया है, क्या आप फिर से कनेक्ट कर सकते हैं और QR को फिर से स्कैन कर सकते हैं?",
+            "क्या तुमने मुझे लॉग आउट किया? सत्र को फिर से स्कैन करने की आवश्यकता है..."
+        ],
+        "408": [
+            "सत्र का समय समाप्त, पुनः लोड हो रहा है...",
+            "प्रतिक्रिया का समय समाप्त, पुनः लोड हो रहा है...",
+            "टाइमआउट के कारण सत्र को पुनः लोड कर रहा है..."
+        ],
+        "411": [
+            "सहेजा गया सत्र सहेजे गए कनेक्शन से मेल नहीं खाता, आपका सत्र फिर से शुरू हो रहा है...",
+            "सत्र फ़ाइल गलत दिखती है, मैं पुनः लोड करने का प्रयास कर रहा हूँ...",
+            "कनेक्ट करने में विफल रहा क्योंकि सत्र खराब लग रहा है, पुनः लोड हो रहा है..."
+        ],
+        "428": [
+            "कनेक्शन बंद हो गया था, क्या आपका इंटरनेट बंद हो सकता है? फिर से कनेक्ट करने का प्रयास कर रहे हैं...",
+            "व्हाट्सएप के साथ कनेक्शन बनाए रखने में असमर्थ, पुनः प्रयास कर रहा हूँ...",
+            "ऐसा लगता है कि आपका व्हाट्सएप कनेक्शन गिर गया है, फिर से कनेक्ट हो रहा है..."
+        ],
+        "440": [
+            "मेरे नंबर पर एक और व्हाट्सएप वेब सत्र खोला गया है, कृपया इसे बंद करें...",
+            "क्या आपके पास मेरे नंबर पर एक और व्हाट्सएप सत्र है? उपयोग के करीब...",
+            "मेरे नंबर से बहुत सारे व्हाट्सएप सत्र जुड़े हुए हैं, कृपया उन्हें बंद करें..."
+        ],
+        "500": [
+            "सत्र गलत कॉन्फ़िगर किया गया लग रहा है, मैं फिर से कनेक्ट करने का प्रयास कर रहा हूँ...",
+            "एक पुन: कनेक्शन किया जाएगा, क्योंकि सत्र खराब पाया गया था...",
+            "सत्र खराब लग रहा है, कनेक्शन रीसेट किया जा रहा है..."
+        ],
+        "515": [
+            "मैं पुनः आरंभ कर रहा हूँ क्योंकि सत्र को अद्यतन करने के लिए कहा गया है...",
+            "सिस्टम ने पुनरारंभ करने के लिए कहा, मैं इसे स्वचालित रूप से कर रहा हूं...",
+            "कनेक्शन को स्थिर करने के लिए मेरा कोड रीसेट हो जाएगा..."
+        ],
+        "open": [
+            "हो गया, सत्र कनेक्ट हो गया है...",
+            "मैंने सत्र कनेक्ट करना समाप्त कर दिया है...",
+            "सत्र शुरू हो गया है..."
+        ],
+        "connecting": [
+            "व्हाट्सएप सेशन रीलोड हो रहा है...",
+            "सेशन फिर से लोड हो रहा है...",
+            "कनेक्शन अपडेट कर रहा है..."
+        ]
+    },
+    "de": {
+        "401": [
+            "Es gab eine Verbindungsunterbrechung, scannen Sie den QR ggf. erneut...",
+            "Meine Sitzung wurde getrennt, können Sie die Verbindung wieder herstellen und den QR erneut scannen?",
+            "Haben Sie mich abgemeldet? Die Sitzung muss erneut gescannt werden..."
+        ],
+        "408": [
+            "Zeitüberschreitung der Sitzung, Neuladen...",
+            "Zeitüberschreitung bei Antwort, Neuladen...",
+            "Neuladen der Sitzung aufgrund einer Zeitüberschreitung..."
+        ],
+        "411": [
+            "Die gespeicherte Sitzung stimmt nicht mit der gespeicherten Verbindung überein, Sitzung neu starten...",
+            "Die Sitzungsdatei sieht falsch aus, ich versuche neu zu laden...",
+            "Verbindung konnte nicht hergestellt werden, da Sitzung schlecht aussieht, wird neu geladen..."
+        ],
+        "428": [
+            "Die Verbindung wurde getrennt, könnte Ihr Internet ausgefallen sein? Versuchen Sie, die Verbindung wiederherzustellen...",
+            "Verbindung mit WhatsApp kann nicht aufrechterhalten werden, versuche es erneut...",
+            "Ihre WhatsApp-Verbindung scheint unterbrochen zu sein, Verbindung wird neu hergestellt..."
+        ],
+        "440": [
+            "Auf meiner Nummer wurde eine andere WhatsApp-Websitzung geöffnet, bitte schließen Sie sie...",
+            "Haben Sie eine weitere WhatsApp-Sitzung auf meiner Nummer?",
+            "Es sind zu viele WhatsApp-Sitzungen mit meiner Nummer verbunden, bitte schließen Sie sie..."
+        ],
+        "500": [
+            "Die Sitzung scheint falsch konfiguriert zu sein, ich werde versuchen, die Verbindung wiederherzustellen...",
+            "Es wird eine erneute Verbindung hergestellt, da die Sitzung als fehlerhaft befunden wurde...",
+            "Die Sitzung sieht schlecht aus, die Verbindung wird zurückgesetzt..."
+        ],
+        "515": [
+            "Ich starte neu, weil die Sitzung aktualisiert werden soll...",
+            "Das System hat nach einem Neustart gefragt, ich mache es automatisch...",
+            "Mein Code wird zurückgesetzt, um die Verbindung zu stabilisieren..."
+        ],
+        "open": [
+            "Fertig, die Sitzung wurde verbunden...",
+            "Ich habe die Verbindung zur Sitzung beendet...",
+            "Die Sitzung wurde gestartet..."
+        ],
+        "connecting": [
+            "WhatsApp-Sitzung wird neu geladen...",
+            "Sitzung wird neu geladen...",
+            "Verbindung wird aktualisiert..."
+        ]
+    },
+    "it": {
+        "401": [
+            "Si è verificata una disconnessione, scansiona nuovamente il QR se necessario...",
+            "La mia sessione si è disconnessa, puoi riconnetterti e scansionare di nuovo il QR?",
+            "Mi hai disconnesso? La sessione deve essere scansionata di nuovo..."
+        ],
+        "408": [
+            "Sessione scaduta, ricarica in corso...",
+            "Risposta scaduta, ricarica in corso...",
+            "Ricaricamento della sessione a causa di un timeout..."
+        ],
+        "411": [
+            "La sessione salvata non corrisponde alla connessione salvata, riavvio della sessione...",
+            "Il file della sessione sembra errato, sto cercando di ricaricare...",
+            "Impossibile connettersi perché la sessione non funziona correttamente, ricaricamento in corso..."
+        ],
+        "428": [
+            "La connessione è stata chiusa, la tua connessione Internet potrebbe essere interrotta? Tentativo di riconnettersi...",
+            "Impossibile mantenere la connessione con WhatsApp, riprovare...",
+            "La tua connessione WhatsApp sembra essersi interrotta, riconnessione in corso..."
+        ],
+        "440": [
+            "È stata aperta un'altra sessione WhatsApp Web sul mio numero, chiudila...",
+            "Hai un'altra sessione WhatsApp sul mio numero? Vicino all'uso...",
+            "Ci sono troppe sessioni WhatsApp collegate al mio numero, chiudile..."
+        ],
+        "500": [
+            "La sessione sembra configurata in modo errato, cercherò di riconnettermi...",
+            "Verrà eseguita una riconnessione, poiché la sessione è risultata non valida...",
+            "La sessione ha un aspetto negativo, la connessione è in fase di ripristino..."
+        ],
+        "515": [
+            "Sto riavviando perché la sessione ha chiesto di essere aggiornata...",
+            "Il sistema ha chiesto di riavviarsi, lo sto facendo automaticamente...",
+            "Il mio codice verrà reimpostato per stabilizzare la connessione..."
+        ],
+        "open": [
+            "Fatto, la sessione è stata connessa...",
+            "Ho finito di connettere la sessione...",
+            "La sessione ha finito di iniziare..."
+        ],
+        "connecting": [
+            "Ricaricamento sessione WhatsApp...",
+            "La sessione verrà ricaricata...",
+            "Aggiornamento connessione..."
+        ]
+    },
+    "ru": {
+        "401": [
+            "Si è verificata una disconnessione, scansiona nuovamente il QR se necessario...",
+            "La mia sessione si è disconnessa, puoi riconnetterti e scansionare di nuovo il QR?",
+            "Mi hai disconnesso? La sessione deve essere scansionata di nuovo..."
+        ],
+        "408": [
+            "Sessione scaduta, ricarica in corso...",
+            "Risposta scaduta, ricarica in corso...",
+            "Ricaricamento della sessione a causa di un timeout..."
+        ],
+        "411": [
+            "La sessione salvata non corrisponde alla connessione salvata, riavvio della sessione...",
+            "Il file della sessione sembra errato, sto cercando di ricaricare...",
+            "Impossibile connettersi perché la sessione non funziona correttamente, ricaricamento in corso..."
+        ],
+        "428": [
+            "La connessione è stata chiusa, la tua connessione Internet potrebbe essere interrotta? Tentativo di riconnettersi...",
+            "Impossibile mantenere la connessione con WhatsApp, riprovare...",
+            "La tua connessione WhatsApp sembra essersi interrotta, riconnessione in corso..."
+        ],
+        "440": [
+            "È stata aperta un'altra sessione WhatsApp Web sul mio numero, chiudila...",
+            "Hai un'altra sessione WhatsApp sul mio numero? Vicino all'uso...",
+            "Ci sono troppe sessioni WhatsApp collegate al mio numero, chiudile..."
+        ],
+        "500": [
+            "La sessione sembra configurata in modo errato, cercherò di riconnettermi...",
+            "Verrà eseguita una riconnessione, poiché la sessione è risultata non valida...",
+            "La sessione ha un aspetto negativo, la connessione è in fase di ripristino..."
+        ],
+        "515": [
+            "Sto riavviando perché la sessione ha chiesto di essere aggiornata...",
+            "Il sistema ha chiesto di riavviarsi, lo sto facendo automaticamente...",
+            "Il mio codice verrà reimpostato per stabilizzare la connessione..."
+        ],
+        "open": [
+            "Готово, сессия подключена...",
+            "Я завершил подключение сессии...",
+            "Сессия завершила запуск..."
+        ],
+        "connecting": [
+            "Перезагрузка сеанса WhatsApp...",
+            "Сеанс будет перезагружен...",
+            "Обновление соединения..."
+        ]
+    },
+    "lat": {
+        "401": [
+            "Disiunctio fuit, QR si necesse est rescan...",
+            "Mea sessionis disiuncta, reconnect potes et iterum QR lustrare?",
+            "Nonne tu me log? Sessionis rescanned debet esse..."
+        ],
+        "408": [
+            "Sessio opportuna, reloading...",
+            "Responsio opportuno, reloading...",
+            "Reloading session due to timeout..."
+        ],
+        "411": [
+            "Sessionis servatae nexum servatum non congruit, sessionem tuam restarting...",
+            "Sessionis tabella falsa spectat, reload conor...",
+            "Deficio coniungere ut sessionem spectat mala, reloading..."
+        ],
+        "428": [
+            "Connexio clausa est, potuitne tua penitus descendere? Conans reconnect...",
+            "Non est ponere nexum cum whatsapp, iterum conatur....",
+            "Tua whatsapp connexionem videtur excidisse, reconnecting..."
+        ],
+        "440": [
+            "Alius whatsapp Web sessionem me numero apertus est, quaeso claudere eam...",
+            "Habes alium numerum a me whatsapp sessionem? Prope ad usum...",
+            "Ses nimis multae whatsapp sessiones numero meo connexae sunt, quaeso claude eas..."
+        ],
+        "500": [
+            "Sessio deformata spectat, conetur reconnect...",
+            "Fiet reiunctio, sicut inventus est malus sessio...",
+            "Sessio spectat mala, nexus est reset..."
+        ],
+        "515": [
+            "Im 'restarting quod sessionis renovandum esse rogavit...",
+            "Ratio quaesivit ut sileo, ego statim id facio...",
+            "Meum signum erit reset ad stabiliendum nexum..."
+        ],
+        "open": [
+            "Actum, sessio coniuncta est...",
+            "Sessionem connectens consummavi...",
+            "Sessio initium finivit..."
+        ],
+        "connecting": [
+            "Reloading whatsapp sessionem...",
+            "Sessio erit reloading...",
+            "Adaequationis nexum..."
+        ]
+    },
+    "ar": {
+        "401": [
+            "كان هناك انقطاع ,أعد فحص QR إذا لزم الأمر...",
+            "تم قطع الاتصال بجلستي ,هل يمكنك إعادة الاتصال ومسح QR مرة أخرى؟",
+            "هل قمت بتسجيل خروجي؟ يجب إعادة فحص الجلسة..."
+        ],
+        "408": [
+            "انتهت مهلة الجلسة ,جارٍ إعادة التحميل...",
+            "انتهت مهلة الرد ,جارٍ إعادة التحميل...",
+            "جارٍ إعادة تحميل الجلسة بسبب انتهاء المهلة..."
+        ],
+        "411": [
+            "الجلسة المحفوظة لا تتطابق مع الاتصال المحفوظ ,إعادة تشغيل الجلسة...",
+            "ملف الجلسة يبدو غير صحيح ,أحاول إعادة تحميل...",
+            "فشل الاتصال لأن الجلسة تبدو سيئة ,جارٍ إعادة التحميل..."
+        ],
+        "428": [
+            "تم إغلاق الاتصال ,هل تعطل الإنترنت؟ محاولة إعادة الاتصال...",
+            "غير قادر على الحفاظ على الاتصال مع WhatsApp ,حاول مرة أخرى...",
+            "يبدو أن اتصال WhatsApp الخاص بك قد انقطع ,وأعاد الاتصال..."
+        ],
+        "440": [
+            "تم فتح جلسة WhatsApp Web أخرى على رقمي ,يرجى إغلاقها...",
+            "هل لديك جلسة WhatsApp أخرى على رقمي؟ قريب من الاستخدام...",
+            "هناك عدد كبير جدًا من جلسات WhatsApp مرتبطة برقمي ,يرجى إغلاقها..."
+        ],
+        "500": [
+            "تبدو الجلسة مضبوطة بشكل خاطئ ,وسأحاول إعادة الاتصال...",
+            "سيتم إجراء إعادة الاتصال ,حيث تبين أن الجلسة سيئة...",
+            "تبدو الجلسة سيئة ,جاري إعادة تعيين الاتصال..."
+        ],
+        "515": [
+            "أقوم بإعادة التشغيل لأن الجلسة طلبت التحديث...",
+            "طلب النظام إعادة التشغيل ,فأنا أفعل ذلك تلقائيًا...",
+            "ستتم إعادة تعيين الكود الخاص بي لتحقيق الاستقرار في الاتصال..."
+        ],
+        "open": [
+            "تم ، تم توصيل الجلسة...",
+            "انتهيت من توصيل الجلسة...",
+            "انتهت الجلسة من البدء..."
+        ],
+        "connecting": [
+            "جارٍ الاتصال بجلسة WhatsApp...",
+            "جارٍ الاتصال على WhatsApp، انتظر...",
+            "سأقوم بالاتصال على WhatsApp، انتظر قليلاً..."
+        ]
+    }
+}

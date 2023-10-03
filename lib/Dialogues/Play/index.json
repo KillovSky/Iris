@@ -1,0 +1,266 @@
+{
+    "pt": {
+        "Details": [
+            "*✏️ Titulo →* _'{title}'_\n\n*🆔 (ID) →* _'{videoId}'_\n\n*🌐 URL →* _'{url}'_\n\n*📄 Descrição →* _'{description}'_\n\n*🌆 Imagem →* _'{image}'_\n\n*⏱️ Tempo →* _'{seconds}s | {timestamp}min'_\n\n*🆙 Postagem →* _'{ago}'_\n\n*👁️ Views →* _'{views}'_\n\n*🧑 Autor →* _'{author.name}'_\n\n*🔗 Canal →* _'{author.url}'_"
+        ],
+        "Format": [
+            "Qual tipo de formato você deseja obter?",
+            "Como você quer receber isso?",
+            "Em qual estilo você quer baixar?"
+        ],
+        "Options": [
+            "Para continuar o download é necessário que você especifique, clicando em um botão [se houver], ou enviando a resposta como uma mensagem, você tem '{time}min' antes disso ser cancelado automaticamente, as opções são: '{first}', '{two}' ou '{three}'."
+        ],
+        "Timeout": [
+            "🕗 _Informação extra →_ *O erro pode ter sido causado por uma demora na escolha, isso não é um erro em si, mas uma resposta especial para lidar com a demora, não se preocupe com isso, se for esse o caso.*"
+        ],
+        "Empty": [
+            "Infelizmente, não pude encontrar nenhum resultado, se acreditar que isso é um BUG, basta fazer um ticket de ajuda no comando 'help', mas antes disto, tente usar de forma diferente."
+        ],
+        "Failed": [
+			"Como diabos você chegou nessa resposta? Enfim, os downloads não puderam ser concluídos, os motivos são inúmeros, como ser muito pesado, erros de download ou outros, neste caso, não foi retornado nada para baixar."
+        ]
+    },
+    "jp": {
+        "Details": [
+            "*✏️ タイトル →* _'{title}'_\n\n*🆔 (ID) →* _'{videoId}'_\n\n*🌐 URL →* _'{url}'_\n\n*📄 説明 →* _'{description}'_\n\n*🌆 画像 →* _'{image}'_\n\n*⏱️ 天気 →* _'{seconds}s | {timestamp}min'_\n\n*🆙 投稿 →* _'{ago}'_\n\n*👁️ ビュー →* _'{views}'_\n\n*🧑 作者 →* _'{author.name}'_\n\n*🔗 チャンネル →* _'{author.url}'_"
+        ],
+        "Format": [
+            "どのような形式で入手したいですか?",
+            "これをどのように受け取りたいですか?",
+            "どのような形式でダウンロードしますか?"
+        ],
+        "Options": [
+            "ダウンロードを続行するには、[ボタンがあれば] をクリックするか、応答をメッセージとして送信することにより、指定する必要があります。これが自動的にキャンセルされるまでに '{time} 分' があります。オプションは次のとおりです。 '{first}', '{two}' または '{three}'."
+        ],
+        "Timeout": [
+            "🕗 _追加情報 →_ *エラーは、選択の遅延によって発生した可能性があります。これはエラー自体ではなく、遅延に対処するための特別な応答です。これが事実です。*"
+        ],
+        "Empty": [
+            "残念ながら、結果が見つかりませんでした。これがバグだと思われる場合は、'help' コマンドでヘルプ チケットを作成してください。ただし、その前に別の方法で使用してみてください。"
+        ],
+        "Failed": [
+            "どうやってこの答えにたどり着いたのですか? とにかく、ダウンロードを完了できませんでした。重すぎる、ダウンロード エラーなど、理由は無限にあります。この場合、ダウンロードは返されませんでした。実行します。"
+        ]
+    },
+    "en": {
+        "Details": [
+            "*✏️ Title →* _'{title}'_\n\n*🆔 (ID) →* _'{videoId}'_\n\n*🌐 URL →* _'{url}'_\n\n*📄 Description →* _'{description}'_\n\n*🌆 Image →* _'{image}'_\n\n*⏱️ Weather →* _'{seconds}s | {timestamp}min'_\n\n*🆙 Post →* _'{ago}'_\n\n*👁️ Views →* _'{views}'_\n\n*🧑 Author →* _'{author.name}'_\n\n*🔗 Channel →* _'{author.url}'_"
+        ],
+        "Format": [
+            "What kind of format do you want to get?",
+            "How do you want to receive this?",
+            "What style do you want to download it in?"
+        ],
+        "Options": [
+            "To continue the download it is necessary that you specify, by clicking on a button [if any], or by sending the response as a message, you have '{time}min' before this is automatically cancelled, the options are: '{first}', '{two}' or '{three}'."
+        ],
+        "Timeout": [
+            "🕗 _Extra info →_ *The error may have been caused by a delay in choosing, this is not an error per se, but a special response to deal with the delay, don't worry about it if it is this is the case.*"
+        ],
+        "Empty": [
+            "Unfortunately, I couldn't find any results, if you believe this is a BUG, just make a help ticket on the 'help' command, but before that, try using it differently."
+        ],
+        "Failed": [
+            "How the hell did you arrive at this answer? Anyway, the downloads could not be completed, there are endless reasons, such as being too heavy, download errors or others, in this case, the download was not returned to execute."
+        ]
+    },
+    "fr": {
+        "Details": [
+            "*✏️ Titre →* _'{title}'_\n\n*🆔 (ID) →* _'{videoId}'_\n\n*🌐 URL →* _'{url}'_\n\n*📄 Description →* _'{description}'_\n\n*🌆 Image →* _'{image}'_\n\n*⏱️ Météo →* _'{seconds}s | {timestamp}min'_\n\n*🆙 Message →* _'{ago}'_\n\n*👁️ Vues →* _'{views}'_\n\n*🧑 Auteur →* _'{author.name}'_\n\n*🔗 Chaîne →* _'{author.url}'_"
+        ],
+        "Format": [
+            "Quel type de format voulez-vous obtenir?",
+            "Comment voulez-vous le recevoir?",
+            "Dans quel style voulez-vous le télécharger?"
+        ],
+        "Options": [
+            "Pour continuer le téléchargement il faut que vous précisiez, en cliquant sur un bouton [le cas échéant], ou en envoyant la réponse sous forme de message, vous avez '{time}min' avant que cela ne s'annule automatiquement, les options sont : '{first}', '{two}' ou '{three}'."
+        ],
+        "Timeout": [
+            "🕗 _Info supplémentaire →_ *L'erreur peut avoir été causée par un retard dans le choix, ce n'est pas une erreur en soi mais une réponse spéciale pour faire face au retard, ne vous inquiétez pas si c'est c'est le cas.*"
+        ],
+        "Empty": [
+            "Malheureusement, je n'ai trouvé aucun résultat, si vous pensez qu'il s'agit d'un BUG, ​​créez simplement un ticket d'aide sur la commande 'help', mais avant cela, essayez de l'utiliser différemment."
+        ],
+        "Failed": [
+            "Comment diable êtes-vous arrivé à cette réponse? De toute façon, les téléchargements n'ont pas pu être terminés, il y a une infinité de raisons, comme être trop lourd, des erreurs de téléchargement ou autres, dans ce cas, un téléchargement n'a pas été retourné à exécuter."
+        ]
+    },
+    "es": {
+        "Details": [
+            "*✏️ Título →* _'{title}'_\n\n*🆔 (ID) →* _'{videoId}'_\n\n*🌐 URL →* _'{url}'_\n\n*📄 Descripción →* _'{description}'_\n\n*🌆 Imagen →* _'{image}'_\n\n*⏱️ Clima →* _'{segundos}s | {timestamp}min'_\n\n*🆙 Publicado →* _'{ago}'_\n\n*👁️ Vistas →* _'{views}'_\n\n*🧑 Autor →* _'{autor.nombre}'_\n\n*🔗 Canal →* _'{autor.url}'_"
+        ],
+        "Format": [
+            "Qué tipo de formato quieres obtener?",
+            "Cómo quieres recibir esto?",
+            "En qué estilo quieres descargarlo?"
+        ],
+        "Options": [
+            "Para continuar con la descarga es necesario que especifiques, haciendo clic en un botón [si hay], o enviando la respuesta como un mensaje, tienes '{time}min' antes de que esto se cancele automáticamente, las opciones son: '{first}', '{two}' o '{three}'."
+        ],
+        "Timeout": [
+            "🕗 _Información adicional →_ *El error puede haber sido causado por un retraso en la elección, esto no es un error per se sino una respuesta especial para lidiar con el retraso, no te preocupes si es este es el caso.*"
+        ],
+        "Empty": [
+            "Desafortunadamente, no pude encontrar ningún resultado, si crees que esto es un ERROR, solo crea un ticket de ayuda en el comando 'ayuda', pero antes de eso, intenta usarlo de manera diferente."
+        ],
+        "Failed": [
+            "Cómo diablos llegaste a esta respuesta? De todos modos, las descargas no se pudieron completar, hay un sinfín de razones, como ser demasiado pesado, errores de descarga u otros, en este caso, una descarga no se devolvió para ejecutar."
+        ]
+    },
+    "id": {
+        "Details": [
+            "*✏️ Judul →* _'{title}'_\n\n*🆔 (ID) →* _'{videoId}'_\n\n*🌐 URL →* _'{url}'_\n\n*📄 Deskripsi →* _'{description}'_\n\n*🌆 Gambar →* _'{image}'_\n\n*⏱️ Cuaca →* _'{seconds}s | {timestamp}min'_\n\n*🆙 Posting →* _'{ago}'_\n\n*👁️ Penayangan →* _'{views}'_\n\n*🧑 Penulis →* _'{author.name}'_\n\n*🔗 Saluran →* _'{author.url}'_"
+        ],
+        "Format": [
+            "Anda ingin mendapatkan format apa?",
+            "Bagaimana Anda ingin menerima ini?",
+            "Dengan gaya apa Anda ingin mengunduhnya?"
+        ],
+        "Options": [
+            "Untuk melanjutkan pengunduhan, Anda harus menentukan, dengan mengeklik tombol [jika ada], atau dengan mengirimkan respons sebagai pesan, Anda memiliki '{time}min' sebelum ini dibatalkan secara otomatis, opsinya adalah: '{first}', '{two}' atau '{three}'."
+        ],
+        "Timeout": [
+            "🕗 _Info tambahan →_ *Kesalahan mungkin disebabkan oleh keterlambatan dalam memilih, ini bukan kesalahan itu sendiri tetapi tanggapan khusus untuk mengatasi keterlambatan tersebut, jangan khawatir jika memang demikian ini masalahnya.*"
+        ],
+        "Empty": [
+            "Sayangnya, saya tidak dapat menemukan hasil apa pun, jika Anda yakin ini BUG, ​​​​buat saja tiket bantuan pada perintah 'help', tetapi sebelum itu, coba gunakan dengan cara yang berbeda."
+        ],
+        "Failed": [
+            "Bagaimana Anda sampai pada jawaban ini? Bagaimanapun, pengunduhan tidak dapat diselesaikan, ada banyak alasan, seperti terlalu berat, kesalahan pengunduhan atau lainnya, dalam hal ini, unduhan tidak dikembalikan untuk mengeksekusi."
+        ]
+    },
+    "ms": {
+        "Details": [
+            "*✏️ Tajuk →* _'{title}'_\n\n*🆔 (ID) →* _'{videoId}'_\n\n*🌐 URL →* _'{url}'_\n\n*📄 Penerangan →* _'{description}'_\n\n*🌆 Imej →* _'{image}'_\n\n*⏱️ Cuaca →* _'{seconds}s | {timestamp}min'_\n\n*🆙 Post →* _'{ago}'_\n\n*👁️ Tontonan →* _'{views}'_\n\n*🧑 Pengarang →* _'{author.name}'_\n\n*🔗 Saluran →* _'{author.url}'_"
+        ],
+        "Format": [
+            "Apakah jenis format yang anda ingin dapatkan?",
+            "Bagaimana anda mahu menerima ini?",
+            "Apakah gaya yang anda mahu muat turun?"
+        ],
+        "Options": [
+            "Untuk meneruskan muat turun, anda perlu menentukan, dengan mengklik butang [jika ada], atau dengan menghantar respons sebagai mesej, anda mempunyai '{time}min' sebelum ini dibatalkan secara automatik, pilihannya ialah: '{first}', '{two}' or '{three}'."
+        ],
+        "Timeout": [
+            "🕗 _Maklumat tambahan →_ *Ralat mungkin disebabkan oleh kelewatan dalam memilih, ini bukan ralat semata-mata tetapi respons khas untuk menangani kelewatan, jangan risau jika ia Inilah kesnya.*"
+        ],
+        "Empty": [
+            "Malangnya, saya tidak menemui sebarang hasil, jika anda percaya ini adalah BUG, ​​​​hanya buat tiket bantuan pada arahan 'help', tetapi sebelum itu, cuba gunakannya secara berbeza."
+        ],
+        "Failed": [
+            "Bagaimana anda sampai pada jawapan ini? Bagaimanapun, muat turun tidak dapat diselesaikan, terdapat sebab yang tidak berkesudahan, seperti terlalu berat, ralat muat turun atau lain-lain, dalam kes ini, muat turun tidak dikembalikan untuk melaksanakan."
+        ]
+    },
+    "hi": {
+        "Details": [
+            "*✏️ शीर्षक →* _'{title}'_\n\n*🆔 (आईडी) →* _'{videoId}'_\n\n*🌐 URL →* _'{url}'_\n\n*📄 विवरण →* _'{description}'_\n\n*🌆 चित्र →* _'{image}'_\n\n*⏱️ मौसम →* _'{seconds}s | {timestamp}min'_\n\n*🆙 पोस्ट →* _'{ago}'_\n\n*👁️ दृश्य →* _'{views}'_\n\n*🧑 लेखक →* _'{author.name}'_\n\n*🔗 चैनल →* _'{author.url}'_"
+        ],
+        "Format": [
+            "आप किस प्रकार का प्रारूप प्राप्त करना चाहते हैं?",
+            "आप इसे कैसे प्राप्त करना चाहते हैं?",
+            "आप इसे किस शैली में डाउनलोड करना चाहते हैं?"
+        ],
+        "Options": [
+            "डाउनलोड जारी रखने के लिए यह आवश्यक है कि आप एक बटन पर क्लिक करके निर्दिष्ट करें [यदि कोई हो], या संदेश के रूप में प्रतिक्रिया भेजकर, आपके पास '{time}मिनट' है इससे पहले कि यह स्वचालित रूप से रद्द हो जाए, विकल्प हैं: '{first}', '{two}' या '{three}'।"
+        ],
+        "Timeout": [
+            "🕗 _अतिरिक्त जानकारी →_ *चुनने में देरी के कारण त्रुटि हो सकती है, यह एक त्रुटि नहीं है बल्कि देरी से निपटने के लिए एक विशेष प्रतिक्रिया है, अगर यह है तो इसके बारे में चिंता न करें ये मामला है।*"
+        ],
+        "Empty": [
+            "दुर्भाग्य से, मुझे कोई परिणाम नहीं मिला, अगर आपको लगता है कि यह एक बग है, तो बस 'help' कमांड पर एक सहायता टिकट बनाएं, लेकिन इससे पहले, इसे अलग तरीके से उपयोग करने का प्रयास करें।"
+        ],
+        "Failed": [
+            "आप इस जवाब पर कैसे पहुंचे? वैसे भी, डाउनलोड पूरा नहीं हो सका, इसके अंतहीन कारण हैं, जैसे बहुत भारी होना, डाउनलोड त्रुटियां या अन्य, इस मामले में, एक डाउनलोड वापस नहीं किया गया था निष्पादित करने के लिए। "
+        ]
+    },
+    "de": {
+        "Details": [
+            "*✏️ Titel →* _'{title}'_\n\n*🆔 (ID) →* _'{videoId}'_\n\n*🌐 URL →* _'{url}'_\n\n*📄 Beschreibung →* _'{description}'_\n\n*🌆 Bild →* _'{image}'_\n\n*⏱️ Wetter →* _'{seconds}s | {timestamp}min'_\n\n*🆙 Beitrag →* _'{ago}'_\n\n*👁️ Aufrufe →* _'{views}'_\n\n*🧑 Autor →* _'{author.name}'_\n\n*🔗 Kanal →* _'{author.url}'_"
+        ],
+        "Format": [
+            "Welches Format möchten Sie erhalten?",
+            "Wie möchten Sie dies erhalten?",
+            "In welchem ​​Format möchten Sie es herunterladen?"
+        ],
+        "Options": [
+            "Um den Download fortzusetzen, müssen Sie angeben, indem Sie auf eine Schaltfläche [falls vorhanden] klicken oder die Antwort als Nachricht senden, dass Sie '{time}min' haben, bevor dies automatisch abgebrochen wird. Die Optionen sind: '{first}', '{two}' oder '{three}'."
+        ],
+        "Timeout": [
+            "🕗 _Extra info →_ *Der Fehler wurde möglicherweise durch eine Verzögerung bei der Auswahl verursacht, dies ist kein Fehler an sich, sondern eine spezielle Reaktion, um mit der Verzögerung fertig zu werden. Machen Sie sich keine Sorgen, wenn dies der Fall ist das ist der Fall.*"
+        ],
+        "Empty": [
+            "Leider konnte ich keine Ergebnisse finden. Wenn Sie glauben, dass dies ein BUG ist, erstellen Sie einfach ein Hilfeticket für den Befehl 'help', aber versuchen Sie vorher, ihn anders zu verwenden."
+        ],
+        "Failed": [
+            "Wie zum Teufel sind Sie zu dieser Antwort gekommen? Wie auch immer, die Downloads konnten nicht abgeschlossen werden, es gibt unendlich viele Gründe, wie z. B. zu schwer, Download-Fehler oder andere, in diesem Fall wurde ein Download nicht zurückgegeben auszuführen."
+        ]
+    },
+    "it": {
+        "Details": [
+            "*✏️ Titolo →* _'{title}'_\n\n*🆔 (ID) →* _'{videoId}'_\n\n*🌐 URL →* _'{url}'_\n\n*📄 Descrizione →* _'{description}'_\n\n*🌆 Immagine →* _'{image}'_\n\n*⏱️ Meteo →* _'{seconds}s | {timestamp}min'_\n\n*🆙 Post →* _'{ago}'_\n\n*👁️ Visualizzazioni →* _'{views}'_\n\n*🧑 Autore →* _'{author.name}'_\n\n*🔗 Canale →* _'{author.url}'_"
+        ],
+        "Format": [
+            "Che tipo di formato vuoi ottenere?",
+            "Come vuoi riceverlo?",
+            "In che stile vuoi scaricarlo?"
+        ],
+        "Options": [
+            "Per continuare il download è necessario specificare, facendo clic su un pulsante [se presente], o inviando la risposta come messaggio, di avere '{time}min' prima che questo venga automaticamente annullato, le opzioni sono: '{first}', '{two}' o '{three}'."
+        ],
+        "Timeout": [
+            "🕗 _Informazioni aggiuntive →_ *L'errore potrebbe essere stato causato da un ritardo nella scelta, questo non è un errore in sé ma una risposta speciale per gestire il ritardo, non preoccuparti se lo è questo è il caso.*"
+        ],
+        "Empty": [
+            "Sfortunatamente, non sono riuscito a trovare alcun risultato, se ritieni che si tratti di un BUG, ​​crea un ticket di aiuto sul comando 'help', ma prima prova a usarlo in modo diverso."
+        ],
+        "Failed": [
+            "Come diavolo sei arrivato a questa risposta? Ad ogni modo, i download non possono essere completati, ci sono infinite ragioni, come essere troppo pesanti, errori di download o altro, in questo caso, un download non è stato restituito eseguire. "
+        ]
+    },
+    "ru": {
+        "Details": [
+            "*✏️ Заголовок →* _'{title}'_\n\n*🆔 (ID) →* _'{videoId}'_\n\n*🌐 URL-адрес →* _'{title}'_\n\n*📄 Описание →* _'{description}'_\n\n*🌆 Изображение →* _'{image}'_\n\n*⏱️ Погода →* _'{seconds}s | {timestamp}min'_\n\n*🆙 Публикация →* _'{ago}'_\n\n*👁️ Просмотры →* _'{views}'_\n\n*🧑 Автор →* _'{author.name}'_\n\n*🔗 Канал →* _'{author.url}'_"
+        ],
+        "Format": [
+            "Какой формат вы хотите получить?",
+            "Как вы хотите это получить?",
+            "В каком стиле вы хотите это скачать?"
+        ],
+        "Options": [
+            "Для продолжения загрузки необходимо, чтобы вы указали, нажав на кнопку [если есть], или отправив ответ в виде сообщения, у вас есть '{time} мин', прежде чем это будет автоматически отменено, варианты: '{first}', '{two}' или '{three}'."
+        ],
+        "Timeout": [
+            "🕗 _Дополнительная информация →_ *Ошибка могла быть вызвана задержкой выбора, это не ошибка как таковая, а специальная реакция на задержку, не беспокойтесь об этом, если это так В этом случае.*"
+        ],
+        "Empty": [
+            "К сожалению, я не смог найти никаких результатов, если вы считаете, что это ОШИБКА, просто сделайте справку по команде 'help', но перед этим попробуйте использовать ее по-другому."
+        ],
+        "Failed": [
+            "Как, черт возьми, вы пришли к этому ответу? В любом случае, загрузка не может быть завершена, есть бесконечные причины, такие как слишком большой вес, ошибки загрузки или другие, в этом случае загрузка не была возвращена выполнить."
+        ]
+    },
+    "lat": {
+        "Details": [
+            "*✏️ Titulus →* _'{title}'_\n\n*🆔 (ID) →* _'{videoId}'_\n\n*🌐 URL →* _'{url}'_\n\n*📄 Descriptio →* _'{description}'_\n\n*🌆 Imago →* _'{image}'_\n\n*⏱️ Tempestas →* _'{seconds}s |{timestamp}min'_\n\n*🆙 Post →* _'{ago}'_\n*👁️ Views →* _'{ views}'_\n\n*🧑 Author →* _'{author.name}'_\n\n*🔗 Channel →* _'{author.url}'_"
+        ],
+        "Format": [
+            "Qualem formam vis accipere?",
+            "Quomodo vis hoc recipere?",
+            "Qualem stilum vis in remittere?"
+        ],
+        "Options": [
+            "Ad download continue necesse est ut definias, strepitando in globulo [si quis], vel mittens responsionem ut nuntium, '{time}min' habes antequam automatice remittantur, optiones sunt: '{first}', '{two}' vel '{three}'."
+        ],
+        "Timeout": [
+            "🕗 _Extra info →_ * Error per moram in eligendo causari potest, hoc non est error per se, sed responsio specialis ad moras agendas, nolite solliciti esse, si id est. ita est.*"
+        ],
+        "Empty": [
+            "Infeliciter, eventus invenire non potui, si hoc credis esse cimicem, modo tesseram adiumenti in imperio 'help' facere, sed ante, aliter experiri utendo."
+        ],
+        "Failed": [
+            "Quomodo ad hanc responsionem ad Infernum pervenisti? Alioqui downloads compleri non potuerunt, causae infinitae sunt, utpote nimis graves, errores vel alii, in hoc casu, download reversa non est. exsequi."
+        ]
+    }
+}

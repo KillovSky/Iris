@@ -1,0 +1,127 @@
+{
+    "IMPORTANT": "You can insert multiple API-KEYs to get high usages and prevent limit locks, but DON'T ABUSE the servers for that.",
+    "acr": {
+        "name": "ACRCloud [Syntec TV]",
+        "website": "https://console.acrcloud.com/avr#/projects/online",
+        "type": "Free",
+        "comment": "API does not require a credit card to register, it has paid plans but also has good free usage plans.",
+        "access": "ACCESS KEY",
+        "host": "HOST KEY",
+        "secret": "SECRET KEY"
+    },
+    "watson": {
+        "name": "International Business Machines Corporation [IBM]",
+        "website": "https://cloud.ibm.com/catalog/services/speech-to-text",
+        "type": "Trial",
+        "comment": "API is trial, you can use it for free with limits, but it requires a credit card to register account.",
+        "api": "API",
+        "host": "HOST",
+        "model": "MODEL"
+    },
+    "deepai": {
+        "name": "DeepAI",
+        "website": "https://deepai.org/dashboard/profile",
+        "type": "Free",
+        "comment": "The API does not require a credit card to register, it has paid plans, but it also has good free plans, you can also try it using the trial key below.",
+        "key": [
+            "quickstart-QUdJIGlzIGNvbWluZy4uLi4K"
+        ]
+    },
+    "google": {
+        "name": "Google LLC",
+        "website": "https://developers.google.com/maps/documentation/maps-static/get-api-key#get-an-api-key",
+        "type": "Trial",
+        "comment": "API is trial, you can use it for free with limits, but it requires a credit card to register account, but you can use the free key below.",
+        "key": [
+            "AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg"
+        ]
+    },
+    "nasa": {
+        "name": "National Aeronautics and Space Administration [NASA]",
+        "website": "https://api.nasa.gov",
+        "type": "Free",
+        "comment": "API is free, you can register to get more usages, but if you don't use nasa command as much, you can stay in the free key below.",
+        "key": [
+            "DEMO_KEY"
+        ]
+    },
+    "news": {
+        "name": "NewsAPI",
+        "website": "https://newsapi.org/account",
+        "type": "Free",
+        "comment": "API does not require a credit card to register, it has paid plans but also has good free usage plans.",
+        "key": [
+            "KEY"
+        ]
+    },
+    "apiflash": {
+        "name": "API Flash [NetCube SASU]",
+        "website": "https://apiflash.com/dashboard/access_keys",
+        "type": "Free",
+        "comment": "API does not require a credit card to register, it has paid plans but also has good free usage plans.",
+        "key": [
+            "KEY"
+        ]
+    },
+    "rawg": {
+        "name": "Lithuanian Video Game Database [RAWG]",
+        "website": "https://rawg.io/@ll0/apikey",
+        "type": "Free",
+        "comment": "API does not require a credit card to register, it has paid plans but also has good free usage plans.",
+        "key": [
+            "KEY"
+        ]
+    },
+    "brainshop": {
+        "name": "BrainShop",
+        "website": "https://brainshop.ai",
+        "type": "Free",
+        "comment": "API does not require a credit card to register, it has paid plans but also has good free plans, it is optional if you use another chatbot system.",
+        "key": "KEY",
+        "bid": "BID"
+    },
+    "simsimi": {
+        "name": "SimSimi",
+        "website": "http://developer.simsimi.com/api",
+        "type": "Free",
+        "comment": "API does not require credit card to sign up, in paid plans it also has limited free plan, you can use it to get 100 responses before it gets blocked and you have to pay.",
+        "key": [
+            "KEY"
+        ],
+        "url": "REQUEST URL"
+    },
+    "chatbot": {
+        "name": "ChatBOT Settings",
+        "website": "https://github.com/KillovSky/Iris",
+        "type": "Config",
+        "comment": "1 = LOCAL [FREE/OFFLINE] | 2 = BRAINSHOP [FREE/English & Chinese Only/KEY] | 3 = CLEVERBOT [FREE/NO-KEY] | 4 = SIMSIMI [FREE/KEY]",
+        "model": "4"
+    },
+    "removebg": {
+        "name": "Remove BG",
+        "website": "https://www.remove.bg/pt-br/dashboard#api-key",
+        "type": "Free",
+        "comment": "API does not require credit card to sign up, in paid plans it also has limited free plan, you can use it to get 100 responses before it gets blocked and you have to pay.",
+        "key": [
+            "KEY"
+        ]
+    },
+    "tmdb": {
+        "name": "The Movie Database [TMDB]",
+        "website": "https://www.themoviedb.org/settings/api",
+        "type": "Free",
+        "comment": "API does not require a credit card to register, it has paid plans but also has good free usage plans.",
+        "key": [
+            "KEY"
+        ]
+    },
+    "wallhaven": {
+        "name": "Wallhaven",
+        "website": "https://wallhaven.cc/settings/account",
+        "type": "Free",
+        "comment": "API does not require a credit card to register, it has paid plans but also has good free usage plans.",
+        "key": [
+            "KEY"
+        ]
+    }
+}

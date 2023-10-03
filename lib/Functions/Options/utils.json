@@ -1,0 +1,154 @@
+{
+    "name": "Ambient",
+    "description": "Gera as opções de inicialização da baileys.",
+    "usage": {
+        "general": "[RESTRITO] - Verifique o 'examples' para usos inseguros.",
+        "examples": [
+            "Ambient.env()",
+            "Ambient.create()",
+            "Ambient.env().functions.create.value()",
+            "Ambient.env().functions.revert.value()"
+        ]
+    },
+    "license": "MIT",
+    "helps": [
+        "Você pode mudar os parâmetros da exports enviando o valor da Object que deseja editar ao resetar, por exemplo → Ambient.reset({ name: 'Body'}) ← Isso mudaria o module de Tree para Body, o uso então passaria ser: → Body.funcão ← Isso também permite que você edita a função usando o mesmo método.",
+        "Você pode mudar o que os códigos rodam, em tempo real, basta usar a 'env', por exemplo → Ambient.env().name = 'Body' ← Mas este método não atualizará o sistema, somente a Object, os sistemas permanecem intactos.",
+        "Você pode configurar o tempo de reset dos resultados ou se eles devem ser resetados usando a env, por exemplo → Ambient.env().settings.wait = 10000 ← Isso mudaria o tempo de espera para 10 segundos, o tempo deve ser em milissegundos.",
+        "Alguém lê essas dicas? Se sim, torne-se um programador, ler os tutoriais é de suma importância e poucos desenvolvedores o fazem...",
+        "Existem infinitas formas de uso secretas, explore os códigos para descobrir os mistérios dos sistemas!",
+        "Todas as funções tem valores padrão, então você não sofrerá erros por esquecer de enviar um parâmetro ou similar."
+    ],
+    "exports": {
+        "env": "env",
+        "messedup": "messedup",
+        "create": "create",
+        "reset": "reset",
+        "poswork": "finish"
+    },
+    "developer": "KillovSky",
+    "files": {
+        "index.js": "Sistema que permite obter os parâmetros de inicialização.",
+        "utils.json": "Dados de fábrica da envInfo."
+    },
+    "modules": {
+        "fs": "Leitura de diretórios e arquivos.",
+        "path": "Para obter o nome da pasta.",
+        "../../../index": "Para rodar funções de outros arquivos."
+    },
+    "functions": {
+        "ambient": {
+            "arguments": false,
+            "description": "Retorna as variáveis e sistemas do arquivo.",
+            "type": "Boolean / Function"
+        },
+        "messedup": {
+            "arguments": {
+                "error": {
+                    "description": "Instância de erro para formatação.",
+                    "type": "Boolean / Error",
+                    "value": false
+                }
+            },
+            "description": "Ajusta os valores de erro.",
+            "type": "Boolean / Function"
+        },
+        "create": {
+            "arguments": {},
+            "description": "Faz a alteração do status conforme o dono configurar no comando.",
+            "type": "Boolean / Function"
+        },
+        "poswork": {
+            "arguments": {
+                "response": {
+                    "description": "Resultados de uma função.",
+                    "type": "Any",
+                    "value": false
+                }
+            },
+            "description": "Verifica se pode resetar a envInfo e retorna o resultado da função.",
+            "type": "Boolean / Function"
+        },
+        "revert": {
+            "arguments": {
+                "changeKey": {
+                    "description": "Uma Object com valores que existem na envInfo, ela será usada para substituir o sistema em tempo real.",
+                    "type": "Object value",
+                    "anyValue": false
+                }
+            },
+            "description": "Reseta a envInfo para a Object padrão.",
+            "type": "Boolean / Function"
+        }
+    },
+    "settings": {
+        "wait": {
+            "description": "Tempo em MS que deve esperar antes de resetar.",
+            "type": "Number",
+            "value": 5000
+        },
+        "error": {
+            "description": "Define se pode printar qualquer erro.",
+            "type": "Boolean",
+            "value": false
+        },
+        "ender": {
+            "description": "Define se deve resetar a cada erro.",
+            "type": "Boolean",
+            "value": true
+        },
+        "finish": {
+            "description": "Define se deve resetar a cada finalização.",
+            "type": "Boolean",
+            "value": true
+        }
+    },
+    "parameters": {
+        "settings": {
+            "description": "Opcões de inicialização.",
+            "type": "Object",
+            "value": {
+                "comment": "LEIA PARA CONFIGURAR CORRETAMENTE, MÁ CONFIGURAÇÃO POSSUI RISCOS! - Local das explicações de configuração -> https://whiskeysockets.github.io/Baileys/modules.html#SocketConfig",
+                "connectTimeoutMs": "Opcional | Number",
+                "defaultQueryTimeoutMs": "Opcional | Number",
+                "emitOwnEvents": "Opcional | True | False",
+                "fireInitQueries": "Opcional | True | False",
+                "generateHighQualityLinkPreview": "Opcional | True | False",
+                "keepAliveIntervalMs": "Opcional | Number",
+                "linkPreviewImageThumbnailWidth": "Opcional | Number",
+                "markOnlineOnConnect": "Opcional | True | False",
+                "pinoLogger": "fatal",
+                "printQRInTerminal": true,
+                "qrTimeout": "Opcional | Number",
+                "retryRequestDelayMs": "Opcional | Number",
+                "syncFullHistory": "Opcional | True | False",
+                "waWebSocketUrl": "Opcional | String",
+                "sessionDataPath": "./lib/Sessions",
+                "sessionId": [
+                    "Hermes"
+                ]
+            }
+        },
+        "location": {
+            "description": "Local onde o módulo pode ser encontrado.",
+            "type": "Boolean / String",
+            "value": "./index.js"
+        },
+        "code": {
+            "description": "Código do erro que obter.",
+            "type": "Boolean / String / Number",
+            "value": false
+        },
+        "message": {
+            "description": "Armazena a mensagem do último erro recebido.",
+            "type": "Boolean / String",
+            "value": false
+        }
+    },
+    "results": {
+        "description": "Resultado final da função.",
+        "success": false,
+        "type": "Object",
+        "value": false
+    }
+}

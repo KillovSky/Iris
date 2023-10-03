@@ -1,0 +1,277 @@
+{
+    "name": "Units",
+    "description": "Funções do tipo Number que auxiliam a Íris no dia a dia.",
+    "usage": {
+        "general": "[RESTRITO] - Verifique o 'examples' para usos inseguros.",
+        "examples": [
+            "Units.env()",
+            "Units.remain('ms type', 'timestamp')",
+            "Units.extend('compact number', 'type number')",
+            "Units.compact('number')",
+            "Units.isint('number')",
+            "Units.randnum('number', 'number')",
+            "Units.process('timestamp')",
+            "Units.expand('exponent number', 'use accent', 'resize', 'resize index')",
+            "Units.reset()",
+            "Units.env().functions.remain.value('ms type', 'timestamp')",
+            "Units.env().functions.extend.value('compact number', 'type number')",
+            "Units.env().functions.compact.value('number')",
+            "Units.env().functions.isint.value('number')",
+            "Units.env().functions.randnum.value('number', 'number')",
+            "Units.env().functions.process.value('timestamp')",
+            "Units.env().functions.format.value('ms')",
+            "Units.env().functions.expand.value('exponent number', 'use accent', 'resize', 'resize index')",
+            "Units.env().functions.revert.value()"
+        ]
+    },
+    "license": "MIT",
+    "helps": [
+        "Você pode mudar os parâmetros da exports enviando o valor da Object que deseja editar ao resetar, por exemplo → Units.reset({ name: 'Body'}) ← Isso mudaria o module de Tree para Body, o uso então passaria ser: → Body.funcão ← Isso também permite que você edita a função usando o mesmo método.",
+        "Você pode mudar o que os códigos rodam, em tempo real, basta usar a 'env', por exemplo → Units.env().name = 'Body' ← Mas este método não atualizará o sistema, somente a Object, os sistemas permanecem intactos.",
+        "Você pode configurar o tempo de reset dos resultados ou se eles devem ser resetados usando a env, por exemplo → Units.env().settings.wait = 10000 ← Isso mudaria o tempo de espera para 10 segundos, o tempo deve ser em milissegundos.",
+        "Alguém lê essas dicas? Se sim, torne-se um programador, ler os tutoriais é de suma importância e poucos desenvolvedores o fazem...",
+        "Existem infinitas formas de uso secretas, explore os códigos para descobrir os mistérios dos sistemas!",
+        "Todas as funções tem valores padrão, então você não sofrerá erros por esquecer de enviar um parâmetro ou similar.",
+        "Tenha cuidado com números enormes além do limite do sistema, eles podem ser perigosos."
+    ],
+    "exports": {
+        "env": "env",
+        "messedup": "messedup",
+        "remain": "remain",
+        "extend": "extend",
+        "compact": "compact",
+        "isint": "isint",
+        "randnum": "randnum",
+        "format": "format",
+        "process": "process",
+        "expand": "expand",
+        "reset": "reset",
+        "poswork": "finish"
+    },
+    "developer": "KillovSky",
+    "files": {
+        "index.js": "Sistema que contém diversas funções de tipo 'Number' que são pequenas demais para ter arquivo próprio.",
+        "utils.json": "Dados de fábrica da envInfo."
+    },
+    "modules": {
+        "fs": "Leitura de diretórios e arquivos.",
+        "path": "Para obter o nome da pasta.",
+        "pretty-num": "Para fazer parse de números grandes.",
+        "../index": "Para usar funções de outros arquivos."
+    },
+    "functions": {
+        "ambient": {
+            "arguments": false,
+            "description": "Retorna as variáveis e sistemas do arquivo.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "messedup": {
+            "arguments": {
+                "error": {
+                    "description": "Instância de erro para formatação.",
+                    "type": "Boolean / Error",
+                    "value": false
+                }
+            },
+            "description": "Ajusta os valores de erro.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "remain": {
+            "arguments": {
+                "actualTime": {
+                    "description": "Medida de tempo em MS que deve utilizar para o calculo.",
+                    "type": "Boolean / Number",
+                    "value": false
+                },
+                "timingRest": {
+                    "description": "Tempo total para realização do cálculo.",
+                    "type": "Boolean / Number",
+                    "value": false
+                }
+            },
+            "description": "Adquire o tempo de espera restante dos jogos e demais, mas de forma humanizada.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "extend": {
+            "arguments": {
+                "comNumber": {
+                    "description": "Valor compactado com sigla para estender.",
+                    "type": "Boolean / Number",
+                    "value": false
+                },
+                "typeExtend": {
+                    "description": "Tipo de extensão que deve realizar, os valores aceitos são 'Value' ou 'Time'.",
+                    "type": "Boolean / String",
+                    "value": false
+                }
+            },
+            "description": "Estende números compactos com siglas.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "format": {
+            "arguments": {
+                "upTimer": {
+                    "description": "Milissegundos para realizar a conversão em tempo real.",
+                    "type": "Number",
+                    "value": 0
+                }
+            },
+            "description": "Converte milissegundos em tempo real, como dias, minutos, horas e segundos.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "compact": {
+            "arguments": {
+                "numberFull": {
+                    "description": "Número inteiro que deve ser convertido em número compacto.",
+                    "type": "Boolean / Number",
+                    "value": false
+                }
+            },
+            "description": "Compacta números inteiros em números com sigla.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "isint": {
+            "arguments": {
+                "numerInt": {
+                    "description": "Número que deve ser analisado.",
+                    "type": "Boolean / Number",
+                    "value": false
+                }
+            },
+            "description": "Define se o número é um 'integer' ou não.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "randnum": {
+            "arguments": {
+                "minNumber": {
+                    "description": "Valor mínimo para usar na geração de números.",
+                    "type": "Number",
+                    "value": 0
+                },
+                "maxNumber": {
+                    "description": "Valor máximo para usar na geração de números.",
+                    "type": "Number",
+                    "value": 100
+                }
+            },
+            "description": "Faz a geração de um número aleatório.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "process": {
+            "arguments": {
+                "timeUnix": {
+                    "description": "Tempo exato em que a mensagem foi recebida.",
+                    "type": "Boolean / Number",
+                    "value": false
+                }
+            },
+            "description": "Calcula o tempo de processamento padrão.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "expand": {
+            "arguments": {
+                "expoNumber": {
+                    "description": "Número exponencial [e] para estender.",
+                    "type": "Boolean / Number",
+                    "value": false
+                },
+                "useAccents": {
+                    "description": "Define se deve inserir acentuação no número.",
+                    "type": "Boolean",
+                    "value": true
+                },
+                "resizeEnd": {
+                    "description": "Define se deve compactar o número, sem sigla, para evitar virar trava.",
+                    "type": "Boolean",
+                    "value": true
+                },
+                "resizeIndex": {
+                    "description": "Define até onde o index deve contar na compactação, não use sem ativar o useAccents.",
+                    "type": "Number",
+                    "value": 10
+                }
+            },
+            "description": "Expande os números exponenciais para números inteiros.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "poswork": {
+            "arguments": {
+                "response": {
+                    "description": "Resultados de uma função.",
+                    "type": "Any",
+                    "value": false
+                }
+            },
+            "description": "Verifica se pode resetar a envInfo e retorna o resultado da função.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "revert": {
+            "arguments": {
+                "changeKey": {
+                    "description": "Uma Object com valores que existem na envInfo, ela será usada para substituir o sistema em tempo real.",
+                    "type": "Object value",
+                    "anyValue": false
+                }
+            },
+            "description": "Reseta a envInfo para a Object padrão.",
+            "type": "Boolean / Function",
+            "value": false
+        }
+    },
+    "settings": {
+        "wait": {
+            "description": "Tempo em MS que deve esperar antes de resetar.",
+            "type": "Number",
+            "value": 5000
+        },
+        "error": {
+            "description": "Define se pode printar qualquer erro.",
+            "type": "Boolean",
+            "value": false
+        },
+        "ender": {
+            "description": "Define se deve resetar a cada erro.",
+            "type": "Boolean",
+            "value": true
+        },
+        "finish": {
+            "description": "Define se deve resetar a cada finalização.",
+            "type": "Boolean",
+            "value": true
+        }
+    },
+    "parameters": {
+        "location": {
+            "description": "Local onde o módulo pode ser encontrado.",
+            "type": "Boolean / String",
+            "value": "./index"
+        },
+        "code": {
+            "description": "Código do erro que obter.",
+            "type": "Boolean / String / Number",
+            "value": false
+        },
+        "message": {
+            "description": "Armazena a mensagem do último erro recebido.",
+            "type": "Boolean / String",
+            "value": false
+        }
+    },
+    "results": {
+        "description": "Resultado final da função.",
+        "success": true,
+        "type": "Any",
+        "value": false
+    }
+}

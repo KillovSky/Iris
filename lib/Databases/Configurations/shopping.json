@@ -1,0 +1,72 @@
+{
+    "Guild_Rate_Price": 100,
+    "Stop_Loss_Price": 100,
+    "Lose_All_Price": 50000,
+    "Lose_Rate_Price": 100,
+    "Win_Rate_Price": 100,
+    "Mine_Price": 1000,
+    "Vip_Price": 5000,
+    "NOBG_Value": 200,
+    "Surprise_Price": 1000,
+    "Surprise_Win": 500,
+    "Ticket_Price": 50,
+    "Lotery_Time": 10,
+    "Pickaxe_Build": {
+        "Wood_Base": {
+            "dima": 230,
+            "rubi": 210,
+            "yellow": 190,
+            "iron": 170,
+            "stone": 150,
+            "wood": 10
+        },
+        "dima": 450,
+        "rubi": 410,
+        "yellow": 370,
+        "iron": 320,
+        "stone": 280,
+        "wood": 230
+    },
+    "Pickaxe_Shopping": {
+        "dima": 300,
+        "rubi": 240,
+        "yellow": 200,
+        "iron": 180,
+        "stone": 150,
+        "wood": 120
+    },
+    "Packs_Price": {
+        "xp": 15,
+        "iron": 20,
+        "rubi": 30,
+        "yellow": 25,
+        "dima": 35,
+        "wood": 10,
+        "stone": 15
+    },
+    "Packs_Value": {
+        "xp": 200,
+        "iron": 100,
+        "rubi": 100,
+        "yellow": 100,
+        "dima": 100,
+        "wood": 100,
+        "stone": 100
+    },
+    "Change_Req": {
+        "iron": 100,
+        "rubi": 100,
+        "yellow": 100,
+        "dima": 100,
+        "wood": 100,
+        "stone": 100
+    },
+    "Change_Value": {
+        "iron": 20,
+        "rubi": 30,
+        "yellow": 25,
+        "dima": 35,
+        "wood": 10,
+        "stone": 15
+    }
+}

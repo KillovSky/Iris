@@ -1,0 +1,260 @@
+{
+    "name": "Shades",
+    "description": "Sistema com diversas funções envolvendo RGB e HEX.",
+    "usage": {
+        "general": "[RESTRITO] - Verifique o 'examples' para usos inseguros.",
+        "examples": [
+            "Shades.env()",
+            "Shades.genhex('amount', 'hex size', 'is subfunction?')",
+            "Shades.genrgb('amount', 'is subfunction?')",
+            "Shades.ishex('string (HEX color)')",
+            "Shades.torgb('HEX color')",
+            "Shades.echo('text', 'color name', 'is subfunction?')",
+            "Shades.report('error', 'command')",
+            "Shades.reset()",
+            "envInfo.functions.genhex.value('amount', 'hex size', 'is subfunction?')",
+            "envInfo.functions.genrgb.value('amount', 'is subfunction?')",
+            "envInfo.functions.ishex.value('string (HEX color)')",
+            "envInfo.functions.torgb.value('HEX color')",
+            "envInfo.functions.echo.value('text', 'color name', 'is subfunction?')",
+            "envInfo.functions.report.value('error', 'command')",
+            "Shades.env().functions.revert.value()"
+        ]
+    },
+    "license": "MIT",
+    "helps": [
+        "Você pode mudar os parâmetros da exports enviando o valor da Object que deseja editar ao resetar, por exemplo → Shades.reset({ name: 'Body'}) ← Isso mudaria o module de Tree para Body, o uso então passaria ser: → Body.funcão ← Isso também permite que você edita a função usando o mesmo método.",
+        "Você pode mudar o que os códigos rodam, em tempo real, basta usar a 'env', por exemplo → Shades.env().name = 'Body' ← Mas este método não atualizará o sistema, somente a Object, os sistemas permanecem intactos.",
+        "Você pode configurar o tempo de reset dos resultados ou se eles devem ser resetados usando a env, por exemplo → Shades.env().settings.wait = 10000 ← Isso mudaria o tempo de espera para 10 segundos, o tempo deve ser em milissegundos.",
+        "Alguém lê essas dicas? Se sim, torne-se um programador, ler os tutoriais é de suma importância e poucos desenvolvedores o fazem...",
+        "Existem infinitas formas de uso secretas, explore os códigos para descobrir os mistérios dos sistemas!",
+        "Todas as funções tem valores padrão, então você não sofrerá erros por esquecer de enviar um parâmetro ou similar.",
+        "Algumas funções estão interligadas, então caso você use uma delas, ou faça uma função que use outras funções do mesmo arquivo, utilize ou faça um sistema para separar os usos, pois a envInfo acabará resetando tudo que a função inicial já fez ao chamar outras, obtendo erros, em caso de dúvida, basta olhar as generate's."
+    ],
+    "exports": {
+        "env": "env",
+        "messedup": "messedup",
+        "genhex": "genhex",
+        "genrgb": "genrgb",
+        "ishex": "ishex",
+        "torgb": "torgb",
+        "echo": "echo",
+        "report": "report",
+        "reset": "reset",
+        "poswork": "finish"
+    },
+    "developer": "KillovSky",
+    "files": {
+        "index.js": "Sistema de funções HEX e RGB.",
+        "utils.json": "Dados de fábrica da envInfo."
+    },
+    "modules": {
+        "fs": "Leitura de diretórios e arquivos.",
+        "path": "Para obter o nome da pasta."
+    },
+    "functions": {
+        "ambient": {
+            "arguments": false,
+            "description": "Retorna as variáveis e sistemas do arquivo.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "messedup": {
+            "arguments": {
+                "error": {
+                    "description": "Instância de erro para formatação.",
+                    "type": "Boolean / Error",
+                    "value": false
+                }
+            },
+            "description": "Ajusta os valores de erro.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "genhex": {
+            "arguments": {
+                "repeatFun": {
+                    "description": "Define quantos HEX devem ser gerados.",
+                    "type": "Number",
+                    "value": 1
+                },
+                "stringSize": {
+                    "description": "Define o tamanho da String HEX.",
+                    "type": "Number",
+                    "value": 6
+                },
+                "isAnotherFun": {
+                    "description": "Define se deve retornar sem resetar a envInfo - temporariamente.",
+                    "type": "Boolean",
+                    "value": false
+                }
+            },
+            "description": "Faz a geração de cores em HEX.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "genrgb": {
+            "arguments": {
+                "amountGen": {
+                    "description": "Define quantos RGB devem ser gerados.",
+                    "type": "Number",
+                    "value": 1
+                },
+                "isSubFun": {
+                    "description": "Define se deve retornar sem resetar a envInfo - temporariamente.",
+                    "type": "Boolean",
+                    "value": false
+                }
+            },
+            "description": "Faz a geração de cores em RGB.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "ishex": {
+            "arguments": {
+                "recColor": {
+                    "description": "String com a suposta cor a verificar.",
+                    "type": "Boolean / String",
+                    "value": false
+                }
+            },
+            "description": "Verifica se é uma cor em HEX.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "torgb": {
+            "arguments": {
+                "colorHEX": {
+                    "description": "Cor em HEX para conversão em RGB.",
+                    "type": "Boolean / String",
+                    "value": false
+                }
+            },
+            "description": "Converte cores em HEX para RGB.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "echo": {
+            "arguments": {
+                "textMessage": {
+                    "description": "Mensagem para fazer a inserção de cores.",
+                    "type": "Boolean / String",
+                    "value": false
+                },
+                "colorEcho": {
+                    "description": "Cor, em nome, para inserir na String da mensagem.",
+                    "type": "Boolean / String",
+                    "value": false
+                },
+                "isThirdFun": {
+                    "description": "Define se é uma função dentro de outra.",
+                    "type": "Boolean",
+                    "value": false
+                }
+            },
+            "description": "Converte uma String em uma String colorida.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "report": {
+            "arguments": {
+                "failError": {
+                    "description": "Uma instância de erro para obter os detalhes.",
+                    "type": "Boolean / Error",
+                    "value": false
+                },
+                "errorCommand": {
+                    "description": "Nome do comando que sofreu falhas.",
+                    "type": "String",
+                    "value": "System"
+                }
+            },
+            "description": "Reporta um erro no console de forma bonitinha.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "poswork": {
+            "arguments": {
+                "response": {
+                    "description": "Resultados de uma função.",
+                    "type": "Any",
+                    "value": false
+                }
+            },
+            "description": "Verifica se pode resetar a envInfo e retorna o resultado da função.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "revert": {
+            "arguments": {
+                "changeKey": {
+                    "description": "Uma Object com valores que existem na envInfo, ela será usada para substituir o sistema em tempo real.",
+                    "type": "Object value",
+                    "anyValue": false
+                }
+            },
+            "description": "Reseta a envInfo para a Object padrão.",
+            "type": "Boolean / Function",
+            "value": false
+        }
+    },
+    "settings": {
+        "wait": {
+            "description": "Tempo em MS que deve esperar antes de resetar.",
+            "type": "Number",
+            "value": 5000
+        },
+        "error": {
+            "description": "Define se pode printar qualquer erro.",
+            "type": "Boolean",
+            "value": false
+        },
+        "ender": {
+            "description": "Define se deve resetar a cada erro.",
+            "type": "Boolean",
+            "value": true
+        },
+        "finish": {
+            "description": "Define se deve resetar a cada finalização.",
+            "type": "Boolean",
+            "value": true
+        }
+    },
+    "parameters": {
+        "colorexp": {
+            "description": "RegExp's padrões para verificação.",
+            "type": "Object",
+            "value": {
+                "hex": {
+                    "regex": "^#([0-9A-F]{3}){1,2}$",
+                    "flag": "i"
+                },
+                "rgb": {
+                    "regex": "^#?([a-f\\d]{2})([a-f\\d]{2})([a-f\\d]{2})$",
+                    "flag": "i"
+                }
+            }
+        },
+        "location": {
+            "description": "Local onde o módulo pode ser encontrado.",
+            "type": "Boolean / String",
+            "value": "./index"
+        },
+        "code": {
+            "description": "Código do erro que obter.",
+            "type": "Boolean / String / Number",
+            "value": false
+        },
+        "message": {
+            "description": "Armazena a mensagem do último erro recebido.",
+            "type": "Boolean / String",
+            "value": false
+        }
+    },
+    "results": {
+        "description": "Resultado final da função.",
+        "success": true,
+        "type": "Boolean / String / Array / Object",
+        "value": false
+    }
+}

@@ -1,0 +1,293 @@
+{
+    "groups": {
+        "antilinks": false,
+        "antiporn": false,
+        "antitravas": false,
+        "anylinks": false,
+        "autofoto": false,
+        "autosticker": false,
+        "badwords": false,
+        "blacklist": false,
+        "blacklisted": [],
+        "chatbot": 4,
+        "commands": [],
+        "customLink": [],
+        "customText": [],
+        "customWords": [],
+        "disabled": false,
+        "event": false,
+        "fakes": [],
+        "goodbye": false,
+        "language": false,
+        "level": false,
+        "levelup": false,
+        "mentions": false,
+        "mods": [],
+        "muted": false,
+        "nsfw": false,
+        "prefix": false,
+        "safelinks": false,
+        "undelete": false,
+        "vips": [],
+        "welcome": false,
+        "whitelist": []
+    },
+    "personal": {
+		"gaming": {
+			"xp": 0,
+			"level": 0,
+			"coin": 0,
+			"diamond": 0,
+			"rubi": 0,
+			"stone": 0,
+			"gold": 0,
+			"iron": 0,
+			"wood": 0
+		},
+		"banking": {
+			"coin": 0,
+			"diamond": 0,
+			"rubi": 0,
+			"stone": 0,
+			"gold": 0,
+			"iron": 0,
+			"wood": 0
+		},
+        "register": false,
+        "birthday": false,
+        "block": {
+            "since": 0,
+            "reason": "None",
+            "enable": false
+        },
+        "ignore": {
+            "enable": false,
+            "since": 0,
+            "reason": "None"
+        },
+        "AFK": {
+            "enable": false,
+            "since": 0,
+            "message": "None"
+        },
+        "warn": {
+            "last": 0,
+            "count": 0,
+            "by": "None",
+            "reason": "None"
+        },
+        "marriage": {
+            "partner": {
+                "number": 0,
+                "name": "None"
+            },
+            "date": 0,
+            "expiration": 0,
+            "count": 0,
+            "giftsGive": 0,
+            "giftsReceived": 0,
+            "betrayal": {
+                "cheated": false,
+                "cheatedTimes": 0,
+                "cheatedWith": "None",
+                "date": 0
+            }
+        },
+        "commands": {
+            "count": 0,
+            "date": 0,
+            "last": "None"
+        },
+        "about": {
+            "status": "None",
+            "stickerAuthor": "None",
+            "stickerPack": "None",
+            "since": 0
+        },
+        "vip": {
+            "since": 0,
+            "source": "None",
+            "enable": false
+        },
+        "mod": {
+            "since": 0,
+            "source": "None",
+            "enable": false
+        },
+        "guild": {
+            "since": 0,
+            "party": "None"
+        },
+        "mining": {
+            "enable": false,
+            "since": 0,
+            "ending": 0,
+            "pickaxe": {
+                "name": "None",
+                "durability": 0,
+                "power": 0,
+                "description": "None",
+                "image": "None"
+            }
+        },
+        "RPG": {
+            "character": {
+                "name": "None",
+                "gender": "None",
+                "class": "None",
+                "race": "None",
+                "spawnplace": "None",
+                "saveplace": "None",
+                "skill": {
+                    "name": "None",
+                    "description": "None",
+                    "enchantment": "None",
+                    "effect": 0
+                },
+                "weapon": {
+                    "name": "None",
+                    "from": "None",
+                    "description": "None",
+                    "enchantment": "None",
+                    "effect": 0,
+                    "image": "None",
+                    "rarity": "None"
+                },
+                "stats": {
+                    "vit": 0,
+                    "dex": 0,
+                    "int": 0,
+                    "per": 0,
+                    "car": 0,
+                    "str": 0
+                }
+            },
+            "enemy": {
+                "image": "None",
+                "from": "None",
+                "stats": {
+                    "str": 0,
+                    "vit": 0
+                }
+            }
+        },
+        "backpack": {
+            "tools": {
+                "activity": {
+                    "enable": false,
+                    "type": "None",
+                    "since": 0,
+                    "ending": 0,
+                    "receive": {
+                        "xp": 0,
+                        "dima": 0,
+                        "rubi": 0,
+                        "iron": 0,
+                        "gold": 0,
+                        "stone": 0
+                    }
+                },
+                "pickaxes": {
+                    "wood": {
+                        "description": "None",
+                        "image": "None",
+                        "power": 0,
+                        "durability": 0,
+                        "quantity": 0
+                    },
+                    "stone": {
+                        "description": "None",
+                        "image": "None",
+                        "power": 0,
+                        "durability": 0,
+                        "quantity": 0
+                    },
+                    "gold": {
+                        "description": "None",
+                        "image": "None",
+                        "power": 0,
+                        "durability": 0,
+                        "quantity": 0
+                    },
+                    "iron": {
+                        "description": "None",
+                        "image": "None",
+                        "power": 0,
+                        "durability": 0,
+                        "quantity": 0
+                    },
+                    "rubi": {
+                        "description": "None",
+                        "image": "None",
+                        "power": 0,
+                        "durability": 0,
+                        "quantity": 0
+                    },
+                    "dima": {
+                        "description": "None",
+                        "image": "None",
+                        "power": 0,
+                        "durability": 0,
+                        "quantity": 0
+                    }
+                },
+                "axes": {
+                    "wood": {
+                        "description": "None",
+                        "image": "None",
+                        "power": 0,
+                        "durability": 0,
+                        "quantity": 0
+                    },
+                    "stone": {
+                        "description": "None",
+                        "image": "None",
+                        "power": 0,
+                        "durability": 0,
+                        "quantity": 0
+                    },
+                    "gold": {
+                        "description": "None",
+                        "image": "None",
+                        "power": 0,
+                        "durability": 0,
+                        "quantity": 0
+                    },
+                    "iron": {
+                        "description": "None",
+                        "image": "None",
+                        "power": 0,
+                        "durability": 0,
+                        "quantity": 0
+                    },
+                    "rubi": {
+                        "description": "None",
+                        "image": "None",
+                        "power": 0,
+                        "durability": 0,
+                        "quantity": 0
+                    },
+                    "dima": {
+                        "description": "None",
+                        "image": "None",
+                        "power": 0,
+                        "durability": 0,
+                        "quantity": 0
+                    }
+                }
+            }
+        },
+        "bonus": {},
+        "amulets": {
+            "enable": false,
+            "name": "None",
+            "type": "None",
+            "from": "None",
+            "price": 0,
+            "skill": {
+                "name": "None",
+                "power": 0
+            }
+        }
+    }
+}

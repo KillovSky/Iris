@@ -1,0 +1,429 @@
+{
+    "name": "SQL",
+    "description": "Funções que rodam códigos no SQLite3, a database de dados da Íris.",
+    "usage": {
+        "general": "[RESTRITO] - Verifique o 'examples' para usos inseguros.",
+        "examples": [
+            "SQL.env()",
+            "SQL.reset()",
+            "SQL.update(file, userId, chatId, key, value)",
+            "SQL.undo(file, userId, chatId, array)",
+            "SQL.finder(file, userId, chatId, key, mathsymbols?, value)",
+            "SQL.locate(file, userId, chatId, key, mathOperator, value)",
+            "SQL.remove(file, userId, chatId)",
+            "SQL.custom(file, userId, chatId, command)",
+            "SQL.purge(file, userId, chatId, key, moreKeys)",
+            "SQL.env().functions.update.value(file, userId, chatId, key, value)",
+            "SQL.env().functions.undo.value(file, userId, chatId, array)",
+            "SQL.env().functions.finder.value(file, userId, chatId, key, mathsymbols?, value)",
+            "SQL.env().functions.remove.value(file, userId, chatId)",
+            "SQL.env().functions.custom.value(file, userId, chatId, command)",
+            "SQL.env().functions.purge.value(file, userId, chatId, key, moreKeys)",
+            "SQL.env().functions.revert.value()"
+        ]
+    },
+    "license": "MIT",
+    "helps": [
+        "Você pode mudar os parâmetros da exports enviando o valor da Object que deseja editar ao resetar, por exemplo → SQL.reset({ name: 'Body'}) ← Isso mudaria o module de Tree para Body, o uso então passaria ser: → Body.funcão ← Isso também permite que você edita a função usando o mesmo método.",
+        "Você pode mudar o que os códigos rodam, em tempo real, basta usar a 'env', por exemplo → SQL.env().name = 'Body' ← Mas este método não atualizará o sistema, somente a Object, os sistemas permanecem intactos.",
+        "Você pode configurar o tempo de reset dos resultados ou se eles devem ser resetados usando a env, por exemplo → SQL.env().settings.wait = 10000 ← Isso mudaria o tempo de espera para 10 segundos, o tempo deve ser em milissegundos.",
+        "É recomendado saber SQLite3 para usar essa database, diferente de outras databases como mongodb, mariadb e similares, o SQLite3 é compatível com diversos sistemas e é mais básico.",
+        "Alguém lê essas dicas? Se sim, torne-se um programador, ler os tutoriais é de suma importância e poucos desenvolvedores o fazem..."
+    ],
+    "exports": {
+        "env": "env",
+        "update": "update",
+        "ranking": "ranking",
+        "get": "get",
+        "custom": "custom",
+        "remove": "remove",
+        "finder": "finder",
+        "purge": "purge",
+        "undo": "undo",
+        "messedup": "messedup",
+        "reset": "reset",
+        "poswork": "finish"
+    },
+    "developer": "KillovSky",
+    "files": {
+        "index.js": "Sistema que contém diversas funções de tipo 'SQL' que são pequenas demais para ter arquivo próprio.",
+        "utils.json": "Dados de fábrica da envInfo."
+    },
+    "modules": {
+        "fs": "Leitura de diretórios e arquivos.",
+        "path": "Para obter o nome da pasta."
+    },
+    "functions": {
+        "ambient": {
+            "arguments": false,
+            "description": "Retorna as variáveis e sistemas do arquivo.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "messedup": {
+            "arguments": {
+                "error": {
+                    "description": "Instância de erro para formatação.",
+                    "type": "Boolean / Error",
+                    "value": false
+                }
+            },
+            "description": "Retorna as variáveis e sistemas do arquivo.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "undo": {
+            "arguments": {
+                "file": {
+                    "description": "Nome do arquivo responsável pela função.",
+                    "type": "Boolean / String",
+                    "value": false
+                },
+                "user": {
+                    "description": "ID do usuário enviado para efetuar o undo, se houver.",
+                    "type": "Boolean / String",
+                    "value": false
+                },
+                "chatId": {
+                    "description": "ID do chat em que o undo vai ser rodado, se houver.",
+                    "type": "Boolean / String",
+                    "value": false
+                },
+                "arrayundo": {
+                    "description": "Array com nome de keys que serão resetadas.",
+                    "type": "Boolean / Array",
+                    "value": false
+                }
+            },
+            "description": "Reseta valores, objects e outros tipos da database.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "custom": {
+            "arguments": {
+                "file": {
+                    "description": "Nome do arquivo responsável pela função.",
+                    "type": "Boolean / String",
+                    "value": false
+                },
+                "user": {
+                    "description": "ID do usuário para caso seja necessário, se houver.",
+                    "type": "Boolean / String",
+                    "value": false
+                },
+                "chatId": {
+                    "description": "ID do chat para caso seja necessário, se houver.",
+                    "type": "Boolean / String",
+                    "value": false
+                },
+                "customCode": {
+                    "description": "Comando de SQL customizado para rodar.",
+                    "type": "Boolean / String",
+                    "value": false
+                }
+            },
+            "description": "Roda um comando customizado no SQLite3.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "get": {
+            "arguments": {
+                "file": {
+                    "description": "Nome do arquivo responsável pela função.",
+                    "type": "Boolean / String",
+                    "value": false
+                },
+                "user": {
+                    "description": "ID do usuário enviado para obter, se houver.",
+                    "type": "Boolean / String",
+                    "value": false
+                },
+                "chatId": {
+                    "description": "ID do chat que será obtido, se houver.",
+                    "type": "Boolean / String",
+                    "value": false
+                }
+            },
+            "description": "Obtém os dados de um user ou group inteiro da database.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "remove": {
+            "arguments": {
+                "file": {
+                    "description": "Nome do arquivo responsável pela função.",
+                    "type": "Boolean / String",
+                    "value": false
+                },
+                "user": {
+                    "description": "ID do usuário enviado para efetuar o remove, se houver.",
+                    "type": "Boolean / String",
+                    "value": false
+                },
+                "chatId": {
+                    "description": "ID do chat que será removido, se houver.",
+                    "type": "Boolean / String",
+                    "value": false
+                }
+            },
+            "description": "Remove os dados de um user ou group inteiro da database.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "purge": {
+            "arguments": {
+                "file": {
+                    "description": "Nome do arquivo responsável pela função.",
+                    "type": "Boolean / String",
+                    "value": false
+                },
+                "user": {
+                    "description": "ID do usuário enviado para efetuar o filtro, se houver.",
+                    "type": "Boolean / String",
+                    "value": false
+                },
+                "chatId": {
+                    "description": "ID do chat em que o filtro vai ser rodado, se houver.",
+                    "type": "Boolean / String",
+                    "value": false
+                },
+                "initkey": {
+                    "description": "Key base que vai ser usada para remover, se houver.",
+                    "type": "Boolean / String",
+                    "value": false
+                },
+                "finkey": {
+                    "description": "Key opcional para remocão de object in object, se houver.",
+                    "type": "Boolean / String",
+                    "value": false
+                }
+            },
+            "description": "Remove um valor dentro da Object, podendo remover obj-in-obj e outros.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "finder": {
+            "arguments": {
+                "file": {
+                    "description": "Nome do arquivo responsável pela função.",
+                    "type": "Boolean / String",
+                    "value": false
+                },
+                "user": {
+                    "description": "ID do usuário enviado para efetuar o filtro, se houver.",
+                    "type": "Boolean / String",
+                    "value": false
+                },
+                "chatId": {
+                    "description": "ID do chat em que o filtro vai ser rodado, se houver.",
+                    "type": "Boolean / String",
+                    "value": false
+                },
+                "keyfilt": {
+                    "description": "Key que vai ser usada para filtrar, se houver.",
+                    "type": "Boolean / String",
+                    "value": false
+                },
+                "mathsym": {
+                    "description": "Simbolo matemático para filtro de valores, se houver.",
+                    "type": "String",
+                    "value": ">"
+                },
+                "value": {
+                    "description": "Valor que será usado para filtrar, se houver.",
+                    "type": "Boolean / String",
+                    "value": false
+                }
+            },
+            "description": "Localiza valores com determinado valor presente.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "ranking": {
+            "arguments": {
+                "file": {
+                    "description": "Nome do arquivo responsável pela função.",
+                    "type": "Boolean / String",
+                    "value": false
+                },
+                "chatId": {
+                    "description": "ID do chat em que o filtro vai ser rodado, se houver.",
+                    "type": "Boolean / String",
+                    "value": false
+                },
+                "keysort": {
+                    "description": "Key que vai ser usada para filtrar, se houver.",
+                    "type": "Boolean / String",
+                    "value": false
+                },
+                "limit": {
+                    "description": "Limite de obtenção ou simbolo matemático para filtro de valores, se houver.",
+                    "type": "Boolean / String",
+                    "value": false
+                }
+            },
+            "description": "Encontra por meio da ID ou filtro algum valor especifico.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "update": {
+            "arguments": {
+                "file": {
+                    "description": "Nome do arquivo responsável pela função.",
+                    "type": "Boolean / String",
+                    "value": false
+                },
+                "user": {
+                    "description": "ID do usuário enviado para efetuar o purge, se houver.",
+                    "type": "Boolean / String",
+                    "value": false
+                },
+                "chatId": {
+                    "description": "ID do chat em que o purge vai ser rodado, se houver.",
+                    "type": "Boolean / String",
+                    "value": false
+                },
+                "keyup": {
+                    "description": "Key que vai ser removida, resetada ou similar, se houver.",
+                    "type": "Boolean / String",
+                    "value": false
+                },
+                "value": {
+                    "description": "Valor da key que será atualizado.",
+                    "type": "Boolean / String",
+                    "value": false
+                }
+            },
+            "description": "Atualiza, insere ou ajusta os valores da database.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "poswork": {
+            "arguments": {
+                "response": {
+                    "description": "Resultados de uma função.",
+                    "type": "Any",
+                    "value": false
+                }
+            },
+            "description": "Verifica se pode resetar a envInfo e retorna o resultado da função.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "revert": {
+            "arguments": {
+                "changeKey": {
+                    "description": "Uma Object com valores que existem na envInfo, ela será usada para substituir o sistema em tempo real.",
+                    "type": "Object value",
+                    "anyValue": false
+                }
+            },
+            "description": "Reseta a envInfo para a Object padrão.",
+            "type": "Boolean / Function",
+            "value": false
+        }
+    },
+    "settings": {
+        "wait": {
+            "description": "Tempo em MS que deve esperar antes de resetar.",
+            "type": "Number",
+            "value": 5000
+        },
+        "error": {
+            "description": "Define se pode printar qualquer erro.",
+            "type": "Boolean",
+            "value": false
+        },
+        "ender": {
+            "description": "Define se deve resetar a cada erro.",
+            "type": "Boolean",
+            "value": true
+        },
+        "finish": {
+            "description": "Define se deve resetar a cada finalização.",
+            "type": "Boolean",
+            "value": true
+        }
+    },
+    "parameters": {
+        "standard": {
+            "description": "Valores padrões da database.",
+            "type": "Object",
+            "value": {
+                "bank": {
+                    "coin": 0,
+                    "diamond": 0,
+                    "rubi": 0,
+                    "stone": 0,
+                    "gold": 0,
+                    "iron": 0,
+                    "wood": 0
+                },
+                "leveling": {
+                    "xp": 0,
+                    "level": 0,
+                    "coin": 0,
+                    "diamond": 0,
+                    "rubi": 0,
+                    "stone": 0,
+                    "gold": 0,
+                    "iron": 0,
+                    "wood": 0
+                },
+                "groups": {
+                    "blacklist": {
+                        "customText": false,
+                        "block": [],
+                        "enable": false
+                    },
+                    "whitelist": {
+                        "unblock": [],
+                        "enable": false
+                    },
+                    "antifake": {
+                        "enable": false,
+                        "customText": false,
+                        "block": []
+                    },
+                    "welcome": {
+                        "enable": false,
+                        "customText": false
+                    },
+					"promote": {
+                        "enable": false,
+                        "customText": false
+                    },
+					"demote": {
+                        "enable": false,
+                        "customText": false
+                    },
+                    "goodbye": {
+                        "enable": false,
+                        "customText": false
+                    }
+                }
+            }
+        },
+        "location": {
+            "description": "Local onde o módulo pode ser encontrado.",
+            "type": "String",
+            "value": "./index"
+        },
+        "code": {
+            "description": "Código do erro que obter.",
+            "type": "Boolean / String / Number",
+            "value": false
+        },
+        "message": {
+            "description": "Armazena a mensagem do último erro recebido.",
+            "type": "Boolean / String",
+            "value": false
+        }
+    },
+    "results": {
+        "description": "Resultado final da função.",
+        "success": true,
+        "type": "Boolean / String",
+        "value": false
+    }
+}
