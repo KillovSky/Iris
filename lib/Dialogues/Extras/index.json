@@ -23,7 +23,25 @@
         ],
         "Wait": [
             "Peço que aguarde, os comandos são verificados em vários sistemas, para evitar que sofram erros, por isso é comum que demorem, se puder esperar finalizar antes de usar novamente, serei muito grataa!",
-            "Entendido amore, até lá, espere enquanto faço isso, pode demorar um pouquinho, por isso, evite usar comandos demorados ou pesados até terminar, obrigadaa por esperar! <3"
+            "Entendido amore, até lá, espere enquanto faço isso, pode demorar um pouquinho, por isso, evite usar comandos demorados ou pesados até terminar, obrigadaa por esperar! <3",
+            "Aguarde um momento enquanto preparo a poção mágica de dados! 🧙‍♂️",
+            "Estamos viajando pela velocidade da luz para buscar as informações solicitadas. Aguarde só um pouco! 🚀",
+            "Estamos reorganizando a biblioteca de Alexandria para encontrar a resposta. Aguarde, por favor! 📚",
+            "Enquanto isso, Darth Vader está tentando encontrar o caminho certo para sua pergunta no lado negro da Força. Aguarde! ⚔️",
+            "Estamos cultivando as respostas com cuidado e carinho em nosso jardim do conhecimento. A paciência é uma virtude! 🌱",
+            "Estamos contando os grãos de areia em todas as praias do mundo para encontrar a resposta. Aguarde pacientemente! 🏖️",
+            "Enquanto isso, estamos ensinando pombos-correios a carregar mensagens para trazer sua resposta. Aguarde, eles estão em treinamento! 🕊️",
+            "Aguarde um momento enquanto damos um trato no nosso hamster de processamento. Ele está quase terminando de correr na roda! 🐹",
+            "Estamos esperando que os minions terminem de trabalhar nas respostas. Eles são um pouco atrapalhados, mas são dedicados! 👷‍♂️",
+            "Calma aí, estou indo o mais rápido que posso! Apenas mais alguns segundos e estaremos prontos para a ação!",
+            "Estou colocando meus bits para trabalhar! Isso pode levar um pouquinho, então aproveite para relaxar e tomar uma xícara de café! ☕",
+            "Aguarde enquanto invoco meus poderes mágicos de processamento! É como esperar a varinha mágica fazer sua magia - só mais um pouquinho! 🪄",
+            "Segure suas emoções! Estamos quase lá, prometo. Enquanto isso, que tal contar ovelhinhas? 🐑",
+            "Não desista de mim agora! Estou trabalhando duro nos bastidores para preparar algo incrível. Só mais um pouco e estaremos prontos!",
+            "Estou pedindo reforços aos meus colegas códigos para acelerar o processo!\nAguarde um momento enquanto eles se organizam.\nObrigado pela paciência! 😊",
+            "Respira fundo! A maratona de bits está chegando ao fim.\nContinue esperando só um pouquinho mais. Estamos quase lá...",
+            "Estou fazendo o meu melhor para não deixar você esperando muito!\nEnquanto isso, pense em quantos bytes há no universo. É uma distração interessante, não acha?",
+            "Aguarde enquanto os hamsters nos meus servidores correm mais rápido nas suas rodinhas.\nEles estão dando o melhor de si para acelerar as coisas!"
         ],
         "Defined": [
             "Esse comando já está configurado com o valor desejado, não é necessário usar o comando novamente."
@@ -89,7 +107,25 @@
         ],
         "Wait": [
             "I ask you to wait, the commands are checked on several systems, to prevent them from suffering errors, so it is common for them to take a while, if you can wait to finish before using them again, I will be very grateful!",
-            "Understood amore, until then, wait while I do this, it might take a little while, so please avoid using lengthy or cumbersome commands until I'm done, thanks for waiting! <3"
+            "Understood amore, until then, wait while I do this, it might take a little while, so please avoid using lengthy or cumbersome commands until I'm done, thanks for waiting! <3",
+            "Wait a moment while I prepare the magic dice potion! 🧙‍♂️",
+            "We're traveling at the speed of light to retrieve the information you requested. Just wait a moment! 🚀",
+            "We are reorganizing the library of Alexandria to find the answer. Please wait! 📚",
+            "Meanwhile, Darth Vader is trying to find the right path to your question on the dark side of the Force. Stand by! ⚔️",
+            "We are cultivating the answers with care and affection in our garden of knowledge. Patience is a virtue! 🌱",
+            "We are counting the grains of sand on every beach in the world to find the answer. Wait patiently! 🏖️",
+            "Meanwhile, we're teaching carrier pigeons to carry messages to bring you your answer. Wait, they're in training! 🕊️",
+            "Hold on a moment while we give our processing hamster a treat. He's almost finished running on the wheel! 🐹",
+            "We're waiting for the minions to finish working on the answers. They're a bit of a mess, but they're dedicated! 👷‍♂️",
+            "Hold on, I'm going as fast as I can! Just a few more seconds and we'll be ready for action!",
+            "I'm putting my bits to work! This might take a little while, so take a moment to relax and have a cup of coffee! ☕",
+            "Wait while I invoke my magical processing powers! It's like waiting for the magic wand to work its magic - just a little longer! 🪄",
+            "Hold your emotions! We're almost there, I promise. In the meantime, how about counting sheep? 🐑",
+            "Don't give up on me now! I'm working hard behind the scenes to prepare something incredible. Just a little more and we'll be ready!",
+            "I'm calling in reinforcements from my code colleagues to speed up the process!\nWait a moment while they get organized.\nThank you for your patience! 😊",
+            "Take a deep breath! The bit marathon is coming to an end.\nKeep waiting just a little longer. We're almost there...",
+            "I'm doing my best not to keep you waiting too long! Meanwhile, think about how many bytes there are in the universe. It's an interesting distraction, don't you think?",
+            "Wait while the hamsters on my servers run faster on their little wheels.\nThey're doing their best to speed things up!"
         ],
         "Defined": [
             "This command is already set to the desired value, no need to use the command again."
@@ -155,7 +191,25 @@
         ],
         "Wait": [
             "Te pido que esperes, los comandos están revisados ​​en varios sistemas, para evitar que sufran errores, por lo que es común que tarden un poco, si puedes esperar a que terminen antes de volver a usarlos, yo ¡Estaré muy agradecido!",
-            "Entendido amore, hasta entonces, espera mientras hago esto, podría tomar un poco de tiempo, así que evita usar comandos largos o engorrosos hasta que termine, ¡gracias por esperar! <3"
+            "Entendido amore, hasta entonces, espera mientras hago esto, podría tomar un poco de tiempo, así que evita usar comandos largos o engorrosos hasta que termine, ¡gracias por esperar! <3",
+            "¡Espera un momento mientras preparo la poción de dados mágicos! 🧙‍♂️",
+            "Estamos viajando a la velocidad de la luz para recuperar la información que solicitó. ¡Espera un momento! 🚀",
+            "Estamos reorganizando la biblioteca de Alejandría para encontrar la respuesta. ¡Espere, por favor! 📚",
+            "Mientras tanto, Darth Vader está tratando de encontrar el camino correcto a tu pregunta en el lado oscuro de la Fuerza. Espere! ⚔️",
+            "Estamos cultivando las respuestas con cuidado y cariño en nuestro jardín del conocimiento. ¡La paciencia es una virtud! 🌱",
+            "Estamos contando los granos de arena de todas las playas del mundo para encontrar la respuesta. ¡Espera con paciencia! 🏖️",
+            "Mientras tanto, estamos enseñando a las palomas mensajeras a llevar mensajes para traerte tu respuesta. Espera, ¡están entrenándose! 🕊️",
+            "Espera mientras le damos un capricho a nuestro hámster procesador. ¡Ya casi ha terminado de correr en la rueda! 🐹",
+            "Estamos esperando a que los esbirros terminen de trabajar en las respuestas. Están un poco desordenados, ¡pero son aplicados! 👷‍♂️",
+            "¡Espera, voy tan rápido como puedo! Sólo unos segundos más y estaremos listos para la acción!",
+            "¡Estoy poniendo mis bits a trabajar! Esto puede tardar un poco, ¡así que tómate un momento para relajarte y tomarte un café! ☕",
+            "¡Espera mientras invoco mis poderes mágicos de procesamiento! Es como esperar a que la varita mágica haga su magia, ¡sólo un poco más! 🪄",
+            "¡Mantengan sus emociones! Ya casi estamos, lo prometo. Mientras tanto, ¿qué tal si contamos ovejas? 🐑",
+            "¡No te rindas conmigo ahora! Estoy trabajando duro entre bastidores para preparar algo increíble. Solo un poco más y estaremos listos!",
+            "¡Esperad un momento mientras se organizan! ¡Gracias por vuestra paciencia! 😊",
+            "¡Respira hondo! La maratón de bits está llegando a su fin. Ya casi hemos llegado...",
+            "Mientras tanto, piensa en cuántos bytes hay en el universo. Es una distracción interesante, ¿no crees?",
+            "Espera mientras los hámsters de mis servidores corren más rápido en sus ruedecitas. ¡Están haciendo todo lo posible para acelerar las cosas!"
         ],
         "Defined": [
             "Este comando ya está configurado en el valor deseado, no es necesario volver a usar el comando."
