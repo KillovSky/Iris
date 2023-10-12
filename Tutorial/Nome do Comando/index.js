@@ -2,10 +2,10 @@
 
 /* Requires */
 const fs = require('fs');
+const os = require('os');
 const path = require('path');
-const { Sticker } = require('wa-sticker-formatter');
-const language = require('../../Dialogues/index');
 const Indexer = require('../../index');
+const language = require('../../Dialogues/index');
 
 /* JSON's | Utilidades */
 let envInfo = JSON.parse(fs.readFileSync(`${__dirname}/utils.json`));
@@ -61,8 +61,8 @@ function ambientDetails() {
     return envInfo;
 }
 
-/* Cria a função de comando */
-async function stickerMaker(
+/* Cria a função de comando, EDITE O NOME DELA AQUI */
+async function myFunction(
     kill = envInfo.functions.exec.arguments.kill.value,
     env = envInfo.functions.exec.arguments.env.value,
 ) {
@@ -76,67 +76,26 @@ async function stickerMaker(
     try {
         /* Se recebeu tudo corretamente, se der ruim, não fará nada */
         if (typeof kill === 'object' && typeof env === 'object') {
-            /* Constrói os parâmetros */
-            const {
-                chatId,
-                arks,
-                args,
-                canSticker,
-                isOwner,
-                isVideo,
-                quoteThis,
-                stickerConfig,
-            } = env.value;
+			/*
+				Programe seu comando abaixo:
+				kill: https://whiskeysockets.github.io/Baileys/functions/makeWASocket.html
+				env: Olhe o arquivo: Lib/Commands/Construct/Index.js
+				-----
+				Forma de uso do kill: kill.função
+				Forma de uso da env: env.value.objectKey
+				-----
+				Exemplo: const { chatId, user, isOwner, body, quoteThis } = env.value;
+				Exemplo2: await kill.sendMessage(chatId, { text: body }, { quoted: quoteThis })
+			*/
 
-            /* Define o alias na envInfo */
-            envInfo.alias = env.value.alias;
+			/* COMECE A PROGRAMAR DAQUI */
 
-            /* Define se pode fazer o sticker (Tem Mídia) */
-            if (canSticker === true || Indexer('regexp').urls(args[0]).value) {
-                /* Define se deve usar circle ou cortar nos stickers */
-                stickerConfig.type = isVideo ? 'full' : 'default';
-
-                /* Verifica pelos tipos */
-                if (arks.includes('-circle')) {
-                    stickerConfig.type = 'circle';
-                } else if (arks.includes('-full')) {
-                    stickerConfig.type = 'full';
-                } else if (arks.includes('-crop')) {
-                    stickerConfig.type = 'crop';
-                } else if (arks.includes('-rounded')) {
-                    stickerConfig.type = 'rounded';
-                } else if (arks.includes('-default')) {
-                    stickerConfig.type = 'default';
-                }
-
-                /* Importa os dados de buffer */
-                const mediaData = canSticker === true ? env.value.decryptedMedia : args[0];
-
-                /* Constrói o sticker, se deixar em 100% nos videos pode travar o sticker */
-                const sticker = new Sticker(mediaData, {
-                    ...stickerConfig,
-                    type: stickerConfig.type,
-                    quality: isVideo ? 50 : 100,
-                });
-
-                /* Define como formato Baileys */
-                const sendSticker = await sticker.toMessage();
-
-                /* Faz o envio */
-                await kill.sendMessage(chatId, sendSticker, { quoted: quoteThis });
-
-                /* Se não for utilizável, e tiver usando '--help-dev' */
-            } else if (arks.includes('--help-dev') && isOwner === true) {
-                /* Manda a mensagem de ajuda de dev */
-                envInfo.results.value = await kill.sendMessage(chatId, { text: language(region, 'Helper', 'Developer', true, true, envInfo) }, { quoted: quoteThis });
-
-                /* Se não tiver nada */
-            } else {
-                envInfo.results.value = await kill.sendMessage(chatId, { text: language(region, 'Helper', 'User', true, true, envInfo) }, { quoted: quoteThis });
-            }
+            /* Insere o resultado na envInfo para retornar tudo */
+			/* Exemplo: Define o que o comando retorna, apague isso e defina o valor final do seu sistema */
+            envInfo.results.value = 'Oi, essa é a resposta final do comando!';
         }
 
-        /* Define o sucesso */
+        /* Define o sucesso, se seu comando der erro isso jamais será chamado, então o success automaticamente será false em falhas */
         envInfo.results.success = true;
 
         /* Caso de algum erro */
@@ -144,10 +103,11 @@ async function stickerMaker(
         /* Insere tudo na envInfo */
         echoError(error);
 
-        /* Avisa que deu erro enviando o comando e data atual pro sistema SER */
+        /* Avisa que deu erro enviando o comando e data atual pro sistema S.E.R (Send Error Report) */
+		/* EDITE O NOME DELA AQUI, na key command abaixo, insira o name que você definiu na envInfo */
         await kill.sendMessage(env.value.chatId, {
             text: language(region, 'S.E.R', error, true, true, {
-                command: 'Stickers',
+                command: 'Insira o mesmo que na envInfo.name',
                 time: (new Date()).toLocaleString(),
             }),
         }, { quoted: env.value.quoteThis });
@@ -198,8 +158,8 @@ function resetAmbient(
         /* Insere a revert na envInfo */
         envInfo.functions.revert.value = resetAmbient;
 
-        /* Insere a stickerMaker na envInfo */
-        envInfo.functions.exec.value = stickerMaker;
+        /* Insere a myFunction na envInfo, EDITE O NOME DELA AQUI */
+        envInfo.functions.exec.value = myFunction;
 
         /* Define o local completo na envInfo para usar o reload novamente */
         envInfo.parameters.location.value = __filename;
