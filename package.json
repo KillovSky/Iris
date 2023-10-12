@@ -1,7 +1,7 @@
 {
   "name": "iris",
-  "version": "1.0.0",
-  "build_date": "22-09-2023",
+  "version": "1.0.1",
+  "build_date": "11-10-2023",
   "private": "true",
   "description": "Novo Projeto Íris, uma versão totalmente nova feita com novas APIs, sistemas e muito mais, sendo um projeto novo, aberto e sem nenhum foco lucrativo.",
   "main": "lib/Initialize/index.js",

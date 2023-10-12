@@ -7,6 +7,7 @@
             "SQL.env()",
             "SQL.reset()",
             "SQL.update(file, userId, chatId, key, value)",
+            "SQL.get(file, userId, chatId)",
             "SQL.undo(file, userId, chatId, array)",
             "SQL.finder(file, userId, chatId, key, mathsymbols?, value)",
             "SQL.locate(file, userId, chatId, key, mathOperator, value)",
@@ -15,6 +16,7 @@
             "SQL.purge(file, userId, chatId, key, moreKeys)",
             "SQL.env().functions.update.value(file, userId, chatId, key, value)",
             "SQL.env().functions.undo.value(file, userId, chatId, array)",
+            "SQL.env().functions.get.value(file, userId, chatId)",
             "SQL.env().functions.finder.value(file, userId, chatId, key, mathsymbols?, value)",
             "SQL.env().functions.remove.value(file, userId, chatId)",
             "SQL.env().functions.custom.value(file, userId, chatId, command)",
@@ -36,6 +38,7 @@
         "ranking": "ranking",
         "get": "get",
         "custom": "custom",
+        "fixer": "jsonfixer",
         "remove": "remove",
         "finder": "finder",
         "purge": "purge",
@@ -69,6 +72,18 @@
                 }
             },
             "description": "Retorna as variáveis e sistemas do arquivo.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+		"fixer": {
+            "arguments": {
+                "stringJSON": {
+                    "description": "A string contendo o valor que deve formatar, deve conter um JSON válido dentro.",
+                    "type": "Boolean / Error",
+                    "value": false
+                }
+            },
+            "description": "Formata uma string com Objects, Arrays ou JSONs dentro, tornando-a executável.",
             "type": "Boolean / Function",
             "value": false
         },
@@ -371,35 +386,51 @@
                     "wood": 0
                 },
                 "groups": {
+					"autostickers": {
+						"enable": false,
+						"type": "-default"
+					},
+					"prefix": {
+						"enable": false,
+						"values": []
+					},
+					"vips": {
+						"enable": false,
+						"values": []
+					},
+					"mods": {
+						"enable": [],
+						"values": []
+					},
                     "blacklist": {
-                        "customText": false,
-                        "block": [],
+                        "text": false,
+                        "values": [],
                         "enable": false
                     },
                     "whitelist": {
-                        "unblock": [],
+                        "values": [],
                         "enable": false
                     },
                     "antifake": {
                         "enable": false,
-                        "customText": false,
-                        "block": []
+                        "text": false,
+                        "values": []
                     },
                     "welcome": {
                         "enable": false,
-                        "customText": false
+                        "text": false
                     },
 					"promote": {
                         "enable": false,
-                        "customText": false
+                        "text": false
                     },
 					"demote": {
                         "enable": false,
-                        "customText": false
+                        "text": false
                     },
                     "goodbye": {
                         "enable": false,
-                        "customText": false
+                        "text": false
                     }
                 }
             }

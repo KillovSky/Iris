@@ -20,7 +20,7 @@
 	- NPM
 	- Python
 	- Sistema Operacional
-	- Wa-Automate
+	- Baileys
 	- Íris
 	- Qualquer coisa relacionada.
 
@@ -62,11 +62,10 @@
 	2. - [NPM](https://docs.npmjs.com/policies/privacy)
 	3. - [NodeJS](https://privacy-policy.openjsf.org)
 	4. - [Python](https://www.python.org/privacy)
-	5. - [Google Chrome / Chromium](https://www.google.com/chrome/privacy)
+	5. - Seu provedor de internet.
 	6. - Seu sistema operacional.
 	7. - Sites e API's que a Íris utiliza.
-	8. - Seu provedor de internet.
-	9. - Outros.
+	8. - Outros.
 
 - Infelizmente não existe uma forma de se tornar totalmente anonimo, mas você pode evitar alguns destes simplesmente:
 	1. Recusando cookies.
