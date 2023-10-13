@@ -176,10 +176,22 @@
             "description": "Cooldown ativo do contador de mensagens, serve apenas de referência, não pode ser alterado.",
             "type": "Object",
             "value": {
-                "blacklist": 0,
-                "welcome": 0,
-                "goodbye": 0,
-                "antifake": 0
+                "blacklist": {
+					"person": [],
+					"time": 0
+				},
+                "welcome": {
+					"person": [],
+					"time": 0
+				},
+                "goodbye": {
+					"person": [],
+					"time": 0
+				},
+                "antifake": {
+					"person": [],
+					"time": 0
+				}
             }
         },
         "code": {
