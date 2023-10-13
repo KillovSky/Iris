@@ -14,6 +14,9 @@
         ],
         "OtherFix": [
             "Tipo desconhecido de erro, verifique a GitHub do Projeto Íris ou o Google para detalhes ou ajuda."
+        ],
+        "InvalidURL": [
+            "A URL encaminhada é inválida"
         ]
     },
     "jp": {
@@ -31,6 +34,9 @@
         ],
         "OtherFix": [
             "不明なタイプのエラーです。詳細またはヘルプについては、Project Iris GitHub または Google を確認してください。"
+        ],
+        "InvalidURL": [
+            "送信された URL が無効です。"
         ]
     },
     "en": {
@@ -48,6 +54,9 @@
         ],
         "OtherFix": [
             "Unknown type of error, check Project Iris GitHub or Google for details or help."
+        ],
+        "InvalidURL": [
+            "The forwarded URL is invalid"
         ]
     },
     "fr": {
@@ -65,6 +74,9 @@
         ],
         "OtherFix": [
             "Type d'erreur inconnu, consultez Project Iris GitHub ou Google pour plus de détails ou de l'aide."
+        ],
+        "InvalidURL": [
+            "L'URL envoyé n'est pas valide"
         ]
     },
     "es": {
@@ -82,6 +94,9 @@
         ],
         "OtherFix": [
             "Tipo de error desconocido, consulte Project Iris GitHub o Google para obtener detalles o ayuda."
+        ],
+        "InvalidURL": [
+            "La URL enviada no es válida"
         ]
     },
     "id": {
@@ -99,6 +114,9 @@
         ],
         "OtherFix": [
             "Jenis kesalahan tidak diketahui, periksa Project Iris GitHub atau Google untuk detail atau bantuan."
+        ],
+        "InvalidURL": [
+            "URL yang diteruskan tidak valid"
         ]
     },
     "ms": {
@@ -116,6 +134,9 @@
         ],
         "OtherFix": [
             "Jenis ralat tidak diketahui, semak Project Iris GitHub atau Google untuk mendapatkan butiran atau bantuan."
+        ],
+        "InvalidURL": [
+            "URL yang dimajukan adalah tidak sah"
         ]
     },
     "hi": {
@@ -133,6 +154,9 @@
         ],
         "OtherFix": [
             "अज्ञात प्रकार की त्रुटि, विवरण या सहायता के लिए प्रोजेक्ट आइरिस गिटहब या Google की जाँच करें।"
+        ],
+        "InvalidURL": [
+            "अग्रेषित यूआरएल अमान्य है"
         ]
     },
     "de": {
@@ -150,6 +174,9 @@
         ],
         "OtherFix": [
             "Unbekannter Fehlertyp, überprüfen Sie Project Iris GitHub oder Google für Details oder Hilfe."
+        ],
+        "InvalidURL": [
+            "Die weitergeleitete URL ist ungültig"
         ]
     },
     "it": {
@@ -167,6 +194,9 @@
         ],
         "OtherFix": [
             "Tipo di errore sconosciuto, controlla Project Iris GitHub o Google per dettagli o aiuto."
+        ],
+        "InvalidURL": [
+            "L'URL inoltrato non è valido"
         ]
     },
     "ru": {
@@ -184,6 +214,9 @@
         ],
         "OtherFix": [
             "Ошибка неизвестного типа, подробности или справку см. в Project Iris GitHub или Google."
+        ],
+        "InvalidURL": [
+            "Domicilium irritum transmittantur"
         ]
     },
     "lat": {
@@ -201,6 +234,9 @@
         ],
          "OtherFix": [
             "Ignis erroris genus, Project Iris GitHub reprehendo vel Google ad singula vel auxilium."
+        ],
+        "InvalidURL": [
+            "The forwarded URL is invalid"
         ]
     }
 }

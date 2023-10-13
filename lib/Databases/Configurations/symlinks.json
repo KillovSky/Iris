@@ -353,5 +353,13 @@
             "recode"
         ],
         "place": "./Functions/recode"
+    },
+    "videoDL": {
+        "place": "./Commands/videoDL/index",
+        "alias": [
+            "vdl",
+            "videodownload",
+            "videodownloader"
+        ]
     }
 }
