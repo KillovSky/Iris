@@ -143,11 +143,12 @@ dist
 # End of https://www.toptal.com/developers/gitignore/api/node
 
 # Definição de mensagens que uso para testes locais e outros
-**sessions.db
-**database.sql
-**users.db
+lib/Databases/Informations/*
 lib/Backups/*
+lib/Sessions/*
 !lib/Backups/readme.txt
+!lib/Sessions/readme.txt
+!lib/Databases/Informations/Default.json
 MessageTypes
 
 # managed
