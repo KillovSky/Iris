@@ -57,11 +57,6 @@
         },
         "spec": {
             "arguments": {
-                "kill": {
-                    "description": "Funções de controle raiz da Íris.",
-                    "type": "Boolean / Object",
-                    "value": false
-                },
                 "newState": {
                     "description": "Nome do novo estado de conexão recebido.",
                     "type": "Boolean / String",

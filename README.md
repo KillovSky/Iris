@@ -35,6 +35,11 @@ Tenha em mente que apenas o português é estável e completo, outros idiomas ap
   
 ## Aviso  
 Esta versão é uma BETA aberta de teste não finalizada, então BUGS são esperados, ajude-nos a corrigir informando ou fazendo sua própria correção e enviando em um dos meios abaixo, quanto mais cedo e rápido informar, mais rápido poderemos ter uma versão estável.  
+A instalação desse projeto em Termux exige etapas adicionais, [leia isso](https://github.com/KillovSky/Iris/blob/main/Termux.txt).  
+Quando for instalar o NodeJS, **SEMPRE** selecione a opção de instalação das build tools (Tools for Native Modules), caso contrario, você terá erros de instalação desse projeto.  
+  
+## Terminal WEB  
+O terminal WEB da Íris é uma ferramenta poderosa para o controle do código dela através do navegador. É importante ter em mente que, se abrir portas, ele pode ser acessado remotamente, portanto, evite compartilhar o acesso. Ele tem a capacidade de executar comandos e códigos da Íris e do PC, abrangendo desde tarefas simples, como `ls`, `echo` ou `console.log`, até ações destrutivas, como a remoção da pasta `WINDOWS` no Windows ou `SYS` do sistema Linux. Embora haja proteção por senha e rastreamento dos IPs que se conectam, é crucial utilizá-lo com responsabilidade.  
   
 ## Página da Íris  
 Também criamos uma comunidade no [Discord](https://discord.gg/ZtN9UH7XZu) e no [Telegram](https://t.me/PROJETOIRIS).  
@@ -72,6 +77,8 @@ Inicie pelo `Git Bash` se obtiver problemas, mas se você quiser usar CMD, Power
 4. - [Gow](https://github.com/bmatzelle/gow/releases) - Para comandos Linux e GNU/Bash.  
   
 5. - [SQLite3](https://www.sqlite.org/index.html) - Para a geração das nossas databases de SQL.  
+  
+6. - [Python >= 3.7](https://www.python.org/downloads/) - Para o sistema de downloads do YouTube.  
   
 ## Requisitos de Linux - Instalação via Terminal  
   

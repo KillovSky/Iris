@@ -124,9 +124,7 @@
                 "syncFullHistory": "Opcional | True | False",
                 "waWebSocketUrl": "Opcional | String",
                 "sessionDataPath": "./lib/Sessions",
-                "sessionId": [
-                    "Hermes"
-                ]
+                "sessionsLength": 1
             }
         },
         "location": {

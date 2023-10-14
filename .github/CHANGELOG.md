@@ -3,6 +3,40 @@
 - [Colabore conosco](https://bit.ly/BOT-IRIS), juntos podemos deixar esse código com a definição perfeita do que é OpenSource.
 - Note que as atualizações não tem datas para sair, sendo que elas são lançadas quando considero adequadas para postagem.
 
+## 1.0.2 - 13/10/2023
+
+### Novidades
+1. **Gitignore atualizado**
+	- Atualizado o gitignore para refletir nas mudanças realizadas com a sessão.
+2. **Novo Backup**
+	- O sistema de backup antigo fazia copias de todos os arquivos que encontrasse seguindo a RegExp do bash, agora ela faz um backup somente das configurações e databases de comandos, não inserindo os arquivos JSON opcionais, como os da envInfo.
+3. **Mudança de instalação**
+	- Estavamos usando a GitHub do módulo Baileys em vez de usar o módulo NPM do mesmo, essa dica foi dada pelo @lucassaud na [Issue #608 -> Utilizar o Baileys da NPM em vez do repositório GitHub](https://github.com/KillovSky/Iris/issues/608).
+4. **Dialogos de espera**
+	- Foi adicionado mais dialogos nos casos de comandos de espera, como YouTube, cortesia de @hypegg em sua [PR #607 -> Added new messages on hold](https://github.com/KillovSky/Iris/pull/607).
+5. **Atualizado a lista de dependencias**
+	- Algumas dependencias como `python 3.7>` não estavam apontadas como necessarias.
+
+### Correções
+
+1. **Sistemas parciais revisados**
+	- Welcome e Goodbye estão funcionando perfeitamente com suporte a mensagens customizadas, no entanto, os sistemas de moderador, promote, vips e demote podem não estar totalmente corretos ainda, evite-os.
+2. **Status da conexão**
+	- Por algum milagre, a sessão continuava online mesmo precisando de um reinicio, agora ela reinicia adequadamente conforme as mudanças, corrigindo também o erro de precisar reiniciar manualmente no primeiro escaneamento.
+3. **Obtenção de alguns dados**
+	- Alguns dados, mais especificadamente o log de inicio e o número da BOT, estavam sendo obtidos antes da inicialização completa, agora eles são obtidos antes de detectar a primeira mensagem.
+4. **Sessão**
+	- O salvamento da sessão era realizado usando `baileysBottle` que está, aparentemente, arquivado, então foi migrado para o uso das funções padrões do Baileys, o que aumenta consideravelmente a quantidade de arquivos, mas reduz a quantidade de módulos externos necessarios, corrigindo também erros de instalação relacionados a incompatibilidade do NodeJS e a versão antiga do Baileys.
+5. **Dependencias inuteis**
+	- Foi removido alguns modulos que não eram mais necessarios devido a já estarem inclusos em outros ou não serem mais usados.
+6. **Database SQL**
+	- Corrigido um erro que fazia as databases serem criados com valor de ID `false` em vez da ID de um chat.
+
+### Bugs ainda não corrigidos
+
+1. **Códigos sem utilização**
+	- Existem diversos códigos ainda sem uma implementação, estarei focando em construir os mesmos.
+
 ## 1.0.1 - 11/10/2023
 
 ### Novidades
