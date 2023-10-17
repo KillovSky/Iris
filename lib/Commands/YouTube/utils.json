@@ -2,10 +2,11 @@
     "name": "Video",
     "description": "Baixar, pesquisar ou enviar informações de vídeos do YouTube.",
     "usage": {
-        "general": "[Prefix][Comando] [-video|-audio] [Termos de Busca|URL|ID]",
+        "general": "[Prefix][Comando] [-video|-audio|-link] [Termos de Busca|URL|ID]",
         "examples": [
             "/Play -audio Oshiete Oshiete yo Sono Shikumi wo",
             "/Video -video Leon vs Krauser Resident Evil 4",
+            "/Video -link ASMR de carioca",
             "/VideoSearch -audio Madoka Magica Ending 2",
             "/DownVideo Hardcore Henry Chase Scene",
             "/DownAudio Loli Sounds for Sleep",
@@ -143,6 +144,14 @@
                     "description": "Identificação única da mensagem recebida para rodar o comando.",
                     "type": "Boolean / String",
                     "value": false
+                },
+				"haveURL": {
+                    "description": "Define se a URL é externa ou do YouTube.",
+                    "type": "Object",
+                    "value": {
+						"isURL": false,
+						"matchedURL": "none"
+					}
                 }
             },
             "description": "Faz o download dos vídeos e envia para onde foi requisitado.",
