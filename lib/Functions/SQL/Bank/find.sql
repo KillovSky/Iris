@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS banks (
 );
 
 -- Deleta as colunas invalidas
-DELETE FROM banks WHERE id NOT LIKE '%@c.us%';
+DELETE FROM banks WHERE id NOT LIKE '%@s.whatsapp.net%';
 
 -- Adquire os grupos com x função ativa
 SELECT json_group_object(id, json(data)) FROM banks

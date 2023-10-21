@@ -93,7 +93,7 @@
         "error": {
             "description": "Define se pode printar qualquer erro.",
             "type": "Boolean",
-            "value": false
+            "value": true
         },
         "ignore": {
             "description": "Define os arquivos a ignorar no recarregamento.",

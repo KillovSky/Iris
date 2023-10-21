@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS leveling (
 DELETE FROM leveling WHERE user = '{INSERTUSER}' AND chat = '{INSERTGROUP}';
 
 -- Deleta as colunas invalidas
-DELETE FROM leveling WHERE user NOT LIKE '%@c.us%' OR chat NOT LIKE '%@g.us%';
+DELETE FROM leveling WHERE user NOT LIKE '%@s.whatsapp.net%' OR chat NOT LIKE '%@g.us%';
 
 -- Adquire o padrão só pra ter algo pra usar
 SELECT json('{INSERTDEFAULT}');

@@ -22,7 +22,7 @@
 </p>  
   
 ## O que é a Íris?  
-Íris é uma robô em 10 idiomas para WhatsApp, ainda segue em produção, mas com almejo de chegar (novamente) a centenas de comandos diferentes, por hora ela recebe atualizações com novos recursos, correções e melhorias sempre que possível.  
+Íris é uma robô em 12 idiomas para WhatsApp, ainda segue em produção, mas com almejo de chegar (novamente) a centenas de comandos diferentes, por hora ela recebe atualizações com novos recursos, correções e melhorias sempre que possível.  
   
 ## Preguiçoso ou com pressa?  
 Seja como for, não pule os tutoriais e explicações, pois grande parte dos erros podem ser corrigidos simplesmente lendo essa página inicial ou a [issues](https://github.com/KillovSky/iris/issues?q=), tire um tempo para ler tudo e não seja um preguiçoso.  
@@ -65,7 +65,7 @@ Pull-requests de comandos serão bem vindas, já melhorias nas funções ou na e
   
 ## Requisitos de Windows e ordem de instalação [Downloads]  
   
-Inicie pelo `Git Bash` se obtiver problemas, mas se você quiser usar CMD, PowerShell ou outro terminal, você pode precisar inserir o `bash.exe` na sua `PATH` do Windows.  
+Inicie pelo `Git Bash` se obtiver problemas, mas se você quiser usar CMD, PowerShell ou outro terminal, você pode precisar inserir o `bash.exe` e `zip.exe` na sua `PATH` do Windows.  
 [Siga isso](https://github.com/KillovSky/iris/issues/456#issuecomment-1001087525) para adicionar, mas tenha cuidado extremo com isso!  
   
 1. - [Microsoft Visual C++ x86](https://download.microsoft.com/download/1/6/5/165255E7-1014-4D0A-B094-B6A430A6BFFC/vcredist_x86.exe) - Para o Youtube DL funcionar.  
@@ -96,7 +96,7 @@ NODE_MAJOR=18 # Se quiser pode definir a versão aqui: 16, 18 (RECOMENDADO!) ou 
 echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list  
   
 # Instala todos os programas de uma vez só  
-sudo apt-get update && sudo apt install nodejs sqlite ffmpeg build-essential zip unzip python2 python3 git -y  
+sudo apt-get update && sudo apt install nodejs sqlite build-essential zip unzip python2 python3 git -y  
 ```  
   
 Se você receber o erro `sudo command not found`, remova `sudo` do comando e tente.  

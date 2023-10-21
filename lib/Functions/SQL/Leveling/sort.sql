@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS leveling (
 );
 
 -- Deleta as colunas invalidas
-DELETE FROM leveling WHERE user NOT LIKE '%@c.us%' OR chat NOT LIKE '%@g.us%';
+DELETE FROM leveling WHERE user NOT LIKE '%@s.whatsapp.net%' OR chat NOT LIKE '%@g.us%';
 
 -- Define os valores finais na WITH para formatar
 WITH response(format) AS (

@@ -26,7 +26,7 @@ UPDATE leveling SET data = (
 WHERE user = '{INSERTUSER}' AND chat = '{INSERTGROUP}' AND json_valid(data); 
 
 -- Deleta as colunas invalidas
-DELETE FROM leveling WHERE user NOT LIKE '%@c.us%' OR chat NOT LIKE '%@g.us%';
+DELETE FROM leveling WHERE user NOT LIKE '%@s.whatsapp.net%' OR chat NOT LIKE '%@g.us%';
 
 -- Exibe o json final
 SELECT data FROM leveling WHERE user = '{INSERTUSER}' AND chat = '{INSERTGROUP}';

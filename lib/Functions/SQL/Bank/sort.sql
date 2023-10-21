@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS banks (
 );
 
 -- Deleta as colunas invalidas
-DELETE FROM banks WHERE id NOT LIKE '%@c.us%';
+DELETE FROM banks WHERE id NOT LIKE '%@s.whatsapp.net%';
 
 -- Define os valores finais na WITH para formatar
 WITH response(format) AS (
