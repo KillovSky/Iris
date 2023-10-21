@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS leveling (
 );
 
 -- Deleta as colunas invalidas
-DELETE FROM leveling WHERE user NOT LIKE '%@c.us%' OR chat NOT LIKE '%@g.us%';
+DELETE FROM leveling WHERE user NOT LIKE '%@s.whatsapp.net%' OR chat NOT LIKE '%@g.us%';
 
 -- Adquire os grupos com x função ativa
 SELECT json_group_object(chat, json_object(user, json(data))) FROM leveling

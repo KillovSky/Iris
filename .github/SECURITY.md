@@ -43,7 +43,7 @@
 
 ## Informações Pessoais
 
-- O Projeto Íris ORIGINAL não coleta informações sobre seu PC, WhatsApp, Mensagens ou quaisquer coisas, exceto para funcionamento geral das funções, neste caso, os dados permanecem offline e somente podem ser vistos pela Íris e pelo dono do computador, eles não são mantidos online e jamais serão divulgados ou inseridos online pelos desenvolvedores oficiais, até por que não temos acesso ao computador dos usuários que baixam a Íris, somos totalmente contras a coleta de informações e prezamos pela privacidade de nossos usuários.
+- O Projeto Íris OFICIAL não coleta informações sobre seu PC, WhatsApp, Mensagens ou quaisquer coisas, exceto para funcionamento geral das funções, neste caso, os dados permanecem offline e somente podem ser vistos pela Íris e pelo dono do computador, eles não são mantidos online e jamais serão divulgados ou inseridos online pelos desenvolvedores oficiais, até por que não temos acesso ao computador dos usuários que baixam a Íris, somos totalmente contras a coleta de informações e prezamos pela privacidade de nossos usuários.
 
 - Tipos de informações que a Íris necessita para funcionar:
 	1. Acesso ao terminal do PC. [Para iniciar]

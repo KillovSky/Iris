@@ -1,0 +1,210 @@
+{
+    "name": "Arrange",
+    "description": "Funções do tipo Array que auxiliam a Íris no dia a dia.",
+    "usage": {
+        "general": "[RESTRITO] - Verifique o 'examples' para usos inseguros.",
+        "examples": [
+            "Arrange.env()",
+            "Arrange.make('anything')",
+            "Arrange.sort('anything/array')",
+            "Arrange.extract('anything/array')",
+            "Arrange.create('start', 'end', 'startSlice', 'endSlice')",
+            "Arrange.reset()",
+            "Arrange.env().functions.make.value('anything')",
+            "Arrange.env().functions.sort.value('anything/array')",
+            "Arrange.env().functions.extract.value('anything/array')",
+            "Arrange.env().functions.create.value('startIndex', 'endIndex', 'startSlice', 'endSlice')",
+            "Arrange.env().functions.revert.value()"
+        ]
+    },
+    "license": "MIT",
+    "helps": [
+        "Você pode mudar os parâmetros da exports enviando o valor da Object que deseja editar ao resetar, por exemplo → Arrange.reset({ name: 'Body'}) ← Isso mudaria o module de Tree para Body, o uso então passaria ser: → Body.funcão ← Isso também permite que você edita a função usando o mesmo método.",
+        "Você pode mudar o que os códigos rodam, em tempo real, basta usar a 'env', por exemplo → Arrange.env().name = 'Body' ← Mas este método não atualizará o sistema, somente a Object, os sistemas permanecem intactos.",
+        "Você pode configurar o tempo de reset dos resultados ou se eles devem ser resetados usando a env, por exemplo → Arrange.env().settings.wait = 10000 ← Isso mudaria o tempo de espera para 10 segundos, o tempo deve ser em milissegundos.",
+        "Alguém lê essas dicas? Se sim, torne-se um programador, ler os tutoriais é de suma importância e poucos desenvolvedores o fazem...",
+        "Você também pode enviar funções para formatação em Array, elas não serão executadas, obviamente.",
+        "Valores únicos, como 'Symbol' ou 'Error', são suportados normalmente, faça um teste.",
+        "Existem infinitas formas de uso secretas, explore os códigos para descobrir os mistérios dos sistemas!",
+        "Todas as funções tem valores padrão, então você não sofrerá erros por esquecer de enviar um parâmetro ou similar."
+    ],
+    "exports": {
+        "env": "env",
+        "messedup": "messedup",
+        "make": "make",
+        "sort": "sort",
+        "extract": "extract",
+        "create": "create",
+        "reset": "reset",
+        "poswork": "finish"
+    },
+    "developer": "KillovSky",
+    "files": {
+        "index.js": "Sistema que contém diversas funções de Array que são pequenas demais para ter arquivo próprio.",
+        "utils.json": "Dados de fábrica da envInfo."
+    },
+    "modules": {
+        "fs": "Leitura de diretórios e arquivos.",
+        "path": "Para obter o nome da pasta."
+    },
+    "functions": {
+        "ambient": {
+            "arguments": false,
+            "description": "Retorna as variáveis e sistemas do arquivo.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "messedup": {
+            "arguments": {
+                "error": {
+                    "description": "Instância de erro para formatação.",
+                    "type": "Boolean / Error",
+                    "value": false
+                }
+            },
+            "description": "Ajusta os valores de erro.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "make": {
+            "arguments": {
+                "arrayValues": {
+                    "description": "Valor para geração de uma Array.",
+                    "type": "Any",
+                    "value": null
+                }
+            },
+            "description": "Cria uma Array a partir de certos valores.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "sort": {
+            "arguments": {
+                "arraySend": {
+                    "description": "Valor [?Array] para aleatorização.",
+                    "type": "Any",
+                    "value": false
+                }
+            },
+            "description": "Aleatoriza os valores dentro de uma Array.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "extract": {
+            "arguments": {
+                "arrayRandom": {
+                    "description": "Valor [?Array] para extração aleatória.",
+                    "type": "Any",
+                    "value": false
+                }
+            },
+            "description": "Extrai um valor aleatório de uma Array.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "create": {
+            "arguments": {
+                "startIdx": {
+                    "description": "Define o número que a Array deve começar.",
+                    "type": "Boolean / Number",
+                    "value": false
+                },
+                "endIdx": {
+                    "description": "Define o número que a Array deve terminar.",
+                    "type": "Boolean / Number",
+                    "value": false
+                },
+                "startSlice": {
+                    "description": "Define o valor de começo da Slice na Array, se a filtragem for requisitada.",
+                    "type": "Boolean / Number",
+                    "value": false
+                },
+                "endSlice": {
+                    "description": "Define o valor de fim da Slice na Array, se a filtragem for requisitada.",
+                    "type": "Boolean / Number",
+                    "value": false
+                }
+            },
+            "description": "Cria uma Array númerica.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "poswork": {
+            "arguments": {
+                "response": {
+                    "description": "Resultados de uma função.",
+                    "type": "Any",
+                    "value": false
+                }
+            },
+            "description": "Verifica se pode resetar a envInfo e retorna o resultado da função.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "revert": {
+            "arguments": {
+                "changeKey": {
+                    "description": "Uma Object com valores que existem na envInfo, ela será usada para substituir o sistema em tempo real.",
+                    "type": "Object value",
+                    "anyValue": false
+                }
+            },
+            "description": "Reseta a envInfo para a Object padrão.",
+            "type": "Boolean / Function",
+            "value": false
+        }
+    },
+    "settings": {
+        "wait": {
+            "description": "Tempo em MS que deve esperar antes de resetar.",
+            "type": "Number",
+            "value": 5000
+        },
+        "error": {
+            "description": "Define se pode printar qualquer erro.",
+            "type": "Boolean",
+            "value": true
+        },
+        "ender": {
+            "description": "Define se deve resetar a cada erro.",
+            "type": "Boolean",
+            "value": true
+        },
+        "finish": {
+            "description": "Define se deve resetar a cada finalização.",
+            "type": "Boolean",
+            "value": true
+        }
+    },
+    "parameters": {
+        "array": {
+            "description": "Array padrão para casos de erro.",
+            "type": "Array",
+            "value": [
+                "0",
+                "1"
+            ]
+        },
+        "location": {
+            "description": "Local onde o módulo pode ser encontrado.",
+            "type": "Boolean / String",
+            "value": "./index"
+        },
+        "code": {
+            "description": "Código do erro que obter.",
+            "type": "Boolean / String / Number",
+            "value": false
+        },
+        "message": {
+            "description": "Armazena a mensagem do último erro recebido.",
+            "type": "Boolean / String",
+            "value": false
+        }
+    },
+    "results": {
+        "description": "Resultado final da função.",
+        "success": true,
+        "type": "Any",
+        "value": false
+    }
+}

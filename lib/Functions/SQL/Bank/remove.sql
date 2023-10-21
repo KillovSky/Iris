@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS banks (
 DELETE FROM banks WHERE id = '{INSERTUSER}';
 
 -- Deleta as colunas invalidas
-DELETE FROM banks WHERE id NOT LIKE '%@c.us%';
+DELETE FROM banks WHERE id NOT LIKE '%@s.whatsapp.net%';
 
 -- Adquire o padrão só pra ter algo pra usar
 SELECT json('{INSERTDEFAULT}');

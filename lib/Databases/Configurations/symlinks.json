@@ -130,46 +130,29 @@
             "failed"
         ]
     },
-    "Welcome": {
-        "place": "./Functions/Plugins/onParticipantsChanged/Keep/index",
-        "alias": [
-            "welcome",
-            "bemvindo",
-            "bienvenido",
-            "novomembro"
-        ]
-    },
-    "Goodbye": {
-        "place": "./Functions/Plugins/onParticipantsChanged/Keep/index",
-        "alias": [
-            "abayo",
-            "goodbye",
-            "adeus",
-            "sayonara"
-        ]
-    },
-    "Fake": {
-        "place": "./Functions/Plugins/onParticipantsChanged/Remove/index",
-        "alias": [
-            "ddi",
-            "country",
-            "fake",
-            "antifake"
-        ]
-    },
-    "Blacklist": {
-        "place": "./Functions/Plugins/onParticipantsChanged/Remove/index",
-        "alias": [
-            "blacklist",
-            "blacklisted",
-            "noentrance",
-            "blockenter"
-        ]
-    },
     "onParticipantsChanged": {
         "place": "./Functions/Plugins/onParticipantsChanged/index",
         "alias": [
             "onparticipantschanged",
+            "welcome",
+            "goodbye",
+            "ddi",
+            "welcome",
+            "bemvindo",
+            "bienvenido",
+            "novomembro",
+            "country",
+            "blacklist",
+            "blacklisted",
+            "noentrance",
+            "blockenter",
+            "fake",
+            "abayo",
+            "goodbye",
+            "adeus",
+            "sayonara",
+            "antifake",
+            "blacklist",
             "greetings",
             "newmember"
         ]
@@ -330,16 +313,6 @@
             "package"
         ]
     },
-    "YouTube": {
-        "place": "./Commands/YouTube/index",
-        "alias": [
-            "youtube",
-            "downvideo",
-            "play",
-            "video",
-            "ytsearch"
-        ]
-    },
     "ZIP": {
         "place": "./Functions/Works/ZIP/index",
         "alias": [
@@ -347,11 +320,5 @@
             "clear",
             "zip"
         ]
-    },
-    "recode": {
-        "alias": [
-            "recode"
-        ],
-        "place": "./Functions/recode"
     }
 }

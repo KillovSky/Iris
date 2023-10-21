@@ -347,7 +347,7 @@
         "error": {
             "description": "Define se pode printar qualquer erro.",
             "type": "Boolean",
-            "value": false
+            "value": true
         },
         "ender": {
             "description": "Define se deve resetar a cada erro.",
@@ -365,7 +365,7 @@
             "description": "Valores padrões da database.",
             "type": "Object",
             "value": {
-                "bank": {
+                "Bank": {
                     "coin": 0,
                     "diamond": 0,
                     "rubi": 0,
@@ -374,7 +374,7 @@
                     "iron": 0,
                     "wood": 0
                 },
-                "leveling": {
+                "Leveling": {
                     "xp": 0,
                     "level": 0,
                     "coin": 0,
@@ -385,7 +385,7 @@
                     "iron": 0,
                     "wood": 0
                 },
-                "groups": {
+                "Groups": {
 					"autostickers": {
 						"enable": false,
 						"type": "-default"

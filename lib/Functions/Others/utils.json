@@ -1,0 +1,288 @@
+{
+    "name": "Extras",
+    "description": "Funções de tipos variados que auxiliam a Íris no dia a dia.",
+    "usage": {
+        "general": "[RESTRITO] - Verifique o 'examples' para usos inseguros.",
+        "examples": [
+            "Extras.env()",
+            "Extras.list('chatIDs')",
+            "Extras.sleep('milisseconds')",
+            "Extras.buffer('midia url')",
+            "Extras.blur('buffer', 'blur level', 'bright level')",
+            "Extras.scale('image data', 'width', 'height', 'topLeftWidth', 'topLeftHeight', 'context canvas', 'type math')",
+            "Extras.reset()",
+            "Extras.env.functions.list.value('chatIDs')",
+            "Extras.env.functions.sleep.value('milisseconds')",
+            "Extras.env.functions.buffer.value('midia url')",
+            "Extras.env.functions.blur.value('buffer', 'blur level', 'bright level')",
+            "Extras.env.functions.scale.value('image data', 'width', 'height', 'topLeftWidth', 'topLeftHeight', 'context canvas', 'type math')",
+            "Extras.env().functions.revert.value()"
+        ]
+    },
+    "license": "MIT",
+    "helps": [
+        "Você pode mudar os parâmetros da exports enviando o valor da Object que deseja editar ao resetar, por exemplo → Extras.reset({ name: 'Body'}) ← Isso mudaria o module de Tree para Body, o uso então passaria ser: → Body.funcão ← Isso também permite que você edita a função usando o mesmo método.",
+        "Você pode mudar o que os códigos rodam, em tempo real, basta usar a 'env', por exemplo → Extras.env().name = 'Body' ← Mas este método não atualizará o sistema, somente a Object, os sistemas permanecem intactos.",
+        "Você pode configurar o tempo de reset dos resultados ou se eles devem ser resetados usando a env, por exemplo → Extras.env().settings.wait = 10000 ← Isso mudaria o tempo de espera para 10 segundos, o tempo deve ser em milissegundos.",
+        "Alguém lê essas dicas? Se sim, torne-se um programador, ler os tutoriais é de suma importância e poucos desenvolvedores o fazem...",
+        "Existem infinitas formas de uso secretas, explore os códigos para descobrir os mistérios dos sistemas!",
+        "Todas as funções tem valores padrão, então você não sofrerá erros por esquecer de enviar um parâmetro ou similar."
+    ],
+    "exports": {
+        "env": "env",
+        "messedup": "messedup",
+        "list": "list",
+        "sleep": "sleep",
+        "buffer": "buffer",
+        "blur": "blur",
+        "repl": "repl",
+        "scale": "scale",
+        "reset": "reset",
+        "poswork": "finish"
+    },
+    "developer": "KillovSky",
+    "files": {
+        "index.js": "Sistema que contém diversas funções de tipo variado que são pequenas demais para ter arquivo próprio.",
+        "utils.json": "Dados de fábrica da envInfo."
+    },
+    "modules": {
+        "fs": "Leitura de diretórios e arquivos.",
+        "sharp": "Para editar uma imagem.",
+        "axios": "Para acessar uma mídia que esteja em URL.",
+        "path": "Para obter o nome da pasta."
+    },
+    "functions": {
+        "ambient": {
+            "arguments": false,
+            "description": "Retorna as variáveis e sistemas do arquivo.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "messedup": {
+            "arguments": {
+                "error": {
+                    "description": "Instância de erro para formatação.",
+                    "type": "Boolean / Error",
+                    "value": false
+                }
+            },
+            "description": "Ajusta os valores de erro.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "scale": {
+            "arguments": {
+                "imageData": {
+                    "description": "Imagem com base em canvas.",
+                    "type": "Boolean / Object",
+                    "value": false
+                },
+                "widthVal": {
+                    "description": "Posição do width da imagem a desenhar.",
+                    "type": "Boolean / Number",
+                    "value": false
+                },
+                "heightVal": {
+                    "description": "Posição do height da imagem a desenhar.",
+                    "type": "Boolean / Number",
+                    "value": false
+                },
+                "topLeftWidth": {
+                    "description": "Posição do width no top left da imagem a desenhar.",
+                    "type": "Boolean / Number",
+                    "value": false
+                },
+                "topLeftHeight": {
+                    "description": "Posição do height no top left da imagem a desenhar.",
+                    "type": "Boolean / Number",
+                    "value": false
+                },
+                "context": {
+                    "description": "Contexto da imagem em canvas.",
+                    "type": "Boolean / Object",
+                    "value": false
+                },
+                "typer": {
+                    "description": "Tipo de operação matemática a realizar [MAX/MIN].",
+                    "type": "Boolean / String",
+                    "value": false
+                }
+            },
+            "description": "Desenha algo em uma imagem via Canvas.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "blur": {
+            "arguments": {
+                "imageBuffer": {
+                    "description": "Buffer para edição da imagem.",
+                    "type": "Boolean / Buffer",
+                    "value": false
+                },
+                "blurL": {
+                    "description": "Nivel de Blur que deve aplicar.",
+                    "type": "Number",
+                    "value": 5
+                },
+                "brightL": {
+                    "description": "Nivel de brilho que deve aplicar.",
+                    "type": "Number",
+                    "value": 0.6
+                }
+            },
+            "description": "Faz Blur das imagens pelo Buffer.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "buffer": {
+            "arguments": {
+                "imageURL": {
+                    "description": "Link para request, em Buffer, de uma mídia.",
+                    "type": "String",
+                    "value": false
+                }
+            },
+            "description": "Adquire uma mídia de URL e converte em Buffer.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "repl": {
+            "arguments": {
+                "objt": {
+                    "description": "Object de variaveis de dados.",
+                    "type": "Boolean / Object",
+                    "value": false
+                },
+                "match": {
+                    "description": "String que foi encontrada.",
+                    "type": "Boolean / String",
+                    "value": false
+                },
+                "key": {
+                    "description": "Valor capturado em grouping.",
+                    "type": "Boolean / String",
+                    "value": false
+                }
+            },
+            "description": "Faz a conversão das 'variáveis' do JSON em código do NodeJS.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "sleep": {
+            "arguments": {
+                "miliscds": {
+                    "description": "Quantidade de tempo em milissegundos que deve ser esperada.",
+                    "type": "Number",
+                    "value": 1000
+                }
+            },
+            "description": "Faz uma pausa assíncrona da execução de um código por 'x' tempo em milissegundos.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "list": {
+            "arguments": {
+                "chatIDs": {
+                    "description": "Dados dos grupos que existem atualmente.",
+                    "type": "Boolean / Array",
+                    "value": false
+                }
+            },
+            "description": "Gera uma lista em Object de forma crescente com ID's e nomes de grupo.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "poswork": {
+            "arguments": {
+                "response": {
+                    "description": "Resultados de uma função.",
+                    "type": "Any",
+                    "value": false
+                }
+            },
+            "description": "Verifica se pode resetar a envInfo e retorna o resultado da função.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "revert": {
+            "arguments": {
+                "changeKey": {
+                    "description": "Uma Object com valores que existem na envInfo, ela será usada para substituir o sistema em tempo real.",
+                    "type": "Object value",
+                    "anyValue": false
+                }
+            },
+            "description": "Reseta a envInfo para a Object padrão.",
+            "type": "Boolean / Function",
+            "value": false
+        }
+    },
+    "settings": {
+        "wait": {
+            "description": "Tempo em MS que deve esperar antes de resetar.",
+            "type": "Number",
+            "value": 5000
+        },
+        "error": {
+            "description": "Define se pode printar qualquer erro.",
+            "type": "Boolean",
+            "value": true
+        },
+        "ender": {
+            "description": "Define se deve resetar a cada erro.",
+            "type": "Boolean",
+            "value": true
+        },
+        "finish": {
+            "description": "Define se deve resetar a cada finalização.",
+            "type": "Boolean",
+            "value": true
+        }
+    },
+    "parameters": {
+        "buffer": {
+            "description": "Array padrão para casos de erro.",
+            "type": "Buffer Object",
+            "value": {
+                "type": "Buffer",
+                "data": [
+                    71,
+                    73,
+                    70,
+                    56,
+                    57,
+                    97,
+                    1,
+                    0,
+                    1,
+                    0,
+                    0,
+                    0,
+                    0,
+                    44
+                ]
+            }
+        },
+        "location": {
+            "description": "Local onde o módulo pode ser encontrado.",
+            "type": "Boolean / String",
+            "value": "./index"
+        },
+        "code": {
+            "description": "Código do erro que obter.",
+            "type": "Boolean / String / Number",
+            "value": false
+        },
+        "message": {
+            "description": "Armazena a mensagem do último erro recebido.",
+            "type": "Boolean / String",
+            "value": false
+        }
+    },
+    "results": {
+        "description": "Resultado final da função.",
+        "success": true,
+        "type": "Any",
+        "value": false
+    }
+}

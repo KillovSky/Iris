@@ -24,7 +24,7 @@ UPDATE banks SET data = (
 WHERE id = '{INSERTUSER}' AND json_valid(data); 
 
 -- Deleta as colunas invalidas
-DELETE FROM banks WHERE id NOT LIKE '%@c.us%';
+DELETE FROM banks WHERE id NOT LIKE '%@s.whatsapp.net%';
 
 -- Exibe o json final
 SELECT data FROM banks WHERE id = '{INSERTUSER}';

@@ -41,11 +41,8 @@
 			"\\",
 			"/",
 			"$",
-			"#",
 			"^",
-			".",
 			"=",
-			"?",
 			"+",
 			"!",
 			"&",
@@ -63,5 +60,9 @@
 	"waitMessage": {
 		"description": "If enabled, Íris will send a message to request user to wait command finish to avoid lags",
 		"value": true
+	},
+	"botCommands": {
+		"description": "Defines whether Íris should execute commands from her messages, but remember, this can have serious bugs.",
+		"value": false
 	}
 }

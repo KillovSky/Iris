@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS banks (
 INSERT OR IGNORE INTO banks (id, data) VALUES ('{INSERTUSER}', '{INSERTDEFAULT}');
 
 -- Deleta as colunas invalidas
-DELETE FROM banks WHERE id NOT LIKE '%@c.us%';
+DELETE FROM banks WHERE id NOT LIKE '%@s.whatsapp.net%';
 
 -- Comando customizado de SQL
 {INSERTKEY};

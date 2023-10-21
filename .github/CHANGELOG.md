@@ -3,6 +3,49 @@
 - [Colabore conosco](https://bit.ly/BOT-IRIS), juntos podemos deixar esse código com a definição perfeita do que é OpenSource.
 - Note que as atualizações não tem datas para sair, sendo que elas são lançadas quando considero adequadas para postagem.
 
+## 1.0.3 - 21/10/2023
+
+### Novidades
+1. **Verificação de requisitos mínimos**
+    - Não se preocupe com PCs ruins, isso é para saber se você instalou os programas, tendo eles, roda.
+2. **Obtenção de array de comandos**
+    - Nosso bom e incrivel menu em Bash agora vai retornar os comandos em formato array ou menu completo.
+3. **Filtragem de mensagens e comandos da Íris**
+    - Íris não executará mais as próprias mensagens, visto que isso é uma falha de segurança.
+4. **Implementação parcial do leveling e banking**
+    - Os dados dos dois já estão disponiveis para construção de sistemas de jogo na database SQL.
+5. **Menu atualizado**
+    - O sistema do menu agora exibe o prefix para tornar mais fácil de saber como usar.
+6. **Guia de contribuição**
+    - Adicionei um pequeno guia de como contribuir com o Projeto Íris, leia [aqui](https://github.com/KillovSky/Iris/blob/main/.github/CONTRIBUTING.md).
+
+### Correções
+1. **Formatação**
+    - Alguns arquivos estavam com tabs em vez de espaço, o que é uma quebra do nosso linter (pode haver mais ainda).
+2. **Porta HTTPS do Terminal-WEB**
+    - Não importava o que inserisse, o terminal-web utilizava a mesma porta que http.
+3. **Inserção de valores na database**
+    - Alguns dados de formato array não se inseriam na database, ainda pode haver dados que darão erros, pois a database está em produção parcial e bugs são esperados.
+    - Alguns comandos não se desativavam, além disso, comandos como mudar prefix foram corrigidos.
+4. **TODOS os arquivos SQL desatualizados**
+    - Alguns sistemas SQL estavam usando códigos da OpenWA, foram migrados para funcionar em baileys agora.
+5. **Localização de pastas**
+    - Alguns sistemas estavam indo no literal e tentando acessar pastas de comandos em modo case sensitive, dando erros.
+6. **Symlinks**
+    - Corrigi algumas chamadas que davam erros ao usar o Indexer com proposito de eventos de entrada e saida de users.
+7. **Download de mídias no IOS**
+    - Corrigido o problema de não conseguir abrir os documentos enviados no Play estando em um IPhone (IOS).
+8. **Uso do comando Handlers**
+    - O comando handlers pedia por ADM, dono, vip ou moderador para usar.
+9. **Impressão dos erros**
+    - A maioria dos sistemas não tinha permisssão de printar erros.
+10. **Sistema de update**
+    - O sistema de update estava redirecionado a um projeto paralelo que não existe mais.
+
+### Removido
+1. **Alguns prefixos**
+    - Removi o prefix '?', '.' e '#' por serem usados bastante sem intuito com comandos.
+
 ## 1.0.2 - 13/10/2023
 
 ### Novidades

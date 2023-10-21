@@ -1,0 +1,239 @@
+{
+    "name": "Text",
+    "description": "Funções do tipo String que auxiliam a Íris no dia a dia.",
+    "usage": {
+        "general": "[RESTRITO] - Verifique o 'examples' para usos inseguros.",
+        "examples": [
+            "Text.env()",
+            "Text.counter('text', 'word')",
+            "Text.dataURI('mimetype', 'buffer')",
+            "Text.generate('size')",
+            "Text.searching('text', 'word', 'index')",
+            "Text.upperland('text', 'boolean - use after spaces')",
+            "Text.reset()",
+            "Text.env().functions.counter.value('text', 'word')",
+            "Text.env().functions.dataURI.value('mimetype', 'buffer')",
+            "Text.env().functions.generate.value('size')",
+            "Text.env().functions.searching.value('text', 'word', 'index')",
+            "Text.env().functions.upperland.value('text', 'boolean - capt. after space?')",
+            "Text.env().functions.revert.value()"
+        ]
+    },
+    "license": "MIT",
+    "helps": [
+        "Você pode mudar os parâmetros da exports enviando o valor da Object que deseja editar ao resetar, por exemplo → Text.reset({ name: 'Body'}) ← Isso mudaria o module de Tree para Body, o uso então passaria ser: → Body.funcão ← Isso também permite que você edita a função usando o mesmo método.",
+        "Você pode mudar o que os códigos rodam, em tempo real, basta usar a 'env', por exemplo → Text.env().name = 'Body' ← Mas este método não atualizará o sistema, somente a Object, os sistemas permanecem intactos.",
+        "Você pode configurar o tempo de reset dos resultados ou se eles devem ser resetados usando a env, por exemplo → Text.env().settings.wait = 10000 ← Isso mudaria o tempo de espera para 10 segundos, o tempo deve ser em milissegundos.",
+        "Alguém lê essas dicas? Se sim, torne-se um programador, ler os tutoriais é de suma importância e poucos desenvolvedores o fazem..."
+    ],
+    "exports": {
+        "env": "env",
+        "counter": "counter",
+        "messedup": "messedup",
+        "dataURI": "dataURI",
+        "generate": "generate",
+        "searching": "searching",
+        "upperland": "upperland",
+        "reset": "reset",
+        "poswork": "finish"
+    },
+    "developer": "KillovSky",
+    "files": {
+        "index.js": "Sistema que contém diversas funções de tipo 'String' que são pequenas demais para ter arquivo próprio.",
+        "utils.json": "Dados de fábrica da envInfo."
+    },
+    "modules": {
+        "fs": "Leitura de diretórios e arquivos.",
+        "crypto": "Para a geração de caracteres aleatórios.",
+        "path": "Para obter o nome da pasta."
+    },
+    "functions": {
+        "ambient": {
+            "arguments": false,
+            "description": "Retorna as variáveis e sistemas do arquivo.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "messedup": {
+            "arguments": {
+                "error": {
+                    "description": "Instância de erro para formatação.",
+                    "type": "Boolean / Error",
+                    "value": false
+                }
+            },
+            "description": "Retorna as variáveis e sistemas do arquivo.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "counter": {
+            "arguments": {
+                "phrase": {
+                    "description": "A frase completa para checagem.",
+                    "type": "Boolean / String",
+                    "value": false
+                },
+                "specWord": {
+                    "description": "Palavra que deve ser localizada.",
+                    "type": "Boolean / String",
+                    "value": false
+                }
+            },
+            "description": "Conta quantas palavras especificas tem numa String.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "dataURI": {
+            "arguments": {
+                "mimetype": {
+                    "description": "A mimetype do arquivo a converter em base64.",
+                    "type": "Boolean / String",
+                    "value": false
+                },
+                "bufferData": {
+                    "description": "Buffer ou String para converter em base64.",
+                    "type": "Boolean / String",
+                    "value": false
+                }
+            },
+            "description": "Converte um arquivo em base64.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "generate": {
+            "arguments": {
+                "stringSize": {
+                    "description": "O tamanho da String a gerar.",
+                    "type": "Boolean / Number / String Number",
+                    "value": 10
+                }
+            },
+            "description": "Gera uma String aleatória de determinado tamanho.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "searching": {
+            "arguments": {
+                "longText": {
+                    "description": "A string que deve ser ",
+                    "type": "Boolean / String",
+                    "value": false
+                },
+                "wordFind": {
+                    "description": "A palavra que deve localizar na String.",
+                    "type": "Boolean / String",
+                    "value": false
+                },
+                "startAt": {
+                    "description": "Determina a partir de qual localização deve contar.",
+                    "type": "Boolean / Number / String Number",
+                    "value": 0
+                }
+            },
+            "description": "Inicia a função desejada",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "upperland": {
+            "arguments": {
+                "aString": {
+                    "description": "String que deve ter a primeira letra convertida em maiúscula.",
+                    "type": "Boolean / String",
+                    "value": false
+                },
+                "everySpace": {
+                    "description": "Determina se deve re-converter a cada espaço.",
+                    "type": "Boolean",
+                    "value": false
+                }
+            },
+            "description": "Converte a primeira letra de uma string em maiúscula.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "poswork": {
+            "arguments": {
+                "response": {
+                    "description": "Resultados de uma função.",
+                    "type": "Any",
+                    "value": false
+                }
+            },
+            "description": "Verifica se pode resetar a envInfo e retorna o resultado da função.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "revert": {
+            "arguments": {
+                "changeKey": {
+                    "description": "Uma Object com valores que existem na envInfo, ela será usada para substituir o sistema em tempo real.",
+                    "type": "Object value",
+                    "anyValue": false
+                }
+            },
+            "description": "Reseta a envInfo para a Object padrão.",
+            "type": "Boolean / Function",
+            "value": false
+        }
+    },
+    "settings": {
+        "wait": {
+            "description": "Tempo em MS que deve esperar antes de resetar.",
+            "type": "Number",
+            "value": 5000
+        },
+        "error": {
+            "description": "Define se pode printar qualquer erro.",
+            "type": "Boolean",
+            "value": true
+        },
+        "ender": {
+            "description": "Define se deve resetar a cada erro.",
+            "type": "Boolean",
+            "value": true
+        },
+        "finish": {
+            "description": "Define se deve resetar a cada finalização.",
+            "type": "Boolean",
+            "value": true
+        }
+    },
+    "parameters": {
+        "base64": {
+            "description": "Base64 padrão para casos de erro.",
+            "type": "String",
+            "value": "data:image/gif;base64,R0lGODlhAQABAAAAACw="
+        },
+        "upper": {
+            "description": "Uma string com letra maiúscula para casos de erro.",
+            "type": "String",
+            "value": "Not a instance of valid string..."
+        },
+        "lengoter": {
+            "description": "Index padrão que retornará em caso de erros.",
+            "type": "Number",
+            "value": 0
+        },
+        "location": {
+            "description": "Local onde o módulo pode ser encontrado.",
+            "type": "Boolean / String",
+            "value": "./index"
+        },
+        "code": {
+            "description": "Código do erro que obter.",
+            "type": "Boolean / String / Number",
+            "value": false
+        },
+        "message": {
+            "description": "Armazena a mensagem do último erro recebido.",
+            "type": "Boolean / String",
+            "value": false
+        }
+    },
+    "results": {
+        "description": "Resultado final da função.",
+        "success": true,
+        "type": "Boolean / String",
+        "value": false
+    }
+}
