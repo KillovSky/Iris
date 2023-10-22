@@ -1,7 +1,7 @@
 {
   "name": "iris",
-  "version": "1.0.3",
-  "build_date": "21-10-2023",
+  "version": "1.0.4",
+  "build_date": "22-10-2023",
   "private": "true",
   "description": "Novo Projeto Íris, uma versão totalmente nova feita com novas APIs, sistemas e muito mais, sendo um projeto novo, aberto e sem nenhum foco lucrativo.",
   "main": "lib/Initialize/checker.js",
@@ -22,6 +22,8 @@
   "dependencies": {
     "@ffmpeg-installer/ffmpeg": "^1.1.0",
     "@hapi/boom": "^10.0.1",
+    "@killovsky/nasa": "^1.0.1",
+    "@vitalets/google-translate-api": "^9.2.0",
     "@whiskeysockets/baileys": "^6.5.0",
     "axios": "^1.5.0",
     "body-parser": "^1.20.2",

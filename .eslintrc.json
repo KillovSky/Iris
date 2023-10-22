@@ -5,23 +5,23 @@
         "node": true
     },
     "extends": "airbnb-base",
-	"globals": {
-		"config": true,
-		"os": true,
-		"tasksComplete": true,
-		"region": true,
-		"startedTime": true,
-		"irisNumber": true,
-		"messagesCount": true,
-		"irisPath": true
-	},
-    "overrides": [
-    ],
+    "globals": {
+        "config": true,
+        "APIs": true,
+        "os": true,
+        "tasksComplete": true,
+        "region": true,
+        "startedTime": true,
+        "irisNumber": true,
+        "messagesCount": true,
+        "irisPath": true
+    },
+    "overrides": [],
     "parserOptions": {
         "ecmaVersion": "latest"
     },
     "rules": {
-		"indent":[
+        "indent": [
             "error",
             4
         ],
