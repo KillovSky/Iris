@@ -3,6 +3,42 @@
 - [Colabore conosco](https://bit.ly/BOT-IRIS), juntos podemos deixar esse código com a definição perfeita do que é OpenSource.
 - Note que as atualizações não tem datas para sair, sendo que elas são lançadas quando considero adequadas para postagem.
 
+## 1.0.4 - 22/10/2023
+
+### Novidades
+1. **Issue Template**
+	- Agora os desenvolvedores terão todas as informações que precisam.
+2. **Readme.md**
+	- Apresentando aqui nossa nova interface do Projeto Íris!
+3. **Instalação**
+	- Adicionado tutoriais super completos de como fazer a instalação no Termux, Windows e Linux.
+4. **NASA**
+	- Implementado o comando de obter a APOD da NASA.
+5. **Whitelist**
+	- Implementado o sistema de whitelist para não banir mesmo na blacklist e demais.
+6. **APIs**
+	- Implementei o sistema de APIs de volta, embora por hora só usemos o da NASA.
+	
+### Correções
+1. **Custom Prefix**
+	- Ativar o prefix customizado antes de inserir um causava erros.
+2. **Arquivos HTML e MD**
+	- Corrigi algumas falhas nos arquivos MD e mudei a localização dos arquivos HTML.
+3. **Dialogue Picker**
+	- Dei um nome mais chamativo aos sistemas de dialogo, pra ajudar no Visual Code Studio.
+4. **Prefix**
+	- O prefix '^' estava duplicado na configuração.
+5. **Fundings**
+	- Corrigi os links presentes no arquivo de doações.
+6. **Blacklist e AntiFake**
+	- Agora o Blacklist e o AntiFake funcionam adequadamente.
+7. **Linhas**
+	- Corrigido a formatação incorreta presente em alguns arquivos, mudando de CRLF para LF.
+
+### Removido
+1. **Termux.txt**
+	- Por que esse arquivo se temos um baita guia bem explicado agora?
+
 ## 1.0.3 - 21/10/2023
 
 ### Novidades

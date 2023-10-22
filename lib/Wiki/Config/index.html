@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <!-- https://github.com/KillovSky/iris | Feito por KillovSky -->
+
+    <head>
+        <title>Beer Generator</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script>
+            let seconds = 10;
+            console.log('Olá, vejo que você gosta de explorar, iremos ir adiante nessa aventura em:', seconds, 'segundos!');
+
+            const timecount = setInterval(() => {
+                /* Diminui os segundos */
+                seconds -= 1;
+                console.log(`${seconds}!`);
+
+                /* Edita o HTML para mostrar o contador */
+                document.getElementById('countdown').innerHTML = `Aguarde, você será enviado para a página de configuração em ${seconds} segundos...`;
+
+                // Desativa o cronometro e redireciona caso acabe a contagem e ainda não redirecione
+                if (seconds <= 0) {
+                    console.log('Agora!');
+                    const URL = 'https://leonardoconstantino.github.io/edite-config/';
+                    clearInterval(timecount);
+                    if (window.location.href !== URL) {
+                        window.location.replace(URL);
+                    }
+                }
+            }, 1000);
+        </script>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: 'Poppins', sans-serif
+            }
+
+            a {
+                text-decoration: none
+            }
+
+            body {
+                background-color: #121212
+            }
+
+            div>p {
+                letter-spacing: 1px;
+                background-color: #202d3d;
+                color: #ffffff;
+                border: 1px solid #506680;
+                padding: 10px;
+                padding-top: 10px;
+                box-shadow: 1px 1px 2px #383838;
+            }
+
+            a:link {
+                color: green;
+                background-color: transparent;
+                text-decoration: none;
+            }
+
+            a:visited {
+                color: pink;
+                background-color: transparent;
+                text-decoration: none;
+            }
+
+            a:hover {
+                color: red;
+                background-color: transparent;
+                text-decoration: underline;
+            }
+
+            a:active {
+                color: yellow;
+                background-color: transparent;
+                text-decoration: underline;
+            }
+        </style>
+        <link type="text/css" rel="stylesheet" href="./style.css">
+        <meta http-equiv="refresh" content="9; url=https://leonardoconstantino.github.io/edite-config/" />
+    </head>
+
+    <div>
+        <p style="text-align:center;" id="countdown">Aguarde, você será enviado para a página de configuração abaixo em 10 segundos...</p>
+
+        <p style="text-align:center;">leonardoconstantino.github.io/edite-config</p>
+        <p style="text-align:center;">
+            <a href="https://leonardoconstantino.github.io/edite-config/">Para ser redirecionado manualmente ou caso não seja redirecionado automaticamente, clique aqui.</a>
+        </p>
+    </div>
+
+</html>

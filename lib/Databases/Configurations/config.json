@@ -1,20 +1,20 @@
 {
-    "codeReload": {
-        "description": "Allows code to autoreload, no need to restart anymore",
-        "value": true
-    },
-    "language": {
-        "description": "The general language used for the system and any user not manually configured",
-        "value": "pt"
-    },
-    "owner": {
-        "description": "An array of users who can run any command",
-        "value": ["MyNumber@s.whatsapp.net"]
-    },
-    "secureGroup": {
-        "description": "A secure group to receive logs when the system fails to send to the correct person or chat, false is disabled",
-        "value": false
-    },
+	"codeReload": {
+		"description": "Allows code to autoreload, no need to restart anymore",
+		"value": true
+	},
+	"language": {
+		"description": "The general language used for the system and any user not manually configured",
+		"value": "pt"
+	},
+	"owner": {
+		"description": "An array of users who can run any command",
+		"value": ["MyNumber@s.whatsapp.net"]
+	},
+	"secureGroup": {
+		"description": "A secure group to receive logs when the system fails to send to the correct person or chat, false is disabled",
+		"value": false
+	},
 	"botName": {
 		"description": "The BOT name",
 		"value": "Íris"
@@ -48,7 +48,6 @@
 			"&",
 			":",
 			";",
-			"^",
 			">",
 			"<"
 		]

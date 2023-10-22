@@ -186,6 +186,7 @@
                     "rank",
                     "safelinks",
                     "undelete",
+                    "whitelist",
                     "welcome"
                 ]
             }

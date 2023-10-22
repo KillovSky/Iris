@@ -1,0 +1,139 @@
+name: 💀 Relatar um Erro
+description: Envie o seu problema pela Issues (Recomendado)
+labels: [Bug, Bugs]
+body:
+- type: checkboxes
+  id: latest_version
+  attributes:
+    label: Você está usando a versão mais recente da Íris?
+    description: Às vezes, os bugs ocorrem devido a versões desatualizadas do sistema. Atualizar pode resolver esses problemas.
+    options:
+    - label: Sim, estou utilizando a versão mais recente da Íris
+      required: true
+
+- type: checkboxes
+  id: install_mode
+  attributes:
+    label: Você seguiu corretamente as instruções de instalação?
+    description: Talvez algum requisito não tenha sido instalado corretamente, ou o erro esteja relacionado à sua instalação.
+    options:
+    - label: Sim, segui todas as instruções de instalação conforme os guias
+      required: true
+
+- type: checkboxes
+  id: modules_ok
+  attributes:
+    label: Você tentou atualizar os módulos usando o comando "npm update"?
+    description: As atualizações podem corrigir erros, mas também podem introduzir novos. É importante verificar isso.
+    options:
+    - label: Sim, estou tentando com os módulos completamente atualizados
+      required: true
+
+- type: textarea
+  id: node_version
+  attributes:
+    label: Qual é a versão do NodeJS que você está usando?
+    description: Versões desatualizadas do NodeJS podem causar bugs ou incompatibilidades.
+    placeholder: |
+      Para verificar a versão do NodeJS, use o comando: node -v
+  validations:
+    required: true
+
+- type: textarea
+  id: npm_version
+  attributes:
+    label: Qual é a versão do NPM que você está usando?
+    description: Algumas versões do NPM podem tornar módulos mais antigos obsoletos.
+    placeholder: |
+      Para verificar a versão do NPM, use o comando: npm -v
+  validations:
+    required: true
+
+- type: textarea
+  id: python_version
+  attributes:
+    label: Qual é a versão do Python que você está usando?
+    description: O comando "play" requer versões do Python superiores a 3.7. Verifique se você está usando uma versão compatível.
+    placeholder: |
+      Para verificar a versão do Python, use o comando: python --version
+  validations:
+    required: true
+
+- type: dropdown
+  id: operational_system
+  attributes:
+    label: Qual é o seu sistema operacional? Marque todos os sistemas nos quais o erro ocorreu para você.
+    description: Sistemas diferentes podem exigir correções diferentes.
+    multiple: true
+    options:
+      - Linux
+      - Windows
+      - MacOS
+      - Termux
+      - Outros (Inserir detalhes nas Informações Adicionais)
+  validations:
+    required: true
+
+- type: dropdown
+  id: usage_mode
+  attributes:
+    label: Em que tipo de função ocorre o erro?
+    description: É importante entender a origem dos erros.
+    multiple: true
+    options:
+      - Mensagens
+      - Comandos
+      - Outros (Inserir detalhes nas Informações Adicionais)
+  validations:
+    required: true
+
+- type: checkboxes
+  id: wrong_shutdown
+  attributes:
+    label: Você desligou a Íris de maneira não convencional, como desconectar o PC da tomada?
+    description: Desligamentos abruptos podem levar a erros. Informe se isso aconteceu.
+    options:
+    - label: Sim, a Íris foi desligada de forma não convencional
+      required: true
+
+- type: checkboxes
+  id: wrong_edition
+  attributes:
+    label: Você editou a Íris em tempo real sem reiniciar após a edição?
+    description: A edição de arquivos enquanto o sistema está em execução pode causar erros graves. Relate qualquer edição não convencional.
+    options:
+    - label: Sim, fiz edições na Íris enquanto ela estava em execução (Inserir detalhes nas Informações Adicionais)
+      required: true
+
+- type: checkboxes
+  id: two_usages
+  attributes:
+    label: Você tentou usar o mesmo número em dois ou mais Bots ao mesmo tempo?
+    description: Isso geralmente resulta em desconexão de um dos Bots ou duplicação de mensagens e comandos. Informe se isso ocorreu.
+    options:
+    - label: Sim, estou usando o mesmo número em dois ou mais Bots ao mesmo tempo
+      required: true
+
+- type: dropdown
+  id: isa_vpn
+  attributes:
+    label: Você está usando algum servidor, VPN, proxy ou serviço similar?
+    description: Seu erro pode ser causado por restrições temporárias associadas a esses serviços. Informe se estiver usando algum deles.
+    multiple: true
+    options:
+      - Servidor
+      - VPS
+      - Proxy
+      - Outros (Inserir detalhes nas Informações Adicionais)
+  validations:
+    required: true
+
+- type: textarea
+  id: error_description
+  attributes:
+    label: Há mais alguma informação que você gostaria de compartilhar? Descreva as Informações Adicionais.
+    description: Inclua o máximo de detalhes possível, se não houver nada, apenas digite nada.
+    placeholder: |
+      URLs, capturas de tela, outros erros ou qualquer coisa que possa ajudar a identificar os problemas que você está enfrentando.
+  validations:
+    required: true
