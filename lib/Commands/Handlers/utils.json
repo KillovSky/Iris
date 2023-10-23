@@ -37,7 +37,6 @@
     "modules": {
         "fs": "Leitura de diretórios e arquivos.",
         "path": "Para inserção do local na envInfo.",
-        "@open-wa/wa-decrypt": "Permite descriptografar as mensagens recebidas no WhatsApp.",
         "../../Dialogues/index": "Funções que retornam os diálogos necessários.",
         "../../index'": "Para rodar funções de outros arquivos."
     },
