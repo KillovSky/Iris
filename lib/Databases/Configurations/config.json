@@ -24,12 +24,12 @@
 		"value": "User"
 	},
 	"stickerAuthor": {
-		"description": "The author of the made stickers, set as default to create automatic names based on group and user names",
-		"value": "DONTEDITUSR - DONTEDITGPN"
+		"description": "The author of the made stickers, keep as default to create automatic names based on group and user names",
+		"value": "DONTEDITUSER 🎁\nDONTEDITFROM 📱\nDONTEDITBY [bit.ly/BOT-IRIS] 🌐\nDONTEDITMADEAS 📅"
 	},
 	"stickerPack": {
 		"description": "The pack of stickers, keep (optional) default to help oficial devs XD",
-		"value": "🔰 Legião Z [bit.ly/BOT-IRIS] Íris ⚜️"
+		"value": "⚙️ User:\n🏠 From:\n🤖 By:\n🕗 Time:"
 	},
 	"secretKey": {
 		"description": "The password used to ignore owner and admin requirements, never use default, create a VERY STRONG password, because this can be EXTREME DANGEROUS",
