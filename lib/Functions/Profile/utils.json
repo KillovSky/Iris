@@ -5,11 +5,11 @@
         "general": "[RESTRITO] - Verifique o 'examples' para usos inseguros.",
         "examples": [
             "Mugshot.env()",
-            "Mugshot.perfil('kill', 'has image', 'encryptMedia', 'quotedMsg', 'quotedMsgObj', 'mentionedJidList', 'groupMembersId')",
+            "Mugshot.perfil('kill', 'env')",
             "Mugshot.lookup('kill', 'user', 'groupMembersId')",
             "Mugshot.aleator('kill', 'groupMembersId')",
             "Mugshot.reset()",
-            "Mugshot.env().functions.perfil.value('kill', 'has image', 'encryptMedia', 'quotedMsg', 'quotedMsgObj', 'mentionedJidList', 'groupMembersId')",
+            "Mugshot.env().functions.perfil.value('kill', 'env')",
             "Mugshot.env().functions.lookup.value('kill', 'user', 'groupMembersId')",
             "Mugshot.env().functions.aleator.value('kill', 'groupMembersId')",
             "Mugshot.env().functions.revert.value()"
@@ -41,8 +41,7 @@
     "modules": {
         "fs": "Leitura de diretórios e arquivos.",
         "path": "Para obter o nome da pasta.",
-        "@killovsky/telegraph": "Faz o upload de imagens em nuvem.",
-        "@open-wa/wa-decrypt": "Decripta as imagens de URL's do WhatsApp."
+        "@killovsky/telegraph": "Faz o upload de imagens em nuvem."
     },
     "functions": {
         "ambient": {
@@ -70,34 +69,9 @@
                     "type": "Boolean / Object",
                     "value": false
                 },
-                "hasImage": {
-                    "description": "Diz se tem uma imagem já pronta pra usar.",
-                    "type": "Boolean",
-                    "value": false
-                },
-                "encryptMedia": {
-                    "description": "Dados da imagem, caso uma pronta exista.",
+                "env": {
+                    "description": "Dados completos do sistema Construct.",
                     "type": "Boolean / Object",
-                    "value": false
-                },
-                "qtmsg": {
-                    "description": "Mensagem de marcação recebida.",
-                    "type": "Boolean / Object",
-                    "value": false
-                },
-                "qmsgobj": {
-                    "description": "Mensagem de marcação com objeto recebida.",
-                    "type": "Boolean / Object",
-                    "value": false
-                },
-                "menjls": {
-                    "description": "Menções na mensagem recebida.",
-                    "type": "Boolean / Array",
-                    "value": false
-                },
-                "gmemid": {
-                    "description": "Participantes do grupo.",
-                    "type": "Boolean / Array",
                     "value": false
                 }
             },
@@ -196,24 +170,21 @@
             "description": "Define as imagens padrões.",
             "type": "Array",
             "value": [
-                "https://thispersondoesnotexist.com/image",
                 "https://http.cat/418.jpg",
                 "https://http.dog/418.jpg",
-                "https://http.cat/503.jpg",
-                "https://http.dog/503.jpg",
-                "https://http.cat/404.jpg",
-                "https://http.dog/404.jpg"
+                "https://http.cat/420.jpg",
+                "https://http.dog/420.jpg",
+                "https://http.dog/403.jpg",
+                "https://http.cat/403.jpg",
+                "https://http.dog/100.jpg",
+                "https://http.cat/100.jpg",
+                "https://thispersondoesnotexist.com"
             ]
         },
         "failed": {
             "description": "Define a imagem padrão de erro.",
             "type": "String",
             "value": "https://http.cat/204"
-        },
-        "uses": {
-            "description": "Quantas tentativas deve fazer para obter uma imagem, caso ocorra erro, a URL acima é usada.",
-            "type": "Number",
-            "value": 5
         },
         "location": {
             "description": "Local onde o módulo pode ser encontrado.",

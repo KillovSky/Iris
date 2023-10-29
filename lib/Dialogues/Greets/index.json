@@ -13,6 +13,22 @@
         ],
         "Antifake": [
             "Adeus {userm}, você não é bem vindo no {groupm} por ser gringo ou fake!"
+        ],
+        "WelcomeTitle": [
+            "Bem Vindo!"
+        ],
+        "GoodbyeTitle": [
+            "Adeus!"
+        ],
+        "WelcomeDescription": [
+            "Leia as regras e divirta-se!",
+            "Entrou tem que...XD",
+            "Gostaria de um chá enquanto lê as regras?"
+        ],
+        "GoodbyeDescription": [
+            "Devemos brindar pela partida dele?",
+            "Menos um nessa indústria vital...",
+            "Nada pra ver aqui, ele saiu por 'acidente'..."
         ]
     },
     "jp": {
@@ -28,6 +44,22 @@
         ],
         "Antifake": [
             "さようなら {userm}。グリンゴまたは偽物であるという理由で、{groupm} には歓迎されません!"
+        ],
+        "WelcomeDescription": [
+            "ルールを読んで楽しんでください！",
+            "入場時には...XD要です...",
+            "ルールを読みながらお茶でもいかがですか？"
+        ],
+        "GoodbyeDescription": [
+            "彼の出発に乾杯しましょうか？",
+            "この重要な業界で一人少なく...",
+            "何も見るものはない、彼は '偶然' に去りました..."
+        ],
+        "WelcomeTitle": [
+            "ようこそ！"
+        ],
+        "GoodbyeTitle": [
+            "さようなら！"
         ]
     },
     "en": {
@@ -43,6 +75,22 @@
         ],
         "Antifake": [
             "Goodbye {userm}, you are not welcome in {groupm} for being outside country or fake!"
+        ],
+        "WelcomeDescription": [
+            "Read the rules and have fun!",
+            "Upon entry, you must...XD",
+            "Would you like some tea while you read the rules?"
+        ],
+        "GoodbyeDescription": [
+            "Shall we toast to their departure?",
+            "One less in this vital industry...",
+            "Nothing to see here, they left 'by accident'..."
+        ],
+        "WelcomeTitle": [
+            "Welcome!"
+        ],
+        "GoodbyeTitle": [
+            "Goodbye!"
         ]
     },
     "fr": {
@@ -58,6 +106,22 @@
         ],
         "Antifake": [
             "Au revoir {userm}, vous n'êtes pas le bienvenu dans {groupm} pour être gringo ou faux !"
+        ],
+        "WelcomeDescription": [
+            "Lisez les règles et amusez-vous !",
+            "À l'entrée, vous devez...XD",
+            "Voulez-vous un thé pendant que vous lisez les règles ?"
+        ],
+        "GoodbyeDescription": [
+            "Devrions-nous trinquer à son départ ?",
+            "Un de moins dans cette industrie vitale...",
+            "Rien à voir ici, il est parti 'par accident'..."
+        ],
+        "WelcomeTitle": [
+            "Bienvenue !"
+        ],
+        "GoodbyeTitle": [
+            "Au revoir !"
         ]
     },
     "es": {
@@ -73,6 +137,22 @@
         ],
         "Antifake": [
             "Adiós {userm}, no eres bienvenido en {groupm} por ser gringo o falso!"
+        ],
+        "WelcomeDescription": [
+            "¡Lee las reglas y diviértete!",
+            "Al entrar, debes...XD",
+            "¿Te gustaría un té mientras lees las reglas?"
+        ],
+        "GoodbyeDescription": [
+            "¿Deberíamos brindar por su partida?",
+            "Uno menos en esta industria vital...",
+            "Nada que ver aquí, se fue 'por accidente'..."
+        ],
+        "WelcomeTitle": [
+            "¡Bienvenido!"
+        ],
+        "GoodbyeTitle": [
+            "¡Adiós!"
         ]
     },
     "id": {
@@ -88,6 +168,22 @@
         ],
         "Antifake": [
             "Selamat tinggal {userm}, Anda tidak diterima di {groupm} karena gringo atau palsu!"
+        ],
+        "WelcomeDescription": [
+            "Baca peraturan dan bersenang-senanglah!",
+            "Saat masuk, Anda harus...XD",
+            "Mau minum teh sambil membaca peraturan?"
+        ],
+        "GoodbyeDescription": [
+            "Haruskah kita bersulang untuk kepergiannya?",
+            "Satu kurang dalam industri penting ini...",
+            "Dia pergi karena 'kecelakaan', ehehe..."
+        ],
+        "WelcomeTitle": [
+            "Selamat Datang!"
+        ],
+        "GoodbyeTitle": [
+            "Selamat Tinggal!"
         ]
     },
     "ms": {
@@ -103,6 +199,22 @@
         ],
         "Antifake": [
             "Selamat tinggal {userm}, anda tidak dialu-alukan dalam {groupm} kerana gringo atau palsu!"
+        ],
+        "WelcomeDescription": [
+            "Bacalah peraturan dan berseronoklah!",
+            "Masuk harus...XD",
+            "Nak minum teh semasa membaca peraturan?"
+        ],
+        "GoodbyeDescription": [
+            "Patutkah kita angkat gelas untuk pergiannya?",
+            "Satu kurang dalam industri yang penting ini...",
+            "Dia pergi secara 'kemalangan', ehehe..."
+        ],
+        "WelcomeTitle": [
+            "Selamat Datang!"
+        ],
+        "GoodbyeTitle": [
+            "Selamat Tinggal!"
         ]
     },
     "hi": {
@@ -118,6 +230,22 @@
         ],
         "Antifake": [
             "अलविदा {userm}, ग्रिंगो या नकली होने के लिए आपका {groupm} में स्वागत नहीं है!"
+        ],
+        "WelcomeDescription": [
+            "नियम पढ़ें और मजा करें!",
+            "प्रवेश करते समय आपको...XDना होगा...",
+            "क्या आप नियम पढ़ते समay चाय पीना चाहेंगे?"
+        ],
+        "GoodbyeDescription": [
+            "क्या हम उनके जाने के लिए शराब पीसकते हैं?",
+            "इस महत्वपूर्ण उद्योग में एक कम...",
+            "यहाँ कुछ भी नहीं है, वे 'दुर्भाग्य से' चले गए..."
+        ],
+        "WelcomeTitle": [
+            "स्वागत है!"
+        ],
+        "GoodbyeTitle": [
+            "फिर मिलें!"
         ]
     },
     "de": {
@@ -133,6 +261,22 @@
         ],
         "Antifake": [
             "Auf Wiedersehen {userm}, du bist in {groupm} nicht willkommen, weil du ein Gringo oder ein Fake bist!"
+        ],
+        "WelcomeDescription": [
+            "Lesen Sie die Regeln und haben Sie Spaß!",
+            "Beim Betreten müssen Sie...XD",
+            "Möchten Sie einen Tee, während Sie die Regeln lesen?"
+        ],
+        "GoodbyeDescription": [
+            "Sollen wir auf seinen Abschied anstoßen?",
+            "Einer weniger in dieser wichtigen Branche...",
+            "Hier gibt es nichts zu sehen, er ist 'aus Versehen' gegangen..."
+        ],
+        "WelcomeTitle": [
+            "Willkommen!"
+        ],
+        "GoodbyeTitle": [
+            "Auf Wiedersehen!"
         ]
     },
     "it": {
@@ -148,6 +292,22 @@
         ],
         "Antifake": [
             "Arrivederci {userm}, non sei il benvenuto in {groupm} perché sei gringo o fake!"
+        ],
+        "WelcomeDescription": [
+            "Leggi le regole e divertiti!",
+            "Entrando, devi...XD",
+            "Gradiresti una tazza di tè mentre leggi le regole?"
+        ],
+        "GoodbyeDescription": [
+            "Dovremmo brindare alla sua partenza?",
+            "Uno in meno in questa industria vitale...",
+            "Niente da vedere qui, è uscito 'per errore'..."
+        ],
+        "WelcomeTitle": [
+            "Benvenuto!"
+        ],
+        "GoodbyeTitle": [
+            "Arrivederci!"
         ]
     },
     "ru": {
@@ -163,6 +323,22 @@
         ],
         "Antifake": [
             "До свидания {userm}, вам не рады в {groupm} за то, что вы гринго или подделка!"
+        ],
+        "WelcomeDescription": [
+            "Читайте правила и веселитесь!",
+            "При входе вы должны...XD",
+            "Хотели бы чашку чая, читая правила?"
+        ],
+        "GoodbyeDescription": [
+            "Поднимем бокал за его уход?",
+            "Еще один уход в этой важной индустрии...",
+            "Здесь нечего смотреть, он ушел 'по случайности'..."
+        ],
+        "WelcomeTitle": [
+            "Добро пожаловать!"
+        ],
+        "GoodbyeTitle": [
+            "До свидания!"
         ]
     },
     "lat": {
@@ -178,6 +354,22 @@
         ],
         "Antifake": [
             "Vale {userm}, in {groupm} gringo vel fictum."
+        ],
+        "WelcomeDescription": [
+            "Legere regulas et fruere!",
+            "Intrantes debent...XD",
+            "Visne poculum theae dum regulas legis?"
+        ],
+        "GoodbyeDescription": [
+            "Numus ei egressui propinamus?",
+            "Unus minus in hoc industria essentiale...",
+            "Hic nihil videndum est, 'casu' egressus est..."
+        ],
+        "WelcomeTitle": [
+            "Salve!"
+        ],
+        "GoodbyeTitle": [
+            "Vale!"
         ]
     }
 }

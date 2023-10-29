@@ -79,7 +79,7 @@ echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.co
 apt update && apt upgrade -y
 
 # Instala os programas necessarios de uma só vez
-apt install nodejs sqlite build-essential zip unzip python2 python3 git tesseract-ocr nano -y
+apt install nodejs sqlite build-essential zip unzip python2 python3 git tesseract-ocr nano libcairo2-dev libpango1.0-dev libjpeg-dev libgif-dev librsvg2-dev -y
 
 # Baixa o Projeto Íris
 git clone https://github.com/KillovSky/Iris.git

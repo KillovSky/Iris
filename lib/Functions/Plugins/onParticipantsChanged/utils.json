@@ -95,6 +95,11 @@
                     "description": "Informações sobre o evento recebido.",
                     "type": "Boolean / String",
                     "value": false
+                },
+                "eventType": {
+                    "description": "Define o tipo de evento que está rodando.",
+                    "type": "Boolean / String",
+                    "value": false
                 }
             },
             "description": "Redireciona a função correta para o arquivo correto.",

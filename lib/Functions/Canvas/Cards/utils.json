@@ -6,10 +6,10 @@
         "examples": [
             "Leveler.env()",
             "Leveler.level('avatar', 'XP', 'required XP', 'leve', 'rank', 'guild', 'nick', 'team')",
-            "Leveler.greets('username', 'rank', 'groupName', 'members size', 'avatar', 'event')",
+            "Leveler.greets('avatar', 'event', 'title', 'description')",
             "Leveler.reset()",
             "Leveler.env().functions.level.value('avatar', 'XP', 'required XP', 'leve', 'rank', 'guild', 'nick', 'team')",
-            "Leveler.env().functions.greets.value('username', 'rank', 'groupName', 'members size', 'avatar', 'event')",
+            "Leveler.env().functions.greets.value('avatar', 'event', 'title', 'description')",
             "Leveler.env().functions.revert.value()"
         ]
     },
@@ -38,7 +38,7 @@
     "modules": {
         "fs": "Leitura de diretórios e arquivos.",
         "path": "Para obter o nome da pasta.",
-        "canvacord": "Fabrica as imagens."
+        "canvafy": "Fabrica as imagens."
     },
     "functions": {
         "ambient": {
@@ -61,26 +61,6 @@
         },
         "greets": {
             "arguments": {
-                "userName": {
-                    "description": "Nome do usuário que utilizará o greets.",
-                    "type": "String",
-                    "value": "User"
-                },
-                "rank": {
-                    "description": "Discriminador do ranking do usuário.",
-                    "type": "String",
-                    "value": "1234"
-                },
-                "groupName": {
-                    "description": "Nome do grupo da pessoa que ativou o greets.",
-                    "type": "String",
-                    "value": "WhatsApp"
-                },
-                "members": {
-                    "description": "Quantidade atual de participantes do grupo.",
-                    "type": "Number",
-                    "value": 2
-                },
                 "avatar": {
                     "description": "Imagem de perfil do greets.",
                     "type": "String",
@@ -90,6 +70,16 @@
                     "description": "Tipo de evento do greets atual.",
                     "type": "String",
                     "value": "add"
+                },
+                "title": {
+                    "description": "Titulo do cartão a criar.",
+                    "type": "Boolean / String",
+                    "value": false
+                },
+                "description": {
+                    "description": "Mensagem do cartão abaixo do titulo.",
+                    "type": "Boolean / String",
+                    "value": false
                 }
             },
             "description": "Faz um cartão de membro para quando alguém sair ou entrar de grupos.",
@@ -103,40 +93,40 @@
                     "type": "String",
                     "value": "https://raw.githubusercontent.com/KillovSky/Iris_Files/main/Assets/user.png"
                 },
-                "guild": {
-                    "description": "Nome da guilda do player.",
+                "username": {
+                    "description": "Nome do usuário que utilizará o ranking.",
                     "type": "String",
-                    "value": "WhatsApp"
+                    "value": "User"
                 },
-                "level": {
-                    "description": "Nivel atual do player.",
+                "patente": {
+                    "description": "A patente do usuario no seu nível do ranking.",
+                    "type": "String",
+                    "value": "GOLD, LEVEL: "
+                },
+                "myXP": {
+                    "description": "Quantidade atual de XP que o usuário possui.",
                     "type": "Number",
-                    "value": 1
+                    "value": 100
                 },
                 "nextXP": {
                     "description": "Quantidade de XP necessária para upar de nível.",
                     "type": "Number",
                     "value": 1000
                 },
-                "nick": {
-                    "description": "Nome do usuário que utilizará o ranking.",
-                    "type": "String",
-                    "value": "User"
+                "level": {
+                    "description": "Nivel atual do player.",
+                    "type": "Number",
+                    "value": 999
                 },
                 "rank": {
-                    "description": "Discriminador do ranking do usuário.",
-                    "type": "Number",
-                    "value": 1234
-                },
-                "team": {
-                    "description": "Posição do ranking que o usuário se encontra.",
+                    "description": "Posição do usuário no ranking.",
                     "type": "Number",
                     "value": 1
                 },
-                "XP": {
-                    "description": "Quantidade atual de XP que o usuário possui.",
-                    "type": "Number",
-                    "value": 1
+                "guilda": {
+                    "description": "Nome da guilda do player.",
+                    "type": "String",
+                    "value": "THIEVES, RANK:"
                 }
             },
             "description": "Constrói um cartão de jogador com detalhes dele.",
@@ -191,77 +181,46 @@
         }
     },
     "parameters": {
-        "stockImage": {
-            "description": "Define a imagem padrão, para casos de faltar definir uma.",
-            "type": "String",
-            "value": "https://raw.githubusercontent.com/KillovSky/Iris_Files/main/Assets/user.png"
-        },
-        "leveling": {
-            "description": "Define as opções de design padrão.",
+        "stockValues": {
+            "description": "Define as configurações padrões.",
             "type": "Object",
             "value": {
                 "profile": "https://raw.githubusercontent.com/KillovSky/Iris_Files/main/Assets/user.png",
-                "username": "#D2E6FA",
-                "useEmojis": true,
-                "status": "#23087D",
-                "discriminator": "#50B33A",
                 "background": {
-                    "image": "https://user-images.githubusercontent.com/55511420/200402294-51d85a0b-c405-4cfa-b316-db651dd00e7e.jpg",
-                    "format": "IMAGE"
+                    "value": "https://user-images.githubusercontent.com/55511420/200402294-51d85a0b-c405-4cfa-b316-db651dd00e7e.jpg",
+                    "format": "image"
                 },
-                "level": {
-                    "name": "#D2E6FA",
-                    "value": "#50B33A"
+                "leveling": {
+                    "username": "#D2E6FA",
+                    "contColor": "#0047ab",
+                    "status": "#23087D",
+                    "level": {
+                        "name": "#E4000F",
+                        "value": "#008C2F"
+                    },
+                    "overlayOpacity": 0.4,
+                    "progressBar": "#F0DA53",
+                    "rank": {
+                        "name": "#E4000F",
+                        "value": "#008C2F"
+                    },
+                    "currentXP": "#E4000F",
+                    "requiredXP": "#008C2F"
                 },
-                "overlay": {
-                    "color": "#151E29",
-                    "opacity": 0.4,
-                    "enable": true
-                },
-                "progress": {
-                    "colorEnd": "#00008B",
-                    "colorStart": "#C200C1",
-                    "type": "GRADIENT",
-                    "rounded": true,
-                    "track": "#D2E6FA"
-                },
-                "rank": {
-                    "name": "#D2E6FA",
-                    "value": "#50B33A",
-                    "enable": true
-                },
-                "XP": {
-                    "needed": "#50B33A",
-                    "almost": "#F0DA53",
-                    "smaller": "#F05353"
+                "greetings": {
+                    "apply": true,
+                    "welcome": {
+                        "title": "BEM VINDO",
+                        "description": "LEIA AS REGRAS E DIVIRTA-SE!"
+                    },
+                    "goodbye": {
+                        "title": "ADEUS",
+                        "description": "Menos um, hehehe..."
+                    },
+                    "contColor": "#0047ab",
+                    "borderColor": "#000000",
+                    "cardOpacity": "0.5"
                 }
-            }
-        },
-        "greetings": {
-            "description": "Define a imagem padrão de erro.",
-            "type": "Object",
-            "value": {
-                "welcome": {
-                    "apply": true,
-                    "title": "BEM VINDO",
-                    "chat": "",
-                    "members": "VOCÊ É O MEMBRO N° {count}"
-                },
-                "goodbye": {
-                    "apply": true,
-                    "title": "ADEUS",
-                    "chat": "",
-                    "members": "ELE/A FOI O MEMBRO N° {count}"
-                },
-                "contColor": "#0047ab",
-                "borderColor": "#000000",
-                "nameColor": "#0047ab",
-                "discColor": "#0047ab",
-                "hashtagColor": "#1F51FF",
-                "titleColor": "#0047ab",
-                "userOpacity": "0.5",
-                "discOpacity": "0.5",
-                "borderOpacity": "0.4"
             }
         },
         "baseImage": {

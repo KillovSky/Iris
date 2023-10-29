@@ -2,7 +2,7 @@
     "name": "Video",
     "description": "Baixar, pesquisar ou enviar informações de vídeos do YouTube.",
     "usage": {
-        "general": "[Prefix][Comando] [-video|-audio|-link] [Termos de Busca|URL|ID]",
+        "general": "[Prefix][Alias] [-video|-audio|-link] [Termos de Busca|URL|ID]",
         "examples": [
             "/Play -audio Oshiete Oshiete yo Sono Shikumi wo",
             "/Video -video Leon vs Krauser Resident Evil 4",

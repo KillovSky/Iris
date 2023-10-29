@@ -3,6 +3,57 @@
 - [Colabore conosco](https://bit.ly/BOT-IRIS), juntos podemos deixar esse código com a definição perfeita do que é OpenSource.
 - Note que as atualizações não tem datas para sair, sendo que elas são lançadas quando considero adequadas para postagem.
 
+## 1.0.5 - 29/10/2023
+
+Importante: Leia a descrição da commit 'Release 1.0.5' antes de prosseguir
+
+### Novidades
+1. **Memes**
+	- Adicionado alguns comandos de memes usando nada menos que Canvas! Em breve muito, muitooo mais!
+2. **Language**
+	- Novo sistema seletor de idiomas, agora gringos podem usar outros idiomas isoladamente sem afetar o idioma geral da Íris.
+3. **Personal Data**
+	- Adicionado algumas databases de uso pessoal e premodelação para futuros usos dela.
+4. **SQL Collector**
+	- Mais informações disponiveis no nosso sistema de SQL, em breve terá uso.
+5. **ViewOnce**
+	- Implementado o sistema de visualização única no Construct, ainda não há comandos usando, mas ele pode ser identificado e usado agora.
+6. **Contadores**
+	- Implementei o sistema de leveling parcialmente, por hora só aumenta o contador de mensagens e o XP da pessoa.
+7. **Mentions**
+	- Atualizei os comandos para funcionarem com marcação na mensagem, marcando a mensagem e outros.
+8. **Pushname**
+	- Sistema de database para obter os nomes usados anteriormente, caso a pessoa retire o atual ou ele se encontre ilegivel pela Íris.
+9. **Configs**
+    - Adicionado novas configurações que possibilitam maior customização do collector nas mensagens.
+10. **Welcome/Goodbye - Canvas**
+    - Adicionado cartão de entrada e saída usando canvas com mensagens customizadas!
+11. **Leveling - Canvas**
+    - Implementação parcial do nosso sistema de leveling no card de canvas.
+12. **Profiling**
+    - Implementado sistema de obter a foto avançadamente, não dropa erros, ao contrario do sistema do Baileys.
+13. **SQL Private**
+    - Implementado uso de comandos SQL no PV, atualmente o foco é apenas criar a database e usar o language para customizar seu idioma.
+14. **Help Menu**
+    - Implementei o menu de ajuda onde faltava.
+
+### Correções
+1. **Sessão**
+    - Havia uma falha desconhecida que fazia a sessão nunca funcionar novamente após ela.
+2. **Stickers ViewOnce**
+    - Os stickers em marcação ou mensagem de visualização única falhavam.
+3. **Alias**
+    - Apesar de não detectado oficial em nenhum sistema e nenhum report a mais, fiz uma correção extra que adiciona alias automaticamente, corrigindo a falha (?) presente na [PR #611](https://github.com/KillovSky/Iris/pull/611).
+4. **Documentação**
+    - Aprimorado a documentação do Termux afim de se rodar Canvas.
+    - Se seu Linux tiver problemas para instalar, tente os comandos apt do Termux.
+
+### Removido
+1. **Arquivos Inutéis**
+    - Removi ALGUNS arquivos inutéis sem uso atualmente, futuramente podem ser usados, claro.
+2. **Sistema REM**
+    - Removido o sistema REM do handler para strings, uma vez que só vamos trocar ou resetar as strings, não retirar parcialmente valores.
+
 ## 1.0.4 - 22/10/2023
 
 ### Novidades

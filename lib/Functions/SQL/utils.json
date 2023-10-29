@@ -75,7 +75,7 @@
             "type": "Boolean / Function",
             "value": false
         },
-		"fixer": {
+        "fixer": {
             "arguments": {
                 "stringJSON": {
                     "description": "A string contendo o valor que deve formatar, deve conter um JSON válido dentro.",
@@ -365,6 +365,31 @@
             "description": "Valores padrões da database.",
             "type": "Object",
             "value": {
+                "Personal": {
+                    "language": {
+                        "enable": false,
+                        "firstEdition": false,
+                        "text": "default",
+                        "lastValue": 0,
+                        "lastState": "off",
+                        "lastDate": 0,
+                        "firstDate": 0
+                    },
+                    "name": {
+                        "text": "default",
+                        "lastValue": 0,
+                        "lastDate": 0,
+                        "firstEdition": false,
+                        "firstDate": 0
+                    },
+                    "warn": {
+                        "amount": 0,
+                        "lastWarnDate": 0,
+                        "firstWarnDate": 0,
+                        "firstWarnAdmin": "1234@s.whatsapp",
+                        "lastWarnAdmin": "1234@s.whatsapp"
+                    }
+                },
                 "Bank": {
                     "coin": 0,
                     "diamond": 0,
@@ -377,6 +402,7 @@
                 "Leveling": {
                     "xp": 0,
                     "level": 0,
+                    "messages": 0,
                     "coin": 0,
                     "diamond": 0,
                     "rubi": 0,
@@ -386,51 +412,139 @@
                     "wood": 0
                 },
                 "Groups": {
-					"autostickers": {
-						"enable": false,
-						"type": "-default"
-					},
-					"prefix": {
-						"enable": false,
-						"values": []
-					},
-					"vips": {
-						"enable": false,
-						"values": []
-					},
-					"mods": {
-						"enable": [],
-						"values": []
-					},
+                    "autostickers": {
+                        "enable": false,
+                        "firstEdition": false,
+                        "firstUser": false,
+                        "text": "-default",
+                        "lastUser": "none",
+                        "lastValue": 0,
+                        "lastState": "off",
+                        "lastDate": 0,
+                        "firstDate": 0
+                    },
+                    "prefix": {
+                        "enable": false,
+                        "values": [],
+                        "lastValue": 0,
+                        "lastState": "off",
+                        "lastUser": "none",
+                        "lastDate": 0,
+                        "firstEdition": false,
+                        "firstUser": false,
+                        "firstDate": 0
+                    },
+                    "vips": {
+                        "enable": false,
+                        "values": [],
+                        "lastValue": 0,
+                        "lastState": "off",
+                        "lastUser": "none",
+                        "lastDate": 0,
+                        "firstEdition": false,
+                        "firstUser": false,
+                        "firstDate": 0
+                    },
+                    "mods": {
+                        "enable": [],
+                        "values": [],
+                        "lastValue": 0,
+                        "lastState": "off",
+                        "lastUser": "none",
+                        "lastDate": 0,
+                        "firstEdition": false,
+                        "firstUser": false,
+                        "firstDate": 0
+                    },
                     "blacklist": {
                         "text": false,
                         "values": [],
-                        "enable": false
+                        "enable": false,
+                        "lastValue": 0,
+                        "lastState": "off",
+                        "lastUser": "none",
+                        "lastDate": 0,
+                        "firstEdition": false,
+                        "firstUser": false,
+                        "firstDate": 0
                     },
                     "whitelist": {
                         "values": [],
-                        "enable": false
+                        "enable": false,
+                        "lastValue": 0,
+                        "lastState": "off",
+                        "lastUser": "none",
+                        "lastDate": 0,
+                        "firstEdition": false,
+                        "firstUser": false,
+                        "firstDate": 0
                     },
                     "antifake": {
                         "enable": false,
                         "text": false,
-                        "values": []
+                        "values": [],
+                        "lastValue": 0,
+                        "lastState": "off",
+                        "lastUser": "none",
+                        "lastDate": 0,
+                        "firstEdition": false,
+                        "firstUser": false,
+                        "firstDate": 0
                     },
                     "welcome": {
                         "enable": false,
-                        "text": false
+                        "text": false,
+                        "lastValue": 0,
+                        "lastState": "off",
+                        "lastUser": "none",
+                        "lastDate": 0,
+                        "firstEdition": false,
+                        "firstUser": false,
+                        "firstDate": 0
                     },
-					"promote": {
+                    "promote": {
                         "enable": false,
-                        "text": false
+                        "text": false,
+                        "lastDate": 0,
+                        "lastValue": 0,
+                        "lastState": "off",
+                        "lastUser": "none",
+                        "firstEdition": false,
+                        "firstUser": false,
+                        "firstDate": 0
                     },
-					"demote": {
+                    "demote": {
                         "enable": false,
-                        "text": false
+                        "text": false,
+                        "lastValue": 0,
+                        "lastState": "off",
+                        "lastUser": "none",
+                        "lastDate": 0,
+                        "firstEdition": false,
+                        "firstUser": false,
+                        "firstDate": 0
                     },
                     "goodbye": {
                         "enable": false,
-                        "text": false
+                        "text": false,
+                        "lastValue": 0,
+                        "lastState": "off",
+                        "lastUser": "none",
+                        "lastDate": 0,
+                        "firstEdition": false,
+                        "firstUser": false,
+                        "firstDate": 0
+                    },
+                    "language": {
+                        "enable": false,
+                        "text": false,
+                        "lastValue": 0,
+                        "lastState": "off",
+                        "lastUser": "none",
+                        "lastDate": 0,
+                        "firstEdition": false,
+                        "firstUser": false,
+                        "firstDate": 0
                     }
                 }
             }

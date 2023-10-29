@@ -1,8 +1,8 @@
 {
     "name": "nasa",
-    "description": "Obtém a informação diaria enviada diretamente pelo sistema APOD da NASA.",
+    "description": "Obter a informação diaria enviada diretamente pelo sistema APOD da NASA.",
     "usage": {
-        "general": "[Prefix][Comando] [-date] yyyy-mm-dd",
+        "general": "[Prefix][Alias] [-date] yyyy-mm-dd",
         "examples": [
             "/NASA",
             "/NASA -date 2001-04-20",
