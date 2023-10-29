@@ -2,7 +2,7 @@
     "name": "Pong",
     "description": "Exibe uma quantidade enorme de informações sobre a Íris, a sessão, PC, telefone e demais.",
     "usage": {
-        "general": "[Prefix][Comando] [--help|--help-dev|--show|--show --secret|None]",
+        "general": "[Prefix][Alias] [--help|--help-dev|--show|--show --secret|None]",
         "examples": [
             "/Ping",
             "/Ping --help",

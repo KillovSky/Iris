@@ -20,7 +20,7 @@ case "$1" in
     # Caso queira alguns aleatórios ou todos em formato array
     "array")
         # Adquire os comandos e aleatoriza sua posição
-        result=$(echo "$result" | sed 's/[0-9]\. //g'| shuf | shuf -n $(if [[ "$2" =~ ^[0-9]+$ ]]; then echo "$2"; else echo 99999; fi));
+        result=$(echo "$result" | sed 's/[0-9]\. //g' | shuf | shuf -n $(if [[ "$2" =~ ^[0-9]+$ ]]; then echo "$2"; else echo 99999; fi));
 
         # Converte em array
         result=$(echo "$result" | sed 's/[0-9]\. //g' | sed "s/^/\"/g" | sed "s/$/\"/g" | tr '\n' ',' | sed 's/^,//g' | sed 's/,$//g' | tr '[:upper:]' '[:lower:]');

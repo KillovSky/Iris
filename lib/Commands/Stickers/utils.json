@@ -2,7 +2,7 @@
     "name": "Stk",
     "description": "Fazer Stickers a partir de imagens, vídeos, GIFs e documentos similares.",
     "usage": {
-        "general": "[Prefix][Comando] [-crop|-full|-rounded|-circle] [Imagem|URL|Video|Gif|Doc]",
+        "general": "[Prefix][Alias] [-crop|-full|-rounded|-circle] [Imagem|URL|Video|Gif|Doc]",
         "examples": [
             "/Sticker Imagem|URL|Video|Gif|Doc",
             "/Sticker -circle Imagem|Imagem URL",

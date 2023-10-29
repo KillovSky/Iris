@@ -63,5 +63,17 @@
 	"botCommands": {
 		"description": "Defines whether Íris should execute commands from her messages, but remember, this can have serious bugs.",
 		"value": false
+	},
+	"listenBroadcasts": {
+		"description": "Defines if Íris should not ignore people sending status or broadcasts (Yes, Íris sees everything).",
+		"value": false
+	},
+	"listenReactions": {
+		"description": "Defines if Íris should not ignore reactions, if yes, it will drop reactions as messages.",
+		"value": false
+	},
+	"ExpPerMessage": {
+		"description": "The quantity of XP obtained per message, except from reactions, Íris and broadcasts (if disable).",
+		"value": 10
 	}
 }
