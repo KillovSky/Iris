@@ -371,7 +371,7 @@
                         "firstEdition": false,
                         "text": "default",
                         "lastValue": 0,
-                        "lastState": "off",
+                        "lastState": false,
                         "lastDate": 0,
                         "firstDate": 0
                     },
@@ -386,8 +386,8 @@
                         "amount": 0,
                         "lastWarnDate": 0,
                         "firstWarnDate": 0,
-                        "firstWarnAdmin": "1234@s.whatsapp",
-                        "lastWarnAdmin": "1234@s.whatsapp"
+                        "firstWarnAdmin": false,
+                        "lastWarnAdmin": false
                     }
                 },
                 "Bank": {
