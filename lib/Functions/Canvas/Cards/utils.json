@@ -224,9 +224,9 @@
             }
         },
         "baseImage": {
-            "description": "Quantas tentativas deve fazer para obter uma imagem, caso ocorra erro, a URL acima é usada.",
+            "description": "Imagem base, caso a construção da imagem em canvas falhe.",
             "type": "String",
-            "value": "data:image/gif;base64,R0lGODlhAQABAAAAACw="
+            "value": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAIAQMAAAD+wSzIAAAABlBMVEX///+/v7+jQ3Y5AAAADklEQVQI12P4AIX8EAgALgAD/aNpbtEAAAAASUVORK5CYII"
         },
         "location": {
             "description": "Local onde o módulo pode ser encontrado.",
