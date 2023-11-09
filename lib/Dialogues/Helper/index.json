@@ -1,7 +1,7 @@
 {
     "pt": {
         "User": [
-            "📚 _Bem vindo ao menu de ajuda do sistema_ *'{name}'*\n\n🔎 _Esse sistema é responsável por:_ *'{description}'*\n\n❗ _O uso geral disto é feito por:_ *'{usage.general}'*\n\n➖ _Alguns exemplos_ *[Incluindo os para DEVs]*_:_\n{usage.examples}\n❓ _Alias:_\n{alias}"
+            "📚 _Bem vindo ao menu de ajuda do sistema_ *'{name}'*\n\n🔎 _Esse sistema é responsável por:_ *'{description}'*\n\n❗ _O uso geral disto é feito por:_ *'{usage.general}'*\n\n➖ _Alguns exemplos_ *[Incluindo os para DEVs]*_:_\n{usage.examples}\n❓ _Alias:_\n{alias}\n\n👀 _Extra:_\n{helps}"
         ],
         "Developer": [
             "📚 _Bem vindo ao menu de ajuda do sistema_ *'{name}'*\n\n🔎 _Esse sistema é responsável por:_ *'{description}'*\n\n❗ _O uso geral disto é feito por:_ *'{usage.general}'*\n\n➖ _Alguns exemplos_ *[Incluindo os para DEVs]*_:_\n{usage.examples}\n❓ _Alias:_\n{alias}――――――――――――――――――――――\n➕ *Outros Detalhes [DEVs]* ➕\n――――――――――――――――――――――\n\n🎓 _Feito por:_ *'{developer}'*\n\n📜 _Sob a licença:_ *'{license}'*\n\n👀 _Dicas:_\n{helps}\n↻ _Exports:_ {exports}\n\n🔧 _Módulos:_ {modules}\n\n📁 _Arquivos:_ {files}\n\n⚙️ _Configurações:_ {settings}\n\n✏️ _Parâmetros:_ {parameters}\n\n🗳️ _Resultados:_ {results}"
@@ -33,7 +33,7 @@
     },
     "jp": {
         "User": [
-            "📚 _システム ヘルプ メニューへようこそ_ *'{name}'*\n\n🔎 _このシステムの責任:_ *'{description}'*\n\n❗ _O 一般的な使用これの作成者:_ *'{usage.general}'*\n\n➖ _いくつかの例_ *[DEV 用のものを含む]*_:_\n{usage.examples}\n❓ _エイリアス:_\n{alias}"
+            "📚 _システム ヘルプ メニューへようこそ_ *'{name}'*\n\n🔎 _このシステムの責任:_ *'{description}'*\n\n❗ _O 一般的な使用これの作成者:_ *'{usage.general}'*\n\n➖ _いくつかの例_ *[DEV 用のものを含む]*_:_\n{usage.examples}\n❓ _エイリアス:_\n{alias}\n\n👀 _+:_\n{helps}"
         ],
         "Developer": [
             "📚 _システム ヘルプ メニューへようこそ_ *'{name}'*\n\n🔎 _このシステムの責任:_ *'{description}'*\n\n❗ _O 一般的な使用これの作成者:_ *'{usage.general}'*\n\n➖ _いくつかの例_ *[DEV 用のものを含む]*_:_\n{usage.examples}\n❓ _エイリアス:_\n{alias}――――――――――――――――――――――\n➕ *その他の詳細 [DEVs]* ➕\n―――――――――――――――――――――――――\n\n🎓 _Made By:_ *'{developer}'*\n\n📜 _ライセンス:_ *'{license}'*\n\n👀 _ヒント:_\n{helps}\n↻ _エクスポート:_ {exports}\n\n🔧 _モジュール:_ {modules}\n\n📁 _ファイル:_ {files}\n\n⚙️ _設定:_ {settings}\n\n✏️ _パラメーター:_ {parameters}\n\n🗳️ _結果:_ {results}"
@@ -65,7 +65,7 @@
     },
     "en": {
         "User": [
-            "📚 _Welcome to the system help menu_ *'{name}'*\n\n🔎 _This system is responsible for:_ *'{description}'*\n\n❗ _O general use of this is made by:_ *'{usage.general}'*\n\n➖ _Some examples_ *[Including those for DEVs]*_:_\n{usage.examples}\n❓ _Alias:_\n{alias}"
+            "📚 _Welcome to the system help menu_ *'{name}'*\n\n🔎 _This system is responsible for:_ *'{description}'*\n\n❗ _O general use of this is made by:_ *'{usage.general}'*\n\n➖ _Some examples_ *[Including those for DEVs]*_:_\n{usage.examples}\n❓ _Alias:_\n{alias}\n\n👀 _Extra:_\n{helps}"
         ],
         "Developer": [
             "📚 _Welcome to the system help menu_ *'{name}'*\n\n🔎 _This system is responsible for:_ *'{description}'*\n\n❗ _O general use of this is made by:_ *'{usage.general}'*\n\n➖ _Some examples_ *[Including those for DEVs]*_:_\n{usage.examples}\n❓ _Alias:_\n{alias}―――――――――――――――――――――――\n➕ *Other Details [DEVs]* ➕\n―――――――――――――――――――――――\n\n🎓 _Made By:_ *'{developer}'*\n\n📜 _Under License:_ *'{license}'*\n\n👀 _Tips:_\n{helps}\n↻ _Exports:_ {exports}\n\n🔧 _Modules:_ {modules}\n\n📁 _Files:_ {files}\n\n⚙️ _Settings:_ {settings}\n\n✏️ _Parameters:_ {parameters}\n\n🗳️ _Results:_ {results}"
@@ -97,7 +97,7 @@
     },
     "fr": {
         "User": [
-            "📚 _Bienvenue dans le menu d'aide du système_ *'{name}'*\n\n🔎 _Ce système est responsable de:_ *'{description}'*\n\n❗ _O utilisation générale de ceci est fait par:_ *'{usage.general}'*\n\n➖ _Quelques exemples_ *[Y compris ceux pour les DEV]*_:_\n{usage.examples}\n❓ _Alias:_\n{alias}"
+            "📚 _Bienvenue dans le menu d'aide du système_ *'{name}'*\n\n🔎 _Ce système est responsable de:_ *'{description}'*\n\n❗ _O utilisation générale de ceci est fait par:_ *'{usage.general}'*\n\n➖ _Quelques exemples_ *[Y compris ceux pour les DEV]*_:_\n{usage.examples}\n❓ _Alias:_\n{alias}\n\n👀 _Extra:_\n{helps}"
         ],
         "Developer": [
             "📚 _Bienvenue dans le menu d'aide du système_ *'{name}'*\n\n🔎 _Ce système est responsable de:_ *'{description}'*\n\n❗ _O utilisation générale de cela est fait par:_ *'{usage.general}'*\n\n➖ _Quelques exemples_ *[Y compris ceux pour les DEV]*_:_\n{usage.examples}\n❓ _Alias:_\n{alias}―――――――――――――――――――――――\n➕ *Autres détails [DEV]* ➕\n―――――――――――――――――――――――\n\n🎓 _Fabriqué par:_ *'{developer}'*\n\n📜 _Sous licence:_ *'{license}'*\n\n👀 _Conseils:_\n{helps}\n↻ _Exportations:_ {exports}\n\n🔧 _Modules:_ {modules}\n\n📁 _Fichiers :_ {files}\n\n⚙️ _Paramètres:_ {settings}\n\n✏️ _Additional:_ {parameters}\n\n🗳️ _Résultats:_ {results}"
@@ -129,10 +129,10 @@
     },
     "es": {
         "User": [
-            "📚 _Bienvenido al menú de ayuda del sistema_ *'{name}'*\n\n🔎 _Este sistema es responsable de:_ *'{description}'*\n\n❗ _O uso general de esto está hecho por:_ *'{usage.general}'*\n\n➖ _Algunos ejemplos_ *[Incluyendo aquellos para DEV]*_:_\n{usage.examples} "
+            "📚 _Bienvenido al menú de ayuda del sistema_ *'{name}'*\n\n🔎 _Este sistema es responsable de:_ *'{description}'*\n\n❗ _O uso general de esto está hecho por:_ *'{usage.general}'*\n\n➖ _Algunos ejemplos_ *[Incluyendo aquellos para DEV]*_:_\n{usage.examples}\n❓ _Alias:_\n{alias}\n\n👀 _Extra:_\n{helps}"
         ],
         "Developer": [
-            "📚 _Bienvenido al menú de ayuda del sistema_ *'{name}'*\n\n🔎 _Este sistema es responsable de:_ *'{description}'*\n\n❗ _O uso general de esto está hecho por:_ *'{usage.general}'*\n\n➖ _Algunos ejemplos_ *[Incluyendo aquellos para DEV]*_:_\n{usage.examples}\n――――――――――――――――――――――――\n➕ *Otros detalles [DEV]* ➕\n―――――――――――――――――――――――\n\n🎓 _Hecho por:_ *'{developer}'*\n\n📜 _Bajo licencia:_ *'{license}'*\n\n👀 _Consejos:_\n{helps}\n↻ _Exportaciones:_ {exports}\n\n🔧 _Módulos:_ {modules}\n\n📁 _Archivos:_ {files}\n\n⚙️ _Configuración:_ {settings}\n\n✏️ _Adicional:_ {parameters}\n\n🗳️ _Resultados:_ {results}"
+            "📚 _Bienvenido al menú de ayuda del sistema_ *'{name}'*\n\n🔎 _Este sistema es responsable de:_ *'{description}'*\n\n❗ _O uso general de esto está hecho por:_ *'{usage.general}'*\n\n➖ _Algunos ejemplos_ *[Incluyendo aquellos para DEV]*_:_\n{usage.examples}\n❓ _Alias:_\n{alias}\n\n――――――――――――――――――――――――\n➕ *Otros detalles [DEV]* ➕\n―――――――――――――――――――――――\n\n🎓 _Hecho por:_ *'{developer}'*\n\n📜 _Bajo licencia:_ *'{license}'*\n\n👀 _Consejos:_\n{helps}\n↻ _Exportaciones:_ {exports}\n\n🔧 _Módulos:_ {modules}\n\n📁 _Archivos:_ {files}\n\n⚙️ _Configuración:_ {settings}\n\n✏️ _Adicional:_ {parameters}\n\n🗳️ _Resultados:_ {results}"
         ],
         "Restrict": [
             "Este comando está restringido solo a los administradores, al propietario del grupo, a mi jefe o a los moderadores, tal vez algún día aparezcas en una de esas listas."
@@ -161,7 +161,7 @@
     },
     "id": {
         "User": [
-            "📚 _Selamat datang di menu bantuan sistem_ *'{name}'*\n\n🔎 _Sistem ini bertanggung jawab untuk:_ *'{description}'*\n\n❗ _Penggunaan umum ini dilakukan oleh:_ *'{usage.general}'*\n\n➖ _Beberapa contoh_ *[Termasuk untuk DEV]*_:_\n{usage.examples}\n❓ _Alias:_\n{alias}"
+            "📚 _Selamat datang di menu bantuan sistem_ *'{name}'*\n\n🔎 _Sistem ini bertanggung jawab untuk:_ *'{description}'*\n\n❗ _Penggunaan umum ini dilakukan oleh:_ *'{usage.general}'*\n\n➖ _Beberapa contoh_ *[Termasuk untuk DEV]*_:_\n{usage.examples}\n❓ _Alias:_\n{alias}\n\n👀 _Extra:_\n{helps}"
         ],
         "Developer": [
             "📚 _Selamat datang di menu bantuan sistem_ *'{name}'*\n\n🔎 _Sistem ini bertanggung jawab untuk:_ *'{description}'*\n\n❗ _Penggunaan umum ini dilakukan oleh:_ *'{usage.general}'*\n\n➖ _Beberapa contoh_ *[Termasuk untuk DEV]*_:_\n{usage.examples}\n❓ _Alias:_\n{alias}――――――――――――――――――――――――\n➕ *Detail Lainnya [DEV]* ➕\n―――――――――――――――――――――――\n\n🎓 _Dibuat oleh :_ *'{developer}'*\n\n📜 _Di bawah lisensi:_ *'{license}'*\n\n👀 _Kiat:_\n{helps}\n↻ _Ekspor:_ {exports}\n\n🔧 _Modul:_ {modules}\n\n📁 _File:_ {files}\n\n⚙️ _Konfigurasi:_ {settings}\n\n✏️ _Parameter:_ {parameters}\n\n🗳️ _Hasil:_ {results}"
@@ -193,7 +193,7 @@
     },
     "ms": {
         "User": [
-            "📚 _Selamat datang ke menu bantuan sistem_ *'{name}'*\n\n🔎 _Sistem ini bertanggungjawab untuk:_ *'{description}'*\n\n❗ _Penggunaan umum ini dilakukan oleh:_ *'{usage.general}'*\n\n➖ _Beberapa contoh_ *[Termasuk yang untuk DEV]*_:_\n{usage.examples}\n❓ _Alias:_\n{alias}"
+            "📚 _Selamat datang ke menu bantuan sistem_ *'{name}'*\n\n🔎 _Sistem ini bertanggungjawab untuk:_ *'{description}'*\n\n❗ _Penggunaan umum ini dilakukan oleh:_ *'{usage.general}'*\n\n➖ _Beberapa contoh_ *[Termasuk yang untuk DEV]*_:_\n{usage.examples}\n❓ _Alias:_\n{alias}\n\n👀 _Extra:_\n{helps}"
         ],
         "Developer": [
             "📚 _Selamat datang ke menu bantuan sistem_ *'{name}'*\n\n🔎 _Sistem ini bertanggungjawab untuk:_ *'{description}'*\n\n❗ _Penggunaan umum ini dilakukan oleh:_ *'{usage.general}'*\n\n➖ _Beberapa contoh_ *[Termasuk yang untuk DEV]*_:_\n{usage.examples}\n❓ _Alias:_\n{alias}――――――――――――――――――――――――\n➕ *Butiran Lain [DEV]* ➕\n―――――――――――――――――――――――\n\n🎓 _Dibuat oleh :_ *'{developer}'*\n\n📜 _Di bawah lesen:_ *'{license}'*\n\n👀 _Petua:_\n{helps}\n↻ _Eksport:_ {exports}\n\n🔧 _Modul:_ {modules}\n\n📁 _Fail:_ {files}\n\n⚙️ _Tatarajah:_ {settings}\n\n✏️ _Parameter:_ {parameters}\n\n🗳️ _Hasil:_ {results}"
@@ -225,7 +225,7 @@
     },
     "hi": {
         "User": [
-            "📚 _सिस्टम सहायता मेनू में आपका स्वागत है_ *'{name}'*\n\n🔎 _यह सिस्टम इसके लिए ज़िम्मेदार है:_ *'{description}'*\n\n❗ _इसका सामान्य उपयोग इसके द्वारा किया जाता है:_ *'{usage.general}'*\n\n➖ _कुछ उदाहरण_ *[DEVs सहित]*_:_\n{usage.examples}\n❓ _उपनाम:_\n{alias}"
+            "📚 _सिस्टम सहायता मेनू में आपका स्वागत है_ *'{name}'*\n\n🔎 _यह सिस्टम इसके लिए ज़िम्मेदार है:_ *'{description}'*\n\n❗ _इसका सामान्य उपयोग इसके द्वारा किया जाता है:_ *'{usage.general}'*\n\n➖ _कुछ उदाहरण_ *[DEVs सहित]*_:_\n{usage.examples}\n❓ _उपनाम:_\n{alias}\n\n👀 _Extra:_\n{helps}"
         ],
         "Developer": [
             "📚 _सिस्टम सहायता मेनू में आपका स्वागत है_ *'{name}'*\n\n🔎 _यह सिस्टम इसके लिए ज़िम्मेदार है:_ *'{description}'*\n\n❗ _इसका सामान्य उपयोग इसके द्वारा किया जाता है:_ *'{usage.general}'*\n\n➖ _कुछ उदाहरण_ *[DEVs के लिए उन्हें शामिल करते हुए]*_:_\n{usage.examples}\n❓ _उपनाम:_\n{alias}――――――――――――――――――――――――\n➕ *अन्य विवरण [DEVs]* ➕\n―――――――――――――――――――――――\n\n _द्वारा निर्मित :_ *'{developer}'*\n\n📜 _अंडर लाइसेंस:_ *'{license}'*\n\n👀 _टिप्स:_\n{helps}\n↻ _Exports:_ {exports}\n\n🔧 _मॉड्यूल:_ {modules}\n\n📁 _फ़ाइलें:_ {files}\n\n⚙️ _कॉन्फ़िगरेशन:_ {settings}\n\n✏️ _पैरामीटर:_ {parameters}\n\n🗳️ _परिणाम:_ {results}"
@@ -257,7 +257,7 @@
     },
     "de": {
         "User": [
-            "📚 _Willkommen im Hilfemenü des Systems_ *'{name}'*\n\n🔎 _Dieses System ist verantwortlich für:_ *'{description}'*\n\n❗ _Die allgemeine Verwendung erfolgt durch:_ *'{usage.general}'*\n\n➖ _Einige Beispiele_ *[einschließlich derer für DEVs]*_:_\n{usage.examples}\n❓ _Alias:_\n{alias}"
+            "📚 _Willkommen im Hilfemenü des Systems_ *'{name}'*\n\n🔎 _Dieses System ist verantwortlich für:_ *'{description}'*\n\n❗ _Die allgemeine Verwendung erfolgt durch:_ *'{usage.general}'*\n\n➖ _Einige Beispiele_ *[einschließlich derer für DEVs]*_:_\n{usage.examples}\n❓ _Alias:_\n{alias}\n\n👀 _Extra:_\n{helps}"
         ],
         "Developer": [
             "📚 _Willkommen im Hilfemenü des Systems_ *'{name}'*\n\n🔎 _Dieses System ist verantwortlich für:_ *'{description}'*\n\n❗ _Die allgemeine Verwendung erfolgt durch:_ *'{usage.general}'*\n\n➖ _Einige Beispiele_ *[Einschließlich derer für DEVs]*_:_\n{usage.examples}\n❓ _Alias:_\n{alias}――――――――――――――――――――――――\n➕ *Andere Details [DEVs]* ➕\n―――――――――――――――――――――――\n\n🎓 :_ *'{developer}'*\n\n📜 _Unter Lizenz:_ *'{license}'*\n\n👀 _Tipps:_\n{helps}\n↻ _Exporte:_ {exports}\n\n🔧 _Module:_ {modules}\n\n📁 _Dateien:_ {files}\n\n⚙️ _Konfigurationen:_ {settings}\n\n✏️ _Parameter:_ {parameters}\n\n🗳️ _Ergebnisse:_ {results}"
@@ -289,7 +289,7 @@
     },
     "it": {
         "User": [
-            "📚 _Benvenuto nel menu di aiuto del sistema_ *'{name}'*\n\n🔎 _Questo sistema è responsabile di:_ *'{description}'*\n\n❗ _L'uso generale di questo è fatto da:_ *'{usage.general}'*\n\n➖ _Alcuni esempi_ *[Inclusi quelli per DEV]*_:_\n{usage.examples}\n❓ _Alias:_\n{alias}"
+            "📚 _Benvenuto nel menu di aiuto del sistema_ *'{name}'*\n\n🔎 _Questo sistema è responsabile di:_ *'{description}'*\n\n❗ _L'uso generale di questo è fatto da:_ *'{usage.general}'*\n\n➖ _Alcuni esempi_ *[Inclusi quelli per DEV]*_:_\n{usage.examples}\n❓ _Alias:_\n{alias}\n\n👀 _Extra:_\n{helps}"
         ],
         "Developer": [
             "📚 _Benvenuto nel menu di aiuto del sistema_ *'{name}'*\n\n🔎 _Questo sistema è responsabile di:_ *'{description}'*\n\n❗ _L'uso generale di questo è fatto da:_ *'{usage.general}'*\n\n➖ _Alcuni esempi_ *[Inclusi quelli per DEV]*_:_\n{usage.examples}\n❓ _Alias:_\n{alias}――――――――――――――――――――――――\n➕ *Altre informazioni [DEV]* ➕\n――――――――――――――――――――――――\n\n🎓 _Made by :_ *'{developer}'*\n\n📜 _Sotto licenza:_ *'{license}'*\n\n👀 _Suggerimenti:_\n{helps}\n↻ _Esportazioni:_ {exports}\n\n🔧 _Modules:_ {modules}\n\n📁 _Files:_ {files}\n\n⚙️ _Configurations:_ {settings}\n\n✏️ _Parameters:_ {parameters}\n\n🗳️ _Results:_ {results}"
@@ -321,7 +321,7 @@
     },
     "ru": {
         "User": [
-            "📚 _Добро пожаловать в меню справки системы_ *'{name}'*\n\n🔎 _Эта система отвечает за:_ *'{description}'*\n\n❗ _Общее использование этого осуществляется:_ *'{usage.general}'*\n\n➖ _Некоторые примеры_ *[В том числе для DEV]*_:_\n{usage.examples}\n❓ _Псевдоним:_\n{alias}"
+            "📚 _Добро пожаловать в меню справки системы_ *'{name}'*\n\n🔎 _Эта система отвечает за:_ *'{description}'*\n\n❗ _Общее использование этого осуществляется:_ *'{usage.general}'*\n\n➖ _Некоторые примеры_ *[В том числе для DEV]*_:_\n{usage.examples}\n❓ _Псевдоним:_\n{alias}\n\n👀 _Extra:_\n{helps}"
         ],
         "Developer": [
             "📚 _Добро пожаловать в меню справки системы_ *'{name}'*\n\n🔎 _Эта система отвечает за:_ *'{description}'*\n\n❗ _Общее использование этого осуществляется:_ *'{usage.general}'*\n\n➖ _Некоторые примеры_ *[В том числе для DEV]*_:_\n{usage.examples}\n❓ _Псевдоним:_\n{alias}――――――――――――――――――――――――\n➕ *Другие сведения [DEVs]* ➕\n――――――――――――――――――――――――\n\n🎓 _Сделано :_ *'{developer}'*\n\n📜 _Под лицензией:_ *'{license}'*\n\n👀 _Советы:_\n{helps}\n↻ _Экспорт:_ {exports}\n\n🔧 _Modules:_ {modules}\n\n📁 _Files:_ {files}\n\n⚙️ _Configurations:_ {settings}\n\n✏️ _Parameters:_ {parameters}\n\n🗳️ _Results:_ {results}"
@@ -353,7 +353,7 @@
     },
     "lat": {
         "User": [
-            "📚 _Welcome to the system help menu_ *'{name}'*\n\n🔎 _Haec ratio responsabilis est:_ *'{description}'*\n\n❗ _ Communis usus huius rei ab:_ *'{usage.general}'*\n\n➖ _Quaedam exempla_ *[Including his for DEVs]*_:_\n{usage.examples}\n❓ _Alias:_\n{alias}"
+            "📚 _Welcome to the system help menu_ *'{name}'*\n\n🔎 _Haec ratio responsabilis est:_ *'{description}'*\n\n❗ _ Communis usus huius rei ab:_ *'{usage.general}'*\n\n➖ _Quaedam exempla_ *[Including his for DEVs]*_:_\n{usage.examples}\n❓ _Alias:_\n{alias}\n\n👀 _Extra:_\n{helps}"
         ],
         "Developer": [
             "📚 _Welcome to the system help menu_ *'{name}'*\n\n🔎 _Haec ratio responsabilis est:_ *'{description}'*\n\n❗ _ Communis usus huius rei ab:_ *'{usage.general}'*\n\n➖ _Quaedam exempla_ *[Including his for DEVs]*_:_\n{usage.examples}\n❓ _Alias:_\n{alias}――――――――――――――――――――――――\n➕*Alia Details [DEVs]*\n――――――――――――――――――――――――\n\n🎓 _Made by :_ *'{developer}'*\n\n📜 _Sub licentia:_ *'{license}'*\n\n👀 _Tips:_\n{helps}\n↻ _Exports:_ {exports}\n\n🔧 _Modules:_ {modules}\n\n📁 _Files:_ {files}\n\n⚙️ _Configurationes:_ {settings}\n\n✏️ _Parameters:_ {parameters}\n\n🗳️ _Results:_ {results}"

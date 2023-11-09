@@ -2,12 +2,14 @@
     "name": "Toggle",
     "description": "Fazer a ativação de sistemas de segurança, jogos e demais.",
     "usage": {
-        "general": "[Prefix][Alias] [On|1|Enable|Off|0|Disable|-add|-rem|-clear|-text] [remove|change|add|-add|-rem|-clear|Prefix|Numero|Texto|Sigla_Idioma] [Valores]",
+        "general": "[Prefix][Alias] [On|1|Enable|Off|0|Disable|-add|-rem|-clear|-text|-ban] [remove|change|add|-add|-rem|-clear|Prefix|Texto|Sigla_Idioma|Numero] [Valores]",
         "examples": [
             "/Comando on/off",
             "/Comando -add <Numero/Texto/Simbolo>",
             "/Comando -text -add <Texto>",
             "/Comando -text -clear",
+            "/antispam -ban 10",
+            "/antispam 10",
             "/Welcome On|Off",
             "/Prefix -add ^",
             "/Goodbye -text -add Adeus {userm}",
@@ -28,7 +30,8 @@
         "Alguém lê essas dicas? Se sim, torne-se um programador, ler os tutoriais é de suma importância e poucos desenvolvedores o fazem...",
         "Existem infinitas formas de uso secretas, explore os códigos para descobrir os mistérios dos sistemas!",
         "O nome do comando é usado diretamente na função como nome da key, certifique-se de que o nome existe no arquivo de funções.",
-        "O antifake deve ser configurado com o DDI, ou seja, se quiser banir todos os números +1, apenas digite 1 no uso do comando."
+        "O antifake deve ser configurado com o DDI, ou seja, se quiser banir todos os números +1, apenas digite 1 no uso do comando.",
+        "O antispam deve ser definido com o argumento '-ban' se quiser que a pessoa seja removida, se não for o caso, você pode ignorar o uso do '-ban' e apenas insirir o número, que é a quantidade de mídias máximas enviadas de uma vez pela pessoa."
     ],
     "exports": {
         "env": "env",

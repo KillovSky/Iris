@@ -75,5 +75,29 @@
 	"ExpPerMessage": {
 		"description": "The quantity of XP obtained per message, except from reactions, Íris and broadcasts (if disable).",
 		"value": 10
+	},
+    "spammerTime": {
+		"description": "The time in MS to blocks any command send by someone spamming commands, for example, if you set 300000, the spammer will need to wait 5 minutes to run commands again.",
+		"value": 120000
+	},
+    "commandsCooldown": {
+		"description": "The cooldown in MS of commands usage, you have to sincronize it with 'maxCommands' to get a good antispam, or just use default values.",
+		"value": 5000
+	},
+    "mediaCooldown": {
+		"description": "The cooldown in MS of media messages, you have to sincronize it with 'maxCommands' to get a good antispam, or just use default values.",
+		"value": 120000
+	},
+    "maxCommands": {
+		"description": "The max commands a user can run without trigger the antispam feature (cooldown is controlled by 'commandsCooldown').",
+		"value": 3
+	},
+    "colorSet": {
+		"description": "The colors used to print messages and commands to terminal, you have to set in the following order: [Normal Text, Body Preview, Date, Groups and Numbers, Command], remember to use english named colors, and ofcourse, nothing too complex.",
+		"value": ["brightBlue", "brightYellow", "brightRed", "brightGreen", "brightMagenta"]
+	},
+    "consoleType": {
+		"description": "This defines what information is logged on screen, a value of 1 prints all information, 2 for messages only, and 3 for commands only.",
+		"value": 1
 	}
 }

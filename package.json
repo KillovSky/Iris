@@ -1,9 +1,10 @@
 {
   "name": "iris",
-  "version": "1.0.5",
-  "build_date": "29-10-2023",
+  "version": "1.0.6",
+  "build_date": "09-11-2023",
+  "build_name": "Cupcake",
   "private": "true",
-  "description": "Novo Projeto Íris, uma versão totalmente nova feita com novas APIs, sistemas e muito mais, sendo um projeto novo, aberto e sem nenhum foco lucrativo.",
+  "description": "Novo Projeto Íris, uma versão totalmente nova feita com novas APIs, sistemas, 12 idiomas e muito mais, sendo um projeto novo, aberto e sem nenhum foco lucrativo.",
   "main": "lib/Initialize/checker.js",
   "scripts": {
     "start": "node lib/Initialize/checker.js",
@@ -34,6 +35,7 @@
     "express": "^4.18.2",
     "fluent-ffmpeg": "^2.1.2",
     "ip": "^2.0.0",
+    "link-preview-js": "^3.0.5",
     "pino": "^8.12.1",
     "pretty-num": "^0.5.2",
     "qrcode-terminal": "^0.12.0",

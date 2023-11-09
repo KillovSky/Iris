@@ -150,6 +150,7 @@ lib/Sessions/*
 !lib/Sessions/readme.txt
 !lib/Databases/Informations/Default.json
 MessageTypes
+NASA_IMAGES
 
 # managed
 **.data.json
