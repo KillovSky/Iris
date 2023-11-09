@@ -99,5 +99,9 @@
     "consoleType": {
 		"description": "This defines what information is logged on screen, a value of 1 prints all information, 2 for messages only, and 3 for commands only.",
 		"value": 1
+	},
+    "tagAdmins": {
+		"description": "Determine whether Íris should tag administrators when she detects and sends spam alerts in a group.",
+		"value": true
 	}
 }
