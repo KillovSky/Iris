@@ -12,16 +12,6 @@
             "array"
         ]
     },
-    "Block": {
-        "place": "./Functions/Verifiers/Blocker/index",
-        "alias": [
-            "block",
-            "blocker",
-            "blockers",
-            "autoblock",
-            "autoblocker"
-        ]
-    },
     "Cards": {
         "place": "./Functions/Canvas/Cards/index",
         "alias": [
@@ -311,6 +301,15 @@
             "update",
             "github",
             "package"
+        ]
+    },
+    "Verifier": {
+        "place": "./Functions/Verifiers/index",
+        "alias": [
+            "verifier",
+            "verifiers",
+            "precheck",
+            "preprocessing"
         ]
     },
     "ZIP": {

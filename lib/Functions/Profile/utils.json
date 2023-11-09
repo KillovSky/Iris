@@ -184,7 +184,7 @@
         "failed": {
             "description": "Define a imagem padrão de erro.",
             "type": "String",
-            "value": "https://http.cat/204"
+            "value": "https://user-images.githubusercontent.com/55511420/274441561-33852679-aaa5-4ace-b4f3-f40f9ade72c7.png"
         },
         "location": {
             "description": "Local onde o módulo pode ser encontrado.",

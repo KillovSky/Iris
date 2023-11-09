@@ -2,11 +2,12 @@
     "name": "memes",
     "description": "Realizar a criação dos memes por meio de canvas.",
     "usage": {
-        "general": "[Prefix][Alias] [@user|mensagem|foto]",
+        "general": "[Prefix][Alias] [@user|mensagem|foto] [-sticker]",
         "examples": [
-            "/lgbt",
-            "/lgbt @user",
+            "/gay",
+            "/gay @user",
             "/trash <mensagem>",
+            "/slap <mensagem> <@user> -sticker",
             "/beautiful <foto>",
             "/memes --help",
             "memes.execute('kill', 'params')",

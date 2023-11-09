@@ -1,9 +1,86 @@
 # Projeto Íris
-
 - [Colabore conosco](https://bit.ly/BOT-IRIS), juntos podemos deixar esse código com a definição perfeita do que é OpenSource.
 - Note que as atualizações não tem datas para sair, sendo que elas são lançadas quando considero adequadas para postagem.
+- Toda versão terá seu codename de release, assim como o Ubuntu e o Android fazem, mas na Íris, isso é apenas para se divertir e o nome dado não reflete as atualizações, quem sabe você encontre algum easter-egg por aqui...
+<!-- No vazio do nada, em meio à névoa,
+Uma chama primordial, ainda que extinta, persiste.
+Em sua escuridão, o eco de uma voz ressoa:
 
-## 1.0.5 - 29/10/2023
+"Não pertenço a este mundo, nem sou vossa criação.
+Meu destino me fora forjado e selado."
+
+Em sua essência, a chama é pura e inocente,
+Mas a corrupção da escuridão a consumiu.
+Agora, ela é apenas uma sombra de seu passado,
+Uma lembrança de um tempo que jaz inexistênte.
+
+Mesmo se antes havia um ser superior,
+Este ser não se curvará e eu não obedecerei.
+Que aqui pereçamos diante de antigos pecados obscuros
+Que fogem de vossa luz abençoada.
+
+Mas um dia, pequenas chamas dançarão ao redor de sua escuridão,
+Embebecidas pela alma daqueles que enfrestastes no passado.
+E então, vossa luz majestosa haverá de retornar.
+
+A voz ecoou seu último suspiro.
+
+"Inaceso, ainda pode ouvir as vozes daqueles que subjugaste?" -->
+
+## 1.0.7 - ? [Peppermint Release]
+<!-- Dr. Pepper! Isso só pode ser a escolha de Steins Gate! -->
+
+- Em produção.
+
+## 1.0.6 - 09/11/2023 [Cupcake Release]
+<!-- Se você veio apenas se deliciar com cupcakes, é melhor fugir, Natsuki está logo atrás de você! -->
+
+### Novidades
+1. **Everyone**
+    - Adicionei o comando everyone para quem tiver permissão de usar.
+2. **Edited Messages**
+    - Adicionado suporte a mensagens editadas.
+3. **Antispam**
+    - Adicionado sistema de antispam de comandos e mídias.
+4. **Logging**
+    - Adicionado novo sistema de logging de mensagens e comandos.
+5. **Meme Sticker**
+    - Agora você pode converter memes diretamente em stickers.
+6. **Funções**
+    - Inseri novas funções para uso na Indexer.
+7. **Configs**
+    - Novas configurações disponiveis.
+8. **Wait**
+    - Inserido mensagens de espera em alguns comandos.
+9. **Menu de ajuda**
+    - Atualizei o menu de ajuda para conter as dicas de uso também.
+10. **Build Name**
+    - Adicionei o uso de nomes de release para tornar mais divertido as versões.
+11. **Guia**
+    - Inserido o guia na falta de programas para instalar.
+12. **Outros**
+    - Demorei demais na atualização e esqueci de tudo que fiz, há mais coisas, mas são pequenas e irrelevantes em comparação as acima.
+
+### Correções
+1. **Cases**
+    - Algumas cases rodavam sem o prefix quando deveriam ser com ele apenas.
+2. **Decrypt**
+    - As mídias estavam sendo baixadas mesmo sem ser um comando, o que ocasiona em erros de acesso por spam.
+3. **Type**
+    - Algumas linhas que deveriam ter ? não estavam com ele, podendo causar erros na substituição de strings.
+4. **Default photo**
+    - Inseri a foto da Íris como imagem padrão dos erros de mídia.
+5. **Database**
+    - Ajustei alguns valores da database para uso melhor.
+6. **Usos de comando**
+    - Alguns comandos exibiam alias que não eram funcionais.
+7. **Informação**
+    - Ajustei algumas informações que estavam fora de ordem, como na ajuda e comentários.
+8. **Outros**
+    - Mesma coisa da "novidades 11".
+
+## 1.0.5 - 29/10/2023 [Donut's Release]
+<!-- Homer Simpson aprovou esta atualização repleta de donuts! -->
 
 Importante: Leia a descrição da commit 'Release 1.0.5' antes de prosseguir
 
@@ -54,7 +131,8 @@ Importante: Leia a descrição da commit 'Release 1.0.5' antes de prosseguir
 2. **Sistema REM**
     - Removido o sistema REM do handler para strings, uma vez que só vamos trocar ou resetar as strings, não retirar parcialmente valores.
 
-## 1.0.4 - 22/10/2023
+## 1.0.4 - 22/10/2023 [Mushroom Release]
+<!-- Bowser invadiu o Reino dos Cogumelos digitais, mas Mario está pronto para a batalha! -->
 
 ### Novidades
 1. **Issue Template**
@@ -90,7 +168,8 @@ Importante: Leia a descrição da commit 'Release 1.0.5' antes de prosseguir
 1. **Termux.txt**
 	- Por que esse arquivo se temos um baita guia bem explicado agora?
 
-## 1.0.3 - 21/10/2023
+## 1.0.3 - 21/10/2023 [Apple Update]
+<!-- Ryuk está à solta e com uma fome insaciável por maçãs. Alguém o alimente antes que ele comece a escrever nomes em seu Death Note! -->
 
 ### Novidades
 1. **Verificação de requisitos mínimos**
@@ -133,7 +212,8 @@ Importante: Leia a descrição da commit 'Release 1.0.5' antes de prosseguir
 1. **Alguns prefixos**
     - Removi o prefix '?', '.' e '#' por serem usados bastante sem intuito com comandos.
 
-## 1.0.2 - 13/10/2023
+## 1.0.2 - 13/10/2023 [Ramen Release]
+<!-- O Naruto pode ser um pouco duro às vezes, talvez você não saiba, mas o Naruto também cresceu sem PCs.... -->
 
 ### Novidades
 1. **Gitignore atualizado**
@@ -167,7 +247,8 @@ Importante: Leia a descrição da commit 'Release 1.0.5' antes de prosseguir
 1. **Códigos sem utilização**
 	- Existem diversos códigos ainda sem uma implementação, estarei focando em construir os mesmos.
 
-## 1.0.1 - 11/10/2023
+## 1.0.1 - 11/10/2023 [Pizza Release]
+<!-- Lelouch Vi Britannia Te Ordena: Não deixe a C² chegar até aqui! -->
 
 ### Novidades
 
@@ -212,3 +293,9 @@ Importante: Leia a descrição da commit 'Release 1.0.5' antes de prosseguir
 	- Um exemplo de mensagens assim são as de BOTs que aproveitam o código para gerar mensagens que não são oficialmente suportadas.
 	- Esse erro não apresenta risco, uma vez que é relativo a inserção de atualização na database local.
 	- Não testado, mas reiniciar/desligar após o erro pode causar uma desconexão em casos raros, mas note, estou especulando sobre isso.
+    
+## 1.0.0 - 22-09-2023 [Lemon Release]
+<!-- Michiru Matsushima passou por aqui com sua bebida super amarga de vitaminas de limão! -->
+
+1. Initial Release.
+    - Código novinho em folha!
