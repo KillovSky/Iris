@@ -8,6 +8,9 @@ CREATE TABLE IF NOT EXISTS banks (
 -- Insere os valores ou ignora, caso existam
 INSERT OR IGNORE INTO banks (id, data) VALUES ('{INSERTUSER}', '{INSERTDEFAULT}');
 
+-- Atualiza o JSON
+UPDATE banks SET data = json_patch('{INSERTDEFAULT}', data) WHERE id = '{INSERTUSER}';
+
 -- Atualiza e seta a data, local do JSON
 UPDATE banks SET data = (
     -- Declara a string JSON como uma variável

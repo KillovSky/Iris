@@ -10,6 +10,9 @@ CREATE TABLE IF NOT EXISTS leveling (
 -- Insere os valores ou ignora, caso existam
 INSERT OR IGNORE INTO leveling (user, chat, data) VALUES ('{INSERTUSER}', '{INSERTGROUP}', '{INSERTDEFAULT}');
 
+-- Atualiza o JSON
+UPDATE leveling SET data = json_patch('{INSERTDEFAULT}', data) WHERE user = '{INSERTUSER}' AND chat = '{INSERTGROUP}';
+
 -- Deleta as colunas invalidas
 DELETE FROM leveling WHERE user NOT LIKE '%@s.whatsapp.net%' OR chat NOT LIKE '%@g.us%';
 

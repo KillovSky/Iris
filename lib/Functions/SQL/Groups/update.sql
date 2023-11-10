@@ -8,6 +8,9 @@ CREATE TABLE IF NOT EXISTS groups (
 -- Insere os valores ou ignora, caso existam
 INSERT OR IGNORE INTO groups (id, data) VALUES ('{INSERTGROUP}', '{INSERTDEFAULT}');
 
+-- Atualiza o JSON
+UPDATE groups SET data = json_patch('{INSERTDEFAULT}', data) WHERE id = '{INSERTGROUP}';
+
 -- Atualiza a coluna 'data' da tabela 'groups' com os valores do JSON recebido
 UPDATE groups SET data = (
     -- Declara a string JSON como uma variável

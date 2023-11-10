@@ -8,6 +8,9 @@ CREATE TABLE IF NOT EXISTS personal (
 -- Insere os valores ou ignora, caso existam
 INSERT OR IGNORE INTO personal (id, data) VALUES ('{INSERTUSER}', '{INSERTDEFAULT}');
 
+-- Atualiza o JSON
+UPDATE personal SET data = json_patch('{INSERTDEFAULT}', data) WHERE id = '{INSERTUSER}';
+
 -- Deleta as colunas invalidas
 DELETE FROM personal WHERE id NOT LIKE '%@s.whatsapp.net%';
 

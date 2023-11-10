@@ -8,6 +8,9 @@ CREATE TABLE IF NOT EXISTS personal (
 -- Insere os valores ou ignora, caso existam
 INSERT OR IGNORE INTO personal (id, data) VALUES ('{INSERTUSER}', '{INSERTDEFAULT}');
 
+-- Atualiza o JSON
+UPDATE personal SET data = json_patch('{INSERTDEFAULT}', data) WHERE id = '{INSERTUSER}';
+
 -- Remove a Object
 UPDATE personal SET data = json_remove(data, '$.{INSERTKEY}{INSERTJSON}') WHERE id = '{INSERTUSER}';
 

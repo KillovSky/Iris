@@ -8,6 +8,9 @@ CREATE TABLE IF NOT EXISTS groups (
 -- Insere os valores ou ignora, caso existam
 INSERT OR IGNORE INTO groups (id, data) VALUES ('{INSERTGROUP}', '{INSERTDEFAULT}');
 
+-- Atualiza o JSON
+UPDATE groups SET data = json_patch('{INSERTDEFAULT}', data) WHERE id = '{INSERTGROUP}';
+
 -- Remove a Object
 UPDATE groups SET data = json_remove(data, '$.{INSERTKEY}{INSERTJSON}') WHERE id = '{INSERTGROUP}';
 
