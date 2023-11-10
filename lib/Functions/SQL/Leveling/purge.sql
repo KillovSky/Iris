@@ -10,6 +10,9 @@ CREATE TABLE IF NOT EXISTS leveling (
 -- Insere os valores ou ignora, caso existam
 INSERT OR IGNORE INTO leveling (user, chat, data) VALUES ('{INSERTUSER}', '{INSERTGROUP}', '{INSERTDEFAULT}');
 
+-- Atualiza o JSON
+UPDATE leveling SET data = json_patch('{INSERTDEFAULT}', data) WHERE user = '{INSERTUSER}' AND chat = '{INSERTGROUP}';
+
 -- Remove a Object
 UPDATE leveling SET data = json_remove(data, '$.{INSERTKEY}{INSERTVALUE}') WHERE user = '{INSERTUSER}' AND chat = '{INSERTGROUP}';
 

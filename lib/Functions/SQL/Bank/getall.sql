@@ -8,6 +8,9 @@ CREATE TABLE IF NOT EXISTS banks (
 -- Insere os valores ou ignora, caso existam
 INSERT OR IGNORE INTO banks (id, data) VALUES ('{INSERTUSER}', '{INSERTDEFAULT}');
 
+-- Atualiza o JSON
+UPDATE banks SET data = json_patch('{INSERTDEFAULT}', data) WHERE id = '{INSERTUSER}';
+
 -- Deleta as colunas invalidas
 DELETE FROM banks WHERE id NOT LIKE '%@s.whatsapp.net%';
 
