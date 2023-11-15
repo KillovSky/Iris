@@ -38,7 +38,6 @@
         "farpc": "farpc",
         "findkey": "findkey",
         "repl": "repl",
-        "scale": "scale",
         "reset": "reset",
         "poswork": "finish"
     },
@@ -69,48 +68,6 @@
                 }
             },
             "description": "Ajusta os valores de erro.",
-            "type": "Boolean / Function",
-            "value": false
-        },
-        "scale": {
-            "arguments": {
-                "imageData": {
-                    "description": "Imagem com base em canvas.",
-                    "type": "Boolean / Object",
-                    "value": false
-                },
-                "widthVal": {
-                    "description": "Posição do width da imagem a desenhar.",
-                    "type": "Boolean / Number",
-                    "value": false
-                },
-                "heightVal": {
-                    "description": "Posição do height da imagem a desenhar.",
-                    "type": "Boolean / Number",
-                    "value": false
-                },
-                "topLeftWidth": {
-                    "description": "Posição do width no top left da imagem a desenhar.",
-                    "type": "Boolean / Number",
-                    "value": false
-                },
-                "topLeftHeight": {
-                    "description": "Posição do height no top left da imagem a desenhar.",
-                    "type": "Boolean / Number",
-                    "value": false
-                },
-                "context": {
-                    "description": "Contexto da imagem em canvas.",
-                    "type": "Boolean / Object",
-                    "value": false
-                },
-                "typer": {
-                    "description": "Tipo de operação matemática a realizar [MAX/MIN].",
-                    "type": "Boolean / String",
-                    "value": false
-                }
-            },
-            "description": "Desenha algo em uma imagem via Canvas.",
             "type": "Boolean / Function",
             "value": false
         },

@@ -80,10 +80,12 @@
                         "https://thispersondoesnotexist.com"
                     ]
                 },
-                "title": {
-                    "description": "Titulo do cartão a criar.",
-                    "type": "Boolean / String",
-                    "value": false
+                "env": {
+                    "description": "Ambiente com dados da mensagem.",
+                    "type": "Object",
+                    "value": {
+                        "value": {}
+                    }
                 },
                 "description": {
                     "description": "Mensagem do cartão abaixo do titulo.",
@@ -129,7 +131,7 @@
         "error": {
             "description": "Define se pode printar qualquer erro.",
             "type": "Boolean",
-            "value": false
+            "value": true
         },
         "ender": {
             "description": "Define se deve resetar a cada erro.",
@@ -147,27 +149,13 @@
             "description": "Define as configurações padrões.",
             "type": "Object",
             "value": {
-                "profile": "https://raw.githubusercontent.com/KillovSky/Iris_Files/main/Assets/user.png",
                 "background": {
                     "value": "https://user-images.githubusercontent.com/55511420/200402294-51d85a0b-c405-4cfa-b316-db651dd00e7e.jpg",
                     "format": "image"
                 },
-                "leveling": {
-                    "username": "#D2E6FA",
-                    "contColor": "#0047ab",
-                    "status": "#23087D",
-                    "level": {
-                        "name": "#E4000F",
-                        "value": "#008C2F"
-                    },
-                    "overlayOpacity": 0.4,
-                    "progressBar": "#F0DA53",
-                    "rank": {
-                        "name": "#E4000F",
-                        "value": "#008C2F"
-                    },
-                    "currentXP": "#E4000F",
-                    "requiredXP": "#008C2F"
+                "ship": {
+                    "border": "#E60012",
+                    "overlayOpacity": 0.4
                 },
                 "greetings": {
                     "apply": true,

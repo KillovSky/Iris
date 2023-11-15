@@ -1,0 +1,422 @@
+{
+    "pt": {
+        "Uncreated": [
+            "Você não possui nenhum jogo ainda, que tal começar um comigo ou com alguém?"
+        ],
+        "Created": [
+            "Você já possui um jogo, se estiver cansado de seu oponente ou quiser batalhar contra outro, cancele este jogo antes."
+        ],
+        "Placar": [
+            "🥇 Bem-vindo ao placar! 🗑️\n\n︵‿︵‿୨♡୧‿︵‿︵\n\n🏆 = Vitorias\n😞 = Derrotas\n🤝 = Empates\n\n︵‿︵‿୨♡୧‿︵‿︵\n\n{scoreboard}"
+        ],
+        "NoPlacar": [
+            "🗑️ Infelizmente ainda não temos jogadores para comtabilizar um placar, o que acha de começar um jogo contra mim para ser o primeiro dele?"
+        ],
+        "Init": [
+            "✨ Jogo criado com sucesso!\n\n👋 @{userFormated} é o primeiro a jogar."
+        ],
+        "NotTurn": [
+            "🛑 Pare ai mesmo, ainda não é seu turno, é a vez de @{playerFormatted}, aguarde pacientemente!"
+        ],
+        "Invalid": [
+            "⚠️ Essa jogada não é válida, somente as seguintes jogadas estão disponíveis:\n{movements}"
+        ],
+        "Delete": [
+            "🗑️ Jogo deletado com sucesso, você agora é livre para jogar com qualquer um!"
+        ],
+        "Play": [
+            "✅ Jogada efetuada! Agora é sua vez, @{mentionRival}!"
+        ],
+        "Draw": [
+            "O jogo acabou por {gameend}, ambos ganham pontos de draw pelo jogo! 😄 Que tal criar uma nova partida agora? Se não encontrar um parceiro, estou aqui para jogar com você! 🎉"
+        ],
+        "Victory": [
+            "O jogo acabou por {gameend}, o jogador {winner} receberá um ponto de vitoria e {looser} receberá um ponto de derrota! 😄 Que tal criar uma nova partida agora? Se não encontrar um parceiro, estou aqui para jogar com você! 🎉"
+        ]
+    },
+    "jp": {
+        "Uncreated": [
+            "まだゲームを持っていませんね。私か誰かと一緒に始めてみませんか？"
+        ],
+        "Created": [
+            "既にゲームが進行中です。相手に飽きたか、他の相手と戦いたい場合は、このゲームをキャンセルしてください。"
+        ],
+        "Placar": [
+            "🥇 スコアボードへようこそ！ 🗑️\n\n︵‿︵‿୨♡୧‿︵‿︵\n\n🏆 = 勝利\n😞 = 敗北\n🤝 = 引き分け\n\n︵‿︵‿୨♡୧‿︵‿︵\n\n{scoreboard}"
+        ],
+        "NoPlacar": [
+            "🗑️ 残念ながら、まだプレイヤーがいないため、スコアをつけることはできません。私との対戦で初めてのゲームを始めてみるのはいかがでしょうか？"
+        ],
+        "Init": [
+            "✨ ゲームは成功裏に作成されました！\n\n👋 @{userFormated} が最初にプレイします。"
+        ],
+        "NotTurn": [
+            "🛑 そこで止まってください、あなたの番ではありません。@{playerFormatted}の番です、お待ちください！"
+        ],
+        "Invalid": [
+            "⚠️ この手は無効です。次の手だけが可能です:\n{movements}"
+        ],
+        "Delete": [
+            "🗑️ ゲームは成功裏に削除されました、これでどなたとでもプレイできます！"
+        ],
+        "Play": [
+            "✅ 手が打たれました！これで@{mentionRival}の番です！"
+        ],
+        "Draw": [
+            "ゲームは{gameend}で終了しました。おめでとうございます！両者が引き分けのポイントを獲得しました！ 😄 今すぐ新しいゲームを作成してみませんか？パートナーが見つからない場合は、私がプレイできますよ！ 🎉"
+        ],
+        "Victory": [
+            "ゲームは{gameend}で終了しました。おめでとうございます！{winner}が勝利ポイントを獲得し、{looser}が敗北ポイントを獲得します！ 😄 今すぐ新しいゲームを作成してみませんか？パートナーが見つからない場合は、私がプレイできますよ！ 🎉"
+        ]
+    },
+    "en": {
+        "Uncreated": [
+            "You don't have any games yet. How about starting one with me or someone else?"
+        ],
+        "Created": [
+            "You already have a game in progress. If you're tired of your opponent or want to battle against someone else, please cancel this game first."
+        ],
+        "Placar": [
+            "🥇 Welcome to the scoreboard! 🗑️\n\n︵‿︵‿୨♡୧‿︵‿︵\n\n🏆 = Wins\n😞 = Losses\n🤝 = Draws\n\n︵‿︵‿୨♡୧‿︵‿︵\n\n{scoreboard}"
+        ],
+        "NoPlacar": [
+            "🗑️ Unfortunately, we don't have players yet to tally a scoreboard. How about starting a game against me to be the first on it?"
+        ],
+        "Init": [
+            "✨ Game created successfully!\n\n👋 @{userFormated} is the first to play."
+        ],
+        "NotTurn": [
+            "🛑 Hold on there! It's not your turn yet. It's @{playerFormatted}'s turn, please wait patiently!"
+        ],
+        "Invalid": [
+            "⚠️ This move is not valid. Only the following moves are available:\n{movements}"
+        ],
+        "Delete": [
+            "🗑️ Game deleted successfully. Now you are free to play with anyone!"
+        ],
+        "Play": [
+            "✅ Move executed! Now it's your turn, @{mentionRival}!"
+        ],
+        "Draw": [
+            "The game ended in a {gameend}, both earn draw points for the game! 😄 How about creating a new game now? If you can't find a partner, I'm here to play with you! 🎉"
+        ],
+        "Victory": [
+            "The game ended in a {gameend}. Congratulations! Player {winner} will receive a victory point, and {looser} will receive a defeat point! 😄 How about creating a new game now? If you can't find a partner, I'm here to play with you! 🎉"
+        ]
+    },
+    "fr": {
+        "Uncreated": [
+            "Vous n'avez pas encore de partie. Que diriez-vous d'en commencer une avec moi ou avec quelqu'un d'autre ?"
+        ],
+        "Created": [
+            "Vous avez déjà une partie en cours. Si vous en avez assez de votre adversaire ou si vous voulez défier quelqu'un d'autre, veuillez d'abord annuler cette partie."
+        ],
+        "Placar": [
+            "🥇 Bienvenue au tableau des scores ! 🗑️\n\n︵‿︵‿୨♡୧‿︵‿︵\n\n🏆 = Victoires\n😞 = Défaites\n🤝 = Nuls\n\n︵‿︵‿୨♡୧‿︵‿︵\n\n{scoreboard}"
+        ],
+        "NoPlacar": [
+            "🗑️ Malheureusement, nous n'avons pas encore de joueurs pour établir un tableau des scores. Que diriez-vous de commencer une partie contre moi pour être le premier ?"
+        ],
+        "Init": [
+            "✨ Partie créée avec succès !\n\n👋 @{userFormated} est le premier à jouer."
+        ],
+        "NotTurn": [
+            "🛑 Attendez là ! Ce n'est pas encore votre tour. C'est au tour de @{playerFormatted}, veuillez patienter !"
+        ],
+        "Invalid": [
+            "⚠️ Ce coup n'est pas valide. Seuls les coups suivants sont autorisés :\n{movements}"
+        ],
+        "Delete": [
+            "🗑️ Partie supprimée avec succès. Maintenant, vous êtes libre de jouer avec n'importe qui !"
+        ],
+        "Play": [
+            "✅ Coup exécuté ! Maintenant, c'est à vous de jouer, @{mentionRival} !"
+        ],
+        "Draw": [
+            "La partie s'est terminée par un {gameend}, les deux joueurs gagnent des points nuls pour la partie ! 😄 Que diriez-vous de créer une nouvelle partie maintenant ? Si vous ne trouvez pas de partenaire, je suis là pour jouer avec vous ! 🎉"
+        ],
+        "Victory": [
+            "La partie s'est terminée par un {gameend}. Félicitations ! Le joueur {winner} recevra un point de victoire et {looser} recevra un point de défaite ! 😄 Que diriez-vous de créer une nouvelle partie maintenant ? Si vous ne trouvez pas de partenaire, je suis là pour jouer avec vous ! 🎉"
+        ]
+    },
+    "es": {
+        "Uncreated": [
+            "Aún no tienes ningún juego. ¿Qué te parece empezar uno conmigo o con alguien más?"
+        ],
+        "Created": [
+            "Ya tienes un juego en curso. Si estás cansado de tu oponente o quieres desafiar a alguien más, por favor, cancela este juego primero."
+        ],
+        "Placar": [
+            "🥇 ¡Bienvenido al marcador! 🗑️\n\n︵‿︵‿୨♡୧‿︵‿︵\n\n🏆 = Victorias\n😞 = Derrotas\n🤝 = Empates\n\n︵‿︵‿୨♡୧‿︵‿︵\n\n{scoreboard}"
+        ],
+        "NoPlacar": [
+            "🗑️ Desafortunadamente, aún no tenemos jugadores para llevar un marcador. ¿Qué tal comenzar un juego contra mí para ser el primero en él?"
+        ],
+        "Init": [
+            "✨ Juego creado con éxito!\n\n👋 @{userFormated} es el primero en jugar."
+        ],
+        "NotTurn": [
+            "🛑 ¡Espera un momento! Todavía no es tu turno. Es el turno de @{playerFormatted}, ¡por favor, espera pacientemente!"
+        ],
+        "Invalid": [
+            "⚠️ Este movimiento no es válido. Solo están disponibles los siguientes movimientos:\n{movements}"
+        ],
+        "Delete": [
+            "🗑️ Juego eliminado con éxito. ¡Ahora eres libre de jugar con cualquiera!"
+        ],
+        "Play": [
+            "✅ ¡Movimiento ejecutado! Ahora es tu turno, @{mentionRival}!"
+        ],
+        "Draw": [
+            "El juego terminó en un {gameend}, ambos ganan puntos de empate por el juego! 😄 ¿Qué tal crear una nueva partida ahora? Si no encuentras un compañero, ¡estoy aquí para jugar contigo! 🎉"
+        ],
+        "Victory": [
+            "El juego terminó en un {gameend}. ¡Felicidades! El jugador {winner} recibirá un punto de victoria y {looser} recibirá un punto de derrota! 😄 ¿Qué tal crear una nueva partida ahora? Si no encuentras un compañero, ¡estoy aquí para jugar contigo! 🎉"
+        ]
+    },
+    "id": {
+        "Uncreated": [
+            "Kamu belum memiliki permainan apapun. Bagaimana kalau memulai satu dengan saya atau dengan orang lain?"
+        ],
+        "Created": [
+            "Kamu sudah memiliki permainan yang sedang berlangsung. Jika kamu sudah bosan dengan lawanmu atau ingin bertarung dengan orang lain, silakan batalkan permainan ini terlebih dahulu."
+        ],
+        "Placar": [
+            "🥇 Selamat datang di papan skor! 🗑️\n\n︵‿︵‿୨♡୧‿︵‿︵\n\n🏆 = Kemenangan\n😞 = Kekalahan\n🤝 = Seri\n\n︵‿︵‿୨♡୧‿︵‿︵\n\n{scoreboard}"
+        ],
+        "NoPlacar": [
+            "🗑️ Sayangnya, belum ada pemain untuk mencatat skor. Bagaimana kalau memulai permainan melawan saya untuk menjadi yang pertama?"
+        ],
+        "Init": [
+            "✨ Permainan berhasil dibuat!\n\n👋 @{userFormated} adalah orang pertama yang bermain."
+        ],
+        "NotTurn": [
+            "🛑 Tunggu sebentar! Belum saatnya untukmu. Sekarang giliran @{playerFormatted}, mohon tunggu dengan sabar!"
+        ],
+        "Invalid": [
+            "⚠️ Gerakan ini tidak valid. Hanya gerakan berikut yang tersedia:\n{movements}"
+        ],
+        "Delete": [
+            "🗑️ Permainan berhasil dihapus. Sekarang kamu bebas bermain dengan siapa pun!"
+        ],
+        "Play": [
+            "✅ Gerakan berhasil dilakukan! Sekarang giliranmu, @{mentionRival}!"
+        ],
+        "Draw": [
+            "Permainan berakhir dengan {gameend}, keduanya mendapatkan poin seri untuk permainan tersebut! 😄 Bagaimana kalau membuat permainan baru sekarang? Jika tidak menemukan pasangan, saya di sini untuk bermain denganmu! 🎉"
+        ],
+        "Victory": [
+            "Permainan berakhir dengan {gameend}. Selamat! Pemain {winner} akan mendapatkan satu poin kemenangan, dan {looser} akan mendapatkan satu poin kekalahan! 😄 Bagaimana kalau membuat permainan baru sekarang? Jika tidak menemukan pasangan, saya di sini untuk bermain denganmu! 🎉"
+        ]
+    },
+    "ms": {
+        "Uncreated": [
+            "Anda belum mempunyai sebarang permainan. Bagaimana kalau memulakan satu dengan saya atau dengan seseorang?"
+        ],
+        "Created": [
+            "Anda sudah mempunyai permainan yang sedang berlangsung. Jika anda bosan dengan lawan anda atau ingin berlawan dengan seseorang yang lain, sila batalkan permainan ini terlebih dahulu."
+        ],
+        "Placar": [
+            "🥇 Selamat datang ke papan skor! 🗑️\n\n︵‿︵‿୨♡୧‿︵‿︵\n\n🏆 = Kemenangan\n😞 = Kekalahan\n🤝 = Seri\n\n︵‿︵‿୨♡୧‿︵‿︵\n\n{scoreboard}"
+        ],
+        "NoPlacar": [
+            "🗑️ Malangnya, kami belum mempunyai pemain untuk mencatat skor. Bagaimana kalau memulakan permainan dengan saya untuk menjadi yang pertama?"
+        ],
+        "Init": [
+            "✨ Permainan berjaya dicipta!\n\n👋 @{userFormated} adalah yang pertama untuk bermain."
+        ],
+        "NotTurn": [
+            "🛑 Tunggu sebentar! Belum masanya untuk anda. Kini giliran @{playerFormatted}, harap tunggu dengan sabar!"
+        ],
+        "Invalid": [
+            "⚠️ Gerakan ini tidak sah. Hanya gerakan berikut yang tersedia:\n{movements}"
+        ],
+        "Delete": [
+            "🗑️ Permainan berjaya dipadam. Kini anda bebas untuk bermain dengan sesiapa sahaja!"
+        ],
+        "Play": [
+            "✅ Gerakan dilakukan! Kini giliran anda, @{mentionRival}!"
+        ],
+        "Draw": [
+            "Permainan berakhir dengan {gameend}, kedua-dua pihak mendapat mata seri untuk permainan ini! 😄 Bagaimana kalau mencipta permainan baru sekarang? Jika tidak dapat mencari pasangan, saya sini untuk bermain dengan anda! 🎉"
+        ],
+        "Victory": [
+            "Permainan berakhir dengan {gameend}. Tahniah! Pemain {winner} akan mendapat satu mata kemenangan, dan {looser} akan mendapat satu mata kekalahan! 😄 Bagaimana kalau mencipta permainan baru sekarang? Jika tidak dapat mencari pasangan, saya sini untuk bermain dengan anda! 🎉"
+        ]
+    },
+    "hi": {
+        "Uncreated": [
+            "आपके पास अब तक कोई खेल नहीं है। मेरे साथ या किसी और के साथ एक शुरू करने के बारे में क्या कहते हैं?"
+        ],
+        "Created": [
+            "आपके पास पहले से ही एक खेल चल रहा है। यदि आप अपने विरोधी से थक चुके हैं या किसी और से युद्ध करना चाहते हैं, तो कृपया पहले इस खेल को रद्द करें।"
+        ],
+        "Placar": [
+            "🥇 स्कोरबोर्ड में आपका स्वागत है! 🗑️\n\n︵‿︵‿୨♡୧‿︵‿︵\n\n🏆 = जीतें\n😞 = हारें\n🤝 = ड्रॉ\n\n︵‿︵‿୨♡୧‿︵‿︵\n\n{scoreboard}"
+        ],
+        "NoPlacar": [
+            "🗑️ दुर्भाग्यवश, हमें अभी तक खिलाड़ियों की संख्या नहीं मिली है जिससे स्कोरबोर्ड बना सकें। मेरे साथ एक खेल शुरू करने का क्या ख्याल है क्या करें?"
+        ],
+        "Init": [
+            "✨ खेल सफलतापूर्वक बनाया गया!\n\n👋 @{userFormated} पहले खेलेगा।"
+        ],
+        "NotTurn": [
+            "🛑 रुको वहीं! अब आपकी बारी नहीं है। यह @{playerFormatted} की बारी है, कृपया धैर्य से प्रतीक्षा करें!"
+        ],
+        "Invalid": [
+            "⚠️ यह चाल मान्य नहीं है। केवल निम्नलिखित चालें उपलब्ध हैं:\n{movements}"
+        ],
+        "Delete": [
+            "🗑️ खेल सफलता से हटा दिया गया है। अब आप किसी के साथ खेल सकते हैं!"
+        ],
+        "Play": [
+            "✅ चाल को सफलतापूर्वक किया गया है! अब यह @{mentionRival} की बारी है!"
+        ],
+        "Draw": [
+            "खेल {gameend} में समाप्त हुआ, दोनों ही खेल के लिए ड्रॉ पॉइंट्स कमा रहे हैं! 😄 अब एक नया खेल बनाने का क्या ख्याल है? यदिआप किसी साथी को नहीं मिलते हैं, तो मैं यहाँ हूँ आपके साथ खेलने के लिए! 🎉"
+        ],
+        "Victory": [
+            "खेल {gameend} में समाप्त हुआ है। बधाई हो! खिलाड़ी {winner} को एक जीत का पॉइंट प्राप्त होगा, और {looser} को हार का पॉइंट मिलेगा! 😄 अब एक नया खेल बनाने का क्या ख्याल है? यदि आप किसी साथी को नहीं मिलते हैं, तो मैं यहाँ हूँ आपके साथ खेलने के लिए! 🎉"
+        ]
+    },
+    "de": {
+        "Uncreated": [
+            "Du hast noch kein Spiel. Wie wäre es, eins mit mir oder jemand anderem zu beginnen?"
+        ],
+        "Created": [
+            "Du hast bereits ein laufendes Spiel. Wenn du genug von deinem Gegner hast oder gegen jemand anderen antreten möchtest, bitte brich dieses Spiel zuerst ab."
+        ],
+        "Placar": [
+            "🥇 Willkommen auf der Bestenliste! 🗑️\n\n︵‿︵‿୨♡୧‿︵‿︵\n\n🏆 = Siege\n😞 = Niederlagen\n🤝 = Unentschieden\n\n︵‿︵‿୨♡୧‿︵‿︵\n\n{scoreboard}"
+        ],
+        "NoPlacar": [
+            "🗑️ Leider haben wir noch keine Spieler, um eine Bestenliste zu erstellen. Wie wäre es, ein Spiel gegen mich zu beginnen, um der Erste zu sein?"
+        ],
+        "Init": [
+            "✨ Spiel erfolgreich erstellt!\n\n👋 @{userFormated} ist der Erste, der spielt."
+        ],
+        "NotTurn": [
+            "🛑 Stopp! Es ist noch nicht dein Zug. Jetzt ist @{playerFormatted} an der Reihe, bitte warte geduldig!"
+        ],
+        "Invalid": [
+            "⚠️ Dieser Zug ist ungültig. Nur die folgenden Züge sind erlaubt:\n{movements}"
+        ],
+        "Delete": [
+            "🗑️ Spiel erfolgreich gelöscht. Jetzt bist du frei, mit jedem zu spielen!"
+        ],
+        "Play": [
+            "✅ Zug erfolgreich durchgeführt! Jetzt bist du dran, @{mentionRival}!"
+        ],
+        "Draw": [
+            "Das Spiel endete mit {gameend}, beide erhalten Punkte für ein Unentschieden! 😄 Wie wäre es, jetzt ein neues Spiel zu erstellen? Wenn du keinen Partner findest, stehe ich hier bereit, um mit dir zu spielen! 🎉"
+        ],
+        "Victory": [
+            "Das Spiel endete mit {gameend}. Herzlichen Glückwunsch! Der Spieler {winner} erhält einen Siegpunkt, und {looser} erhält einen Niederlagenpunkt! 😄 Wie wäre es, jetzt ein neues Spiel zu erstellen? Wenn du keinen Partner findest, stehe ich hier bereit, um mit dir zu spielen! 🎉"
+        ]
+    },
+    "it": {
+        "Uncreated": [
+            "Non hai ancora nessun gioco. Cosa ne dici di iniziarne uno con me o con qualcun altro?"
+        ],
+        "Created": [
+            "Hai già un gioco in corso. Se sei stanco del tuo avversario o vuoi sfidare qualcun altro, per favore cancella questo gioco prima."
+        ],
+        "Placar": [
+            "🥇 Benvenuto nella classifica! 🗑️\n\n︵‿︵‿୨♡୧‿︵‿︵\n\n🏆 = Vittorie\n😞 = Sconfitte\n🤝 = Pareggi\n\n︵‿︵‿୨♡୧‿︵‿︵\n\n{scoreboard}"
+        ],
+        "NoPlacar": [
+            "🗑️ Purtroppo non abbiamo ancora giocatori per compilare una classifica. Cosa ne dici di iniziare una partita contro di me per essere il primo?"
+        ],
+        "Init": [
+            "✨ Gioco creato con successo!\n\n👋 @{userFormated} è il primo a giocare."
+        ],
+        "NotTurn": [
+            "🛑 Fermati lì! Non è ancora il tuo turno. È il turno di @{playerFormatted}, attendi pazientemente!"
+        ],
+        "Invalid": [
+            "⚠️ Mossa non valida. Sono permesse solo le seguenti mosse:\n{movements}"
+        ],
+        "Delete": [
+            "🗑️ Gioco cancellato con successo. Ora sei libero di giocare con chiunque!"
+        ],
+        "Play": [
+            "✅ Mossa effettuata! Ora è il tuo turno, @{mentionRival}!"
+        ],
+        "Draw": [
+            "Il gioco è finito per {gameend}, entrambi guadagnano punti per il pareggio! 😄 Cosa ne dici di creare una nuova partita ora? Se non trovi un compagno, sono qui pronto a giocare con te! 🎉"
+        ],
+        "Victory": [
+            "Il gioco è finito per {gameend}. Congratulazioni! Il giocatore {winner} riceverà un punto vittoria, e {looser} riceverà un punto sconfitta! 😄 Cosa ne dici di creare una nuova partita ora? Se non trovi un compagno, sono qui pronto a giocare con te! 🎉"
+        ]
+    },
+    "ru": {
+        "Uncreated": [
+            "У вас пока нет ни одной игры. Как насчет начать одну со мной или с кем-то еще?"
+        ],
+        "Created": [
+            "У вас уже есть текущая игра. Если вы устали от своего соперника или хотите сразиться с кем-то другим, пожалуйста, отмените эту игру сначала."
+        ],
+        "Placar": [
+            "🥇 Добро пожаловать в таблицу лидеров! 🗑️\n\n︵‿︵‿୨♡୧‿︵‿︵\n\n🏆 = Победы\n😞 = Поражения\n🤝 = Ничьи\n\n︵‿︵‿୨♡୧‿︵‿︵\n\n{scoreboard}"
+        ],
+        "NoPlacar": [
+            "🗑️ К сожалению, у нас пока нет игроков для составления таблицы лидеров. Как насчет начать игру против меня, чтобы быть первым?"
+        ],
+        "Init": [
+            "✨ Игра успешно создана!\n\n👋 @{userFormated} первым делает ход."
+        ],
+        "NotTurn": [
+            "🛑 Подождите! Еще не ваш ход. Сейчас ходит @{playerFormatted}, пожалуйста, подождите с терпением!"
+        ],
+        "Invalid": [
+            "⚠️ Этот ход недопустим. Разрешены только следующие ходы:\n{movements}"
+        ],
+        "Delete": [
+            "🗑️ Игра успешно удалена. Теперь вы свободны играть с кем угодно!"
+        ],
+        "Play": [
+            "✅ Ход успешно выполнен! Теперь ваша очередь, @{mentionRival}!"
+        ],
+        "Draw": [
+            "Игра завершилась по {gameend}, оба получают очки за ничью! 😄 Как насчет создания новой игры сейчас? Если вы не найдете партнера, я здесь, чтобы поиграть с вами! 🎉"
+        ],
+        "Victory": [
+            "Игра завершилась по {gameend}. Поздравляю! Игрок {winner} получит одно победное очко, а {looser} - одно поражение! 😄 Как насчет создания новой игры сейчас? Если вы не найдете партнера, я здесь, чтобы поиграть с вами! 🎉"
+        ]
+    },
+    "lat": {
+        "Uncreated": [
+            "Nulla adhuc ludorum possides. Quid de uno mecum vel cum alio incipere?"
+        ],
+        "Created": [
+            "Jam lusum habes. Si tibi sat est adversarii tui aut cum alio certare vis, ludum istum primum tollas."
+        ],
+        "Placar": [
+            "🥇 Bene venisti in tabulam primorum! 🗑️\n\n︵‿︵‿୨♡୧‿︵‿︵\n\n🏆 = Victoriae\n😞 = Perniciae\n🤝 = Paritates\n\n︵‿︵‿୨♡୧‿︵‿︵\n\n{scoreboard}"
+        ],
+        "NoPlacar": [
+            "🗑️ Doleo dicere, sed adhuc nulli ludorum habemus ut tabulam primorum conficiamus. Quid de lusu mecum incipere et primus fieri?"
+        ],
+        "Init": [
+            "✨ Ludus feliciter creatus est!\n\n👋 @{userFormated} primus ludit."
+        ],
+        "NotTurn": [
+            "🛑 Sta ibi! Nondum tua est vice. Nunc est @{playerFormatted} vice, patienter exspecta!"
+        ],
+        "Invalid": [
+            "⚠️ Hoc motus non licet. Tantum sequentes motus licent:\n{movements}"
+        ],
+        "Delete": [
+            "🗑️ Ludus feliciter deletus est. Nunc liber es cum quocumque ludere!"
+        ],
+        "Play": [
+            "✅ Motus feliciter factus est! Nunc tua est vice, @{mentionRival}!"
+        ],
+        "Draw": [
+            "Ludus terminatus est ex {gameend}, ambo puncta pari adipiscuntur! 😄 Quid de novo ludo nunc creando? Si socium non invenis, adsum ad tecum ludere! 🎉"
+        ],
+        "Victory": [
+            "Ludus terminatus est ex {gameend}. Gratulor! Ludens {winner} unum victoriae punctum et {looser} unum perniciae punctum accipiet! 😄 Quid de novo ludo nunc creando? Si socium non invenis, adsum ad tecum ludere! 🎉"
+        ]
+    }
+}
