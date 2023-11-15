@@ -103,5 +103,13 @@
     "tagAdmins": {
 		"description": "Determine whether Íris should tag administrators when she detects and sends spam alerts in a group.",
 		"value": true
+	},
+    "allowAddParticipants": {
+		"description": "Enable this feature if you wish to add participants from Íris, but for safety reasons, the command is disabled by default. This precaution is in place due to the elevated risk of receiving a WhatsApp ban.",
+		"value": false
+	},
+    "stickerQuality": {
+		"description": "This is the default stickers quality, uses 0 to 100 as value, if you set higher values, the stickers cannot be sent or become EXTREME heavy, this increase your ban risk, if unsure, keep the default.",
+		"value": 35
 	}
 }

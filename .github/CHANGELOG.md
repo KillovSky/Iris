@@ -2,6 +2,7 @@
 - [Colabore conosco](https://bit.ly/BOT-IRIS), juntos podemos deixar esse código com a definição perfeita do que é OpenSource.
 - Note que as atualizações não tem datas para sair, sendo que elas são lançadas quando considero adequadas para postagem.
 - Toda versão terá seu codename de release, assim como o Ubuntu e o Android fazem, mas na Íris, isso é apenas para se divertir e o nome dado não reflete as atualizações, quem sabe você encontre algum easter-egg por aqui...
+- Clique na seta no inicio da linha para abrir os detalhes.
 <!-- No vazio do nada, em meio à névoa,
 Uma chama primordial, ainda que extinta, persiste.
 Em sua escuridão, o eco de uma voz ressoa:
@@ -27,12 +28,61 @@ A voz ecoou seu último suspiro.
 
 "Inaceso, ainda pode ouvir as vozes daqueles que subjugaste?" -->
 
-## 1.0.7 - ? [Peppermint Release]
-<!-- Dr. Pepper! Isso só pode ser a escolha de Steins Gate! -->
+## Sumário de Atualizações
+
+<details>
+  <summary><code>1.0.8 - ? 🍛 <strong>[OMURICE RELEASE]</strong></code></summary>
+<!-- Enquanto as gotas de chuva caem nos jardins de The Garden of Words, a omurice da Yukino recebe uma atualização secreta. Descubra o sabor poético que se desdobra a cada garfada. Será que você consegue decifrar os versos escondidos nas camadas de arroz, omelete e linhas de código? -->
 
 - Em produção.
 
-## 1.0.6 - 09/11/2023 [Cupcake Release]
+</details>
+
+<details>
+  <summary><code>1.0.7 - 15/11/2023 🥤 <strong>[PEPPERMINT RELEASE]</strong></code></summary>
+<!-- Dr. Pepper! Isso só pode ser a escolha de Steins Gate! -->
+
+### Mural
+- Esta versão é experimental, e embora eu acredite que todos os 60+ novos comandos estejam funcionando conforme o esperado, eu ainda não tive a oportunidade de testar cada um individualmente. Caso você encontre algum erro ou tenha alguma dificuldade, por favor, informe-me nas [redes sociais](https://bit.ly/BOT-IRIS) para que eu possa realizar correções.
+
+- Estou me sentindo um pouco sobrecarregado e cansado, pois adicionei tantas novidades que acabei esquecendo de manter a changelog atualizada. Estou meio perdido em meio a tantas funcionalidades. Dê uma explorada para descobrir todas as novidades, correções e remoções que não estão aqui.
+
+### Novidades
+1. **Jogos**
+    - Finalmente temos jogos e são nada mais, nem menos, que TicTacToe e Xadrez!
+2. **Avisos**
+    - Inseri avisos de apenas pessoal autorizado em alguns comandos.
+3. **Propriedades**
+    - Inseri uma nova propriedade para consulta na Construct, o `groupCreator`.
+4. **Manager**
+    - Inseri comandos para gerenciamento de grupos, como `promote`, `demote`, `kick`, `add`, `softban` e outros, é aconselhavél evitar o uso dos dois últimos ditos.
+5. **Dialogos**
+    - Mais dialogos relacionados a novos comandos.
+6. **Memes**
+    - Inserido **55+** novos comandos de meme!
+7. **Config**
+    - Inserido uma configuração de dono para qualidade para o stickers outra para controle das funções de adicionar pessoas.
+8. **Changelog**
+    - Novo sistema para a changelog, está usando elementos de HTML para fazer colapse e reduzir a quantidade de textos presentes na tela.
+
+### Correções
+1. **Tutorial**
+    - Corrigido algumas linhas que estavam sem uso no arquivo de tutorial.
+2. **Memes/Cards**
+    - O sistema de canvas não estava configurado para exibir os erros e a imagem para erros não era um Buffer.
+3. **Cores**
+    - Ajustei algumas cores dos cards para ficarem mais fluídas, todas baseadas em cores de empresas de videogame.
+4. **Comandos**
+    - O comando de memes foi atualizado, conforme dito acima, mas diversas propriedades inúteis foram removidas para tornar melhor e mais rápido.
+
+### Removido
+1. **DrawScale**
+    - Removido a função drawScale por ser uma das que trabalhei antes do hiato, agora fui olhar e não entendi bem o ponto dela, portanto, apagada.
+
+</details>
+
+<details>
+  <summary><code>1.0.6 - 09/11/2023 🧁 <strong>[CUPCAKE RELEASE]</strong></code></summary>
 <!-- Se você veio apenas se deliciar com cupcakes, é melhor fugir, Natsuki está logo atrás de você! -->
 
 ### Novidades
@@ -79,10 +129,14 @@ A voz ecoou seu último suspiro.
 8. **Outros**
     - Mesma coisa da "novidades 11".
 
-## 1.0.5 - 29/10/2023 [Donut's Release]
+</details>
+
+<details>
+  <summary><code>1.0.5 - 29/10/2023 🍩 <strong>[DONUT'S RELEASE]</strong></code></summary>
 <!-- Homer Simpson aprovou esta atualização repleta de donuts! -->
 
-Importante: Leia a descrição da commit 'Release 1.0.5' antes de prosseguir
+### Mural
+- Importante: Leia a descrição da commit 'Release 1.0.5' antes de prosseguir
 
 ### Novidades
 1. **Memes**
@@ -131,7 +185,10 @@ Importante: Leia a descrição da commit 'Release 1.0.5' antes de prosseguir
 2. **Sistema REM**
     - Removido o sistema REM do handler para strings, uma vez que só vamos trocar ou resetar as strings, não retirar parcialmente valores.
 
-## 1.0.4 - 22/10/2023 [Mushroom Release]
+</details>
+
+<details>
+  <summary><code>1.0.4 - 22/10/2023 🍄 <strong>[MUSHROOM RELEASE]</strong></code></summary>
 <!-- Bowser invadiu o Reino dos Cogumelos digitais, mas Mario está pronto para a batalha! -->
 
 ### Novidades
@@ -167,8 +224,11 @@ Importante: Leia a descrição da commit 'Release 1.0.5' antes de prosseguir
 ### Removido
 1. **Termux.txt**
 	- Por que esse arquivo se temos um baita guia bem explicado agora?
+    
+</details>
 
-## 1.0.3 - 21/10/2023 [Apple Update]
+<details>
+  <summary><code>1.0.3 - 21/10/2023 🍏 <strong>[APPLE RELEASE]</strong></code></summary>
 <!-- Ryuk está à solta e com uma fome insaciável por maçãs. Alguém o alimente antes que ele comece a escrever nomes em seu Death Note! -->
 
 ### Novidades
@@ -212,7 +272,10 @@ Importante: Leia a descrição da commit 'Release 1.0.5' antes de prosseguir
 1. **Alguns prefixos**
     - Removi o prefix '?', '.' e '#' por serem usados bastante sem intuito com comandos.
 
-## 1.0.2 - 13/10/2023 [Ramen Release]
+</details>
+
+<details>
+  <summary><code>1.0.2 - 13/10/2023 🍜 <strong>[RAMEN RELEASE]</strong></code></summary>
 <!-- O Naruto pode ser um pouco duro às vezes, talvez você não saiba, mas o Naruto também cresceu sem PCs.... -->
 
 ### Novidades
@@ -247,7 +310,10 @@ Importante: Leia a descrição da commit 'Release 1.0.5' antes de prosseguir
 1. **Códigos sem utilização**
 	- Existem diversos códigos ainda sem uma implementação, estarei focando em construir os mesmos.
 
-## 1.0.1 - 11/10/2023 [Pizza Release]
+</details>
+
+<details>
+  <summary><code>1.0.1 - 11/10/2023 🍕 <strong>[PIZZA RELEASE]</strong></code></summary>
 <!-- Lelouch Vi Britannia Te Ordena: Não deixe a C² chegar até aqui! -->
 
 ### Novidades
@@ -293,9 +359,14 @@ Importante: Leia a descrição da commit 'Release 1.0.5' antes de prosseguir
 	- Um exemplo de mensagens assim são as de BOTs que aproveitam o código para gerar mensagens que não são oficialmente suportadas.
 	- Esse erro não apresenta risco, uma vez que é relativo a inserção de atualização na database local.
 	- Não testado, mas reiniciar/desligar após o erro pode causar uma desconexão em casos raros, mas note, estou especulando sobre isso.
-    
-## 1.0.0 - 22-09-2023 [Lemon Release]
+
+</details>
+
+<details>
+  <summary><code>1.0.0 - 22-09-2023 🍋 <strong>[LEMON RELEASE]</strong></code></summary>
 <!-- Michiru Matsushima passou por aqui com sua bebida super amarga de vitaminas de limão! -->
 
 1. Initial Release.
     - Código novinho em folha!
+
+</details>

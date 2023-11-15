@@ -3,7 +3,7 @@ Dicas para começar:
 ------ Geral
 
 - Não mexa nas coisas que mantive sem edição, voce pode adicionar mais e mexer nos que editei para fazer esse tutorial, mas mantenha os que estão por padrão, como a object results.
-- Se houver um dialogo, insira na pasta Dialogues no arquivo que achar válido, ou crie um e insira lá, lembre-se, 10 idiomas, se achar cansativo peça para os tradutores do grupo fazerem, mas lembre-se, tenha pelo menos 1 dialogo, eles são feitos na seguinte forma: { "idioma": { "nomeDoDialogo": ["Mensagem1", "Mensagem2"] } }
+- Se houver um dialogo, insira na pasta Dialogues no arquivo que achar válido, ou crie um e insira lá, lembre-se, 12 idiomas, se achar cansativo peça para os tradutores do grupo fazerem, mas lembre-se, tenha pelo menos 1 dialogo, eles são feitos na seguinte forma: { "idioma": { "nomeDoDialogo": ["Mensagem1", "Mensagem2"] } }
 - Se não entender, pergunte!
 - Se não quiser (RECOMENDO MESMO PERGUNTAR!), leia e aprenda com os exemplos.
 - Os exemplos são os comandos já feitos.

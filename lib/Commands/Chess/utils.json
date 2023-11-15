@@ -1,28 +1,27 @@
 {
-    "name": "memes",
-    "description": "Realizar a criação dos memes por meio de canvas.",
+    "name": "chess",
+    "description": "O moderno sistema de jogo de xadrez.",
     "usage": {
-        "general": "[Prefix][Alias] [@user|mensagem|foto] [-sticker]",
+        "general": "[Prefix][Comando] [-Play/-Cancel/-Create/-Board/-Placar/-Moves/-Fen/-Raw/-Pgn] [Move/@User/Mensagem] [@User/Mensagem]",
         "examples": [
-            "/gay",
-            "/gay @user",
-            "/trash <mensagem>",
-            "/slap <mensagem> <@user> -sticker",
-            "/beautiful <foto>",
-            "/memes --help",
-            "memes.execute('kill', 'params')",
-            "memes.env()",
-            "memes.reset()",
-            "memes.env().functions.execute.value('kill', 'params')"
+            "/chess -play f4 @user/message",
+            "/chess -placar @user/message",
+            "/chess -board @user/message",
+            "/chess -cancel @user/message",
+            "/chess -create @user/message",
+            "/chess --help",
+            "chess.execute('kill', 'params')",
+            "chess.env()",
+            "chess.reset()",
+            "chess.env().functions.execute.value('kill', 'params')"
         ]
     },
     "license": "MIT",
     "helps": [
-        "Você pode mudar os parâmetros da exports enviando o valor da Object que deseja editar ao resetar, por exemplo → memes.reset({ name: 'Body'}) ← Isso mudaria o module de memes para Body, o uso então passaria ser: → Body.funcão ← Isso também permite que você edite a função usando o mesmo método.",
-        "Você pode mudar o que os códigos rodam, em tempo real, basta usar a 'env', por exemplo → memes.env().name = 'Body' ← Mas este método não atualizará o sistema, somente a Object, os sistemas permanecem intactos.",
-        "Você pode configurar o tempo de reset dos resultados ou se eles devem ser resetados usando a env, por exemplo → memes.env().settings.wait = 10000 ← Isso mudaria o tempo de espera para 10 segundos, o tempo deve ser em milissegundos.",
-        "Alguém lê essas dicas? Se sim, torne-se um programador, ler os tutoriais é de suma importância e poucos desenvolvedores o fazem...",
-        "Existem infinitas formas de uso secretas, explore os códigos para descobrir os mistérios dos sistemas!"
+        "Esse jogo não possui modos de dificuldade contra a Íris, mas ela priorizará a captura e xeque mate do oponente quando puder, mas movimentos comuns serão aleatorios.",
+        "Você deve cancelar um jogo antes de jogar com outra pessoa, caso contrario, você pode acabar jogando em outra partida sua que não é a atual.",
+        "Se você estiver em somente uma partida, você não precisa mencionar a pessoa no comando, exceto quando for criar uma partida, no restante, jogue diretamente, a Íris localizará a partida para você.",
+        "Para fazer uma jogada em uma partida especifica, marque a mensagem ou mencione a pessoa da sua partida no comando play, ISSO É DE SUMA IMPORTANCIA."
     ],
     "exports": {
         "env": "env",
@@ -74,7 +73,7 @@
                     "value": false
                 }
             },
-            "description": "Executa o comando representado nesse arquivo.",
+            "description": "Constroi, executa e joga o chess.",
             "type": "Boolean / Function",
             "value": false
         },
@@ -112,7 +111,7 @@
         "error": {
             "description": "Define se pode printar qualquer erro.",
             "type": "Boolean",
-            "value": false
+            "value": true
         },
         "ender": {
             "description": "Define se deve resetar a cada erro.",

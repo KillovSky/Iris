@@ -1,5 +1,24 @@
 {
     "pt": {
+        "None": [
+            "Não pude rodar seu pedido, pois o comando que você usou não é parte do meu sistema, falta uma forma de uso ou não posso fazer essa solicitação com as pessoas que pediu, se houver alguma, por favor, verifique sua forma de uso."
+        ],
+        "Demote": [
+            "Menos chefões no nosso pequeno grupo de crime...",
+            "Beleza, eles não farão mais parte da nossa equipe de autoridades."
+        ],
+        "Add": [
+            "Fiz o que pude, quanto aos adicionados, sejam bem vindos, vocês receberão a mensagem de boas-vindas em algum momento, se os administradores ativaram, claro."
+        ],
+        "Promote": [
+            "Entendi, irei promover esses usuários a administradores, mas esteja ciente do que está fazendo..."
+        ],
+        "Remove": [
+            "Pode deixar, chefe! E quanto a você que será removido, espero que considere seus erros e, se um dia for voltar, seja uma pessoa melhor, byee!"
+        ],
+        "Softban": [
+            "Então você voltou? Espero que tenha seguido meu conselho e se tornado uma pessoa melhor."
+        ],
         "Standard": [
             "Dica: Evite falar com letras maiúsculas, é como se estivesse gritando comigo, isso assusta...",
             "Oi, como vai? Sabia que escrever com letras mais culas é como estar gritando?",
@@ -10,6 +29,25 @@
         ]
     },
     "jp": {
+        "Demote": [
+            "デモート：私たちの小さな犯罪グループでボスが減りました...",
+            "わかりました、これからはもう私たちの権限チームの一員ではありません。"
+        ],
+        "Add": [
+            "追加：私ができることはやりました。追加された方々、ようこそ。いずれ管理者が有効にした場合、歓迎メッセージが届くでしょう。"
+        ],
+        "Promote": [
+            "わかりました。これらのユーザーを管理者に昇格しますが、何をしているのかを認識してください..."
+        ],
+        "None": [
+            "あなたの要求を実行できませんでした。使用したコマンドが私のシステムの一部ではないか、要求した人物と一緒に実行できないためです。もしあれば、使用方法を確認してください。"
+        ],
+        "Remove": [
+            "かしこまりました、ボス！そして、削除されるあなたは、自分の過ちを振り返り、もしいつか戻ってくるなら、より良い人間になってください。さようなら！"
+        ],
+        "Softban": [
+            "戻ってきたのですね？私の忠告に従って、より良い人間になっていたら嬉しいです。"
+        ],
         "Standard": [
             "ヒント: 大文字の使用は避けてください。怒鳴っているようなものです。怖いです...",
             "こんにちは、お元気ですか？太字で書くのは怒鳴るようなものだって知っていましたか？",
@@ -20,6 +58,25 @@
         ]
     },
     "en": {
+        "Demote": [
+            "Demote: Fewer bosses in our small crime group...",
+            "Alright, they won't be part of our authorities team anymore."
+        ],
+        "Add": [
+            "Add: Did what I could. As for the added ones, welcome. You'll receive the welcome message at some point if the administrators have activated it, of course."
+        ],
+        "Promote": [
+            "I understand, I will promote these users to administrators, but be aware of what you are doing..."
+        ],
+        "None": [
+            "I couldn't run your request because the command you used is not part of my system or I can't make this request with the people you requested, if any. Please check your usage. "
+        ],
+        "Remove": [
+            "Of course, boss! And to you who will be removed, I hope you will consider your mistakes and, if you ever come back, be a better person. Bye!"
+        ],
+        "Softban": [
+            "So you're back? I hope you followed my advice and became a better person."
+        ],
         "Standard": [
             "Tip: Avoid using capital letters, it's like you're yelling at me, it scares...",
             "Hi, how are you? Did you know that writing in bold letters is like yelling?",
@@ -30,6 +87,25 @@
         ]
     },
     "fr": {
+        "Demote": [
+            "Rétrograder : Moins de chefs dans notre petit groupe criminel...",
+            "D'accord, ils ne feront plus partie de notre équipe d'autorités."
+        ],
+        "Add": [
+            "Ajouter : J'ai fait ce que j'ai pu. Pour ceux qui ont été ajoutés, bienvenue. Vous recevrez le message de bienvenue à un moment donné, si les administrateurs l'ont activé, bien sûr."
+        ],
+        "Promote": [
+            "Je comprends, je vais promouvoir ces utilisateurs en administrateurs, mais soyez conscient de ce que vous faites..."
+        ],
+        "None": [
+            "Je n'ai pas pu exécuter votre demande car la commande que vous avez utilisée ne fait pas partie de mon système ou je ne peux pas faire cette demande avec les personnes que vous avez demandées, si elles existent. Veuillez vérifier votre utilisation."
+        ],
+        "Remove": [
+            "Bien sûr, chef! Et pour vous qui serez supprimé, j'espère que vous réfléchirez à vos erreurs et, si un jour vous revenez, soyez une meilleure personne. Bye !"
+        ],
+        "Softban": [
+            "Alors vous êtes de retour ? J'espère que vous avez suivi mon conseil et que vous êtes devenu une meilleure personne."
+        ],
         "Standard": [
             "Astuce: évitez les majuscules, c'est comme si vous me criiez dessus, ça fait peur...",
             "Salut, comment vas-tu ? Saviez-vous qu'écrire en gras, c'est comme crier?",
@@ -40,6 +116,25 @@
         ]
     },
     "es": {
+        "Demote": [
+            "Degradar: Menos jefes en nuestro pequeño grupo criminal...",
+            "Está bien, ya no serán parte de nuestro equipo de autoridades."
+        ],
+        "Add": [
+            "Agregar: Hice lo que pude. En cuanto a los agregados, bienvenidos. Recibirán el mensaje de bienvenida en algún momento, si los administradores lo han activado, por supuesto."
+        ],
+        "Promote": [
+            "Entiendo, voy a promover a estos usuarios a administradores, pero tenga en cuenta lo que está haciendo..."
+        ],
+        "None": [
+            "No pude ejecutar su solicitud porque el comando que utilizó no es parte de mi sistema o no puedo realizar esta solicitud con las personas que solicitó, si las hubiera. Por favor, revise su uso."
+        ],
+        "Remove": [
+            "Por supuesto, jefe! Y para ti que serás eliminado, espero que consideres tus errores y, si algún día vuelves, seas una persona mejor. Adiós!"
+        ],
+        "Softban": [
+            "Así que has vuelto? Espero que hayas seguido mi consejo y te hayas convertido en una persona mejor."
+        ],
         "Standard": [
             "Tip: Evita usar mayúsculas, es como si me estuvieras gritando, da miedo...",
             "Hola, ¿cómo estás? ¿Sabías que escribir en negrita es como gritar?",
@@ -50,6 +145,25 @@
         ]
     },
     "id": {
+        "Demote": [
+            "Turunkan pangkat: Kurang bos di kelompok kejahatan kecil kita...",
+            "Baiklah, mereka tidak akan lagi menjadi bagian dari tim otoritas kita."
+        ],
+        "Add": [
+            "Tambah: Saya melakukan yang terbaik. Bagi yang baru ditambahkan, selamat datang. Anda akan menerima pesan selamat datang suatu saat jika administrator mengaktifkannya, tentu saja."
+        ],
+        "Promote": [
+            "Mengerti, saya akan mempromosikan pengguna ini menjadi administrator, tetapi ketahuilah apa yang Anda lakukan..."
+        ],
+        "None": [
+            "Saya tidak dapat menjalankan permintaan Anda karena perintah yang Anda gunakan bukan bagian dari sistem saya atau saya tidak dapat membuat permintaan ini dengan orang-orang yang Anda minta, jika ada. Silakan periksa cara penggunaan Anda."
+        ],
+        "Remove": [
+            "Tentu saja, bos! Dan untuk Anda yang akan dihapus, saya harap Anda mempertimbangkan kesalahan Anda dan, jika suatu hari Anda kembali, jadilah orang yang lebih baik. Bye!"
+        ],
+        "Softban": [
+            "Jadi Anda kembali? Saya harap Anda mengikuti saran saya dan menjadi orang yang lebih baik."
+        ],
         "Standard": [
             "Tips: Hindari penggunaan huruf kapital, kayaknya kamu membentak saya, takut...",
             "Hai, apa kabar? Tahukah kamu bahwa menulis dengan huruf tebal itu seperti berteriak?",
@@ -60,6 +174,25 @@
         ]
     },
     "ms": {
+        "Demote": [
+            "Turunkan pangkat: Kurang bos dalam kumpulan jenayah kecil kita...",
+            "Baiklah, mereka tidak akan lagi menjadi bahagian daripada pasukan penguasa kita."
+        ],
+        "Add": [
+            "Tambah: Saya telah melakukan yang terbaik. Bagi yang ditambah, selamat datang. Anda akan menerima mesej selamat datang pada suatu ketika jika pentadbir mengaktifkannya, tentu saja."
+        ],
+        "Promote": [
+            "Saya faham, saya akan mempromosikan pengguna ini menjadi pentadbir, tetapi ketahuilah apa yang anda lakukan..."
+        ],
+        "None": [
+            "Saya tidak dapat menjalankan permintaan Anda kerana arahan yang anda gunakan bukan sebahagian daripada sistem saya atau saya tidak dapat membuat permintaan ini dengan orang yang anda minta, jika ada. Sila periksa cara penggunaan anda."
+        ],
+        "Remove": [
+            "Tentu, bos! Dan kepada anda yang akan dihapus, saya harap anda mempertimbangkan kesalahan anda dan, jika suatu hari anda kembali, jadilah orang yang lebih baik. Bye!"
+        ],
+        "Softban": [
+            "Jadi anda kembali? Saya harap anda mengikuti nasihat saya dan menjadi orang yang lebih baik."
+        ],
         "Standard": [
             "Tips: Elakkan guna huruf besar, macam nak maki saya, takut...",
             "Hai, apa khabar? Adakah anda tahu bahawa menulis dalam huruf tebal adalah seperti menjerit?",
@@ -70,6 +203,25 @@
         ]
     },
     "hi": {
+        "Demote": [
+            "डीमोट: हमारे छोटे गुट में कम बॉस...",
+            "ठीक है, वे अब हमारी प्राधिकृति टीम का हिस्सा नहीं रहेंगे।"
+        ],
+        "Add": [
+            "जोड़ें: मैंने जो कुछ किया संभाला। जो जोड़े गए हैं, आपका स्वागत है। आपको स्वागत संदेश मिलेगा किसी समय, अगर प्रशासकों ने सक्रिय किया है, बिल्कुल।"
+        ],
+        "Promote": [
+            "मैं समझ गया, मैं इन उपयोगकर्ताओं को प्रशासकों में पदोन्नत करूंगा, लेकिन आप क्या कर रहे हैं, इसकी जागरूक रहें..."
+        ],
+        "None": [
+            "मैं आपकी रिक्वेस्ट को नहीं चला सका क्योंकि आपके द्वारा उपयोग की जाने वाली कमांड मेरी प्रणाली का हिस्सा नहीं है या मैं उन लोगों के साथ यह अनुरोध नहीं कर सकता जिनकी आपने मांग की है, अगर कोई हो। कृपया उपयोग करने का तरीका देखें।"
+        ],
+        "Remove": [
+            "ज़रूर, बॉस! और आप जो हटा दिए जाएंगे, उनसे मैं उम्मीद करता हूं कि वे अपनी गलतियों पर विचार करें और, अगर एक दिन वापस आते हैं, तो एक बेहतर इंसान बनें। बाय!"
+        ],
+        "Softban": [
+            "तो आप वापस आ गए? मुझे उम्मीद है कि आपने मेरी सलाह का पालन किया होगा और एक बेहतर इंसान बन गए होंगे।"
+        ],
         "Standard": [
             "युक्ति: बड़े अक्षरों का उपयोग करने से बचें, यह ऐसा है जैसे आप मुझ पर चिल्ला रहे हैं, यह डराता है...",
             "हाय, कैसे हो? क्या आप जानते हैं कि मोटे अक्षरों में लिखना चिल्लाने जैसा है?",
@@ -80,6 +232,25 @@
         ]
     },
     "de": {
+        "Demote": [
+            "Degradieren: Weniger Chefs in unserer kleinen Verbrechergruppe...",
+            "In Ordnung, sie werden nicht mehr Teil unseres Behördenteams sein."
+        ],
+        "Add": [
+            "Hinzufügen: Ich habe mein Bestes getan. Was die Hinzugefügten betrifft, herzlich willkommen. Ihr werdet die Willkommensnachricht irgendwann erhalten, wenn die Administratoren sie natürlich aktiviert haben."
+        ],
+        "Promote": [
+            "Ich verstehe, ich werde diese Benutzer zu Administratoren befördern, aber seien Sie sich dessen bewusst, was Sie tun..."
+        ],
+        "None": [
+            "Ich konnte Ihre Anfrage nicht ausführen, da der Befehl, den Sie verwendet haben, nicht Teil meines Systems ist oder ich diese Anfrage nicht mit den Personen, die Sie angefordert haben, ausführen kann, falls vorhanden. Bitte überprüfen Sie Ihre Verwendung."
+        ],
+        "Remove": [
+            "Natürlich, Chef! Und an dich, der entfernt wird, hoffe ich, dass du deine Fehler überdenkst und, wenn du eines Tages zurückkommst, ein besserer Mensch wirst. Tschüss!"
+        ],
+        "Softban": [
+            "Also bist du zurück? Ich hoffe, du hast meinen Rat befolgt und bist ein besserer Mensch geworden."
+        ],
         "Standard": [
             "Tipp: Vermeide Großbuchstaben, das ist, als würdest du mich anschreien, es macht Angst...",
             "Hallo, wie geht es dir? Wusstest du, dass das Schreiben in Fettschrift wie Schreien ist?",
@@ -90,6 +261,25 @@
         ]
     },
     "it": {
+        "Demote": [
+            "Degrada: Meno capi nel nostro piccolo gruppo criminale...",
+            "Va bene, non faranno più parte della nostra squadra di autorità."
+        ],
+        "Add": [
+            "Aggiungi: Ho fatto quello che potevo. Per quanto riguarda gli aggiunti, benvenuti. Riceverete il messaggio di benvenuto prima o poi, se gli amministratori l'hanno attivato, ovviamente."
+        ],
+        "Promote": [
+            "Capisco, promuoverò questi utenti ad amministratori, ma sii consapevole di cosa stai facendo..."
+        ],
+        "None": [
+            "Non sono stato in grado di eseguire la tua richiesta perché il comando che hai usato non fa parte del mio sistema o non posso fare questa richiesta con le persone che hai richiesto, se ce ne sono. Controlla il tuo utilizzo."
+        ],
+        "Remove": [
+            "Certo, capo! E a te che verrai rimosso, spero che consideri i tuoi errori e, se un giorno tornerai, sii una persona migliore. Ciao!"
+        ],
+        "Softban": [
+            "Quindi sei tornato? Spero che tu abbia seguito il mio consiglio e sia diventato una persona migliore."
+        ],
         "Standard": [
             "Suggerimento: evita di usare lettere maiuscole, è come se mi stessi urlando contro, fa paura...",
             "Ciao, come stai? Lo sapevi che scrivere in grassetto è come urlare?",
@@ -100,6 +290,25 @@
         ]
     },
     "ru": {
+        "Demote": [
+            "Понижение: Меньше начальников в нашей маленькой преступной группе...",
+            "Хорошо, они больше не будут частью нашей команды власти."
+        ],
+        "Add": [
+            "Добавление: Сделал, что смог. Что касается добавленных, добро пожаловать. Вы получите приветственное сообщение в какой-то момент, если администраторы, конечно, его активировали."
+        ],
+        "Promote": [
+            "Я понял, я буду продвигать этих пользователей в администраторы, но будьте осторожны, что вы делаете..."
+        ],
+        "None": [
+            "Я не смог выполнить ваш запрос, потому что команда, которую вы использовали, не является частью моей системы или я не могу выполнить этот запрос с людьми, которых вы запросили, если они есть. Пожалуйста, проверьте способ использования."
+        ],
+        "Remove": [
+            "Конечно, босс! А тебе, которого удалят, я надеюсь, что ты обдумаешь свои ошибки и, если когда-нибудь вернешься, станешь лучше. Пока!"
+        ],
+        "Softban": [
+            "Так ты вернулся? Надеюсь, ты последовал моему совету и стал лучше."
+        ],
         "Standard": [
             "Совет: не используйте заглавные буквы, это как будто вы кричите на меня, это пугает...",
             "Привет, как дела? Ты знал, что писать жирным шрифтом - это как орать?",
@@ -110,6 +319,25 @@
         ]
     },
     "lat": {
+        "Demote": [
+            "Demove: Pauciores magistri in nostro parvo coetu scelerum...",
+            "Bene, non erunt amplius pars nostrae auctoritatis cohortis."
+        ],
+        "Add": [
+            "Adde: Quod potui feci. Quoad additi, gratias vobis ago. Mox accipietis nuntium benevenutum, si administri id activerint, certe."
+        ],
+        "Promote": [
+            "Intellego, hos utentes ad administratores promovebo, sed esto conscius eius quod facis..."
+        ],
+        "None": [
+            "Non potui petitionem tuam exequi, quia iussum quod usasti non est pars mei systematis aut non possum hanc petitionem cum personis quibus petiisti facere, si quae sint. Quaeso, formam usus tui revise."
+        ],
+        "Remove": [
+            "Certe, dux! Et tibi qui aufereris, spero ut tuas culpas consideres et, si umquam redieris, melior homo sis. Vale!"
+        ],
+        "Softban": [
+            "Ita redisti? Spero ut meum consilium secutus sis et melior homo factus sis."
+        ],
         "Standard": [
             "Consilium: Vitare litteris capitalibus, simile est apud me clamas, terret...",
             "Salve, quomodo es? Scisne scribentem in audacibus litteris simile esse vociferationis?",

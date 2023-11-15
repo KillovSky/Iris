@@ -26,6 +26,8 @@
         "env": "env",
         "messedup": "messedup",
         "greets": "greets",
+        "ttt": "ttt",
+        "chess": "chess",
         "level": "level",
         "reset": "reset",
         "poswork": "finish"
@@ -133,6 +135,40 @@
             "type": "Boolean / Function",
             "value": false
         },
+        "ttt": {
+            "arguments": {
+                "board": {
+                    "description": "A board do jogo de tictactoe.",
+                    "type": "Object",
+                    "value": {
+                        "a1": "O",
+                        "a2": "X",
+                        "a3": "O",
+                        "b1": "X",
+                        "b2": "O",
+                        "b3": "X",
+                        "c1": "O",
+                        "c2": "X",
+                        "c3": "O"
+                    }
+                }
+            },
+            "description": "Cria uma board para o jogo TicTacToe.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "chess": {
+            "arguments": {
+                "fenData": {
+                    "description": "A FEN do jogo de xadrez atual.",
+                    "type": "String",
+                    "value": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+                }
+            },
+            "description": "Cria uma board para o jogo Chess.",
+            "type": "Boolean / Function",
+            "value": false
+        },
         "poswork": {
             "arguments": {
                 "response": {
@@ -191,7 +227,7 @@
                     "format": "image"
                 },
                 "leveling": {
-                    "username": "#D2E6FA",
+                    "username": "#0e7a0d",
                     "contColor": "#0047ab",
                     "status": "#23087D",
                     "level": {
@@ -199,7 +235,7 @@
                         "value": "#008C2F"
                     },
                     "overlayOpacity": 0.4,
-                    "progressBar": "#F0DA53",
+                    "progressBar": "#006fcd",
                     "rank": {
                         "name": "#E4000F",
                         "value": "#008C2F"

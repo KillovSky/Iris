@@ -1,8 +1,5 @@
-/* eslint-disable max-len */
-
 /* Requires */
 const fs = require('fs');
-const os = require('os');
 const path = require('path');
 const Indexer = require('../../index');
 const language = require('../../Dialogues/index');
