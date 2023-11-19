@@ -52,7 +52,7 @@
 			"<"
 		]
 	},
-	"perfomanceMode": {
+	"performanceMode": {
 		"description": "If activated, Íris will execute everything without waiting for finishing the other tasks, this can cause several lags and bugs, but makes commands more faster",
 		"value": false
 	},
