@@ -10,8 +10,9 @@ Este guia irá ajudá-lo a instalar a Íris no Termux usando um script e executa
 4. [⚙️ Instalando a Íris](#%EF%B8%8F-instalando-a-íris)
 5. [📜 Configuração](#-configuração)
     - [👨‍💻 Método Nº1 - Usando CLI](#-método-nº1---usando-cli)
-    - [💌 Método Nº2 - Usando nano](#-método-nº2---usando-nano)
-    - [🌐 Método Nº3 - Usando o Terminal WEB da Íris](#-método-nº3---usando-o-terminal-web-da-íris)
+    - [📁 Método Nº2 - Usando files](#-método-nº2---usando-files)
+    - [💌 Método Nº3 - Usando nano](#-método-nº3---usando-nano)
+    - [🌐 Método Nº4 - Usando o Terminal WEB da Íris](#-método-nº4---usando-o-terminal-web-da-íris)
 6. [🏁 Etapas Finais](#-etapas-finais)
 	- [📞 Usando outro telefone](#-usando-outro-telefone)
 	- [🤳 Usando dois espelhos e um pouco de mágica (habilidade)](#-usando-dois-espelhos-e-um-pouco-de-mágica-habilidade)
@@ -31,12 +32,15 @@ Antes de iniciar a instalação da Íris no Termux, certifique-se de atender aos
 
 1. [Termux](https://f-droid.org/pt_BR/packages/com.termux/)
 2. [Andronix](https://andronix.app/)
-3. Pelo menos 600MB a 1GB de RAM livre
-4. Processador quad-core ou superior
-5. 3GB de espaço livre (Recomendado: 5GB+)
-6. Outro telefone, um espelho (modo hardcore) ou similar
+3. [Files](https://play.google.com/store/apps/details?id=com.marc.files)
+4. Pelo menos 600MB a 1GB de RAM livre
+5. Processador quad-core ou superior
+6. 3GB de espaço livre (Recomendado: 5GB+)
+7. Outro telefone, um espelho (modo hardcore) ou similar
 
 ## 🐧 Instalando o Ubuntu 22.04
+
+- Antes de começar, se quiser editar a Íris digite `termux-setup-storage`, tecle 'y' se pedir e agora continue a instalação abaixo.
 
 Siga as etapas abaixo para instalar o Ubuntu 22.04 no Termux:
 
@@ -99,16 +103,30 @@ npm start
 
 ## 📜 Configuração
 
-Uma vez que você tenha instalado tudo, feito todos os procedimentos acima, siga os passos abaixo para configurar seu número como dono da Íris.
+Uma vez que você tenha instalado tudo, feito todos os procedimentos acima, siga os passos abaixo para configurar seu número como dono da Íris e mudar a senha.
 
 ### 👨‍💻 Método Nº1 - Usando CLI
 
 1. Digite `cd && cd Iris && sed -i 's/MyNumber/SeuNúmero/g' lib/Databases/Configurations/config.json`.
 	- Você deve trocar 'SeuNúmero' pelo seu número no formato: DDI+DDD+Número.
 	- O número deve ser igual ao mostrado no WhatsApp, por exemplo: 's/MyNumber/55119987654321/g'
-	- Se você quiser inserir outro número manualmente, deve usar o método 2 u 3 a partir de agora.
+	- Se você quiser inserir outro número manualmente, deve usar o método 2, 3 ou 4 apartir de agora.
 
-### 💌 Método Nº2 - Usando nano
+2. Para mudar a senha padrão, digite: `cd && cd Iris && sed -i 's/IrisBOT@Root#123/NovaPassword/g' lib/Databases/Configurations/config.json`.
+
+### 📁 Método Nº2 - Usando files
+
+1. Se você digitou `termux-setup-storage` antes de instalar Ubuntu, continue, se não, saia do Ubuntu e digite, depois conecte ao Ubuntu novamente e vá para a pasta da Íris.
+
+2. Agora abra o aplicativo `Files`, arraste para a direita para mostrar um menu de locais, lá estará o termux.
+
+3. Entre na opção e abra as pastas na seguinte ordem: `ubuntu22-fs`, `root`, `iris`.
+
+4. Parabéns, você agora está na pasta da Íris, aperte no arquivo que quer editar e abra com seu editor de código favorito.
+
+5. Siga as dicas abaixo ou acima sobre a edição do número de dono, se certifique de mudar também a senha padrão.
+
+### 💌 Método Nº3 - Usando nano
 
 1. Digite `cd && cd Iris && nano lib/Databases/Configurations/config.json`.
 
@@ -120,10 +138,12 @@ Uma vez que você tenha instalado tudo, feito todos os procedimentos acima, siga
 
 4. Se já tiver editado antes, e quiser adicionar outro, vá até o final da linha, onde está `]` e apague-o, então adicione `, "outroNúmero@s.whatsapp.net"]`.
 	- Troque 'outroNúmero' pelo número em questão, no mesmo jeito da dica Nº3.
+    
+5. Vá até `IrisBOT@Root#123` e apague-o, digite uma nova senha no lugar.
 
-5. Quando tiver terminado, aperte `Control + O` e então aperte `Enter`, você terá inserido com sucesso seu número, então aperte `Control + X` para sair.
+6. Quando tiver terminado, aperte `Control + O` e então aperte `Enter`, você terá inserido com sucesso seu número, então aperte `Control + X` para sair.
 
-### 🌐 Método Nº3 - Usando o Terminal WEB da Íris
+### 🌐 Método Nº4 - Usando o Terminal WEB da Íris
 
 1. Inicie a Íris, você receberá na tela um endereço de IP e porta que é acessível somente pela sua rede.
 	- Se o IP mostrado for interno, você deve usar o IP do seu telefone, ele pode ser encontrado acessando as configurações de WiFi do aparelho ou indo em 'Sobre o Telefone'.
@@ -138,11 +158,13 @@ Uma vez que você tenha instalado tudo, feito todos os procedimentos acima, siga
 
 5. Digite `config.owner.value.push('seuNumero@s.whatsapp.net');`, se o terminal exibir um 2, você estará pronto para seguir, se quiser ter certeza, digite `config.owner.value`, então seu número deve aparecer.
 
-6. Para salvar eternamente digite `fs.writeFileSync(path.normalize(irisPath+'/lib/Databases/Configurations/config.json'), JSON.stringify(config, null, 4));`, isso não deve printar nada na tela, mas se algo aparecer e não for um erro, você pode continuar.
+6. Digite `config.secretKey.value = 'NovaSenha'`, se o terminal retornar a mesma, você estará pronto, se quiser ter certeza, digite `config.secretKey.value`, sua nova senha deve aparecer.
 
-7. Para ter certeza de que deu certo, você pode digitar `JSON.parse(fs.readFileSync(path.normalize(irisPath+'/lib/Databases/Configurations/config.json')))?.owner?.value;` e se o número estiver lá, tudo ocorreu bem e seu número já está salvo.
+7. Para salvar eternamente digite `fs.writeFileSync(path.normalize(irisPath+'/lib/Databases/Configurations/config.json'), JSON.stringify(config, null, 4));`, isso não deve printar nada na tela, mas se algo aparecer e não for um erro, você pode continuar.
 
-8. Feche o navegador, volte ao Termux e continue o guia.
+8. Para ter certeza de que deu certo, você pode digitar `JSON.parse(fs.readFileSync(path.normalize(irisPath+'/lib/Databases/Configurations/config.json')))?.owner?.value;` e se o número estiver lá, tudo ocorreu bem e seu número já está salvo.
+
+9. Feche o navegador, volte ao Termux e continue o guia.
 	- Se quiser executar Python, Bash, Node ou outras tarefas pelo Terminal WEB, você pode! Siga esse exemplo: `Indexer('bash').bash('seu comando').value;`.
 	- Exemplo: `Indexer('bash').bash('python -c "print("123")"').value;`
 	- Tenha em mente que processos demorados, como `APT`, podem causar problemas ou levar uma eternidade para funcionar, só use o que você entender.
@@ -167,7 +189,7 @@ Parabéns por chegar até aqui! Agora só resta iniciar e aproveitar, para isso,
 
 ### 🤳 Usando dois espelhos e um pouco de mágica (habilidade)
 
-1. Reduza o tamanho da fonte do Termux fazendo um gesto de pinça na tela.
+1. Reduza o tamanho da fonte do termux fazendo um gesto de pinça na tela.
 
 2. Vá até um lugar com um espelho na sua frente e um atrás.
 
@@ -190,6 +212,8 @@ Caso você queira atualizar sua iris com `git pull` e preservar suas mudanças, 
 git stash
 ```
 Isso guardará suas alterações, em um stash temporário.
+
+Pequena explicação sobre o stash: Basicamente ele é uma área temporária para armazenar alterações do seu repositório local. Quando você precisa mudar de branch ou aplicar atualizações do repositório remoto sem fazer um commit, você pode usar o git stash para salvar temporariamente suas alterações. Os comandos básicos são `git stash` para armazenar, `git stash list` para listar, `git stash apply` para devolver as alterações salvas no stash, e `git stash drop` para remover o stash mais recente. Isso é útil para lidar com mudanças temporárias no código.
 
 2. Execute o `git pull` para atualizar seu repositório local com as alterações do repositório remoto:
 
@@ -237,8 +261,6 @@ npm i
 ```bash
 npm start
 ```
-
 ## ❗ Dicas
 
-- Se você possui ROOT, pode editar a Íris por um aplicativo de sua escolha e então colar seu arquivos dentro da pasta `data/data/com.termux/files/home/Ubuntu22-fs/root/Iris`.
 - Tome cuidado pois Íris tem a capacidade de rodar comandos de terminal linux no WhatsApp, não dê permissão de dono a qualquer um, eles podem causar danos a você.
