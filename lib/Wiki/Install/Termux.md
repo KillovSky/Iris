@@ -16,7 +16,10 @@ Este guia irá ajudá-lo a instalar a Íris no Termux usando um script e executa
 	- [📞 Usando outro telefone](#-usando-outro-telefone)
 	- [🤳 Usando dois espelhos e um pouco de mágica (habilidade)](#-usando-dois-espelhos-e-um-pouco-de-mágica-habilidade)
 7. [🙏 Finalizando](#-finalizando)
-8. [❗ Dicas](#-dicas)
+8. [🆙 Atualizando](#🆙-atualizando)
+	- [❌ Em caso de conflito](#❌-em-caso-de-conflito)
+	- [🔄 Tive problemas, quero começar do zero](#🔄-tive-problemas-quero-começar-do-zero)
+9. [❗ Dicas](#-dicas)
 
 ## 🔎 O que é Termux?
 
@@ -122,16 +125,16 @@ Uma vez que você tenha instalado tudo, feito todos os procedimentos acima, siga
 
 ### 🌐 Método Nº3 - Usando o Terminal WEB da Íris
 
-1. Inicie a Íris, você receberá na tela um endereço de IP e porta que é acessivel somente pela sua rede.
+1. Inicie a Íris, você receberá na tela um endereço de IP e porta que é acessível somente pela sua rede.
 	- Se o IP mostrado for interno, você deve usar o IP do seu telefone, ele pode ser encontrado acessando as configurações de WiFi do aparelho ou indo em 'Sobre o Telefone'.
 
 2. Abra um navegador e digite o endereço de IP e a porta, ficando como `192.168.0.123:45678`.
 	- Pode aparecer um erro dizendo que a página não é segura, mas não se preocupe, isso é por conta da Íris rastrear quem ousar acessar essa página, apenas clique em 'Aceite o risco' e prossiga.
-	- O rastreamento será mostrado no terminal, de forma que, se algum invasor tentar acessar caso você modifique para IP externo, você possa rastrea-lo.
+	- O rastreamento será mostrado no terminal, de forma que, se algum invasor tentar acessar caso você modifique para IP externo, você possa rastreá-lo.
 
-3. Insira o nome de usuario e senha mostrados no terminal, isso pode ser configurado apartir do arquivo `utils.json` da pasta `Terminal`, mas não é esse o foco desse guia.
+3. Insira o nome de usuário e senha mostrados no terminal, isso pode ser configurado a partir do arquivo `utils.json` da pasta `Terminal`, mas não é esse o foco desse guia.
 
-4. Uma vez conectado, você estará em uma página com um terminal linux diretamente no navegador, não se confunda, ele é extremamente poderoso e você NÃO DEVE brincar aqui.
+4. Uma vez conectado, você estará em uma página com um terminal Linux diretamente no navegador, não se confunda, ele é extremamente poderoso e você NÃO DEVE brincar aqui.
 
 5. Digite `config.owner.value.push('seuNumero@s.whatsapp.net');`, se o terminal exibir um 2, você estará pronto para seguir, se quiser ter certeza, digite `config.owner.value`, então seu número deve aparecer.
 
@@ -148,7 +151,7 @@ Uma vez que você tenha instalado tudo, feito todos os procedimentos acima, siga
 
 ## 🏁 Etapas finais
 
-Parabéns por chegar até aqui! Agora só resta iniciar e aproveitar, para isso, siga os próximos passsos:
+Parabéns por chegar até aqui! Agora só resta iniciar e aproveitar, para isso, siga os próximos passos:
 
 1. Digite `cd && cd Iris` para voltar até a pasta da Íris e então digite `npm start` para iniciar.
 
@@ -158,13 +161,13 @@ Parabéns por chegar até aqui! Agora só resta iniciar e aproveitar, para isso,
 
 1. Com outro telefone, tire uma foto da tela onde o QR code está.
 
-2. Rápidamente abra o WhatsApp no telefone que você deseja usar, abra o escaneamento de QR code e escaneie a foto.
+2. Rapidamente abra o WhatsApp no telefone que você deseja usar, abra o escaneamento de QR code e escaneie a foto.
 
-3. Aguarde a Íris dizer que a sessão iniciou, tenha em mente de estar atento a possiveis erros.
+3. Aguarde a Íris dizer que a sessão iniciou, tenha em mente de estar atento a possíveis erros.
 
 ### 🤳 Usando dois espelhos e um pouco de mágica (habilidade)
 
-1. Reduza o tamanho da fonte do termux fazendo um gesto de pinça na tela.
+1. Reduza o tamanho da fonte do Termux fazendo um gesto de pinça na tela.
 
 2. Vá até um lugar com um espelho na sua frente e um atrás.
 
@@ -177,6 +180,63 @@ Parabéns por chegar até aqui! Agora só resta iniciar e aproveitar, para isso,
 ## 🙏 Finalizando
 
 Parabéns por conseguir a instalação, agora você pode aproveitar a Íris em seu total controle!
+
+## 🆙 Atualizando
+Caso você queira atualizar sua iris com `git pull` e preservar suas mudanças, faça o seguinte:
+
+1. Guarde as alterações locais usando `git stash`.
+
+```bash
+git stash
+```
+Isso guardará suas alterações, em um stash temporário.
+
+2. Execute o `git pull` para atualizar seu repositório local com as alterações do repositório remoto:
+
+```bash
+git pull
+```
+
+3. Reaplique suas alterações do stash
+```bash
+git stash pop
+```
+Este comando aplica o stash mais recente e, em seguida, o descarta automaticamente.
+
+### ❌ Em caso de conflito
+
+- Meu git apontou conflitos entre minhas alterações locais e as alterações do `git pull`, o que fazer?
+	Então, nesse caso você infelizmente precisará resolver esses conflitos manualmente.
+
+### 🔄 Tive problemas, quero começar do zero
+
+Se você deseja descartar completamente as alterações locais, incluindo aquelas no arquivo de configuração, e voltar ao estado mais recente do repositório remoto, você pode usar o comando `git reset` em conjunto com `git clean`.
+
+**Aviso:** Este método irá descartar todas as alterações locais. Certifique-se de ter backup ou esteja ciente de que essas alterações serão perdidas.
+
+1. Descarte as alterações locais.
+```bash
+git reset --hard HEAD
+git clean -fdx
+```
+- `git reset --hard HEAD`: Isso irá redefinir o seu branch para o commit mais recente, descartando todas as alterações locais.
+- `git clean -fdx`: Isso remove todos os arquivos não rastreados, incluindo aqueles que foram gerados localmente.
+
+2. Obtenha a versão mais recente do repositório remoto
+```bash
+git pull
+```
+Nesse ponto seu repositório local deve estar no mesmo estado que o repositório remoto.
+
+3. Reinstale os módulos do Node.js.
+```bash
+npm i
+```
+
+4. Para finalizar [configure sua iris](#📜-configuração) e então inicie ela.
+```bash
+npm start
+```
 
 ## ❗ Dicas
 
