@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<!-- https://github.com/KillovSky/iris | Feito por KillovSky -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Redirecionando...</title>
+    <script>
+        /* Verifica se não é um iframe */
+        if (window.top !== window.self) {
+            /* Se a página estiver incorporada em um iframe, redireciona a página principal do iframe */
+            window.top.location.href = './lib/Wiki/Homepage/index.html';
+        } else {
+            /* Se não estiver incorporado em um iframe, redireciona normalmente */
+            window.location.href = './lib/Wiki/Homepage/index.html';
+        }
+    </script>
+</head>
+</html>
