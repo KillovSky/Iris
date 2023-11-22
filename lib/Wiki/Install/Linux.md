@@ -76,7 +76,7 @@ npm start
 
 ## 📜 Configuração
 
-Uma vez que você tenha instalado tudo, feito todos os procedimentos acima, siga os passos abaixo para configurar seu número como dono da Íris.
+Uma vez que você tenha instalado tudo, feito todos os procedimentos acima, siga os passos abaixo para configurar seu número como dono da Íris e mudar a senha.
 
 ### 👨‍💻 Método Nº1 - Usando CLI
 
@@ -84,6 +84,8 @@ Uma vez que você tenha instalado tudo, feito todos os procedimentos acima, siga
 	- Você deve trocar 'SeuNúmero' pelo seu número no formato: DDI+DDD+Número.
 	- O número deve ser igual ao mostrado no WhatsApp, por exemplo: 's/MyNumber/55119987654321/g'
 	- Se você quiser inserir outro número manualmente, deve usar o método 2, 3 ou 4 a partir de agora.
+
+2. Para mudar a senha padrão, digite: `cd && cd Iris && sed -i 's/IrisBOT@Root#123/NovaPassword/g' lib/Databases/Configurations/config.json`.
 
 ### 💌 Método Nº2 - Usando nano
 
@@ -98,7 +100,9 @@ Uma vez que você tenha instalado tudo, feito todos os procedimentos acima, siga
 4. Se já tiver editado antes, e quiser adicionar outro, vá até o final da linha, onde está `]` e apague-o, então adicione `, "outroNúmero@s.whatsapp.net"]`.
 	- Troque 'outroNúmero' pelo número em questão, no mesmo jeito da dica Nº3.
 
-5. Quando tiver terminado, aperte `Control + O` e então aperte `Enter`, você terá inserido com sucesso seu número, então aperte `Control + X` para sair.
+5. Vá até `IrisBOT@Root#123` e apague-o, digite uma nova senha no lugar.
+
+6. Quando tiver terminado, aperte `Control + O` e então aperte `Enter`, você terá inserido com sucesso seu número, então aperte `Control + X` para sair.
 
 ### 🌐 Método Nº3 - Usando o Terminal WEB da Íris
 
@@ -115,11 +119,13 @@ Uma vez que você tenha instalado tudo, feito todos os procedimentos acima, siga
 
 5. Digite `config.owner.value.push('seuNumero@s.whatsapp.net');`, se o terminal exibir um 2, você estará pronto para seguir, se quiser ter certeza, digite `config.owner.value`, então seu número deve aparecer.
 
-6. Para salvar eternamente digite `fs.writeFileSync(path.normalize(irisPath+'/lib/Databases/Configurations/config.json'), JSON.stringify(config, null, 4));`, isso não deve printar nada na tela, mas se algo aparecer e não for um erro, você pode continuar.
+6. Digite `config.secretKey.value = 'NovaSenha'`, se o terminal retornar a mesma, você estará pronto, se quiser ter certeza, digite `config.secretKey.value`, sua nova senha deve aparecer.
 
-7. Para ter certeza de que deu certo, você pode digitar `JSON.parse(fs.readFileSync(path.normalize(irisPath+'/lib/Databases/Configurations/config.json')))?.owner?.value;` e se o número estiver lá, tudo ocorreu bem e seu número já está salvo.
+7. Para salvar eternamente digite `fs.writeFileSync(path.normalize(irisPath+'/lib/Databases/Configurations/config.json'), JSON.stringify(config, null, 4));`, isso não deve printar nada na tela, mas se algo aparecer e não for um erro, você pode continuar.
 
-8. Feche o navegador, volte ao Termux e continue o guia.
+8. Para ter certeza de que deu certo, você pode digitar `JSON.parse(fs.readFileSync(path.normalize(irisPath+'/lib/Databases/Configurations/config.json')))?.owner?.value;` e se o número estiver lá, tudo ocorreu bem e seu número já está salvo.
+
+9. Feche o navegador, volte ao Termux e continue o guia.
 	- Se quiser executar Python, Bash, Node ou outras tarefas pelo Terminal WEB, você pode! Siga esse exemplo: `Indexer('bash').bash('seu comando').value;`.
 	- Exemplo: `Indexer('bash').bash('python -c "print("123")"').value;`
 	- Tenha em mente que processos demorados, como `APT`, podem causar problemas ou levar uma eternidade para funcionar, só use o que você entender.
@@ -140,7 +146,9 @@ Uma vez que você tenha instalado tudo, feito todos os procedimentos acima, siga
 4. Se já tiver editado antes, e quiser adicionar outro, vá até o final da linha, onde está `]` e apague-o, então adicione `, "outroNúmero@s.whatsapp.net"]`.
 	- Troque 'outroNúmero' pelo número em questão, no mesmo jeito da dica Nº3.
 
-5. Quando tiver terminado, salve e saia.
+5. Vá até `IrisBOT@Root#123` e apague-o, digite uma nova senha no lugar.
+
+6. Quando tiver terminado, salve e saia.
 
 ## 🏁 Etapas finais
 

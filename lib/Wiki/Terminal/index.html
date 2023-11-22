@@ -1,206 +1,25 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-    <!-- https://github.com/KillovSky/iris | Feito por KillovSky -->
-    <head>
-        <title>Project Íris: Development Mode</title>
-        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
-        <script src="/socket.io/socket.io.js"></script>
-        <script>
-            /* Define uma função para executar no momento certo */
-            function createSocket() {
-                /* Ajusta o placeholder */
-                document.querySelector("#output").placeholder = "This terminal only accepts codes from Node.js/Iris, but you can run ANYTHING you want using a special function, see below...\n―――――――――――――――――――――\nGeneral Use: Indexer('bash').bash('Your Command').value;\n―――――――――――――――――――――\nExample: Indexer('bash').bash('ls -la').value;\n\nExample 2: Indexer('bash').bash('python -c \"command\"').value;\n\nExample 3: Indexer('bash').bash('sqlite3 \"database\" \"command\"').value;";
-
-                /* Conecta o socket.io */
-                const socket = io.connect();
-
-                /* Armazena os ultimos comandos para undo */
-                let commandHistory = [];
-                let commandIndex = 0;
-
-                /* Adquire a input e a output */
-                const input = document.querySelector('#input');
-                const output = document.querySelector('#output');
-                const button = document.querySelector('#submitvalue');
-
-                /* Adiciona um listener para quando apertar o botão */
-                button.addEventListener('click', (event) => {
-                    /* Evita comportamento padrão */
-                    event.preventDefault();
-
-                    /* Adquire o comando */
-                    const command = input.value.trim();
-
-                    /* Se for válido */
-                    if (command) {
-                        /* Se for clear */
-                        if (command === 'clear') {
-                            /* Limpa a página */
-                            [output.value, input.value] = ['', ''];
-
-                            /* Faz um console log de aviso */
-                            console.log('Input e Output limpas com sucesso!');
-
-                            /* Se for outra coisa */
-                        } else {
-                            /* Adiciona o comando do User na output */
-                            output.value += `Admin@IrisBOT:~$ ${command}\n`;
-
-                            /* Emite o comando para o socket do node */
-                            socket.emit('command', command);
-
-                            /* Salva o comando e sua index */
-                            commandHistory.push(command);
-                            commandIndex = commandHistory.length - 1;
-
-                            /* Limpa a input */
-                            input.value = '';
-                        }
-                    }
-                });
-
-                /* Detecta se apertou uma tecla de evento */
-                input.addEventListener('keydown', (event) => {
-                    /* Remove valores nulos e brancos do historico de comandos */
-                    commandHistory = commandHistory.filter((d) => d !== '');
-
-                    /* Se for enter sem shift */
-                    if (event.key === 'Enter' && !event.shiftKey) {
-                        /* Previne a quebra de linha padrão */
-                        event.preventDefault();
-
-                        /* E envia o comando por meio de clique no botão */
-                        button.click();
-
-                        /* Se não */
-                    } else if (event.key === 'Enter') {
-                        /* Insere uma quebra de linha */
-                        input.value += '\n';
-
-                        /* Se for uma seta para cima */
-                    } else if (event.key === 'ArrowUp') {
-                        /* Impede acão padrão */
-                        event.preventDefault();
-
-                        /* Se tiver um index correto */
-                        if (commandIndex > 0) {
-                            /* Diminui ele para poder usando outros comandos */
-                            commandIndex -= 1;
-
-                            /* E envia o ultimo comando executado */
-                            input.value = commandHistory[commandIndex];
-                        }
-
-                        /* Se for uma seta para baixo */
-                    } else if (event.key === 'ArrowDown') {
-                        /* Impede acão padrão */
-                        event.preventDefault();
-
-                        /* Verifica se o index é menor que a lista de comandos - 1 */
-                        if (commandIndex < commandHistory.length - 1) {
-                            /* Aumenta ele para poder usando outros comandos */
-                            commandIndex += 1;
-
-                            /* E envia outro comando executado */
-                            input.value = commandHistory[commandIndex];
-                        }
-                    }
-                });
-
-                /* Listener para resultados enviados do node */
-                socket.on('result', (result) => {
-                    /* Printa o resultado com breakline */
-                    output.value += `${result}\n\n`;
-
-                    /* Faz a textarea rolar até o final */
-                    output.scrollTop = output.scrollHeight;
-                });
-            }
-        </script>
-        <style>
-            body {
-                background-color: #151E29;
-                color: #eee;
-                font-family: 'Courier New', Courier, monospace;
-                font-size: 16px;
-                margin: 0;
-                padding: 0;
-            }
-
-            #terminal {
-                height: 95vmin;
-                display: flex;
-                flex-direction: column;
-                justify-content: flex-end;
-                padding: 16px;
-            }
-
-            #output {
-                flex-grow: 1;
-                font-family: 'Courier New', Courier, monospace;
-                resize: none;
-                padding: 10px;
-                border: 1px solid #80c3ff;
-                background-color: #4b1d3f;
-                color: #FFFFFF;
-                font-size: 1.1rem;
-            }
-
-            #inputcontainer {
-                display: flex;
-                margin-top: 16px;
-                margin-bottom: 16px;
-            }
-
-            #input {
-                background-color: #121212;
-                border: 1px solid #80c3ff;
-                color: #80c3ff;
-                font-family: 'Courier New', Courier, monospace;
-                font-size: 1rem;
-                flex-grow: 1;
-                padding: 16px;
-            }
-
-            #input:focus {
-                outline: none;
-            }
-
-            #submitvalue {
-                background-color: #4CAF50;
-                border: none;
-                color: #fff;
-                cursor: pointer;
-                font-size: 16px;
-                padding: 16px;
-            }
-
-            .titlebar:hover {
-                background: #1B2737;
-            }
-
-            .titlebar {
-                border: 1px solid #80c3ff;
-                color: #FFFFFF;
-                line-height: 40px;
-                font-weight: 600px;
-                background-color: #151E29;
-                text-align: center;
-            }
-
-            #submitvalue:hover {
-                background-color: #3e8e41;
-            }
-        </style>
-    </head>
-    <body onload='createSocket()'>
-        <div id="terminal">
-            <div class="titlebar">Project Íris - Development Mode</div>
-            <textarea id="output" placeholder='Waiting for response...' readonly></textarea>
-            <div id="inputcontainer">
-                <textarea id="input" placeholder="Admin@IrisBOT:~$ Type a command..."></textarea>
-            </div>
-            <button id="submitvalue">Enviar</button>
+<head>
+    <title>Project Íris: Development Mode</title>
+    <meta name="description"
+        content="Nosso querido terminal web, ele consegue rodar qualquer coisa que você jogar nele.">
+    <meta name="keywords"
+        content="robot, bot, whatsapp, chatbot, languages, games, stickers, commands, otaku, gamer, adult, help, automate, javascript, html, shell, css, python, json, opensource, adapt, iris">
+    <meta name="author" content="KillovSky">
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="terminal.js"></script>
+    <link rel="stylesheet" href="terminal.css">
+</head>
+<body onload='createSocket()'>
+    <div id="terminal">
+        <div class="titlebar">Project Íris - Development Mode</div>
+        <textarea id="output" placeholder='Waiting for response...' readonly></textarea>
+        <div id="inputcontainer">
+            <textarea id="input" placeholder="Admin@IrisBOT:~$ Type a command..."></textarea>
         </div>
-    </body>
+        <button id="submitvalue">Enviar</button>
+    </div>
+</body>
 </html>

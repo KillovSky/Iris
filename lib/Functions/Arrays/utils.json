@@ -1,27 +1,27 @@
 {
-    "name": "Arrange",
-    "description": "Funções do tipo Array que auxiliam a Íris no dia a dia.",
+    "name": "arrange",
+    "description": "Criar, organizar, formatar ou fazer outras tarefas com Arrays.",
     "usage": {
         "general": "[RESTRITO] - Verifique o 'examples' para usos inseguros.",
         "examples": [
-            "Arrange.env()",
-            "Arrange.make('anything')",
-            "Arrange.sort('anything/array')",
-            "Arrange.extract('anything/array')",
-            "Arrange.create('start', 'end', 'startSlice', 'endSlice')",
-            "Arrange.reset()",
-            "Arrange.env().functions.make.value('anything')",
-            "Arrange.env().functions.sort.value('anything/array')",
-            "Arrange.env().functions.extract.value('anything/array')",
-            "Arrange.env().functions.create.value('startIndex', 'endIndex', 'startSlice', 'endSlice')",
-            "Arrange.env().functions.revert.value()"
+            "arrange.env()",
+            "arrange.make('anything')",
+            "arrange.sort('anything/array')",
+            "arrange.extract('anything/array')",
+            "arrange.create('start', 'end', 'startSlice', 'endSlice')",
+            "arrange.reset()",
+            "arrange.env().functions.make.value('anything')",
+            "arrange.env().functions.sort.value('anything/array')",
+            "arrange.env().functions.extract.value('anything/array')",
+            "arrange.env().functions.create.value('startIndex', 'endIndex', 'startSlice', 'endSlice')",
+            "arrange.env().functions.revert.value()"
         ]
     },
     "license": "MIT",
     "helps": [
-        "Você pode mudar os parâmetros da exports enviando o valor da Object que deseja editar ao resetar, por exemplo → Arrange.reset({ name: 'Body'}) ← Isso mudaria o module de Tree para Body, o uso então passaria ser: → Body.funcão ← Isso também permite que você edita a função usando o mesmo método.",
-        "Você pode mudar o que os códigos rodam, em tempo real, basta usar a 'env', por exemplo → Arrange.env().name = 'Body' ← Mas este método não atualizará o sistema, somente a Object, os sistemas permanecem intactos.",
-        "Você pode configurar o tempo de reset dos resultados ou se eles devem ser resetados usando a env, por exemplo → Arrange.env().settings.wait = 10000 ← Isso mudaria o tempo de espera para 10 segundos, o tempo deve ser em milissegundos.",
+        "Você pode mudar os parâmetros da exports enviando o valor da Object que deseja editar ao resetar, por exemplo → arrange.reset({ name: 'Body'}) ← Isso mudaria o module de Tree para Body, o uso então passaria ser: → Body.funcão ← Isso também permite que você edita a função usando o mesmo método.",
+        "Você pode mudar o que os códigos rodam, em tempo real, basta usar a 'env', por exemplo → arrange.env().name = 'Body' ← Mas este método não atualizará o sistema, somente a Object, os sistemas permanecem intactos.",
+        "Você pode configurar o tempo de reset dos resultados ou se eles devem ser resetados usando a env, por exemplo → arrange.env().settings.wait = 10000 ← Isso mudaria o tempo de espera para 10 segundos, o tempo deve ser em milissegundos.",
         "Alguém lê essas dicas? Se sim, torne-se um programador, ler os tutoriais é de suma importância e poucos desenvolvedores o fazem...",
         "Você também pode enviar funções para formatação em Array, elas não serão executadas, obviamente.",
         "Valores únicos, como 'Symbol' ou 'Error', são suportados normalmente, faça um teste.",
@@ -202,9 +202,13 @@
         }
     },
     "results": {
-        "description": "Resultado final da função.",
+        "description": "O resultado final das funções, geralmente são 'Array' ou 'String', depende da função.",
         "success": true,
         "type": "Any",
-        "value": false
+        "value": [
+            "1",
+            "2",
+            "3"
+        ]
     }
 }

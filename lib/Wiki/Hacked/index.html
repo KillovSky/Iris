@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description"
+        content="Uma página prank para quem for o espertinho que tentar invadir.">
+    <meta name="keywords"
+        content="robot, bot, whatsapp, chatbot, languages, games, stickers, commands, otaku, gamer, adult, help, automate, javascript, html, shell, css, python, json, opensource, adapt, iris">
+    <meta name="author" content="KillovSky">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hackeando seu computador...</title>
+    <link rel="stylesheet" href="hacked.css">
+    <script src="hacked.js"></script>
+    <script>
+        /* Variável para armazenar a largura atual da barra de progresso */
+        let progressBarWidth = 0;
+
+        /* Função para preencher a barra de progresso de forma incremental, 95% para não encher a tela */
+        function fillProgressBar() {
+            /* Incrementa a largura da barra de progresso em 13.57% a cada chamada, o que dá 7 segundos de espera até redirecionar */
+            progressBarWidth += 13.57;
+            progressBarWidth = progressBarWidth >= 95 ? 95 : progressBarWidth;
+
+            /* Atualiza a largura da barra de progresso no elemento HTML correspondente */
+            document.getElementById("progress-bar").style.width = progressBarWidth + "%";
+
+            /* Verifica se a largura da barra de progresso ainda é inferior a 95% */
+            if (progressBarWidth < 95) {
+                /* Define um timeout para chamar recursivamente a função após 1000 milissegundos (1 segundo) */
+                setTimeout(fillProgressBar, 1000);
+
+                /* Quando atinge 95%, redireciona para a URL desejada */
+            } else window.top.location.href = "CHANGEWITHMYLINK";
+        }
+
+        /* Inicia o preenchimento da barra de progresso após 0.2 segundo */
+        setTimeout(() => {
+            fillProgressBar();
+        }, 200);
+    </script>
+</head>
+
+<body>
+    <div id="hack">
+        <div id="overlay">
+            <h1>VOCÊ FOI HACKEADO :)</h1>
+            <p>NÓS TE AVISAMOS PARA FICAR LONGE DO LOGIN.</p>
+            <p class="redirect-text">Transferindo dados confidenciais para a cloud...</p>
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+        <canvas id="matrix"></canvas>
+        <img id="hacker-image" src="middle.png" alt="Fuck You hahaha">
+    </div>
+    <script src="matrix.js"></script>
+</body>
+
+</html>

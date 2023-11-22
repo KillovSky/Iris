@@ -1,0 +1,86 @@
+body {
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    overflow: hidden;
+}
+
+#hack {
+    position: relative;
+}
+
+#overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+}
+
+h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+img {
+    width: 200px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    position: absolute;
+}
+
+p {
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+/* Ajuste de estilos para a barra de progresso */
+.progress-bar {
+    border: 2px solid #00FF00;
+    background-color: #000;
+    width: 0;
+    padding: 10px;
+    margin: 20px 0;
+    text-align: left;
+    white-space: pre-line;
+    overflow: hidden;
+    max-height: 200px;
+    transition: width 0.5s;
+}
+
+.redirect-text {
+    color: #ff4500;
+    font-weight: bold;
+}
+
+.rain {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.character {
+    position: absolute;
+    color: #00FF00;
+    font-size: 20px;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh);
+    }
+}

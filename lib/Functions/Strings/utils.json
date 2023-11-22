@@ -1,29 +1,29 @@
 {
-    "name": "Text",
-    "description": "Funções do tipo String que auxiliam a Íris no dia a dia.",
+    "name": "text",
+    "description": "Executar serviços de strings em determinadas situações da Íris.",
     "usage": {
         "general": "[RESTRITO] - Verifique o 'examples' para usos inseguros.",
         "examples": [
-            "Text.env()",
-            "Text.counter('text', 'word')",
-            "Text.dataURI('mimetype', 'buffer')",
-            "Text.generate('size')",
-            "Text.searching('text', 'word', 'index')",
-            "Text.upperland('text', 'boolean - use after spaces')",
-            "Text.reset()",
-            "Text.env().functions.counter.value('text', 'word')",
-            "Text.env().functions.dataURI.value('mimetype', 'buffer')",
-            "Text.env().functions.generate.value('size')",
-            "Text.env().functions.searching.value('text', 'word', 'index')",
-            "Text.env().functions.upperland.value('text', 'boolean - capt. after space?')",
-            "Text.env().functions.revert.value()"
+            "text.env()",
+            "text.counter('text', 'word')",
+            "text.dataURI('mimetype', 'buffer')",
+            "text.generate('size')",
+            "text.searching('text', 'word', 'index')",
+            "text.upperland('text', 'boolean - use after spaces')",
+            "text.reset()",
+            "text.env().functions.counter.value('text', 'word')",
+            "text.env().functions.dataURI.value('mimetype', 'buffer')",
+            "text.env().functions.generate.value('size')",
+            "text.env().functions.searching.value('text', 'word', 'index')",
+            "text.env().functions.upperland.value('text', 'boolean - capt. after space?')",
+            "text.env().functions.revert.value()"
         ]
     },
     "license": "MIT",
     "helps": [
-        "Você pode mudar os parâmetros da exports enviando o valor da Object que deseja editar ao resetar, por exemplo → Text.reset({ name: 'Body'}) ← Isso mudaria o module de Tree para Body, o uso então passaria ser: → Body.funcão ← Isso também permite que você edita a função usando o mesmo método.",
-        "Você pode mudar o que os códigos rodam, em tempo real, basta usar a 'env', por exemplo → Text.env().name = 'Body' ← Mas este método não atualizará o sistema, somente a Object, os sistemas permanecem intactos.",
-        "Você pode configurar o tempo de reset dos resultados ou se eles devem ser resetados usando a env, por exemplo → Text.env().settings.wait = 10000 ← Isso mudaria o tempo de espera para 10 segundos, o tempo deve ser em milissegundos.",
+        "Você pode mudar os parâmetros da exports enviando o valor da Object que deseja editar ao resetar, por exemplo → text.reset({ name: 'Body'}) ← Isso mudaria o module de Tree para Body, o uso então passaria ser: → Body.funcão ← Isso também permite que você edita a função usando o mesmo método.",
+        "Você pode mudar o que os códigos rodam, em tempo real, basta usar a 'env', por exemplo → text.env().name = 'Body' ← Mas este método não atualizará o sistema, somente a Object, os sistemas permanecem intactos.",
+        "Você pode configurar o tempo de reset dos resultados ou se eles devem ser resetados usando a env, por exemplo → text.env().settings.wait = 10000 ← Isso mudaria o tempo de espera para 10 segundos, o tempo deve ser em milissegundos.",
         "Alguém lê essas dicas? Se sim, torne-se um programador, ler os tutoriais é de suma importância e poucos desenvolvedores o fazem..."
     ],
     "exports": {
@@ -136,12 +136,12 @@
         },
         "upperland": {
             "arguments": {
-                "aString": {
+                "inputString": {
                     "description": "String que deve ter a primeira letra convertida em maiúscula.",
                     "type": "Boolean / String",
                     "value": false
                 },
-                "everySpace": {
+                "capitalizeEveryWord": {
                     "description": "Determina se deve re-converter a cada espaço.",
                     "type": "Boolean",
                     "value": false

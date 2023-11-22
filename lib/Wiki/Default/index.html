@@ -1,153 +1,74 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-    <!-- https://github.com/KillovSky/iris | Feito por KillovSky -->
 
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Painel de Controle</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
-        <style>
-            body {
-                font-family: sans-serif;
-                background-color: #151E29;
-                margin: 0;
-                height: 100vh;
-            }
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Página iframe para login do modo terminal do Projeto Íris.">
+    <meta name="keywords"
+        content="robot, bot, whatsapp, chatbot, languages, games, stickers, commands, otaku, gamer, adult, help, automate, javascript, html, shell, css, python, json, opensource, adapt, iris">
+    <meta name="author" content="KillovSky">
+    <script src="default.js"></script>
+    <link rel="stylesheet" href="default.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+</head>
 
-            div,
-            iframe {
-                height: 100%;
-                width: 100%;
-                display: flex;
-            }
-
-            .float {
-                position: fixed;
-                width: 60px;
-                height: 60px;
-                bottom: 30px;
-                right: 40px;
-                background-color: #003b59;
-                color: white;
-                border-radius: 50px;
-                text-align: center;
-            }
-
-            .fa-eye-slash,
-            .fa-list {
-                margin-top: 22px;
-            }
-
-            iframe {
-                border: 1px solid rgba(255, 255, 255, 0.5);
-            }
-
-            nav {
-                position: absolute;
-                width: 100%;
-                background-color: rgba(18, 18, 18, 0.2);
-            }
-
-            ul.navtop {
-                list-style-type: none;
-                margin: 0;
-                padding: 0;
-                overflow: hidden;
-                background-color: rgba(18, 18, 18, 0.8);
-                border: 1px solid rgba(255, 255, 255, 0.3);
-            }
-
-            ul.navtop li {
-                float: left;
-            }
-
-            ul.navtop li a {
-                display: block;
-                color: white;
-                text-align: center;
-                padding: 18px;
-                text-decoration: none;
-                border: 1px solid rgba(255, 255, 255, 0.2);
-            }
-
-            li a:hover {
-                background-color: #445665;
-            }
-
-            ul.navtop li.right {
-                float: right;
-            }
-
-            @media screen and (max-width: 600px) {
-
-                ul.navtop li.right,
-                ul.navtop li {
-                    float: none;
-                }
-            }
-        </style>
-        <script>
-            function enableNav() {
-                const element = document.getElementById("navbar");
-                const icon = document.getElementById("iconi");
-                const isVisible = element.getAttribute("hidden");
-                if (isVisible) {
-                    element.removeAttribute("hidden")
-                    icon.classList.remove('fa-list');
-                    icon.classList.add('fa-eye-slash');
-                } else {
-                    element.setAttribute("hidden", "hidden");
-                    icon.classList.remove('fa-eye-slash');
-                    icon.classList.add('fa-list');
-                }
-            }
-        </script>
-    </head>
-
-    <body onload="enableNav()">
-        <div>
-            <nav id="navbar" hidden>
-                <ul class="navtop">
-                    <li>
-                        <a href="/home">
-                            <span>
-                                <i class="fas fa-home"></i>
-                            </span>
-                            Home
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/about">
-                            <span>
-                                <i class="fas fa-address-card"></i>
-                            </span>
-                            About
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/settings">
-                            <span>
-                                <i class="fas fa-cog"></i>
-                            </span>
-                            Settings
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/github">
-                            <span>
-                                <i class="fa-brands fa-github"></i>
-                            </span>
-                            Project Íris
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-            <iframe src="/login" title="Login Webpage"></iframe>
-            <a onclick="enableNav()" class="float">
-                <i id="iconi" class="fa fa-list"></i>
-            </a>
-        </div>
-    </body>
+<body onload="toggleNavVisibility()">
+    <div>
+        <nav id="navbar" hidden>
+            <ul class="navtop">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/"><i class="fas fa-home"></i> Homepage</a>
+                </li>
+                <li>
+                    <a href="https://github.com/KillovSky/Iris">
+                        <span>
+                            <i class="fa-brands fa-github"></i>
+                        </span>
+                        Project Íris
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/KillovSky/Iris/issues/604"><i
+                            class="fa-solid fa-handshake-angle"></i>
+                        Suporte</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://www.npmjs.com/~killovsky"><i class="fa-brands fa-npm"></i>
+                        KillovSky
+                        [NPM]</a>
+                </li>
+                <li>
+                    <a href="https://github.com/KillovSky">
+                        <span>
+                            <i class="fa-brands fa-github-alt"></i>
+                        </span>
+                        KillovSky [GitHub]
+                    </a>
+                </li>
+                <li>
+                    <a href="https://github.com/KillovSky#-fundings">
+                        <span>
+                            <i class="fa-solid fa-circle-dollar-to-slot"></i>
+                        </span>
+                        Donates
+                    </a>
+                </li>
+                <li>
+                    <a href="https://github.com/KillovSky?tab=repositories">
+                        <span>
+                            <i class="fa-solid fa-plus"></i>
+                        </span>
+                        Mais projetos
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <iframe src="/login" title="Login Webpage"></iframe>
+        <a onclick="toggleNavVisibility()" class="float">
+            <i id="iconi" class="fa fa-list"></i>
+        </a>
+    </div>
+</body>
 
 </html>

@@ -1,9 +1,11 @@
 {
     "name": "memes",
-    "description": "Realizar a criação dos memes por meio de canvas.",
+    "description": "Realizar a criação dos memes por meio de canvas, textpro e outros.",
     "usage": {
-        "general": "[Prefix][Alias] [@user|mensagem|foto] [-sticker]",
+        "general": "[Prefix][Alias] [@user|mensagem|foto|texto] [-sticker|--dark]",
         "examples": [
+            "/phcom texto",
+            "/ytcom texto --dark",
             "/gay",
             "/gay @user",
             "/trash <mensagem>",

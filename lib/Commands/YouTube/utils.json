@@ -1,6 +1,6 @@
 {
     "name": "Video",
-    "description": "Baixar, pesquisar ou enviar informações de vídeos do YouTube.",
+    "description": "Baixar, pesquisar ou enviar informações de vídeos do YouTube ou de sites.",
     "usage": {
         "general": "[Prefix][Alias] [-video|-audio|-link] [Termos de Busca|URL|ID]",
         "examples": [

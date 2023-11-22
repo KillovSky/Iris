@@ -18,6 +18,7 @@
     },
     "license": "MIT",
     "helps": [
+        "Conquistar a vitória resultará em um ganho de 5 icoin's, porém, em caso de derrota, você perderá 5 deles. Se você não possuir nenhum icoin, ficará em débito com o banco, e qualquer icoin ganho enquanto estiver no negativo será utilizado para quitar sua dívida.",
         "O create deve conter um número de 1 a 3 antes de marcar algúem para jogar, o número representa a dificuldade se for um jogo contra a Íris e é obrigatorio inserir, mesmo que você jogue com outro humano.",
         "As dificuldades presentes são easy (1), medium (2) e hardcore (3), sendo que a chance de vitoria de cada, em ordem, é: 90%, 50%, 1%",
         "Você deve cancelar um jogo antes de jogar com outra pessoa, caso contrario, você pode acabar jogando em outra partida sua que não é a atual.",
@@ -140,6 +141,16 @@
             "description": "Armazena a mensagem do último erro recebido.",
             "type": "Boolean / String",
             "value": false
+        },
+        "coinsWin": {
+            "description": "Define quantos icoins a pessoa ganha se vencer um jogo.",
+            "type": "Number",
+            "value": 15
+        },
+        "coinsLost": {
+            "description": "Define quantos icoins a pessoa perde se não vencer um jogo.",
+            "type": "Number",
+            "value": -5
         }
     },
     "results": {

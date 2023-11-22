@@ -151,6 +151,7 @@ lib/Sessions/*
 !lib/Databases/Informations/Default.json
 MessageTypes
 NASA_IMAGES
+package-lock.json
 
 # managed
 **.data.json

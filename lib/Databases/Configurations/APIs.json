@@ -1,5 +1,5 @@
 {
-    "IMPORTANT": "You can insert multiple API-KEYs to get high usages and prevent limit locks, but DON'T ABUSE the servers for that.",
+    "IMPORTANT": "You can insert multiple API keys to increase usage and prevent limit locks, but please refrain from abusing the servers for this purpose. Keep in mind that, for the most part, these features are still not utilized, and the information is not updated.",
     "acr": {
         "name": "ACRCloud [Syntec TV]",
         "website": "https://console.acrcloud.com/avr#/projects/online",

@@ -1,6 +1,6 @@
-# Como ajudar no Projeto Íris?
+# Guia de Contribuição para o Projeto Íris 🚀
 
-Estamos felizes que você deseja contribuir para o projeto Íris, este guia o ajudará a entender como fazer uma pull request para o repositório, muito obrigado!
+Estamos felizes que você deseja contribuir para o projeto Íris. Este guia o ajudará a entender como fazer uma pull request para o repositório. Muito obrigado pela sua participação!
 
 ## Passos para Contribuir
 
@@ -28,7 +28,7 @@ Estamos felizes que você deseja contribuir para o projeto Íris, este guia o aj
      ```bash
      npm i
      ```
-   - Isso habilitará o ESLint para ajudá-lo a manter um código limpo.
+   - Feito isso, instale o eslint no Visual Studio Code pela marketplace, isso habilitará o ESLint para ajudá-lo a manter um código limpo.
 
 5. **Commit das Alterações**
    - Adicione suas alterações ao commit com o comando:
@@ -53,13 +53,13 @@ Estamos felizes que você deseja contribuir para o projeto Íris, este guia o aj
 9. **Revisão e Merge**
    - Após a análise de @KillovSky, suas alterações serão mescladas no repositório principal, desde que sejam aprovadas.
 
-## Dicas para uma boa Pull Request
+## Dicas para uma Boa Pull Request ✨
 
 - Mantenha a Pull Request focada em uma única tarefa ou correção, de preferência, comandos em formato de plugin como os atuais.
 - Forneça uma descrição clara do que foi feito.
 - Mantenha seu código limpo e siga as diretrizes do projeto, como comentários claros e breves do que está acontecendo em cada linha, não exagere.
 - Certifique-se de que os testes foram realizados antes de enviar a Pull Request e que ela está funcional.
-- Insira os dialogos nos 12 idiomas, você pode traduzir usando google tradutor, mas certifique-se de traduzir de volta, para ver se a frase está fazendo sentido.
+- Insira os diálogos nos 12 idiomas, você pode traduzir usando google tradutor, mas certifique-se de traduzir de volta, para ver se a frase está fazendo sentido.
 - Melhorias pequenas podem ser adiadas para serem postadas junto a correções maiores.
 - Se estiver em dúvida, venha para nossas [redes sociais](https://github.com/KillovSky#-grupos), estaremos de prontidão para oferecer ajuda a criar sua pull request!
 - Alterações menores, como a adição de apenas alguns diálogos, podem ter a permissão de pull request negada se não forem consideradas urgentes ou essenciais no momento.

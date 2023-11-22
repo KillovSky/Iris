@@ -2,7 +2,10 @@
     "Default": {
         "place": "./Functions/Default",
         "alias": [
-            "default"
+            "default",
+            "metrics",
+            "convert",
+            "calculate"
         ]
     },
     "Arrays": {
@@ -13,7 +16,7 @@
         ]
     },
     "Cards": {
-        "place": "./Functions/Canvas/Cards/index",
+        "place": "./Functions/Pictures/Cards/index",
         "alias": [
             "cards",
             "leveling",
@@ -68,16 +71,6 @@
             "palette"
         ]
     },
-    "Editor": {
-        "place": "./Functions/Canvas/Editor/index",
-        "alias": [
-            "editor",
-            "crop",
-            "sharp",
-            "cut",
-            "images"
-        ]
-    },
     "Events": {
         "place": "./Functions/Works/Events/index",
         "alias": [
@@ -85,19 +78,20 @@
             "evento"
         ]
     },
+    "Images": {
+        "place": "./Functions/Pictures/Images/index",
+        "alias": [
+            "imageget",
+            "search",
+            "images",
+            "glens"
+        ]
+    },
     "Memes": {
-        "place": "./Functions/Canvas/Memes/index",
+        "place": "./Functions/Pictures/Memes/index",
         "alias": [
             "memes",
             "haha"
-        ]
-    },
-    "Metrics": {
-        "place": "./Functions/Metrics/index",
-        "alias": [
-            "metrics",
-            "convert",
-            "calculate"
         ]
     },
     "Numbers": {
