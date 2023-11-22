@@ -1,4 +1,24 @@
+<!-- Na penumbra eterna, onde o eco sussurra sombras sinistras,
+A chama agoniza em um lamento enlouquecedor,
+Destinos indecisos e histórias perdidas se entrelaçam,
+No reino esquecido, além da lógica, onde almas vagam desprovidas de luz.
 
+Alimentada por murmúrios de trevas, a sombra renasce,
+Nos confins do esquecimento, sua história macabra se forma,
+Onde a luz desiste de brilhar, e a alma se divide em agonia,
+No vazio etéreo, sombras e luz selaram um pacto de desespero.
+
+A chama, extinta em sua forma física, ecoa nas almas corrompidas,
+Que foram arrastadas entre as dimensões desprovidas de luz,
+Na obscuridade, uma presença se mantém, desafiando a esperança,
+Pois nem toda escuridão é desprovida de uma centelha de tormento e clareza.
+
+Sua lembrança persiste, e sua chama silenciosa dança,
+Em um ciclo eterno onde destinos se entrelaçam na desolação,
+A dualidade da escuridão e da luz desafia vossa razão,
+E na fronteira entre terror e renascimento, uma pergunta sempre ecoa:
+
+"Inaceso, a chama da vida que possuis ainda cintila digna de conduzir-te a um ciclo inatingível?" -->
 <p align="center">
 	<img src="https://github.com/KillovSky/Iris/assets/55511420/33852679-aaa5-4ace-b4f3-f40f9ade72c7" width="256" height="256">
 	<h1 align="center">Projeto Íris</h1>
@@ -34,7 +54,9 @@
 10. - [📚 Guias de Instalação](#-guias-de-instalação)
 11. - [🌐 Outros Projetos](#-outros-projetos)
 12. - [📱 Redes Sociais](#-redes-sociais)
-13. - [🚀 Finalização](#-finalização)
+13. - [🖊️ Guia de Modificação](#%EF%B8%8F-guia-de-modificação)
+14. - [🔗 Website](#-website)
+15. - [🚀 Finalização](#-finalização)
 
 ## 📚 Informações Adicionais
 
@@ -46,6 +68,8 @@ Essas informações levam a arquivos focados exclusivamente no assunto em quest�
 4. - [📖 Changelog](https://github.com/KillovSky/Iris/blob/main/.github/CHANGELOG.md)
 5. - [ℹ️ Outros](http://htmlpreview.github.io/?https://raw.githubusercontent.com/KillovSky/Iris/main/lib/Wiki/About/index.html)
 6. - [💲 Doações](https://github.com/killovsky#-fundings)
+7. - [🖊️ Guia de Modificação](https://github.com/KillovSky/Iris/blob/main/lib/Wiki/Tutorial/Guide.md)
+8. - [🔗 Website](https://killovsky.github.io/Iris)
 
 ## ❓ O que é a Íris?
 
@@ -99,6 +123,14 @@ Se quiser usar nossas redes sociais para informar erros e ir atrás de suporte, 
 2. [Telegram](https://t.me/PROJETOIRIS)
 
 Não estarei utilizando de suporte no WhatsApp, então você possui apenas essas duas redes sociais para contatar os desenvolvedores.
+
+## 🖊️ Guia de Modificação
+
+Se você tem interesse em desenvolver comandos, contribuir ou explorar a funcionalidade da `envInfo`, recomendamos a leitura do nosso guia de programação de comandos, disponível [clicando aqui](https://github.com/KillovSky/Iris/blob/main/lib/Wiki/Tutorial/Guide.md). Vale ressaltar que, caso você seja iniciante em programação, é aconselhável adquirir conhecimentos básicos por meio de cursos ou guias introdutórios, pois não oferecemos suporte para aqueles que ainda não possuem familiaridade com programação.
+
+## 🔗 Website
+
+Agora temos um website para a Íris! Para acessá-lo, basta [clicar aqui](https://killovsky.github.io/Iris). Lembre-se de que a opção de login está destinada apenas a conexões locais. Tentar utilizá-la neste site levará você a uma página de erro. Além disso, escondi eastereggs na página.
 
 ## 🚀 Finalização
 

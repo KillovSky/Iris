@@ -27,6 +27,8 @@
         "messedup": "messedup",
         "starter": "starter",
         "endrun": "endrun",
+        "getip": "getip",
+        "allowip": "allowip",
         "baseinit": "baseinit",
         "format": "format",
         "reset": "reset",
@@ -55,6 +57,24 @@
         "ambient": {
             "arguments": false,
             "description": "Retorna as variáveis e sistemas do arquivo.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "getip": {
+            "arguments": false,
+            "description": "Retorna todos os IPs que fizeram conexão.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "allowip": {
+            "arguments": {
+                "ip": {
+                    "description": "O IP para ser desbloqueado.",
+                    "type": "Boolean / Error",
+                    "value": false
+                }
+            },
+            "description": "Desbloqueia um endereço de IP.",
             "type": "Boolean / Function",
             "value": false
         },
@@ -142,6 +162,16 @@
         }
     },
     "parameters": {
+        "prankPage": {
+            "description": "Define para qual URL mandar a pessoa que está fazendo bruteforce.",
+            "type": "String",
+            "value": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+        },
+        "prankAmount": {
+            "description": "Define quantas tentativas alguém precisa fazer para mandar a pessoa para uma página especifica.",
+            "type": "Number",
+            "value": 8
+        },
         "enableConsole": {
             "description": "Define se deve abrir um servidor para o terminal web.",
             "type": "Boolean",
@@ -176,6 +206,11 @@
             "description": "Porta HTTP para acesso do terminal, entrar causa redirecionamento para HTTPS.",
             "type": "Boolean / Number",
             "value": false
+        },
+        "tryLimit": {
+            "description": "Define o limite de tentativas para acessar o terminal, o valor deve sempre ser o dobro do que planeja, por exemplo, 3 Tentativas? Insira 6 aqui.",
+            "type": "Number",
+            "value": 6
         },
         "location": {
             "description": "Local onde o módulo pode ser encontrado.",

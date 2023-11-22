@@ -138,7 +138,26 @@
             "description": "Local onde o módulo pode ser encontrado.",
             "type": "Object",
             "value": {
+                "Images": [
+                    "images",
+                    "randomimage",
+                    "loli",
+                    "qr",
+                    "search",
+                    "getsticker"
+                ],
                 "Memes": [
+                    "3db",
+                    "1917",
+                    "thunder",
+                    "wolfb",
+                    "wolfg",
+                    "80s",
+                    "pornhub",
+                    "bpink",
+                    "thunder",
+                    "water",
+                    "3dg",
                     "affect",
                     "apagar",
                     "bandeira",
@@ -157,7 +176,6 @@
                     "clyde",
                     "cmm",
                     "delete",
-                    "delete",
                     "distracted",
                     "drake",
                     "edtv",
@@ -173,6 +191,7 @@
                     "jooj",
                     "kiss",
                     "later",
+                    "light",
                     "lindo",
                     "lixo",
                     "medal",
@@ -183,6 +202,9 @@
                     "opinion",
                     "paper",
                     "pepe",
+                    "petpet",
+                    "phcom",
+                    "ytcom",
                     "pixelate",
                     "rainbow",
                     "reverse",
@@ -244,9 +266,11 @@
                     "handlers",
                     "blacklist",
                     "prefix",
+                    "nsfw",
                     "language",
                     "goodbye",
                     "whitelist",
+                    "leveling",
                     "welcome",
                     "antispam"
                 ],
@@ -279,32 +303,13 @@
                 "Chess": [
                     "chess",
                     "xadrez"
+                ],
+                "Level": [
+                    "level",
+                    "nivel",
+                    "lvl"
                 ]
             }
-        },
-        "mixFiles": {
-            "description": "Local onde o módulo pode ser encontrado.",
-            "type": "Array",
-            "value": [
-                "pais",
-                "fruta",
-                "capital",
-                "empresa",
-                "nome"
-            ]
-        },
-        "winTypes": {
-            "description": "Local onde o módulo pode ser encontrado.",
-            "type": "Array",
-            "value": [
-                "coin",
-                "dima",
-                "rubi",
-                "stone",
-                "gold",
-                "iron",
-                "wood"
-            ]
         },
         "baseCMDs": {
             "description": "Local padrão para buscar comandos.",

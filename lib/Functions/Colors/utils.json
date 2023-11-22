@@ -1,31 +1,31 @@
 {
-    "name": "Shades",
-    "description": "Sistema com diversas funções envolvendo RGB e HEX.",
+    "name": "shades",
+    "description": "Criar, converter, ajustar e fazer tarefas com cores e logging.",
     "usage": {
         "general": "[RESTRITO] - Verifique o 'examples' para usos inseguros.",
         "examples": [
-            "Shades.env()",
-            "Shades.genhex('amount', 'hex size', 'is subfunction?')",
-            "Shades.genrgb('amount', 'is subfunction?')",
-            "Shades.ishex('string (HEX color)')",
-            "Shades.torgb('HEX color')",
-            "Shades.echo('text', 'color name', 'is subfunction?')",
-            "Shades.report('error', 'command')",
-            "Shades.reset()",
+            "shades.env()",
+            "shades.genhex('amount', 'hex size', 'is subfunction?')",
+            "shades.genrgb('amount', 'is subfunction?')",
+            "shades.ishex('string (HEX color)')",
+            "shades.torgb('HEX color')",
+            "shades.echo('text', 'color name', 'is subfunction?')",
+            "shades.report('error', 'command')",
+            "shades.reset()",
             "envInfo.functions.genhex.value('amount', 'hex size', 'is subfunction?')",
             "envInfo.functions.genrgb.value('amount', 'is subfunction?')",
             "envInfo.functions.ishex.value('string (HEX color)')",
             "envInfo.functions.torgb.value('HEX color')",
             "envInfo.functions.echo.value('text', 'color name', 'is subfunction?')",
             "envInfo.functions.report.value('error', 'command')",
-            "Shades.env().functions.revert.value()"
+            "shades.env().functions.revert.value()"
         ]
     },
     "license": "MIT",
     "helps": [
-        "Você pode mudar os parâmetros da exports enviando o valor da Object que deseja editar ao resetar, por exemplo → Shades.reset({ name: 'Body'}) ← Isso mudaria o module de Tree para Body, o uso então passaria ser: → Body.funcão ← Isso também permite que você edita a função usando o mesmo método.",
-        "Você pode mudar o que os códigos rodam, em tempo real, basta usar a 'env', por exemplo → Shades.env().name = 'Body' ← Mas este método não atualizará o sistema, somente a Object, os sistemas permanecem intactos.",
-        "Você pode configurar o tempo de reset dos resultados ou se eles devem ser resetados usando a env, por exemplo → Shades.env().settings.wait = 10000 ← Isso mudaria o tempo de espera para 10 segundos, o tempo deve ser em milissegundos.",
+        "Você pode mudar os parâmetros da exports enviando o valor da Object que deseja editar ao resetar, por exemplo → shades.reset({ name: 'Body'}) ← Isso mudaria o module de Tree para Body, o uso então passaria ser: → Body.funcão ← Isso também permite que você edita a função usando o mesmo método.",
+        "Você pode mudar o que os códigos rodam, em tempo real, basta usar a 'env', por exemplo → shades.env().name = 'Body' ← Mas este método não atualizará o sistema, somente a Object, os sistemas permanecem intactos.",
+        "Você pode configurar o tempo de reset dos resultados ou se eles devem ser resetados usando a env, por exemplo → shades.env().settings.wait = 10000 ← Isso mudaria o tempo de espera para 10 segundos, o tempo deve ser em milissegundos.",
         "Alguém lê essas dicas? Se sim, torne-se um programador, ler os tutoriais é de suma importância e poucos desenvolvedores o fazem...",
         "Existem infinitas formas de uso secretas, explore os códigos para descobrir os mistérios dos sistemas!",
         "Todas as funções tem valores padrão, então você não sofrerá erros por esquecer de enviar um parâmetro ou similar.",
@@ -45,7 +45,7 @@
     },
     "developer": "KillovSky",
     "files": {
-        "index.js": "Sistema de funções HEX e RGB.",
+        "index.js": "Sistema de cores e logging de mensagens.",
         "utils.json": "Dados de fábrica da envInfo."
     },
     "modules": {

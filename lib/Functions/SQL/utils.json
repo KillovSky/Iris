@@ -54,7 +54,8 @@
     },
     "modules": {
         "fs": "Leitura de diretórios e arquivos.",
-        "path": "Para obter o nome da pasta."
+        "path": "Para obter o nome da pasta.",
+        "../../index": "Para rodar funções de outros arquivos."
     },
     "functions": {
         "ambient": {
@@ -377,6 +378,7 @@
                     },
                     "name": {
                         "text": "default",
+                        "number": "0",
                         "lastValue": 0,
                         "lastDate": 0,
                         "firstEdition": false,
@@ -483,6 +485,26 @@
                         "enable": false,
                         "text": false,
                         "values": [],
+                        "lastValue": 0,
+                        "lastState": false,
+                        "lastUser": "none",
+                        "lastDate": 0,
+                        "firstEdition": false,
+                        "firstUser": false,
+                        "firstDate": 0
+                    },
+                    "nsfw": {
+                        "enable": false,
+                        "lastValue": 0,
+                        "lastState": false,
+                        "lastUser": "none",
+                        "lastDate": 0,
+                        "firstEdition": false,
+                        "firstUser": false,
+                        "firstDate": 0
+                    },
+                    "leveling": {
+                        "enable": false,
                         "lastValue": 0,
                         "lastState": false,
                         "lastUser": "none",

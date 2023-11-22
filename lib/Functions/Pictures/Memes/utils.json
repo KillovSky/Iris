@@ -1,0 +1,191 @@
+{
+    "name": "memetic",
+    "description": "Realizar a criação de memes, banners e outros tipos de midia.",
+    "usage": {
+        "general": "[RESTRITO] - Verifique o 'examples' para usos inseguros.",
+        "examples": [
+            "memetic.env()",
+            "memetic.memes('name', '[avatars]', 'env')",
+            "memetic.reset()",
+            "memetic.env().functions.memes.value('name', '[avatars]', 'env')",
+            "memetic.env().functions.revert.value()"
+        ]
+    },
+    "license": "MIT",
+    "helps": [
+        "Você pode mudar os parâmetros da exports enviando o valor da Object que deseja editar ao resetar, por exemplo → memetic.reset({ name: 'Body'}) ← Isso mudaria o module de memetic para Body, o uso então passaria ser: → Body.funcão ← Isso também permite que você edita a função usando o mesmo método.",
+        "Você pode mudar o que os códigos rodam, em tempo real, basta usar a 'env', por exemplo → memetic.env().name = 'Body' ← Mas este método não atualizará o sistema, somente a Object, os sistemas permanecem intactos.",
+        "Você pode configurar o tempo de reset dos resultados ou se eles devem ser resetados usando a env, por exemplo → memetic.env().settings.wait = 10000 ← Isso mudaria o tempo de espera para 10 segundos, o tempo deve ser em milissegundos.",
+        "Alguém lê essas dicas? Se sim, torne-se um programador, ler os tutoriais é de suma importância e poucos desenvolvedores o fazem...",
+        "Existem infinitas formas de uso secretas, explore os códigos para descobrir os mistérios dos sistemas!",
+        "Todas as funções tem valores padrão, então você não sofrerá erros por esquecer de enviar um parâmetro ou similar."
+    ],
+    "exports": {
+        "env": "env",
+        "messedup": "messedup",
+        "memes": "memes",
+        "reset": "reset",
+        "poswork": "finish"
+    },
+    "developer": "KillovSky",
+    "files": {
+        "index.js": "Sistema que gera informações de usuários em formato de imagens.",
+        "images": "Pasta com a base dos memes para criar.",
+        "utils.json": "Dados de fábrica da envInfo."
+    },
+    "modules": {
+        "fs": "Leitura de diretórios e arquivos.",
+        "path": "Para obter o nome da pasta.",
+        "canvafy": "Fabrica as imagens.",
+        "canvacord": "Outro meio de fabricar imagens.",
+        "@napi-rs/canvas": "Para criar memes manualmente.",
+        "mumaker": "Para criar memes de sites online.",
+        "pet-pet-gif": "Para fazer o classico meme de petpet em gif.",
+        "../../../index": "Executar sistemas de outros arquivos."
+    },
+    "functions": {
+        "ambient": {
+            "arguments": false,
+            "description": "Retorna as variáveis e sistemas do arquivo.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "messedup": {
+            "arguments": {
+                "error": {
+                    "description": "Instância de erro para formatação.",
+                    "type": "Boolean / Error",
+                    "value": false
+                }
+            },
+            "description": "Ajusta os valores de erro.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "memes": {
+            "arguments": {
+                "typememe": {
+                    "description": "Tipo do meme a ser feito.",
+                    "type": "String",
+                    "value": "gay"
+                },
+                "avatars": {
+                    "description": "Uma array de avatares para utilizar no comando.",
+                    "type": "Array",
+                    "value": [
+                        "https://http.cat/418.jpg",
+                        "https://http.dog/418.jpg",
+                        "https://http.cat/420.jpg",
+                        "https://http.dog/420.jpg",
+                        "https://http.dog/403.jpg",
+                        "https://http.cat/403.jpg",
+                        "https://http.dog/100.jpg",
+                        "https://http.cat/100.jpg",
+                        "https://thispersondoesnotexist.com"
+                    ]
+                },
+                "env": {
+                    "description": "Ambiente com dados da mensagem.",
+                    "type": "Object",
+                    "value": {
+                        "value": {
+                            "body": "Say something | Bro!",
+                            "pushname": "User"
+                        }
+                    }
+                }
+            },
+            "description": "Faz um cartão de membro para quando alguém sair ou entrar de grupos.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "poswork": {
+            "arguments": {
+                "response": {
+                    "description": "Resultados de uma função.",
+                    "type": "Any",
+                    "value": false
+                }
+            },
+            "description": "Verifica se pode resetar a envInfo e retorna o resultado da função.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "revert": {
+            "arguments": {
+                "changeKey": {
+                    "description": "Uma Object com valores que existem na envInfo, ela será usada para substituir o sistema em tempo real.",
+                    "type": "Object value",
+                    "anyValue": false
+                }
+            },
+            "description": "Reseta a envInfo para a Object padrão.",
+            "type": "Boolean / Function",
+            "value": false
+        }
+    },
+    "settings": {
+        "wait": {
+            "description": "Tempo em MS que deve esperar antes de resetar.",
+            "type": "Number",
+            "value": 5000
+        },
+        "error": {
+            "description": "Define se pode printar qualquer erro.",
+            "type": "Boolean",
+            "value": true
+        },
+        "ender": {
+            "description": "Define se deve resetar a cada erro.",
+            "type": "Boolean",
+            "value": true
+        },
+        "finish": {
+            "description": "Define se deve resetar a cada finalização.",
+            "type": "Boolean",
+            "value": true
+        }
+    },
+    "parameters": {
+        "stockValues": {
+            "description": "Define as configurações padrões.",
+            "type": "Object",
+            "value": {
+                "background": {
+                    "value": "https://user-images.githubusercontent.com/55511420/200402294-51d85a0b-c405-4cfa-b316-db651dd00e7e.jpg",
+                    "format": "image"
+                },
+                "ship": {
+                    "border": "#E60012",
+                    "overlayOpacity": 0.4
+                }
+            }
+        },
+        "baseImage": {
+            "description": "Imagem base para enviar casos erros graves ocorram.",
+            "type": "String",
+            "value": "data:image/gif;base64,R0lGODlhAQABAAAAACw="
+        },
+        "location": {
+            "description": "Local onde o módulo pode ser encontrado.",
+            "type": "Boolean / String",
+            "value": "./index"
+        },
+        "code": {
+            "description": "Código do erro que obter.",
+            "type": "Boolean / String / Number",
+            "value": false
+        },
+        "message": {
+            "description": "Armazena a mensagem do último erro recebido.",
+            "type": "Boolean / String",
+            "value": false
+        }
+    },
+    "results": {
+        "description": "Resultado final da função.",
+        "success": true,
+        "type": "Any",
+        "value": false
+    }
+}

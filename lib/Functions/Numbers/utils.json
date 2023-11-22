@@ -1,34 +1,34 @@
 {
-    "name": "Units",
-    "description": "Funções do tipo Number que auxiliam a Íris no dia a dia.",
+    "name": "units",
+    "description": "Criar, converter, formatar ou fazer outras tarefas com números.",
     "usage": {
         "general": "[RESTRITO] - Verifique o 'examples' para usos inseguros.",
         "examples": [
-            "Units.env()",
-            "Units.remain('ms type', 'timestamp')",
-            "Units.extend('compact number', 'type number')",
-            "Units.compact('number')",
-            "Units.isint('number')",
-            "Units.randnum('number', 'number')",
-            "Units.process('timestamp')",
-            "Units.expand('exponent number', 'use accent', 'resize', 'resize index')",
-            "Units.reset()",
-            "Units.env().functions.remain.value('ms type', 'timestamp')",
-            "Units.env().functions.extend.value('compact number', 'type number')",
-            "Units.env().functions.compact.value('number')",
-            "Units.env().functions.isint.value('number')",
-            "Units.env().functions.randnum.value('number', 'number')",
-            "Units.env().functions.process.value('timestamp')",
-            "Units.env().functions.format.value('ms')",
-            "Units.env().functions.expand.value('exponent number', 'use accent', 'resize', 'resize index')",
-            "Units.env().functions.revert.value()"
+            "units.env()",
+            "units.remain('ms type', 'timestamp')",
+            "units.extend('compact number', 'sigla')",
+            "units.compact('number')",
+            "units.isint('number')",
+            "units.randnum('number', 'number')",
+            "units.process('timestamp')",
+            "units.expand('exponent number', 'use accent', 'resize', 'resize index')",
+            "units.reset()",
+            "units.env().functions.remain.value('ms type', 'timestamp')",
+            "units.env().functions.extend.value('compact number', 'sigla')",
+            "units.env().functions.compact.value('number')",
+            "units.env().functions.isint.value('number')",
+            "units.env().functions.randnum.value('number', 'number')",
+            "units.env().functions.process.value('timestamp')",
+            "units.env().functions.format.value('ms')",
+            "units.env().functions.expand.value('exponent number', 'use accent', 'resize', 'resize index')",
+            "units.env().functions.revert.value()"
         ]
     },
     "license": "MIT",
     "helps": [
-        "Você pode mudar os parâmetros da exports enviando o valor da Object que deseja editar ao resetar, por exemplo → Units.reset({ name: 'Body'}) ← Isso mudaria o module de Tree para Body, o uso então passaria ser: → Body.funcão ← Isso também permite que você edita a função usando o mesmo método.",
-        "Você pode mudar o que os códigos rodam, em tempo real, basta usar a 'env', por exemplo → Units.env().name = 'Body' ← Mas este método não atualizará o sistema, somente a Object, os sistemas permanecem intactos.",
-        "Você pode configurar o tempo de reset dos resultados ou se eles devem ser resetados usando a env, por exemplo → Units.env().settings.wait = 10000 ← Isso mudaria o tempo de espera para 10 segundos, o tempo deve ser em milissegundos.",
+        "Você pode mudar os parâmetros da exports enviando o valor da Object que deseja editar ao resetar, por exemplo → units.reset({ name: 'Body'}) ← Isso mudaria o module de Tree para Body, o uso então passaria ser: → Body.funcão ← Isso também permite que você edita a função usando o mesmo método.",
+        "Você pode mudar o que os códigos rodam, em tempo real, basta usar a 'env', por exemplo → units.env().name = 'Body' ← Mas este método não atualizará o sistema, somente a Object, os sistemas permanecem intactos.",
+        "Você pode configurar o tempo de reset dos resultados ou se eles devem ser resetados usando a env, por exemplo → units.env().settings.wait = 10000 ← Isso mudaria o tempo de espera para 10 segundos, o tempo deve ser em milissegundos.",
         "Alguém lê essas dicas? Se sim, torne-se um programador, ler os tutoriais é de suma importância e poucos desenvolvedores o fazem...",
         "Existem infinitas formas de uso secretas, explore os códigos para descobrir os mistérios dos sistemas!",
         "Todas as funções tem valores padrão, então você não sofrerá erros por esquecer de enviar um parâmetro ou similar.",
@@ -57,7 +57,8 @@
         "fs": "Leitura de diretórios e arquivos.",
         "path": "Para obter o nome da pasta.",
         "pretty-num": "Para fazer parse de números grandes.",
-        "../index": "Para usar funções de outros arquivos."
+        "../../index": "Para usar funções de outros arquivos.",
+        "../../Dialogues/index": "Para obter dialogos presentes na Íris."
     },
     "functions": {
         "ambient": {
@@ -103,7 +104,7 @@
                     "value": false
                 },
                 "typeExtend": {
-                    "description": "Tipo de extensão que deve realizar, os valores aceitos são 'Value' ou 'Time'.",
+                    "description": "Tipo de extensão que deve realizar.",
                     "type": "Boolean / String",
                     "value": false
                 }

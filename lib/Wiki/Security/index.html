@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Página de bloqueio de segurança de abuso de tentativas.">
+    <meta name="keywords"
+        content="robot, bot, whatsapp, chatbot, languages, games, stickers, commands, otaku, gamer, adult, help, automate, javascript, html, shell, css, python, json, opensource, adapt, iris">
+    <meta name="author" content="KillovSky">
+    <title>Safety</title>
+    <script src="security.js"></script>
+    <link rel="stylesheet" href="security.css">
+    <script src="https://api.ipify.org?format=jsonp&callback=getIP"></script>
+</head>
+<body onload="AddIP()">
+    <div class="notification-box">
+        <img src="yumeko.png" class="warning-photo" alt="Warning Photo">
+        <h1>Ops, parece que você se perdeu!</h1>
+        <p>
+            Identificamos uma movimentação suspeita no servidor.<br>Por questões de segurança, seu acesso foi
+            <strong>bloqueado</strong>.<br><br>
+            Seu endereço <strong>IP (<span id="ip">público</span>)</strong> e informações foram registrados e
+            denunciados.<br>Recomendamos que você saia <strong>imediatamente</strong>.
+        </p>
+    </div>
+</body>
+</html>

@@ -1,4 +1,5 @@
 {
+	"comment": "These types are intended for the old version of Íris and currently have limited usage.",
 	"MOD": [
 		"add",
 		"admins",

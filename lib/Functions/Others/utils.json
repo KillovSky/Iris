@@ -1,29 +1,29 @@
 {
-    "name": "Extras",
-    "description": "Funções de tipos variados que auxiliam a Íris no dia a dia.",
+    "name": "another",
+    "description": "Executar qualquer tipo de função que não possua arquivo próprio.",
     "usage": {
         "general": "[RESTRITO] - Verifique o 'examples' para usos inseguros.",
         "examples": [
-            "Extras.env()",
-            "Extras.list('chatIDs')",
-            "Extras.sleep('milisseconds')",
-            "Extras.buffer('midia url')",
-            "Extras.blur('buffer', 'blur level', 'bright level')",
-            "Extras.scale('image data', 'width', 'height', 'topLeftWidth', 'topLeftHeight', 'context canvas', 'type math')",
-            "Extras.reset()",
-            "Extras.env.functions.list.value('chatIDs')",
-            "Extras.env.functions.sleep.value('milisseconds')",
-            "Extras.env.functions.buffer.value('midia url')",
-            "Extras.env.functions.blur.value('buffer', 'blur level', 'bright level')",
-            "Extras.env.functions.scale.value('image data', 'width', 'height', 'topLeftWidth', 'topLeftHeight', 'context canvas', 'type math')",
-            "Extras.env().functions.revert.value()"
+            "another.env()",
+            "another.list('chatIDs')",
+            "another.sleep('milisseconds')",
+            "another.buffer('midia url')",
+            "another.blur('buffer', 'blur level', 'bright level')",
+            "another.scale('image data', 'width', 'height', 'topLeftWidth', 'topLeftHeight', 'context canvas', 'type math')",
+            "another.reset()",
+            "another.env.functions.list.value('chatIDs')",
+            "another.env.functions.sleep.value('milisseconds')",
+            "another.env.functions.buffer.value('midia url')",
+            "another.env.functions.blur.value('buffer', 'blur level', 'bright level')",
+            "another.env.functions.scale.value('image data', 'width', 'height', 'topLeftWidth', 'topLeftHeight', 'context canvas', 'type math')",
+            "another.env().functions.revert.value()"
         ]
     },
     "license": "MIT",
     "helps": [
-        "Você pode mudar os parâmetros da exports enviando o valor da Object que deseja editar ao resetar, por exemplo → Extras.reset({ name: 'Body'}) ← Isso mudaria o module de Tree para Body, o uso então passaria ser: → Body.funcão ← Isso também permite que você edita a função usando o mesmo método.",
-        "Você pode mudar o que os códigos rodam, em tempo real, basta usar a 'env', por exemplo → Extras.env().name = 'Body' ← Mas este método não atualizará o sistema, somente a Object, os sistemas permanecem intactos.",
-        "Você pode configurar o tempo de reset dos resultados ou se eles devem ser resetados usando a env, por exemplo → Extras.env().settings.wait = 10000 ← Isso mudaria o tempo de espera para 10 segundos, o tempo deve ser em milissegundos.",
+        "Você pode mudar os parâmetros da exports enviando o valor da Object que deseja editar ao resetar, por exemplo → another.reset({ name: 'Body'}) ← Isso mudaria o module de Tree para Body, o uso então passaria ser: → Body.funcão ← Isso também permite que você edita a função usando o mesmo método.",
+        "Você pode mudar o que os códigos rodam, em tempo real, basta usar a 'env', por exemplo → another.env().name = 'Body' ← Mas este método não atualizará o sistema, somente a Object, os sistemas permanecem intactos.",
+        "Você pode configurar o tempo de reset dos resultados ou se eles devem ser resetados usando a env, por exemplo → another.env().settings.wait = 10000 ← Isso mudaria o tempo de espera para 10 segundos, o tempo deve ser em milissegundos.",
         "Alguém lê essas dicas? Se sim, torne-se um programador, ler os tutoriais é de suma importância e poucos desenvolvedores o fazem...",
         "Existem infinitas formas de uso secretas, explore os códigos para descobrir os mistérios dos sistemas!",
         "Todas as funções tem valores padrão, então você não sofrerá erros por esquecer de enviar um parâmetro ou similar."
@@ -34,6 +34,7 @@
         "list": "list",
         "sleep": "sleep",
         "buffer": "buffer",
+        "patent": "patent",
         "blur": "blur",
         "farpc": "farpc",
         "findkey": "findkey",
@@ -50,7 +51,8 @@
         "fs": "Leitura de diretórios e arquivos.",
         "sharp": "Para editar uma imagem.",
         "axios": "Para acessar uma mídia que esteja em URL.",
-        "path": "Para obter o nome da pasta."
+        "path": "Para obter o nome da pasta.",
+        "../../index": "Para executar funções de outros locais."
     },
     "functions": {
         "ambient": {
@@ -102,6 +104,26 @@
                 }
             },
             "description": "Adquire uma mídia de URL e converte em Buffer.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "patent": {
+            "arguments": {
+                "level": {
+                    "description": "O nível do usuário em relação as patentes do sistema.",
+                    "type": "Number",
+                    "value": 9999
+                },
+                "patents": {
+                    "description": "O nível do usuário em relação as patentes do sistema.",
+                    "type": "Object",
+                    "value": {
+                        "0": "None",
+                        "1000": "God"
+                    }
+                }
+            },
+            "description": "Adquire a patente de um usuário.",
             "type": "Boolean / Function",
             "value": false
         },
@@ -173,7 +195,7 @@
         },
         "sleep": {
             "arguments": {
-                "miliscds": {
+                "miliseconds": {
                     "description": "Quantidade de tempo em milissegundos que deve ser esperada.",
                     "type": "Number",
                     "value": 1000

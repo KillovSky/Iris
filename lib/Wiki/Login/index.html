@@ -1,112 +1,39 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-	<!-- https://github.com/KillovSky/iris | Feito por KillovSky -->
-	<head>
-		<title>Project Íris: Security Check</title>
-		<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
-        <script src="https://api.ipify.org?format=jsonp&callback=getIP"></script>
-		<script>
-			let ipaddr;
-			function getIP(json) {
-				ipaddr = json.ip;
-			}
-			function AddIP() {
-				document.getElementById('IPADDR').value = ipaddr;
-			}
-		</script>
-		<style>
-			body {
-				background-color: #151E29;
-			}
 
-			.login {
-				width: 300px;
-				padding: 40px;
-				position: absolute;
-				top: 50%;
-				text-align: center;
-				transform: translate(-50%, -50%);
-				left: 50%;
-				color: #fff;
-				background: #151E29;
-				border: 2px solid #80c3ff;
-				border-radius: 10px;
-			}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Página de login para acesso das abas restritas do Projeto Íris.">
+    <meta name="keywords"
+        content="robot, bot, whatsapp, chatbot, languages, games, stickers, commands, otaku, gamer, adult, help, automate, javascript, html, shell, css, python, json, opensource, adapt, iris">
+    <meta name="author" content="KillovSky">
+    <title>Project Íris: Security Check</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="login.css">
+    <script src="login.js"></script>
+    <script src="https://api.ipify.org?format=jsonp&callback=getIP"></script>
+</head>
 
-			.login:hover {
-				background: #1B2737;
-			}
+<body onload="AddIP()">
+    <div class="login">
+        <h1>RESTRICTED AREA</h1>
+        <form method="post" action="/login">
+            <input type="text" tabindex="1" name="username" placeholder="Username" required="required">
+            <div class="password-container">
+                <input type="password" tabindex="2" name="password" id="password" placeholder="Password"
+                    required="required">
+                <button type="button" id="togglePassword" class="togglePassword">
+                    <i class="fas fa-eye" id="eye-icon"></i>
+                </button>
+            </div>
+            <input type="hidden" id="IPADDR" name="IP">
+            <span id="incorrect" style="display: none; color: #FF0000;">⚠️ Login incorreto, tentativas restantes:
+                REMAINTRIES123</span>
+            <button type="submit" tabindex="3" class="btn">Conectar</button>
+        </form>
+        <button type="button" id="forgotPassword" class="forgotPassword">Esqueceu sua senha?</button>
+    </div>
+</body>
 
-			.btn {
-				border: 0;
-				background: none;
-				display: block;
-				margin: 20px auto;
-				text-align: center;
-				border: 2px solid #80c3ff;
-				padding: 14px 40px;
-				outline: none;
-				color: #c3c3c3;
-				border-radius: 24px;
-				transition: 0.25s;
-				cursor: pointer;
-				font-size: 1em;
-			}
-
-			input {
-				color: #fff;
-			}
-
-			.btn:focus,
-			.login input[type="text"]:focus,
-			.login input[type="password"]:focus {
-				background: #692d2d;
-				color: #fff;
-			}
-
-			.login input[type="text"]:hover,
-			.login input[type="password"]:hover,
-			.btn:hover {
-				background: #1f78b4;
-				color: #fff;
-			}
-
-			.login input[type="text"]:focus::placeholder,
-			.login input[type="password"]:focus::placeholder,
-			.login input[type="text"]:hover::placeholder,
-			.login input[type="password"]:hover::placeholder {
-				color: #fff;
-			}
-
-			h1 {
-				text-transform: uppercase;
-				font-family: 'Helvetica', 'Arial', sans-serif;
-			}
-
-			.login input[type="text"],
-			.login input[type="password"] {
-				border: 0;
-				background: none;
-				display: block;
-				margin: 20px auto;
-				text-align: center;
-				border: 2px solid #80c3ff;
-				padding: 14px 10px;
-				outline: none;
-				border-radius: 22px;
-				font-size: 1em;
-			}
-		</style>
-	</head>
-	<body onload="AddIP()">
-		<div class="login">
-			<h1>RESTRICTED AREA</h1>
-			<form method="post" action="/login">
-				<input type="text" tabindex="1" name="username" placeholder="Username" required="required"/>
-				<input type="password" tabindex="2" name="password" placeholder="Password" required="required"/>
-				<input type="hidden" id="IPADDR" name="IP"/>
-				<button type="submit" tabindex="3" class="btn">Conectar</button>
-			</form>
-		</div>
-	</body>
 </html>

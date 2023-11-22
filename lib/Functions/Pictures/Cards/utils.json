@@ -1,0 +1,330 @@
+{
+    "name": "leveler",
+    "description": "Gerar cards de informação sobre um usuário.",
+    "usage": {
+        "general": "[RESTRITO] - Verifique o 'examples' para usos inseguros.",
+        "examples": [
+            "leveler.env()",
+            "leveler.level('avatar', 'XP', 'required XP', 'leve', 'rank', 'guild', 'nick', 'team')",
+            "leveler.greets('avatar', 'event', 'title', 'description')",
+            "leveler.reset()",
+            "leveler.env().functions.level.value('avatar', 'XP', 'required XP', 'leve', 'rank', 'guild', 'nick', 'team')",
+            "leveler.env().functions.greets.value('avatar', 'event', 'title', 'description')",
+            "leveler.env().functions.revert.value()"
+        ]
+    },
+    "license": "MIT",
+    "helps": [
+        "Você pode mudar os parâmetros da exports enviando o valor da Object que deseja editar ao resetar, por exemplo → leveler.reset({ name: 'Body'}) ← Isso mudaria o module de Tree para Body, o uso então passaria ser: → Body.funcão ← Isso também permite que você edita a função usando o mesmo método.",
+        "Você pode mudar o que os códigos rodam, em tempo real, basta usar a 'env', por exemplo → leveler.env().name = 'Body' ← Mas este método não atualizará o sistema, somente a Object, os sistemas permanecem intactos.",
+        "Você pode configurar o tempo de reset dos resultados ou se eles devem ser resetados usando a env, por exemplo → leveler.env().settings.wait = 10000 ← Isso mudaria o tempo de espera para 10 segundos, o tempo deve ser em milissegundos.",
+        "Alguém lê essas dicas? Se sim, torne-se um programador, ler os tutoriais é de suma importância e poucos desenvolvedores o fazem...",
+        "Existem infinitas formas de uso secretas, explore os códigos para descobrir os mistérios dos sistemas!",
+        "Todas as funções tem valores padrão, então você não sofrerá erros por esquecer de enviar um parâmetro ou similar."
+    ],
+    "exports": {
+        "env": "env",
+        "messedup": "messedup",
+        "greets": "greets",
+        "ttt": "ttt",
+        "up": "up",
+        "chess": "chess",
+        "level": "level",
+        "reset": "reset",
+        "poswork": "finish"
+    },
+    "developer": "KillovSky",
+    "files": {
+        "index.js": "Sistema que gera informações de usuários em formato de imagens.",
+        "utils.json": "Dados de fábrica da envInfo."
+    },
+    "modules": {
+        "fs": "Leitura de diretórios e arquivos.",
+        "path": "Para obter o nome da pasta.",
+        "canvafy": "Fabrica as imagens.",
+        "canvacord": "Outro meio de fabricar imagens.",
+        "chess-image-generator": "Gerar o tabuleiro do xadrez.",
+        "chess.js": "Para validar o FEN usado.",
+        "../../../index": "Executar sistemas de outros arquivos."
+    },
+    "functions": {
+        "ambient": {
+            "arguments": false,
+            "description": "Retorna as variáveis e sistemas do arquivo.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "messedup": {
+            "arguments": {
+                "error": {
+                    "description": "Instância de erro para formatação.",
+                    "type": "Boolean / Error",
+                    "value": false
+                }
+            },
+            "description": "Ajusta os valores de erro.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "up": {
+            "arguments": {
+                "avatar": {
+                    "description": "Imagem de perfil da pessoa.",
+                    "type": "Array",
+                    "value": [
+                        "https://raw.githubusercontent.com/KillovSky/Iris_Files/main/Assets/user.png"
+                    ]
+                },
+                "username": {
+                    "description": "Nome de usuário.",
+                    "type": "String",
+                    "value": "User"
+                },
+                "oldlevel": {
+                    "description": "Nivel de antes.",
+                    "type": "Number",
+                    "value": 0
+                },
+                "newlevel": {
+                    "description": "Nivel agora.",
+                    "type": "Number",
+                    "value": 1
+                }
+            },
+            "description": "Faz um cartão de upgrade de nivel",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "greets": {
+            "arguments": {
+                "avatar": {
+                    "description": "Imagem de perfil do greets.",
+                    "type": "String",
+                    "value": "https://raw.githubusercontent.com/KillovSky/Iris_Files/main/Assets/user.png"
+                },
+                "event": {
+                    "description": "Tipo de evento do greets atual.",
+                    "type": "String",
+                    "value": "add"
+                },
+                "title": {
+                    "description": "Titulo do cartão a criar.",
+                    "type": "Boolean / String",
+                    "value": false
+                },
+                "description": {
+                    "description": "Mensagem do cartão abaixo do titulo.",
+                    "type": "Boolean / String",
+                    "value": false
+                }
+            },
+            "description": "Faz um cartão de membro para quando alguém sair ou entrar de grupos.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "level": {
+            "arguments": {
+                "avatar": {
+                    "description": "Imagem de perfil do player.",
+                    "type": "String",
+                    "value": "https://raw.githubusercontent.com/KillovSky/Iris_Files/main/Assets/user.png"
+                },
+                "username": {
+                    "description": "Nome do usuário que utilizará o ranking.",
+                    "type": "String",
+                    "value": "User"
+                },
+                "patente": {
+                    "description": "A patente do usuario no seu nível do ranking.",
+                    "type": "String",
+                    "value": "GOLD, LEVEL: "
+                },
+                "myXP": {
+                    "description": "Quantidade atual de XP que o usuário possui.",
+                    "type": "Number",
+                    "value": 100
+                },
+                "nextXP": {
+                    "description": "Quantidade de XP necessária para upar de nível.",
+                    "type": "Number",
+                    "value": 1000
+                },
+                "level": {
+                    "description": "Nivel atual do player.",
+                    "type": "Number",
+                    "value": 999
+                },
+                "rank": {
+                    "description": "Posição do usuário no ranking.",
+                    "type": "Number",
+                    "value": 1
+                },
+                "guilda": {
+                    "description": "Nome da guilda do player.",
+                    "type": "String",
+                    "value": "THIEVES, RANK:"
+                }
+            },
+            "description": "Constrói um cartão de jogador com detalhes dele.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "ttt": {
+            "arguments": {
+                "board": {
+                    "description": "A board do jogo de tictactoe.",
+                    "type": "Object",
+                    "value": {
+                        "a1": "O",
+                        "a2": "X",
+                        "a3": "O",
+                        "b1": "X",
+                        "b2": "O",
+                        "b3": "X",
+                        "c1": "O",
+                        "c2": "X",
+                        "c3": "O"
+                    }
+                }
+            },
+            "description": "Cria uma board para o jogo TicTacToe.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "chess": {
+            "arguments": {
+                "fenData": {
+                    "description": "A FEN do jogo de xadrez atual.",
+                    "type": "String",
+                    "value": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+                }
+            },
+            "description": "Cria uma board para o jogo Chess.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "poswork": {
+            "arguments": {
+                "response": {
+                    "description": "Resultados de uma função.",
+                    "type": "Any",
+                    "value": false
+                }
+            },
+            "description": "Verifica se pode resetar a envInfo e retorna o resultado da função.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "revert": {
+            "arguments": {
+                "changeKey": {
+                    "description": "Uma Object com valores que existem na envInfo, ela será usada para substituir o sistema em tempo real.",
+                    "type": "Object value",
+                    "anyValue": false
+                }
+            },
+            "description": "Reseta a envInfo para a Object padrão.",
+            "type": "Boolean / Function",
+            "value": false
+        }
+    },
+    "settings": {
+        "wait": {
+            "description": "Tempo em MS que deve esperar antes de resetar.",
+            "type": "Number",
+            "value": 5000
+        },
+        "error": {
+            "description": "Define se pode printar qualquer erro.",
+            "type": "Boolean",
+            "value": true
+        },
+        "ender": {
+            "description": "Define se deve resetar a cada erro.",
+            "type": "Boolean",
+            "value": true
+        },
+        "finish": {
+            "description": "Define se deve resetar a cada finalização.",
+            "type": "Boolean",
+            "value": true
+        }
+    },
+    "parameters": {
+        "stockValues": {
+            "description": "Define as configurações padrões.",
+            "type": "Object",
+            "value": {
+                "profile": "https://raw.githubusercontent.com/KillovSky/Iris_Files/main/Assets/user.png",
+                "background": {
+                    "value": "https://user-images.githubusercontent.com/55511420/200402294-51d85a0b-c405-4cfa-b316-db651dd00e7e.jpg",
+                    "format": "image"
+                },
+                "up": {
+                    "username": "#FFFFFF",
+                    "contColor": "#000000",
+                    "status": "#23087D",
+                    "overlayOpacity": 0.6,
+                    "avatarBorder": "#4B9BF4"
+                },
+                "leveling": {
+                    "username": "#F2ED03",
+                    "contColor": "#4B9BF4",
+                    "status": "#23087D",
+                    "level": {
+                        "name": "#E61800",
+                        "value": "#09F204"
+                    },
+                    "overlayOpacity": 0.5,
+                    "progressBar": "#4B9BF4",
+                    "rank": {
+                        "name": "#E61800",
+                        "value": "#09F204"
+                    },
+                    "currentXP": "#F20308",
+                    "requiredXP": "#073222"
+                },
+                "greetings": {
+                    "apply": true,
+                    "welcome": {
+                        "title": "BEM VINDO",
+                        "description": "LEIA AS REGRAS E DIVIRTA-SE!"
+                    },
+                    "goodbye": {
+                        "title": "ADEUS",
+                        "description": "Menos um, hehehe..."
+                    },
+                    "contColor": "#0047ab",
+                    "borderColor": "#000000",
+                    "cardOpacity": "0.5"
+                }
+            }
+        },
+        "baseImage": {
+            "description": "Imagem base, caso a construção da imagem em canvas falhe.",
+            "type": "String",
+            "value": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAIAQMAAAD+wSzIAAAABlBMVEX///+/v7+jQ3Y5AAAADklEQVQI12P4AIX8EAgALgAD/aNpbtEAAAAASUVORK5CYII"
+        },
+        "location": {
+            "description": "Local onde o módulo pode ser encontrado.",
+            "type": "Boolean / String",
+            "value": "./index"
+        },
+        "code": {
+            "description": "Código do erro que obter.",
+            "type": "Boolean / String / Number",
+            "value": false
+        },
+        "message": {
+            "description": "Armazena a mensagem do último erro recebido.",
+            "type": "Boolean / String",
+            "value": false
+        }
+    },
+    "results": {
+        "description": "Resultado final da função.",
+        "success": true,
+        "type": "Any",
+        "value": false
+    }
+}

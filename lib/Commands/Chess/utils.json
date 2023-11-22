@@ -18,6 +18,7 @@
     },
     "license": "MIT",
     "helps": [
+        "Conquistar a vitória resultará em um ganho de 5 icoin's, porém, em caso de derrota, você perderá 5 deles. Se você não possuir nenhum icoin, ficará em débito com o banco, e qualquer icoin ganho enquanto estiver no negativo será utilizado para quitar sua dívida.",
         "Esse jogo não possui modos de dificuldade contra a Íris, mas ela priorizará a captura e xeque mate do oponente quando puder, mas movimentos comuns serão aleatorios.",
         "Você deve cancelar um jogo antes de jogar com outra pessoa, caso contrario, você pode acabar jogando em outra partida sua que não é a atual.",
         "Se você estiver em somente uma partida, você não precisa mencionar a pessoa no comando, exceto quando for criar uma partida, no restante, jogue diretamente, a Íris localizará a partida para você.",
@@ -122,6 +123,16 @@
             "description": "Define se deve resetar a cada finalização.",
             "type": "Boolean",
             "value": true
+        },
+        "coinsWin": {
+            "description": "Define quantos icoins a pessoa ganha se vencer um jogo.",
+            "type": "Number",
+            "value": 15
+        },
+        "coinsLost": {
+            "description": "Define quantos icoins a pessoa perde se não vencer um jogo.",
+            "type": "Number",
+            "value": -5
         }
     },
     "parameters": {

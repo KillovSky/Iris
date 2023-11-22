@@ -88,9 +88,9 @@ header h5 {
 }
 
 .content-section img {
-    max-width: 100%;
+    width: 100%;
     height: auto;
-    margin-top: 20px;
+    max-width: 100%;
 }
 
 .footer {
@@ -177,6 +177,7 @@ header h5 {
 
 body.dark-mode .cascade-links,
 body.dark-mode .dropdown-item:hover,
+body.dark-mode .dropdown-toggle:focus,
 .cascade-links .sobre-list a:hover,
 .cascade-links .ajuda-list a:hover,
 body.dark-mode .cascade-links a,
@@ -249,7 +250,8 @@ body.light-mode .dropdown-menu {
     border: 1px solid #2980b9;
 }
 
-body.light-mode .dropdown-item:hover {
+body.light-mode .dropdown-item:hover,
+body.light-mode .dropdown-toggle:focus {
     background-color: #2980b9;
 }
 
@@ -312,8 +314,59 @@ body.light-mode header .dropdown-item:hover {
 }
 
 .dark-mode-switch i {
-    font-size: 24px;
+    font-size: 28px;
     color: white;
+}
+
+@media (min-width: 1600px) {
+    body {
+        font-size: 28px;
+    }
+
+    .dropdown-item {
+        font-size: 31px;
+    }
+
+    .info-button {
+        font-size: 2.6rem;
+    }
+
+    .content-section img {
+        width: 80%;
+        position: relative;
+        height: 90%;
+    }
+
+    .section1 img {
+        left: 30%;
+        padding-top: 68px;
+    }
+
+    .section1 h1,
+    .section2 h1 {
+        font-size: 1.7em;
+    }
+
+    .section2 img {
+        max-width: 100%;
+        max-height: 100%;
+        right: 60px;
+    }
+
+    .navbar > a {
+        font-size: 1.7rem;
+    }
+
+    .section1 p,
+    .section2 p {
+        max-width: 90%;
+        height: 90%;
+        font-size: 2.3rem;
+    }
+
+    .navbar {
+        font-size: 2.4rem;
+    }
 }
 
 @media (max-width: 768px) {
@@ -325,10 +378,8 @@ body.light-mode header .dropdown-item:hover {
     .secImage1,
     .secImage2 {
         padding-right: 0;
-    }
-
-    .secImage2 {
-        padding-right: 25%;
+        padding-left: 0;
+        padding-top: 0;
     }
 
     .navbar-toggler[aria-expanded="true"]~.dark-mode-switch-container {
@@ -353,22 +404,10 @@ body.light-mode header .dropdown-item:hover {
         margin-top: 10px;
     }
 
-    body.dark-mode .section1 img,
-    body.dark-mode .section2 img {
-        margin: 10px 0;
-    }
-
     .section1,
     .section2 {
         flex-direction: column-reverse;
         align-items: center;
-    }
-
-    .section1 img,
-    .section2 img {
-        padding-bottom: 20px;
-        width: 240px;
-        height: 240px;
     }
 }
 
@@ -390,6 +429,7 @@ body.light-mode header .dropdown-item:hover {
 }
 
 @-webkit-keyframes snowflakes-shake {
+
     0%,
     100% {
         -webkit-transform: translateX(0);
@@ -413,6 +453,7 @@ body.light-mode header .dropdown-item:hover {
 }
 
 @keyframes snowflakes-shake {
+
     0%,
     100% {
         transform: translateX(0)
@@ -434,15 +475,91 @@ body.light-mode header .dropdown-item:hover {
     user-select: none;
     cursor: default;
     -webkit-animation-name: snowflakes-fall, snowflakes-shake;
-    -webkit-animation-duration: 5s, 2s;
+    -webkit-animation-duration: 3s, 2s;
     -webkit-animation-timing-function: linear, ease-in-out;
     -webkit-animation-iteration-count: infinite, infinite;
     -webkit-animation-play-state: running, running;
     animation-name: snowflakes-fall, snowflakes-shake;
-    animation-duration: 5s, 2s;
+    animation-duration: 3s, 2s;
     animation-timing-function: linear, ease-in-out;
     animation-iteration-count: infinite, infinite;
     animation-play-state: running, running
+}
+
+.glitch-image {
+    position: fixed;
+    top: -10%;
+    z-index: 9999;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: default;
+    animation-name: snowflakes-fall, snowflakes-shake;
+    animation-duration: 3s, 2s;
+    animation-timing-function: linear, ease-in-out;
+    animation-iteration-count: infinite, infinite;
+    animation-play-state: running, running;
+}
+
+body.glitch-effect {
+    position: relative;
+    overflow: hidden;
+}
+
+body.glitch-effect::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(255, 0, 0, 0.2) 25%, transparent 25%, transparent 50%, rgba(0, 255, 0, 0.2) 50%, rgba(0, 255, 0, 0.2) 75%, transparent 75%, transparent);
+    animation: glitch-animation 0.5s linear infinite;
+    pointer-events: none;
+}
+
+.black-screen::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 1);
+    z-index: 9999;
+}
+
+body.glitch-effect::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9998;
+    pointer-events: none;
+}
+
+@keyframes glitch-animation {
+
+    0%,
+    100% {
+        transform: translate(0);
+    }
+
+    25% {
+        transform: translate(-5px, 5px);
+    }
+
+    50% {
+        transform: translate(5px, -5px);
+    }
+
+    75% {
+        transform: translate(-5px, 5px);
+    }
 }
 
 .snowflake:nth-of-type(0) {
@@ -517,6 +634,37 @@ body.light-mode header .dropdown-item:hover {
     animation-delay: 4s, 2.5s
 }
 
+.snowflake:nth-of-type(12) {
+    left: 45%;
+    -webkit-animation-delay: 3s, 1.5s;
+    animation-delay: 3s, 1.5s
+}
+
 .snowflakes:not(.animate-snowfall) .snowflake {
     animation-play-state: paused !important;
+}
+
+#google_translate_element {
+    display: none;
+    z-index: 999;
+}
+
+.navbar {
+    z-index: 1000;
+}
+
+body>.skiptranslate {
+    display: none;
+}
+
+body {
+    top: 0px !important;
+}
+
+body > div.footer {
+    text-align: center;
+}
+
+.hidethisfromscreen {
+    display: none;
 }

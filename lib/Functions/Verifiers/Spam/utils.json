@@ -1,6 +1,6 @@
 {
     "name": "spammer",
-    "description": "Faz o controle do SPAM de comandos, mídias e demais.",
+    "description": "Realizar o controle do tempo de uso de comandos, também impede spam em grupos.",
     "usage": {
         "general": "[RESTRITO] - Verifique o 'examples' para usos inseguros.",
         "examples": [
@@ -33,7 +33,8 @@
     },
     "modules": {
         "fs": "Leitura de diretórios e arquivos.",
-        "path": "Para inserção do local na envInfo."
+        "path": "Para inserção do local na envInfo.",
+        "../../../Dialogues/index": "Para obter os dialogos."
     },
     "functions": {
         "ambient": {

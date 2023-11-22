@@ -31,10 +31,71 @@ A voz ecoou seu último suspiro.
 ## Sumário de Atualizações
 
 <details>
-  <summary><code>1.0.8 - ? 🍛 <strong>[OMURICE RELEASE]</strong></code></summary>
+  <summary><code>1.0.9 - ? <strong>[? RELEASE]</strong></code></summary>
+<!-- Vai um mistério ai amigo? -->
+
+1. Em produção.
+
+</details>
+
+<details>
+  <summary><code>1.0.8 - 22/11/2023 🍛 <strong>[OMURICE RELEASE]</strong></code></summary>
 <!-- Enquanto as gotas de chuva caem nos jardins de The Garden of Words, a omurice da Yukino recebe uma atualização secreta. Descubra o sabor poético que se desdobra a cada garfada. Será que você consegue decifrar os versos escondidos nas camadas de arroz, omelete e linhas de código? -->
 
-- Em produção.
+### Mural
+- Esta versão é parcial, ela não foi postada com tudo que deveria ter segundo meus cronogramas (que não existem), então apesar de ser considerada uma release completa, ela não é, pois seu contéudo era tão absurdamente grande, que resolvi deixar o resto dos sistemas para uma próxima release, e como sempre, bugs são esperados.
+
+- Essa versão tem tanta, **TANTA COISA**, que não sei nem descrever adequadamente o quão imensa e númerosa ela é, diversas coisas podem ter sido esquecidas de ser inseridas nessa changelog, e se houver novos erros devido a alguma coisa que mexi, informe para que eu possa realizar a correção de forma urgente.
+
+### Melhorias
+1. **Documentação**
+    - Atualizei as documentações de guia, contribuição, segurança, código de condulta e tudo mais.
+2. **Website**
+    - Finalmente temos um website para a Íris, e ele não só contém eastereggs, como também diversos links úteis, incluindo até sistema de tradução automatica dos textos.
+3. **Leveling**
+    - Implementação parcial do leveling, com direito a levelup, card e ganhos em jogos.
+4. **Database**
+    - Atualizei algumas formas de uso da database para que os comandos estejam em ordem com a mesma.
+5. **Comandos**
+    - Programei comandos de busca de imagens, mais memes, criações de cards, banners e muito mais.
+6. **Construct**
+    - Agora temos uma propriedade que lista até as alias de comandos, não sendo mais somente as pastas.
+7. **NSFW**
+    - Inserido um sistema de permissão para mandar contéudo NSFW para os grupos nos comandos de imagem.
+8. **Config**
+    - Foi feito um reajuste das configurações no arquivo JSON.
+9. **Leveling**
+    - As configurações de leveling agora se encontram presentes no arquivo 'leveling.json'.
+10. **Default**
+    - Implementei uma função no sistema de fallback das functions, a metrics. Ela foi movida para lá.
+11. **Terminal**
+    - Inserido um sistema de segurança simples contra bruteforces.
+12. **Páginas**
+    - As páginas foram separadas em arquivos '.html', '.css' e '.js' para torná-las mais rápidas.
+13. **Tutorial**
+    - O tutorial foi atualizado para uma página de arquivo '.md', ficando mais simples de entender.
+14. **Outros**
+    - Essa release trouxe MUITAS coisas, é impossivel lembrar e descrever todas, peço que analise manualmente os arquivos editados.
+
+### Correções
+1. **Sticker**
+    - Os stickers de gif, video e mídias as vezes se tornavam muito pesados.
+2. **Profile**
+    - Em erros, a Íris não estava enviando fotos padrões para comandos.
+3. **Comentarios**
+    - Revisei e atualizei alguns comentarios nos arquivos que cheguei a olhar, mais deles serão corrigidos na próxima.
+4. **Reajuste**
+    - Agora boa parte dos comandos tem uma config para printar o erro inteiro, no entanto, **ISSO É UMA IMPLEMENTAÇÃO PARCIAL** e mais sistemas serão inseridos nisso, por favor, não abra pull requests para corrigir isso, farei eu mesmo por estar revisando as funções, uma a uma.
+5. **Outros**
+    - Essa release trouxe MUITAS coisas, é impossivel lembrar e descrever todas, peço que analise manualmente os arquivos editados.
+
+### Removido
+1. **Arquivos**
+    - Foi removido boa parte dos arquivos e códigos sem utilidade atual.
+2. **Códigos**
+    - Removido uma baita quantidade de códigos ínuteis que podiam ser simplificados, mais disso ocorrerá em breve.
+5. **Outros**
+    - Essa release trouxe MUITAS coisas, é impossivel lembrar e descrever todas, peço que analise manualmente os arquivos editados.
 
 </details>
 

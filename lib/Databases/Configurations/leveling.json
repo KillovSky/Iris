@@ -1,0 +1,144 @@
+{
+    "card": {
+        "description": "Determines whether Íris should send level-up cards every time someone attains a new level.",
+        "value": true
+    },
+    "materials": {
+        "description": "The foundation of materials gained per level-up, used to calculate the optimal value to provide.",
+        "value": {
+            "multiply": 0.5,
+            "attenuation": 2,
+            "wins": {
+                "coin": 3,
+                "diamond": 5,
+                "rubi": 6,
+                "gold": 8,
+                "iron": 10,
+                "stone": 12,
+                "wood": 13
+            }
+        }
+    },
+    "messageXP": {
+        "description": "The quantity of XP obtained per message, excluding deactivated messages, such as reactions.",
+        "value": 45
+    },
+    "base": {
+        "description": "The base XP for leveling up, applied to calculate the correct level-up per user level.",
+        "value": 1200
+    },
+    "multiplier": {
+        "description": "The multiplier used to calculate the requirements for reaching the next level.",
+        "value": 1.75
+    },
+    "patentes": {
+        "pt": {
+            "0": "Talco",
+            "10": "Ambar",
+            "20": "Prata",
+            "50": "Ouro",
+            "100": "Jade",
+            "200": "Topaz",
+            "500": "Rubi"
+        },
+        "jp": {
+            "0": "タルコ",
+            "10": "アンバー",
+            "20": "シルバー",
+            "50": "ゴールド",
+            "100": "ジェイド",
+            "200": "トパーズ",
+            "500": "ルビー"
+        },
+        "en": {
+            "0": "Talc",
+            "10": "Amber",
+            "20": "Silver",
+            "50": "Gold",
+            "100": "Jade",
+            "200": "Topaz",
+            "500": "Ruby"
+        },
+        "fr": {
+            "0": "Talc",
+            "10": "Ambre",
+            "20": "Argent",
+            "50": "Or",
+            "100": "Jade",
+            "200": "Topaz",
+            "500": "Rubis"
+        },
+        "es": {
+            "0": "Talco",
+            "10": "Ámbar",
+            "20": "Plata",
+            "50": "Oro",
+            "100": "Jade",
+            "200": "Topaz",
+            "500": "Rubí"
+        },
+        "id": {
+            "0": "Talc",
+            "10": "Ambar",
+            "20": "Perak",
+            "50": "Emas",
+            "100": "Jade",
+            "200": "Topaz",
+            "500": "Ruby"
+        },
+        "ms": {
+            "0": "Talc",
+            "10": "Ambar",
+            "20": "Perak",
+            "50": "Emas",
+            "100": "Jade",
+            "200": "Topaz",
+            "500": "Ruby"
+        },
+        "hi": {
+            "0": "तालक",
+            "10": "एम्बर",
+            "20": "चांदी",
+            "50": "सोना",
+            "100": "जेड",
+            "200": "टोपाज़",
+            "500": "रूबी"
+        },
+        "de": {
+            "0": "Talk",
+            "10": "Bernstein",
+            "20": "Silber",
+            "50": "Gold",
+            "100": "Jade",
+            "200": "Topaz",
+            "500": "Rubin"
+        },
+        "it": {
+            "0": "Talco",
+            "10": "Ambra",
+            "20": "Argento",
+            "50": "Oro",
+            "100": "Giada",
+            "200": "Topaz",
+            "500": "Rubino"
+        },
+        "ru": {
+            "0": "Тальк",
+            "10": "Янтарь",
+            "20": "Серебро",
+            "50": "Золото",
+            "100": "Нефрит",
+            "200": "Топаз",
+            "500": "Рубин"
+        },
+        "lat": {
+            "0": "Talcum",
+            "10": "Sucinum",
+            "20": "Argentum",
+            "50": "Aurum",
+            "100": "Jade",
+            "200": "Topaz",
+            "500": "Rubrum"
+        }
+    }
+}

@@ -1,0 +1,116 @@
+body {
+    background-color: #151E29;
+}
+
+.login {
+    width: 300px;
+    padding: 40px;
+    position: absolute;
+    top: 50%;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    color: #fff;
+    background: #151E29;
+    border: 2px solid #80c3ff;
+    border-radius: 10px;
+}
+
+.login:hover {
+    background: #1B2737;
+}
+
+.forgotPassword {
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    padding: 14px 40px;
+    outline: none;
+    color: #c3c3c3;
+    transition: 0.25s;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.forgotPassword:hover {
+    background: #692d2d;
+    color: #fff;
+}
+
+.btn {
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #80c3ff;
+    padding: 14px 40px;
+    outline: none;
+    color: #c3c3c3;
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+input {
+    color: #fff;
+}
+
+.btn:focus,
+.login input[type="text"]:focus,
+.login input[type="password"]:focus {
+    background: #692d2d;
+    color: #fff;
+}
+
+.btn:hover,
+.login input[type="text"]:hover,
+.login input[type="password"]:hover {
+    background: #1f78b4;
+    color: #fff;
+}
+
+.login input[type="text"]:focus::placeholder,
+.login input[type="password"]:focus::placeholder,
+.login input[type="text"]:hover::placeholder,
+.login input[type="password"]:hover::placeholder {
+    color: #fff;
+}
+
+h1 {
+    text-transform: uppercase;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+}
+
+.login input[type="text"],
+.login input[type="password"] {
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #80c3ff;
+    padding: 14px 10px;
+    outline: none;
+    border-radius: 22px;
+    font-size: 1em;
+}
+
+.password-container {
+    position: relative;
+}
+
+.togglePassword {
+    position: absolute;
+    top: 50%;
+    right: 6px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: #80c3ff;
+    font-size: 0.8em;
+}
