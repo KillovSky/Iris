@@ -38,6 +38,7 @@
         "fs": "Leitura de diretórios e arquivos.",
         "path": "Para inserção do local na envInfo.",
         "@killovsky/nasa": "Obtém os dados da NASA.",
+        "@vitalets/google-translate-api": "Traduzir a mensagem da NASA para outros idiomas.",
         "../../Dialogues/index": "Funções que retornam os diálogos necessários.",
         "../../index'": "Para rodar funções de outros arquivos."
     },
@@ -139,6 +140,11 @@
             "description": "Armazena a mensagem do último erro recebido.",
             "type": "Boolean / String",
             "value": false
+        },
+        "image": {
+            "description": "Imagem para uso, caso não haja uma na API da NASA.",
+            "type": "String",
+            "value": "https://http.cat/420.jpg"
         }
     },
     "results": {

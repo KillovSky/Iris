@@ -1,5 +1,5 @@
 {
-    "name": "Toggle",
+    "name": "toggle",
     "description": "Fazer a ativação de sistemas de segurança, jogos e demais.",
     "usage": {
         "general": "[Prefix][Alias] [On|1|Enable|Off|0|Disable|-add|-rem|-clear|-text|-ban] [remove|change|add|-add|-rem|-clear|Prefix|Texto|Sigla_Idioma|Numero] [Valores]",
@@ -16,17 +16,17 @@
             "/Antifake -add 55",
             "/Whitelist -add 551199876543210",
             "/Language -add pt",
-            "Toggle.execute('kill', 'params')",
-            "Toggle.env()",
-            "Toggle.reset()",
-            "Toggle.env().functions.execute.value('kill', 'params')"
+            "toggle.execute('kill', 'params')",
+            "toggle.env()",
+            "toggle.reset()",
+            "toggle.env().functions.execute.value('kill', 'params')"
         ]
     },
     "license": "MIT",
     "helps": [
-        "Você pode mudar os parâmetros da exports enviando o valor da Object que deseja editar ao resetar, por exemplo → Toggle.reset({ name: 'Body'}) ← Isso mudaria o module para Body, o uso então passaria ser: → Body.funcão ← Isso também permite que você edita a função usando o mesmo método.",
-        "Você pode mudar o que os códigos rodam, em tempo real, basta usar a 'env', por exemplo → Toggle.env().name = 'Body' ← Mas este método não atualizará o sistema, somente a Object, os sistemas permanecem intactos.",
-        "Você pode configurar o tempo de reset dos resultados ou se eles devem ser resetados usando a env, por exemplo → Toggle.env().settings.wait = 10000 ← Isso mudaria o tempo de espera para 10 segundos, o tempo deve ser em milissegundos.",
+        "Você pode mudar os parâmetros da exports enviando o valor da Object que deseja editar ao resetar, por exemplo → toggle.reset({ name: 'Body'}) ← Isso mudaria o module para Body, o uso então passaria ser: → Body.funcão ← Isso também permite que você edita a função usando o mesmo método.",
+        "Você pode mudar o que os códigos rodam, em tempo real, basta usar a 'env', por exemplo → toggle.env().name = 'Body' ← Mas este método não atualizará o sistema, somente a Object, os sistemas permanecem intactos.",
+        "Você pode configurar o tempo de reset dos resultados ou se eles devem ser resetados usando a env, por exemplo → toggle.env().settings.wait = 10000 ← Isso mudaria o tempo de espera para 10 segundos, o tempo deve ser em milissegundos.",
         "Alguém lê essas dicas? Se sim, torne-se um programador, ler os tutoriais é de suma importância e poucos desenvolvedores o fazem...",
         "Existem infinitas formas de uso secretas, explore os códigos para descobrir os mistérios dos sistemas!",
         "O nome do comando é usado diretamente na função como nome da key, certifique-se de que o nome existe no arquivo de funções.",
@@ -48,7 +48,6 @@
     "modules": {
         "fs": "Leitura de diretórios e arquivos.",
         "path": "Para inserção do local na envInfo.",
-        "@open-wa/wa-decrypt": "Permite descriptografar as mensagens recebidas no WhatsApp.",
         "../../Dialogues/index": "Funções que retornam os diálogos necessários.",
         "../../index'": "Para rodar funções de outros arquivos."
     },

@@ -1,6 +1,6 @@
 {
     "name": "chess",
-    "description": "O moderno sistema de jogo de xadrez.",
+    "description": "Criar, jogar e organizar um lindo jogo de xadrez por posição.",
     "usage": {
         "general": "[Prefix][Comando] [-Play/-Cancel/-Create/-Board/-Placar/-Moves/-Fen/-Raw/-Pgn] [Move/@User/Mensagem] [@User/Mensagem]",
         "examples": [
@@ -34,11 +34,14 @@
     "developer": "KillovSky",
     "files": {
         "index.js": "Sistema que faz a coleta das informações e envio.",
-        "utils.json": "Dados de fábrica da envInfo."
+        "utils.json": "Dados de fábrica da envInfo.",
+        "chess.png": "Imagem de ajuda do xadrez."
     },
     "modules": {
         "fs": "Leitura de diretórios e arquivos.",
         "path": "Para inserção do local na envInfo.",
+        "wa-sticker-formatter": "Mandar os tabuleiros como sticker.",
+        "chess.js": "Para controlar o jogo de xadrez e suas regras.",
         "../../Dialogues/index": "Funções que retornam os diálogos necessários.",
         "../../index'": "Para rodar funções de outros arquivos."
     },

@@ -1,6 +1,6 @@
 {
     "name": "everyone",
-    "description": "Realiza o envio de uma mensagem que marca todos do local.",
+    "description": "Realizar o envio de uma mensagem que marca todos do local.",
     "usage": {
         "general": "[Prefix][Alias] [Mensagem|Image|Audio|Contact|Document|Video|Location|Sticker]",
         "examples": [
@@ -38,6 +38,7 @@
         "fs": "Leitura de diretórios e arquivos.",
         "path": "Para inserção do local na envInfo.",
         "../../Dialogues/index": "Funções que retornam os diálogos necessários.",
+        "../../index": "Adquirir funções de outros arquivos",
         "wa-sticker-formatter": "Converte os stickers em buffer para enviar no Baileys."
     },
     "functions": {
