@@ -1,5 +1,5 @@
 {
-    "name": "images",
+    "name": "pics",
     "description": "Obter imagens pela internet e enviar para o usuário.",
     "usage": {
         "general": "[Prefix][Alias] [texto] [-sticker]",
@@ -7,17 +7,17 @@
             "/loli",
             "/search Anime Girl",
             "/images --help",
-            "images.execute('kill', 'params')",
-            "images.env()",
-            "images.reset()",
-            "images.env().functions.execute.value('kill', 'params')"
+            "pics.execute('kill', 'params')",
+            "pics.env()",
+            "pics.reset()",
+            "pics.env().functions.execute.value('kill', 'params')"
         ]
     },
     "license": "MIT",
     "helps": [
-        "Você pode mudar os parâmetros da exports enviando o valor da Object que deseja editar ao resetar, por exemplo → images.reset({ name: 'Body'}) ← Isso mudaria o module de images para Body, o uso então passaria ser: → Body.funcão ← Isso também permite que você edite a função usando o mesmo método.",
-        "Você pode mudar o que os códigos rodam, em tempo real, basta usar a 'env', por exemplo → images.env().name = 'Body' ← Mas este método não atualizará o sistema, somente a Object, os sistemas permanecem intactos.",
-        "Você pode configurar o tempo de reset dos resultados ou se eles devem ser resetados usando a env, por exemplo → images.env().settings.wait = 10000 ← Isso mudaria o tempo de espera para 10 segundos, o tempo deve ser em milissegundos.",
+        "Você pode mudar os parâmetros da exports enviando o valor da Object que deseja editar ao resetar, por exemplo → pics.reset({ name: 'Body'}) ← Isso mudaria o module de images para Body, o uso então passaria ser: → Body.funcão ← Isso também permite que você edite a função usando o mesmo método.",
+        "Você pode mudar o que os códigos rodam, em tempo real, basta usar a 'env', por exemplo → pics.env().name = 'Body' ← Mas este método não atualizará o sistema, somente a Object, os sistemas permanecem intactos.",
+        "Você pode configurar o tempo de reset dos resultados ou se eles devem ser resetados usando a env, por exemplo → pics.env().settings.wait = 10000 ← Isso mudaria o tempo de espera para 10 segundos, o tempo deve ser em milissegundos.",
         "Alguém lê essas dicas? Se sim, torne-se um programador, ler os tutoriais é de suma importância e poucos desenvolvedores o fazem...",
         "Existem infinitas formas de uso secretas, explore os códigos para descobrir os mistérios dos sistemas!"
     ],
@@ -36,6 +36,7 @@
     "modules": {
         "fs": "Leitura de diretórios e arquivos.",
         "path": "Para inserção do local na envInfo.",
+        "wa-sticker-formatter": "Para enviar como sticker, se requisitado.",
         "../../Dialogues/index": "Funções que retornam os diálogos necessários.",
         "../../index'": "Para rodar funções de outros arquivos."
     },

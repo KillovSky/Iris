@@ -1,20 +1,22 @@
 {
-    "name": "Linux",
-    "description": "Terminal WEB para rodar comandos de programação da Íris via PC ou Telefone.",
+    "name": "console",
+    "description": "Iniciar, configurar e ativar o Terminal WEB da Íris para rodar a programação, execução de comandos do sistema operacional e outras funcionalidades diretamente pelo navegador.",
     "usage": {
         "general": "[RESTRITO] - Verifique o 'examples' para usos inseguros.",
         "examples": [
-            "Linux.env()",
-            "Linux.starter()",
-            "Linux.env().functions.starter.value()",
-            "Linux.env().functions.revert.value()"
+            "console.env()",
+            "console.starter()",
+            "console.allowip('ip/all')",
+            "console.getip()",
+            "console.env().functions.starter.value()",
+            "console.env().functions.revert.value()"
         ]
     },
     "license": "MIT",
     "helps": [
-        "Você pode mudar os parâmetros da exports enviando o valor da Object que deseja editar ao resetar, por exemplo → Linux.reset({ name: 'Body'}) ← Isso mudaria o module de Tree para Body, o uso então passaria ser: → Body.funcão ← Isso também permite que você edita a função usando o mesmo método.",
-        "Você pode mudar o que os códigos rodam, em tempo real, basta usar a 'env', por exemplo → Linux.env().name = 'Body' ← Mas este método não atualizará o sistema, somente a Object, os sistemas permanecem intactos.",
-        "Você pode configurar o tempo de reset dos resultados ou se eles devem ser resetados usando a env, por exemplo → Linux.env().settings.wait = 10000 ← Isso mudaria o tempo de espera para 10 segundos, o tempo deve ser em milissegundos.",
+        "Você pode mudar os parâmetros da exports enviando o valor da Object que deseja editar ao resetar, por exemplo → console.reset({ name: 'Body'}) ← Isso mudaria o module de Tree para Body, o uso então passaria ser: → Body.funcão ← Isso também permite que você edita a função usando o mesmo método.",
+        "Você pode mudar o que os códigos rodam, em tempo real, basta usar a 'env', por exemplo → console.env().name = 'Body' ← Mas este método não atualizará o sistema, somente a Object, os sistemas permanecem intactos.",
+        "Você pode configurar o tempo de reset dos resultados ou se eles devem ser resetados usando a env, por exemplo → console.env().settings.wait = 10000 ← Isso mudaria o tempo de espera para 10 segundos, o tempo deve ser em milissegundos.",
         "Alguém lê essas dicas? Se sim, torne-se um programador, ler os tutoriais é de suma importância e poucos desenvolvedores o fazem...",
         "Existem infinitas formas de uso secretas, explore os códigos para descobrir os mistérios dos sistemas!",
         "Todas as funções tem valores padrão, então você não sofrerá erros por esquecer de enviar um parâmetro ou similar.",
@@ -51,7 +53,8 @@
         "https": "Para o servidor HTTPS.",
         "express": "Cria um APP que roda nos dois protocolos.",
         "body-parser": "Faz parse do texto para rodar.",
-        "../../../index": "Para rodar funções de outros arquivos."
+        "../../../index": "Para rodar funções de outros arquivos.",
+        "../../../Dialogues": "Para obter as mensagens do console."
     },
     "functions": {
         "ambient": {

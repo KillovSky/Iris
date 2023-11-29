@@ -1,6 +1,6 @@
 {
     "name": "tictactoe",
-    "description": "O classico sistema de jogo de velha.",
+    "description": "Criar, jogar e organizar um classico jogo da velha por posição.",
     "usage": {
         "general": "[Prefix][Comando] [-Play/-Cancel/-Create/-Board/-Placar] [1-3/0-9/@User/Mensagem] [@User/Mensagem]",
         "examples": [
@@ -40,6 +40,8 @@
     "modules": {
         "fs": "Leitura de diretórios e arquivos.",
         "path": "Para inserção do local na envInfo.",
+        "wa-sticker-formatter": "Para enviar o tabuleiro como sticker",
+        "tictactoe-agent": "Defines as jogadas da Íris.",
         "../../Dialogues/index": "Funções que retornam os diálogos necessários.",
         "../../index'": "Para rodar funções de outros arquivos."
     },

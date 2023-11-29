@@ -1,6 +1,6 @@
 {
     "name": "manager",
-    "description": "Faz o gerenciamento dos usúarios de um determinado grupo.",
+    "description": "Fazer o gerenciamento dos usúarios de um determinado grupo.",
     "usage": {
         "general": "[Prefix][Comando] [Tempo (M)/@Users/Mensagem] [@Users/Mensagem]",
         "examples": [

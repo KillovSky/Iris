@@ -20,8 +20,7 @@
         "Você pode mudar o que os códigos rodam, em tempo real, basta usar a 'env', por exemplo → level.env().name = 'Body' ← Mas este método não atualizará o sistema, somente a Object, os sistemas permanecem intactos.",
         "Você pode configurar o tempo de reset dos resultados ou se eles devem ser resetados usando a env, por exemplo → level.env().settings.wait = 10000 ← Isso mudaria o tempo de espera para 10 segundos, o tempo deve ser em milissegundos.",
         "Alguém lê essas dicas? Se sim, torne-se um programador, ler os tutoriais é de suma importância e poucos desenvolvedores o fazem...",
-        "Existem infinitas formas de uso secretas, explore os códigos para descobrir os mistérios dos sistemas!",
-        "Dica ou conselho adicional aqui, se quiser botar mais é só ir gerando dentro dessa Array"
+        "Existem infinitas formas de uso secretas, explore os códigos para descobrir os mistérios dos sistemas!"
     ],
     "exports": {
         "env": "env",

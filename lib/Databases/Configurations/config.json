@@ -110,7 +110,7 @@
 	},
 	"stickerQuality": {
 		"description": "Sets the default quality of stickers. Use values from 0 to 100. Higher values may result in stickers being unable to send or becoming extremely heavy, increasing the risk of a ban. If unsure, keep the default.",
-		"value": 30
+		"value": 40
 	},
 	"tagAdmins": {
 		"description": "Determines whether Íris should tag administrators when she detects and sends spam alerts in a group.",

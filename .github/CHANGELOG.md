@@ -31,10 +31,49 @@ A voz ecoou seu último suspiro.
 ## Sumário de Atualizações
 
 <details>
-  <summary><code>1.0.9 - ? <strong>[? RELEASE]</strong></code></summary>
-<!-- Vai um mistério ai amigo? -->
+  <summary><code>1.0.9 - 28/11/2023 🍵 <strong>[TEACUP RELEASE]</strong></code></summary>
+<!-- Enquanto todos lutam pela sobrevivência e comida, e para terem mais um dia sem virar o almoço de um titã, Levi se senta em casa e pensa mais uma vez em como seria bom abrir uma loja de chá em um mundo lindo, limpo e sem violência. -->
 
-1. Em produção.
+### Mural
+- Versão feita as pressas por motivos de mudanças na equipe de desenvolvimento da Íris, ainda não é tudo que a versão anterior almejava ter e não houve muito tempo para checagem, mas deve funcionar adequadamente ainda assim.
+
+- A próxima atualização pode ser considera uma parte 2 desta, não tendo um nome de relase diferente.
+
+### Novidades
+1. **Toolbox**
+    - Uma ferramenta linda, mas experimental, que permite automatizar tarefas como atualizações, instalação de programas e demais.
+2. **Revisão**
+    - Feito mais uma parte da revisão da versão anterior, ainda não completo no entanto.
+3. **Comando**
+    - Inserido um comando para mostrar todos os aliases de comandos (/allcmd).
+4. **Ping**
+    - Inserido nome da release no comando ping.
+5. **Velocidade**
+    - Aprimorado ainda mais a velocidade.
+6. **Certificado**
+    - Novo certificado para o site localhost da Íris, se ainda não estiver usando HTTPS, instale o arquivo 'RootCA.crt' no seu sistema.
+7. **Template**
+    - O template de como criar comandos foi atualizado.
+8. **Funções**
+    - Algumas funções foram refeitas como parte da revisão geral.
+9. **Git Ignore**
+    - Atualizei o gitignore para não upar ou deixar de upar arquivos importantes.
+
+### Correções
+1. **Sticker**
+    - Corrigido erro que fazia o sticker não ser executado por falta de mídia.
+2. **WhatsApp Web**
+    - Corrigido erro que fazia stickers não renderizarem no WhatsApp Web.
+3. **Construct**
+    - Corrigido erro de não retornar a mensagem base no caso de falhas.
+4. **NASA**
+    - Inserido imagem padrão, caso a NASA não envie uma.
+5. **YouTube**
+    - Corrigido o download de Shorts no YouTube, note que alguns videos ainda não podem ser baixados por questões do YouTube.
+    
+### Removido
+1. **Códigos**
+    - Diversos comentarios e códigos sem uso.
 
 </details>
 
@@ -47,7 +86,7 @@ A voz ecoou seu último suspiro.
 
 - Essa versão tem tanta, **TANTA COISA**, que não sei nem descrever adequadamente o quão imensa e númerosa ela é, diversas coisas podem ter sido esquecidas de ser inseridas nessa changelog, e se houver novos erros devido a alguma coisa que mexi, informe para que eu possa realizar a correção de forma urgente.
 
-### Melhorias
+### Novidades
 1. **Documentação**
     - Atualizei as documentações de guia, contribuição, segurança, código de condulta e tudo mais.
 2. **Website**

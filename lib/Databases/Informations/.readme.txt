@@ -1,2 +1,1 @@
-Maldita github que não upa pastas importantes, mesmo que estejam vazias...
-Esse local é onde ficará a database 'users.db'
+Esse local armazenará a database de funções, grupos e usuários

@@ -41,6 +41,7 @@
     "modules": {
         "fs": "Leitura de diretórios e arquivos.",
         "path": "Para inserção do local na envInfo.",
+        "wa-sticker-formatter": "Para retornar o meme como um sticker.",
         "../../Dialogues/index": "Funções que retornam os diálogos necessários.",
         "../../index'": "Para rodar funções de outros arquivos."
     },
@@ -114,7 +115,7 @@
         "error": {
             "description": "Define se pode printar qualquer erro.",
             "type": "Boolean",
-            "value": false
+            "value": true
         },
         "ender": {
             "description": "Define se deve resetar a cada erro.",

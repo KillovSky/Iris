@@ -148,10 +148,11 @@ lib/Backups/*
 lib/Sessions/*
 !lib/Backups/readme.txt
 !lib/Sessions/readme.txt
-!lib/Databases/Informations/Default.json
+!lib/Databases/Informations/.readme.txt
 MessageTypes
 NASA_IMAGES
 package-lock.json
+.vscode
 
 # managed
 **.data.json
