@@ -7,6 +7,7 @@
             "/phcom texto",
             "/ytcom texto --dark",
             "/gay",
+            "/pornhub Texto 1|Texto 2",
             "/gay @user",
             "/trash <mensagem>",
             "/slap <mensagem> <@user> -sticker",
@@ -21,6 +22,7 @@
     "license": "MIT",
     "helps": [
         "Você pode mudar os parâmetros da exports enviando o valor da Object que deseja editar ao resetar, por exemplo → memes.reset({ name: 'Body'}) ← Isso mudaria o module de memes para Body, o uso então passaria ser: → Body.funcão ← Isso também permite que você edite a função usando o mesmo método.",
+        "Em comandos que exigem dois ou mais textos, como pornhub e wolfg, você deve usar '|' para separar os textos, se não fizer isso, seu meme pode ficar diferente do que esperava.",
         "Você pode mudar o que os códigos rodam, em tempo real, basta usar a 'env', por exemplo → memes.env().name = 'Body' ← Mas este método não atualizará o sistema, somente a Object, os sistemas permanecem intactos.",
         "Você pode configurar o tempo de reset dos resultados ou se eles devem ser resetados usando a env, por exemplo → memes.env().settings.wait = 10000 ← Isso mudaria o tempo de espera para 10 segundos, o tempo deve ser em milissegundos.",
         "Alguém lê essas dicas? Se sim, torne-se um programador, ler os tutoriais é de suma importância e poucos desenvolvedores o fazem...",
