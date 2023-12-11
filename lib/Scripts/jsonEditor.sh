@@ -59,7 +59,7 @@ select jsonFile in "APIS" "Config" "Outros" "Nenhum"; do
         python lib/Scripts/jsoneditor.py "$fileToEdit"
         break
     else
-        printf "[ÍRIS] → O arquivo '$fileToEdit' não existe. Faça uma reinstalação manual.\n"
+        printf "[ÍRIS] → O arquivo '%s' não existe. Faça uma reinstalação manual.\n" "$fileToEdit"
         exit 1
     fi
 done

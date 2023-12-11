@@ -1,133 +1,144 @@
 {
-    "pt":{
+    "pt": {
         "Mute": [
             "Você acha legal ficar atrapalhando a experiência das pessoas aqui, @{userFormated}? Estou avisando os administradores para tomarem providências. também estou limitando seu acesso aos meus sistemas por {timeLimit} minutos."
         ],
-        "Urls":[
+        "Urls": [
             "enviar um link dentro de um/a '{type}' ou nickname"
         ],
-        "Notice":[
+        "Notice": [
             "O usuário @{userFormated} foi removido por {notice}, quebrando a lei, ele não é mais bem vindo aqui, peço que um administrador verifique, caso isso tenha sido um erro."
         ]
     },
-    "jp":{
+    "ar": {
+        "Mute": [
+            "هل تعتقد أن يمكنك ان تتعدا على الأشخاص هنا، @{userFormated}، أمرٌ لطيف؟ أنا اخبرت المشرفين لاتخاذ الإجراءات اللازمة. أنا أيضًا قد قمت بتقييد وصولك إلى اوامري لمدة {timeLimit} دقيقة."
+        ],
+        "Urls": [
+            "إرسال رابط داخل '{type}' أو اسم المستعار"
+        ],
+        "Notice": [
+            "تمت إزالة المستخدم @{userFormated} بواسطة {notice} لخرقه القانون، وهو لا يُرحب به هنا بعد الآن. أطلب من المسؤول التحقق في حال كان ذلك خطأً."
+        ]
+    },
+    "jp": {
         "Mute": [
             "ここで他の人の体験を妨げるのは楽しいと思いますか、@{userFormated}さん？ 管理者に対策を取るよう警告しました。 また、私のシステムへのアクセスを{timeLimit}分間制限しています。"
         ],
-        "Urls":[
+        "Urls": [
             "'{type}' またはニックネーム内のリンクを送信"
         ],
-        "Notice":[
+        "Notice": [
             "ユーザー @{userFormated} は {notice} によって削除されました。法律に違反しています。彼はもはやここでは歓迎されません。これが間違いだった場合は、管理者に確認してください。"
         ]
     },
-    "en":{
+    "en": {
         "Mute": [
             "Do you think it's okay to disrupt people's experience here, @{userFormated}? I have informed the administrators to take action. I am also limiting your access to my systems for {timeLimit} minutes."
         ],
-        "Urls":[
+        "Urls": [
             "send a link within a '{type}' or nickname"
         ],
-        "Notice":[
+        "Notice": [
             "User @{userFormated} has been removed by {notice}, breaking the law, he is no longer welcome here, please have an admin check in case this was an error."
         ]
     },
-    "fr":{
+    "fr": {
         "Mute": [
             "Pensez-vous qu'il soit acceptable de perturber l'expérience des gens ici, @{userFormated}? J'ai informé les administrateurs pour qu'ils prennent des mesures. Je limite également votre accès à mes systèmes pendant {timeLimit} minutes."
         ],
-        "Urls":[
+        "Urls": [
             "envoyer un lien dans un '{type}' ou un surnom"
         ],
-        "Notice":[
+        "Notice": [
             "L'utilisateur @{userFormated} a été supprimé par {notice}, enfreignant la loi, il n'est plus le bienvenu ici, veuillez demander à un administrateur de vérifier au cas où il s'agirait d'une erreur."
         ]
     },
-    "es":{
+    "es": {
         "Mute": [
             "Crees que está bien perturbar la experiencia de las personas aquí, @{userFormated}? He informado a los administradores para que tomen medidas. También estoy limitando tu acceso a mis sistemas durante {timeLimit} minutos."
         ],
-        "Urls":[
+        "Urls": [
             "enviar un enlace dentro de un '{tipe}' o apodo"
         ],
-        "Notice":[
+        "Notice": [
             "Usuario @{userFormated} ha sido eliminado por {notice}, infringiendo la ley, ya no es bienvenido aquí, haga que el administrador verifique en caso de que haya sido un error."
         ]
     },
-    "id":{
+    "id": {
         "Mute": [
             "Apakah Anda merasa bahwa mengganggu pengalaman orang di sini adalah hal yang baik, @{userFormated}? Saya telah memberitahu para administrator untuk mengambil tindakan. Saya juga membatasi akses Anda ke sistem saya selama {timeLimit} menit."
         ],
-        "Urls":[
+        "Urls": [
             "kirim tautan dalam '{type}' atau nama panggilan"
         ],
-        "Notice":[
+        "Notice": [
             "Pengguna @{userFormated} telah dihapus oleh {notice}, melanggar hukum, dia tidak lagi diterima di sini, harap periksa admin jika ini adalah kesalahan."
         ]
     },
-    "ms":{
+    "ms": {
         "Mute": [
             "Adakah anda rasa ia wajar mengganggu pengalaman orang di sini, @{userFormated}? Saya telah memaklumkan kepada pentadbir untuk mengambil tindakan. Saya juga membatasi akses anda kepada sistem saya selama {timeLimit} minit."
         ],
-        "Urls":[
+        "Urls": [
             "hantar pautan dalam '{type}' atau nama panggilan"
         ],
-        "Notice":[
+        "Notice": [
             "Pengguna @{userFormated} telah dialih keluar oleh {notice}, melanggar undang-undang, dia tidak lagi dialu-alukan di sini, sila minta pentadbir menyemak sekiranya ini adalah kesilapan."
         ]
     },
-    "hi":{
+    "hi": {
         "Mute": [
             "क्या आपको लगता है कि यह ठीक है कि यहाँ लोगों के अनुभव में बाधा डालना, @{userFormated}? मैंने प्रशासकों को सूचित किया है कि वे कदम उठाएं। मैं भी आपके पहुँच को {timeLimit} मिनट के लिए सीमित कर रहा हूँ।"
         ],
-        "Urls":[
+        "Urls": [
             "एक '{type}' या उपनाम के भीतर एक लिंक भेजें"
         ],
-        "Notice":[
+        "Notice": [
             "उपयोगकर्ता @{userFormated} को {notice} द्वारा हटा दिया गया है, कानून तोड़ते हुए, अब उनका यहां स्वागत नहीं है, कृपया व्यवस्थापक जांच करवाएं कि यह एक गलती थी।"
         ]
     },
-    "de":{
+    "de": {
         "Mute": [
             "Denken Sie, es ist in Ordnung, die Erfahrung der Menschen hier zu stören, @{userFormated}? Ich habe die Administratoren informiert, um Maßnahmen zu ergreifen. Ich beschränke auch Ihren Zugang zu meinen Systemen für {timeLimit} Minuten."
         ],
-        "Urls":[
+        "Urls": [
             "sende einen Link innerhalb eines '{type}' oder Spitznamens"
         ],
-        "Notice":[
+        "Notice": [
             "Benutzer @{userFormated} wurde von {notice} entfernt, weil er gegen das Gesetz verstößt, er ist hier nicht mehr willkommen, bitte lassen Sie einen Administrator überprüfen, falls dies ein Fehler war."
         ]
     },
-    "it":{
+    "it": {
         "Mute": [
             "Pensi che sia accettabile disturbare l'esperienza delle persone qui, @{userFormated}? Ho informato gli amministratori affinché prendano provvedimenti. Sto inoltre limitando il tuo accesso ai miei sistemi per {timeLimit} minuti."
         ],
-        "Urls":[
+        "Urls": [
             "invia un link all'interno di un '{type}' o nickname"
         ],
-        "Notice":[
+        "Notice": [
             "L'utente @{userFormated} è stato rimosso da {notice}, infrangendo la legge, non è più il benvenuto qui, chiedi a un amministratore di verificare se si è trattato di un errore."
         ]
     },
-    "ru":{
+    "ru": {
         "Mute": [
             "Вы считаете, что допустимо мешать опыту людей здесь, @{userFormated}? Я уведомил администраторов о необходимости принять меры. Также я ограничиваю ваш доступ к моим системам на {timeLimit} минут."
         ],
-        "Urls":[
+        "Urls": [
             "отправить ссылку внутри '{type}' или псевдонима"
         ],
-        "Notice":[
+        "Notice": [
             "Пользователь @{userFormated} был удален {notice} в нарушение закона, ему здесь больше не рады, пожалуйста, обратитесь к администратору, если это была ошибка."
         ]
     },
-    "lat":{
+    "lat": {
         "Mute": [
             "Putatis licet sit perturbare experientiam hominum hic, @{userFormated}? Administros monui ut remedium caperent. Aditum tuum ad systemata mea etiam {timeLimit} minutis limito."
         ],
-        "Urls":[
+        "Urls": [
             "mittere nexum intra '{type}' vel cognomen"
         ],
-        "Notice":[
+        "Notice": [
             "User @{userFormated} remotus est ab {notice}, praevaricationem legis, hic non amplius excipitur, quaeso, admin reprehendo in casu erroris."
         ]
     }

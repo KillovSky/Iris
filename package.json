@@ -1,14 +1,15 @@
 {
   "name": "iris",
-  "version": "1.0.9",
-  "build_date": "28-11-2023",
-  "build_name": "Teacup",
+  "version": "1.1.0",
+  "build_date": "11-12-2023",
+  "build_name": "Yuzu",
   "private": "true",
   "description": "Novo Projeto Íris, uma versão totalmente nova feita com novas APIs, sistemas, 12 idiomas e muito mais, sendo um projeto novo, aberto e sem nenhum foco lucrativo.",
   "main": "lib/Initialize/checker.js",
   "scripts": {
     "start": "node lib/Initialize/checker.js",
-    "test": "echo → Sem testes! Para iniciar digite \"npm start\" ou \"bash scripts/tools.sh\"! && exit 1"
+    "toolbox": "bash lib/Scripts/Toolbox.sh",
+    "test": "bash lib/Scripts/Toolbox.sh"
   },
   "author": "KillovSky",
   "repository": {
@@ -67,9 +68,9 @@
     }
   ],
   "devDependencies": {
-    "eslint": "^8.26.0",
+    "eslint": "^8.55.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.26.0"
+    "eslint-plugin-import": "^2.29.0"
   },
   "directories": {
     "lib": "lib"

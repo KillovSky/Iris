@@ -149,6 +149,21 @@
                     "search",
                     "getsticker"
                 ],
+                "Games": [
+                    "games",
+                    "spin",
+                    "cassino",
+                    "pedra",
+                    "papel",
+                    "tesoura",
+                    "roleta",
+                    "cara",
+                    "steal",
+                    "roubar",
+                    "coroa",
+                    "rolette",
+                    "roll"
+                ],
                 "Memes": [
                     "3db",
                     "1917",
@@ -247,6 +262,8 @@
                     "sticker",
                     "fig",
                     "figurinha",
+                    "rename",
+                    "renomear",
                     "stiker",
                     "f",
                     "s",

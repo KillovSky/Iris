@@ -70,7 +70,7 @@ show_menu() {
     printf "       Bem-vindo ao Menu da ÍRIS\n"
     printf "=====================================\n"
     printf "[ÍRIS] → Funções suportadas por mim:\n\n"
-    PS3=$'\nEscolha uma opção: '
+    PS3=$'\nEscolha uma opção (aperte enter se não mostrar opções): '
     select num in "${options[@]}"; do
         if [ -n "$num" ]; then
             execute_option "${num%%.*}"
@@ -87,7 +87,7 @@ installNeeded=$(checkInstall)
 # Se não
 if [[ $installNeeded -ne 0 ]]; then
     # Pergunta ao usuário se deseja instalar
-    printf "\n[ÍRIS] → Você não parece ter os arquivs...deseja baixar o Projeto Íris (1 ou 2)?\n\n"
+    printf "\n[ÍRIS] → Você não parece ter os arquivos...deseja baixar o Projeto Íris (1 ou 2)?\n\n"
     select startOption in "Sim (y)" "Não (n)"; do
         case $startOption in
             # Faz as tarefas básicas para ter a Íris

@@ -405,13 +405,13 @@
                     "xp": 0,
                     "level": 0,
                     "messages": 0,
-                    "coin": 0,
-                    "diamond": 0,
-                    "rubi": 0,
-                    "stone": 0,
-                    "gold": 0,
-                    "iron": 0,
-                    "wood": 0
+                    "coin": 5,
+                    "diamond": 7,
+                    "rubi": 10,
+                    "stone": 12,
+                    "gold": 6,
+                    "iron": 8,
+                    "wood": 14
                 },
                 "Groups": {
                     "autostickers": {

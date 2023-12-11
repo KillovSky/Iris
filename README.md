@@ -20,24 +20,26 @@ E na fronteira entre terror e renascimento, uma pergunta sempre ecoa:
 
 "Inaceso, a chama da vida que possuis ainda cintila digna de conduzir-te a um ciclo inatingível?" -->
 <p align="center">
-	<img src="https://github.com/KillovSky/Iris/assets/55511420/33852679-aaa5-4ace-b4f3-f40f9ade72c7" width="256" height="256">
-	<h1 align="center">Projeto Íris</h1>
+    <img align="center" src="https://github.com/KillovSky/Iris/assets/55511420/02dc76b6-2c7e-4fc0-af67-49d359b116f3" width="512" height="320">
 </p>
 <p align="center">
-	<a href="https://discord.gg/ZtN9UH7XZu"><img alt="Discord" src="https://img.shields.io/discord/1000544206596608001?color=blue&label=Discord&style=flat-square"></a>
-	<a href="https://t.me/PROJETOIRIS"><img alt="Telegram" src="https://img.shields.io/badge/Telegram-Online-blue?style=flat-square"></a>
-	<a href="https://bit.ly/BOT-IRIS"><img alt="WhatsApp" src="https://img.shields.io/badge/WhatsApp-Online-blue?style=flat-square"></a>
-	<a href="https://github.com/KillovSky/iris/blob/main/LICENSE"><img alt="GitHub License" src="https://img.shields.io/github/license/KillovSky/Iris?color=blue&label=Licence&style=flat-square"></a>
-	<a href="https://github.com/KillovSky/iris"><img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/KillovSky/iris?label=Tamanho&style=flat-square"></a>
-	<a href="https://github.com/KillovSky/iris"><img alt="GitHub Languages" src="https://img.shields.io/github/languages/count/KillovSky/Iris?label=Linguagens&style=flat-square"></a>
-	<a href="https://github.com/KillovSky/iris/blob/main/package.json"><img alt="GitHub Version" src="https://img.shields.io/github/package-json/v/KillovSky/Iris?label=Build&style=flat-square"></a>
-	<a href="https://github.com/KillovSky/iris/commits/main"><img alt="GitHub Updates" src="https://img.shields.io/github/commit-activity/y/KillovSky/Iris?label=Updates&style=flat-square"></a>
-	<a href="https://github.com/KillovSky/iris/stargazers/"><img title="GitHub Stars" src="https://img.shields.io/github/stars/KillovSky/iris?label=Stars&style=flat-square"></a>
-	<a href="https://github.com/KillovSky/iris/network/members"><img title="GitHub Forks" src="https://img.shields.io/github/forks/KillovSky/iris?label=Forks&style=flat-square"></a>
-	<a href="https://github.com/KillovSky/iris/watchers"><img title="GitHub Watch" src="https://img.shields.io/github/watchers/KillovSky/iris?label=Watchers&style=flat-square"></a>
-	<a href="https://www.codefactor.io/repository/github/killovsky/iris"><img alt="Codefactor" src="https://www.codefactor.io/repository/github/killovsky/iris/badge"></a>
-	<a href="http://isitmaintained.com/project/killovsky/iris"><img alt="Is maintained" src="http://isitmaintained.com/badge/resolution/killovsky/iris.svg"></a>
-	<a href="http://isitmaintained.com/project/killovsky/iris"><img alt="Is maintained" src="http://isitmaintained.com/badge/open/killovsky/iris.svg"></a>
+    <a align="center" href="https://bento.me/jocosta">Banner by Jojo</a>
+</p>
+<p align="center">
+    <h1 align="center">Projeto Íris</h1>
+    <a href="https://github.com/KillovSky/iris/blob/main/LICENSE"><img alt="GitHub License" src="https://img.shields.io/github/license/KillovSky/Iris?color=blue&label=Licence&style=flat-square"></a>
+    <a href="https://github.com/KillovSky/iris"><img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/KillovSky/iris?label=Tamanho&style=flat-square"></a>
+    <a href="https://github.com/KillovSky/iris"><img alt="GitHub Languages" src="https://img.shields.io/github/languages/count/KillovSky/Iris?label=Linguagens&style=flat-square"></a>
+    <a href="https://github.com/KillovSky/Iris/blob/main/.github/CHANGELOG.md"><img alt="GitHub Version" src="https://img.shields.io/github/package-json/v/KillovSky/Iris?label=Build&style=flat-square"></a>
+    <a href="https://github.com/KillovSky/Iris/blob/main/.github/CHANGELOG.md"><img alt="Project Versioning" src="https://img.shields.io/github/package-json/build_name/KillovSky/Iris?label=Codename"></a>
+    <a href="https://github.com/KillovSky/Iris/blob/main/.github/CHANGELOG.md"><img alt="Last Release" src="https://img.shields.io/github/package-json/build_date/KillovSky/Iris?label=Update"></a>
+    <a href="https://github.com/KillovSky/iris/commits/main"><img alt="GitHub Updates" src="https://img.shields.io/github/commit-activity/y/KillovSky/Iris?label=Updates&style=flat-square"></a>
+    <a href="https://github.com/KillovSky/iris/stargazers/"><img title="GitHub Stars" src="https://img.shields.io/github/stars/KillovSky/iris?label=Stars&style=flat-square"></a>
+    <a href="https://github.com/KillovSky/iris/network/members"><img title="GitHub Forks" src="https://img.shields.io/github/forks/KillovSky/iris?label=Forks&style=flat-square"></a>
+    <a href="https://github.com/KillovSky/iris/watchers"><img title="GitHub Watch" src="https://img.shields.io/github/watchers/KillovSky/iris?label=Watchers&style=flat-square"></a>
+    <a href="https://www.codefactor.io/repository/github/killovsky/iris"><img alt="Codefactor" src="https://www.codefactor.io/repository/github/killovsky/iris/badge"></a>
+    <a href="http://isitmaintained.com/project/killovsky/iris"><img alt="Is maintained" src="http://isitmaintained.com/badge/resolution/killovsky/iris.svg"></a>
+    <a href="http://isitmaintained.com/project/killovsky/iris"><img alt="Is maintained" src="http://isitmaintained.com/badge/open/killovsky/iris.svg"></a>
 </p>
 
 ## 📝 Sumário
@@ -110,6 +112,7 @@ Essa versão do Projeto Íris ainda está em desenvolvimento, alguns bugs são e
 3. [Linux](https://github.com/KillovSky/Iris/blob/main/lib/Wiki/Install/Linux.md)
 
 - Se puder, ajude a melhorar nossos guias adicionando tutoriais, precisamos do seguintes sistemas ainda: MacOS, Solaris, Free/Open BSD, Aix ou qualquer outro guia relativo a um sistema que já não exista, você pode fazer guias para usos de VPS também.
+- Se desejar ajuda com sua instalação em tarefas simples após instalar a Íris, experimente usar `npm run toolbox`, isto é uma ferramenta que automatiza dezenas de tarefas, como atualizar, reinstalar e configurar.
 
 ## 🌐 Outros Projetos
 

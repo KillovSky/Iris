@@ -245,3 +245,4 @@ Parabéns por conseguir a instalação, agora você pode aproveitar a Íris em s
 ## ❗ Dicas
 
 - Tome cuidado pois Íris tem a capacidade de rodar comandos de terminal linux no WhatsApp, não dê permissão de dono a qualquer um, eles podem causar danos a você.
+- Use `npm run toolbox` para facilitar seu trabalho, esse comando executará um menu de ferramentas super completo.

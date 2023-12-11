@@ -9,21 +9,12 @@
             "Olá, a mensagem de status que pediram pra eu usar ao ligar é muito grande, podem chamar meu dono e avisar que o limite são 250 letras? Obrigadaa!",
             "Oi, não consigo mudar meu recado pois a mensagem passou de 250 letras, podem avisar meu dono para ele arrumar isso? Grataa!"
         ],
-        "Choice": [
-            "Escolha uma das opções abaixo ou digite '{first}', '{two}' ou '{three}' no grupo, antes que o tempo acabe [{time} minutos]"
-        ],
-        "ButtonStop": [
-            "Caso isto não seja o valor que você desejava, clique em '{three}'."
-        ],
-        "Continue": [
-            "Entendido, aguarde que eu finalize o resto das tarefas, não utilize novamente até que eu termine o atual, obrigada!"
-        ],
-        "Cancel": [
-            "Você escolheu cancelar este comando, se mudar de ideia é só me procurar novamente."
+        "OnlyGroups": [
+            "Oi, tudo bem? 😊 Esta função está reservada para grupos! Se quiser usar, basta me adicionar (com a permissão do meu querido dono), entrar em contato com ele para descobrir sobre grupos oficiais (se houver) ou dar um pulo no Legião Z! 🚀✨"
         ],
         "Wait": [
-            "Peço que aguarde, os comandos são verificados em vários sistemas, para evitar que sofram erros, por isso é comum que demorem, se puder esperar finalizar antes de usar novamente, serei muito grataa!",
-            "Entendido amore, até lá, espere enquanto faço isso, pode demorar um pouquinho, por isso, evite usar comandos demorados ou pesados até terminar, obrigadaa por esperar! <3",
+            "Peço que aguarde, os comandos são verificados em vários sistemas, para evitar que sofram erros, por isso é comum que demorem, se puder esperar finalizar antes de usar novamente, serei muito grataa! 🕒",
+            "Entendido amore, até lá, espere enquanto faço isso, pode demorar um pouquinho, por isso, evite usar comandos demorados ou pesados até terminar, obrigadaa por esperar! <3 🌈",
             "Aguarde um momento enquanto preparo a poção mágica de dados! 🧙‍♂️",
             "Estamos viajando pela velocidade da luz para buscar as informações solicitadas. Aguarde só um pouco! 🚀",
             "Estamos reorganizando a biblioteca de Alexandria para encontrar a resposta. Aguarde, por favor! 📚",
@@ -33,15 +24,15 @@
             "Enquanto isso, estamos ensinando pombos-correios a carregar mensagens para trazer sua resposta. Aguarde, eles estão em treinamento! 🕊️",
             "Aguarde um momento enquanto damos um trato no nosso hamster de processamento. Ele está quase terminando de correr na roda! 🐹",
             "Estamos esperando que os minions terminem de trabalhar nas respostas. Eles são um pouco atrapalhados, mas são dedicados! 👷‍♂️",
-            "Calma aí, estou indo o mais rápido que posso! Apenas mais alguns segundos e estaremos prontos para a ação!",
+            "Calma aí, estou indo o mais rápido que posso! Apenas mais alguns segundos e estaremos prontos para a ação! 🏎️",
             "Estou colocando meus bits para trabalhar! Isso pode levar um pouquinho, então aproveite para relaxar e tomar uma xícara de café! ☕",
             "Aguarde enquanto invoco meus poderes mágicos de processamento! É como esperar a varinha mágica fazer sua magia - só mais um pouquinho! 🪄",
             "Segure suas emoções! Estamos quase lá, prometo. Enquanto isso, que tal contar ovelhinhas? 🐑",
-            "Não desista de mim agora! Estou trabalhando duro nos bastidores para preparar algo incrível. Só mais um pouco e estaremos prontos!",
-            "Estou pedindo reforços aos meus colegas códigos para acelerar o processo!Aguarde um momento enquanto eles se organizam. Obrigado pela paciência! 😊",
-            "Respira fundo! A maratona de bits está chegando ao fim. Continue esperando só um pouquinho mais. Estamos quase lá...",
-            "Estou fazendo o meu melhor para não deixar você esperando muito! Enquanto isso, pense em quantos bytes há no universo. É uma distração interessante, não acha?",
-            "Aguarde enquanto os hamsters nos meus servidores correm mais rápido nas suas rodinhas. Eles estão dando o melhor de si para acelerar as coisas!"
+            "Não desista de mim agora! Estou trabalhando duro nos bastidores para preparar algo incrível. Só mais um pouco e estaremos prontos! 💪",
+            "Estou pedindo reforços aos meus colegas códigos para acelerar o processo! Aguarde um momento enquanto eles se organizam. Obrigado pela paciência! 😊",
+            "Respira fundo! A maratona de bits está chegando ao fim. Continue esperando só um pouquinho mais. Estamos quase lá... 🏁",
+            "Estou fazendo o meu melhor para não deixar você esperando muito! Enquanto isso, pense em quantos bytes há no universo. É uma distração interessante, não acha? 🤔",
+            "Aguarde enquanto os hamsters nos meus servidores correm mais rápido nas suas rodinhas. Eles estão dando o melhor de si para acelerar as coisas! 🐹"
         ],
         "Defined": [
             "Esse comando já está configurado com o valor desejado, não é necessário usar o comando novamente."
@@ -60,39 +51,30 @@
             "こんにちは。通話時に使用するように求められたステータス メッセージが長すぎます。所有者に電話して、制限が 250 文字であることを知らせてもらえますか?ありがとう!",
             "こんにちは、メッセージが 250 文字を超えているため、メッセージを変更できません。修正できるように、所有者に知らせてもらえますか? ありがとうございます!"
         ],
-        "Choice": [
-            "タイマーが切れる前に、以下のオプションのいずれかを選択するか、'{first}', '{two}', または '{three}' をグループに入力してください [{time} 分]"
-        ],
-        "ButtonStop": [
-            "これが希望の値でない場合は '{three}' をクリックしてください。"
-        ],
-        "Continue": [
-            "わかりました。残りのタスクを完了するまで待ってください。現在のタスクを完了するまで、二度と使用しないでください。ありがとう!"
-        ],
-        "Cancel": [
-            "このコマンドをキャンセルすることを選択しました。気が変わった場合は、もう一度私に連絡してください。"
+        "OnlyGroups": [
+            "こんにちは、元気ですか？ 😊 この機能はグループ専用です！ 使用したい場合は、私を（私の親愛なるオーナーの許可を得て）追加し、公式グループについて彼に連絡してください（あれば）、またはLegião Zで飛び跳ねることができます！ 🚀✨"
         ],
         "Wait": [
-            "お待ちください。コマンドはいくつかのシステムでチェックされ、エラーが発生するのを防ぎます。そのため、しばらく時間がかかるのが一般的です。完了するまで待ってから再度使用してください。非常に感謝します!",
-            "了解しました。それまでは、これを行うまでお待ちください。少し時間がかかる場合があります。完了するまで、長いコマンドや面倒なコマンドを使用しないでください。お待たせしました! <3",
-            "魔法のサイコロ薬を用意しますので、少々お待ちください！🧙‍♂️",
-            "ご要望の情報を取り出すため、光の速さで移動しています。少々お待ちください！🚀",
-            "答えを見つけるためにアレクサンドリアの図書館を再編成しています。少々お待ちください！📚",
-            "一方、ダース・ベイダーはフォースのダークサイドであなたの質問に対する正しい道を探そうとしています。お待ちください！⚔️",
-            "私たちは知識の庭で、愛情を込めて答えを育てています。忍耐は美徳です！🌱",
-            "「私たちは世界中の砂浜の砂粒を数えて、答えを見つけようとしています。辛抱強く待ってください！🏖️",
-            "一方、私たちはあなたに答えを届けるため、伝書鳩にメッセージを運ぶよう教えています。待ってください、訓練中です！🕊️",
-            "ハムスターにおやつをあげるから、ちょっと待っててね。もう少しで走り終わります！🐹",
-            "「ミニオンたちが答え合わせを終えるのを待っています。ちょっと散らかっていますが、熱心です！👷‍♂️",
-            "ちょっと待って、全力疾走中！あと数秒で準備完了だ！」、",
-            "私のビットを仕事に使っている！少し時間がかかるかもしれませんので、コーヒーでも飲んでリラックスしてください！☕",
-            "魔法のような処理能力を呼び起こすから待ってて！魔法の杖が魔法をかけるのを待つようなものです！🪄",
-            "感情を抑えて！もうすぐだよ、約束する。その間に羊の数を数えるのはどう？🐑",
-            "今はあきらめないで！舞台裏で一生懸命、すごいものを準備しているんだ。あと少しで準備完了だ！",
-            "コード仲間に援軍を要請して、プロセスをスピードアップさせるぞ！ 🐑組織が整うまで少々お待ちください🐑」、「ご辛抱ありがとうございます😊",
-            "深呼吸して！ビットマラソンは終わりに近づいています。あと少しです",
-            "お待たせしないように頑張ります！その間、宇宙に何バイトあるか考えてみて。面白い気晴らしになると思わないか",
-            "私のサーバーのハムスターが小さな車輪で速く走る間、待っててね"
+            "お待ちください。コマンドは複数のシステムで確認され、エラーが発生しないようにしています。そのため、時間がかかることがよくあります。再度使用する前に完了するのをお待ちいただければ幸いです。 🕒",
+            "了解しました、愛しい方。それまでお待ちください。ちょっと時間がかかるかもしれませんので、完了するまで重いコマンドを使用しないようにしてください。お待ちいただきありがとうございます！ <3 🌈",
+            "魔法のデータの薬を作成中、お待ちください！ 🧙‍♂️",
+            "要求された情報を取得するために光の速さで旅行しています。ちょっとお待ちください！ 🚀",
+            "答えを見つけるためにアレクサンドリアの図書館を再構築しています。お待ちください！ 📚",
+            "その間、ダース・ベイダーは暗黒面で質問に対する正しい道を見つけようとしています。お待ちください！ ⚔️",
+            "私たちは知識の庭で丁寧に答えを育てています。忍耐は美徳です！ 🌱",
+            "答えを見つけるために世界中の砂浜の砂粒を数えています。お待ちください！ 🏖️",
+            "その間、私たちはハトにメッセージを運ぶ方法を教えています。お待ちください、彼らはトレーニング中です！ 🕊️",
+            "ハムスターの処理を整える間、お待ちください。彼はもうすぐホイールで走り終わります！ 🐹",
+            "ミニオンたちが回答に取り組むのを待っています。少しドジかもしれませんが、彼らは献身的です！ 👷‍♂️",
+            "ちょっと待って、できるだけ速く行っています！もうすぐでアクションの準備ができます！ 🏎️",
+            "私のビットを動かしています！少し時間がかかるかもしれませんので、リラックスしてコーヒーを飲んでください！ ☕",
+            "魔法の処理の力を呼び寄せながらお待ちください！まるで魔法の杖が魔法をかけるのを待つようなものです。もう少しです！ 🪄",
+            "感情を抑えて！約束通り、もうすぐそこです。その間、羊を数えてみてはいかがでしょうか？ 🐑",
+            "今は諦めないでください！裏で一生懸命働いています。もう少しお待ちください！ 💪",
+            "プロセスを加速するために同僚のコードに助けを求めています！組織化する間お待ちください。お待ちいただきありがとうございます！ 😊",
+            "深呼吸してください！ビットのマラソンが終了間近です。もう少しお待ちください。もうすぐです... 🏁",
+            "あまり待たせないように頑張っています！その間に、宇宙にはどれだけのバイトがあるか考えてみてください。面白い気晴らしですね？ 🤔",
+            "ハムスターがサーバー上でもっと速く走っている間、お待ちください。彼らは物事を加速させるために最善を尽くしています！ 🐹"
         ],
         "Defined": [
             "このコマンドは既に目的の値に設定されています。コマンドを再度使用する必要はありません。"
@@ -111,39 +93,30 @@
             "Hello, the status message they asked me to use when calling is too long, can you call my owner and let him know that the limit is 250 letters? Thankss!",
             "Hi, I can't change my message because the message has exceeded 250 letters, can you let my owner know so he can fix it? Grateful!"
         ],
-        "Choice": [
-            "Choose one of the options below or type '{first}', '{two}' or '{three}' into the group before the timer expires [{time} minutes]"
-        ],
-        "ButtonStop": [
-            "If this is not the value you wanted, click '{three}'."
-        ],
-        "Continue": [
-            "Understood, wait for me to finish the rest of the tasks, don't use again until I finish the current one, thanks!"
-        ],
-        "Cancel": [
-            "You chose to cancel this command, if you change your mind, just contact me again."
+        "OnlyGroups": [
+            "Hi, how are you? 😊 This function is reserved for groups! If you want to use it, just add me (with the permission of my dear owner), get in touch with him to find out about official groups (if any), or jump into Legião Z! 🚀✨"
         ],
         "Wait": [
-            "I ask you to wait, the commands are checked on several systems, to prevent them from suffering errors, so it is common for them to take a while, if you can wait to finish before using them again, I will be very grateful!",
-            "Understood amore, until then, wait while I do this, it might take a little while, so please avoid using lengthy or cumbersome commands until I'm done, thanks for waiting! <3",
-            "Wait a moment while I prepare the magic dice potion! 🧙‍♂️",
-            "We're traveling at the speed of light to retrieve the information you requested. Just wait a moment! 🚀",
-            "We are reorganizing the library of Alexandria to find the answer. Please wait! 📚",
-            "Meanwhile, Darth Vader is trying to find the right path to your question on the dark side of the Force. Stand by! ⚔️",
-            "We are cultivating the answers with care and affection in our garden of knowledge. Patience is a virtue! 🌱",
-            "We are counting the grains of sand on every beach in the world to find the answer. Wait patiently! 🏖️",
-            "Meanwhile, we're teaching carrier pigeons to carry messages to bring you your answer. Wait, they're in training! 🕊️",
-            "Hold on a moment while we give our processing hamster a treat. He's almost finished running on the wheel! 🐹",
-            "We're waiting for the minions to finish working on the answers. They're a bit of a mess, but they're dedicated! 👷‍♂️",
-            "Hold on, I'm going as fast as I can! Just a few more seconds and we'll be ready for action!",
-            "I'm putting my bits to work! This might take a little while, so take a moment to relax and have a cup of coffee! ☕",
-            "Wait while I invoke my magical processing powers! It's like waiting for the magic wand to work its magic - just a little longer! 🪄",
+            "Please wait. Commands are checked across multiple systems to avoid errors, so it's common for them to take some time. If you can wait for them to finish before using again, I'll be very grateful! 🕒",
+            "Understood, my dear. Until then, please wait while I do this. It might take a little while, so avoid using long or heavy commands until it's done. Thank you for waiting! <3 🌈",
+            "Wait a moment while I prepare the magical data potion! 🧙‍♂️",
+            "We're traveling at the speed of light to fetch the requested information. Just wait a bit! 🚀",
+            "We're rearranging the Library of Alexandria to find the answer. Please wait! 📚",
+            "Meanwhile, Darth Vader is trying to find the right path for your question on the dark side of the Force. Wait! ⚔️",
+            "We're cultivating answers with care and affection in our garden of knowledge. Patience is a virtue! 🌱",
+            "We're counting the grains of sand on all the beaches in the world to find the answer. Wait patiently! 🏖️",
+            "Meanwhile, we're teaching carrier pigeons to bring messages for your answer. Wait, they're in training! 🕊️",
+            "Wait a moment while we give our processing hamster a treat. He's almost done running on the wheel! 🐹",
+            "We're waiting for the minions to finish working on the answers. They're a bit clumsy, but dedicated! 👷‍♂️",
+            "Hold on, I'm going as fast as I can! Just a few more seconds and we'll be ready for action! 🏎️",
+            "I'm putting my bits to work! This might take a little, so take the time to relax and have a cup of coffee! ☕",
+            "Wait while I invoke my magical processing powers! It's like waiting for the magic wand to do its magic - just a little more! 🪄",
             "Hold your emotions! We're almost there, I promise. In the meantime, how about counting sheep? 🐑",
-            "Don't give up on me now! I'm working hard behind the scenes to prepare something incredible. Just a little more and we'll be ready!",
-            "I'm calling in reinforcements from my code colleagues to speed up the process! Wait a moment while they get organized. Thank you for your patience! 😊",
-            "Take a deep breath! The bit marathon is coming to an end. Keep waiting just a little longer. We're almost there...",
-            "I'm doing my best not to keep you waiting too long! Meanwhile, think about how many bytes there are in the universe. It's an interesting distraction, don't you think?",
-            "Wait while the hamsters on my servers run faster on their little wheels. They're doing their best to speed things up!"
+            "Don't give up on me now! I'm working hard behind the scenes to prepare something amazing. Just a bit more and we'll be ready! 💪",
+            "I'm calling in reinforcements from my code colleagues to speed up the process! Wait a moment while they organize. Thanks for your patience! 😊",
+            "Take a deep breath! The bit marathon is coming to an end. Keep waiting just a little more. We're almost there... 🏁",
+            "I'm doing my best not to keep you waiting too long! In the meantime, think about how many bytes there are in the universe. It's an interesting distraction, isn't it? 🤔",
+            "Wait while the hamsters on my servers run faster on their wheels. They're doing their best to speed things up! 🐹"
         ],
         "Defined": [
             "This command is already set to the desired value, no need to use the command again."
@@ -159,42 +132,33 @@
             "L'initialisation est terminée, vous pouvez utiliser mes commandes maintenant!"
         ],
         "Status": [
-            "Bonjour, le message d'état qu'ils m'ont demandé d'utiliser lors de l'appel est trop long, pouvez-vous appeler mon propriétaire et me faire savoir que la limite est de 250 lettres ? Merci !",
-            "Bonjour, je ne peux pas modifier mon message car le message a dépassé 250 lettres, pouvez-vous en informer mon propriétaire afin qu'il puisse le corriger ? Merci !"
+            "Bonjour, le message d'état qu'ils m'ont demandé d'utiliser lors de l'appel est trop long, pouvez-vous appeler mon propriétaire et me faire savoir que la limite est de 250 lettres? Merci!",
+            "Bonjour, je ne peux pas modifier mon message car le message a dépassé 250 lettres, pouvez-vous en informer mon propriétaire afin qu'il puisse le corriger? Merci!"
         ],
-        "Choice": [
-            "Choisissez l'une des options ci-dessous ou tapez '{first}', '{two}' ou '{three}' dans le groupe avant que le minuteur n'expire [{time} minutes]"
-        ],
-        "ButtonStop": [
-            "Si ce n'est pas la valeur que vous vouliez, cliquez sur '{three}'."
-        ],
-        "Continue": [
-            "Compris, attendez que je finisse le reste des tâches, ne réutilisez pas tant que je n'ai pas terminé celle en cours, merci!"
-        ],
-        "Cancel": [
-            "Vous avez choisi d'annuler cette commande, si vous changez d'avis, recontactez-moi."
+        "OnlyGroups": [
+            "Salut, comment ça va? 😊 Cette fonction est réservée aux groupes ! Si vous voulez l'utiliser, ajoutez-moi simplement (avec la permission de mon cher propriétaire), contactez-le pour en savoir plus sur les groupes officiels (s'il y en a), ou faites un saut dans Legião Z ! 🚀✨"
         ],
         "Wait": [
-            "Je vous demande d'attendre, les commandes sont vérifiées sur plusieurs systèmes, pour éviter qu'elles ne souffrent d'erreurs, il est donc courant qu'elles prennent un certain temps, si vous pouvez attendre de terminer avant de les utiliser à nouveau, je sera très reconnaissant !",
-            "Je comprends mieux, jusque-là, attendez pendant que je fais cela, cela peut prendre un peu de temps, alors évitez d'utiliser des commandes longues ou fastidieuses jusqu'à ce que j'aie terminé, merci d'avoir attendu ! <3",
-            "Attendez un moment pendant que je prépare la potion magique des dés ! 🧙‍♂️",
-            "Nous voyageons à la vitesse de la lumière pour récupérer les informations que vous avez demandées. Attendez un instant ! 🚀",
-            "Nous réorganisons la bibliothèque d'Alexandrie pour trouver la réponse. Veuillez patienter ! 📚",
-            "Pendant ce temps, Dark Vador essaie de trouver le bon chemin pour répondre à votre question du côté obscur de la Force. Attendez ! ⚔️",
-            "Nous cultivons les réponses avec soin et affection dans notre jardin de la connaissance. La patience est une vertu ! 🌱",
+            "Veuillez patienter. Les commandes sont vérifiées sur plusieurs systèmes pour éviter les erreurs, il est donc courant qu'elles prennent un certain temps. Si vous pouvez attendre qu'elles se terminent avant de les réutiliser, je vous en serai très reconnaissant ! 🕒",
+            "Compris, mon cher. D'ici là, veuillez patienter pendant que je m'en occupe. Cela pourrait prendre un peu de temps, alors évitez d'utiliser des commandes longues ou lourdes avant la fin. Merci de patienter ! <3 🌈",
+            "Attendez un moment pendant que je prépare la potion magique de données ! 🧙‍♂️",
+            "Nous voyageons à la vitesse de la lumière pour récupérer les informations demandées. Attendez un peu ! 🚀",
+            "Nous réorganisons la Bibliothèque d'Alexandrie pour trouver la réponse. S'il vous plaît, attendez ! 📚",
+            "Pendant ce temps, Dark Vador essaie de trouver le bon chemin pour votre question du côté obscur de la Force. Attendez ! ⚔️",
+            "Nous cultivons les réponses avec soin et affection dans notre jardin de connaissances. La patience est une vertu ! 🌱",
             "Nous comptons les grains de sable sur toutes les plages du monde pour trouver la réponse. Attendez patiemment ! 🏖️",
-            "Pendant ce temps, nous apprenons aux pigeons voyageurs à porter des messages pour vous apporter votre réponse. Attendez, ils sont en train de s'entraîner ! 🕊️",
-            "Attendez un peu pendant que nous donnons une friandise à notre hamster de traitement. Il a presque fini de courir sur la roue ! 🐹",
-            "Nous attendons que les minions aient fini de travailler sur les réponses. Ils sont un peu en désordre, mais ils sont dévoués ! 👷‍♂️",
-            "Attendez, je vais aussi vite que possible ! Encore quelques secondes et nous serons prêts à passer à l'action !",
-            "Je mets mes morceaux au travail ! Cela peut prendre un peu de temps, alors prenez un moment pour vous détendre et prendre une tasse de café ! ☕",
-            "Attendez que j'invoque mes pouvoirs de traitement magique ! C'est comme attendre que la baguette magique fasse son effet - juste un peu plus longtemps ! 🪄",
-            "Retenez vos émotions ! Nous y sommes presque, je vous le promets. En attendant, pourquoi ne pas compter les moutons ? 🐑",
-            "Ne m'abandonnez pas maintenant ! Je travaille dur en coulisses pour préparer quelque chose d'incroyable. Encore un peu et nous serons prêts !",
-            "J'appelle en renfort mes collègues du code pour accélérer le processus ! Attendez un moment pendant qu'ils s'organisent. Merci de votre patience ! 😊",
-            "Respirez profondément ! Le marathon des bits touche à sa fin.Attendez encore un peu. Nous y sommes presque...",
-            "Je fais de mon mieux pour ne pas vous faire attendre trop longtemps ! Pendant ce temps, réfléchissez au nombre d'octets qu'il y a dans l'univers. C'est une distraction intéressante, vous ne trouvez pas ?",
-            "Attendez pendant que les hamsters de mes serveurs courent plus vite sur leurs petites roues. Ils font de leur mieux pour accélérer les choses !"
+            "Pendant ce temps, nous apprenons aux pigeons voyageurs à apporter des messages pour votre réponse. Attendez, ils sont en formation ! 🕊️",
+            "Attendez un moment pendant que nous récompensons notre hamster de traitement. Il a presque fini de courir dans la roue ! 🐹",
+            "Nous attendons que les minions finissent de travailler sur les réponses. Ils sont un peu maladroits, mais dévoués ! 👷‍♂️",
+            "Attends, j'y vais aussi vite que possible ! Encore quelques secondes et nous serons prêts pour l'action ! 🏎️",
+            "Je mets mes bits au travail ! Cela pourrait prendre un peu de temps, alors profitez-en pour vous détendre et prendre une tasse de café ! ☕",
+            "Attendez pendant que j'invoque mes pouvoirs magiques de traitement ! C'est comme attendre que la baguette magique fasse sa magie - juste un peu plus longtemps ! 🪄",
+            "Retenez vos émotions ! Nous y sommes presque, je promets. En attendant, que diriez-vous de compter les moutons ? 🐑",
+            "Ne m'abandonnez pas maintenant ! Je travaille dur en coulisses pour préparer quelque chose d'incroyable. Encore un peu et nous serons prêts ! 💪",
+            "J'appelle des renforts parmi mes collègues codeurs pour accélérer le processus ! Attendez un moment pendant qu'ils s'organisent. Merci pour votre patience ! 😊",
+            "Prenez une grande respiration ! La course aux bits touche à sa fin. Continuez à attendre juste un peu plus. Nous y sommes presque... 🏁",
+            "Je fais de mon mieux pour ne pas vous faire attendre trop longtemps ! En attendant, pensez à combien d'octets il y a dans l'univers. C'est une distraction intéressante, n'est-ce pas ? 🤔",
+            "Attendez pendant que les hamsters sur mes serveurs courent plus vite dans leurs roues. Ils font de leur mieux pour accélérer les choses ! 🐹"
         ],
         "Defined": [
             "Cette commande est déjà définie sur la valeur souhaitée, pas besoin d'utiliser à nouveau la commande."
@@ -213,39 +177,30 @@
             "Hola, el mensaje de estado que me pidieron que usara al llamar es demasiado largo, puedes llamar a mi dueño y decir que el límite es de 250 letras? Graciass!",
             "Hola, no puedo cambiar mi mensaje porque el mensaje ha excedido las 250 letras, puedes avisar a mi dueño para que lo arregle? Graciass!"
         ],
-        "Choice": [
-            "Elija una de las opciones a continuación o escriba '{first}', '{two}' o '{three}' en el grupo antes de que expire el temporizador [{time} minutos]"
-        ],
-        "ButtonStop": [
-            "Si este no es el valor que desea, haga clic en '{three}'."
-        ],
-        "Continue": [
-            "Entendido, espera a que termine el resto de las tareas, no vuelvas a usar hasta que termine la actual, gracias!"
-        ],
-        "Cancel": [
-            "Elegiste cancelar este comando, si cambias de opinión, solo contáctame de nuevo."
+        "OnlyGroups": [
+            "Hola, cómo estás? 😊 Esta función está reservada para grupos. Si quieres usarla, simplemente agrégame (con el permiso de mi querido dueño), ponte en contacto con él para obtener información sobre grupos oficiales (si los hay) o da un salto en Legião Z. 🚀✨"
         ],
         "Wait": [
-            "Te pido que esperes, los comandos están revisados ​​en varios sistemas, para evitar que sufran errores, por lo que es común que tarden un poco, si puedes esperar a que terminen antes de volver a usarlos, yo ¡Estaré muy agradecido!",
-            "Entendido amore, hasta entonces, espera mientras hago esto, podría tomar un poco de tiempo, así que evita usar comandos largos o engorrosos hasta que termine, ¡gracias por esperar! <3",
-            "¡Espera un momento mientras preparo la poción de dados mágicos! 🧙‍♂️",
-            "Estamos viajando a la velocidad de la luz para recuperar la información que solicitó. ¡Espera un momento! 🚀",
-            "Estamos reorganizando la biblioteca de Alejandría para encontrar la respuesta. ¡Espere, por favor! 📚",
-            "Mientras tanto, Darth Vader está tratando de encontrar el camino correcto a tu pregunta en el lado oscuro de la Fuerza. Espere! ⚔️",
-            "Estamos cultivando las respuestas con cuidado y cariño en nuestro jardín del conocimiento. ¡La paciencia es una virtud! 🌱",
-            "Estamos contando los granos de arena de todas las playas del mundo para encontrar la respuesta. ¡Espera con paciencia! 🏖️",
-            "Mientras tanto, estamos enseñando a las palomas mensajeras a llevar mensajes para traerte tu respuesta. Espera, ¡están entrenándose! 🕊️",
-            "Espera mientras le damos un capricho a nuestro hámster procesador. ¡Ya casi ha terminado de correr en la rueda! 🐹",
-            "Estamos esperando a que los esbirros terminen de trabajar en las respuestas. Están un poco desordenados, ¡pero son aplicados! 👷‍♂️",
-            "¡Espera, voy tan rápido como puedo! Sólo unos segundos más y estaremos listos para la acción!",
-            "¡Estoy poniendo mis bits a trabajar! Esto puede tardar un poco, ¡así que tómate un momento para relajarte y tomarte un café! ☕",
-            "¡Espera mientras invoco mis poderes mágicos de procesamiento! Es como esperar a que la varita mágica haga su magia, ¡sólo un poco más! 🪄",
-            "¡Mantengan sus emociones! Ya casi estamos, lo prometo. Mientras tanto, ¿qué tal si contamos ovejas? 🐑",
-            "¡No te rindas conmigo ahora! Estoy trabajando duro entre bastidores para preparar algo increíble. Solo un poco más y estaremos listos!",
-            "¡Esperad un momento mientras se organizan! ¡Gracias por vuestra paciencia! 😊",
-            "¡Respira hondo! La maratón de bits está llegando a su fin. Ya casi hemos llegado...",
-            "Mientras tanto, piensa en cuántos bytes hay en el universo. Es una distracción interesante, ¿no crees?",
-            "Espera mientras los hámsters de mis servidores corren más rápido en sus ruedecitas. ¡Están haciendo todo lo posible para acelerar las cosas!"
+            "Por favor, espera. Las órdenes se verifican en varios sistemas para evitar errores, por lo que es común que demoren un poco. Si puedes esperar a que terminen antes de usarlas nuevamente, ¡te estaré muy agradecido! 🕒",
+            "Entendido, mi querido. Hasta entonces, por favor espera mientras lo hago. Podría tomar un poco de tiempo, así que evita usar comandos largos o pesados hasta que termine. ¡Gracias por esperar! <3 🌈",
+            "Espera un momento mientras preparo la poción mágica de datos. 🧙‍♂️",
+            "Estamos viajando a la velocidad de la luz para obtener la información solicitada. ¡Solo espera un poco! 🚀",
+            "Estamos reorganizando la Biblioteca de Alejandría para encontrar la respuesta. ¡Por favor, espera! 📚",
+            "Mientras tanto, Darth Vader está tratando de encontrar el camino correcto para tu pregunta en el lado oscuro de la Fuerza. ¡Espera! ⚔️",
+            "Estamos cultivando las respuestas con cuidado y cariño en nuestro jardín del conocimiento. La paciencia es una virtud. 🌱",
+            "Estamos contando los granos de arena en todas las playas del mundo para encontrar la respuesta. ¡Espera pacientemente! 🏖️",
+            "Mientras tanto, estamos enseñando a palomas mensajeras a llevar mensajes para traer tu respuesta. ¡Espera, están en entrenamiento! 🕊️",
+            "Espera un momento mientras le damos un regalo a nuestro hámster de procesamiento. ¡Está casi terminando de correr en la rueda! 🐹",
+            "Estamos esperando a que los minions terminen de trabajar en las respuestas. Son un poco torpes, ¡pero son dedicados! 👷‍♂️",
+            "Espera un momento, ¡voy tan rápido como puedo! Solo unos segundos más y estaremos listos para la acción. 🏎️",
+            "Estoy poniendo mis bits a trabajar. Esto podría llevar un poco de tiempo, así que aprovecha para relajarte y tomar una taza de café. ☕",
+            "Espera mientras invoco mis poderes mágicos de procesamiento. Es como esperar a que la varita mágica haga su magia, solo un poco más. 🪄",
+            "¡Controla tus emociones! Estamos casi allí, lo prometo. Mientras tanto, ¿qué tal contar ovejas? 🐑",
+            "¡No te rindas ahora! Estoy trabajando duro tras bastidores para preparar algo increíble. Solo un poco más y estaremos listos. 💪",
+            "Estoy solicitando refuerzos a mis colegas códigos para acelerar el proceso. Espera un momento mientras se organizan. Gracias por tu paciencia. 😊",
+            "Respira hondo. La maratón de bits está llegando a su fin. Sigue esperando solo un poco más. Estamos casi allí... 🏁",
+            "Estoy haciendo lo mejor posible para no hacerte esperar mucho. Mientras tanto, piensa en cuántos bytes hay en el universo. Es una distracción interesante, ¿no crees? 🤔",
+            "Espera mientras los hámsters en mis servidores corren más rápido en sus ruedas. Están haciendo todo lo posible para acelerar las cosas. 🐹"
         ],
         "Defined": [
             "Este comando ya está configurado en el valor deseado, no es necesario volver a usar el comando."
@@ -264,40 +219,30 @@
             "Halo, pesan status yang mereka minta saya gunakan saat menelepon terlalu panjang, bisakah Anda menelepon pemilik saya dan memberi tahu saya bahwa batasnya adalah 250 huruf? Terima kasih!",
             "Hai, saya tidak dapat mengubah pesan saya karena pesannya telah melebihi 250 huruf, dapatkah Anda memberi tahu pemilik saya agar dia dapat memperbaikinya? Terima kasih!"
         ],
-        "Choice": [
-            "Escolha uma das opções abaixo ou digite '{first}', '{two}' ou '{three}' no grupo, antes que o tempo acabe [{time} minutos]"
-        ],
-        "ButtonStop": [
-            "Jika ini bukan nilai yang Anda inginkan, klik '{three}'."
-        ],
-        "Continue": [
-            "Dimengerti, tunggu saya menyelesaikan sisa tugas, jangan gunakan lagi sampai saya menyelesaikan yang sekarang, terima kasih!"
-        ],
-        "Cancel": [
-            "Anda memilih untuk membatalkan perintah ini, jika Anda berubah pikiran, hubungi saya lagi."
+        "OnlyGroups": [
+            "Hai, apa kabar? 😊 Fungsi ini hanya untuk grup! Jika ingin menggunakannya, cukup tambahkan saya (dengan izin pemilik saya yang tercinta), hubungi dia untuk mengetahui tentang grup resmi (jika ada) atau melompat ke Legião Z! 🚀✨"
         ],
         "Wait": [
-            "Saya meminta Anda untuk menunggu, perintah diperiksa pada beberapa sistem, untuk mencegahnya mengalami kesalahan, jadi biasanya perlu waktu beberapa saat, jika Anda dapat menunggu hingga selesai sebelum menggunakannya lagi, saya akan sangat berterima kasih!",
-            "Dimengerti lagi, sampai saat itu, tunggu sementara saya melakukan ini, mungkin perlu sedikit waktu, jadi tolong hindari menggunakan perintah yang panjang atau rumit sampai saya selesai, terima kasih telah menunggu! <3",
-            "Tunggu sebentar sementara saya menyiapkan ramuan dadu ajaib! 🧙‍♂️",
-            "Kami akan melakukan perjalanan dengan kecepatan cahaya untuk mengambil informasi yang Anda minta. Tunggu sebentar! 🚀",
-            "Kami sedang menata ulang perpustakaan Alexandria untuk menemukan jawabannya. Mohon tunggu! 📚",
-            "Sementara itu, Darth Vader sedang berusaha menemukan jalan yang tepat untuk pertanyaan Anda tentang sisi gelap the Force. Bersiaplah! ⚔️",
-            "Kami sedang mengembangkan jawaban dengan hati-hati dan penuh kasih sayang di taman pengetahuan kami. Kesabaran adalah sebuah kebajikan! 🌱",
-            "Kami menghitung butiran pasir di setiap pantai di dunia untuk menemukan jawabannya. Tunggu dengan sabar! 🏖️",
-            "Sementara itu, kami sedang mengajari merpati pembawa pesan untuk membawakan jawaban Anda. Tunggu, mereka sedang berlatih! 🕊️",
-            "Tunggu sebentar sementara kami memberi makan hamster pengolah kami. Dia hampir selesai berlari di atas roda! 🐹",
-            "Kami sedang menunggu para pelayan selesai mengerjakan jawabannya. Mereka sedikit berantakan, tapi mereka berdedikasi! 👷‍♂️",
-            "Tunggu, saya akan berusaha secepat mungkin! Hanya beberapa detik lagi dan kita akan siap beraksi!",
-            "Saya sedang bekerja keras! Ini mungkin akan memakan waktu cukup lama, jadi luangkan waktu sejenak untuk bersantai dan minum secangkir kopi! ☕",
-            "Tunggu sementara saya memohon kekuatan pemrosesan magis saya! Ini seperti menunggu tongkat sihir untuk melakukan keajaibannya - hanya sedikit lebih lama! 🪄",
-            "Tahan emosimu! Kita hampir sampai, saya janji. Sementara itu, bagaimana kalau kita menghitung domba? 🐑",
-            "Jangan menyerah sekarang! Saya bekerja keras di belakang layar untuk mempersiapkan sesuatu yang luar biasa. Sedikit lagi dan kita akan siap!",
-            "Saya memanggil bala bantuan dari rekan-rekan kode saya untuk mempercepat prosesnya!",
-            "Tunggu sebentar sementara mereka mengaturnya. Terima kasih atas kesabaran Anda! 😊",
-            "Tarik napas dalam-dalam! Maraton bit akan segera berakhir. Tunggu sebentar lagi. Kita hampir sampai...",
-            "Saya akan melakukan yang terbaik untuk tidak membuat Anda menunggu terlalu lama! Sementara itu, pikirkan berapa banyak byte yang ada di alam semesta. Ini adalah selingan yang menarik, bukankah begitu?",
-            "Tunggu sementara hamster di server saya berlari lebih cepat dengan roda kecilnya. Mereka melakukan yang terbaik untuk mempercepat segalanya!"
+            "Mohon tunggu. Perintah diperiksa di berbagai sistem untuk menghindari kesalahan, jadi lumrah jika membutuhkan waktu beberapa saat. Jika Anda dapat menunggu sampai selesai sebelum menggunakan lagi, saya akan sangat berterima kasih! 🕒",
+            "Dimengerti, sayang. Sampai saat itu, harap tunggu sementara saya melakukan ini. Ini mungkin memakan waktu sejenak, jadi hindari menggunakan perintah yang panjang atau berat sampai selesai. Terima kasih atas kesabaran Anda! <3 🌈",
+            "Tunggu sebentar sementara saya menyiapkan ramuan data ajaib! 🧙‍♂️",
+            "Kami sedang berpergian dengan kecepatan cahaya untuk mencari informasi yang diminta. Tunggu sebentar saja! 🚀",
+            "Kami sedang menyusun ulang Perpustakaan Aleksandria untuk menemukan jawabannya. Mohon tunggu! 📚",
+            "Sementara itu, Darth Vader mencoba menemukan jalan yang benar untuk pertanyaan Anda di sisi gelap Kekuatan. Tunggu! ⚔️",
+            "Kami sedang menanam jawaban dengan cermat dan penuh kasih sayang di kebun pengetahuan kami. Kesabaran adalah suatu kebajikan! 🌱",
+            "Kami menghitung butir pasir di semua pantai dunia untuk menemukan jawaban. Tunggu dengan sabar! 🏖️",
+            "Sementara itu, kami sedang mengajarkan merpati pembawa pesan untuk membawa pesan demi membawa jawaban Anda. Tunggu, mereka sedang dalam pelatihan! 🕊️",
+            "Tunggu sebentar sementara kami memberi hadiah pada hamster pemrosesan kami. Dia hampir selesai berlari di roda! 🐹",
+            "Kami sedang menunggu agar para minion selesai bekerja pada jawaban. Mereka agak ceroboh, tapi mereka berdedikasi! 👷‍♂️",
+            "Tahan, saya bergerak secepat yang saya bisa! Hanya beberapa detik lagi dan kami akan siap untuk tindakan! 🏎️",
+            "Saya memasukkan bit-bit saya untuk bekerja! Ini mungkin memakan waktu sejenak, jadi manfaatkan untuk bersantai dan minum secangkir kopi! ☕",
+            "Tunggu sementara saya memanggil kekuatan sihir pemrosesan saya! Ini seperti menunggu tongkat sihir melakukan sihirnya - hanya sejenak lagi! 🪄",
+            "Tahan emosimu! Kami hampir sampai, saya janji. Sementara itu, bagaimana jika kita menghitung domba? 🐑",
+            "Jangan menyerah padaku sekarang! Saya bekerja keras di belakang layar untuk menyiapkan sesuatu yang luar biasa. Hanya sebentar lagi dan kita akan siap! 💪",
+            "Saya meminta bantuan kepada rekan-rekan kode saya untuk mempercepat prosesnya! Tunggu sebentar sementara mereka mengatur diri. Terima kasih atas kesabaran Anda! 😊",
+            "Tarik nafas dalam-dalam! Maraton bit ini akan segera berakhir. Teruslah menunggu hanya sejenak lagi. Kami hampir sampai... 🏁",
+            "Saya melakukan yang terbaik agar Anda tidak menunggu terlalu lama! Sementara itu, pikirkan berapa byte yang ada di alam semesta. Ini adalah gangguan yang menarik, bukan? 🤔",
+            "Tunggu sementara hamster di server saya berlari lebih cepat di roda mereka. Mereka melakukan yang terbaik untuk mempercepat segalanya! 🐹"
         ],
         "Defined": [
             "Perintah ini sudah disetel ke nilai yang diinginkan, tidak perlu menggunakan perintah lagi."
@@ -316,39 +261,30 @@
             "Helo, mesej status yang mereka minta saya gunakan semasa membuat panggilan terlalu panjang, bolehkah anda menghubungi pemilik saya dan beritahu saya bahawa hadnya ialah 250 huruf? Terima kasih!",
             "Hai, saya tidak boleh menukar mesej saya kerana mesej telah melebihi 250 huruf, bolehkah awak beritahu pemilik saya supaya dia boleh membetulkannya? Terima kasih!"
         ],
-        "Choice": [
-            "Pilih salah satu pilihan di bawah atau taip '{first}', '{two}' atau '{three}' ke dalam kumpulan sebelum pemasa tamat tempoh [{time} minit]"
-        ],
-        "ButtonStop": [
-            "Jika ini bukan nilai yang anda inginkan, klik '{three}'."
-        ],
-        "Continue": [
-            "Difahamkan, tunggu saya menyelesaikan tugasan yang lain, jangan gunakan lagi sehingga saya menyelesaikan tugasan sekarang, terima kasih!"
-        ],
-        "Cancel": [
-            "Anda memilih untuk membatalkan arahan ini, jika anda berubah fikiran, hubungi saya sekali lagi."
+        "OnlyGroups": [
+            "Hi, apa khabar? 😊 Fungsi ini hanya untuk kumpulan! Jika anda ingin menggunakannya, tambahkan saya (dengan kebenaran tuan saya yang tersayang), hubungi beliau untuk mengetahui tentang kumpulan rasmi (jika ada) atau terjun ke Legião Z! 🚀✨"
         ],
         "Wait": [
-            "Saya meminta anda untuk menunggu, arahan diperiksa pada beberapa sistem, untuk mengelakkan mereka daripada mengalami ralat, jadi adalah perkara biasa untuk mereka mengambil sedikit masa, jika anda boleh menunggu untuk selesai sebelum menggunakannya semula, saya akan sangat berterima kasih!",
-            "Difahamkan lagi, sehingga itu, tunggu sementara saya melakukan ini, mungkin mengambil sedikit masa, jadi sila elakkan menggunakan arahan yang panjang atau menyusahkan sehingga saya selesai, terima kasih kerana menunggu! <3",
-            "Tunggu sebentar sementara saya menyediakan ramuan dadu ajaib! 🧙‍♂️",
-            "Kami bergerak dengan kelajuan cahaya untuk mendapatkan maklumat yang anda minta. Tunggu sebentar! 🚀",
-            "Kami sedang menyusun semula perpustakaan Iskandariah untuk mencari jawapannya. Sila tunggu! 📚",
-            "Sementara itu, Darth Vader cuba mencari jalan yang betul kepada soalan anda di sisi gelap Force. Berdiri! ⚔️",
-            "Kami memupuk jawapan dengan penuh perhatian dan kasih sayang di taman ilmu kami. Kesabaran adalah satu kebaikan! 🌱",
-            "Kami mengira butiran pasir di setiap pantai di dunia untuk mencari jawapannya. Tunggu dengan sabar! 🏖️",
-            "Sementara itu, kami sedang mengajar merpati pembawa untuk membawa mesej untuk menyampaikan jawapan anda. Tunggu, mereka sedang dalam latihan! 🕊️",
-            "Tunggu sebentar sementara kami memberi hamster pemprosesan kami hidangan. Dia hampir habis berlari di atas roda! 🐹",
-            "Kami sedang menunggu minions selesai mengerjakan jawapan. Mereka agak kucar-kacir, tetapi mereka berdedikasi! 👷‍♂️",
-            "Tunggu, saya akan pergi secepat yang saya boleh! Hanya beberapa saat lagi dan kita akan bersedia untuk bertindak!",
-            "Saya sedang berusaha! Ini mungkin mengambil sedikit masa, jadi luangkan masa untuk berehat dan minum secawan kopi! ☕",
-            "Tunggu sementara saya menggunakan kuasa pemprosesan ajaib saya! Ia seperti menunggu tongkat ajaib berfungsi - sedikit lagi! 🪄",
-            "Tahan emosi anda! Kita hampir sampai, saya janji. Sementara itu, bagaimana dengan mengira biri-biri? 🐑",
-            "Jangan berputus asa dengan saya sekarang! Saya bekerja keras di belakang tabir untuk menyediakan sesuatu yang luar biasa. Hanya sedikit lagi dan kami akan bersedia!",
-            "Saya memanggil bala bantuan daripada rakan kod saya untuk mempercepatkan proses! Tunggu sebentar sementara mereka beratur. Terima kasih atas kesabaran anda! 😊",
-            "Tarik nafas dalam-dalam! Marathon sedikit akan berakhir. Teruskan menunggu sedikit lagi. Kita hampir sampai...",
-            "Saya melakukan yang terbaik untuk tidak membuat anda menunggu terlalu lama! Sementara itu, fikirkan tentang berapa banyak bait yang terdapat di alam semesta. Ia adalah gangguan yang menarik, bukankah anda fikir?",
-            "Tunggu sementara hamster di pelayan saya berlari lebih laju pada roda kecil mereka. Mereka melakukan yang terbaik untuk mempercepatkan keadaan!"
+            "Sila tunggu. Perintah sedang disemak di pelbagai sistem untuk mengelakkan ralat, jadi adalah lumrah untuk mereka mengambil sedikit masa. Jika anda boleh menunggu sehingga selesai sebelum menggunakan lagi, saya akan sangat berterima kasih! 🕒",
+            "Faham, sayang. Sehingga itu, sila tunggu sementara saya lakukan ini. Ia mungkin mengambil sedikit masa, jadi elakkan menggunakan perintah yang panjang atau berat sehingga selesai. Terima kasih kerana bersabar! <3 🌈",
+            "Tunggu sebentar sementara saya menyediakan ramuan data ajaib! 🧙‍♂️",
+            "Kami sedang melancong dengan kelajuan cahaya untuk mendapatkan maklumat yang diminta. Tunggu sebentar sahaja! 🚀",
+            "Kami sedang mengatur semula Perpustakaan Alexandria untuk mencari jawapan. Sila tunggu! 📚",
+            "Sementara itu, Darth Vader cuba mencari jalan yang betul untuk soalan anda di sisi gelap Kuasa. Tunggu! ⚔️",
+            "Kami sedang menanam jawapan dengan berhati-hati dan kasih sayang di taman pengetahuan kami. Kesabaran adalah suatu kelebihan! 🌱",
+            "Kami mengira butiran pasir di semua pantai dunia untuk mencari jawapan. Tunggu dengan sabar! 🏖️",
+            "Sementara itu, kami sedang mengajar burung merpati pembawa mesej untuk membawa mesej bagi mendapatkan jawapan anda. Tunggu, mereka sedang dalam latihan! 🕊️",
+            "Tunggu sebentar sementara kami memberi ganjaran pada hamster pemprosesan kami. Dia hampir selesai berlari di roda! 🐹",
+            "Kami sedang menunggu minion menyelesaikan kerja pada jawapan. Mereka agak ceroboh, tetapi berdedikasi! 👷‍♂️",
+            "Tahan, saya bergerak secepat yang saya boleh! Hanya beberapa saat lagi dan kami akan sedia untuk tindakan! 🏎️",
+            "Saya memasukkan bit-bit saya untuk bekerja! Ini mungkin mengambil sedikit masa, jadi manfaatkan untuk bersantai dan minum segelas kopi! ☕",
+            "Tunggu sementara saya memanggil kekuatan sihir pemprosesan saya! Ia seperti menunggu wand sihir melakukan sihirnya - hanya sedikit lagi! 🪄",
+            "Tahan emosi anda! Kami hampir sampai, saya janji. Sementara itu, bagaimana jika kita mengira kambing? 🐑",
+            "Jangan berikan pada saya sekarang! Saya bekerja keras di belakang tabir untuk menyediakan sesuatu yang mengagumkan. Hanya sebentar lagi dan kami akan sedia! 💪",
+            "Saya memanggil bantuan dari rakan-rakan kod saya untuk mempercepatkan proses! Tunggu sebentar sementara mereka mengatur diri. Terima kasih atas kesabaran anda! 😊",
+            "Tarik nafas dalam-dalam! Maraton bit ini akan selesai. Teruskan menunggu hanya sebentar lagi. Kami hampir sampai... 🏁",
+            "Saya berusaha sebaik mungkin supaya anda tidak perlu menunggu terlalu lama! Sementara itu, fikirkan berapa banyak byte di alam semesta. Ia satu pengalihan yang menarik, bukan? 🤔",
+            "Tunggu sementara hamster di pelayan saya berlari lebih pantas di roda mereka. Mereka sedang berusaha untuk mempercepatkan segalanya! 🐹"
         ],
         "Defined": [
             "Arahan ini telah ditetapkan kepada nilai yang dikehendaki, tidak perlu menggunakan arahan itu lagi."
@@ -367,39 +303,30 @@
             "नमस्कार, कॉल करते समय उन्होंने मुझे जिस स्थिति संदेश का उपयोग करने के लिए कहा, वह बहुत लंबा है, क्या आप मेरे स्वामी को कॉल कर सकते हैं और मुझे बता सकते हैं कि सीमा 250 अक्षरों की है? धन्यवाद!",
             "हाय, मैं अपना संदेश नहीं बदल सकता क्योंकि संदेश में 250 से अधिक अक्षर हैं, क्या आप मेरे स्वामी को बता सकते हैं ताकि वह इसे ठीक कर सके? धन्यवाद!"
         ],
-        "Choice": [
-            "टाइमर के [{time} मिनट] समाप्त होने से पहले नीचे दिए गए विकल्पों में से एक चुनें या समूह में '{first}', '{two}' या '{three}' टाइप करें"
-        ],
-        "ButtonStop": [
-            "यदि यह वह मान नहीं है जो आप चाहते थे, तो '{three}' पर क्लिक करें।"
-        ],
-        "Continue": [
-            "समझ गया, बाकी कार्यों को पूरा करने के लिए मेरी प्रतीक्षा करें, जब तक मैं वर्तमान को पूरा नहीं कर लेता, तब तक दोबारा उपयोग न करें, धन्यवाद!"
-        ],
-        "Cancel": [
-            "आपने इस आदेश को रद्द करना चुना है, यदि आप अपना विचार बदलते हैं, तो मुझसे दोबारा संपर्क करें।"
+        "OnlyGroups": [
+            "नमस्ते, कैसे हैं आप? 😊 यह फ़ंक्शन समूहों के लिए आरक्षित है! इसे उपयोग करना चाहते हैं तो सीधे मुझे जोड़ें (मेरे प्यारे मालिक की अनुमति के साथ), उससे संपर्क करें ताकि साथियों के बारे में पता चले (यदि हो) या Legião Z में छलांग लगाएं! 🚀✨"
         ],
         "Wait": [
-            "मैं आपसे प्रतीक्षा करने के लिए कहता हूं, आदेशों को कई प्रणालियों पर जांचा जाता है, ताकि उन्हें त्रुटियों से पीड़ित होने से रोका जा सके, इसलिए उनके लिए कुछ समय लेना आम बात है, यदि आप उन्हें फिर से उपयोग करने से पहले समाप्त करने के लिए प्रतीक्षा कर सकते हैं, मैं मैं बहुत आभारी रहूंगा!",
-            "अब और समझ गया, तब तक प्रतीक्षा करें जब तक मैं ऐसा करता हूं, इसमें थोड़ा समय लग सकता है, इसलिए कृपया जब तक मैं पूरा नहीं कर लेता, तब तक लंबे या बोझिल आदेशों का उपयोग करने से बचें, प्रतीक्षा करने के लिए धन्यवाद! <3",
-            "जब तक मैं जादुई पासा औषधि तैयार करता हूं, तब तक एक क्षण रुकें! 🧙‍♂️",
-            "आपके द्वारा अनुरोधित जानकारी प्राप्त करने के लिए हम प्रकाश की गति से यात्रा कर रहे हैं। बस एक क्षण रुकें! 🚀",
-            "हम उत्तर खोजने के लिए अलेक्जेंड्रिया की लाइब्रेरी को पुनर्गठित कर रहे हैं। कृपया प्रतीक्षा करें! 📚",
-            "इस बीच, डार्थ वाडर फोर्स के अंधेरे पक्ष पर आपके प्रश्न का सही रास्ता खोजने की कोशिश कर रहा है। खड़े रहो! ⚔️",
-            "हम अपने ज्ञान के बगीचे में देखभाल और स्नेह के साथ उत्तर विकसित कर रहे हैं। धैर्य एक गुण है! 🌱",
-            "हम उत्तर खोजने के लिए दुनिया के हर समुद्र तट पर रेत के कण गिन रहे हैं। धैर्यपूर्वक प्रतीक्षा करें! 🏖️",
-            "इस बीच, हम वाहक कबूतरों को आपके उत्तर लाने के लिए संदेश ले जाना सिखा रहे हैं। रुको, वे प्रशिक्षण में हैं! 🕊️",
-            "जब हम अपने प्रसंस्करण हम्सटर को दावत देते हैं तो एक क्षण रुकें। वह पहिया पर दौड़ना लगभग समाप्त कर चुका है! 🐹",
-            "हम मिनियन के उत्तरों पर काम पूरा करने का इंतजार कर रहे हैं। वे थोड़े अव्यवस्थित हैं, लेकिन वे समर्पित हैं! 👷‍♂️",
-            "रुको, मैं जितनी तेजी से जा सकता हूं जा रहा हूं! बस कुछ सेकंड और हम कार्रवाई के लिए तैयार हो जाएंगे!",
-            "मैं अपना काम कर रहा हूं! इसमें थोड़ा समय लग सकता है, इसलिए थोड़ा आराम करें और एक कप कॉफी लें! ☕",
-            "जब तक मैं अपनी जादुई प्रसंस्करण शक्तियों का आह्वान नहीं कर लेता, तब तक प्रतीक्षा करें! यह जादू की छड़ी के जादू चलाने की प्रतीक्षा करने जैसा है - बस थोड़ी देर और! 🪄",
-            "अपनी भावनाओं पर काबू रखें! हम लगभग वहां हैं, मैं वादा करता हूं। इस बीच, भेड़ों की गिनती के बारे में क्या ख्याल है? 🐑",
-            "अब मुझे मत छोड़ो! मैं कुछ अविश्वसनीय तैयार करने के लिए पर्दे के पीछे कड़ी मेहनत कर रहा हूं। बस थोड़ा और और हम तैयार हो जाएंगे!",
-            "मैं इस प्रक्रिया को तेज़ करने के लिए अपने कोड सहयोगियों से सुदृढीकरण बुला रहा हूँ! उनके व्यवस्थित होने तक एक क्षण प्रतीक्षा करें। आपके धैर्य के लिए धन्यवाद! 😊",
-            "गहरी साँस लीजिए! बिट मैराथन ख़त्म होने वाली है। बस थोड़ी देर और इंतज़ार करते रहिए। हम लगभग वहाँ पहुँच चुके हैं...",
-            "मैं पूरी कोशिश कर रहा हूं कि आपको ज्यादा देर तक इंतजार न कराना पड़े! इस बीच, सोचें कि ब्रह्मांड में कितने बाइट्स हैं। यह एक दिलचस्प व्याकुलता है, क्या आपको नहीं लगता?",
-            "रुको जब तक मेरे सर्वर पर हैम्स्टर अपने छोटे पहियों पर तेजी से दौड़ते हैं। वे चीजों को गति देने की पूरी कोशिश कर रहे हैं!"
+            "कृपया प्रतीक्षा करें। तीनता विभिन्न सिस्टमों में जाँचा जाता है ताकि त्रुटियों से बचा जा सके, इसलिए यह सामान्य है कि यह थोड़ी सी समय ले सकता है। यदि आप फिर से इस्तेमाल करने से पहले इन्हें समाप्त होने का इंतजार कर सकते हैं, तो मैं बहुत कृतज्ञ होऊँगा! 🕒",
+            "समझा, प्यारे। उस समय तक, कृपया इसे करते रहें। यह थोड़ी देर ले सकता है, इसलिए समाप्त होने तक लंबे या भारी कमांड्स का इस्तेमाल करने से बचें। इंतजार करने के लिए धन्यवाद! <3 🌈",
+            "कृपया इंतजार करें जब मैं जादुई डेटा की पोशाक तैयार करता हूँ! 🧙‍♂️",
+            "हम अनुरोधित जानकारी प्राप्त करने के लिए प्रकाश की गति से यात्रा कर रहे हैं। बस थोड़ा इंतजार करें! 🚀",
+            "हम उत्तर को ढूंढने के लिए एलेक्जेंड्रिया की लाइब्रेरी को फिर से आयोजित कर रहे हैं। कृपया प्रतीक्षा करें! 📚",
+            "इस बीच, डार्थ वेडर अपने सवाल के लिए सही मार्ग ढूंढ़ने का प्रयास कर रहे हैं। कृपया प्रतीक्षा करें! ⚔️",
+            "हम अपने ज्ञान के उद्यान में ध्यान से और प्रेम से उत्तरों को उत्पन्न कर रहे हैं। धैर्य एक गुण है! 🌱",
+            "हम उत्तर को ढूंढ़ने के लिए दुनिया भर की सभी बीच की रेतों को गिन रहे हैं। कृपया धैर्यपूर्वक प्रतीक्षा करें! 🏖️",
+            "उस बीच, हम कैरियर पिजन्स को संदेश लाने के लिए सिखा रहे हैं। कृपया प्रतीक्षा करें, वे प्रशिक्षण में हैं! 🕊️",
+            "हमारे प्रोसेसिंग हैम्स्टर को एक उपहार देते हुए कृपया प्रतीक्षा करें। उसने लगभग पहले से ही पहले दौड़ा है! 🐹",
+            "हम इन उत्तरों पर काम करने के लिए मिनियन्स का इंतजार कर रहे हैं। वे थोड़े बेड़की, लेकिन समर्पित हैं! 👷‍♂️",
+            "रुको, मैं जितनी जल्दी हो सके जा रहा हूँ! सिर्फ कुछ सेकंड और हम क्रियाशील हो जाएंगे! 🏎️",
+            "मैं अपने बिट्स को काम में डाल रहा हूँ! यह थोड़ी देर ले सकता है, तो आराम करने और एक कप कॉफ़ी पीने का समय है! ☕",
+            "जब मैं अपनी जादूई प्रोसेसिंग शक्तियों को बुलाता हूँ! यह जैसा है कि जादू की छड़ी का जादू करने का इंतजार कर रहा हूँ - थोड़ी देर में ही! 🪄",
+            "अपनी भावनाओं को संभालो! हम लगभग पहुंच रहे हैं, मैं वादा करता हूँ। इस बीच, भेड़ों की संख्या सोचें? 🐑",
+            "अब मुझसे हार मत मानो! मैं पीछे स्क्रीन में कड़ी मेहनत कर रहा हूँ कुछ अद्भूत तैयार करने के लिए। थोड़ी देर और हम तैयार हो जाएंगे! 💪",
+            "मैं प्रक्रिया के लिए मेरे कोड साथियों से सहायता मांग रहा हूँ! उन्हें आयोजित करने के लिए एक क्षण का इंतजार करें। आपकी सब्र के लिए धन्यवाद! 😊",
+            "गहरी सांस लो! बिट मैराथन खत्म हो रही है। बस थोड़ी देर और प्रतीक्षा करें। हम लगभग पहुंच रहे हैं... 🏁",
+            "मैं अच्छा करने के लिए अपनी पूरी कोशिश कर रहा हूँ कि तुम ज्यादा समय तक प्रतीक्षा न करना पड़े! इस बीच, यह विचार करें कि ब्रह्माण्ड में कितने बाइट हैं। यह एक दिलचस्प विचारशीलता है, क्या आपको लगता है? 🤔",
+            "मेरे सर्वरों पर हैम्स्टर्स अपने पहिए पर और तेज़ दौड़ने के लिए। वे सब कुछ तेज़ करने के लिए अपनी सर्वोच्च कोशिश कर रहे हैं! 🐹"
         ],
         "Defined": [
             "यह कमांड पहले से वांछित मान पर सेट है, फिर से कमांड का उपयोग करने की आवश्यकता नहीं है।"
@@ -418,39 +345,30 @@
             "Hallo, die Statusnachricht, die ich beim Anrufen verwenden soll, ist zu lang. Können Sie meinen Besitzer anrufen und mir mitteilen, dass das Limit 250 Zeichen beträgt? Danke!",
             "Hallo, ich kann meine Nachricht nicht ändern, da die Nachricht 250 Buchstaben überschritten hat. Können Sie meinem Besitzer Bescheid geben, damit er sie korrigieren kann? Danke!"
         ],
-        "Choice": [
-            "Wählen Sie eine der folgenden Optionen oder geben Sie '{first}', '{two}' oder '{three}' in die Gruppe ein, bevor der Timer abläuft [{time} Minuten]"
-        ],
-        "ButtonStop": [
-            "Wenn dies nicht der gewünschte Wert ist, klicken Sie auf '{three}'."
-        ],
-        "Continue": [
-            "Verstanden, warten Sie, bis ich die restlichen Aufgaben erledigt habe, verwenden Sie sie erst wieder, wenn ich die aktuelle erledigt habe, danke!"
-        ],
-        "Cancel": [
-            "Du hast dich entschieden, diesen Befehl abzubrechen, falls du deine Meinung änderst, kontaktiere mich einfach erneut."
+        "OnlyGroups": [
+            "Hallo, wie geht es dir? 😊 Diese Funktion ist für Gruppen reserviert! Wenn Sie sie verwenden möchten, fügen Sie mich einfach hinzu (mit Erlaubnis meines lieben Besitzers), setzen Sie sich mit ihm in Verbindung, um mehr über offizielle Gruppen zu erfahren (falls vorhanden), oder springen Sie in Legião Z! 🚀✨"
         ],
         "Wait": [
-            "Ich bitte Sie zu warten, die Befehle werden auf mehreren Systemen überprüft, um zu verhindern, dass sie Fehler erleiden, daher ist es üblich, dass sie eine Weile dauern, wenn Sie warten können, bevor Sie sie erneut verwenden, ich wäre sehr dankbar!",
-            "Verstanden, amore, bis dahin, warte, während ich das mache, es kann eine Weile dauern, also vermeide bitte langwierige oder umständliche Befehle, bis ich fertig bin, danke fürs Warten! <3",
-            "Warte einen Moment, während ich den magischen Würfeltrank zubereite! 🧙‍♂️",
-            "Wir sind mit Lichtgeschwindigkeit unterwegs, um die von Ihnen gewünschten Informationen zu erhalten. Warte einfach einen Moment! 🚀",
-            "Wir reorganisieren gerade die Bibliothek von Alexandria, um die Antwort zu finden. Bitte warten Sie! 📚",
-            "In der Zwischenzeit versucht Darth Vader, auf der dunklen Seite der Macht den richtigen Weg zu deiner Frage zu finden. Haltet euch bereit! ⚔️",
-            "Wir kultivieren die Antworten mit Sorgfalt und Zuneigung in unserem Garten des Wissens. Geduld ist eine Tugend! 🌱",
-            "Wir zählen die Sandkörner an jedem Strand der Welt, um die Antwort zu finden. Wartet geduldig! 🏖️",
-            "In der Zwischenzeit bringen wir Brieftauben bei, Nachrichten zu überbringen, um dir deine Antwort zu bringen. Warte, sie sind in der Ausbildung! 🕊️",
-            "Warten Sie einen Moment, während wir unserem Verarbeitungshamster ein Leckerli geben. Er ist fast fertig mit dem Laufen im Laufrad! 🐹",
-            "Wir warten darauf, dass die Lakaien ihre Arbeit an den Antworten beenden. Sie sind ein bisschen unordentlich, aber sie sind sehr fleißig! 👷‍♂️",
-            "Halt dich fest, ich mache so schnell ich kann! Nur noch ein paar Sekunden, dann sind wir einsatzbereit!",
-            "Ich bringe meine Bits zum Einsatz! Das könnte eine Weile dauern, also entspannen Sie sich einen Moment und trinken Sie eine Tasse Kaffee! ☕",
-            "Warte, während ich meine magischen Verarbeitungskräfte beschwöre! Es ist, als ob man darauf wartet, dass der Zauberstab seine Wirkung entfaltet - nur ein bisschen länger! 🪄",
-            "Halte deine Gefühle zurück! Wir haben es fast geschafft, das verspreche ich. Wie wäre es in der Zwischenzeit mit Schäfchenzählen? 🐑",
-            "Gebt mich jetzt nicht auf! Ich arbeite hinter den Kulissen hart daran, etwas Unglaubliches vorzubereiten. Nur noch ein bisschen, dann sind wir fertig!",
-            "Ich hole mir Verstärkung von meinen Code-Kollegen, um den Prozess zu beschleunigen! Warten Sie einen Moment, während sie sich organisieren. Vielen Dank für Ihre Geduld! 😊",
-            "Atmen Sie tief durch! Der Bit-Marathon neigt sich dem Ende zu. Warten Sie noch ein bisschen länger. Wir sind fast am Ziel...",
-            "Ich tue mein Bestes, um Sie nicht zu lange warten zu lassen! Denken Sie in der Zwischenzeit darüber nach, wie viele Bytes es im Universum gibt. Das ist eine interessante Ablenkung, finden Sie nicht?",
-            "Warten Sie, während die Hamster auf meinen Servern in ihren kleinen Rädern schneller laufen. Sie tun ihr Bestes, um die Dinge zu beschleunigen!"
+            "Bitte warten Sie. Die Befehle werden in verschiedenen Systemen überprüft, um Fehler zu vermeiden. Daher ist es normal, dass dies einige Zeit dauert. Wenn Sie warten können, bis es abgeschlossen ist, bevor Sie es erneut verwenden, wäre ich sehr dankbar! 🕒",
+            "Verstanden, Liebling. Bis dahin bitte warten Sie, während ich das mache. Es könnte einen Moment dauern, also vermeiden Sie es bitte, lange oder schwere Befehle zu verwenden, bis es abgeschlossen ist. Danke, dass Sie gewartet haben! <3 🌈",
+            "Warten Sie einen Moment, während ich den magischen Daten-Trank zubereite! 🧙‍♂️",
+            "Wir reisen mit Lichtgeschwindigkeit, um die angeforderten Informationen zu erhalten. Bitte warten Sie einen Moment! 🚀",
+            "Wir organisieren die Bibliothek von Alexandria neu, um die Antwort zu finden. Bitte warten Sie! 📚",
+            "In der Zwischenzeit versucht Darth Vader, den richtigen Weg für Ihre Frage auf der dunklen Seite der Macht zu finden. Bitte warten Sie! ⚔️",
+            "Wir kultivieren die Antworten sorgfältig und liebevoll in unserem Garten des Wissens. Geduld ist eine Tugend! 🌱",
+            "Wir zählen die Sandkörner an allen Stränden der Welt, um die Antwort zu finden. Bitte warten Sie geduldig! 🏖️",
+            "In der Zwischenzeit lehren wir Brieftauben, Nachrichten zu tragen, um Ihre Antwort zu bringen. Warten Sie, sie sind im Training! 🕊️",
+            "Warten Sie einen Moment, während wir unserem Prozessor-Hamster eine Belohnung geben. Er ist fast fertig mit dem Laufen im Rad! 🐹",
+            "Wir warten darauf, dass die Minions mit den Antworten fertig werden. Sie sind etwas tollpatschig, aber engagiert! 👷‍♂️",
+            "Warte mal, ich bewege mich so schnell wie ich kann! Nur noch ein paar Sekunden, und wir sind bereit für die Aktion! 🏎️",
+            "Ich setze meine Bits in Bewegung! Das könnte eine Weile dauern, also nutzen Sie die Gelegenheit, sich zu entspannen und eine Tasse Kaffee zu trinken! ☕",
+            "Warten Sie, während ich meine magischen Verarbeitungskräfte beschwöre! Es ist wie das Warten darauf, dass der Zauberstab seine Magie wirkt - nur noch ein wenig! 🪄",
+            "Behalten Sie Ihre Emotionen im Griff! Wir sind fast da, versprochen. In der Zwischenzeit, wie wäre es mit dem Zählen von Schäfchen? 🐑",
+            "Gib jetzt nicht auf! Ich arbeite hart im Hintergrund, um etwas Erstaunliches vorzubereiten. Nur noch ein wenig, und wir sind bereit! 💪",
+            "Ich rufe Verstärkung von meinen Codekollegen an, um den Prozess zu beschleunigen! Bitte warten Sie einen Moment, während sie sich organisieren. Vielen Dank für Ihre Geduld! 😊",
+            "Tief durchatmen! Der Bit-Marathon nähert sich dem Ende. Warten Sie nur noch einen Moment. Wir sind fast da... 🏁",
+            "Ich tue mein Bestes, um dich nicht zu lange warten zu lassen! In der Zwischenzeit denk darüber nach, wie viele Bytes es im Universum gibt. Es ist eine interessante Ablenkung, findest du nicht? 🤔",
+            "Warten Sie, während die Hamster auf meinen Servern schneller in ihren Rädern laufen. Sie geben ihr Bestes, um alles zu beschleunigen! 🐹"
         ],
         "Defined": [
             "Dieser Befehl ist bereits auf den gewünschten Wert gesetzt, Sie müssen den Befehl nicht erneut verwenden."
@@ -467,41 +385,32 @@
         ],
         "Status": [
             "Ciao, il messaggio di stato che mi hanno chiesto di utilizzare durante la chiamata è troppo lungo, puoi chiamare il mio proprietario e farmi sapere che il limite è di 250 lettere? Grazie!",
-            "Ciao, non posso modificare il mio messaggio perché il messaggio ha superato le 250 lettere, puoi informare il mio proprietario in modo che possa aggiustarlo? Grazie!",
-            "Aspettate un attimo che preparo la pozione magica dei dadi! 🧙‍♂️",
-            "Stiamo viaggiando alla velocità della luce per recuperare le informazioni richieste. Aspettate un momento! 🚀",
-            "Stiamo riorganizzando la biblioteca di Alessandria per trovare la risposta. Attendere prego! 📚",
-            "Nel frattempo, Darth Vader sta cercando di trovare la strada giusta per la vostra domanda sul lato oscuro della Forza. Rimanete in attesa! ⚔️",
-            "Stiamo coltivando le risposte con cura e affetto nel nostro giardino della conoscenza. La pazienza è una virtù! 🌱",
-            "Stiamo contando i granelli di sabbia su ogni spiaggia del mondo per trovare la risposta. Aspettate con pazienza! 🏖️",
-            "Nel frattempo, stiamo insegnando ai piccioni viaggiatori a trasportare messaggi per portarvi la risposta. Aspettate, sono in addestramento! 🕊️",
-            "Aspettate un attimo mentre diamo un dolcetto al nostro criceto elaboratore. Ha quasi finito di correre sulla ruota! 🐹",
-            "Stiamo aspettando che i minion finiscano di lavorare sulle risposte. Sono un po' in disordine, ma si impegnano! 👷‍♂️",
-            "Aspettate, sto andando più veloce che posso! Ancora pochi secondi e saremo pronti all'azione!",
-            "Sto mettendo al lavoro i miei pezzi! Potrebbe volerci un po', quindi prendetevi un momento di relax e una tazza di caffè! ☕",
-            "Aspettate che invochi i miei poteri magici di elaborazione! È come aspettare che la bacchetta magica faccia la sua magia, solo un po' più a lungo! 🪄",
-            "Trattenete le emozioni! Ci siamo quasi, promesso. Nel frattempo, che ne dite di contare le pecore? 🐑",
-            "Non rinunciate a me adesso! Sto lavorando duramente dietro le quinte per preparare qualcosa di incredibile. Ancora un po' e saremo pronti!",
-            "Sto chiamando i rinforzi dei miei colleghi codificatori per accelerare il processo! Aspettate un momento mentre si organizzano. Grazie per la pazienza! 😊",
-            "Fate un respiro profondo! La maratona di bit sta per finire. Aspettate ancora un po'. Ci siamo quasi...",
-            "Sto facendo del mio meglio per non farvi aspettare troppo! Nel frattempo, pensate a quanti byte ci sono nell'universo. È una distrazione interessante, non crede?",
-            "Aspettate mentre i criceti sui miei server corrono più velocemente sulle loro piccole ruote. Stanno facendo del loro meglio per accelerare le cose!"
+            "Ciao, non posso modificare il mio messaggio perché il messaggio ha superato le 250 lettere, puoi informare il mio proprietario in modo che possa aggiustarlo? Grazie!"
         ],
-        "Choice": [
-            "Scegli una delle opzioni di seguito o digita '{first}', '{two}' o '{three}' nel gruppo prima che il timer scada [{time} minuti]"
-        ],
-        "ButtonStop": [
-            "Se questo non è il valore desiderato, fai clic su '{three}'."
-        ],
-        "Continue": [
-            "Capito, aspetta che finisca il resto dei compiti, non usare di nuovo finché non avrò finito quello attuale, grazie!"
-        ],
-        "Cancel": [
-            "Hai scelto di annullare questo comando, se cambi idea, contattami di nuovo."
+        "OnlyGroups": [
+            "Ciao, come stai? 😊 Questa funzione è riservata ai gruppi! Se vuoi usarla, basta aggiungermi (con il permesso del mio caro proprietario), metterti in contatto con lui per scoprire informazioni sui gruppi ufficiali (se ce ne sono) o fare un salto in Legião Z! 🚀✨"
         ],
         "Wait": [
-            "Ti chiedo di aspettare, i comandi vengono controllati su diversi sistemi, per evitare che subiscano errori, quindi è comune che impieghino un po' di tempo, se puoi aspettare che finiscano prima di usarli di nuovo, io sarà molto grato!",
-            "Ho capito amore, fino ad allora, aspetta mentre lo faccio, potrebbe volerci un po' di tempo, quindi per favore evita di usare comandi lunghi o ingombranti finché non ho finito, grazie per l'attesa! <3"
+            "Per favore, attendi. I comandi vengono verificati su vari sistemi per evitare errori, quindi è normale che ci voglia del tempo. Se puoi aspettare che sia completato prima di usarlo di nuovo, ti sarei molto grato! 🕒",
+            "Capito amore, fino ad allora aspetta mentre lo faccio. Potrebbe richiedere un po' di tempo, quindi evita di utilizzare comandi lunghi o pesanti finché non è terminato. Grazie per l'attesa! <3 🌈",
+            "Aspetta un attimo mentre preparo la pozione magica dei dati! 🧙‍♂️",
+            "Stiamo viaggiando alla velocità della luce per recuperare le informazioni richieste. Aspetta solo un attimo! 🚀",
+            "Stiamo riorganizzando la biblioteca di Alessandria per trovare la risposta. Aspetta, per favore! 📚",
+            "Nel frattempo, Darth Vader sta cercando di trovare la strada giusta per la tua domanda nel lato oscuro della Forza. Aspetta! ⚔️",
+            "Stiamo coltivando le risposte con cura e affetto nel nostro giardino della conoscenza. La pazienza è una virtù! 🌱",
+            "Stiamo contando i granelli di sabbia su tutte le spiagge del mondo per trovare la risposta. Aspetta con pazienza! 🏖️",
+            "Nel frattempo, stiamo insegnando ai piccioni viaggiatori a portare messaggi per portare la tua risposta. Aspetta, sono ancora in allenamento! 🕊️",
+            "Aspetta un attimo mentre diamo una ricompensa al nostro criceto di elaborazione. Sta per finire di correre nella ruota! 🐹",
+            "Stiamo aspettando che i Minions finiscano di lavorare sulle risposte. Sono un po' pasticcioni, ma sono dedicati! 👷‍♂️",
+            "Calma, sto andando più veloce che posso! Solo qualche secondo e saremo pronti per l'azione! 🏎️",
+            "Sto mettendo in moto i miei bit! Potrebbe richiedere un po', quindi approfitta per rilassarti e prenderti una tazza di caffè! ☕",
+            "Aspetta mentre evoco i miei poteri magici di elaborazione! È come aspettare che la bacchetta magica faccia la sua magia - solo un po' di più! 🪄",
+            "Tieni sotto controllo le tue emozioni! Stiamo quasi arrivando, lo prometto. Nel frattempo, che ne dici di contare le pecore? 🐑",
+            "Non mollare adesso! Sto lavorando duramente dietro le quinte per preparare qualcosa di incredibile. Solo un po' e saremo pronti! 💪",
+            "Sto chiedendo rinforzi ai miei colleghi coders per accelerare il processo! Aspetta un attimo mentre si organizzano. Grazie per la pazienza! 😊",
+            "Respira profondamente! La maratona di bit sta per finire. Continua ad aspettare solo un po' più a lungo. Stiamo quasi arrivando...",
+            "Sto facendo del mio meglio per non farti aspettare troppo! Nel frattempo, pensa a quanti byte ci sono nell'universo. È una distrazione interessante, non trovi? 🤔",
+            "Aspetta mentre gli hamster nei miei server corrono più veloce nelle loro ruote. Stanno facendo del loro meglio per accelerare le cose! 🐹"
         ],
         "Defined": [
             "Questo comando è già impostato sul valore desiderato, non è necessario utilizzare nuovamente il comando."
@@ -520,45 +429,78 @@
             "Здравствуйте, сообщение о статусе, которое они попросили использовать при звонке, слишком длинное, вы можете позвонить моему владельцу и сообщить, что ограничение составляет 250 писем? Спасибо!",
             "Привет, я не могу изменить свое сообщение, потому что сообщение превысило 250 букв, вы можете сообщить моему владельцу, чтобы он мог это исправить? Спасибо!"
         ],
-        "Choice": [
-            "Выберите один из вариантов ниже или введите '{first}', '{two}' или '{three}' в группу до истечения таймера [{time} минут]"
-        ],
-        "ButtonStop": [
-            "Если это не то значение, которое вы хотели, нажмите '{three}'."
-        ],
-        "Continue": [
-            "Понятно, подождите, пока я закончу остальные задачи, больше не используйте, пока я не закончу текущую, спасибо!"
-        ],
-        "Cancel": [
-            "Вы решили отменить эту команду, если передумаете, просто свяжитесь со мной снова."
+        "OnlyGroups": [
+            "Привет, как дела? 😊 Эта функция предназначена только для групп! Если вы хотите ей воспользоваться, просто добавьте меня (с разрешения моего дорогого владельца), свяжитесь с ним, чтобы узнать о официальных группах (если они есть) или зайдите в Legião Z! 🚀✨"
         ],
         "Wait": [
-            "Я прошу вас подождать, команды проверяются на нескольких системах, чтобы избежать ошибок, поэтому обычно они занимают некоторое время, если вы можете подождать, чтобы закончить, прежде чем использовать их снова, я буду очень благодарен!",
-            "Понятно, amore, до тех пор, подождите, пока я это сделаю, это может занять некоторое время, поэтому, пожалуйста, не используйте длинные или громоздкие команды, пока я не закончу, спасибо за ожидание! <3",
-            "Подождите немного, пока я приготовлю волшебное зелье для игры в кости! 🧙‍♂️",
-            "Мы летим со скоростью света, чтобы получить запрошенную вами информацию. Подождите немного! 🚀",
-            "Мы реорганизуем Александрийскую библиотеку, чтобы найти ответ. Пожалуйста, подождите! 📚",
-            "Тем временем Дарт Вейдер пытается найти правильный путь к ответу на ваш вопрос на темной стороне Силы. Ждите! ⚔️",
-            "Мы заботливо и нежно выращиваем ответы в нашем саду знаний. Терпение - это добродетель! 🌱",
-            "Мы считаем песчинки на каждом пляже мира, чтобы найти ответ. Ждите терпеливо! 🏖️",
-            "Тем временем мы учим почтовых голубей разносить сообщения, чтобы принести вам ответ. Подождите, они в процессе обучения! 🕊️",
-            "Подождите немного, пока мы угостим нашего технологического хомячка. Он уже почти закончил бегать по колесу! 🐹",
-            "Мы ждем, пока миньоны закончат работу над ответами. У них немного беспорядок, но они преданы своему делу! 👷‍♂️",
-            "Подождите, я иду так быстро, как только могу! Еще несколько секунд, и мы будем готовы к действию!",
-            "Я запускаю свои биты в работу! Это может занять некоторое время, так что отдохните и выпейте чашечку кофе! ☕",
-            "Подождите, пока я вызову свои магические способности к обработке! Это как ждать, пока волшебная палочка начнет действовать - только немного дольше! 🪄",
-            "Придержите свои эмоции! Мы почти у цели, обещаю. А пока, может, посчитаем овец? 🐑",
-            "Не сдавайтесь! Я усердно работаю за кулисами, чтобы подготовить нечто невероятное. Еще немного, и мы будем готовы!",
-            "Я вызываю подкрепление из своих коллег по коду, чтобы ускорить процесс! Подождите немного, пока они организуются. Спасибо за терпение! 😊",
-            "Сделайте глубокий вдох! Битовый марафон подходит к концу. Подождите еще немного. Мы почти у цели...",
-            "Я делаю все возможное, чтобы не заставлять вас ждать слишком долго! А пока подумайте о том, сколько байтов во Вселенной. Это интересное отвлечение, вы не находите?",
-            "Подождите, пока хомячки на моих серверах быстрее бегают на своих маленьких колесиках. Они делают все возможное, чтобы ускорить работу!"
+            "Пожалуйста, подождите. Команды проверяются в различных системах, чтобы избежать ошибок, поэтому нормально, что это занимает некоторое время. Если вы можете подождать, пока не завершится, прежде чем использовать снова, я буду очень благодарен! 🕒",
+            "Понял, дорогой. До тех пор, пожалуйста, подождите, пока я это сделаю. Это может занять некоторое время, поэтому избегайте использования долгих или тяжелых команд, пока не завершится. Спасибо за ожидание! <3 🌈",
+            "Подождите момент, пока я готовлю волшебное зелье данных! 🧙‍♂️",
+            "Мы путешествуем со скоростью света, чтобы найти запрошенную информацию. Пожалуйста, подождите немного! 🚀",
+            "Мы переустроили библиотеку Александрии, чтобы найти ответ. Пожалуйста, подождите! 📚",
+            "Между тем Дарт Вейдер пытается найти правильный путь для вашего вопроса на темной стороне Силы. Подождите! ⚔️",
+            "Мы тщательно и ласково выращиваем ответы в нашем саду знаний. Терпение — это добродетель! 🌱",
+            "Мы считаем зерна песка на всех пляжах мира, чтобы найти ответ. Подождите с терпением! 🏖️",
+            "Между тем мы обучаем голубей-почтовиков нести сообщения, чтобы принести ваш ответ. Подождите, они в процессе обучения! 🕊️",
+            "Подождите момент, пока мы даем вознаграждение нашему процессорному хомяку. Он почти закончил бег в колесе! 🐹",
+            "Мы ждем, пока миньоны закончат работу над ответами. Они немного неуклюжи, но преданны! 👷‍♂️",
+            "Подожди, я двигаюсь так быстро, как могу! Еще пара секунд, и мы будем готовы к действию! 🏎️",
+            "Я запускаю свои биты в работу! Это может занять немного времени, так что воспользуйтесь этим, чтобы расслабиться и выпить чашку кофе! ☕",
+            "Подождите, пока я призываю свои волшебные силы обработки! Это как ждать, пока волшебная палочка сделает свою магию - всего лишь еще немного! 🪄",
+            "Держи свои эмоции под контролем! Мы почти там, обещаю. Между тем, что скажешь насчет подсчета овец? 🐑",
+            "Не сдавайся сейчас! Я работаю усердно за кулисами, чтобы подготовить что-то удивительное. Еще чуть-чуть, и мы будем готовы! 💪",
+            "Я вызываю подкрепление от моих коллег-кодеров, чтобы ускорить процесс! Подождите момент, пока они организуются. Спасибо за терпение! 😊",
+            "Глубокий вдох! Бит-марафон подходит к концу. Просто продолжайте ждать чуть-чуть дольше. Мы почти там... 🏁",
+            "Я делаю все возможное, чтобы вы не ждали слишком долго! Между тем подумайте, сколько байтов во вселенной. Это интересное отвлечение, не так ли? 🤔",
+            "Подождите, пока хомяки на моих серверах бегут быстрее в своих колесах. Они делают все возможное, чтобы ускорить процесс! 🐹"
         ],
         "Defined": [
             "Для этой команды уже установлено нужное значение, нет необходимости использовать команду снова."
         ],
         "Finished": [
             "Команда завершилась, видимых проблем не было, значит, то, о чем вы просили, должно быть выполнено успешно!"
+        ]
+    },
+    "ar": {
+        "Start": [
+            "أوامري جاهزة للاستخدام!",
+            "أنا على الإنترنت، جاهزة لمساعدتكم جميعًا!",
+            "انتهت التهيئة، يمكنكم الآن استخدام أوامري!"
+        ],
+        "Status": [
+            "مرحبًا، الرسالة التي طُلِبَ مني استخدامها كرسالة حالة كبيرة جدًا، هل يمكنكم الاتصال بمالكي وإخباره, الحد هو 250 حرفًا, شكرًا!",
+            "مرحبًا، لا أستطيع تغيير رسالتي لأن الرسالة تجاوزت 250 حرفًا، هل يمكنكم إخبار مالكي ليقوم بتصحيح ذلك؟ شكرًا!"
+        ],
+        "OnlyGroups": [
+            "مرحبًا، كيف حالك؟ 😊 هذه الوظيفة فقط للمجموعات! إذا كنت ترغب في استخدامها، فقط قم بإضافتي (بإذن مالكي العزيز)، وتواصل معه لمعرفة المزيد عن المجموعات الرسمية (إذا كانت موجودة) أو قم بزيارة Legião Z! 🚀✨"
+        ],
+        "Wait": [
+            "أرجوك، انتظر، يتم التحقق من الأوامر في عدة أنظمة لتجنب الأخطاء، لذا فإنه من الطبيعي أن يستغرق الأمر بعض الوقت، إذا كنت تستطيع الانتظار حتى ينتهي قبل استخدامه مرة أخرى، سأكون شاكرة جدًا! 🕒",
+            "فهمت حبيبي، حتى ذلك الحين، انتظر بينما أقوم بذلك، قد يستغرق الأمر قليلاً، لذا تجنب استخدام أوامر طويلة أو ثقيلة حتى ينتهي، شكرًا لانتظارك! <3 🌈",
+            "انتظر لحظة بينما أعد مشروب البيانات السحري! 🧙‍♂️",
+            "نحن في رحلة بسرعة الضوء لجلب المعلومات المطلوبة. انتظر فقط لحظة! 🚀",
+            "نقوم بإعادة تنظيم مكتبة الإسكندرية للعثور على الإجابة. انتظر، من فضلك! 📚",
+            "في هذه الأثناء، يحاول دارث فيدر العثور على الطريق الصحيح لسؤالك في الجانب المظلم من القوة. انتظر! ⚔️",
+            "نحن نزرع الإجابات بعناية وحنان في حديقة معرفتنا. الصبر مفتاح الفرج! 🌱",
+            "نحن نعد حبوب الرمل على جميع الشواطئ في العالم للعثور على الإجابة. انتظر بصبر! 🏖️",
+            "في هذه الأثناء، نقوم بتدريب طير البريد لحمل الرسائل لجلب إجابتك. انتظر، إنهم في تدريب! 🕊️",
+            "انتظر لحظة بينما نقدم مكافأة لهامستر معالجتنا. إنه قريب من الانتهاء من الركض في العجلة! 🐹",
+            "نحن في انتظار انتهاء العمل على الإجابات من قبل المينيونز. إنهم مشغولون قليلاً، ولكنهم ملتزمون! 👷‍♂️",
+            "اهدأ، أنا ذاهبة بأسرع ما أستطيع! فقط بضع ثوانٍ وسنكون جاهزين للعمل! 🏎️",
+            "أنا وضعت بتاتي للعمل! قد يستغرق الأمر قليلاً، لذا استمتع بالاستراحة وتناول فنجان من القهوة! ☕",
+            "انتظر بينما أستحضر قواي السحرية للمعالجة! إنه مثل الانتظار حتى تقوم العصا السحرية بعملها - فقط لحظة أخرى! 🪄",
+            "احتفظ بعواطفك! نحن قريبون، أعدك. في هذه الأثناء، ماذا عن حساب الخراف؟ 🐑",
+            "لا تستسلم الآن! أعمل بجد لتحضير شيء رائع. فقط قليلاً وسنكون جاهزين! 💪",
+            "أنا أطلب تعزيزًا من زملائي المبرمجين لتسريع العملية! انتظر لحظة حتى ينظموا أمورهم. شكراً للصبر! 😊",
+            "استنشق عميقا! ستنتهي ماراثون البت قريباً. استمر في الانتظار فقط لحظة أخرى. نحن قريبون... 🏁",
+            "ممكن تنتظر شوي لو سمحت؟",
+            "انتظر بينما يركض هامسترات على خوادمي بسرعة أكبر في عجلاتها. إنهم يبذلون قصارى جهدهم لتسريع الأمور! 🐹"
+        ],
+        "Defined": [
+            "تم تكوين هذا الأمر بالفعل بالقيمة المرغوبة، لا داعي لاستخدام الأمر مرة أخرى."
+        ],
+        "Finished": [
+            "انتهت تشغيل الأمر، لم يكن هناك مشاكل ظاهرة، لذلك يجب أن يكون ما طلبته قد تم بنجاح!"
         ]
     },
     "lat": {
@@ -569,41 +511,32 @@
         ],
         "Status": [
             "Salve, status nuntium rogaverunt me uti cum nimis longum sit, dominum meum appellare potes et sciam me modum 250 litterarum esse? Gratias tibi!",
-            "Salve, nuntium meum mutare non possum quia nuntius CCL litteras excessit, dominus meus scire potes ut illud reficere possit? Gratias tibi!",
-            "Exspecta paulisper dum potionem magicam aleae conficiam! ",
-            "Iter sumus in celeritate luminis ad indicium quod petiisti recuperare. Modo exspecta momentum! ",
-            "Paramus bibliothecam Alexandrinam ut responsum invenias. Quaeso expecta! ",
-            "Interim Darth Vader quaerit invenire viam rectam quaestionis tuae in latere Force tenebroso. Sta! ",
-            "Responsa cum cura et affectu colimus in horto scientiae. Patientia est virtus! ",
-            "Arenae grana numeramus in omni litore in mundo ut responsum invenias. patienter exspecta! ",
-            "Interim tabellarios columbas docemus nuntiare nuntia ut tibi responsum ferat. Exspecta, exercentur! ",
-            "Mondinum tene dum cinematographicam tractationem damus. Paene finitus est in rota! ",
-            "Exspectantes satellites ad perficiendum opus responsa. aliquantulus of pulmentum sunt, sed dedicatae sunt! ",
-            "Tene, eo quam primum possum! Paucis minutis secundis parati sumus!",
-            "Me mitto minutas ad operandum! Hoc modicum capere posset, momentum relaxandi capiat et calicem capulus habeat! ",
-            "Exspecta dum invoco meas magicas processus potestates! Exspectantes magicum magicum suum facere magicam - paulo longiorem! ",
-            "Affectum tuum tene! Prope ibi sumus, profiteor. Interim quomodo de ovibus numerandis? ",
-            "Noli me nunc dare! Post scaenas laboro incredibile aliquid parare. Paulo plus paulo erimus parati!",
-            "In subsidiis e codice meo collegas voco ut processum accelerare! Exspecta momentum dum ordinantur. Tibi gratias ago pro patientia tua! ",
-            "Spiritum altum tollite! Frenum Marathone finitur. Exspectate paulo diutius. Prope ibi sumus...",
-            "Meum facio operam ne nimis diu te exspecto! Interim cogita quot bytes sunt in universo. Est an interesting distractio, nonne putas?",
-            "Exspecta dum hamsters in servientibus meis velocius currunt in rotis suis. Faciunt se optime ad res sursum properant!"
+            "Salve, nuntium meum mutare non possum quia nuntius CCL litteras excessit, dominus meus scire potes ut illud reficere possit? Gratias tibi!"
         ],
-        "Choice": [
-            "Elige unam ex optionibus infra vel typus '{first}', '{two}' vel '{three}' in coetum antequam timor exspirat [{time} minuta]"
-        ],
-        "ButtonStop": [
-            "Si hoc non valere volebas, preme '{three}'."
-        ],
-        "Continue": [
-            "Intellige, expecta me ut reliqua negotia perficiam, ne iterum utar donec currentem ago gratias!"
-        ],
-        "Cancel": [
-            "Hoc mandatum rescindere velles, si mentem mutas, mox me iterum tange."
+        "OnlyGroups": [
+            "Salve, quid agis? 😊 Haec functio ad coetus reservata est! Si ea uti vis, me adde (cum venia mei dilecti domini), illum continge ut de coetibus officialibus (si adsunt) discas, aut salta in Legião Z! 🚀✨"
         ],
         "Wait": [
-            "Rogo vos expectare, ut mandata in pluribus systematibus cohibeantur, ne errores patiamur, ut commune sit illis tempus sumere, si exspectem, antequam utendo rursus perficiatis, I. Valde gratus erit!",
-            "Intellige amorem, donec tunc, dum hoc faciam, ut modicum capiat, ita quaeso, ne diuturnis vel gravia praeceptis utaris, donec egero, exspectando gratias! <3"
+            "Sis amabilis, exspecta. Praecepta in variis systematibus probantur, ut errores vitentur, ideo tempus consumere normale est. Si potes expectare ut finiatur, priusquam rursus utaris, plurimum tibi gratias agam! 🕒",
+            "Intellexi, carissime. Donec id faciam, sis patientissimus, quia aliquantum temporis potest exigere. Ut donec finiatur, evade ut praecipi longos vel graves ne utaris. Gratias tibi ago pro expectatione! <3 🌈",
+            "Expecta paulisper dum potionem magicam datorum praeparo! 🧙‍♂️",
+            "Ad velocitatem lucis iter facimus ut informationem requisitam reperiamus. Paulisper exspecta! 🚀",
+            "Bibliothecam Alexandrinam reorganizamus ut responsionem inveniamus. Expecta, quaeso! 📚",
+            "Interim Darth Vader conatur viam rectam in parte obscura Fortitudinis invenire pro tua quaestione. Expecta! ⚔️",
+            "Responsum curam et diligentiam in horto scientiae excolimus. Patientia virtus est! 🌱",
+            "Arenam in omnibus oris terrae arenae exputamus ut responsionem reperiamus. Cum patientia exspecta! 🏖️",
+            "Interim columbas mittere docemus ut responsum tuum ferant. Expecta, modo in exercitatione sunt! 🕊️",
+            "Expecta paulisper dum hamsterem nostrum processorium tractamus. Ferme conatur currere in rota! 🐹",
+            "Expectamus dum Minions finiant laborare in responsionibus. Parum inconditi, sed dedicati! 👷‍♂️",
+            "Subito, velox sum ut possum! Modico momento et parati erimus ad actionem! 🏎️",
+            "Meos bits in operationem voco! Hoc paulisper tempus possit, sic uti hoc, ut relaxes et poculum caffeae capias! ☕",
+            "Expecta dum vires magicas processing evoco! Instar expectandi ut baculus magicus suam magicam faciat - modo paulisper! 🪄",
+            "Tene tuas emptiones! Ferme ibi sumus, promitto. Interim, numerum ovium cogitare, quid dicis? 🐑",
+            "Noli nunc desistere! Duro inter bastionem operor ut aliquid mirificum praeparem. Paulisper et parati erimus! 💪",
+            "Collegis meis codicibus auxilium postulo ut processum accelerem! Paulisper exspecta dum se organisant. Tibi gratias pro patientia! 😊",
+            "Profunde aspira! Bit-marathon finitur. Solum paulisper amplius exspecta. Ferme ibi sumus... 🏁",
+            "Facio quod possum ut te non diu exspectare faciam! Interim, cogita quot bytes sint in universo. Distractio haec est iucunda, nonne putas? 🤔",
+            "Expecta dum hamsteres in meis serveribus celerius currunt in suis rotis. Optime conantur ut res accelerent! 🐹"
         ],
         "Defined": [
             "Hoc mandatum iam ad valorem desideratum constitutum, imperio iterum uti non opus est."
