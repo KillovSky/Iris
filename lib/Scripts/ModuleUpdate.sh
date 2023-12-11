@@ -6,7 +6,15 @@
 # Se os módulos estão instalados, inicia a função do NPM
 if [ -d "node_modules" ]; then
     printf "\n[ÍRIS] → Função iniciada, output do NPM -> \n"
-    npm update
+
+    # Executa a atualização e verifica se ocorreram erros
+    if npm update; then
+        printf "[ÍRIS | DONE] → Atualização dos módulos concluída com sucesso! <3\n"
+        exit 0
+    else
+        printf "[ÍRIS | ERRO] → Ocorreram erros durante a atualização. Verifique o console e procure o suporte.\n"
+        exit 1
+    fi
 else
     # Se os módulos não estão instalados, oferece a opção de instalar
     printf "[ÍRIS] → Você não fez a instalação, deseja instalar os módulos (1 ou 2)?\n\n"
@@ -31,5 +39,3 @@ else
         esac
     done
 fi
-
-exit

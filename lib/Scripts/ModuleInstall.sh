@@ -31,8 +31,7 @@ else
     printf "[ÍRIS] → Instalando, abaixo está a output do NPM:\n"
 
     # Executa a instalação e verifica se ocorreram erros
-    npm i
-    if [ $? -eq 0 ]; then
+    if npm i; then
         printf "[ÍRIS | DONE] → Instalação concluída com sucesso! <3\n"
         exit 0
     else

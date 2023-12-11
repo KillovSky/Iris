@@ -3,11 +3,8 @@
 # Este script encerra todos os processos Node.js ou somente a Íris
 
 if [ "$1" == "pm2" ]; then
-    # Encerra o processo Íris usando PM2
-    pm2 stop iris
-
     # Verifica se o processo foi encerrado com sucesso
-    if [ $? -eq 0 ]; then
+    if pm2 stop iris; then
         printf "\n[ÍRIS] → Encerrei minha execução usando PM2.\n"
         exit 0
     else
@@ -36,6 +33,7 @@ else
     esac
 
     # Verifica se o processo foi encerrado com sucesso
+    # shellcheck disable=SC2181
     if [ $? -eq 0 ]; then
         printf "\n[ÍRIS] → Encerrei minha execução.\n"
         exit 0

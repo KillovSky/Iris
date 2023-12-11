@@ -15,10 +15,7 @@ if [ -d "node_modules" ]; then
     # Se o argumento for "pm2hide", executa com pm2 sem monit
     if [ "$1" == "pm2hide" ]; then
         # Chama o script PM2Install.sh
-        bash ./lib/Scripts/PM2Install.sh
-
-        # Verifica o código de retorno do PM2Install.sh
-        if [ $? -eq 0 ]; then
+        if bash ./lib/Scripts/PM2Install.sh; then
             pm2 start ./lib/Initialize/index.js --name iris --cron-restart="0 */6 * * *" > /dev/null 2>&1 &
             printf "\n[ÍRIS] → Função iniciada com PM2 em modo oculto.\n"
             exit 0
@@ -30,10 +27,7 @@ if [ -d "node_modules" ]; then
     # Se o argumento for "pm2show", executa com pm2 com monit
     if [ "$1" == "pm2show" ]; then
         # Chama o script PM2Install.sh
-        bash ./lib/Scripts/PM2Install.sh
-
-        # Verifica o código de retorno do PM2Install.sh
-        if [ $? -eq 0 ]; then
+        if bash ./lib/Scripts/PM2Install.sh; then
             pm2 start ./lib/Initialize/index.js --name iris --cron-restart="0 */6 * * *" && pm2 monit
             printf "\n[ÍRIS] → Função iniciada com PM2 e monitoramento.\n"
             exit 0

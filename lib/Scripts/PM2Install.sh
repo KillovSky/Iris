@@ -13,8 +13,14 @@ else
         case $opt in
             # Chama o script de instalação do pm2
             "Sim (1)")
-                npm i -g pm2 && printf "[ÍRIS] → pm2 instalado com sucesso.\n"
-                exit 0
+                # Executa a atualização e verifica se ocorreram erros
+                if  npm i -g pm2; then
+                    printf "[ÍRIS | DONE] → Instalação do PM2 concluída com sucesso! <3\n"
+                    exit 0
+                else
+                    printf "[ÍRIS | ERRO] → Ocorreram erros durante a instalação do PM2. Verifique o console e procure o suporte.\n"
+                    exit 1
+                fi
             ;;
 
             # Se o usuário escolher cancelar, exibe uma mensagem e sai

@@ -40,7 +40,6 @@ body {
 }
 
 .btn {
-    border: 0;
     background: none;
     display: block;
     margin: 20px auto;
@@ -87,7 +86,6 @@ h1 {
 
 .login input[type="text"],
 .login input[type="password"] {
-    border: 0;
     background: none;
     display: block;
     margin: 20px auto;

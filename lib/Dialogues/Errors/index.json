@@ -16,6 +16,23 @@
             "Tipo desconhecido de erro, verifique a GitHub do Projeto Íris ou o Google para detalhes ou ajuda."
         ]
     },
+    "ar": {
+        "Fail": [
+            "😵 _عفوًا، حدث خطأ ما معي، سأكون ممتنًا إذا قمت بإرسال التفاصيل أدناه إلى مديري من خلال أمر 'help' أو التواصل مع المسؤولين._\n\n🤖 _تذكر، قد تكون الأخطاء تتعلق بخادم أو wa-automate أو رسائل لم أتلقاها أو أمتلكها، إعدادات غير صحيحة لتكويناتي أو نوع غير معروف من الفشل، ليس دائمًا خطأ من جانبي أو في كودي._\n\n#️⃣  _الأمر →_ *'{command}'*\n\n📅 _حدث في →_ *'{time}'*\n\n📁 _في المجلد →_ *'{path}'*\n\n🗋 _في الملف →_ *'{file}'*\n\n🧶 _في السطر →_ *'#{line}'*\n\n🔍 _في الحرف →_ *'#{character}'*\n\n🔭 _هل الخطأ من جانبي؟ →_ *'{isMe}'*\n\n❓ _نوع الخطأ →_ *'{typeerror}'*\n\n❌ _رسالة الخطأ →_ *'{fullbo}'*\n\n💡 _كيفية التصحيح →_ *'{suggestion}'*\n\n🐕 - حتى لو لم يكن الخطأ من جانبي، إذا كنت تواجه أخطاء متكررة، يمكنك الإبلاغ عن ذلك في مستودعي على GitHub، ابحث عن مشروع Iris، حيث قد يكون ذلك ناتجًا عن تحديث لوحدة خارجية يحتاج إلى إصلاح من قبل المطورين، ولكن هذا عادة مسؤولية الوحدة التي تسبب المشاكل وليس لمطوريّ._"
+        ],
+        "RangeFix": [
+            "تعيين قيمة رقمية غير سالبة، عادةً من 0 إلى 65536 في حالة البوابات، ويمكن أن تتجاوز ذلك في أنواع أخرى، يمكن العثور على القيمة القصوى المدعومة عند كتابة 'Number.MAX_VALUE'، ومع ذلك، يمكن أن يتسبب استخدام أرقام كبيرة في أخطاء ذاكرة."
+        ],
+        "ReferenceFix": [
+            "تعيين المتغير '{lostvar}' في الشيفرة أو تصحيح المتغير الذي تم كتابته بشكل غير صحيح."
+        ],
+        "SyntaxFix": [
+            "تصحيح سوء الاستخدام وعيب الشيفرة، يظهر هذا الخطأ عندما لا يكون الشيفرة المقدمة قابلة للاستخدام في برمجة JavaScript."
+        ],
+        "OtherFix": [
+            "نوع غير معروف من الخطأ، تحقق من GitHub لمشروع Iris أو Google للحصول على تفاصيل أو مساعدة."
+        ]
+    },
     "jp": {
         "Fail": [
             "😵 _おっと、何か問題が発生しました。「ヘルプ」コマンドを使用するか、管理者に連絡して、以下の詳細を上司に送信していただければ幸いです._\n\n🤖 _覚えておいてください、エラーはサーバー、wa-automate、メッセージを受け取っていない、または持っていない、設定を誤って調整した、または不明なタイプの障害が発生した場合、それは必ずしも私のせいまたは私のコードであるとは限りません._\n\n#️⃣ _Command →_ *'{command}'*\n\n📅 _発生 →_ *'{time}'*\n\n📁 _フォルダ内 →_ *'{path}'*\n\n🗋 _ファイル内 →_ *'{file}'*\n\n🧶 _行に →_ *'#{line}'*\n\n🔍 _文字に →_ *'#{character}'*\n\n🔭 _私のミスですか? →_ *'{isMe}'*\n\n❓ _エラーの種類 →_ *'{typeerror}'*\n\n❌ _エラー メッセージ →_ *'{fullbo}'*\n\n💡 _修正方法→_ *'{suggestion}'*\n\n🐕 - エラーが私のものでなくても、繰り返しエラーが発生する場合は、GitHub の私のリポジトリでこれを報告し、プロジェクト Iris を検索してください。これが原因である可能性があります。 co である必要がある外部モジュールの更新によって 私のDEVによって修正されましたが、通常、それは私の開発者ではなく、問題を抱えているモジュールのせいです."
@@ -193,13 +210,13 @@
         "RangeFix": [
             "Definire valorem numeralem non-negativum, plerumque ab 0 ad 65536 in casu portuum, supergredi potest quod in aliis speciebus, valorem maximum fultum per typing 'Number.MAX_VALUE' inveniri potest. usus numeros magnos errores memoriae causare potest."
         ],
-         "ReferenceFix": [
+        "ReferenceFix": [
             "Definire variabilem '{lostvar}' in codice vel corrigere variam quae misspelli erat."
         ],
-         "SyntaxFix": [
+        "SyntaxFix": [
             "Recte abusus et defectus Codicis, hic error apparet cum in JavaScript programmatione provisum non est utilis."
         ],
-         "OtherFix": [
+        "OtherFix": [
             "Ignis erroris genus, Project Iris GitHub reprehendo vel Google ad singula vel auxilium."
         ]
     }

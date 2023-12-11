@@ -1,5 +1,33 @@
 {
     "pt": {
+        "lostSteal": [
+            "🚨 Surpresa total com a denúncia dos vizinhos, a polícia apareceu por todos os cantos! 🕵️‍♂️\n\n🎁 Mas relaxa, você é um ninja na lábia! Os policiais caíram na isca do suborno, e foi só desembolsar {payCops} {paymentCops} para abrir as portas da liberdade e pagar a vitima. 💰\n\nDessa vez, o poder do dinheiro falou mais alto que a lei. Agora, sem algemas, é hora de decidir seu próximo passo! 🔓✨"
+        ],
+        "winSteal": [
+            "🕵️‍♂️ Você entrou de fininho na casa de @{sorryPeople}.\n\nSorte sua, ela ou ele estava dormindo ou no banho! 😴\n\n🎁 Rapidinho, encontrou um baú escondido, e voilà, {stealQuantity} {stealMatterie}!\n\nParabéns, gatuno esperto! Saia triunfante e celebre sua vitória! 💰👏"
+        ],
+        "noSteal": [
+            "Oops, parece que seus comparsas não compraram a ideia. Sem material e grana pra garantir o pagamento se o roubo desse errado, a situação complicou para você. 💸 Resultado: traído, denunciado e de férias na prisão. O delegado tá soltando um sermão, vai levar {prisonTime} minutos antes da liberdade. Pelo menos aprendeu a lição: sempre ter umas moedinhas na conta. 🚓🔐"
+        ],
+        "emCana": [
+            "Opa, na cadeia não temos jogos de azar! 😅 Só o desafio de não derrubar o sabonete.\nMas há boas notícias! Em '{waitMin}.{waitSecs}' minutos, você está livre! 🗝️🚪"
+        ],
+        "noMoney": [
+            "Você não pode roubar pessoas pobres, e nem pense em bancar o Robin Hood só para dar o bote nelas! 😡"
+        ],
+        "winGame": [
+            "Você ganhou! Seu prêmio foi {winGame} Í-Coins 🎉!\nParabéns, você é um verdadeiro sortudo! 🌟",
+            "Incrível! Você acaba de ganhar {winGame} Í-Coins 🎉!\nA sorte está do seu lado hoje! 🌈",
+            "Parabéns! Seu prêmio é de {winGame} Í-Coins 🎉!\nVocê é um vencedor nato! 🥳"
+        ],
+        "lostGame": [
+            "Infelizmente, você não ganhou desta vez e perdeu {lostGame} Í-Coins 😔.\nMas não desanime, a sorte sempre pode mudar! 🍀",
+            "Não foi dessa vez. Você perdeu {lostGame} Í-Coins 😔.\nMas não se preocupe, a próxima pode ser a sua sorte! 🌟",
+            "Parece que a sorte não estava do seu lado desta vez, você perdeu {lostGame} Í-Coins 😔.\nContinue tentando! 💪"
+        ],
+        "Empate": [
+            "Empate! Ninguém saiu na frente, um confronto equilibrado! 👥"
+        ],
         "Uncreated": [
             "Você não possui nenhum jogo ainda, que tal começar um comigo ou com alguém?"
         ],
@@ -34,7 +62,98 @@
             "O jogo acabou por {gameend}, o jogador @{winner} receberá um ponto de vitoria e @{looser} receberá um ponto de derrota! 😄 Que tal criar uma nova partida agora? Se não encontrar um parceiro, estou aqui para jogar com você! 🎉"
         ]
     },
+    "ar": {
+        "lostSteal": [
+            "🚨 مفاجأة تامة مع شكوى الجيران، الشرطة ظهرت في كل مكان! 🕵️‍♂️\n\n🎁 لكن استرخ، أنت نينجا في الكلام! الشرطة وقعوا في فخ الرشوة، وكان مجرد دفع {payCops} {paymentCops} كافيًا لفتح أبواب الحرية وتسديد التعويض للضحية. 💰\n\nهذه المرة، تحدث قوة المال بصوت أعلى من القانون. الآن، بدون قيود، حان الوقت لاتخاذ خطوتك التالية! 🔓✨"
+        ],
+        "winSteal": [
+            "🕵️‍♂️ دخلت بخفة إلى منزل @{sorryPeople}.\n\nحظك، إنه أو هي كانوا نائمين أو في الاستحمام! 😴\n\n🎁 بسرعة، وجدت صندوقًا مخفيًا، وها هو، {stealQuantity} {stealMatterie}!\n\nتهانينا، لص ذكي! اخرج بنصرك واحتفل بفوزك! 💰👏"
+        ],
+        "noSteal": [
+            "عفوًا، يبدو أن أصدقائك لم يشتروا الفكرة. بدون مواد ولا أموال لضمان الدفع إذا ذهب السرقة على نحو خاطئ، تعقد الوضع بالنسبة لك. 💸 النتيجة: خيبة الأمل، تم الإبلاغ عنك وقضاء عطلة في السجن. يقوم النائب بإلقاء خطبة، سيستغرق {prisonTime} دقيقة قبل الحرية. على الأقل تعلم الدرس: دائماً احتفظ ببعض النقود في الحساب. 🚓🔐"
+        ],
+        "emCana": [
+            "عذرًا، ليس لدينا ألعاب قمار في السجن! 😅 فقط تحدي عدم إسقاط الصابون.\nولكن هناك أخبار جيدة! في '{waitMin}.{waitSecs}' دقيقة، أنت حر! 🗝️🚪"
+        ],
+        "noMoney": [
+            "لا يمكنك سرقة الفقراء، ولا تتصور أن تكون روبن هود فقط لتثبيت الفخ لهم! 😡"
+        ],
+        "winGame": [
+            "لقد ربحت! كانت جائزتك {winGame} عملات Í 🎉!\nتهانينا، أنت محظوظ حقًا! 🌟",
+            "رائع! لقد فزت للتو بـ {winGame} عملات Í 🎉!\nالحظ في صفك اليوم! 🌈",
+            "تهانينا! جائزتك هي {winGame} عملات Í 🎉!\nأنت فائز حقيقي! 🥳"
+        ],
+        "lostGame": [
+            "للأسف، لم تفز هذه المرة وفقدت {lostGame} عملات Í 😔.\nلكن لا تيأس، الحظ يمكن أن يتغير في أي وقت! 🍀",
+            "لم تكن هذه المرة. لقد خسرت {lostGame} عملات Í 😔.\nولكن لا داعي للقلق، الفرصة القادمة قد تكون لصالحك! 🌟",
+            "يبدو أن الحظ لم يكن في صفك هذه المرة، لقد خسرت {lostGame} عملات Í 😔.\nتابع المحاولة! 💪"
+        ],
+        "Empate": [
+            "تعادل! لم يفز أحد، صراع متوازن! 👥"
+        ],
+        "Uncreated": [
+            "لن تبدا لعبة ، يمكنك بدء لعبة معي أو مع شخص آخر؟"
+        ],
+        "Created": [
+            "انت في لعبة بالفعل، إذا كنت متعبًا من خصمك أو تريد التحدي مع شخص آخر، قم بإلغاء هذه اللعبة أولاً."
+        ],
+        "Placar": [
+            "🥇 مرحبًا بك في لوحة النتائج! 🗑️\n\n︵‿︵‿୨♡୧‿︵‿︵\n\n🏆 = الانتصارات\n😞 = الهزائم\n🤝 = التعادلات\n\n︵‿︵‿୨♡୧‿︵‿︵\n\n{scoreboard}"
+        ],
+        "NoPlacar": [
+            "🗑️ للأسف، ليس لدينا لاعبين بعد لتجميع نقاط، ماذا عن بدء لعبة معي لتكون أول لعبة في اللوحة؟"
+        ],
+        "Init": [
+            "✨ تم إنشاء اللعبة بنجاح!\n\n👋 @{userFormated} هو الأول في اللعب."
+        ],
+        "NotTurn": [
+            "🛑 انتظر، ليس دورك بعد، إنه دور @{playerFormatted}، انتظر بصبر!"
+        ],
+        "Invalid": [
+            "⚠️ هذه الخطوة غير صالحة، يتوفر فقط الخطوات التالية:\n{movements}"
+        ],
+        "Delete": [
+            "🗑️ تم حذف اللعبة بنجاح، أنت الآن حر للعب مع أي شخص آخر!"
+        ],
+        "Play": [
+            "✅ تم اللعب! الآن دورك، @{mentionRival}!"
+        ],
+        "Draw": [
+            "انتهت اللعبة في {gameend}، كل منكما سيحصل على نقطة تعادل! 😄 ماذا عن إنشاء لعبة جديدة الآن؟ إذا لم تجد شريكًا، فأنا هنا للعب معك! 🎉"
+        ],
+        "Victory": [
+            "انتهت اللعبة في {gameend}، سيربح اللاعب @{winner} نقطة الفوز وسيربح @{looser} نقطة الهزيمة! 😄 ماذا عن إنشاء لعبة جديدة الآن؟ إذا لم تجد شريكًا، فأنا هنا للعب معك! 🎉"
+        ]
+    },
     "jp": {
+        "lostSteal": [
+            "🚨 近所の告発で完全なサプライズ、どこにでも警察が現れました！ 🕵️‍♂️\n\n🎁 でも大丈夫、あなたは会話の忍者です！ 警察は賄賂の罠にかかり、{payCops} {paymentCops} を支払うだけで自由の扉が開き、被害者に支払えました。 💰\n\n今回はお金の力が法よりも強く語りました。 さて、手錠なしで次のステップを決める時です！ 🔓✨"
+        ],
+        "winSteal": [
+            "🕵️‍♂️ あなたは@{sorryPeople}の家にこっそり入りました。\n\nラッキーなことに、彼または彼女は寝ているかシャワーを浴びていました！ 😴\n\n🎁 さっと隠れた宝箱を見つけ、そこには {stealQuantity} {stealMatterie} がありました！\n\nおめでとう、賢い盗賊よ！ 凱旋し、勝利を祝おう！ 💰👏"
+        ],
+        "noSteal": [
+            "おっと、おそらく仲間たちはアイデアを購入していませんでした。もし強盗がうまくいかなければ支払いを保証するのに材料もお金もありませんでしたので、状況はあなたにとって複雑になりました。 💸 結果：裏切られ、告発され、刑務所で休暇中。署長は説教をしています。 自由になるまで {prisonTime} 分かかるでしょう。 少なくとも教訓を学びました：常に口座に少し小銭を持っていること。 🚓🔐"
+        ],
+        "emCana": [
+            "おっと、刑務所にはギャンブルはありません！ 😅 石鹸を落とさないチャレンジだけです。\nしかし、良い知らせがあります！ '{waitMin}.{waitSecs}' 分後に、あなたは自由です！ 🗝️🚪"
+        ],
+        "noMoney": [
+            "貧しい人を強奪することはできません、そしてロビンフッドになってだますことは考えないでください！ 😡"
+        ],
+        "Empate": [
+            "引き分け！誰もリードすることはありませんでした、バランスのとれた対決です！👥"
+        ],
+        "winGame": [
+            "おめでとうございます！あなたの賞品は {winGame} Í-Coins 🎉 です！おめでとうございます、あなたは本当にラッキーです！🌟",
+            "すごい！あなたはちょうど {winGame} Í-Coins 🎉 を獲得しました！今日はあなたの運が向いています！🌈",
+            "おめでとうございます！あなたの賞品は {winGame} Í-Coins 🎉 です！あなたは真の勝者です！🥳"
+        ],
+        "lostGame": [
+            "残念ながら、今回は勝利できませんでした。 {lostGame} Í-Coins 😔\n を失いました。しかし、くじ運はいつでも変わる可能性があります！🍀",
+            "今回はダメでしたね。 {lostGame} Í-Coins 😔\n を失いました。でも心配しないでください、次があなたの運かもしれません！🌟",
+            "今回は運が味方していないようですね。 {lostGame} Í-Coins 😔\n を失いました。がんばり続けてください！💪"
+        ],
         "Uncreated": [
             "まだゲームを持っていませんね。私か誰かと一緒に始めてみませんか？"
         ],
@@ -70,6 +189,34 @@
         ]
     },
     "en": {
+        "lostSteal": [
+            "🚨 Total surprise with the neighbors' report, the police showed up everywhere! 🕵️‍♂️\n\n🎁 But relax, you're a ninja in persuasion! The police fell for the bribery bait, and it was just a matter of paying {payCops} {paymentCops} to open the doors of freedom and compensate the victim. 💰\n\nThis time, the power of money spoke louder than the law. Now, without handcuffs, it's time to decide your next move! 🔓✨"
+        ],
+        "winSteal": [
+            "🕵️‍♂️ You snuck into @{sorryPeople}'s house.\n\nLucky you, he or she was asleep or in the bath! 😴\n\n🎁 Quickly, you found a hidden chest, and voilà, {stealQuantity} {stealMatterie}!\n\nCongratulations, clever thief! Go out triumphant and celebrate your victory! 💰👏"
+        ],
+        "noSteal": [
+            "Oops, it looks like your accomplices didn't buy the idea. Without materials and cash to guarantee payment if the robbery went wrong, the situation got complicated for you. 💸 Result: betrayed, reported, and on vacation in jail. The sheriff is giving a sermon, it will take {prisonTime} minutes before freedom. At least you learned the lesson: always have some coins in the account. 🚓🔐"
+        ],
+        "emCana": [
+            "Oops, in jail we don't have gambling games! 😅 Just the challenge of not dropping the soap.\nBut there's good news! In '{waitMin}.{waitSecs}' minutes, you're free! 🗝️🚪"
+        ],
+        "noMoney": [
+            "You can't steal from the poor, and don't even think about playing Robin Hood just to set a trap for them! 😡"
+        ],
+        "Empate": [
+            "Draw! No one came out on top, a balanced showdown! 👥"
+        ],
+        "winGame": [
+            "Congratulations! You've won! Your prize is {winGame} Í-Coins 🎉!\nWell done, you're a real lucky one! 🌟",
+            "Amazing! You just won {winGame} Í-Coins 🎉!\nLuck is on your side today! 🌈",
+            "Congratulations! Your prize is {winGame} Í-Coins 🎉!\nYou're a born winner! 🥳"
+        ],
+        "lostGame": [
+            "Unfortunately, you didn't win this time and lost {lostGame} Í-Coins 😔.\nBut don't get discouraged, luck can always change! 🍀",
+            "Not this time. You lost {lostGame} Í-Coins 😔.\nBut don't worry, the next one might be your lucky break! 🌟",
+            "Looks like luck wasn't on your side this time. You lost {lostGame} Í-Coins 😔.\nKeep trying! 💪"
+        ],
         "Uncreated": [
             "You don't have any games yet. How about starting one with me or someone else?"
         ],
@@ -105,6 +252,34 @@
         ]
     },
     "fr": {
+        "lostSteal": [
+            "🚨 Surprise totale avec la dénonciation des voisins, la police est apparue de partout ! 🕵️‍♂️\n\n🎁 Mais détendez-vous, vous êtes un ninja de la persuasion ! La police est tombée dans le piège de la corruption, il a suffi de débourser {payCops} {paymentCops} pour ouvrir les portes de la liberté et indemniser la victime. 💰\n\nCette fois-ci, le pouvoir de l'argent a parlé plus fort que la loi. Maintenant, sans menottes, il est temps de décider de votre prochaine étape ! 🔓✨"
+        ],
+        "winSteal": [
+            "🕵️‍♂️ Vous êtes entré discrètement dans la maison de @{sorryPeople}.\n\nHeureusement pour vous, il ou elle dormait ou était dans le bain ! 😴\n\n🎁 Rapidement, vous avez trouvé un coffre caché, et voilà, {stealQuantity} {stealMatterie} !\n\nFélicitations, voleur intelligent ! Sortez triomphant et célébrez votre victoire ! 💰👏"
+        ],
+        "noSteal": [
+            "Oops, on dirait que vos complices n'ont pas adhéré à l'idée. Sans matériel et sans argent pour garantir le paiement si le vol échouait, la situation s'est compliquée pour vous. 💸 Résultat : trahi, dénoncé et en vacances en prison. Le shérif donne un sermon, cela prendra {prisonTime} minutes avant la liberté. Au moins, vous avez appris la leçon : toujours avoir quelques pièces dans le compte. 🚓🔐"
+        ],
+        "emCana": [
+            "Oops, en prison, nous n'avons pas de jeux de hasard ! 😅 Juste le défi de ne pas laisser tomber le savon.\nMais il y a de bonnes nouvelles ! Dans '{waitMin}.{waitSecs}' minutes, vous êtes libre ! 🗝️🚪"
+        ],
+        "noMoney": [
+            "Vous ne pouvez pas voler les pauvres, et ne pensez même pas à jouer les Robin des Bois juste pour leur tendre un piège ! 😡"
+        ],
+        "Empate": [
+            "Match nul ! Personne n'est sorti vainqueur, un affrontement équilibré ! 👥"
+        ],
+        "winGame": [
+            "Félicitations ! Vous avez gagné ! Votre prix est de {winGame} Í-Coins 🎉 ! Bien joué, vous êtes vraiment chanceux ! 🌟",
+            "Incroyable ! Vous venez de gagner {winGame} Í-Coins 🎉 ! La chance est de votre côté aujourd'hui ! 🌈",
+            "Félicitations ! Votre prix est de {winGame} Í-Coins 🎉 ! Vous êtes un véritable gagnant ! 🥳"
+        ],
+        "lostGame": [
+            "Malheureusement, vous n'avez pas gagné cette fois-ci et avez perdu {lostGame} Í-Coins 😔.\nMais ne perdez pas courage, la chance peut toujours changer ! 🍀",
+            "Pas cette fois. Vous avez perdu {lostGame} Í-Coins 😔.\nMais ne vous inquiétez pas, la prochaine fois pourrait être la bonne ! 🌟",
+            "On dirait que la chance n'était pas de votre côté cette fois-ci. Vous avez perdu {lostGame} Í-Coins 😔.\nContinuez d'essayer ! 💪"
+        ],
         "Uncreated": [
             "Vous n'avez pas encore de partie. Que diriez-vous d'en commencer une avec moi ou avec quelqu'un d'autre ?"
         ],
@@ -140,6 +315,34 @@
         ]
     },
     "es": {
+        "lostSteal": [
+            "🚨 Sorpresa total con la denuncia de los vecinos, la policía apareció por todas partes! 🕵️‍♂️\n\n🎁 Pero tranquilo, ¡eres un ninja persuasivo! La policía cayó en la trampa del soborno, y fue cuestión de pagar {payCops} {paymentCops} para abrir las puertas de la libertad y compensar a la víctima. 💰\n\nEsta vez, el poder del dinero habló más fuerte que la ley. Ahora, sin esposas, es el momento de decidir tu próximo paso! 🔓✨"
+        ],
+        "winSteal": [
+            "🕵️‍♂️ Entraste sigilosamente en la casa de @{sorryPeople}.\n\n¡Suerte para ti, él o ella estaba durmiendo o en el baño! 😴\n\n🎁 Rápidamente, encontraste un cofre oculto, y voilà, {stealQuantity} {stealMatterie}!\n\n¡Felicidades, astuto ladrón! ¡Sal triunfante y celebra tu victoria! 💰👏"
+        ],
+        "noSteal": [
+            "Oops, parece que tus cómplices no compraron la idea. Sin material y dinero para garantizar el pago si el robo salía mal, la situación se complicó para ti. 💸 Resultado: traicionado, denunciado y de vacaciones en la cárcel. El delegado está soltando un sermón, llevará {prisonTime} minutos antes de la libertad. Al menos aprendiste la lección: siempre tener algunas monedas en la cuenta. 🚓🔐"
+        ],
+        "emCana": [
+            "Ups, en la cárcel no tenemos juegos de azar! 😅 Solo el desafío de no dejar caer el jabón.\nPero hay buenas noticias. En '{waitMin}.{waitSecs}' minutos, estarás libre! 🗝️🚪"
+        ],
+        "noMoney": [
+            "No puedes robar a los pobres, ¡y ni siquiera pienses en hacer de Robin Hood solo para tenderles una trampa! 😡"
+        ],
+        "Empate": [
+            "Empate! Nadie salió victorioso, un enfrentamiento equilibrado! 👥"
+        ],
+        "winGame": [
+            "¡Felicidades! ¡Has ganado! Tu premio es de {winGame} Í-Coins 🎉!\n¡Bien hecho, eres realmente afortunado! 🌟",
+            "¡Increíble! Acabas de ganar {winGame} Í-Coins 🎉!\n¡La suerte está de tu lado hoy! 🌈",
+            "¡Felicidades! ¡Tu premio es de {winGame} Í-Coins 🎉!\n¡Eres un verdadero ganador! 🥳"
+        ],
+        "lostGame": [
+            "Lamentablemente, no ganaste esta vez y perdiste {lostGame} Í-Coins 😔.\nPero no te desanimes, ¡la suerte siempre puede cambiar! 🍀",
+            "Esta vez no fue. Perdiste {lostGame} Í-Coins 😔.\nPero no te preocupes, ¡la próxima puede ser tu suerte! 🌟",
+            "Parece que la suerte no estaba de tu lado esta vez. Perdiste {lostGame} Í-Coins 😔.\n¡Sigue intentándolo! 💪"
+        ],
         "Uncreated": [
             "Aún no tienes ningún juego. ¿Qué te parece empezar uno conmigo o con alguien más?"
         ],
@@ -175,6 +378,34 @@
         ]
     },
     "id": {
+        "lostSteal": [
+            "🚨 Kejutan total dengan laporan tetangga, polisi muncul di mana-mana! 🕵️‍♂️\n\n🎁 Tapi tenang, kamu adalah seorang ninja dalam persuasi! Polisi terjebak dalam umpan suap, dan hanya perlu membayar {payCops} {paymentCops} untuk membuka pintu kebebasan dan memberi ganti rugi kepada korban. 💰\n\nKali ini, kekuatan uang berbicara lebih keras dari hukum. Sekarang, tanpa gembok, saatnya memutuskan langkah selanjutnya! 🔓✨"
+        ],
+        "winSteal": [
+            "🕵️‍♂️ Kamu masuk diam-diam ke rumah @{sorryPeople}.\n\nBeruntunglah kamu, dia atau dia sedang tidur atau mandi! 😴\n\n🎁 Dengan cepat, kamu menemukan peti tersembunyi, dan voilà, {stealQuantity} {stealMatterie}!\n\nSelamat, pencuri cerdik! Keluar sebagai pemenang dan rayakan kemenanganmu! 💰👏"
+        ],
+        "noSteal": [
+            "Ups, sepertinya rekan-rekanmu tidak membeli ide tersebut. Tanpa bahan dan uang untuk menjamin pembayaran jika pencurian berjalan salah, situasinya menjadi rumit bagi kamu. 💸 Hasil: dikhianati, dilaporkan, dan berlibur di penjara. Kepala polisi sedang memberikan khotbah, akan memakan waktu {prisonTime} menit sebelum kebebasan. Setidaknya kamu belajar pelajaran: selalu memiliki beberapa koin di akun. 🚓🔐"
+        ],
+        "emCana": [
+            "Ups, di penjara kita tidak punya permainan judi! 😅 Hanya tantangan untuk tidak menjatuhkan sabun.\nTapi ada kabar baik! Dalam '{waitMin}.{waitSecs}' menit, kamu bebas! 🗝️🚪"
+        ],
+        "noMoney": [
+            "Anda tidak bisa merampok orang miskin, dan jangan berpikir untuk berperan sebagai Robin Hood hanya untuk menyiapkan jebakan bagi mereka! 😡"
+        ],
+        "Empate": [
+            "Seri! Tidak ada yang unggul, pertarungan seimbang! 👥"
+        ],
+        "winGame": [
+            "Selamat! Anda menang! Hadiah Anda adalah {winGame} Í-Coins 🎉!\nSelamat, Anda benar-benar beruntung! 🌟",
+            "Hebat! Anda baru saja memenangkan {winGame} Í-Coins 🎉!\nKeberuntungan ada di pihak Anda hari ini! 🌈",
+            "Selamat! Hadiah Anda adalah {winGame} Í-Coins 🎉!\nAnda adalah pemenang sejati! 🥳"
+        ],
+        "lostGame": [
+            "Sayangnya, Anda tidak menang kali ini dan kehilangan {lostGame} Í-Coins 😔.\nTapi jangan patah semangat, keberuntungan selalu bisa berubah! 🍀",
+            "Bukan kali ini. Anda kehilangan {lostGame} Í-Coins 😔.\nTapi jangan khawatir, yang berikutnya mungkin keberuntungan Anda! 🌟",
+            "Sepertinya keberuntungan tidak berada di pihak Anda kali ini. Anda kehilangan {lostGame} Í-Coins 😔.\nTetap semangat! 💪"
+        ],
         "Uncreated": [
             "Kamu belum memiliki permainan apapun. Bagaimana kalau memulai satu dengan saya atau dengan orang lain?"
         ],
@@ -210,6 +441,34 @@
         ]
     },
     "ms": {
+        "lostSteal": [
+            "🚨 Kejutan penuh dengan aduan jiran, polis muncul di mana-mana! 🕵️‍♂️\n\n🎁 Tetapi tenang, anda seorang ninja dalam mendayakan! Polis terjebak dengan umpan suapan, dan hanya perlu membayar {payCops} {paymentCops} untuk membuka pintu kebebasan dan memberi ganti rugi kepada mangsa. 💰\n\nKali ini, kuasa wang bercakap lebih kuat daripada undang-undang. Sekarang, tanpa belenggu, masanya untuk membuat keputusan langkah seterusnya! 🔓✨"
+        ],
+        "winSteal": [
+            "🕵️‍♂️ Anda menyelinap ke rumah @{sorryPeople}.\n\nNasib baik anda, dia atau dia sedang tidur atau mandi! 😴\n\n🎁 Dengan cepat, anda menemui peti tersembunyi, dan voilà, {stealQuantity} {stealMatterie}!\n\nTahniah, pencuri bijak! Keluar sebagai pemenang dan sambut kemenangan anda! 💰👏"
+        ],
+        "noSteal": [
+            "Oops, nampaknya rakan sepasukan anda tidak membeli idea itu. Tanpa bahan dan wang untuk menjamin pembayaran jika rompakan berjalan teruk, situasi menjadi rumit bagi anda. 💸 Keputusan: dikhianati, dilaporkan, dan bercuti di dalam penjara. Sheriff sedang memberi ceramah, akan mengambil masa {prisonTime} minit sebelum kebebasan. Setidaknya anda belajar pelajaran: sentiasa ada beberapa keping syiling dalam akaun. 🚓🔐"
+        ],
+        "emCana": [
+            "Oops, di dalam penjara, kita tidak ada permainan judi! 😅 Hanya cabaran untuk tidak menjatuhkan sabun.\nTetapi ada berita baik! Dalam '{waitMin}.{waitSecs}' minit, kamu bebas! 🗝️🚪"
+        ],
+        "noMoney": [
+            "Anda tidak boleh mencuri dari orang miskin, dan jangan sekali-kali berpikir untuk berlakon sebagai Robin Hood hanya untuk mengatur perangkap bagi mereka! 😡"
+        ],
+        "Empate": [
+            "Seri! Tiada sesiapa yang menang, satu pertarungan seimbang! 👥"
+        ],
+        "winGame": [
+            "Tahniah! Anda menang! Hadiah anda ialah {winGame} Í-Coins 🎉!\nTahniah, anda memang bertuah! 🌟",
+            "Hebat! Anda baru sahaja memenangi {winGame} Í-Coins 🎉!\nNasib baik berpihak kepada anda hari ini! 🌈",
+            "Tahniah! Hadiah anda ialah {winGame} Í-Coins 🎉!\nAnda memang pemenang sejati! 🥳"
+        ],
+        "lostGame": [
+            "Malangnya, anda tidak menang kali ini dan kehilangan {lostGame} Í-Coins 😔.\nTetapi jangan patah semangat, nasib boleh berubah! 🍀",
+            "Bukan kali ini. Anda kehilangan {lostGame} Í-Coins 😔.\nTetapi jangan risau, yang seterusnya mungkin menjadi nasib baik anda! 🌟",
+            "Nampaknya nasib tidak berpihak kepada anda kali ini. Anda kehilangan {lostGame} Í-Coins 😔.\nTerus mencuba! 💪"
+        ],
         "Uncreated": [
             "Anda belum mempunyai sebarang permainan. Bagaimana kalau memulakan satu dengan saya atau dengan seseorang?"
         ],
@@ -245,6 +504,34 @@
         ]
     },
     "hi": {
+        "lostSteal": [
+            "🚨 पड़ोसियों की रिपोर्ट के साथ पूरी आश्चर्य, पुलिस हर जगह दिखाई दी! 🕵️‍♂️\n\n🎁 लेकिन धैर्य रखें, आप प्रेरणा में एक निंजा हैं! पुलिस भ्रष्टाचार की चाल में आ गई, और बस {payCops} {paymentCops} चुकाने का मामला था ताकि स्वतंत्रता और पीड़ित को मुआवजा मिल सके। 💰\n\nइस बार, पैसे की शक्ति ने कानून से ज्यादा बोला। अब, हैंडकफ के बिना, यह समय है अगले कदम का निर्धारण करने का! 🔓✨"
+        ],
+        "winSteal": [
+            "🕵️‍♂️ आपने @{sorryPeople} के घर में धीरे से प्रवेश किया।\n\nभाग्यशाली आप, वह या वह सो रहा था या नहा रहा था! 😴\n\n🎁 तेजी से, आपने एक छिपा हुआ संदूर ढ़ूंढा, और वहां, {stealQuantity} {stealMatterie}!\n\nबधाई हो, चतुर चोर! जयवंत बाहर निकलें और अपनी जीत का जश्न मनाएं! 💰👏"
+        ],
+        "noSteal": [
+            "ऊपस, ऐसा लगता है कि आपके सहयोगियों ने विचार नहीं किया। यदि डकैती गलत जाए, तो भुगतान की गारंटी के लिए सामग्री और नकद नहीं थे, तो चीजें आपके लिए जटिल हो गईं। 💸 परिणाम: धोखा, रिपोर्ट किया गया, और जेल में छुट्टी। शेरिफ एक उपदेश दे रहा है, इससे स्वतंत्रता से पहले {prisonTime} मिनट लगेंगे। कम से कम आपने सीखा: हमेशा खाते में कुछ सिक्के रखें। 🚓🔐"
+        ],
+        "emCana": [
+            "ओह, जेल में हमारे पास जुआ खेलने का कोई सुविधा नहीं है! 😅 केवल साबुन न गिराने का चैलेंज है।\nलेकिन यहां अच्छी खबरें हैं! '{waitMin}.{waitSecs}' मिनट में, आप मुक्त हैं! 🗝️🚪"
+        ],
+        "noMoney": [
+            "आप गरीबों से चोरी नहीं कर सकते, और यह भी मत सोचिए कि सिर्फ उनके लिए फंसाने के लिए रॉबिन हुड बनने का ख्याल करें! 😡"
+        ],
+        "Empate": [
+            "बराबरी! कोई भी आगे नहीं आया, एक संतुलित सामना! 👥"
+        ],
+        "winGame": [
+            "बधाई हो! आपने जीत हासिल की है! आपका पुरस्कार है {winGame} आई-कॉइन्स 🎉!\nबधाई हो, आप सच्चे में भाग्यशाली हैं! 🌟",
+            "अद्भुत! आपने अभी {winGame} आई-कॉइन्स 🎉 जीता है! भाग्य आज आपके साथ है! 🌈",
+            "बधाई हो! आपका पुरस्कार है {winGame} आई-कॉइन्स 🎉!\nआप एक जन्मजात विजेता हैं! 🥳"
+        ],
+        "lostGame": [
+            "दुख है कि, इस बार आपने नहीं जीता और {lostGame} आई-कॉइन्स 😔 खो दी हैं। लेकिन हार ना मानो, भाग्य हमेशा बदल सकता है! 🍀",
+            "इस बार नहीं। आपने {lostGame} आई-कॉइन्स 😔 खो दी है। लेकिन चिंता मत करें, अगली बार शायद आपके लिए भाग्यशाली हो! 🌟",
+            "लगता है कि इस बार भाग्य आपके साथ नहीं था। आपने {lostGame} आई-कॉइन्स 😔 खो दी हैं। प्रयास करते रहें! 💪"
+        ],
         "Uncreated": [
             "आपके पास अब तक कोई खेल नहीं है। मेरे साथ या किसी और के साथ एक शुरू करने के बारे में क्या कहते हैं?"
         ],
@@ -280,6 +567,34 @@
         ]
     },
     "de": {
+        "lostSteal": [
+            "🚨 Totale Überraschung mit der Anzeige der Nachbarn, die Polizei tauchte überall auf! 🕵️‍♂️\n\n🎁 Aber keine Sorge, du bist ein Ninja in der Überredung! Die Polizei fiel auf den Bestechungsköder herein, und es war nur eine Frage der Bezahlung von {payCops} {paymentCops}, um die Türen der Freiheit zu öffnen und dem Opfer eine Entschädigung zu zahlen. 💰\n\nDieses Mal sprach die Macht des Geldes lauter als das Gesetz. Jetzt, ohne Handschellen, ist es Zeit, deinen nächsten Schritt zu entscheiden! 🔓✨"
+        ],
+        "winSteal": [
+            "🕵️‍♂️ Du bist leise in das Haus von @{sorryPeople} geschlichen.\n\nGlück für dich, er oder sie schlief oder war im Bad! 😴\n\n🎁 Schnell hast du eine versteckte Truhe gefunden, und voilà, {stealQuantity} {stealMatterie}!\n\nHerzlichen Glückwunsch, cleverer Dieb! Geh triumphierend nach draußen und feiere deinen Sieg! 💰👏"
+        ],
+        "noSteal": [
+            "Hoppla, anscheinend haben deine Komplizen die Idee nicht gekauft. Ohne Material und Geld, um die Zahlung zu garantieren, wenn der Raub schief geht, wurde die Situation für dich kompliziert. 💸 Ergebnis: verraten, gemeldet und im Gefängnis Urlaub. Der Sheriff hält eine Predigt, es wird {prisonTime} Minuten dauern, bevor die Freiheit kommt. Zumindest hast du die Lektion gelernt: immer ein paar Münzen auf dem Konto haben. 🚓🔐"
+        ],
+        "emCana": [
+            "Hoppla, im Gefängnis haben wir keine Glücksspiele! 😅 Nur die Herausforderung, die Seife nicht fallen zu lassen.\nAber es gibt gute Nachrichten! In '{waitMin}.{waitSecs}' Minuten bist du frei! 🗝️🚪"
+        ],
+        "noMoney": [
+            "Du kannst nicht von den Armen stehlen, und denk nicht einmal daran, den Robin Hood zu spielen, nur um ihnen eine Falle zu stellen! 😡"
+        ],
+        "Empate": [
+            "Unentschieden! Niemand hat die Nase vorn, ein ausgeglichener Schlagabtausch! 👥"
+        ],
+        "winGame": [
+            "Herzlichen Glückwunsch! Du hast gewonnen! Dein Preis beträgt {winGame} Í-Coins 🎉!\nGut gemacht, du bist wirklich ein Glückspilz! 🌟",
+            "Erstaunlich! Du hast gerade {winGame} Í-Coins 🎉 gewonnen! Das Glück ist heute auf deiner Seite! 🌈",
+            "Herzlichen Glückwunsch! Dein Preis beträgt {winGame} Í-Coins 🎉!\nDu bist ein geborener Gewinner! 🥳"
+        ],
+        "lostGame": [
+            "Leider hast du dieses Mal nicht gewonnen und {lostGame} Í-Coins 😔 verloren. Aber lass den Kopf nicht hängen, das Glück kann sich immer ändern! 🍀",
+            "Dieses Mal hat es nicht geklappt. Du hast {lostGame} Í-Coins 😔 verloren. Aber mach dir keine Sorgen, das nächste Mal könnte dein Glückstag sein! 🌟",
+            "Es sieht so aus, als wäre das Glück dieses Mal nicht auf deiner Seite gewesen. Du hast {lostGame} Í-Coins 😔 verloren. Weitermachen! 💪"
+        ],
         "Uncreated": [
             "Du hast noch kein Spiel. Wie wäre es, eins mit mir oder jemand anderem zu beginnen?"
         ],
@@ -315,6 +630,34 @@
         ]
     },
     "it": {
+        "lostSteal": [
+            "🚨 Sorpresa totale con la denuncia dei vicini, la polizia è comparsa ovunque! 🕵️‍♂️\n\n🎁 Ma tranquillo, sei un ninja persuasivo! La polizia è caduta nella trappola della corruzione, ed è bastato pagare {payCops} {paymentCops} per aprire le porte della libertà e risarcire la vittima. 💰\n\nQuesta volta, il potere del denaro ha parlato più forte della legge. Ora, senza manette, è il momento di decidere il tuo prossimo passo! 🔓✨"
+        ],
+        "winSteal": [
+            "🕵️‍♂️ Sei entrato furtivamente nella casa di @{sorryPeople}.\n\nPer fortuna, lui o lei dormiva o era in bagno! 😴\n\n🎁 Rapidamente hai trovato un baule nascosto, e voilà, {stealQuantity} {stealMatterie}!\n\nCongratulazioni, furbo ladro! Esci trionfante e festeggia la tua vittoria! 💰👏"
+        ],
+        "noSteal": [
+            "Ops, sembra che i tuoi complici non abbiano comprato l'idea. Senza materiali e soldi per garantire il pagamento se il furto andasse storto, la situazione si è complicata per te. 💸 Risultato: tradito, denunciato e in vacanza in prigione. Lo sceriffo sta dando una predica, ci vorranno {prisonTime} minuti prima della libertà. Almeno hai imparato la lezione: avere sempre qualche moneta sul conto. 🚓🔐"
+        ],
+        "emCana": [
+            "Ops, in prigione non abbiamo giochi d'azzardo! 😅 Solo la sfida di non far cadere il sapone.\nMa ci sono buone notizie! In '{waitMin}.{waitSecs}' minuti, sei libero! 🗝️🚪"
+        ],
+        "noMoney": [
+            "Non puoi rubare ai poveri, e non pensare nemmeno di fare il Robin Hood solo per tendere loro un'imboscata! 😡"
+        ],
+        "Empate": [
+            "Pareggio! Nessuno è uscito vincitore, uno scontro equilibrato! 👥"
+        ],
+        "winGame": [
+            "Hai vinto! Il tuo premio è di {winGame} Í-Coins 🎉!\nCongratulazioni, sei davvero fortunato! 🌟",
+            "Incredibile! Hai appena vinto {winGame} Í-Coins 🎉!\nLa fortuna è dalla tua parte oggi! 🌈",
+            "Congratulazioni! Il tuo premio è di {winGame} Í-Coins 🎉!\nSei un vero vincitore! 🥳"
+        ],
+        "lostGame": [
+            "Sfortunatamente, questa volta non hai vinto e hai perso {lostGame} Í-Coins 😔.\nMa non scoraggiarti, la fortuna può sempre cambiare! 🍀",
+            "Questa volta non è andata bene. Hai perso {lostGame} Í-Coins 😔.\nMa non preoccuparti, la prossima potrebbe essere la tua fortuna! 🌟",
+            "Sembra che la fortuna non fosse dalla tua parte questa volta. Hai perso {lostGame} Í-Coins 😔.\nContinua a tentare! 💪"
+        ],
         "Uncreated": [
             "Non hai ancora nessun gioco. Cosa ne dici di iniziarne uno con me o con qualcun altro?"
         ],
@@ -350,6 +693,34 @@
         ]
     },
     "ru": {
+        "lostSteal": [
+            "🚨 Полное удивление с жалобой соседей, полиция появилась повсюду! 🕵️‍♂️\n\n🎁 Но успокойтесь, вы настоящий ниндзя в убеждении! Полиция попала в ловушку подкупа, и было достаточно заплатить {payCops} {paymentCops} чтобы открыть двери свободы и компенсировать потерпевшему. 💰\n\nНа этот раз сила денег заговорила громче закона. Теперь, без наручников, пришло время решить, как поступить дальше! 🔓✨"
+        ],
+        "winSteal": [
+            "🕵️‍♂️ Ты подкрался к дому @{sorryPeople}.\n\nК счастью для тебя, он или она спала или принимала ванну! 😴\n\n🎁 Быстро нашел скрытый сундук, и вуаля, {stealQuantity} {stealMatterie}!\n\nПоздравляю, умный вор! Выходи триумфатором и празднуй свою победу! 💰👏"
+        ],
+        "noSteal": [
+            "Упс, кажется, твои сообщники не купили эту идею. Без материалов и денег, чтобы гарантировать оплату, если ограбление пойдет не так, ситуация для тебя усложнилась. 💸 Результат: предан, доложен и в отпуске в тюрьме. Шериф дает проповедь, это займет {prisonTime} минут до свободы. По крайней мере, ты вынес урок: всегда держи пару монет на счету. 🚓🔐"
+        ],
+        "emCana": [
+            "Ой, в тюрьме у нас нет азартных игр! 😅 Только вызов не уронить мыло.\nНо есть хорошие новости! Через '{waitMin}.{waitSecs}' минут, ты свободен! 🗝️🚪"
+        ],
+        "noMoney": [
+            "Вы не можете обворовывать бедных, и даже не думайте играть в Робин Гуда, чтобы подставить их! 😡"
+        ],
+        "Empate": [
+            "Ничья! Никто не вышел победителем, равная борьба! 👥"
+        ],
+        "winGame": [
+            "Вы выиграли! Ваш выигрыш составил {winGame} Í-Coins 🎉!\nПоздравляю, вы настоящий счастливчик! 🌟",
+            "Удивительно! Вы только что выиграли {winGame} Í-Coins 🎉!\nСегодня у вас везет! 🌈",
+            "Поздравляю! Ваш выигрыш - {winGame} Í-Coins 🎉!\nВы истинный победитель! 🥳"
+        ],
+        "lostGame": [
+            "К сожалению, на этот раз вы не выиграли и проиграли {lostGame} Í-Coins 😔.\nНо не унывайте, удача всегда может измениться! 🍀",
+            "На этот раз не повезло. Вы проиграли {lostGame} Í-Coins 😔.\nНо не волнуйтесь, следующий раз может оказаться удачным! 🌟",
+            "Похоже, что на этот раз удача была не на вашей стороне. Вы проиграли {lostGame} Í-Coins 😔.\nПродолжайте попытки! 💪"
+        ],
         "Uncreated": [
             "У вас пока нет ни одной игры. Как насчет начать одну со мной или с кем-то еще?"
         ],
@@ -385,6 +756,34 @@
         ]
     },
     "lat": {
+        "lostSteal": [
+            "🚨 Totale mirum cum querela vicinorum, apparuit ubique polícia! 🕵️‍♂️\n\n🎁 Sed relaxa, es ninja in persuasione! Polícia in dolone corruptionis cecidit, et solvere tantum {payCops} {paymentCops} erat ut aperiretur porta libertatis et victimae compensaretur. 💰\n\nHac vice, potentia pecuniae magis locuta est quam lex. Nunc, sine manicis, est tempus tuum sequentis gradus decernendi! 🔓✨"
+        ],
+        "winSteal": [
+            "🕵️‍♂️ Insidiatus es in domum @{sorryPeople}.\n\nFortuna tibi favit, dormiebat aut lavabatur! 😴\n\n🎁 Celeriter repertum est arcae abdita, et voilà, {stealQuantity} {stealMatterie}!\n\nGratulor, fur latro! Exi triumphans et victoriam tuam celebra! 💰👏"
+        ],
+        "noSteal": [
+            "Heus, videtur tuos consocios non acceptos esse. Sine rebus pecuniamque ad firmandam solutionem, si furtum male cederet, situatio tibi complicata est. 💸 Eventus: proditus, index, et in feriis in carcere. Praefectus concionem habet, hoc {prisonTime} minutis ante libertatem accipiet. Saltem didicisti lectionem: semper habere nummos in ratione. 🚓🔐"
+        ],
+        "emCana": [
+            "Vae, in carcere aleae ludos non habemus! 😅 Solus certamen non lubricare sapone est.\nAt sunt bona nuntia! In '{waitMin}.{waitSecs}' minutis, liber eris! 🗝️🚪"
+        ],
+        "noMoney": [
+            "Non potes egenos furari, nec cogites te esse Robin Hood tantum ut insidias eis struas! 😡"
+        ],
+        "Empate": [
+            "Par! Nemo praevalebat, concertatio aequilibrata! 👥"
+        ],
+        "winGame": [
+            "Vicisti! Praemium tuum est {winGame} Í-Coins 🎉!\nGrates tibi agimus, vere felix es! 🌟",
+            "Mirabile! Modo vicisti {winGame} Í-Coins 🎉!\nFortuna tecum est hodie! 🌈",
+            "Gratulamur tibi! Praemium tuum est {winGame} Í-Coins 🎉!\nTu vere victor es! 🥳"
+        ],
+        "lostGame": [
+            "Dolenter, hac vice non vicisti et amisisti {lostGame} Í-Coins 😔.\nSed ne deficias, fortuna semper mutari potest! 🍀",
+            "Non hoc tempore evenit. Amisisti {lostGame} Í-Coins 😔.\nSed noli timere, proxima fors tua potest esse! 🌟",
+            "Videtur fortuna non fuit tecum hoc tempore. Amisisti {lostGame} Í-Coins 😔.\nPerge conari! 💪"
+        ],
         "Uncreated": [
             "Nulla adhuc ludorum possides. Quid de uno mecum vel cum alio incipere?"
         ],

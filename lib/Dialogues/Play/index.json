@@ -3,22 +3,22 @@
         "Details": [
             "*✏️ Titulo →* _'{title}'_\n\n*🆔 (ID) →* _'{videoId}'_\n\n*🌐 URL →* _'{url}'_\n\n*📄 Descrição →* _'{description}'_\n\n*🌆 Imagem →* _'{image}'_\n\n*⏱️ Tempo →* _'{seconds}s | {timestamp}min'_\n\n*🆙 Postagem →* _'{ago}'_\n\n*👁️ Views →* _'{views}'_\n\n*🧑 Autor →* _'{author.name}'_\n\n*🔗 Canal →* _'{author.url}'_"
         ],
-        "Format": [
-            "Qual tipo de formato você deseja obter?",
-            "Como você quer receber isso?",
-            "Em qual estilo você quer baixar?"
-        ],
-        "Options": [
-            "Para continuar o download é necessário que você especifique, clicando em um botão [se houver], ou enviando a resposta como uma mensagem, você tem '{time}min' antes disso ser cancelado automaticamente, as opções são: '{first}', '{two}' ou '{three}'."
-        ],
-        "Timeout": [
-            "🕗 _Informação extra →_ *O erro pode ter sido causado por uma demora na escolha, isso não é um erro em si, mas uma resposta especial para lidar com a demora, não se preocupe com isso, se for esse o caso.*"
-        ],
         "Empty": [
             "Infelizmente, não pude encontrar nenhum resultado, se acreditar que isso é um BUG, basta fazer um ticket de ajuda no comando 'help', mas antes disto, tente usar de forma diferente."
         ],
         "Failed": [
-			"Como diabos você chegou nessa resposta? Enfim, os downloads não puderam ser concluídos, os motivos são inúmeros, como ser muito pesado, erros de download ou outros, neste caso, não foi retornado nada para baixar."
+            "Como diabos você chegou nessa resposta? Enfim, os downloads não puderam ser concluídos, os motivos são inúmeros, como ser muito pesado, erros de download ou outros, neste caso, não foi retornado nada para baixar."
+        ]
+    },
+    "ar": {
+        "Details": [
+            "*✏️ العنوان →* _'{title}'_\n\n*🆔 (المعرف) →* _'{videoId}'_\n\n*🌐 الرابط →* _'{url}'_\n\n*📄 الوصف →* _'{description}'_\n\n*🌆 الصورة →* _'{image}'_\n\n*⏱️ الوقت →* _'{seconds}s | {timestamp} دقيقة'_\n\n*🆙 التاريخ →* _'{ago}'_\n\n*👁️ المشاهدات →* _'{views}'_\n\n*🧑 الكاتب →* _'{author.name}'_\n\n*🔗 القناة →* _'{author.url}'_"
+        ],
+        "Empty": [
+            "للأسف، لم أتمكن من العثور على أي نتائج، إذا كنت تعتقد أن هذا خلل، قم بإنشاء تذكرة مساعدة باستخدام الأمر 'help'، ولكن قبل ذلك، حاول استخدامه بطريقة مختلفة."
+        ],
+        "Failed": [
+            "كيف يمكن أن تصل إلى هذه الإجابة؟ على أي حال، لا يمكن إكمال التنزيل، وهناك العديد من الأسباب، مثل كون الملف ثقيلًا جدًا، أو وجود أخطاء في عملية التنزيل، أو أسباب أخرى. في هذه الحالة، لم تتم عمليةالتنزيل."
         ]
     },
     "jp": {

@@ -1,7 +1,7 @@
 # Projeto Íris
 - [Colabore conosco](https://bit.ly/BOT-IRIS), juntos podemos deixar esse código com a definição perfeita do que é OpenSource.
 - Note que as atualizações não tem datas para sair, sendo que elas são lançadas quando considero adequadas para postagem.
-- Toda versão terá seu codename de release, assim como o Ubuntu e o Android fazem, mas na Íris, isso é apenas para se divertir e o nome dado não reflete as atualizações, quem sabe você encontre algum easter-egg por aqui...
+- Toda versão terá seu codename de release, assim como o Ubuntu e o Android fazem, mas na Íris, isso é apenas para se divertir e o nome dado não reflete as atualizações, quem sabe você encontre algum easter-egg *OCULTO* por aqui...
 - Clique na seta no inicio da linha para abrir os detalhes.
 <!-- No vazio do nada, em meio à névoa,
 Uma chama primordial, ainda que extinta, persiste.
@@ -30,14 +30,66 @@ A voz ecoou seu último suspiro.
 
 ## Sumário de Atualizações
 
+### Nota Especial de Dezembro 🎄🎉
+- **Eventos:** Espalhei um toque natalino, de ano novo e aniversário pelo nosso site. Descubra esses detalhes especiais como easter-eggs escondidos! 🥳
+- **Niver:** Dezembro é um mês duplamente especial, celebrando o nono (9º) aniversário da Íris do Legião Z. Sim, NOVE ANOS! Parabéns, Íris e Legião Z! 🎂
+
+<details>
+  <summary><code>1.1.0 - 11/12/2023 🍊 <strong>[YUZU RELEASE]</strong></code></summary>
+<!-- Quando a vida te der uma Yuzu, chame a 'tia Mei' e faça um suco de Citrus! -->
+
+### Mural
+- Infelizmente, não tenho muitas novidades desta vez, devido a razões explicadas abaixo. Mesmo assim, me empenhei para criar alguns jogos na esperança de que apreciem. Não está perfeito, pois não pude dedicar tanto tempo à programar.
+
+- Estou dando uma pausa temporária no desenvolvimento da Íris devido a problemas de saúde. Marquei exames para este mês, e o tempo restante foi aconselhado para descanso e cuidados físicos e mentais. Pretendo retornar o mais breve possível.
+
+- Quanto à próxima atualização, ela *pode ou não* ser considerada parte da *Yuzu Release*, já que esta atualização ficou abaixo das expectativas devido às circunstâncias. Agradeço pela compreensão e apoio de todos.
+
+- Não haverá mais uma equipe oficial, devido à falta de apoio da comunidade e da antiga equipe oficial. Assim que eu voltar, assumirei a produção sozinho e elaborarei o código da maneira que EU considerar necessária. Não pedirei mais por ajuda e não darei prioridade a pedidos ou sugestões.
+
+- Para mais detalhes sobre tudo acima, [confira aqui](https://t.me/s/irisproject).
+
+### Novidades
+1. **Idiomas**
+    - Novo idioma, agora a Íris também funcionará aos usuários que falam Árabe, totalizando 13 idiomas operantes!
+2. **Jogos**
+    - Novos jogos, em especial, os de cassino e mais simples, como `Spin`, `Roubar`, `Roleta Russa`, `Jokenpo` e `Flip a Coin`.
+    - Existe um modo de cadeia, caso você não possa pagar a multa por roubar, se pego.
+3. **Privado**
+    - Inserido uma mensagem de alerta para certas execuções de comandos no PV.
+4. **Sticker Customizado**
+    - Agora é possivel renomear seus stickers para o que quiser usando o comando `rename` ou inserindo `-custom` no comando de Sticker.
+5. **Leveling**
+    - Agora os usuários começam com valores para poderem começar a jogar de imediato.
+6. **Banner**
+    - Imagem natalina para a página inicial feita pelo artista [Jojo](https://bento.me/jocosta).
+7. **Eslint**
+    - A configuração dele agora é feita por arquivos YML.
+
+### Correções
+1. **Body**
+    - A body estava removendo letras devido a uma má formatação da RegExp que ela utiliza.
+2. **YouTube**
+    - Corrigido a mensagem de erro do YouTube em casos de não encontrar ou não poder baixar uma mídia.
+3. **Profile**
+    - Resolvido o problema de obter a foto de perfil correta.
+4. **Formatação**
+    - Corrigi todos os erros que pude encontrar relacionados a formatação e badcode.
+
+### Removido
+1. **Dialogos**
+    - Alguns dialogos inúteis que não irei usar.
+2. **Eslint JSON**
+    - Efetuado a troca para a versão YML.
+
+</details>
+
 <details>
   <summary><code>1.0.9 - 28/11/2023 🍵 <strong>[TEACUP RELEASE]</strong></code></summary>
 <!-- Enquanto todos lutam pela sobrevivência e comida, e para terem mais um dia sem virar o almoço de um titã, Levi se senta em casa e pensa mais uma vez em como seria bom abrir uma loja de chá em um mundo lindo, limpo e sem violência. -->
 
 ### Mural
 - Versão feita as pressas por motivos de mudanças na equipe de desenvolvimento da Íris, ainda não é tudo que a versão anterior almejava ter e não houve muito tempo para checagem, mas deve funcionar adequadamente ainda assim.
-
-- A próxima atualização pode ser considera uma parte 2 desta, não tendo um nome de relase diferente.
 
 ### Novidades
 1. **Toolbox**
