@@ -52,6 +52,7 @@ A voz ecoou seu último suspiro.
 ### Novidades
 1. **Idiomas**
     - Novo idioma, agora a Íris também funcionará aos usuários que falam Árabe, totalizando 13 idiomas operantes!
+    - Revisão do idioma árabe feita pelo [@majdgh6](https://github.com/majdgh6).
 2. **Jogos**
     - Novos jogos, em especial, os de cassino e mais simples, como `Spin`, `Roubar`, `Roleta Russa`, `Jokenpo` e `Flip a Coin`.
     - Existe um modo de cadeia, caso você não possa pagar a multa por roubar, se pego.
