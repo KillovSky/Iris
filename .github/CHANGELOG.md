@@ -2,6 +2,7 @@
 - [Colabore conosco](https://bit.ly/BOT-IRIS), juntos podemos deixar esse código com a definição perfeita do que é OpenSource.
 - Note que as atualizações não tem datas para sair, sendo que elas são lançadas quando considero adequadas para postagem.
 - Toda versão terá seu codename de release, assim como o Ubuntu e o Android fazem, mas na Íris, isso é apenas para se divertir e o nome dado não reflete as atualizações, quem sabe você encontre algum easter-egg *OCULTO* por aqui...
+- Algumas atualizações são complementos de outras, elas não serão colocadas nesta changelog por agora, se desejar ver detalhes, procure por commits que começam com o nome da build que usa.
 - Clique na seta no inicio da linha para abrir os detalhes.
 <!-- No vazio do nada, em meio à névoa,
 Uma chama primordial, ainda que extinta, persiste.
@@ -30,13 +31,19 @@ A voz ecoou seu último suspiro.
 
 ## Sumário de Atualizações
 
-### Nota Especial de Dezembro 🎄🎉
-- **Eventos:** Espalhei um toque natalino, de ano novo e aniversário pelo nosso site. Descubra esses detalhes especiais como easter-eggs escondidos! 🥳
-- **Niver:** Dezembro é um mês duplamente especial, celebrando o nono (9º) aniversário da Íris do Legião Z. Sim, NOVE ANOS! Parabéns, Íris e Legião Z! 🎂
+<details>
+  <summary><code>1.1.1 - ?/?/2024 🥞 <strong>[BLINI RELEASE]</strong></code></summary>
+<!-- Ao som do Jhonny Guitar enquanto imagina ratos gigantes, Jazz (Smudge) Cat guarda com carinho seus blinis deliciosos na mesa depois de quase morrer na salada, ele te olha com um aviso: "Não mexa nos meus blinis ou você pode acordar em um mundo quadrado na segunda-feira, vestido de Steve, sem lasanha e refém do gato imortal Simon, meu saint irmão de gangue..." -->
+
+</details>
 
 <details>
   <summary><code>1.1.0 - 11/12/2023 🍊 <strong>[YUZU RELEASE]</strong></code></summary>
 <!-- Quando a vida te der uma Yuzu, chame a 'tia Mei' e faça um suco de Citrus! -->
+
+### Nota Especial de Dezembro 🎄🎉
+- **Eventos:** Espalhei um toque natalino, de ano novo e aniversário pelo nosso site. Descubra esses detalhes especiais como easter-eggs escondidos! 🥳
+- **Niver:** Dezembro é um mês duplamente especial, celebrando o nono (9º) aniversário da Íris do Legião Z. Sim, NOVE ANOS! Parabéns, Íris e Legião Z! 🎂
 
 ### Mural
 - Infelizmente, não tenho muitas novidades desta vez, devido a razões explicadas abaixo. Mesmo assim, me empenhei para criar alguns jogos na esperança de que apreciem. Não está perfeito, pois não pude dedicar tanto tempo à programar.

@@ -1,0 +1,1 @@
+Os backups serão inseridos nesta pasta, para corrigir erros de inicialização referentes a databases, basta extrair os arquivos de backup na pasta correta e substituir os mesmos.

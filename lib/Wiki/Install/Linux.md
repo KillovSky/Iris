@@ -2,7 +2,7 @@
 
 Este guia irá ajudá-lo a instalar a Íris no Linux usando um script e executando comandos específicos.
 
-O linux usado aqui será o PeppermintOS Debian, meu Linux atual, mas isso pode funcionar em quase todos os linux por ai, se o seu Linux for o Arch, um baseado nele ou um Linux que não use APT, esse guia não é para você, mas você pode simplesmente procurar por comandos substitutos ao APT desse guia para sua distro, e então seguir suas etapas finais.
+O linux que foi usado neste guia é o PeppermintOS Debian, meu Linux atual, mas isso pode funcionar em quase todos os linux por ai, se o seu Linux for o Arch, um baseado nele ou um Linux que não use APT, esse guia não é para você, mas você pode simplesmente procurar por comandos substitutos ao APT desse guia para sua distro, e então seguir suas etapas finais.
 
 ## 📝 Sumário
 
@@ -14,9 +14,13 @@ O linux usado aqui será o PeppermintOS Debian, meu Linux atual, mas isso pode f
     - [💌 Método Nº2 - Usando nano](#-método-nº2---usando-nano)
     - [🌐 Método Nº3 - Usando o Terminal WEB da Íris](#-método-nº3---usando-o-terminal-web-da-íris)
     - [🐔 Método Nº4 - Usando um Editor GUI](#-método-nº4---usando-um-editor-gui)
+    - [🌟 Método Nº5 - Usando o Editor Oficial da Íris](#-método-nº5---usando-o-editor-oficial-da-íris)
 5. [🏁 Etapas Finais](#-etapas-finais)
-6. [🙏 Finalizando](#-finalizando)
-7. [❗ Dicas](#-dicas)
+6. [🆙 Atualizando](#-atualizando)
+	- [❌ Conflitos](#-conflitos)
+	- [🔄 Recomeçando](#-recomeçando)
+7. [🙏 Finalizando](#-finalizando)
+8. [❗ Dicas](#-dicas)
 
 ## 🔎 O que é Linux?
 
@@ -148,7 +152,36 @@ Uma vez que você tenha instalado tudo, feito todos os procedimentos acima, siga
 
 5. Vá até `IrisBOT@Root#123` e apague-o, digite uma nova senha no lugar.
 
-6. Quando tiver terminado, salve e saia.
+6. Se desejar conectar por pairing code, vá até `pairingCode`, na frente de `value:` haverá `false`, troque-o por `true`.
+
+7. Quando tiver terminado, salve e saia.
+
+### 🌟 Método Nº5 - Usando o Editor Oficial da Íris
+- **AVISO:** Esse código não funcionará em sistemas CLI, para isso, você precisará instalar ou ter uma interface, o que pode ser complicado para iniciantes.
+
+1. Digite `cd && cd Iris && python lib/Scripts/jsonexplorer.py`
+    - Você também pode abrir isso por meio da opção 16 no `npm run toolbox`.
+
+2. Aperte carregar e localize o arquivo `config.json`.
+
+3. Vá em `owner` e aperte no botão de expandir, vá então para `value` e aperte em `0`, troque `MyNumber` por seu número.
+    - O número deve ser igual ao mostrado no WhatsApp, por exemplo: '55119987654321'
+    - Para inserir outro número, vá em `value` que está acima do `0` e aperte com botão direito do mouse, selecione `Add to Array`.
+    - Na janela de adicionar em array, digite `outroNúmero@s.whatsapp.net`, como por exemplo: `123@s.whatsapp.net`
+
+4. Aperte em `Save (Memory)` para guardar o valor enquanto estiver indo editar outros.
+    - Se você não apertar nesse botão, você perderá o valor que inseriu.
+
+5. Vá até `secretKey`, expanda como fez acima, aperte em `value`, troque `IrisBOT@Root#123` por uma nova senha SEGURA.
+    - Essa senha é o que determina se alguém sem dono pode executar comandos de dono.
+    - Você deve manter as aspas no inicio e fim da senha.
+    - Recomendação segura: Um misto de letras maiusculas, minusculas, números e simbolos, 8 digitos.
+    - Lembrando que isso é uma recomendação, se você confia nos usuários, pode usar qualquer senha.
+
+6. Se desejar conectar por pairing code, vá até `pairingCode`, aperte em `value`, troque `false` por `true`.
+    - Lembre de apertar em `Save (Memory)` a cada edição finalizada.
+
+7. Quando tiver terminado, aperte em `Salvar (Arquivo)` e pronto.
 
 ## 🏁 Etapas finais
 
@@ -156,7 +189,47 @@ Parabéns por chegar até aqui! Agora só resta iniciar e aproveitar, para isso,
 
 1. Digite `cd && cd Iris` para voltar até a pasta da Íris e então digite `npm start` para iniciar.
 
-2. Você receberá um QR code na tela, abra seu WhatsApp rapidamente e escaneie.
+2. Você receberá um QR code ou código de pareamento na tela, abra seu WhatsApp rapidamente e utilize-o.
+
+## 🆙 Atualizando
+
+Não atualize com isso se fez a instalação no modo `Universal`.
+Caso você queira atualizar sua Íris **mantendo as suas alterações**, acesse a pasta dela com o **terminal** e siga as etapas abaixo, se não quiser salvar alterações, pule a etapa 1 e 3.
+
+1. Execute `git stash` para guardar as alterações locais em um stash temporariamente.
+
+- O stash no Git é uma área temporária para armazenar alterações locais quando você precisa mudar de branch ou aplicar atualizações do repositório remoto sem fazer um commit, os comandos básicos são:
+
+> `git stash`: Armazena as alterações.  
+> `git stash list`: Lista as alterações armazenadas.  
+> `git stash apply`: Devolve as alterações salvas no stash.  
+> `git stash drop`: Remove o stash mais recente.  
+
+2. Execute o `git pull` para atualizar seu repositório local com as alterações do repositório remoto.
+
+3. Execute `git stash pop` para reaplicar suas alterações do stash, note que este comando aplica o stash mais recente e, em seguida, o descarta automaticamente.
+
+### ❌ Conflitos
+
+Se o git apontou conflitos entre suas alterações locais e as alterações do `git pull`, você infelizmente precisará resolver esses conflitos manualmente, sendo mais fácil recomeçar do zero e editar novamente.
+
+### 🔄 Recomeçando
+
+**Aviso:** Este método irá descartar todas as alterações locais, certifique-se de ter backup ou esteja ciente de que essas alterações serão perdidas.
+
+Se você deseja descartar completamente as alterações locais, incluindo aquelas no arquivo de configuração, e voltar para a atualização mais recente do repositório remoto, você pode usar esses passos para isso.
+
+1. Descarte as alterações locais:
+```bash
+git reset --hard HEAD # Isso irá redefinir o seu branch para o commit mais recente, descartando todas as alterações locais.
+git clean -fdx # Isso remove todos os arquivos não rastreados, incluindo aqueles que foram gerados localmente.
+```
+
+2. Obtenha a atualização executando `git pull`, feito isso, sua Íris deverá estar atualizada, igual ao repositório remoto.
+
+3. Execute `npm i` para reinstalar ou atualizar os módulos da Íris.
+
+4. Para finalizar, faça a [Configuração](#-configuração) e execute `npm start` para iniciar.
 
 ## 🙏 Finalizando
 

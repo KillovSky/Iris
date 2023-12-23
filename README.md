@@ -50,15 +50,14 @@ E na fronteira entre terror e renascimento, uma pergunta sempre ecoa:
 4. - [🔐 Segurança](#-segurança)
 5. - [📜 Código de Conduta](#-código-de-conduta)
 6. - [📖 Changelog](#-changelog)
-7. - [ℹ️ Outros](#ℹ%EF%B8%8F-outros)
+7. - [🔗 Website](#-website)
 8. - [💲 Doações](#-doações)
 9. - [📢 Considerações](#-considerações)
 10. - [📚 Guias de Instalação](#-guias-de-instalação)
 11. - [🌐 Outros Projetos](#-outros-projetos)
 12. - [📱 Redes Sociais](#-redes-sociais)
 13. - [🖊️ Guia de Modificação](#%EF%B8%8F-guia-de-modificação)
-14. - [🔗 Website](#-website)
-15. - [🚀 Finalização](#-finalização)
+14. - [🚀 Finalização](#-finalização)
 
 ## 📚 Informações Adicionais
 
@@ -68,10 +67,9 @@ Essas informações levam a arquivos focados exclusivamente no assunto em quest�
 2. - [🔐 Segurança](https://github.com/KillovSky/Iris/blob/main/.github/SECURITY.md)
 3. - [📜 Código de Conduta](https://github.com/KillovSky/Iris/blob/main/.github/CODE_OF_CONDUCT.md)
 4. - [📖 Changelog](https://github.com/KillovSky/Iris/blob/main/.github/CHANGELOG.md)
-5. - [ℹ️ Outros](http://htmlpreview.github.io/?https://raw.githubusercontent.com/KillovSky/Iris/main/lib/Wiki/About/index.html)
+5. - [🔗 Website](https://killovsky.github.io/Iris)
 6. - [💲 Doações](https://github.com/killovsky#-fundings)
 7. - [🖊️ Guia de Modificação](https://github.com/KillovSky/Iris/blob/main/lib/Wiki/Tutorial/Guide.md)
-8. - [🔗 Website](https://killovsky.github.io/Iris)
 
 ## ❓ O que é a Íris?
 
@@ -93,9 +91,9 @@ Este projeto segue um [Código de Conduta](https://github.com/KillovSky/Iris/blo
 
 Para verificar as últimas alterações, melhorias e correções neste projeto, consulte o nosso [Changelog](https://github.com/KillovSky/Iris/blob/main/.github/CHANGELOG.md).
 
-## ℹ️ Outros
+## 🔗 Website
 
-Algumas informações interessantes podem ser vistas em nossa página de [Informações](http://htmlpreview.github.io/?https://raw.githubusercontent.com/KillovSky/Iris/main/lib/Wiki/About/index.html), ainda que ela esteja em construção e possivelmente desatualizada.
+Agora temos um website para a Íris! Para acessá-lo, basta [clicar aqui](https://killovsky.github.io/Iris). Lembre-se de que a opção de login está destinada apenas a conexões locais. Tentar utilizá-la neste site levará você a uma página de erro. Além disso, escondi eastereggs na página.
 
 ## 💲 Doações
 
@@ -110,6 +108,7 @@ Essa versão do Projeto Íris ainda está em desenvolvimento, alguns bugs são e
 1. [Termux](https://github.com/KillovSky/Iris/blob/main/lib/Wiki/Install/Termux.md)
 2. [Windows](https://github.com/KillovSky/Iris/blob/main/lib/Wiki/Install/Windows.md)
 3. [Linux](https://github.com/KillovSky/Iris/blob/main/lib/Wiki/Install/Linux.md)
+4. [Universal (Instalação Automática)](https://github.com/KillovSky/Iris/blob/main/lib/Wiki/Install/Universal.md)
 
 - Se puder, ajude a melhorar nossos guias adicionando tutoriais, precisamos do seguintes sistemas ainda: MacOS, Solaris, Free/Open BSD, Aix ou qualquer outro guia relativo a um sistema que já não exista, você pode fazer guias para usos de VPS também.
 - Se desejar ajuda com sua instalação em tarefas simples após instalar a Íris, experimente usar `npm run toolbox`, isto é uma ferramenta que automatiza dezenas de tarefas, como atualizar, reinstalar e configurar.
@@ -130,10 +129,6 @@ Não estarei utilizando de suporte no WhatsApp, então você possui apenas essas
 ## 🖊️ Guia de Modificação
 
 Se você tem interesse em desenvolver comandos, contribuir ou explorar a funcionalidade da `envInfo`, recomendamos a leitura do nosso guia de programação de comandos, disponível [clicando aqui](https://github.com/KillovSky/Iris/blob/main/lib/Wiki/Tutorial/Guide.md). Vale ressaltar que, caso você seja iniciante em programação, é aconselhável adquirir conhecimentos básicos por meio de cursos ou guias introdutórios, pois não oferecemos suporte para aqueles que ainda não possuem familiaridade com programação.
-
-## 🔗 Website
-
-Agora temos um website para a Íris! Para acessá-lo, basta [clicar aqui](https://killovsky.github.io/Iris). Lembre-se de que a opção de login está destinada apenas a conexões locais. Tentar utilizá-la neste site levará você a uma página de erro. Além disso, escondi eastereggs na página.
 
 ## 🚀 Finalização
 

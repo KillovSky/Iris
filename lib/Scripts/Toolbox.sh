@@ -18,7 +18,8 @@ declare -A command_scripts=(
     ["13"]="bash lib/Scripts/jsonEditor.sh"
     ["14"]="bash lib/Scripts/PM2Install.sh"
     ["15"]="bash lib/Scripts/Requirements.sh"
-    ["16"]="printf '[ÍRIS] → Foi um prazer, volte sempre!\n'; exit"
+    ["16"]="printf '\n[ÍRIS] → Aguarde, carregando...\n' && python lib/Scripts/jsonexplorer.py"
+    ["17"]="printf '[ÍRIS] → Foi um prazer, volte sempre!\n'; exit"
 )
 
 # Define as opções do menu/seletor
@@ -38,7 +39,8 @@ options=(
     "13. Configurar os JSON's"
     "14. Instalar PM2"
     "15. Instalar programas"
-    "16. Sair"
+    "16. Editor JSON (GUI)"
+    "17. Sair"
 )
 
 # Verifica se o diretório atual é o correto

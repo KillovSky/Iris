@@ -1,0 +1,1 @@
+As sessões são armazenadas neste local, escaneie o código QR novamente quando as pastas estiverem pesando mais de 50 megabytes ou sua sessão estiver com lags.

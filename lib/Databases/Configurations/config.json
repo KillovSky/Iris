@@ -71,6 +71,7 @@
 		"description": "An array of users authorized to run any command.",
 		"value": ["MyNumber@s.whatsapp.net"]
 	},
+	"pairingCode": { "value": true, "description": "Defines if the connection should use pairing code instead of qrcode, minified to help termux edition by sed." },
 	"prefixes": {
 		"description": "Defines the prefixes recognized as commands. Does not affect noprefix commands.",
 		"value": [

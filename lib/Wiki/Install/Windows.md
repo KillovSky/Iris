@@ -1,6 +1,6 @@
 # ✏️ Guia de Instalação no Windows
 
-Este guia irá ajudá-lo a instalar a Íris no Windows com comandos e downloads específicos.
+Este guia irá ajudá-lo a instalar a Íris no Windows nativo com comandos e downloads específicos, se estiver usando WSL, utilize o guia para Linux.
 
 ## 📝 Sumário
 
@@ -21,9 +21,13 @@ Este guia irá ajudá-lo a instalar a Íris no Windows com comandos e downloads 
     - [👨‍💻 Método Nº1 - Usando CLI](#-método-nº1---usando-cli)
     - [💌 Método Nº2 - Usando um Editor](#-método-nº2---usando-um-editor)
     - [🌐 Método Nº3 - Usando o Terminal WEB da Íris](#-método-nº3---usando-o-terminal-web-da-íris)
+    - [🌟 Método Nº4 - Usando o Editor Oficial da Íris](#-método-nº4---usando-o-editor-oficial-da-íris)
 7. [🏁 Etapas Finais](#-etapas-finais)
 8. [🙏 Finalizando](#-finalizando)
-9. [❗ Dicas](#-dicas)
+9. [🆙 Atualizando](#-atualizando)
+	- [❌ Conflitos](#-conflitos)
+	- [🔄 Recomeçando](#-recomeçando)
+10. [❗ Dicas](#-dicas)
 
 ## 🔎 O que é Windows?
 
@@ -45,11 +49,12 @@ Antes de iniciar a instalação da Íris no Termux, certifique-se de atender aos
 10. Processador dual-core ou superior
 11. 4GB de espaço livre | Recomendado: 8GB
 
-Se certifique-se .
-
 ## ➕ Instalação adicional dos programas
 
 Baixe os executáveis primeiros e então volte aqui!
+
+- Dica: Se desejar pular a instalação de um programa, você pode simplesmente remover os códigos relacionados a ele no sistema de verificação presente no arquivo [Checker.js](https://github.com/KillovSky/Iris/blob/main/lib/Initialize/checker.js).
+- Mas tenha em mente que, se fizer isso, **NÃO HAVERÁ SUPORTE PARA ERROS NA SUA INSTALAÇÃO!**
 
 ### 🖥️ Windows 8 - 8.1 - 10 - 11
 
@@ -96,6 +101,7 @@ Após baixar o arquivo `sqlite-tools-win32-x86-3430200.zip` para Windows, você 
 ### 📱 Git Bash
 
 Após instalar, siga a etapa no final do guia para configurar sua PATH.
+Se certifique de usar `Git Bash` para abrir a Íris! O Windows 10 e 11 contém problemas ao executar `bash` no `PowerShell` ou `CMD`!
 
 1. Ao iniciar o instalador do `Git Bash`, ative a opção `Add a Git Bash Profile` e `Scalar`, prossiga.
 
@@ -188,15 +194,17 @@ Uma vez que você tenha instalado tudo, feito todos os procedimentos acima, siga
 
 3. Vá até onde possui `@s.whatsapp.net`, se tiver inserido um número antes, você verá ele ali.
 
-3. Vá até `MyNumber` e apague-o, digite seu número no lugar.
+4. Vá até `MyNumber` e apague-o, digite seu número no lugar.
 	- O número deve ser igual ao mostrado no WhatsApp, por exemplo: '55119987654321'
 
-4. Se já tiver editado antes, e quiser adicionar outro, vá até o final da linha, onde está `]` e apague-o, então adicione `, "outroNúmero@s.whatsapp.net"]`.
+5. Se já tiver editado antes, e quiser adicionar outro, vá até o final da linha, onde está `]` e apague-o, então adicione `, "outroNúmero@s.whatsapp.net"]`.
 	- Troque 'outroNúmero' pelo número em questão, no mesmo jeito da dica Nº3.
 
-5. Vá até `IrisBOT@Root#123` e apague-o, digite uma nova senha no lugar.
+6. Vá até `IrisBOT@Root#123` e apague-o, digite uma nova senha no lugar.
 
-6. Quando tiver terminado, salve e saia.
+7. Se desejar conectar por pairing code, vá até `pairingCode`, na frente de `value:` haverá `false`, troque-o por `true`.
+
+8. Quando tiver terminado, salve e saia.
 
 ### 🌐 Método Nº3 - Usando o Terminal WEB da Íris
 
@@ -225,6 +233,31 @@ Uma vez que você tenha instalado tudo, feito todos os procedimentos acima, siga
 	- Tenha em mente que processos demorados, como `npm i`, podem causar problemas ou levar uma eternidade para funcionar, só use o que você entender.
 	- Você também pode abrir jogos com isso, por exemplo, para abrir `GTA V` pela Steam: `Indexer('bash').bash('start steam://rungameid/271590').value;`
 	- Basicamente, tudo pode ser feito neste terminal, desde coisinhas simples de JavaScript a coisas avançadas, como instalações e demais, tanto na rede local, como em outro país.
+    
+### 🌟 Método Nº4 - Usando o Editor Oficial da Íris
+1. Digite `cd && cd Iris && python lib/Scripts/jsonexplorer.py`
+    - Você também pode abrir isso por meio da opção 16 no `npm run toolbox`.
+
+2. Aperte carregar e localize o arquivo `config.json`.
+
+3. Vá em `owner` e aperte no botão de expandir, vá então para `value` e aperte em `0`, troque `MyNumber` por seu número.
+    - O número deve ser igual ao mostrado no WhatsApp, por exemplo: '55119987654321'
+    - Para inserir outro número, vá em `value` que está acima do `0` e aperte com botão direito do mouse, selecione `Add to Array`.
+    - Na janela de adicionar em array, digite `outroNúmero@s.whatsapp.net`, como por exemplo: `123@s.whatsapp.net`
+
+4. Aperte em `Save (Memory)` para guardar o valor enquanto estiver indo editar outros.
+    - Se você não apertar nesse botão, você perderá o valor que inseriu.
+
+5. Vá até `secretKey`, expanda como fez acima, aperte em `value`, troque `IrisBOT@Root#123` por uma nova senha SEGURA.
+    - Essa senha é o que determina se alguém sem dono pode executar comandos de dono.
+    - Você deve manter as aspas no inicio e fim da senha.
+    - Recomendação segura: Um misto de letras maiusculas, minusculas, números e simbolos, 8 digitos.
+    - Lembrando que isso é uma recomendação, se você confia nos usuários, pode usar qualquer senha.
+
+6. Se desejar conectar por pairing code, vá até `pairingCode`, aperte em `value`, troque `false` por `true`.
+    - Lembre de apertar em `Save (Memory)` a cada edição finalizada.
+
+7. Quando tiver terminado, aperte em `Salvar (Arquivo)` e pronto.
 
 ## 🏁 Etapas finais
 
@@ -232,7 +265,47 @@ Parabéns por chegar até aqui! Agora só resta iniciar e aproveitar, para isso,
 
 1. Vá na pasta da Íris e abra o terminal Git Bash e então digite `npm start` para iniciar.
 
-2. Você receberá um QR code na tela, abra seu WhatsApp rapidamente e escaneie.
+2. Você receberá um QR code ou código de pareamento na tela, abra seu WhatsApp rapidamente e utilize-o.
+
+## 🆙 Atualizando
+
+Não atualize com isso se fez a instalação no modo `Universal`.
+Caso você queira atualizar sua Íris **mantendo as suas alterações**, acesse a pasta dela com o **terminal** e siga as etapas abaixo, se não quiser salvar alterações, pule a etapa 1 e 3.
+
+1. Execute `git stash` para guardar as alterações locais em um stash temporariamente.
+
+- O stash no Git é uma área temporária para armazenar alterações locais quando você precisa mudar de branch ou aplicar atualizações do repositório remoto sem fazer um commit, os comandos básicos são:
+
+> `git stash`: Armazena as alterações.  
+> `git stash list`: Lista as alterações armazenadas.  
+> `git stash apply`: Devolve as alterações salvas no stash.  
+> `git stash drop`: Remove o stash mais recente.  
+
+2. Execute o `git pull` para atualizar seu repositório local com as alterações do repositório remoto.
+
+3. Execute `git stash pop` para reaplicar suas alterações do stash, note que este comando aplica o stash mais recente e, em seguida, o descarta automaticamente.
+
+### ❌ Conflitos
+
+Se o git apontou conflitos entre suas alterações locais e as alterações do `git pull`, você infelizmente precisará resolver esses conflitos manualmente, sendo mais fácil recomeçar do zero e editar novamente.
+
+### 🔄 Recomeçando
+
+**Aviso:** Este método irá descartar todas as alterações locais, certifique-se de ter backup ou esteja ciente de que essas alterações serão perdidas.
+
+Se você deseja descartar completamente as alterações locais, incluindo aquelas no arquivo de configuração, e voltar para a atualização mais recente do repositório remoto, você pode usar esses passos para isso.
+
+1. Descarte as alterações locais:
+```bash
+git reset --hard HEAD # Isso irá redefinir o seu branch para o commit mais recente, descartando todas as alterações locais.
+git clean -fdx # Isso remove todos os arquivos não rastreados, incluindo aqueles que foram gerados localmente.
+```
+
+2. Obtenha a atualização executando `git pull`, feito isso, sua Íris deverá estar atualizada, igual ao repositório remoto.
+
+3. Execute `npm i` para reinstalar ou atualizar os módulos da Íris.
+
+4. Para finalizar, faça a [Configuração](#-configuração) e execute `npm start` para iniciar.
 
 ## 🙏 Finalizando
 

@@ -13,7 +13,9 @@ Este guia irá ajudá-lo a instalar a Íris no Termux usando um script e executa
     - [📁 Método Nº2 - Usando files](#-método-nº2---usando-files)
     - [💌 Método Nº3 - Usando nano](#-método-nº3---usando-nano)
     - [🌐 Método Nº4 - Usando o Terminal WEB da Íris](#-método-nº4---usando-o-terminal-web-da-íris)
+    - [🌟 Método Nº5 - Usando o Editor Oficial da Íris](#-método-nº5---usando-o-editor-oficial-da-íris)
 6. [🏁 Etapas Finais](#-etapas-finais)
+	- [📊 Usando o código de pareamento (BETA)](#-usando-o-código-de-pareamento-beta)
 	- [📞 Usando outro telefone](#-usando-outro-telefone)
 	- [🤳 Usando dois espelhos e um pouco de mágica (habilidade)](#-usando-dois-espelhos-e-um-pouco-de-mágica-habilidade)
 7. [🆙 Atualizando](#-atualizando)
@@ -114,6 +116,8 @@ Uma vez que você tenha instalado tudo, feito todos os procedimentos acima, siga
 
 2. Para mudar a senha padrão, digite: `cd && cd Iris && sed -i 's/IrisBOT@Root#123/NovaPassword/g' lib/Databases/Configurations/config.json`.
 
+3. Para ativar a conexão por pairing code, digite: `cd && cd Iris && sed -i 's/"pairingCode": { "value": false,/"pairingCode": { "value": true,/g' lib/Databases/Configurations/config.json`.
+
 ### 📁 Método Nº2 - Usando files
 
 1. Se você digitou `termux-setup-storage` antes de instalar Ubuntu, continue, se não, saia do Ubuntu e digite, depois conecte ao Ubuntu novamente e vá para a pasta da Íris.
@@ -124,7 +128,7 @@ Uma vez que você tenha instalado tudo, feito todos os procedimentos acima, siga
 
 4. Parabéns, você agora está na pasta da Íris, aperte no arquivo que quer editar e abra com seu editor de código favorito.
 
-5. Siga as dicas abaixo ou acima sobre a edição do número de dono, se certifique de mudar também a senha padrão.
+5. Siga as dicas abaixo ou acima sobre o formato do número de dono e pairing code, se certifique de mudar também a senha padrão.
 
 ### 💌 Método Nº3 - Usando nano
 
@@ -138,10 +142,12 @@ Uma vez que você tenha instalado tudo, feito todos os procedimentos acima, siga
 
 4. Se já tiver editado antes, e quiser adicionar outro, vá até o final da linha, onde está `]` e apague-o, então adicione `, "outroNúmero@s.whatsapp.net"]`.
 	- Troque 'outroNúmero' pelo número em questão, no mesmo jeito da dica Nº3.
-    
+
 5. Vá até `IrisBOT@Root#123` e apague-o, digite uma nova senha no lugar.
 
-6. Quando tiver terminado, aperte `Control + O` e então aperte `Enter`, você terá inserido com sucesso seu número, então aperte `Control + X` para sair.
+6. Se desejar conectar usando o código de pareamento, vá até `pairingCode` e troque o `false` abaixo para `true`.
+
+7. Quando tiver terminado, aperte `Control + O` e então aperte `Enter`, você terá inserido com sucesso seu número, então aperte `Control + X` para sair.
 
 ### 🌐 Método Nº4 - Usando o Terminal WEB da Íris
 
@@ -171,13 +177,49 @@ Uma vez que você tenha instalado tudo, feito todos os procedimentos acima, siga
 	- Você também pode abrir jogos com isso, por exemplo, para abrir `GTA V` pela Steam: `Indexer('bash').bash('start steam://rungameid/271590').value;`
 	- Basicamente, tudo pode ser feito neste terminal, desde coisinhas simples de JavaScript a coisas avançadas, como instalações e demais, tanto na rede local, como em outro país.
 
+### 🌟 Método Nº5 - Usando o Editor Oficial da Íris
+- **AVISO:** Esse código não funcionará em sistemas CLI, para isso, você precisará instalar ou ter uma interface, o que pode ser complicado para iniciantes.
+
+1. Digite `cd && cd Iris && python lib/Scripts/jsonexplorer.py`
+    - Você também pode abrir isso por meio da opção 16 no `npm run toolbox`.
+
+2. Aperte carregar e localize o arquivo `config.json`.
+
+3. Vá em `owner` e aperte no botão de expandir, vá então para `value` e aperte em `0`, troque `MyNumber` por seu número.
+    - O número deve ser igual ao mostrado no WhatsApp, por exemplo: '55119987654321'
+    - Para inserir outro número, vá em `value` que está acima do `0` e aperte com botão direito do mouse, selecione `Add to Array`.
+    - Na janela de adicionar em array, digite `outroNúmero@s.whatsapp.net`, como por exemplo: `123@s.whatsapp.net`
+
+4. Aperte em `Save (Memory)` para guardar o valor enquanto estiver indo editar outros.
+    - Se você não apertar nesse botão, você perderá o valor que inseriu.
+
+5. Vá até `secretKey`, expanda como fez acima, aperte em `value`, troque `IrisBOT@Root#123` por uma nova senha SEGURA.
+    - Essa senha é o que determina se alguém sem dono pode executar comandos de dono.
+    - Você deve manter as aspas no inicio e fim da senha.
+    - Recomendação segura: Um misto de letras maiusculas, minusculas, números e simbolos, 8 digitos.
+    - Lembrando que isso é uma recomendação, se você confia nos usuários, pode usar qualquer senha.
+    - Lembre de apertar em `Save (Memory)` a cada edição finalizada.
+
+6. Se desejar conectar por pairing code, vá até `pairingCode`, aperte em `value`, troque `false` por `true`.
+    - Lembre de apertar em `Save (Memory)` a cada edição finalizada.
+
+7. Quando tiver terminado, aperte em `Salvar (Arquivo)` e pronto.
+
 ## 🏁 Etapas finais
 
 Parabéns por chegar até aqui! Agora só resta iniciar e aproveitar, para isso, siga os próximos passos:
 
 1. Digite `cd && cd Iris` para voltar até a pasta da Íris e então digite `npm start` para iniciar.
 
-2. Você receberá um QR code na tela, para escanear você tem duas alternativas, abaixo você verá as formas.
+2. Você receberá um QR code na tela ou um código se ativar a `pairingCode`, para logar você tem três alternativas, abaixo você verá as formas.
+
+### 📊 Usando o código de pareamento (BETA)
+
+1. Na tela do Termux haverá um código de 8 digitos, anote-o e seja rápido!
+
+2. Vá para o WhatsApp e acesse "Aparelhos Conectados > Conectar um novo Aparelho", ou onde você escaneia QR Codes, então aperte em "Conectar usando Número".
+
+3. Digite o código anotado e aguarde conectar.
 
 ### 📞 Usando outro telefone
 
@@ -201,7 +243,8 @@ Parabéns por chegar até aqui! Agora só resta iniciar e aproveitar, para isso,
 
 ## 🆙 Atualizando
 
-Caso você queira atualizar sua iris **mantendo as suas alterações**, acesse a pasta dela com o **terminal** e siga isso:
+Não atualize com isso se fez a instalação no modo `Universal`.
+Caso você queira atualizar sua Íris **mantendo as suas alterações**, acesse a pasta dela com o **terminal** e siga as etapas abaixo, se não quiser salvar alterações, pule a etapa 1 e 3.
 
 1. Execute `git stash` para guardar as alterações locais em um stash temporariamente.
 
