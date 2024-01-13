@@ -134,11 +134,6 @@
             "description": "Armazena a mensagem do último erro recebido.",
             "type": "Boolean / String",
             "value": false
-        },
-        "nomeDaVariavel": {
-            "description": "Descrição do que ela faz",
-            "type": "Tipo de variavel",
-            "value": "O valor dela, deve ser igual ao tipo dito acima"
         }
     },
     "results": {

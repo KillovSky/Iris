@@ -9,6 +9,9 @@
         "Restrict": [
             "Esse comando é restrito para somente administradores, dono de grupo, meu chefe ou moderadores, quem sabe um dia você entre em uma dessas listas."
         ],
+        "Unauthorized": [
+            "Olá intruso, esta é uma área exclusiva, apenas para pessoal autorizado - como eu e meus chefes, ninguém mais é permitido por aqui! 🌌🛸"
+        ],
         "Timestamp": [
             "{days} dias | {hours} horas | {minutes} minutos | {seconds} segundos"
         ],
@@ -41,6 +44,9 @@
         "Restrict": [
             "عذرا,لكن هذا الامر فقط للمشرفين"
         ],
+        "Unauthorized": [
+            "مرحبًا، يا متسلل! هذا مكان حصري، مخصص للموظفين المصرّح لهم فقط - مثلي ومدرائي، لا يُسمح لأحد آخر بالدخول هنا! 🌌🛸"
+        ],
         "Timestamp": [
             "{days} أيام | {hours} ساعات | {minutes} دقائق | {seconds} ثواني"
         ],
@@ -64,6 +70,9 @@
         ]
     },
     "jp": {
+        "Unauthorized": [
+            "こんにちは、侵入者さん！これは専用エリアで、私と私の上司のような認可されたスタッフだけが許可されています。他の誰もここに立ち入ることはできません！🌌🛸"
+        ],
         "User": [
             "📚 _システム ヘルプ メニューへようこそ_ *'{name}'*\n\n🔎 _このシステムの責任:_ *'{description}'*\n\n❗ _O 一般的な使用これの作成者:_ *'{usage.general}'*\n\n➖ _いくつかの例_ *[DEV 用のものを含む]*_:_\n{usage.examples}\n❓ _エイリアス:_\n{alias}\n\n👀 _+:_\n{helps}"
         ],
@@ -96,6 +105,9 @@
         ]
     },
     "en": {
+        "Unauthorized": [
+            "Hello intruder! This is an exclusive area, only for authorized personnel - like me and my bosses, no one else is allowed here! 🌌🛸"
+        ],
         "User": [
             "📚 _Welcome to the system help menu_ *'{name}'*\n\n🔎 _This system is responsible for:_ *'{description}'*\n\n❗ _O general use of this is made by:_ *'{usage.general}'*\n\n➖ _Some examples_ *[Including those for DEVs]*_:_\n{usage.examples}\n❓ _Alias:_\n{alias}\n\n👀 _Extra:_\n{helps}"
         ],
@@ -128,6 +140,9 @@
         ]
     },
     "fr": {
+        "Unauthorized": [
+            "Salut intrus ! C'est une zone exclusive, réservée au personnel autorisé - comme moi et mes patrons, personne d'autre n'est autorisé ici ! 🌌🛸"
+        ],
         "User": [
             "📚 _Bienvenue dans le menu d'aide du système_ *'{name}'*\n\n🔎 _Ce système est responsable de:_ *'{description}'*\n\n❗ _O utilisation générale de ceci est fait par:_ *'{usage.general}'*\n\n➖ _Quelques exemples_ *[Y compris ceux pour les DEV]*_:_\n{usage.examples}\n❓ _Alias:_\n{alias}\n\n👀 _Extra:_\n{helps}"
         ],
@@ -160,6 +175,9 @@
         ]
     },
     "es": {
+        "Unauthorized": [
+            "¡Hola intruso! Esta es un área exclusiva, solo para personal autorizado, como yo y mis jefes, ¡nadie más tiene permitido estar aquí! 🌌🛸"
+        ],
         "User": [
             "📚 _Bienvenido al menú de ayuda del sistema_ *'{name}'*\n\n🔎 _Este sistema es responsable de:_ *'{description}'*\n\n❗ _O uso general de esto está hecho por:_ *'{usage.general}'*\n\n➖ _Algunos ejemplos_ *[Incluyendo aquellos para DEV]*_:_\n{usage.examples}\n❓ _Alias:_\n{alias}\n\n👀 _Extra:_\n{helps}"
         ],
@@ -192,6 +210,9 @@
         ]
     },
     "id": {
+        "Unauthorized": [
+            "Halo penyusup! Ini adalah area eksklusif, hanya untuk personel yang diotorisasi - seperti saya dan bos-bos saya, tidak ada orang lain yang diizinkan di sini! 🌌🛸"
+        ],
         "User": [
             "📚 _Selamat datang di menu bantuan sistem_ *'{name}'*\n\n🔎 _Sistem ini bertanggung jawab untuk:_ *'{description}'*\n\n❗ _Penggunaan umum ini dilakukan oleh:_ *'{usage.general}'*\n\n➖ _Beberapa contoh_ *[Termasuk untuk DEV]*_:_\n{usage.examples}\n❓ _Alias:_\n{alias}\n\n👀 _Extra:_\n{helps}"
         ],
@@ -224,6 +245,9 @@
         ]
     },
     "ms": {
+        "Unauthorized": [
+            "Hai penyusup! Ini adalah kawasan eksklusif, hanya untuk kakitangan yang dibenarkan - seperti saya dan bos-bos saya, tidak sesiapa yang dibenarkan di sini! 🌌🛸"
+        ],
         "User": [
             "📚 _Selamat datang ke menu bantuan sistem_ *'{name}'*\n\n🔎 _Sistem ini bertanggungjawab untuk:_ *'{description}'*\n\n❗ _Penggunaan umum ini dilakukan oleh:_ *'{usage.general}'*\n\n➖ _Beberapa contoh_ *[Termasuk yang untuk DEV]*_:_\n{usage.examples}\n❓ _Alias:_\n{alias}\n\n👀 _Extra:_\n{helps}"
         ],
@@ -256,6 +280,9 @@
         ]
     },
     "hi": {
+        "Unauthorized": [
+            "नमस्कार अतिक्रमणकर्ता! यह एक विशेष क्षेत्र है, केवल अधिकृत कर्मचारियों के लिए - जैसे मुझे और मेरे बॉस, यहां किसी को भी आने की अनुमति नहीं है! 🌌🛸"
+        ],
         "User": [
             "📚 _सिस्टम सहायता मेनू में आपका स्वागत है_ *'{name}'*\n\n🔎 _यह सिस्टम इसके लिए ज़िम्मेदार है:_ *'{description}'*\n\n❗ _इसका सामान्य उपयोग इसके द्वारा किया जाता है:_ *'{usage.general}'*\n\n➖ _कुछ उदाहरण_ *[DEVs सहित]*_:_\n{usage.examples}\n❓ _उपनाम:_\n{alias}\n\n👀 _Extra:_\n{helps}"
         ],
@@ -288,6 +315,9 @@
         ]
     },
     "de": {
+        "Unauthorized": [
+            "Hallo Eindringling! Dies ist ein exklusiver Bereich, nur für autorisiertes Personal - wie mich und meine Chefs, hier darf niemand sonst sein! 🌌🛸"
+        ],
         "User": [
             "📚 _Willkommen im Hilfemenü des Systems_ *'{name}'*\n\n🔎 _Dieses System ist verantwortlich für:_ *'{description}'*\n\n❗ _Die allgemeine Verwendung erfolgt durch:_ *'{usage.general}'*\n\n➖ _Einige Beispiele_ *[einschließlich derer für DEVs]*_:_\n{usage.examples}\n❓ _Alias:_\n{alias}\n\n👀 _Extra:_\n{helps}"
         ],
@@ -320,6 +350,9 @@
         ]
     },
     "it": {
+        "Unauthorized": [
+            "Ciao intruso! Questa è un'area esclusiva, solo per il personale autorizzato - come me e i miei capi, qui non è permesso a nessun altro di entrare! 🌌🛸"
+        ],
         "User": [
             "📚 _Benvenuto nel menu di aiuto del sistema_ *'{name}'*\n\n🔎 _Questo sistema è responsabile di:_ *'{description}'*\n\n❗ _L'uso generale di questo è fatto da:_ *'{usage.general}'*\n\n➖ _Alcuni esempi_ *[Inclusi quelli per DEV]*_:_\n{usage.examples}\n❓ _Alias:_\n{alias}\n\n👀 _Extra:_\n{helps}"
         ],
@@ -352,6 +385,9 @@
         ]
     },
     "ru": {
+        "Unauthorized": [
+            "Привет, нарушитель! Это эксклюзивная зона, только для авторизованного персонала - как я и мои начальники, никто другой здесь не допускается! 🌌🛸"
+        ],
         "User": [
             "📚 _Добро пожаловать в меню справки системы_ *'{name}'*\n\n🔎 _Эта система отвечает за:_ *'{description}'*\n\n❗ _Общее использование этого осуществляется:_ *'{usage.general}'*\n\n➖ _Некоторые примеры_ *[В том числе для DEV]*_:_\n{usage.examples}\n❓ _Псевдоним:_\n{alias}\n\n👀 _Extra:_\n{helps}"
         ],
@@ -384,6 +420,9 @@
         ]
     },
     "lat": {
+        "Unauthorized": [
+            "Salve intruso! Hic est area exclusiva, tantum pro personali auctoritato - sicut ego et mei dominis, nemo alius hic admittitur! 🌌🛸"
+        ],
         "User": [
             "📚 _Welcome to the system help menu_ *'{name}'*\n\n🔎 _Haec ratio responsabilis est:_ *'{description}'*\n\n❗ _ Communis usus huius rei ab:_ *'{usage.general}'*\n\n➖ _Quaedam exempla_ *[Including his for DEVs]*_:_\n{usage.examples}\n❓ _Alias:_\n{alias}\n\n👀 _Extra:_\n{helps}"
         ],

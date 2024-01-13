@@ -103,7 +103,15 @@
 	},
 	"stickerAuthor": {
 		"description": "Sets the author of the created stickers. Keep as default to generate automatic names based on group and user names. Keep the default (optional) to support official devs XD.",
-		"value": "DONTEDITUSER 🎁\nDONTEDITFROM 📱\nDONTEDITBY [bit.ly/BOT-IRIS] 🌐\nDONTEDITMADEAS 📅"
+		"value": "DONTEDITUSER 🎁\nDONTEDITFROM 📱\nDONTEDITBY [linktr.ee/killovsky] 🌐\nDONTEDITMADEAS 📅"
+	},
+    "stickerColors": {
+		"description": "The amount of colors to use into ATTP, more you set, more slow will be.",
+		"value": 5
+	},
+    "stickerFPS": {
+		"description": "The FPS rate of ATTP stickers, more fps is equal to more faster color will change.",
+		"value": 10
 	},
 	"stickerPack": {
 		"description": "Specifies the pack of stickers. Keep the default to create stickers based on information.",
@@ -115,6 +123,10 @@
 	},
 	"tagAdmins": {
 		"description": "Determines whether Íris should tag administrators when she detects and sends spam alerts in a group.",
+		"value": true
+	},
+    "useBanner": {
+		"description": "This controls if Íris should use a banner inside the menu or just send the text, the default banner as made by JoJo.",
 		"value": true
 	},
 	"waitMessage": {

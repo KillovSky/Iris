@@ -186,6 +186,8 @@ Uma vez que você tenha instalado tudo, feito todos os procedimentos acima, siga
 
 2. Para mudar a senha padrão, digite: `sed -i 's/IrisBOT@Root#123/NovaPassword/g' lib/Databases/Configurations/config.json`.
 
+3. Para ativar a conexão por pairing code, digite: `cd && cd Iris && sed -i 's/"pairingCode": { "value": false,/"pairingCode": { "value": true,/g' lib/Databases/Configurations/config.json`.
+
 ### 💌 Método Nº2 - Usando um Editor
 
 1. Vá até a pasta da Íris e acesse as pastas lib, Databases, Configurations.

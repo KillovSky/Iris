@@ -20,7 +20,7 @@ E na fronteira entre terror e renascimento, uma pergunta sempre ecoa:
 
 "Inaceso, a chama da vida que possuis ainda cintila digna de conduzir-te a um ciclo inatingível?" -->
 <p align="center">
-    <img align="center" src="https://github.com/KillovSky/Iris/assets/55511420/02dc76b6-2c7e-4fc0-af67-49d359b116f3" width="512" height="320">
+    <img align="center" src="https://github.com/KillovSky/Iris/assets/55511420/51e213a0-4800-4d1d-b474-7f82064c302b" width="512" height="320">
 </p>
 <p align="center">
     <a align="center" href="https://bento.me/jocosta">Banner by Jojo</a>
@@ -29,7 +29,7 @@ E na fronteira entre terror e renascimento, uma pergunta sempre ecoa:
     <h1 align="center">Projeto Íris</h1>
     <a href="https://github.com/KillovSky/iris/blob/main/LICENSE"><img alt="GitHub License" src="https://img.shields.io/github/license/KillovSky/Iris?color=blue&label=Licence&style=flat-square"></a>
     <a href="https://github.com/KillovSky/iris"><img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/KillovSky/iris?label=Tamanho&style=flat-square"></a>
-    <a href="https://github.com/KillovSky/iris"><img alt="GitHub Languages" src="https://img.shields.io/github/languages/count/KillovSky/Iris?label=Linguagens&style=flat-square"></a>
+    <a href="https://github.com/KillovSky/iris"><img alt="GitHub Languages" src="https://img.shields.io/github/languages/count/KillovSky/Iris?label=Programmings&style=flat-square"></a>
     <a href="https://github.com/KillovSky/Iris/blob/main/.github/CHANGELOG.md"><img alt="GitHub Version" src="https://img.shields.io/github/package-json/v/KillovSky/Iris?label=Build&style=flat-square"></a>
     <a href="https://github.com/KillovSky/Iris/blob/main/.github/CHANGELOG.md"><img alt="Project Versioning" src="https://img.shields.io/github/package-json/build_name/KillovSky/Iris?label=Codename"></a>
     <a href="https://github.com/KillovSky/Iris/blob/main/.github/CHANGELOG.md"><img alt="Last Release" src="https://img.shields.io/github/package-json/build_date/KillovSky/Iris?label=Update"></a>

@@ -1,5 +1,5 @@
 # Projeto Íris
-- [Colabore conosco](https://bit.ly/BOT-IRIS), juntos podemos deixar esse código com a definição perfeita do que é OpenSource.
+- [Colabore conosco](https://linktr.ee/killovsky), juntos podemos deixar esse código com a definição perfeita do que é OpenSource.
 - Note que as atualizações não tem datas para sair, sendo que elas são lançadas quando considero adequadas para postagem.
 - Toda versão terá seu codename de release, assim como o Ubuntu e o Android fazem, mas na Íris, isso é apenas para se divertir e o nome dado não reflete as atualizações, quem sabe você encontre algum easter-egg *OCULTO* por aqui...
 - Algumas atualizações são complementos de outras, elas não serão colocadas nesta changelog por agora, se desejar ver detalhes, procure por commits que começam com o nome da build que usa.
@@ -32,8 +32,94 @@ A voz ecoou seu último suspiro.
 ## Sumário de Atualizações
 
 <details>
-  <summary><code>1.1.1 - ?/?/2024 🥞 <strong>[BLINI RELEASE]</strong></code></summary>
-<!-- Ao som do Jhonny Guitar enquanto imagina ratos gigantes, Jazz (Smudge) Cat guarda com carinho seus blinis deliciosos na mesa depois de quase morrer na salada, ele te olha com um aviso: "Não mexa nos meus blinis ou você pode acordar em um mundo quadrado na segunda-feira, vestido de Steve, sem lasanha e refém do gato imortal Simon, meu saint irmão de gangue..." -->
+  <summary><code>1.1.1 - 13/01/2024 🥞 <strong>[BLINI RELEASE]</strong></code></summary>
+<!-- Ao som do Jhonny Guitar enquanto imagina ratos gigantes, Jazz (Smudge) Cat guarda com carinho seus blinis deliciosos na mesa depois de quase morrer na salada enquanto era cacoado por uma mulher euforica, ele te olha com um aviso: "Não mexa nos meus blinis ou você pode acordar em um mundo quadrado na segunda-feira, vestido de Steve (Smith), sem lasanha e refém do gato imortal Simon, meu irmão de gangue (saints)..." -->
+
+### Mural
+- E quase 1 mês depois...estou de volta! Fiz os diversos exames medicos, ainda não tenho os resultados, somente no fim do mês, mas por agora, após descansar bastante, me sinto bem renovado, então estou confiante de que era um baita estresse mental apenas, mas vamos aguardar para ver.
+
+- Essa atualização foi feita em alguns dias, já que faz pouco tempo que voltei, o Banner da página inicial é outra criação do nosso querido designer [Jojo](https://bento.me/jocosta) com base em uma imagem oficial da Íris, a próxima atualização pode não conter um banner, pois ele acabou tendo um acidente e está em recuperação, mas claro, farei uma nova foto linda (embora as edits dele sejam edições excepcionais) no lugar! E não menos importante, desejo(amos) melhoras, Jojo.
+
+- Agora temos um novo link geral, devido a bitly bloquear a URL da Íris por conta da quantidade de acessos, basta [Clicar Aqui](https://linktr.ee/killovsky).
+
+### Novidades
+1. **Cheats**
+    - Adicionado sistema para roubar nos jogos e leveling, mas claro, você não faria isso, né?
+    - Há limitações por questões de segurança, mas em geral, o sistema se encontra bem poderoso, rápido e funcional.
+
+2. **TTP**
+    - Adicionei o sistema de TTP e ATTP, assim você poderá gerar stickers apartir de textos.
+    - Ele é apenas uma base universal, ou seja, rodará em qualquer PC sem precisar de códigos adicionais.
+    - Por conta da questão acima, sua qualidade é inferior ao comando de outros BOTs ou APIs por ai, mas olhe o lado bom, OFFLINE E ILIMITADO!
+
+3. **Banner**
+    - Adicionado um banner configuravél no menu, para tornar ele bonitão!
+    - Você pode mudar o banner trocando a imagem na pasta 'Cache' dentro da pasta 'Default' na pasta de comandos.
+    - O banner será atualizado a cada update de codename, embora, caso não seja possivel fazer banners, uma nova foto da Íris será usada.
+
+4. **Anti-links**
+    - Adicionado um antilinks poderoso, com três formas de operação: TUDO, URLs inseguras e Convites!
+    - O sistema de links inseguros banirá qualquer link pornografico, apostas, virus, fakenews ou similares.
+    - Ele tem construção baseada no conceito de um adblocker que opera com arquivo hosts, por isso, as URLs estão em um arquivo TXT, edite-o para bloquear mais URLs!
+
+5. **Censura**
+    - Adicionado um comando para limitar o grupo para apenas administradores e vice-versa.
+
+6. **Existence**
+    - Adicionado uma função para DEVs que verifica a existência de uma URL de forma rápida, está presente no sistema others.
+
+7. **RegExp**
+    - Adicionado mais informações no sistema de verificação de URL por RegExp.
+
+8. **WAME**
+    - Adicionado sistema de marcar com direito a receber o número, assim como o link wame, do mencionado.
+
+9. **EslintRC**
+    - Adicionado novas regras no arquivo do eslint.
+
+10. **Íris**
+    - Novas imagens da nossa querida Íris, liberadas!
+    - Nova historia da foto disponivel [Clicando Aqui](https://t.me/IRISPROJECT/126).
+    - Todas as novas fotos terão uma história narrativa breve, pois estou entrando no mundo da escrita, arte e música, usarei a Íris como treino!
+
+11. **Outros**
+    - Como sempre, tenho pessima memoria...
+
+### Correções
+1. **Handler**
+    - O handler não verificava pela presença de argumentos, o que fazia ele dizer que rodou, quando não o fez realmente.
+
+2. **Typings**
+    - Removi linhas inúteis e melhorei as que podiam ser simplificadas.
+
+3. **SQL**
+    - Aplicado uma limpeza de caracteres especiais no SQL, assim reduzirá os riscos da função recusar a operação do comando.
+    - Em contrapartida, isso pode levar a erros em nomes, por favor, evite usar nomes com simbolos especiais, letras modificadas ou emojis.
+
+4. **Message**
+    - Corrigido um erro que fazia a print da mensagem falhar ao ser exibida no terminal, se isso ocorrer, um simbolo de interrogação será usado.
+
+5. **Strings**
+    - Normalizado o uso da função Strings, que estava retornando o valor direto, não permitindo a checagem da key de sucesso ou demais.
+
+6. **RegExp**
+    - Corrigido erros de type no sistema de RegExp, agora usamos módulos de verificação de URL em conjunto.
+
+7. **Verifiers**
+    - O uso dela anteriormente estava incorreto no exemplo, não mais.
+
+8. **Tesseract**
+    - Desativado temporariamente a verificação do tesseract, já que ainda não há comandos com ele.
+
+9. **URL**
+    - Corrigido a URL que foi banida pela bitly.
+
+10. **Outros**
+    - Como sempre, tenho pessima memoria...
+
+### Removido
+1. **Metrics**
+    - Arquivo morto que foi restaurado na limpeza das commits, era inútil.
 
 </details>
 
@@ -49,8 +135,6 @@ A voz ecoou seu último suspiro.
 - Infelizmente, não tenho muitas novidades desta vez, devido a razões explicadas abaixo. Mesmo assim, me empenhei para criar alguns jogos na esperança de que apreciem. Não está perfeito, pois não pude dedicar tanto tempo à programar.
 
 - Estou dando uma pausa temporária no desenvolvimento da Íris devido a problemas de saúde. Marquei exames para este mês, e o tempo restante foi aconselhado para descanso e cuidados físicos e mentais. Pretendo retornar o mais breve possível.
-
-- Quanto à próxima atualização, ela *pode ou não* ser considerada parte da *Yuzu Release*, já que esta atualização ficou abaixo das expectativas devido às circunstâncias. Agradeço pela compreensão e apoio de todos.
 
 - Não haverá mais uma equipe oficial, devido à falta de apoio da comunidade e da antiga equipe oficial. Assim que eu voltar, assumirei a produção sozinho e elaborarei o código da maneira que EU considerar necessária. Não pedirei mais por ajuda e não darei prioridade a pedidos ou sugestões.
 

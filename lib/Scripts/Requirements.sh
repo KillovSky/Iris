@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 # Script para verificar e instalar programas essenciais em diferentes sistemas operacionais
+# É RECOMENDADO A INSTALAÇÃO MANUAL, EVITE ESSE SCRIPT!
 
 # Detecta o sistema operacional
 os=$(uname -s | tr '[:upper:]' '[:lower:]')

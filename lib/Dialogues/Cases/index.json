@@ -1,5 +1,8 @@
 {
     "pt": {
+        "Stranded": [
+            "Oopsie-doodle! Parece que temos uma pequena confusão aqui. 🤷‍♂️ Verifique o manual usando *'{prefix}{command} --help'* ou, se você for o boss, dê uma conferida no console. Se a coisa ficar séria, chame os devs para salvar o dia! 🚀"
+        ],
         "None": [
             "Não pude rodar seu pedido, pois o comando que você usou não é parte do meu sistema, falta uma forma de uso ou não posso fazer essa solicitação com as pessoas que pediu, se houver alguma, por favor, verifique sua forma de uso."
         ],
@@ -29,6 +32,9 @@
         ]
     },
     "ar": {
+        "Stranded": [
+            "أوبسي-دودل! يبدو أن هناك بعض الالتباس هنا. 🤷‍♂️ تحقق من الدليل باستخدام *'{prefix}{command} --help'* أو ، إذا كنت رئيسًا ، فتحقق من وحدة التحكم. إذا كانت الأمور خطيرة ، اتصل بالمسؤولين أو المطورين للمساعدة. 🚀"
+        ],
         "None": [
             "لا يمكنني  تشغيل طلبك لان الامر الذي استخدمته ليس جزء بنظامي، لا يمكنني عمل هذا لان طريقة الاستخدام غلط او انا لا املك الإذن لأستخدم الأشخاص المذكورين، افحص استخدامك"
         ],
@@ -58,6 +64,9 @@
         ]
     },
     "jp": {
+        "Stranded": [
+            "ウプシーデュードル！ ここでちょっと混乱しているようです。 🤷‍♂️ *'{prefix}{command} --help'*を使用してマニュアルをチェックするか、上司ならコンソールを確認してください。本気ならデベロッパーを呼んで助けてもらいましょう！ 🚀"
+        ],
         "Demote": [
             "デモート：私たちの小さな犯罪グループでボスが減りました...",
             "わかりました、これからはもう私たちの権限チームの一員ではありません。"
@@ -87,6 +96,9 @@
         ]
     },
     "en": {
+        "Stranded": [
+            "Oopsie-doodle! Looks like we've got a little mix-up here. 🤷‍♂️ Check the manual using *'{prefix}{command} --help'* or, if you're the boss, take a peek at the console. If things get serious, call in the devs to save the day! 🚀"
+        ],
         "Demote": [
             "Demote: Fewer bosses in our small crime group...",
             "Alright, they won't be part of our authorities team anymore."
@@ -116,6 +128,9 @@
         ]
     },
     "fr": {
+        "Stranded": [
+            "Oopsie-doodle ! On dirait qu'il y a un petit problème ici. 🤷‍♂️ Consultez le manuel en utilisant *'{prefix}{command} --help'* ou, si vous êtes le boss, jetez un œil à la console. Si les choses deviennent sérieuses, appelez les devs pour sauver la situation ! 🚀"
+        ],
         "Demote": [
             "Rétrograder : Moins de chefs dans notre petit groupe criminel...",
             "D'accord, ils ne feront plus partie de notre équipe d'autorités."
@@ -145,6 +160,9 @@
         ]
     },
     "es": {
+        "Stranded": [
+            "¡Oopsie-doodle! Parece que tenemos un pequeño lío aquí. 🤷‍♂️ Consulta el manual usando *'{prefix}{command} --help'* o, si eres el jefe, echa un vistazo a la consola. Si las cosas se ponen serias, llama a los devs para salvar el día! 🚀"
+        ],
         "Demote": [
             "Degradar: Menos jefes en nuestro pequeño grupo criminal...",
             "Está bien, ya no serán parte de nuestro equipo de autoridades."
@@ -174,6 +192,9 @@
         ]
     },
     "id": {
+        "Stranded": [
+            "Oopsie-doodle! Sepertinya kita punya sedikit kekacauan di sini. 🤷‍♂️ Periksa panduan menggunakan *'{prefix}{command} --help'* atau, jika kamu bos, cek konsol. Jika situasinya serius, panggil para devs untuk menyelamatkan hari! 🚀"
+        ],
         "Demote": [
             "Turunkan pangkat: Kurang bos di kelompok kejahatan kecil kita...",
             "Baiklah, mereka tidak akan lagi menjadi bagian dari tim otoritas kita."
@@ -203,6 +224,9 @@
         ]
     },
     "ms": {
+        "Stranded": [
+            "Oopsie-doodle! Nampaknya kita ada sedikit kekeliruan di sini. 🤷‍♂️ Periksa panduan menggunakan *'{prefix}{command} --help'* atau, jika anda bos, lihat konsol. Jika perkara menjadi serius, panggil devs untuk menyelamatkan hari! 🚀"
+        ],
         "Demote": [
             "Turunkan pangkat: Kurang bos dalam kumpulan jenayah kecil kita...",
             "Baiklah, mereka tidak akan lagi menjadi bahagian daripada pasukan penguasa kita."
@@ -232,6 +256,9 @@
         ]
     },
     "hi": {
+        "Stranded": [
+            "ऊप्सी-डूडल! ऐसा लगता है कि यहाँ थोड़ी सी गड़बड़ी हो गई है। 🤷‍♂️ *'{prefix}{command} --help'* का उपयोग करके मैनुअल देखें या, यदि आप बॉस हैं, तो कंसोल की जाँच करें। अगर स्थिति गंभीर हो रही है, तो डेव्स को बुलाएं और दिन को बचाने में मदद करें! 🚀"
+        ],
         "Demote": [
             "डीमोट: हमारे छोटे गुट में कम बॉस...",
             "ठीक है, वे अब हमारी प्राधिकृति टीम का हिस्सा नहीं रहेंगे।"
@@ -261,6 +288,9 @@
         ]
     },
     "de": {
+        "Stranded": [
+            "Oopsie-doodle! Sieht so aus, als hätten wir hier ein kleines Durcheinander. 🤷‍♂️ Überprüfen Sie das Handbuch mit *'{prefix}{command} --help'* oder schauen Sie, wenn Sie der Boss sind, mal in die Konsole. Wenn es ernst wird, rufen Sie die Devs an, um den Tag zu retten! 🚀"
+        ],
         "Demote": [
             "Degradieren: Weniger Chefs in unserer kleinen Verbrechergruppe...",
             "In Ordnung, sie werden nicht mehr Teil unseres Behördenteams sein."
@@ -290,6 +320,9 @@
         ]
     },
     "it": {
+        "Stranded": [
+            "Oopsie-doodle! Sembra che ci sia un piccolo pasticcio qui. 🤷‍♂️ Controlla il manuale usando *'{prefix}{command} --help'* o, se sei il capo, dai un'occhiata alla console. Se le cose si mettono serie, chiama i devs per salvare la giornata! 🚀"
+        ],
         "Demote": [
             "Degrada: Meno capi nel nostro piccolo gruppo criminale...",
             "Va bene, non faranno più parte della nostra squadra di autorità."
@@ -319,6 +352,9 @@
         ]
     },
     "ru": {
+        "Stranded": [
+            "Упси-дудл! Похоже, у нас тут небольшая путаница. 🤷‍♂️ Проверьте мануал, используя *'{prefix}{command} --help'* или, если вы босс, загляните в консоль. Если дела серьезные, вызовите девелоперов, чтобы спасти ситуацию! 🚀"
+        ],
         "Demote": [
             "Понижение: Меньше начальников в нашей маленькой преступной группе...",
             "Хорошо, они больше не будут частью нашей команды власти."
@@ -348,6 +384,9 @@
         ]
     },
     "lat": {
+        "Stranded": [
+            "Oopsie-doodle! Videtur ut parva confusio hic sit. 🤷‍♂️ Consulta manuale uti *'{prefix}{command} --help'* vel, si tu es dominus, specta in console. Si res gravis fit, voca devs ad diem servandum! 🚀"
+        ],
         "Demote": [
             "Demove: Pauciores magistri in nostro parvo coetu scelerum...",
             "Bene, non erunt amplius pars nostrae auctoritatis cohortis."

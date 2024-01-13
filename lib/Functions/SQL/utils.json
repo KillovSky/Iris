@@ -493,6 +493,17 @@
                         "firstUser": false,
                         "firstDate": 0
                     },
+                    "antilinks": {
+                        "enable": false,
+                        "checkmode": false,
+                        "lastDate": 0,
+                        "lastValue": 0,
+                        "lastState": false,
+                        "lastUser": "none",
+                        "firstEdition": false,
+                        "firstUser": false,
+                        "firstDate": 0
+                    },
                     "nsfw": {
                         "enable": false,
                         "lastValue": 0,

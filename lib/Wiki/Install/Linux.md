@@ -91,6 +91,8 @@ Uma vez que você tenha instalado tudo, feito todos os procedimentos acima, siga
 
 2. Para mudar a senha padrão, digite: `cd && cd Iris && sed -i 's/IrisBOT@Root#123/NovaPassword/g' lib/Databases/Configurations/config.json`.
 
+3. Para ativar a conexão por pairing code, digite: `cd && cd Iris && sed -i 's/"pairingCode": { "value": false,/"pairingCode": { "value": true,/g' lib/Databases/Configurations/config.json`.
+
 ### 💌 Método Nº2 - Usando nano
 
 1. Digite `cd && cd Iris && nano lib/Databases/Configurations/config.json`.
@@ -106,7 +108,9 @@ Uma vez que você tenha instalado tudo, feito todos os procedimentos acima, siga
 
 5. Vá até `IrisBOT@Root#123` e apague-o, digite uma nova senha no lugar.
 
-6. Quando tiver terminado, aperte `Control + O` e então aperte `Enter`, você terá inserido com sucesso seu número, então aperte `Control + X` para sair.
+6. Se desejar conectar usando o código de pareamento, vá até `pairingCode` e troque o `false` abaixo para `true`.
+
+7. Quando tiver terminado, aperte `Control + O` e então aperte `Enter`, você terá inserido com sucesso seu número, então aperte `Control + X` para sair.
 
 ### 🌐 Método Nº3 - Usando o Terminal WEB da Íris
 

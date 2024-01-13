@@ -176,9 +176,14 @@
             "value": "(https?:\/\/)?chat\\.whatsapp\\.com\/(?:invite\/)?([a-zA-Z0-9-_])+/i"
         },
         "linkexp": {
-            "description": "RegExp para checar se é um diretório.",
+            "description": "RegExp para checar se é uma URL.",
             "type": "String of RegExp",
             "value": "(http[s]?:\\/\\/(www\\.)?|ftp:\\/\\/(www\\.)?|(www\\.)?){1}([0-9A-Za-z-\\.@:%_\\+~#=]+)+((\\.[a-zA-Z]{2,3})+)(/(.)*)?(\\?(.)*)?/i"
+        },
+        "netprefix": {
+            "description": "RegExp para quase todos os protocolos de conexão.",
+            "type": "String of RegExp",
+            "value": "\/^[http|https|ftp|sftp|ftps|ssh|telnet|ldap|ldaps|file|smb|smtp|imap|pop3|nntp|redis|mongodb|mysql|postgresql|rdp|ws|wss](?:\\:\\\\\\\\)\/gi"
         },
         "location": {
             "description": "Local onde o módulo pode ser encontrado.",

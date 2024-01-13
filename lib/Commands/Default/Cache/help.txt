@@ -1,0 +1,1 @@
+Você pode mudar o Banner padrão inserindo outro arquivo chamado "Banner.png"

@@ -1,0 +1,183 @@
+{
+    "name": "tricks",
+    "description": "Realizar trapaças para jogadores na database",
+    "usage": {
+        "general": "[Prefix][Alias] [-me, @user, @user2...] [-xp/-coin/-diamond/-gold/-iron/-rubi/-stone/-wood] [value/-value]",
+        "examples": [
+            "/Cheats --help",
+            "/Cheats @user -type value",
+            "/Cheats @user @user2 -coin 1000 -xp 9999 -wood -999",
+            "tricks.execute('kill', 'params')",
+            "tricks.env()",
+            "tricks.reset()",
+            "tricks.env().functions.execute.value('kill', 'params')"
+        ]
+    },
+    "license": "MIT",
+    "helps": [
+        "Você será removido da lista de ganhos ao usar, para manter você na lista, adicione '-me' em qualquer parte do comando, assim você também receberá os ganhos ou perdas aplicados.",
+        "Há um limite padrão de 10.000 (ou -10000) de cheating por uso, pois inserir valores maiores (ou menores negativos) pode causar problemas quando você possui valores elevados (ou absurdamente negativos) com você.",
+        "Todas as pessoas (e bots) mencionados ganharão ou perderão os valores que forem inseridos.",
+        "Você pode definir multiplos ganhos e pessoas para o comando, assim não precisa usar em um a um.",
+        "Note que ao chegar em determinado valor de level ou XP, você será reinicializado para o começo, pois conseguiu 'completar' o jogo."
+    ],
+    "exports": {
+        "env": "env",
+        "messedup": "messedup",
+        "exec": "execute",
+        "reset": "reset",
+        "poswork": "finish"
+    },
+    "developer": "KillovSky",
+    "files": {
+        "index.js": "Sistema que faz a coleta das informações e envio.",
+        "utils.json": "Dados de fábrica da envInfo."
+    },
+    "modules": {
+        "fs": "Leitura de diretórios e arquivos.",
+        "path": "Para inserção do local na envInfo.",
+        "../../Dialogues/index": "Funções que retornam os diálogos necessários.",
+        "../../index'": "Para rodar funções de outros arquivos."
+    },
+    "functions": {
+        "ambient": {
+            "arguments": false,
+            "description": "Retorna as variáveis e sistemas do arquivo.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "messedup": {
+            "arguments": {
+                "error": {
+                    "description": "Instância de erro para formatação.",
+                    "type": "Boolean / Error",
+                    "value": false
+                }
+            },
+            "description": "Ajusta os valores de erro.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "exec": {
+            "arguments": {
+                "kill": {
+                    "description": "Funções de controle raiz da Íris.",
+                    "type": "Boolean / Object",
+                    "value": false
+                },
+                "env": {
+                    "description": "Dados da mensagem recebida.",
+                    "type": "Boolean / Object",
+                    "value": false
+                }
+            },
+            "description": "Executa o comando representado nesse arquivo.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "poswork": {
+            "arguments": {
+                "response": {
+                    "description": "Resultados de uma função.",
+                    "type": "Any",
+                    "value": false
+                }
+            },
+            "description": "Verifica se pode resetar a envInfo e retorna o resultado da função.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "revert": {
+            "arguments": {
+                "changeKey": {
+                    "description": "Uma Object com valores que existem na envInfo, ela será usada para substituir o sistema em tempo real.",
+                    "type": "Object value",
+                    "anyValue": false
+                }
+            },
+            "description": "Reseta a envInfo para a Object padrão.",
+            "type": "Boolean / Function",
+            "value": false
+        }
+    },
+    "settings": {
+        "wait": {
+            "description": "Tempo em MS que deve esperar antes de resetar.",
+            "type": "Number",
+            "value": 5000
+        },
+        "error": {
+            "description": "Define se pode printar qualquer erro.",
+            "type": "Boolean",
+            "value": true
+        },
+        "ender": {
+            "description": "Define se deve resetar a cada erro.",
+            "type": "Boolean",
+            "value": true
+        },
+        "finish": {
+            "description": "Define se deve resetar a cada finalização.",
+            "type": "Boolean",
+            "value": true
+        }
+    },
+    "parameters": {
+        "location": {
+            "description": "Local onde o módulo pode ser encontrado.",
+            "type": "Boolean / String",
+            "value": "./index"
+        },
+        "code": {
+            "description": "Código do erro que obter.",
+            "type": "Boolean / String / Number",
+            "value": false
+        },
+        "message": {
+            "description": "Armazena a mensagem do último erro recebido.",
+            "type": "Boolean / String",
+            "value": false
+        },
+        "emojiData": {
+            "description": "Define os emojis de cada valor possivel.",
+            "type": "Object",
+            "value": {
+                "coin": "💰",
+                "diamond": "💎",
+                "rubi": "🔴",
+                "stone": "🪨",
+                "gold": "🏆",
+                "iron": "🪙",
+                "wood": "🌲",
+                "xp": "📈",
+                "level": "🎚️",
+                "messages": "📬"
+            }
+        },
+        "cheatLimit": {
+            "description": "Define o limite de cheating das funções, note que valores muito altos podem levar a 'Infinity' ou 'Heap Out of Memory', cuidado.",
+            "type": "Number",
+            "value": 10000
+        },
+        "cheatAllowed": {
+            "description": "Define quais keys estão permitidas para aplicar cheats, é necessário inserir '-' antes, pois isso é diretamente relacionado á variável 'body' no código.",
+            "type": "Array",
+            "value": [
+                "-xp",
+                "-coin",
+                "-diamond",
+                "-gold",
+                "-iron",
+                "-rubi",
+                "-stone",
+                "-wood"
+            ]
+        }
+    },
+    "results": {
+        "description": "Resultado final da função.",
+        "success": true,
+        "type": "String / Boolean",
+        "value": false
+    }
+}

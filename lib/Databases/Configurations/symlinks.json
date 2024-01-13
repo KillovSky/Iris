@@ -8,6 +8,16 @@
             "calculate"
         ]
     },
+    "Antilinks": {
+        "place": "./Functions/Verifiers/Antilinks/index",
+        "alias": [
+            "nourl",
+            "checkurl",
+            "antilink",
+            "nolink",
+            "antiurl"
+        ]
+    },
     "Arrays": {
         "place": "./Functions/Arrays/index",
         "alias": [

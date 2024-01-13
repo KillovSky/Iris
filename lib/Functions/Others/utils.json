@@ -36,6 +36,7 @@
         "buffer": "buffer",
         "patent": "patent",
         "blur": "blur",
+        "urlexists": "urlexists",
         "farpc": "farpc",
         "findkey": "findkey",
         "repl": "repl",
@@ -104,6 +105,18 @@
                 }
             },
             "description": "Adquire uma mídia de URL e converte em Buffer.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "urlexists": {
+            "arguments": {
+                "url": {
+                    "description": "A URL que deve verificar.",
+                    "type": "Boolean / String",
+                    "value": false
+                }
+            },
+            "description": "Verifica se a URL existe.",
             "type": "Boolean / Function",
             "value": false
         },

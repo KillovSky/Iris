@@ -248,6 +248,22 @@
                     "default",
                     "fallback"
                 ],
+                "Cheats": [
+                    "cheats",
+                    "cheat",
+                    "give",
+                    "addvalue",
+                    "trapacear"
+                ],
+                "TTP": [
+                    "ttp",
+                    "attp",
+                    "tti",
+                    "tta",
+                    "ttg",
+                    "text2img",
+                    "text2gif"
+                ],
                 "Nasa": [
                     "nasa",
                     "apod",
@@ -284,6 +300,7 @@
                 "Handlers": [
                     "antifake",
                     "handlers",
+                    "antilinks",
                     "blacklist",
                     "prefix",
                     "nsfw",
@@ -300,6 +317,10 @@
                     "mentionall"
                 ],
                 "Manager": [
+                    "soadm",
+                    "onlyadms",
+                    "censor",
+                    "uncensor",
                     "manager",
                     "softban",
                     "kick",
