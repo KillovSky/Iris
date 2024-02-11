@@ -8,6 +8,9 @@
         ],
         "Notice": [
             "O usuário @{userFormated} foi removido por {notice}, quebrando a lei, ele não é mais bem vindo aqui, peço que um administrador verifique, caso isso tenha sido um erro."
+        ],
+        "Warn": [
+            "🚨 Atenção, {people}!\nVocês foram advertidos ou perdoados por: '{reason}'\n\n🕗 Contador de alertas:\n\n@{warns}"
         ]
     },
     "ar": {
@@ -19,6 +22,9 @@
         ],
         "Notice": [
             "تمت إزالة المستخدم @{userFormated} بواسطة {notice} لخرقه القانون، وهو لا يُرحب به هنا بعد الآن. أطلب من المسؤول التحقق في حال كان ذلك خطأً."
+        ],
+        "Warn": [
+            "🚨 تنبيه، {people}!\nلقد تم تحذيركم أو تمت مسامحتكم بسبب: '{reason}'\n\n🕗 عداد التحذيرات:\n\n@{warns}"
         ]
     },
     "jp": {
@@ -30,6 +36,9 @@
         ],
         "Notice": [
             "ユーザー @{userFormated} は {notice} によって削除されました。法律に違反しています。彼はもはやここでは歓迎されません。これが間違いだった場合は、管理者に確認してください。"
+        ],
+        "Warn": [
+            "🚨 注意、{people}!\nあなたは '{reason}' の理由で警告または許されました\n\n🕗 警告カウンター:\n\n@{warns}"
         ]
     },
     "en": {
@@ -41,6 +50,9 @@
         ],
         "Notice": [
             "User @{userFormated} has been removed by {notice}, breaking the law, he is no longer welcome here, please have an admin check in case this was an error."
+        ],
+        "Warn": [
+            "🚨 Attention, {people}!\nYou have been warned or forgiven for: '{reason}'\n\n🕗 Warning Counter:\n\n@{warns}"
         ]
     },
     "fr": {
@@ -52,6 +64,9 @@
         ],
         "Notice": [
             "L'utilisateur @{userFormated} a été supprimé par {notice}, enfreignant la loi, il n'est plus le bienvenu ici, veuillez demander à un administrateur de vérifier au cas où il s'agirait d'une erreur."
+        ],
+        "Warn": [
+            "🚨 Attention, {people}!\nVous avez été averti ou pardonné pour: '{reason}'\n\n🕗 Compteur d'avertissements:\n\n@{warns}"
         ]
     },
     "es": {
@@ -63,6 +78,9 @@
         ],
         "Notice": [
             "Usuario @{userFormated} ha sido eliminado por {notice}, infringiendo la ley, ya no es bienvenido aquí, haga que el administrador verifique en caso de que haya sido un error."
+        ],
+        "Warn": [
+            "🚨 Atención, {people}!\nHan sido advertidos o perdonados por: '{reason}'\n\n🕗 Contador de advertencias:\n\n@{warns}"
         ]
     },
     "id": {
@@ -74,6 +92,9 @@
         ],
         "Notice": [
             "Pengguna @{userFormated} telah dihapus oleh {notice}, melanggar hukum, dia tidak lagi diterima di sini, harap periksa admin jika ini adalah kesalahan."
+        ],
+        "Warn": [
+            "🚨 Perhatian, {people}!\nAnda telah diperingatkan atau dimaafkan karena: '{reason}'\n\n🕗 Pencatat Peringatan:\n\n@{warns}"
         ]
     },
     "ms": {
@@ -85,6 +106,9 @@
         ],
         "Notice": [
             "Pengguna @{userFormated} telah dialih keluar oleh {notice}, melanggar undang-undang, dia tidak lagi dialu-alukan di sini, sila minta pentadbir menyemak sekiranya ini adalah kesilapan."
+        ],
+        "Warn": [
+            "🚨 Perhatian, {people}!\nAnda telah diberi amaran atau dimaafkan kerana: '{reason}'\n\n🕗 Pencatat Amaran:\n\n@{warns}"
         ]
     },
     "hi": {
@@ -96,6 +120,9 @@
         ],
         "Notice": [
             "उपयोगकर्ता @{userFormated} को {notice} द्वारा हटा दिया गया है, कानून तोड़ते हुए, अब उनका यहां स्वागत नहीं है, कृपया व्यवस्थापक जांच करवाएं कि यह एक गलती थी।"
+        ],
+        "Warn": [
+            "🚨 ध्यान दें, {people}!\nआपको चेतावनी दी गई है या क्षमा की गई है: '{reason}'\n\n🕗 चेतावनी काउंटर:\n\n@{warns}"
         ]
     },
     "de": {
@@ -107,6 +134,9 @@
         ],
         "Notice": [
             "Benutzer @{userFormated} wurde von {notice} entfernt, weil er gegen das Gesetz verstößt, er ist hier nicht mehr willkommen, bitte lassen Sie einen Administrator überprüfen, falls dies ein Fehler war."
+        ],
+        "Warn": [
+            "🚨 Achtung, {people}!\nSie wurden gewarnt oder vergeben für: '{reason}'\n\n🕗 Warnzähler:\n\n@{warns}"
         ]
     },
     "it": {
@@ -118,6 +148,9 @@
         ],
         "Notice": [
             "L'utente @{userFormated} è stato rimosso da {notice}, infrangendo la legge, non è più il benvenuto qui, chiedi a un amministratore di verificare se si è trattato di un errore."
+        ],
+        "Warn": [
+            "🚨 Attenzione, {people}!\nSiete stati avvertiti o perdonati per: '{reason}'\n\n🕗 Contatore di avvertimenti:\n\n@{warns}"
         ]
     },
     "ru": {
@@ -129,6 +162,9 @@
         ],
         "Notice": [
             "Пользователь @{userFormated} был удален {notice} в нарушение закона, ему здесь больше не рады, пожалуйста, обратитесь к администратору, если это была ошибка."
+        ],
+        "Warn": [
+            "🚨 Внимание, {people}!\nВас предупредили или простили за: '{reason}'\n\n🕗 Счетчик предупреждений:\n\n@{warns}"
         ]
     },
     "lat": {
@@ -140,6 +176,9 @@
         ],
         "Notice": [
             "User @{userFormated} remotus est ab {notice}, praevaricationem legis, hic non amplius excipitur, quaeso, admin reprehendo in casu erroris."
+        ],
+        "Warn": [
+            "🚨 Attentionem, {people}!\nAdmoniti sunt vel dimissi propter: '{reason}'\n\n🕗 Index Admonitionum:\n\n@{warns}"
         ]
     }
 }

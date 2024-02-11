@@ -1,24 +1,31 @@
 {
-    "name": "manager",
-    "description": "Fazer o gerenciamento dos usúarios de um determinado grupo",
+    "name": "convert",
+    "description": "Realizar a conversão de arquivos webp para PNG, GIF ou MP4",
     "usage": {
-        "general": "[Prefix][Comando] [Tempo (M)/@Users/Mensagem] [@Users|Mensagem]",
+        "general": "[Prefix][Alias]",
         "examples": [
-            "/kick @user",
-            "/softban 5 @user",
-            "/warn @user @user2 | <Text>",
-            "/Manager --help",
-            "manager.execute('kill', 'params')",
-            "manager.env()",
-            "manager.reset()",
-            "manager.env().functions.execute.value('kill', 'params')"
+            "/tovideo",
+            "/togif",
+            "/toimg",
+            "/convert --help",
+            "convert.execute('kill', 'params')",
+            "convert.env()",
+            "convert.tomp4('input', 'filename', 'delay in ms')",
+            "convert.extract('input', 'output', 'filename')",
+            "convert.reset()",
+            "convert.env().functions.execute.value('kill', 'params')",
+            "convert.env().functions.extract.value('input', 'output', 'filename')",
+            "convert.env().functions.tomp4.value('input', 'filename', 'delay in ms')"
         ]
     },
     "license": "MIT",
     "helps": [
-        "Você pode mudar os parâmetros da exports enviando o valor da Object que deseja editar ao resetar, por exemplo → manager.reset({ name: 'Body'}) ← Isso mudaria o module de manager para Body, o uso então passaria ser: → Body.funcão ← Isso também permite que você edite a função usando o mesmo método.",
-        "Você pode mudar o que os códigos rodam, em tempo real, basta usar a 'env', por exemplo → manager.env().name = 'Body' ← Mas este método não atualizará o sistema, somente a Object, os sistemas permanecem intactos.",
-        "Você pode configurar o tempo de reset dos resultados ou se eles devem ser resetados usando a env, por exemplo → manager.env().settings.wait = 10000 ← Isso mudaria o tempo de espera para 10 segundos, o tempo deve ser em milissegundos.",
+        "Usar o comando como 'togif' enviará como gif, os outros alias enviarão como arquivo de video ou imagem.",
+        "Esse sistema não utiliza scrapping, APIs ou similares, tudo é feito localmente, portanto, dependendo da perfomance do computador ou servidor atual, pode exigir mais tempo de conversão.",
+        "Esse sistema também converte stickers sem animação em arquivos de video ou gif.",
+        "Você pode mudar os parâmetros da exports enviando o valor da Object que deseja editar ao resetar, por exemplo → convert.reset({ name: 'Body'}) ← Isso mudaria o module de convert para Body, o uso então passaria ser: → Body.funcão ← Isso também permite que você edite a função usando o mesmo método.",
+        "Você pode mudar o que os códigos rodam, em tempo real, basta usar a 'env', por exemplo → convert.env().name = 'Body' ← Mas este método não atualizará o sistema, somente a Object, os sistemas permanecem intactos.",
+        "Você pode configurar o tempo de reset dos resultados ou se eles devem ser resetados usando a env, por exemplo → convert.env().settings.wait = 10000 ← Isso mudaria o tempo de espera para 10 segundos, o tempo deve ser em milissegundos.",
         "Alguém lê essas dicas? Se sim, torne-se um programador, ler os tutoriais é de suma importância e poucos desenvolvedores o fazem...",
         "Existem infinitas formas de uso secretas, explore os códigos para descobrir os mistérios dos sistemas!"
     ],
@@ -26,6 +33,8 @@
         "env": "env",
         "messedup": "messedup",
         "exec": "execute",
+        "extract": "extract",
+        "tomp4": "tomp4",
         "reset": "reset",
         "poswork": "finish"
     },
@@ -59,6 +68,50 @@
             "type": "Boolean / Function",
             "value": false
         },
+        "extract": {
+            "arguments": {
+                "inputFile": {
+                    "description": "Local ou Buffer do Webp inicial.",
+                    "type": "Boolean / String / Buffer",
+                    "value": false
+                },
+                "outputPath": {
+                    "description": "Local da saida do MP4.",
+                    "type": "Boolean / String",
+                    "value": false
+                },
+                "fileName": {
+                    "description": "Nome prefix dos arquivos de frame extraidos.",
+                    "type": "String",
+                    "value": "frame"
+                }
+            },
+            "description": "Extrai os frames do WebP para construir um MP4.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "tomp4": {
+            "arguments": {
+                "inputFolder": {
+                    "description": "Pasta com os locais dos WebPs extraidos.",
+                    "type": "Boolean / String",
+                    "value": false
+                },
+                "fileName": {
+                    "description": "Nome prefix dos arquivos de frame extraidos.",
+                    "type": "String",
+                    "value": "frame"
+                },
+                "delay": {
+                    "description": "Tempo em MS que cada imagem do MP4 deve ter, a formula dos FPS é calculada por 1FPS sendo 1000ms.",
+                    "type": "Number",
+                    "value": 33
+                }
+            },
+            "description": "Constrói um MP4 com os frames extraidos de um webp.",
+            "type": "Boolean / Function",
+            "value": false
+        },
         "exec": {
             "arguments": {
                 "kill": {
@@ -72,7 +125,7 @@
                     "value": false
                 }
             },
-            "description": "Realiza operações de gestão de grupo.",
+            "description": "Executa o comando representado nesse arquivo.",
             "type": "Boolean / Function",
             "value": false
         },

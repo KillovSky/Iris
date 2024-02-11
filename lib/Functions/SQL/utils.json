@@ -384,13 +384,7 @@
                         "firstEdition": false,
                         "firstDate": 0
                     },
-                    "warn": {
-                        "amount": 0,
-                        "lastWarnDate": 0,
-                        "firstWarnDate": 0,
-                        "firstWarnAdmin": false,
-                        "lastWarnAdmin": false
-                    }
+                    "warn": {}
                 },
                 "Bank": {
                     "coin": 0,

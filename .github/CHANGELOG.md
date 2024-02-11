@@ -32,6 +32,56 @@ A voz ecoou seu último suspiro.
 ## Sumário de Atualizações
 
 <details>
+  <summary><code>1.1.2 - 13/01/2024 👾 <strong>[CADOU RELEASE]</strong></code></summary>
+<!-- Numa floresta sombria, uma jovem doente de capuz aventura-se em busca de frutinhas, embora com medo de que um lobo esteja à espreita. Mas ela é encontrada por seres estranhos, aparentemente gentis, que a dão tigelas e itens de diferentes tamanhos e temperaturas, cada uma contendo uma dádiva vinda de seus corpos: sangue para vigor, pele para o frio e carne para fome. Porém, ao encontrar outro ser e pegar dele um item dourado e brilhante, não oferecido, a fim de ajudar seu vilarejo pobre, ela é acusada de ladra pelos seres, perdendo todos os presentes e sendo amaldiçoada com o poder de tudo que tocar virar criaturas mortas-vivas deformadas. -->
+
+### Mural
+- Leia o tutorial de instalação do Windows, devido ao Baileys forçando o uso de Sharp mais recente, não é mais possivel usar a Íris no Windows 7 e anterior, Linux ou MacOS antigos, é só uma questão de tempo até o Windows se tornar muito problematico para instalação, e infelizmente, isso é um problema relacionado ao Canvas, Sharp e Baileys, não há formas de eu corrigir como desenvolvedor da Íris, em especial, por que não são meus códigos/resposabilidade e se ninguém corrigiu até hoje, há uma chance de que não seja possivel arrumar, então é além de minha capacidade.
+
+- Se um dia essa correção do Windows parar, só teremos duas opções: **Dropar o uso em Windows** ou **Remover todos os comandos que usem Canvas**
+- Ambas opções são devastadoras, infelizmente, não tem outra alternativa, vamos rezar que isso nunca chegue a esse ponto, ou pelo menos, demore alguns anos.
+
+- As atualizações vão demorar mais pois estou sem tempo.
+
+- A Íris agora não é mais classificada como uma BOT e sim uma base com códigos pré-compilados para ENTRADA de programadores, isso é devido a eu (KillovSky), não desejar mais tornar a Íris a melhor, como estamos com extrema pouca ajuda da comunidade e estou ocupado, irei apenas prover um sistema que sirva de entrada para DEVs, não uma BOT perfeita e pronta para uso, com milhões de comandos e tudo mais (ainda que possa ser considerada isso).
+- Vou continuar fazendo comandos e sistemas, mas sem o foco de ser o melhor, ou seja, a Íris virou a melhor? Legal! Ela não é a melhor? Legal também! O foco é só ajudar mesmo, então pra que competir?
+
+- Leia o canal no WhatsApp para mais coisas, lá sai tudo de novidade em primeira mão.
+
+- Essa atualização é parcial e bem minuscula, ou seja, pré-release, a(s) próxima(s) ainda será parte da Cadou Release.
+
+### Novidades
+1. **Convert**
+    - Sistema de conversão OFFLINE (Sem API, Scrapping, etc) de Stickers para GIF, MP4 ou PNG!
+
+2. **Variáveis**
+    - Novas variáveis disponiveis para uso a partir da Construct.
+
+3. **Warn**
+    - Finalmente temos um comando de warn customizável!
+
+4. **Documentação**
+    - Foi atualizado diversas partes dela.
+
+### Correções
+1. **Censor**
+    - Comando resumido para reduzir os códigos.
+
+2. **Leveling**
+    - Corrigido problema com as patentes.
+
+3. **Memes**
+    - Corrigido problema com criação de memes especificos (ojjo, jooj, reverse, trash...)
+
+4. **SQL**
+    - Removido o sistema Warn antigo da database, agora a sua criação na DB é via JS.
+
+5. **Instalação**
+    - Corrigido os erros de instalação devido ao Baileys forçar o uso de uma versão Sharp mais recente.
+
+</details>
+
+<details>
   <summary><code>1.1.1 - 13/01/2024 🥞 <strong>[BLINI RELEASE]</strong></code></summary>
 <!-- Ao som do Jhonny Guitar enquanto imagina ratos gigantes, Jazz (Smudge) Cat guarda com carinho seus blinis deliciosos na mesa depois de quase morrer na salada enquanto era cacoado por uma mulher euforica, ele te olha com um aviso: "Não mexa nos meus blinis ou você pode acordar em um mundo quadrado na segunda-feira, vestido de Steve (Smith), sem lasanha e refém do gato imortal Simon, meu irmão de gangue (saints)..." -->
 

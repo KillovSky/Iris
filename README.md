@@ -73,7 +73,7 @@ Essas informações levam a arquivos focados exclusivamente no assunto em quest�
 
 ## ❓ O que é a Íris?
 
-Iris é um robô multilíngue para WhatsApp em constante evolução. Embora ainda esteja em fase de desenvolvimento, sua ambição é oferecer uma ampla gama de funcionalidades, atualizando-se quando possível com novos recursos, correções e aprimoramentos para atender às necessidades dos usuários. Ela não possui nenhum foco lucrativo, é totalmente aberta em seu código e feita para ser adaptável.
+Iris é um base de robô multilíngue para WhatsApp em constante evolução. Embora ainda esteja em fase de desenvolvimento, sua ambição é oferecer uma ampla gama de funcionalidades, atualizando-se quando possível com novos recursos, correções e aprimoramentos para atender às necessidades dos usuários. Ela não possui nenhum foco lucrativo, é totalmente aberta e extrememante documentada em seu código, feita para ser adaptável. Seu objetivo é ajudar novos desenvolvedores a criarem seus próprios projetos baseados nela.
 
 ## 🤝 Contribuindo
 
@@ -93,7 +93,7 @@ Para verificar as últimas alterações, melhorias e correções neste projeto, 
 
 ## 🔗 Website
 
-Agora temos um website para a Íris! Para acessá-lo, basta [clicar aqui](https://killovsky.github.io/Iris). Lembre-se de que a opção de login está destinada apenas a conexões locais. Tentar utilizá-la neste site levará você a uma página de erro. Além disso, escondi eastereggs na página.
+Agora temos um website para a Íris! Para acessá-lo, basta [clicar aqui](https://killovsky.github.io/Iris). Lembre-se de que a opção de login está destinada apenas a conexões locais. Tentar utilizá-la neste site levará você a página inicial. Além disso, escondi eastereggs na página e nos arquivos markdown, javascript e demais.
 
 ## 💲 Doações
 

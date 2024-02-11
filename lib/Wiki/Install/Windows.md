@@ -167,6 +167,10 @@ cd Iris
 # Inicia o download dos arquivos adicionais dela
 npm i
 
+# Desatualiza o sharp para poder usar canvas
+# IGNORE o monte de WARN aparecendo no terminal após finalizar, não são BUGs
+npm i sharp@0.30.7
+
 # Inicia (leia o resto do tutorial primeiro)
 npm start
 ```

@@ -133,6 +133,10 @@
 		"description": "If enabled, Íris will send a message requesting the user to wait for the command to finish to avoid lags.",
 		"value": true
 	},
+    "warnLimit": {
+		"description": "Set the limit of warnings send by warn.",
+		"value": 3
+	},
 	"yourName": {
 		"description": "Specifies the owner's name.",
 		"value": "User"

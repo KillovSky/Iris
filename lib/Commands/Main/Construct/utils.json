@@ -149,6 +149,14 @@
                     "search",
                     "getsticker"
                 ],
+                "Convert": [
+                    "convert",
+                    "togif",
+                    "tomp4",
+                    "toimg",
+                    "toimage",
+                    "tovideo"
+                ],
                 "Games": [
                     "games",
                     "spin",
@@ -327,6 +335,8 @@
                     "remove",
                     "promote",
                     "toadm",
+                    "warn",
+                    "unwarn",
                     "giveadm",
                     "demote",
                     "tiraradm",
