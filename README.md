@@ -20,7 +20,7 @@ E na fronteira entre terror e renascimento, uma pergunta sempre ecoa:
 
 "Inaceso, a chama da vida que possuis ainda cintila digna de conduzir-te a um ciclo inatingível?" -->
 <p align="center">
-    <img align="center" src="https://github.com/KillovSky/Iris/assets/55511420/51e213a0-4800-4d1d-b474-7f82064c302b" width="512" height="320">
+    <img align="center" src="https://raw.githubusercontent.com/KillovSky/Iris/main/lib/Commands/Default/Cache/Banner.png" width="512" height="320">
 </p>
 <p align="center">
     <a align="center" href="https://bento.me/jocosta">Banner by Jojo</a>
