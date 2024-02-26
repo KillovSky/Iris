@@ -1,7 +1,7 @@
 # Projeto Íris
 - [Colabore conosco](https://linktr.ee/killovsky), juntos podemos deixar esse código com a definição perfeita do que é OpenSource.
 - Note que as atualizações não tem datas para sair, sendo que elas são lançadas quando considero adequadas para postagem.
-- Toda versão terá seu codename de release, assim como o Ubuntu e o Android fazem, mas na Íris, isso é apenas para se divertir e o nome dado não reflete as atualizações, quem sabe você encontre algum easter-egg *OCULTO* por aqui...
+- Toda versão terá seu codename de release, assim como o Ubuntu e o Android fazem, mas na Íris, isso é apenas para se divertir e o nome dado não reflete as atualizações, quem sabe você encontre algum easter-egg **OCULTO** na sua jornada, quem sabe um pouco de **RAW** ou Café ajudem...
 - Algumas atualizações são complementos de outras, elas não serão colocadas nesta changelog por agora, se desejar ver detalhes, procure por commits que começam com o nome da build que usa.
 - Clique na seta no inicio da linha para abrir os detalhes.
 <!-- No vazio do nada, em meio à névoa,
@@ -32,7 +32,7 @@ A voz ecoou seu último suspiro.
 ## Sumário de Atualizações
 
 <details>
-  <summary><code>1.1.2 - 13/01/2024 👾 <strong>[CADOU RELEASE]</strong></code></summary>
+  <summary><code>1.1.2 - 11/02/2024 + 26/02/2024 👾 <strong>[CADOU RELEASE]</strong></code></summary>
 <!-- Numa floresta sombria, uma jovem doente de capuz aventura-se em busca de frutinhas, embora com medo de que um lobo esteja à espreita. Mas ela é encontrada por seres estranhos, aparentemente gentis, que a dão tigelas e itens de diferentes tamanhos e temperaturas, cada uma contendo uma dádiva vinda de seus corpos: sangue para vigor, pele para o frio e carne para fome. Porém, ao encontrar outro ser e pegar dele um item dourado e brilhante, não oferecido, a fim de ajudar seu vilarejo pobre, ela é acusada de ladra pelos seres, perdendo todos os presentes e sendo amaldiçoada com o poder de tudo que tocar virar criaturas mortas-vivas deformadas. -->
 
 ### Mural
@@ -48,14 +48,17 @@ A voz ecoou seu último suspiro.
 
 - Leia o canal no WhatsApp para mais coisas, lá sai tudo de novidade em primeira mão.
 
-- Essa atualização é parcial e bem minuscula, ou seja, pré-release, a(s) próxima(s) ainda será parte da Cadou Release.
+- Atualização de duas partes, a segunda está marcada como 'Update 26/02/24', quanto ao versioning, só mudará a data da sua build, quanto ao código, há muitas mudanças, bom uso!
 
 ### Novidades
 1. **Convert**
     - Sistema de conversão OFFLINE (Sem API, Scrapping, etc) de Stickers para GIF, MP4 ou PNG!
+    - Update 26/02/24: Agora ele estende a duração do video e permite customizar o FPS.
+    - Update 26/02/24: Ele também poderá extrair o metadata dos Stickers agora.
 
 2. **Variáveis**
     - Novas variáveis disponiveis para uso a partir da Construct.
+    - Update 26/02/24: Mais e mais!
 
 3. **Warn**
     - Finalmente temos um comando de warn customizável!
@@ -63,21 +66,73 @@ A voz ecoou seu último suspiro.
 4. **Documentação**
     - Foi atualizado diversas partes dela.
 
+5. **Everyone [Update 26/02/24]**
+    - Inserido um meio de exibir as marcações em vez de ghost-mention.
+
+6. **Loteria [Update 26/02/24]**
+    - Inserido comando de apostar no bolão da Íris.
+
+7. **Health [Update 26/02/24]**
+    - Inserido comando para contar IMC e KCAL, para o público fitness.
+
+8. **Ranking [Update 26/02/24]**
+    - Inserido comando de ranking para competir entre os membros pela posição de número um.
+
+9. **Logging [Update 26/02/24]**
+    - Novo sistema de logging de mensagens no terminal, mais poderoso e informativo.
+
+10. **Stickers [Update 26/02/24]**
+    - Inserido sistema de emojis nos stickers, agora você pode dar ao sticker categorias baseadas em emojis, facilitando na busca deles pelo menu de stickers do seu WhatsApp.
+    - Inserido sistema de Aspect Ratio nos stickers.
+    - Inserido função para mudar o ID do pack do sticker.
+
+11. **Dialogues [Update 26/02/24]**
+    - Inserido mais dialogos para uso!
+
+12. **Funções [Update 26/02/24]**
+    - Inserido mais funções na Default e nos arquivos.
+
+13. **SQL [Update 26/02/24]**
+    - Adicionado sistema para puxar o nome de um grupo pela database, evitando requests que poderiam causar danos se usadas demais.
+
+13. **Perfomance [Update 26/02/24]**
+    - Foi melhorado a perfomance do sistema, melhorando o ping e demais tarefas.
+    - Note que a primeira execução de um comando sempre leva mais tempo para abrir, mas as demais execuções serão rápidas!
+
 ### Correções
 1. **Censor**
     - Comando resumido para reduzir os códigos.
 
 2. **Leveling**
     - Corrigido problema com as patentes.
+    - Update 26/02/24: Database SQL, leia a 4 abaixo.
 
 3. **Memes**
     - Corrigido problema com criação de memes especificos (ojjo, jooj, reverse, trash...)
 
 4. **SQL**
     - Removido o sistema Warn antigo da database, agora a sua criação na DB é via JS.
+    - Update 26/02/24: Corrigido erro do ranking da database Leveling.
 
 5. **Instalação**
     - Corrigido os erros de instalação devido ao Baileys forçar o uso de uma versão Sharp mais recente.
+
+6. **Convert [Update 26/02/24]**
+    - Corrigido falta de especificação que fazia stickers de imagem virarem videos.
+
+7. **Everyone [Update 26/02/24]**
+    - Corrigido o espaçamento no inicio da mensagem do everyone.
+    - Corrigido a ordem de obtenção das mensagens do everyone.
+
+8. **Messages [Update 26/02/24]**
+    - Corrigido falha que fazia com que mensagens não pudessem ser lidas ou que as primeiras fossem ignoradas ou usadas incorretamente.
+    - Mais bugs desses ocorrerão devido a falta de documentação do Baileys quanto aos formatos de mensagem, se der erro, favor documentar e me enviar! Obrigado!
+
+9. **Warn [Update 26/02/24]**
+    - Não exatamente falha, mas fiz com que o warn, quando marcando a pessoa por mensagem, enviasse a mensagem sem precisar de '|'.
+
+10. **Finder [Update 26/02/24]**
+    - Novamente, não exatamente uma falha, mas corrigido a forma como a função de busca avançada localiza keys em Objects, assim permitindo automatizar a localização de uma key de array ou demais especifica dentro de uma object.
 
 </details>
 

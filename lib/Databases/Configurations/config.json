@@ -17,7 +17,7 @@
 	},
 	"colorSet": {
 		"description": "Defines the color palettes used to print messages and commands to the terminal. Set in the following order: [Normal Text, Body Preview, Date, Groups and Numbers, Command]. Use English named colors and avoid complexity.",
-		"value": ["brightBlue", "brightYellow", "brightRed", "brightGreen", "brightMagenta"]
+		"value": ["brightBlue", "brightYellow", "brightRed", "brightGreen", "brightMagenta", "black", "red", "green", "yellow", "blue", "magenta", "cyan", "white", "gray", "grey", "brightCyan", "brightWhite"]
 	},
 	"commandsCooldown": {
 		"description": "Sets the cooldown in milliseconds for command usage. It should be synchronized with 'maxCommands' for effective anti-spam control or use default values.",

@@ -153,9 +153,28 @@
                     "convert",
                     "togif",
                     "tomp4",
+                    "topng",
                     "toimg",
                     "toimage",
                     "tovideo"
+                ],
+                "Ranking": [
+                    "score",
+                    "rank",
+                    "ranking"
+                ],
+                "Health": [
+                    "fine",
+                    "health",
+                    "imc",
+                    "kcal"
+                ],
+                "Giveaway": [
+                    "giveaway",
+                    "loteria",
+                    "lottery",
+                    "ticket",
+                    "rifa"
                 ],
                 "Games": [
                     "games",

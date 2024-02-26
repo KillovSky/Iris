@@ -10,6 +10,7 @@
             "SQL.get(file, userId, chatId)",
             "SQL.undo(file, userId, chatId, array)",
             "SQL.finder(file, userId, chatId, key, mathsymbols?, value)",
+            "SQL.ranking(file, chatId, key, limit)",
             "SQL.locate(file, userId, chatId, key, mathOperator, value)",
             "SQL.remove(file, userId, chatId)",
             "SQL.custom(file, userId, chatId, command)",
@@ -18,6 +19,7 @@
             "SQL.env().functions.undo.value(file, userId, chatId, array)",
             "SQL.env().functions.get.value(file, userId, chatId)",
             "SQL.env().functions.finder.value(file, userId, chatId, key, mathsymbols?, value)",
+            "SQL.env().functions.ranking.value(file, chatId, key, limit)",
             "SQL.env().functions.remove.value(file, userId, chatId)",
             "SQL.env().functions.custom.value(file, userId, chatId, command)",
             "SQL.env().functions.purge.value(file, userId, chatId, key, moreKeys)",
@@ -584,6 +586,11 @@
                         "firstEdition": false,
                         "firstUser": false,
                         "firstDate": 0
+                    },
+                    "name": {
+                        "text": "default",
+                        "lastValue": 0,
+                        "lastDate": 0
                     }
                 }
             }

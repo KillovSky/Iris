@@ -2,12 +2,13 @@
     "name": "stk",
     "description": "Fazer Stickers a partir de imagens, vídeos, GIFs e documentos similares.",
     "usage": {
-        "general": "[Prefix][Alias] [-crop|-full|-rounded|-circle] [Imagem|URL|Video|Gif|Doc] [-custom] [author|pack]",
+        "general": "[Prefix][Alias] [Emojis] [-crop|-full|-rounded|-circle] [Imagem|URL|Video|Gif|Doc] [-custom] [author|pack|id]",
         "examples": [
             "/Sticker Imagem|URL|Video|Gif|Doc",
-            "/Sticker -custom Killov|Sky",
-            "/Sticker -custom Legião Z",
-            "/Sticker -circle Imagem|Imagem URL",
+            "/g -custom Killov|Sky|Iris",
+            "/f -custom Legião Z",
+            "/s 🎉 -crop -custom Pingu|Lisa|Lee Hardcastle",
+            "/fig -circle Imagem|Imagem URL",
             "stk.execute('kill', 'params')",
             "stk.env()",
             "stk.reset()",
@@ -16,6 +17,7 @@
     },
     "license": "MIT",
     "helps": [
+        "O uso de emojis fará com que o sticker seja inserido na categoria do emoji, ou seja, quando você inserir esse emoji na busca da aba de Stickers do seu WhatsApp, você encontrará todos os que contém tal categoria.",
         "Você pode especificar o autor ou pack do sticker usando '-custom author|pack', não precisa de ambos, você pode mudar somente o que quiser.",
         "Você pode mudar os parâmetros da exports enviando o valor da Object que deseja editar ao resetar, por exemplo → stk.reset({ name: 'Body'}) ← Isso mudaria o module de stk para Body, o uso então passaria ser: → Body.funcão ← Isso também permite que você edite a função usando o mesmo método.",
         "Você pode mudar o que os códigos rodam, em tempo real, basta usar a 'env', por exemplo → stk.env().name = 'Body' ← Mas este método não atualizará o sistema, somente a Object, os sistemas permanecem intactos.",

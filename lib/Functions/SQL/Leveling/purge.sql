@@ -14,7 +14,7 @@ INSERT OR IGNORE INTO leveling (user, chat, data) VALUES ('{INSERTUSER}', '{INSE
 UPDATE leveling SET data = json_patch('{INSERTDEFAULT}', data) WHERE user = '{INSERTUSER}' AND chat = '{INSERTGROUP}';
 
 -- Remove a Object
-UPDATE leveling SET data = json_remove(data, '$.{INSERTKEY}{INSERTVALUE}') WHERE user = '{INSERTUSER}' AND chat = '{INSERTGROUP}';
+UPDATE leveling SET data = json_remove(data, '$.{INSERTKEY}{INSERTJSON}') WHERE user = '{INSERTUSER}' AND chat = '{INSERTGROUP}';
 
 -- Deleta as colunas invalidas
 DELETE FROM leveling WHERE user NOT LIKE '%@s.whatsapp.net%' OR chat NOT LIKE '%@g.us%';

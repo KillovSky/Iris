@@ -93,7 +93,7 @@ Para verificar as últimas alterações, melhorias e correções neste projeto, 
 
 ## 🔗 Website
 
-Agora temos um website para a Íris! Para acessá-lo, basta [clicar aqui](https://killovsky.github.io/Iris). Lembre-se de que a opção de login está destinada apenas a conexões locais. Tentar utilizá-la neste site levará você a página inicial. Além disso, escondi eastereggs na página e nos arquivos markdown, javascript e demais.
+Agora temos um website para a Íris! Para acessá-lo, basta [clicar aqui](https://killovsky.github.io/Iris). Lembre-se de que a opção de login está destinada apenas a conexões locais. Tentar utilizá-la neste site levará você a página inicial. Além disso, escondi eastereggs na página e nos arquivos markdown, javascript e demais, talvez usar um pouco de **RAW** ou Nuka-Cola te faça **ver** as coisas de **outro ponto de vista**.
 
 ## 💲 Doações
 
@@ -123,12 +123,13 @@ Se quiser usar nossas redes sociais para informar erros e ir atrás de suporte, 
 
 1. [Discord](https://discord.gg/ZtN9UH7XZu)
 2. [Telegram](https://t.me/PROJETOIRIS)
+3. [Issues](https://github.com/KillovSky/Iris/issues/604)
 
-Não estarei utilizando de suporte no WhatsApp, então você possui apenas essas duas redes sociais para contatar os desenvolvedores.
+Não estarei utilizando de suporte no WhatsApp, então você possui apenas essas duas redes sociais e a issues para contatar os desenvolvedores.
 
 ## 🖊️ Guia de Modificação
 
-Se você tem interesse em desenvolver comandos, contribuir ou explorar a funcionalidade da `envInfo`, recomendamos a leitura do nosso guia de programação de comandos, disponível [clicando aqui](https://github.com/KillovSky/Iris/blob/main/lib/Wiki/Tutorial/Guide.md). Vale ressaltar que, caso você seja iniciante em programação, é aconselhável adquirir conhecimentos básicos por meio de cursos ou guias introdutórios, pois não oferecemos suporte para aqueles que ainda não possuem familiaridade com programação.
+Se você tem interesse em desenvolver comandos, contribuir ou explorar a funcionalidade da `envInfo`, recomendamos a leitura do nosso guia de programação de comandos, disponível [clicando aqui](https://github.com/KillovSky/Iris/blob/main/lib/Wiki/Tutorial/Guide.md). Vale ressaltar que, caso você seja iniciante em programação, é aconselhável adquirir conhecimentos básicos por meio de cursos ou guias introdutórios, pois não oferecemos suporte e ajuda para aqueles que ainda não possuem familiaridade com programação, isso é, aqueles que não sabem editar arquivos de configuração ou não sabem informatica básica.
 
 ## 🚀 Finalização
 

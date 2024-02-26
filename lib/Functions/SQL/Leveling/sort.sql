@@ -23,10 +23,10 @@ WITH response(format) AS (
         FROM leveling
 
         -- Onde a chat é igual (ou global)
-        {INSERTKEY}
+        {INSERTGROUP}
 
         -- Organizado em decrescente
-        ORDER BY json_extract(data, '$.{INSERTVALUE}') DESC
+        ORDER BY json_extract(data, '$.{INSERTKEY}') DESC
 
         -- Com limite de 'x'
         LIMIT {INSERTMATHSYM}

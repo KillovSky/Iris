@@ -2,25 +2,30 @@
     "name": "convert",
     "description": "Realizar a conversão de arquivos webp para PNG, GIF ou MP4",
     "usage": {
-        "general": "[Prefix][Alias]",
+        "general": "[Prefix][Alias] [--metadata/--fps/--time] [valor]",
         "examples": [
-            "/tovideo",
+            "/tomp4 --time 30",
+            "/toimage",
+            "/tovideo --fps 60",
             "/togif",
-            "/toimg",
+            "/tomp4 --time 30 --fps 60",
+            "/toimg --metadata",
             "/convert --help",
             "convert.execute('kill', 'params')",
             "convert.env()",
-            "convert.tomp4('input', 'filename', 'delay in ms')",
+            "convert.tomp4('input', 'filename', 'fps', 'secs')",
             "convert.extract('input', 'output', 'filename')",
             "convert.reset()",
             "convert.env().functions.execute.value('kill', 'params')",
             "convert.env().functions.extract.value('input', 'output', 'filename')",
-            "convert.env().functions.tomp4.value('input', 'filename', 'delay in ms')"
+            "convert.env().functions.tomp4.value('input', 'filename', 'fps', 'time (s)')"
         ]
     },
     "license": "MIT",
     "helps": [
+        "O conversor não permitirá o envio de videos de mais de X segundos ou minutos, portanto, o limite é o tempo que meu chefe configurar para esse sistema, o mesmo ocorre com a quantidade de FPS de um video.",
         "Usar o comando como 'togif' enviará como gif, os outros alias enviarão como arquivo de video ou imagem.",
+        "O uso de '--metadata' enviará informações do Sticker, isso pode conter links ou ofensas, use com cautela.",
         "Esse sistema não utiliza scrapping, APIs ou similares, tudo é feito localmente, portanto, dependendo da perfomance do computador ou servidor atual, pode exigir mais tempo de conversão.",
         "Esse sistema também converte stickers sem animação em arquivos de video ou gif.",
         "Você pode mudar os parâmetros da exports enviando o valor da Object que deseja editar ao resetar, por exemplo → convert.reset({ name: 'Body'}) ← Isso mudaria o module de convert para Body, o uso então passaria ser: → Body.funcão ← Isso também permite que você edite a função usando o mesmo método.",
@@ -191,6 +196,16 @@
             "description": "Armazena a mensagem do último erro recebido.",
             "type": "Boolean / String",
             "value": false
+        },
+        "maxFPS": {
+            "description": "FPS máximo para a conversão de videos, valores muito altos podem levar a videos absurdamente rápidos, pesados e crashes.",
+            "type": "Number",
+            "value": 60
+        },
+        "maxTime": {
+            "description": "Tempo máximo em segundos para a conversão de videos, valores muito altos podem levar a arquivos absurdamente grandes e crashes.",
+            "type": "Number",
+            "value": 30
         }
     },
     "results": {

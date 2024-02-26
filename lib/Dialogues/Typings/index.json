@@ -2,66 +2,300 @@
     "pt": {
         "Type": [
             "🔎 Opa! Esse comando é para '{reqtype}' e você está usando ele em um '{type}', tente novamente com a mensagem correta."
+        ],
+        "Need": [
+            "💭 Você não pode executar esse comando, pois ele requer '{need} {item}', você possui apenas '{have} {item}'. Adicione mais '{amount} {item}' e tente novamente!"
+        ],
+        "Wait": [
+            "🕒 Oops! Parece que essa função já foi usada recentemente. Você precisará esperar {resttime} antes de poder usá-la novamente. Vá fazer algo saudável como caminhar e volte quando terminar a contagem!"
+        ],
+        "Start": [
+            "🎉 Parabéns! Agora você possui '{amount} {item} [{price} {payment}]'. Sua chance de ganhar é de {chance}%. Lembre-se de não gastar seus {payment}, pois o pagamento será feito no fim. O prêmio é '{win} {prize}' e o resultado será revelado em '{remain}'. Boa sorte! 🍀"
+        ],
+        "Buy": [
+            "🎉 Parabéns! Você adquiriu '{amount} {item}', você pagará '{price} {payment}' ao final da partida, o prêmio atualmente é de '{win} {prize}' e suas chances de vencer no momento são de {chance}%. Estamos aguardando mais {waiting} jogadores para iniciar a contagem regressiva e anunciar o vencedor. Boa sorte! 🍀"
+        ],
+        "Winner": [
+            "🎉 Parabéns, @{winner}! Você acaba de ganhar {win} {prize}! 🎁🍀"
+        ],
+        "NoGames": [
+            "🎉 Olá! Parece que ainda não há jogos criados. Você pode comprar tickets para ativar a loteria e aumentar suas chances de ganhar um prêmio incrível! Vamos lá, participe e boa sorte! 🍀"
         ]
     },
     "ar": {
         "Type": [
             "🔎 أوبا! هذا الأمر مخصص لـ '{reqtype}' وأنت تستخدمه في '{type}'، جرب مرة أخرى مع الرسالة الصحيحة."
+        ],
+        "Need": [
+            "💭 لا يمكنك تنفيذ هذا الأمر، لأنه يتطلب '{need} {item}' ولديك فقط '{have} {item}'. أضف '{amount} {item}' إضافية وحاول مرة أخرى!"
+        ],
+        "Wait": [
+            "🕒 عفوًا! يبدو أن هذه الوظيفة تم استخدامها مؤخرًا. ستحتاج إلى الانتظار {resttime} قبل أن تتمكن من استخدامها مرة أخرى. اذهب واقضي وقتًا ممتعًا في الهواء الطلق مثل السير وعد عندما تنتهي المدة!"
+        ],
+        "Start": [
+            "🎉 !تهانينا، أنت الآن تمتلك '{amount} {item} [{price} {payment}]'. فرصتك للفوز هي {chance}%. تذكّر عدم إنفاق {payment}، حيث سيتم الدفع في النهاية. الجائزة '{win} {prize}' وسيتم الكشف عن النتيجة في '{remain}'. حظاً موفقاً! 🍀"
+        ],
+        "Buy": [
+            "🎉 تهانينا! لقد اشتريت '{amount} {item}', ستدفع '{price} {payment}' في نهاية الجولة، الجائزة حاليًا هي '{win} {prize}' وفرصك الحالية في الفوز هي {chance}%. نحن في انتظار مزيد من اللاعبين {waiting} لبدء العد التنازلي والإعلان عن الفائز. حظا طيبا!"
+        ],
+        "Winner": [
+            "🎉 تهانينا، @{winner}! لقد فزت للتو بمبلغ {win} {prize}! 🎁🍀"
+        ],
+        "NoGames": [
+            "🎉 مرحبًا! يبدو أنه لا توجد ألعاب مُنشأة بعد. يمكنك شراء التذاكر لتنشيط اليانصيب وزيادة فرصك في الفوز بجائزة رائعة! هيا، شارك وحظًا طيبًا! 🍀"
         ]
     },
     "jp": {
         "Type": [
             "🔎 おっと！このコマンドは '{reqtype}' 用ですが、あなたは '{type}' で使用しています。正しいメッセージで再試行してください。"
+        ],
+        "Need": [
+            "💭 このコマンドを実行できません。なぜなら、'{need} {item}' が必要であり、'{have} {item}'しか持っていないからです。さらに '{amount} {item}' を追加して、もう一度お試しください！"
+        ],
+        "Wait": [
+            "🕒 おっと！ この機能は最近使用されました。再度使用するには{resttime}待つ必要があります。ウォーキングなど健康的なことをして、カウントが終了したら戻ってきてください！"
+        ],
+        "Start": [
+            "🎉 おめでとうございます！ これで '{amount} {item} [{price} {payment}]' を手に入れました。勝利のチャンスは {chance}% です。支払い {payment} をそのままにしておいてください。支払いは最後に行われます。賞品は '{win} {prize}' で、結果は '{remain}' 後に発表されます。幸運を祈ります！ 🍀"
+        ],
+        "Buy": [
+            "🎉 おめでとうございます！ '{amount} {item}' を購入しました。ゲーム終了時に '{price} {payment}' を支払います。現在の賞品は '{win} {prize}' で、現時点での勝利の可能性は {chance}% です。{waiting} 人以上のプレイヤーを待って、カウントダウンを開始して優勝者を発表します。がんばって！🍀"
+        ],
+        "Winner": [
+            "🎉 おめでとう、@{winner}さん！ {win} {prize}を獲得しました！ 🎁🍀"
+        ],
+        "NoGames": [
+            "🎉 こんにちは！まだゲームが作成されていないようです。チケットを購入して抽選を有効にし、素晴らしい賞品を獲得するチャンスを増やしましょう！さあ、参加してみてください。幸運を祈ります！ 🍀"
         ]
     },
     "en": {
         "Type": [
             "🔎 Oops! This command is for '{reqtype}' and you're using it in '{type}', try again with the correct message."
+        ],
+        "Need": [
+            "💭 You cannot execute this command as it requires '{need} {item}', but you only have '{have} {item}'. Add more '{amount} {item}' and try again!"
+        ],
+        "Wait": [
+            "🕒 Oops! It looks like this function has been used recently. You'll need to wait {resttime} before you can use it again. Go do something healthy like taking a walk and come back when the countdown is over!"
+        ],
+        "Start": [
+            "🎉 Congratulations! You now have '{amount} {item} [{price} {payment}]'. Your chance of winning is {chance}%. Remember not to spend your {payment} as the payment will be made at the end. The prize is '{win} {prize}' and the result will be revealed in '{remain}'. Good luck! 🍀"
+        ],
+        "Buy": [
+            "🎉 Congratulations! You've purchased '{amount} {item}', you'll pay '{price} {payment}' at the end of the game, the prize is currently '{win} {prize}' and your chances of winning at the moment are {chance}%. We are waiting for {waiting} more players to start the countdown and announce the winner. Good luck! 🍀"
+        ],
+        "Winner": [
+            "🎉 Congratulations, @{winner}! You just won {win} {prize}! 🎁🍀"
+        ],
+        "NoGames": [
+            "🎉 Hello! It looks like there are no games created yet. You can buy tickets to activate the lottery and increase your chances of winning an amazing prize! Come on, join in and good luck! 🍀"
         ]
     },
     "fr": {
         "Type": [
             "🔎 Oups ! Cette commande est destinée à '{reqtype}' et vous l'utilisez dans '{type}', réessayez avec le message correct."
+        ],
+        "Need": [
+            "💭 Vous ne pouvez pas exécuter cette commande car elle nécessite '{need} {item}', mais vous n'avez que '{have} {item}'. Ajoutez plus de '{amount} {item}' et réessayez !"
+        ],
+        "Wait": [
+            "🕒 Oups! Il semble que cette fonction a été utilisée récemment. Vous devrez attendre {resttime} avant de pouvoir l'utiliser à nouveau. Faites quelque chose de sain comme une promenade et revenez quand le compte à rebours sera terminé !"
+        ],
+        "Start": [
+            "🎉 Félicitations ! Vous possédez maintenant '{amount} {item} [{price} {payment}]'. Votre chance de gagner est de {chance}%. N'oubliez pas de ne pas dépenser vos {payment}, car le paiement sera effectué à la fin. Le prix est '{win} {prize}' et le résultat sera révélé dans '{remain}'. Bonne chance ! 🍀"
+        ],
+        "Buy": [
+            "🎉 Félicitations ! Vous avez acquis '{amount} {item}', vous paierez '{price} {payment}' à la fin de la partie, le prix actuel est de '{win} {prize}' et vos chances de gagner à l'heure actuelle sont de {chance}%. Nous attendons {waiting} joueurs supplémentaires pour démarrer le compte à rebours et annoncer le gagnant. Bonne chance ! 🍀"
+        ],
+        "Winner": [
+            "🎉 Félicitations, @{winner}! Vous venez de gagner {win} {prize}! 🎁🍀"
+        ],
+        "NoGames": [
+            "🎉 Bonjour ! Il semble qu'aucun jeu n'ait encore été créé. Vous pouvez acheter des tickets pour activer la loterie et augmenter vos chances de gagner un prix incroyable ! Allez, participez et bonne chance ! 🍀"
         ]
     },
     "es": {
         "Type": [
             "🔎 ¡Ups! Este comando es para '{reqtype}' y lo estás usando en '{type}', inténtalo de nuevo con el mensaje correcto."
+        ],
+        "Need": [
+            "💭 No puedes ejecutar este comando, ya que requiere '{need} {item}', pero solo tienes '{have} {item}'. ¡Agrega más '{amount} {item}' e inténtalo de nuevo!"
+        ],
+        "Wait": [
+            "🕒 ¡Ups! Parece que esta función ya se ha utilizado recientemente. Deberás esperar {resttime} antes de poder usarla de nuevo. ¡Haz algo saludable como dar un paseo y vuelve cuando termine la cuenta atrás!"
+        ],
+        "Start": [
+            "🎉 ¡Felicidades! Ahora tienes '{amount} {item} [{price} {payment}]'. Tu probabilidad de ganar es del {chance}%. Recuerda no gastar tu {payment}, ya que el pago se realizará al final. El premio es '{win} {prize}' y el resultado se revelará en '{remain}'. ¡Buena suerte! 🍀"
+        ],
+        "Buy": [
+            "🎉 ¡Felicidades! Has adquirido '{amount} {item}', pagarás '{price} {payment}' al finalizar el juego, el premio actual es de '{win} {prize}' y tus posibilidades de ganar en este momento son del {chance}%. Estamos esperando {waiting} jugadores más para iniciar la cuenta regresiva y anunciar al ganador. ¡Buena suerte! 🍀"
+        ],
+        "Winner": [
+            "🎉 ¡Felicidades, @{winner}! ¡Acabas de ganar {win} {prize}! 🎁🍀"
+        ],
+        "NoGames": [
+            "🎉 ¡Hola! Parece que aún no se han creado juegos. Puedes comprar tickets para activar la lotería y aumentar tus posibilidades de ganar un premio increíble. ¡Vamos, únete y buena suerte! 🍀"
         ]
     },
     "id": {
         "Type": [
             "🔎 Ups! Perintah ini untuk '{reqtype}' dan Anda menggunakannya dalam '{type}', coba lagi dengan pesan yang benar."
+        ],
+        "Need": [
+            "💭 Anda tidak dapat menjalankan perintah ini karena memerlukan '{need} {item}', tetapi Anda hanya memiliki '{have} {item}'. Tambahkan '{amount} {item}' lagi dan coba lagi!"
+        ],
+        "Wait": [
+            "🕒 Ups! Sepertinya fungsi ini sudah digunakan baru-baru ini. Anda perlu menunggu {resttime} sebelum Anda bisa menggunakannya lagi. Lakukan sesuatu yang sehat seperti berjalan kaki dan kembali saat hitung mundur selesai!"
+        ],
+        "Start": [
+            "🎉 Selamat! Sekarang Anda memiliki '{amount} {item} [{price} {payment}]'. Peluang Anda untuk menang adalah {chance}%. Ingatlah untuk tidak menghabiskan {payment} Anda karena pembayaran akan dilakukan pada akhirnya. Hadiahnya adalah '{win} {prize}' dan hasilnya akan diumumkan dalam '{remain}'. Semoga berhasil! 🍀"
+        ],
+        "Buy": [
+            "🎉 Selamat! Anda telah membeli '{amount} {item}', Anda akan membayar '{price} {payment}' pada akhir permainan, hadiah saat ini adalah '{win} {prize}' dan peluang Anda untuk menang saat ini adalah {chance}%. Kami menunggu {waiting} pemain lagi untuk memulai hitungan mundur dan mengumumkan pemenangnya. Semoga berhasil! 🍀"
+        ],
+        "Winner": [
+            "🎉 Selamat @{winner}! Anda baru saja memenangkan {win} {prize}! 🎁🍀"
+        ],
+        "NoGames": [
+            "🎉 Halo! Sepertinya belum ada permainan yang dibuat. Anda dapat membeli tiket untuk mengaktifkan lotre dan meningkatkan peluang Anda untuk memenangkan hadiah yang menarik! Ayolah, ikut serta dan semoga berhasil! 🍀"
         ]
     },
     "ms": {
         "Type": [
             "🔎 Oop! Perintah ini untuk '{reqtype}' dan anda menggunakannya dalam '{type}', cuba lagi dengan mesej yang betul."
+        ],
+        "Need": [
+            "💭 Anda tidak dapat menjalankan arahan ini kerana ia memerlukan '{need} {item}', tetapi anda hanya mempunyai '{have} {item}'. Tambah lagi '{amount} {item}' dan cuba lagi!"
+        ],
+        "Wait": [
+            "🕒 Ups! Nampaknya fungsi ini telah digunakan baru-baru ini. Anda perlu menunggu {resttime} sebelum anda boleh menggunakannya lagi. Lakukan sesuatu yang sihat seperti berjalan kaki dan kembali apabila hitungan berakhir!"
+        ],
+        "Start": [
+            "🎉 Tahniah! Anda kini memiliki '{amount} {item} [{price} {payment}]'. Peluang anda untuk memenangi adalah {chance}%. Ingat untuk tidak menghabiskan {payment} anda kerana pembayaran akan dibuat pada akhirnya. Hadiahnya ialah '{win} {prize}' dan hasilnya akan diumumkan dalam '{remain}'. Semoga berjaya! 🍀"
+        ],
+        "Buy": [
+            "🎉 Tahniah! Anda telah membeli '{amount} {item}', anda akan membayar '{price} {payment}' pada akhir permainan, hadiah pada masa ini ialah '{win} {prize}' dan peluang anda untuk memenangi pada masa ini adalah {chance}%. Kami menunggu {waiting} pemain lagi untuk memulakan kira mundur dan mengumumkan pemenang. Semoga berjaya! 🍀"
+        ],
+        "Winner": [
+            "🎉 Tahniah, @{winner}! Anda baru sahaja memenangi {win} {prize}! 🎁🍀"
+        ],
+        "NoGames": [
+            "🎉 Hai! Kelihatan tiada permainan yang dicipta lagi. Anda boleh membeli tiket untuk mengaktifkan loteri dan meningkatkan peluang anda untuk memenangi hadiah yang menarik! Ayuh, sertai dan semoga berjaya! 🍀"
         ]
     },
     "hi": {
         "Type": [
             "🔎 ऊप्स! यह कमांड '{reqtype}' के लिए है और आप इसे '{type}' में उपयोग कर रहे हैं, सही संदेश के साथ पुनः प्रयास करें।"
+        ],
+        "Need": [
+            "💭 आप इस कमांड को नहीं चला सकते क्योंकि इसे '{need} {item}' की आवश्यकता है, लेकिन आपके पास केवल '{have} {item}' हैं। और '{amount} {item}' जोड़ें और पुनः प्रयास करें!"
+        ],
+        "Wait": [
+            "🕒 ऊप्स! ऐसा लगता है कि यह फ़ंक्शन हाल ही में उपयोग किया गया है। आपको {resttime} का इंतजार करना होगा पहले जब आप इसे फिर से उपयोग कर सकें। जाओ, कुछ स्वस्थ करो जैसे कि सैर करो और वापस आओ जब गिनती समाप्त हो!"
+        ],
+        "Start": [
+            "🎉 बधाई हो! अब आपके पास '{amount} {item} [{price} {payment}]' है। आपकी जीतने की संभावना {chance}% है। याद रखें कि {payment} खर्च न करें, क्योंकि भुगतान अंत में किया जाएगा। पुरस्कार है '{win} {prize}' और परिणाम '{remain}' में खुलेगा। शुभकामनाएँ! 🍀"
+        ],
+        "Buy": [
+            "🎉 बधाई हो! आपने '{amount} {item}' खरीद लिया है, आप खेल के अंत में '{price} {payment}' भुगतान करेंगे, पुरस्कार वर्तमान में '{win} {prize}' है और आपके जीतने की संभावनाएं इस समय {chance}% हैं। हम {waiting} अधिक खिलाड़ी का इंतजार कर रहे हैं ताकि गिनती शुरू कर सकें और विजेता का ऐलान कर सकें। शुभकामनाएं! 🍀"
+        ],
+        "Winner": [
+            "🎉 बधाई हो, @{winner}! आपने {win} {prize} जीत लिया है! 🎁🍀"
+        ],
+        "NoGames": [
+            "🎉 नमस्कार! ऐसा लगता है कि अब तक कोई खेल नहीं बनाया गया है। आप एक अद्भुत पुरस्कार जीतने की संभावनाएं बढ़ाने के लिए टिकट खरीद सकते हैं। चलो, शामिल हो जाओ और शुभकामनाएँ! 🍀"
         ]
     },
     "de": {
         "Type": [
             "🔎 Oops! Dieser Befehl ist für '{reqtype}' und Sie verwenden ihn in '{type}', versuchen Sie es erneut mit der richtigen Nachricht."
+        ],
+        "Need": [
+            "💭 Sie können diesen Befehl nicht ausführen, da er '{need} {item}' erfordert, Sie haben jedoch nur '{have} {item}'. Fügen Sie mehr '{amount} {item}' hinzu und versuchen Sie es erneut!"
+        ],
+        "Wait": [
+            "🕒 Hoppla! Es sieht so aus, als ob diese Funktion kürzlich verwendet wurde. Du musst {resttime} warten, bevor du sie erneut verwenden kannst. Mach etwas Gesundes wie einen Spaziergang und komm zurück, wenn der Countdown abgelaufen ist!"
+        ],
+        "Start": [
+            "🎉 Herzlichen Glückwunsch! Du hast jetzt '{amount} {item} [{price} {payment}]'. Deine Gewinnchance beträgt {chance}%. Denke daran, dein {payment} nicht auszugeben, da die Zahlung am Ende erfolgt. Der Preis ist '{win} {prize}' und das Ergebnis wird in '{remain}' bekannt gegeben. Viel Glück! 🍀"
+        ],
+        "Buy": [
+            "🎉 Herzlichen Glückwunsch! Du hast '{amount} {item}' erworben, du wirst '{price} {payment}' am Ende des Spiels zahlen, der aktuelle Preis beträgt '{win} {prize}' und deine Gewinnchancen liegen derzeit bei {chance}%. Wir warten auf {waiting} weitere Spieler, um den Countdown zu starten und den Gewinner zu verkünden. Viel Glück! 🍀"
+        ],
+        "Winner": [
+            "🎉 Herzlichen Glückwunsch, @{winner}! Sie haben gerade {win} {prize} gewonnen! 🎁🍀"
+        ],
+        "NoGames": [
+            "🎉 Hallo! Es scheint, dass noch keine Spiele erstellt wurden. Du kannst Tickets kaufen, um die Lotterie zu aktivieren und deine Chancen auf einen tollen Preis zu erhöhen! Los geht's, mach mit und viel Glück! 🍀"
         ]
     },
     "it": {
         "Type": [
             "🔎 Ops! Questo comando è per '{reqtype}' e lo stai usando in '{type}', riprova con il messaggio corretto."
+        ],
+        "Need": [
+            "💭 Non puoi eseguire questo comando perché richiede '{need} {item}', ma possiedi solo '{have} {item}'. Aggiungi più '{amount} {item}' e riprova!"
+        ],
+        "Wait": [
+            "🕒 Ops! Sembra che questa funzione sia stata utilizzata di recente. Dovrai aspettare {resttime} prima di poterla utilizzare di nuovo. Fai qualcosa di salutare come fare una passeggiata e torna quando il conto alla rovescia è finito!"
+        ],
+        "Start": [
+            "🎉 Congratulazioni! Ora hai '{amount} {item} [{price} {payment}]'. La tua possibilità di vincere è del {chance}%. Ricorda di non spendere i tuoi {payment}, poiché il pagamento verrà effettuato alla fine. Il premio è '{win} {prize}' e il risultato sarà rivelato in '{remain}'. Buona fortuna! 🍀"
+        ],
+        "Buy": [
+            "🎉 Congratulazioni! Hai acquistato '{amount} {item}', pagherai '{price} {payment}' alla fine della partita, il premio attualmente è di '{win} {prize}' e le tue possibilità di vincere al momento sono del {chance}%. Stiamo aspettando altri {waiting} giocatori per avviare il conto alla rovescia e annunciare il vincitore. Buona fortuna! 🍀"
+        ],
+        "Winner": [
+            "🎉 Congratulazioni, @{winner}! Hai appena vinto {win} {prize}! 🎁🍀"
+        ],
+        "NoGames": [
+            "🎉 Ciao! Sembra che non ci siano giochi creati ancora. Puoi acquistare i biglietti per attivare la lotteria e aumentare le tue possibilità di vincere un premio incredibile! Forza, partecipa e buona fortuna! 🍀"
         ]
     },
     "ru": {
         "Type": [
             "🔎 Упс! Эта команда для '{reqtype}', а вы используете ее в '{type}', попробуйте снова с правильным сообщением."
+        ],
+        "Need": [
+            "💭 Вы не можете выполнить эту команду, так как она требует '{need} {item}', а у вас есть только '{have} {item}'. Добавьте еще '{amount} {item}' и попробуйте снова!"
+        ],
+        "Wait": [
+            "🕒 Упс! Похоже, эта функция уже использовалась недавно. Вам нужно подождать {resttime}, прежде чем вы сможете использовать ее снова. Сделайте что-то полезное, например, прогуляйтесь, и вернитесь, когда отсчет закончится!"
+        ],
+        "Start": [
+            "🎉 Поздравляем! Теперь у вас есть '{amount} {item} [{price} {payment}]'. Ваш шанс выиграть составляет {chance}%. Помните, не тратить ваши {payment}, так как оплата будет произведена в конце. Приз '{win} {prize}', и результат будет объявлен через '{remain}'. Удачи! 🍀"
+        ],
+        "Buy": [
+            "🎉 Поздравляем! Вы приобрели '{amount} {item}', вы заплатите '{price} {payment}' в конце игры, текущий приз составляет '{win} {prize}', а ваши шансы на победу в данный момент составляют {chance}%. Мы ждем {waiting} дополнительных игроков, чтобы начать обратный отсчет и объявить победителя. Удачи! 🍀"
+        ],
+        "Winner": [
+            "🎉 Поздравляем, @{winner}! Вы только что выиграли {win} {prize}! 🎁🍀"
+        ],
+        "NoGames": [
+            "🎉 Привет! Похоже, еще не создано ни одной игры. Вы можете купить билеты, чтобы активировать лотерею и увеличить свои шансы на выигрыш удивительного приза! Давайте, присоединяйтесь и удачи! 🍀"
         ]
     },
     "lat": {
         "Type": [
             "🔎 Ecce! Hoc imperium est pro '{reqtype}' et tu uteris eo in '{type}', iterum cum epistula recta conare."
+        ],
+        "Need": [
+            "💭 Hunc caussam non potes obsecundare, quod '{need} {item}' desideret, solus '{have} {item}' possides. Adde '{amount} {item}' et iterum conare!"
+        ],
+        "Wait": [
+            "🕒 Ooops! Videtur ut haec functio nuper adhibita sit. Oportet te expectare {resttime} antequam iterum eam utaris. Fac aliquid salubrem, ut ambulationem, et redi quando computationem consummaveris!"
+        ],
+        "Start": [
+            "🎉 Gratulationes! Nunc habes '{amount} {item} [{price} {payment}]'. Tua facultas vincendi est {chance}%. Memento non expendere {payment} tuam, quoniam solutio fienda est ad ultimum. Pretium est '{win} {prize}' et responsum in '{remain}' revelabitur. Bonam fortunam! 🍀"
+        ],
+        "Buy": [
+            "🎉 Gratulācijas! Jūs esat iegādājies '{amount} {item}', jūs maksāsiet '{price} {payment}' spēles beigās, balva pašlaik ir '{win} {prize}', un jūsu izredzes uzvarēt pašlaik ir {chance}%. Mēs gaidām vēl {waiting} spēlētājus, lai sāktu atskaiti un paziņotu uzvarētāju. Veiksmi! 🍀"
+        ],
+        "Winner": [
+            "🎉 Felix sit, @{winner}! Te praemium {win} {prize} vicit! 🎁🍀"
+        ],
+        "NoGames": [
+            "🎉 Salve! Videtur nullum lusus adhuc creatum esse. Emere potes tesseras ut loteriam augeas et occasionem habes magnam praemium adipiscendi! Age, adiunge te et bonam fortunam! 🍀"
         ]
     }
 }
