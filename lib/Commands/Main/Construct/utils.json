@@ -273,7 +273,14 @@
                 ],
                 "Default": [
                     "default",
-                    "fallback"
+                    "fallback",
+                    "menu",
+                    "getvar",
+                    "eval",
+                    "allcmd",
+                    "marcar",
+                    "wame",
+                    "bash"
                 ],
                 "Cheats": [
                     "cheats",

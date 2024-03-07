@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+body {
+    background-color: #121212;
+    font-family: 'Poppins', sans-serif;
+    color: #ffffff;
+    padding-top: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 40px;
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+header a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.btn-home {
+    background-color: #0d6ea3;
+    color: #ffffff;
+    padding: 8px 16px;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.card {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #0d6ea3;
+    color: #ffffff;
+}
+
+.card img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto;
+}
+
+.card .name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.card .job {
+    font-size: 0.9rem;
+    color: #e1e3e5;
+}
+
+.card .icons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.card .icons a {
+    color: #ffffff;
+    font-size: 1.5rem;
+    margin: 0 10px;
+}
+
+.card .icons a:hover {
+    color: #0d6efd;
+}
+
+.card:hover,
+.btn-home:hover {
+    background-color: #06273a;
+}
+
+@media (min-width: 576px) {
+    .col-sm-6 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .col-lg-3 {
+        flex: 0 0 25%;
+        max-width: 25%;
+    }
+}
