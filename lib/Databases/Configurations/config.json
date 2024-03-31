@@ -3,6 +3,10 @@
 		"description": "Enables the feature to add participants from Íris. Note: This command is disabled by default for safety reasons due to the elevated risk of receiving a WhatsApp ban.",
 		"value": false
 	},
+    "allowEvents": {
+		"description": "Enable detection of events, like promoting, demoting or gaming events like MMM (Minecraft Mining Mode).",
+		"value": true
+	},
 	"botCommands": {
 		"description": "Specifies whether Íris should execute commands from her messages. Note: This feature may have serious bugs and is not 100% tested.",
 		"value": false

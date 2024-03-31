@@ -6,6 +6,9 @@ Este guia irá ajudá-lo a instalar a Íris no Termux usando um script e executa
 
 1. [🔎 O que é Termux?](#-o-que-é-termux)
 2. [✓ Pré-Requisitos](#-pré-requisitos)
+    - [🗑️ Básico](#%EF%B8%8F-básico-uso-baixíssimo)
+    - [😌 Normal](#-normal-uso-moderado)
+    - [💥 Ultimate](#-ultimate-uso-de-alta-intensidade)
 3. [🐧 Instalando o Ubuntu 22.04](#-instalando-o-ubuntu-2204)
 4. [⚙️ Instalando a Íris](#%EF%B8%8F-instalando-a-íris)
 5. [📜 Configuração](#-configuração)
@@ -32,13 +35,49 @@ Termux é um emulador de terminal para dispositivos Android que funciona como um
 
 Antes de iniciar a instalação da Íris no Termux, certifique-se de atender aos seguintes Pré-Requisitos:
 
-1. [Termux](https://f-droid.org/pt_BR/packages/com.termux/)
-2. [Andronix](https://andronix.app/)
-3. [Files](https://play.google.com/store/apps/details?id=com.marc.files)
-4. Pelo menos 600MB a 1GB de RAM livre
-5. Processador quad-core ou superior
-6. 3GB de espaço livre (Recomendado: 5GB+)
-7. Outro telefone, um espelho (modo hardcore) ou similar
+1. [Android 7.1.2 ARMHF, ArmV7, ARMV8, ARM64 ou superior/equivalente](https://www.maiscelular.com.br/sistemas/android/7-1-2-nougat/)
+2. [Termux](https://f-droid.org/pt_BR/packages/com.termux/)
+3. [Andronix](https://andronix.app/)
+4. [Files](https://play.google.com/store/apps/details?id=com.marc.files)
+5. Outro telefone, um espelho (modo hardcore) ou similar
+    - Apenas se caso você escolher conectar via QR
+
+### 🗑️ Básico (Uso BAIXÍSSIMO):
+> Recomendado para usuários com telefones mais simples, que quase não usam BOTS ou que não podem pegar uma VPS muito boa.  
+> Exige conhecimento maior em Termux e Android, pois rodar algo tão básico exige optimizações boas, geralmente com ROOT!  
+> Esses requisitos se aplicam a testes, nenhum grupo ou 1 unico grupo com poucos participantes ou apenas PV e baixissimo nível de mensagens.  
+> Não use a Íris em um telefone "ruim" se tiver muitos grupos ou alto nível de mensagens! Ka-boom amigo, entendes? KA-BOOM!  
+
+- **RAM:** 3 GBs LPDDR3 ou superior
+- **Processador:** Quad-Core 1.4 GHz ou superior
+- **GPU:** N/A
+- **Espaço:** 4 GBs
+- **Conexão de Internet:** 4G, 4.5G ou 5G Móvel, WiFi 80 Mbps
+- **Recomendações (Opcionais, fazem MUITA diferença):** Custom ROM, Root, conhecimento intermediário em modificação de Android's
+- Exemplo: [Galaxy J6 Plus](https://www.tudocelular.com/Samsung/fichas-tecnicas/n4832/Samsung-Galaxy-J6-Plus.html)
+
+### 😌 Normal (Uso MODERADO):
+> Recomendado para usuários novos em Termux com volume comum de mensagens e pouco menos de 10 grupos.  
+
+- **Conexão de Internet:** 4G, 4.5G ou 5G Móvel, WiFi 120 Mbps W/5 GHz
+- **RAM:** 4 GBs LPDDR4 ou superior
+- **Processador:** Octa-Core 1.8 GHz ou superior
+- **GPU:** N/A
+- **Espaço:** 5 GBs
+- **Outros (Opcionais, fazem MUITA diferença):** Custom ROM, Root, conhecimento intermediário em modificação de Android's
+- Exemplo: [Asus Zenfone 5](https://www.tudocelular.com/Asus/fichas-tecnicas/n3911/Asus-ZenFone-5.html)
+
+### 💥 Ultimate (Uso de ALTA INTENSIDADE):
+> Recomendado para usuários que têm em torno de 10 ou mais grupos com alto volume de mensagens.  
+> Quanto mais grupos e mensagens houver, além de quanto mais APPs e você usar o aparelho, melhor deve ser ele, a Íris é muito bem otimizada, mas não espere milagres.  
+> Tudo que tem no Normal, exceto:  
+
+- **RAM:** 6 ~ 8 GBs LPDDR5 ou superior
+- **Processador:** Octa-Core 2 GHz ou superior
+- **Espaço:** 6 GBs
+- **Conexão de Internet:** 4G, 4.5G ou 5G Móvel, WiFi 250 Mbps W/5-6 GHz
+- **Outros (Opcionais, fazem POUCA diferença):** Custom ROM, Root, conhecimento intermediário em modificação de Android's
+- Exemplo: [Xiaomi Poco F3](https://www.tudocelular.com/Poco/fichas-tecnicas/n6743/Poco-F3.html) - Testado por mim (Custom ROM, Root, Sem GAPPS), meu xodó, roda TUDO!
 
 ## 🐧 Instalando o Ubuntu 22.04
 
@@ -72,7 +111,7 @@ Uma vez que você tenha instalado todos os requisitos e Ubuntu 22.04, copie e co
 # Atualiza os repositórios e programas do Ubuntu 22.04  
 apt update && apt upgrade -y
 
-# Instala os requisitos para inserção da repo do NodeJS 18 | https://github.com/nodesource/distributions
+# Instala os requisitos para inserção da repo do NodeJS 20 | https://github.com/nodesource/distributions
 apt install ca-certificates curl gnupg -y
 
 # Cria a pasta keyrings para inserir as do NodeJS
@@ -82,7 +121,7 @@ mkdir -p /etc/apt/keyrings
 curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
 
 # Instala o repositório do NodeJS no sistema do Ubuntu 22.04
-echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_18.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list
+echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_20.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list
 
 # Atualiza os repositórios
 apt update && apt upgrade -y

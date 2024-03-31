@@ -1,12 +1,13 @@
 {
     "name": "tricks",
-    "description": "Realizar trapaças para jogadores na database",
+    "description": "Realizar trapaças para jogadores na database.",
     "usage": {
-        "general": "[Prefix][Alias] [-me, @user, @user2...] [-xp/-coin/-diamond/-gold/-iron/-rubi/-stone/-wood] [value/-value]",
+        "general": "[Prefix][Alias] [--bank] [-me, @user, @user2...] [-xp/-coin/-diamond/-gold/-iron/-rubi/-stone/-wood] [value/-value]",
         "examples": [
             "/Cheats --help",
             "/Cheats @user -type value",
             "/Cheats @user @user2 -coin 1000 -xp 9999 -wood -999",
+            "/Cheats -me --bank -coin 1000 -wood -999",
             "tricks.execute('kill', 'params')",
             "tricks.env()",
             "tricks.reset()",

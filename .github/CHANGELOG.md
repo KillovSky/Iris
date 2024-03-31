@@ -32,6 +32,83 @@ A voz ecoou seu último suspiro.
 ## Sumário de Atualizações
 
 <details>
+  <summary><code>1.1.3 - 31/03/2024 🍓 <strong>[STRAWBERRY RELEASE]</strong></code></summary>
+<!-- Em uma fazendinha cheia de moranguinhos, duas garotas chamadas Amano e Nagisa, recentemente formandas da New Sharon College, cultivam um amor tão doce quanto suas geleias, chamadas de Ichigo's. Elas também gostam de cozinhar e tocar músicas sobre uma sociedade de almas, e sobre campos de morangos para sempre, em sua banda que chamam de Wild Strawberries. A banda inclui Ingmar, seu compositor, Saroyan, sua agente de publicidade, Muriel, a motorista, e Bond, seu fiel guarda-costas. Mas a verdade é que Amano, codinome Fields, secretamente é uma cientista que quer criar seres deliciosos, chamados de 'Monster', a partir dos morangos de sua fazenda, além disso, Nagisa é uma famosa artista do submundo que fez um quadro válioso chamado de 'Strawberry Thief', se baseando no misterioso sumiço dos morangos de sua fazenda. -->
+
+### Mural
+- Atualização parcial, ou seja, haverá uma parte 2.
+- Agora as atualizações da Íris, a menos que sejam imensas, serão postadas em partes, isso é devido a minha falta de tempo e colaboração quanto ao código. Infelizmente, não serei capaz de prover uma atualização completa mensalmente como feito na 1.1.1 e anteriores, mas ei, uma atualização ainda é melhor que nenhuma!
+
+### Novidades
+1. **Bank**
+    - Finalmente a atualização que esperavamos, o banco, local onde seus ganhos estão protegidos de ladrões idiotas ~ por enquanto, eheheh!
+    - Há um cooldown de 30 minutos para cada ação, então cuidado ao usar!
+
+2. **Cheats**
+    - Agora você pode realizar cheats no PV com base na adição de valores a sua conta do banco!
+
+3. **Spy**
+    - Saiba quem tirou seu administrador, permitiu a entrada de membros no grupo ou deu administrador para alguém ao ativar esse sistema!
+
+4. **Ping**
+    - Remodelado e velocidade de leitura melhorada, agora o seu calculo é ainda mais exato e sua leitura de mensagens foi aprimorada ao extremo!
+
+5. **Events**
+    - Adiciona um sistema para eventos super rápidos que rodarão no inicio da Construct, ou seja, enquanto a Íris processa os dados, ela também estará na busca de eventos como os da melhoria 3 acima.
+
+6. **Status**
+    - Agora seus comandos também são identificados se você ativar a função e os enviar apartir dos Status, a pergunta é: Por que isso?
+
+7. **Messages**
+    - Adicionado um sistema avançado de localização de dados para tratamento correto das mensagens, adeus Baileys e suas mensagens bizarras!
+
+8. **Debug**
+    - A função de debug "/debugping" agora executa de forma isolada dos outros contéudos, sua velocidade aumentará, pois agora calcula do começo da construct e não do inicio de envio da mensagem.
+
+9. **Markdown**
+    - Algumas mensagens foram estilizadas com o novo sistema de markdown do WhatsApp!
+
+10. **Banner**
+    - Calma, não é do JoJo, mas é minha primeira tentativa de trazer um Banner, espero que eu melhore nisso com as próximas tentativas!
+    - Teremos Banners do JoJo ainda, mas tanto ele quanto eu estamos mais e mais ocupados a cada dia!
+
+11. **Locate**
+    - A função de localizar uma Object dentro de outras agora tem um sistema de filtro para ignorar nomes de Keys que você enviar.
+    - Suporte a achar Array's e Object's!
+
+12. **Tutoriais**
+    - Adicionado algumas informações para ajudar a saber sobre os requisitos minímos.
+
+### Correções
+1. **Cheats**
+    - Agora a mensagem de cheats aparece na ordem correta quando usada por um dono no PV.
+    - Corrigido erro da mensagem de ajuda do cheats estar como 'N/A' em vez do termo correto.
+
+2. **Giveaway**
+    - Corrigido erro que fazia a compra de tickets do Giveaway estar ilimitada.
+    - Se você foi afetado severamente por isso, é recomendado que você delete o arquivo 'users.db', apague usando a Indexer com as funções SQL da Íris, limpe manualmente o SQL ou espere que uma função de limpeza seja construida.
+
+3. **Documentação**
+    - Corrigido alguns erros da envInfo.
+    - Também atualizado o node dos guias de Linux para a versão 20.
+
+4. **Ping**
+    - Alguns sistemas de cálculo de ping estavam com medições incertas.
+
+5. **Pairing Code**
+    - Percebi recentemente que o Baileys fez uma commit que corrigia a conexão por PIN a algum tempo, como a Íris usava um navegador customizado para conseguir isso, essa improvisação minha pode ter afetado e barrado a conexão de vocês desde essa correção do Baileys, me desculpem se for o caso.
+
+6. **Verifier**
+    - Ao fazer a checagem por SPAM, se retornado que houve, a checagem por URLs não aconteceria, o que liberava malfeitores de fazerem porcaria livremente durante esse periodo.
+
+7. **Outros**
+    - Perdão, mas perdi as notas novamente, não sei se houveram outras melhorias e correções, pois fiz tudo em cima da hora.
+    - Não foi por preguiça, o único momento livre que tive para programar foi essa semana ao ficar levemente doente e conseguir um atestado de descanso.
+    - Cuidados com a sáude são prioridade, no entanto, sempre que for possivel, estarei programando melhorias e postando no WhatsApp, Discord ou Telegram.
+
+</details>
+
+<details>
   <summary><code>1.1.2 - 11/02/2024 + 26/02/2024 👾 <strong>[CADOU RELEASE]</strong></code></summary>
 <!-- Numa floresta sombria, uma jovem doente de capuz aventura-se em busca de frutinhas, embora com medo de que um lobo esteja à espreita. Mas ela é encontrada por seres estranhos, aparentemente gentis, que a dão tigelas e itens de diferentes tamanhos e temperaturas, cada uma contendo uma dádiva vinda de seus corpos: sangue para vigor, pele para o frio e carne para fome. Porém, ao encontrar outro ser e pegar dele um item dourado e brilhante, não oferecido, a fim de ajudar seu vilarejo pobre, ela é acusada de ladra pelos seres, perdendo todos os presentes e sendo amaldiçoada com o poder de tudo que tocar virar criaturas mortas-vivas deformadas. -->
 

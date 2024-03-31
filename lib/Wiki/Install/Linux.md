@@ -8,6 +8,9 @@ O linux que foi usado neste guia é o PeppermintOS Debian, meu Linux atual, mas 
 
 1. [🔎 O que é Linux?](#-o-que-é-linux)
 2. [✓ Pré-Requisitos](#-pré-requisitos)
+    - [🗑️ Básico](#%EF%B8%8F-básico-uso-baixíssimo)
+    - [😌 Normal](#-normal-uso-moderado)
+    - [💥 Ultimate](#-ultimate-uso-de-alta-intensidade)
 3. [⚙️ Instalando a Íris](#%EF%B8%8F-instalando-a-íris)
 4. [📜 Configuração](#-configuração)
     - [👨‍💻 Método Nº1 - Usando CLI](#-método-nº1---usando-cli)
@@ -28,12 +31,48 @@ Linux é um sistema operacional de código aberto utilizado em servidores, dispo
 
 ## ✓ Pré-Requisitos
 
-Antes de iniciar a instalação da Íris no Linux, certifique-se de atender aos seguintes Pré-Requisitos:
+Antes de iniciar a instalação da Íris no Linux, certifique-se de atender aos seguintes Pré-Requisitos:  
+> Note que os requisitos normais e altos têm uma margem de segurança; sua Íris pode rodar muito bem mesmo estando com valores muito abaixo dos requisitados.  
+> Esses requisitos são baseados em usos de diferentes computadores, já as sugestões (ex: Celeron), são de comparações das peças mais ruins que TALVEZ rodariam.  
+> Esses requisitos são apenas da Íris, seu sistema operacional pode pedir o dobro, triplo ou superior a estes, certifique-se de escolher um sistema leve para melhor desempenho.  
 
-1. [Linux](https://distrochooser.de)
-2. Pelo menos 600MB a 1GB de RAM livre
-3. Processador single-core 3.2GHZ ou qualquer dual-core acima de 1.2GHz ou superior
-4. 3GB de espaço livre (Recomendado: 5GB+)
+### 🗑️ Básico (Uso BAIXÍSSIMO):
+> Recomendado para usuários com computadores mais simples, que quase não usam BOTS ou que não podem pegar uma VPS muito boa.  
+> Exige conhecimento maior em Linux, pois rodar algo tão básico exige que seja em modo CLI!  
+> Esses requisitos se aplicam a testes, 1 grupo com poucos participantes ou apenas PV e baixissimo nível de mensagens.  
+> Mesmo que a Íris consiga rodar nestes pela lógica, não faz sentido usar, pois as dependências, como node e canvas, podem ser incompátiveis a longo prazo.  
+> Não use a Íris em um computador tão ruim se tiver muitos grupos ou alto nível de mensagens! Ka-boom amigo, entendes? KA-BOOM!  
+
+- **Sistemas Operacionais:** [Linux CLI](https://distrochooser.de) ou lightweight Linux, como [Puppy Linux](https://puppylinux-woof-ce.github.io/)
+- **RAM:** 512 MBs DDR2 400 MHz ou superior
+- **Processador:** Single-Core 1.8 GHz com Cache L2 ou superior (e.g: AMD Athlon 64)
+- **GPU:** N/A
+- **Espaço:** 3 GBs IDE, SATA 1 ou superior
+- **Conexão de Internet:** 50 Mbps de fibra ótica OU 75 Mbps de WiFi comum OU superior
+- **Recomendações (100% OPCIONAIS, mas fazem MUITA diferença):** SWAP, CLI Mode, Conhecimento intermediário ou superior em Linux
+
+### 😌 Normal (Uso MODERADO):
+> Recomendado para usuários novos em Linux com volume comum de mensagens e pouco menos de 10 grupos.  
+> Não exige tanto conhecimento, copie os comandos e faça tudo automatico.  
+
+- **Sistemas Operacionais:** [Linux x64 C/APT](https://distrochooser.de), como [AntiX](https://antixlinux.com/)
+- **RAM:** 2 GBs DDR3 667 MHz ou superior
+- **Processador:** Dual-Core 1.4 GHz com Cache L2 ou superior (e.g: Intel Celeron)
+- **GPU:** N/A
+- **Espaço:** 4 GBs
+- **Conexão de Internet:** 75 Mbps de fibra ótica OU 120 Mbps de WiFi comum OU superior
+- **Outros (Opcionais, fazem POUCA diferença):** SWAP, CLI, VPS, SSD SATA ou NVMEs Simples (E.g: SSDs DRAMLess <450MB/s)
+
+### 💥 Ultimate (Uso de ALTA INTENSIDADE):
+> Recomendado para usuários que têm em torno de 10 ou mais grupos com alto volume de mensagens.  
+> Quanto mais grupos e mensagens houver, melhor deve ser sua máquina, a Íris é muito bem otimizada, mas não espere milagres.  
+> Tudo que tem no Normal, exceto:  
+
+- **RAM:** 4 ~ 8 GBs DDR3 1600 MHz ou superior
+- **Processador:** Quad-Core 2.4 GHz com Cache L3 ou superior (e.g: Intel Core)
+- **Espaço:** 6 GBs
+- **Conexão de Internet:** 250 Mbps de fibra ótica OU 350 Mbps de WiFi OU superior
+- **Outros (Opcionais, fazem MUITA diferença):** SSD NVME ou SATA 3 (DRAM, 450MB/s ou maior), VPS ou Cloud de Alta-Performance (Empresarial) Dedicada, Conhecimento Linux básico ou superior
 
 ## ⚙️ Instalando a Íris
 
@@ -43,7 +82,7 @@ Uma vez que você tenha instalado todos os requisitos, abra um terminal e digite
 # Atualiza os repositórios e programas
 sudo apt update && sudo apt upgrade -y
 
-# Instala os requisitos para inserção da repo do NodeJS 18 | https://github.com/nodesource/distributions
+# Instala os requisitos para inserção da repo do NodeJS 20 | https://github.com/nodesource/distributions
 sudo apt install ca-certificates curl gnupg -y
 
 # Cria a pasta keyrings para inserir as do NodeJS
@@ -53,7 +92,7 @@ sudo mkdir -p /etc/apt/keyrings
 curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
 
 # Instala o repositório do NodeJS no sistema
-echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_18.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
+echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_20.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
 
 # Atualiza os repositórios
 sudo apt update && sudo apt upgrade -y

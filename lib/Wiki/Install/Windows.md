@@ -3,15 +3,17 @@
 Este guia irá ajudá-lo a instalar a Íris no Windows nativo com comandos e downloads específicos, se estiver usando WSL, utilize o guia para Linux.
 
 ## 📝 Sumário
-
 1. [🔎️ O que é Windows?](#-o-que-é-windows)
 2. [✓ Pré-Requisitos](#-pré-requisitos)
+    - [🗑️ Básico](#%EF%B8%8F-básico-uso-baixíssimo)
+    - [😌 Normal](#-normal-uso-moderado)
+    - [💥 Ultimate](#-ultimate-uso-de-alta-intensidade)
 3. [➕ Instalação adicional dos programas](#-instalação-adicional-dos-programas)
     - [🖥️ Windows 8 - 8.1 - 10 - 11](#%EF%B8%8F-windows-8---81---10---11)
     - [💧 Microsoft Visual C++ x86](#-microsoft-visual-c-x86)
     - [☕ NodeJS](#-nodejs)
     - [🐍 Python](#-python)
-    - [🖨️ Tesseract-OCR](#%EF%B8%8F-tesseract-ocr)
+    <!-- [🖨️ Tesseract-OCR](#%EF%B8%8F-tesseract-ocr) -->
     - [🎮 Gow](#-gow)
     - [📚 SQLite3](#-sqlite3)
     - [📱 Git Bash](#-git-bash)
@@ -35,48 +37,84 @@ O Windows é um sistema operacional desenvolvido pela Microsoft. É uma platafor
 
 ## ✓ Pré-Requisitos
 
-Antes de iniciar a instalação da Íris no Termux, certifique-se de atender aos seguintes Pré-Requisitos:
+Antes de iniciar a instalação da Íris no Windows, certifique-se de atender aos seguintes Pré-Requisitos:
+> Note que os requisitos altos têm uma margem de segurança; sua Íris pode rodar muito bem mesmo estando com valores muito abaixo dos requisitados.  
+> Sua Íris não inicializará enquanto não instalar estes programas, pois sua falta ocasionará erros imensos.  
+> Esses requisitos são apenas da Íris, seu sistema operacional pode pedir o dobro, triplo ou superior a estes, certifique-se de escolher um sistema leve para melhor desempenho.  
 
-1. [Windows 8/8.1/10/11](https://www.microsoft.com/pt-br/software-download/)
-2. [Microsoft Visual C++ x86](https://download.microsoft.com/download/1/6/5/165255E7-1014-4D0A-B094-B6A430A6BFFC/vcredist_x86.exe)
-3. [NodeJS](https://nodejs.org)
-4. [Git](https://git-scm.com)
-5. [Gow](https://github.com/bmatzelle/gow/releases)
-6. [SQLite3](https://www.sqlite.org/index.html)
-7. [Python >= 3.7](https://www.python.org/downloads/)
-8. [Tesseract OCR](https://github.com/UB-Mannheim/tesseract/wiki)
-9. 2GB de RAM | Recomendado: 4GB
-10. Processador dual-core ou superior
-11. 4GB de espaço livre | Recomendado: 8GB
+1. **Microsoft Visual C++ AIO:** [Download](https://www.techpowerup.com/download/visual-c-redistributable-runtime-package-all-in-one/)
+2. **NodeJS 16 ou superior:** [Download](https://nodejs.org)
+3. **Git:** [Download](https://git-scm.com)
+4. **Gow:** [Download](https://github.com/bmatzelle/gow/releases)
+5. **SQLite3:** [Download](https://www.sqlite.org/index.html)
+6. **Python 3.7 ou superior:** [Download](https://www.python.org/downloads/)
+<!-- 7. **Tesseract OCR ~ Opcional no momento:** [Download](https://github.com/UB-Mannheim/tesseract/wiki) -->
+
+### 🗑️ Básico (Uso BAIXÍSSIMO):
+> Recomendado para usuários com computadores mais simples, que quase não usam BOTS ou que não podem pegar uma VPS muito boa.  
+> Exige conhecimento maior em Windows, pois rodar algo tão básico exige optimizações boas!  
+> Esses requisitos se aplicam a testes, poucos grupos com poucos participantes ou apenas PV e baixissimo nível de mensagens.  
+> Não use a Íris em um computador "ruim" se tiver muitos grupos ou alto nível de mensagens! Ka-boom amigo, entendes? KA-BOOM!  
+
+- **Sistemas Operacionais:** [APENAS Windows 8.1 Home SL x64](https://www.microsoft.com/pt-br/software-download)
+- **RAM:** 2 GBs DDR3 400 MHz ou superior
+- **Processador:** Dual-Core 1.4 GHz com Cache L2, PAE, NX e SSE2 ou superior (e.g: Intel Celeron)
+- **GPU:** N/A
+- **Espaço:** 3 GBs SATA 2 ou superior
+- **Conexão de Internet:** 60 Mbps de fibra ótica OU 80 Mbps de WiFi comum OU superior
+- **Recomendações (Opcionais, fazem MUITA diferença):** Memoria Virtual, SSDs ou NVME (E.g: SSDs DRAM 250MB/s>), Conhecimento intermediário ou superior em informática
+
+### 😌 Normal (Uso MODERADO):
+> Recomendado para usuários novos em Linux com volume comum de mensagens e pouco menos de 10 grupos.  
+
+- **Sistemas Operacionais:** [Windows 8.1 Home x64 ou 10 Home SL x64](https://www.microsoft.com/pt-br/software-download)
+- **Conexão de Internet:** 100 Mbps de fibra ótica OU 150 Mbps de WiFi comum OU superior
+- **RAM:** 4 GBs DDR3 800 MHz ou superior
+- **Processador:** Dual-Core 1.6 GHz com Cache L2, PAE, NX e SSE2 ou superior (e.g: Intel Core)
+- **GPU:** N/A
+- **Espaço:** 4 GBs
+- **Outros (Opcionais, fazem MUITA diferença):** Memoria Virtual, VPS, SSD SATA ou NVMEs (E.g: SSDs DRAM 350MB/s>), Conhecimento básico ou superior em informática
+
+### 💥 Ultimate (Uso de ALTA INTENSIDADE):
+> Recomendado para usuários que têm em torno de 10 ou mais grupos com alto volume de mensagens.  
+> Quanto mais grupos e mensagens houver, alem de quão novo for seu Windows, melhor deve ser sua máquina, a Íris é muito bem otimizada, mas não espere milagres.  
+> Tudo que tem no Normal, exceto:  
+
+- **Sistemas Operacionais:** [Windows 8.1, 10 ou 11 x64](https://www.microsoft.com/pt-br/software-download)
+- **RAM:** 8 ~ 16 GBs DDR3 1600 MHz ou superior
+- **Processador:** Quad-Core 2.4 GHz com Cache L3 ou superior (e.g: AMD Ryzen)
+- **Espaço:** 6 GBs
+- **Conexão de Internet:** 250 Mbps de fibra ótica OU 350 Mbps de WiFi OU superior
+- **Outros (Opcionais, fazem MUITA diferença):** SSD NVME ou SATA 3 (E.g: SSDs DRAM 450MB/s>), VPS ou Cloud de Alta-Performance (Empresarial) Dedicada, Conhecimento básico ou superior em informática
 
 ## ➕ Instalação adicional dos programas
 
-Baixe os executáveis primeiros e então volte aqui!
+Baixe os executáveis ACIMA primeiros e então volte aqui!
 
 - Dica: Se desejar pular a instalação de um programa, você pode simplesmente remover os códigos relacionados a ele no sistema de verificação presente no arquivo [Checker.js](https://github.com/KillovSky/Iris/blob/main/lib/Initialize/checker.js).
-- Mas tenha em mente que, se fizer isso, **NÃO HAVERÁ SUPORTE PARA ERROS NA SUA INSTALAÇÃO!**
+- Mas tenha em mente que, se fizer isso, **NÃO HAVERÁ SUPORTE PARA ERROS NA SUA INSTALAÇÃO, E PODE APOSTAR, HAVERÃO ERROS!**
 
-### 🖥️ Windows 8 - 8.1 - 10 - 11
+### 🖥️ Windows 8.1 - 10 - 11 x64
 
-....dah.
+Sistemas operacionais de 32 Bits foram descontinuados do uso na Íris, ao menos no quesito Windows, se tem um sistema antigo de 32 Bits, arrisque-se no [Linux](https://github.com/KillovSky/Iris/blob/main/lib/Wiki/Install/Linux.md) ou use em [Seu Telefone Android](https://github.com/KillovSky/Iris/blob/main/lib/Wiki/Install/Termux.md).
 
-### 💧 Microsoft Visual C++ x86
+### 💧 Microsoft Visual C++ AIO
 
-Apenas instale seguindo as opções padrões, nada mais é requisitado.
+Baixe, extraia e execute o script `install_all.bat` como administrador, se quiser, pode abrir ele com um editor para checar por vírus, mas estão seguros (ao menos até o momento da escrita deste tutorial), inclusive, utilizo estes instaladores em minhas formatações.
 
 ### ☕ NodeJS
 
 A instalação em si é simples, apenas avance para instalar, mas se certifique de ativar a instalação da `Tools for Native Modules`.
 
-Quando finalizar, um terminal será aberto, aperte enter se ele pedir e deixe a instalação ocorrer, pode demorar bastante tempo.
+Quando finalizar, um terminal será aberto, aperte enter se ele pedir e deixe a instalação ocorrer (Power Shell), pode demorar bastante tempo, não feche.
 
 ### 🐍 Python
 
 Normalmente, se instalado conforme dito acima, o NodeJS instalará o Python para você, mas se não for o caso, Python é simples de instalar, você só precisa ativar a opção `Add Python to PATH` e prosseguir com a instalação em customize.
 
-Selecione também, sendo opcional, mas recomendado, a opção `debbugging symbols`, `Install for all users`, `debug binaries` e `precompile standard library`, termine sua instalação agora.
+Selecione também, sendo opcional, mas recomendado, a opção `debbugging symbols`, `Install for all users`, `debug binaries` e `precompile standard library`.
 
-### 🖨️ Tesseract-OCR
+<!-- ### 🖨️ Tesseract-OCR
 
 Após baixar o arquivo exe da instalação, selecione as seguintes opções:
 
@@ -85,7 +123,7 @@ Após baixar o arquivo exe da instalação, selecione as seguintes opções:
 2. Aperte o botão '+' em `Additional Language Data` e selecione a opção `Math` e seu idioma, se for brasileiro, use `Portuguese`, você também pode selecionar outros, caso haja estrangeiros em seu grupo.
 
 3. Finalize a instalação e siga a etapa no final do guia para configurar sua PATH.
-
+-->
 ### 🎮 Gow
 
 Apenas instale o Gow com suas opções padrões e então use a etapa no final do guia para configurar a PATH.
@@ -126,10 +164,10 @@ Se certifique de usar `Git Bash` para abrir a Íris! O Windows 10 e 11 contém p
 
 ### 🛣️ PATH
 
-Mude o `InsiraLocal` para o lugar relativo dos programas, os locais padrões, se tiver usado a instalação padrão, são:
-Gow: `C:\Program Files (x86)\Gow\bin`
-Bash: `C:\Program Files\Git\bin`
-Tesseract: `C:\Program Files\Tesseract-OCR`
+Mude o `InsiraLocal` para o lugar relativo dos programas, os locais padrões, se tiver usado a instalação padrão, são:  
+Gow: `C:\Program Files (x86)\Gow\bin`  
+Bash: `C:\Program Files\Git\bin`  
+Tesseract: `C:\Program Files\Tesseract-OCR`  
 
 Lembre-se de fazer isso duas vezes, uma para o gow e outra para bash, o bash deve estar acima do gow na lista, se você inserir o gow acima do bash, ocorrerá erros ao usar o comando `bash`.
 

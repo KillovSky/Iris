@@ -156,6 +156,11 @@
                     "description": "Array com os tipos de valor que a key deve possuir.",
                     "type": "Boolean / Array",
                     "value": false
+                },
+                "ignoreKeys": {
+                    "description": "Array com os nomes de keys que deve ignorar na busca.",
+                    "type": "Boolean / Array",
+                    "value": false
                 }
             },
             "description": "Localiza um valor de object pela sua key.",

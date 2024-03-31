@@ -141,6 +141,17 @@
             "description": "Local onde o módulo pode ser encontrado.",
             "type": "Object",
             "value": {
+                "Bank": [
+                    "bank",
+                    "doar",
+                    "pay",
+                    "save",
+                    "acc",
+                    "donate",
+                    "payment",
+                    "banking",
+                    "account"
+                ],
                 "Images": [
                     "images",
                     "randomimage",
@@ -338,6 +349,7 @@
                     "blacklist",
                     "prefix",
                     "nsfw",
+                    "spy",
                     "language",
                     "goodbye",
                     "whitelist",

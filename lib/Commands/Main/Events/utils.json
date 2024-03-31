@@ -1,41 +1,23 @@
 {
-    "name": "toggle",
-    "description": "Fazer a ativação de sistemas de segurança, jogos e demais.",
+    "name": "event",
+    "description": "Executar eventos no meio do processamento da mensagem.",
     "usage": {
-        "general": "[Prefix][Alias] [On|1|Enable|Off|0|Disable|-add|-rem|-clear|-text|-ban|-set] [remove|change|add|-add|-rem|-clear|Prefix|Texto|Sigla_Idioma|Numero] [Valores]",
+        "general": "[RESTRITO] - Verifique o 'examples' para usos inseguros.",
         "examples": [
-            "/Comando on/off",
-            "/Comando -add <Valor>",
-            "/Comando -text -add <Valor>",
-            "/Comando -text -clear",
-            "/Comando -set <Valor>",
-            "/antispam -ban 10",
-            "/antispam -set 10",
-            "/antilinks -set 1",
-            "/Welcome On|Off",
-            "/Prefix -add ^",
-            "/Welcome -text -add {userm} entrou em {groupm}, leia a {desc}!",
-            "/Goodbye -text -add {userm} saiu de {groupm}!",
-            "/Antifake -add 55",
-            "/Whitelist -add 551199876543210",
-            "/Language -text -add pt",
-            "toggle.execute('kill', 'params')",
-            "toggle.env()",
-            "toggle.reset()",
-            "toggle.env().functions.execute.value('kill', 'params')"
+            "event.env()",
+            "event.make()",
+            "event.env().functions.make.value()",
+            "event.env().functions.revert.value()"
         ]
     },
     "license": "MIT",
     "helps": [
-        "Alguns sistemas podem exigir que você insira tanto o '-text' como '-add', siga os exemplos atentamente, eventualmente você pegará o jeito!",
-        "O sistema spy permite saber quem demitiu um administrador ou qual administrador contratou outro administrador, evite sua ativação se planeja fazer demissões ou contratações em massa.",
-        "O antispam deve conter o uso de '-set' para a configuração após ativar, o mesmo ocorre no antilinks.",
-        "Se desejar inserir o nome do grupo, marcar o usuário nas mensagens ou enviar a descrição do grupo, basta inserir váriaveis, como '{userm}', '{groupm}' e '{desc}' nas suas mensagens customizadas.",
-        "Existem diversas outras váriaveis, mas a maioria das funções é ultrasecreta, inútil ou somente o dono <TALVEZ> saberá como as usar, então elas se manterão em segredo, quem sabe você as descobre acidentalmente...",
-        "Para configurar o limite de spam, defina o valor para declarar como spam, como por exemplo: 10 mídias",
-        "Para configurar o modo de operação da URL, defina de 1 a 3 na frente com '-set', sendo que: 1 = Tudo/All | 2 = Invite/Convites | 3 = Porno/Virus/Fakenews/Apostas",
-        "O antifake deve ser configurado com o DDI, ou seja, se quiser banir todos os números +1, apenas digite 1 no uso do comando.",
-        "O antispam deve ser definido com o argumento '-ban' se quiser que a pessoa seja removida, se não for o caso, você pode ignorar o uso do '-ban' e apenas inserir o número com '-set' antes, isso é a quantidade de mídias máximas enviadas de uma vez pela pessoa."
+        "Você pode mudar os parâmetros da exports enviando o valor da Object que deseja editar ao resetar, por exemplo → event.reset({ name: 'Body'}) ← Isso mudaria o module de Tree para Body, o uso então passaria ser: → Body.funcão ← Isso também permite que você edita a função usando o mesmo método.",
+        "Você pode mudar o que os códigos rodam, em tempo real, basta usar a 'env', por exemplo → event.env().name = 'Body' ← Mas este método não atualizará o sistema, somente a Object, os sistemas permanecem intactos.",
+        "Você pode configurar o tempo de reset dos resultados ou se eles devem ser resetados usando a env, por exemplo → event.env().settings.wait = 10000 ← Isso mudaria o tempo de espera para 10 segundos, o tempo deve ser em milissegundos.",
+        "Alguém lê essas dicas? Se sim, torne-se um programador, ler os tutoriais é de suma importância e poucos desenvolvedores o fazem...",
+        "Existem infinitas formas de uso secretas, explore os códigos para descobrir os mistérios dos sistemas!",
+        "Todas as funções tem valores padrão, então você não sofrerá erros por esquecer de enviar um parâmetro ou similar."
     ],
     "exports": {
         "env": "env",
@@ -46,7 +28,7 @@
     },
     "developer": "KillovSky",
     "files": {
-        "index.js": "Sistema de busca, download e envio de vídeos do YouTube.",
+        "index.js": "Sistema que faz a coleta das informações e envio.",
         "utils.json": "Dados de fábrica da envInfo."
     },
     "modules": {
@@ -81,13 +63,13 @@
                     "type": "Boolean / Object",
                     "value": false
                 },
-                "env": {
+                "data": {
                     "description": "Dados da mensagem recebida.",
                     "type": "Boolean / Object",
                     "value": false
                 }
             },
-            "description": "Redireciona a função correta para o arquivo correto.",
+            "description": "Executa o comando representado nesse arquivo.",
             "type": "Boolean / Function",
             "value": false
         },
@@ -153,6 +135,15 @@
             "description": "Armazena a mensagem do último erro recebido.",
             "type": "Boolean / String",
             "value": false
+        },
+        "admins": {
+            "description": "Define as mensagens para demote e promote no terminal.",
+            "type": "Object",
+            "value": {
+                "promoteText": "foi promovido a administrador por",
+                "demoteText": "foi demitido do cargo de administrador por",
+                "approvedText": "permitiu a entrada dos novos usuários"
+            }
         }
     },
     "results": {

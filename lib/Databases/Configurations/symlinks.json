@@ -82,7 +82,7 @@
         ]
     },
     "Events": {
-        "place": "./Functions/Works/Events/index",
+        "place": "./Commands/Main/Events/index",
         "alias": [
             "events",
             "evento"

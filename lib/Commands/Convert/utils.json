@@ -1,6 +1,6 @@
 {
     "name": "convert",
-    "description": "Realizar a conversão de arquivos webp para PNG, GIF ou MP4",
+    "description": "Realizar a conversão de arquivos webp para PNG, GIF ou MP4.",
     "usage": {
         "general": "[Prefix][Alias] [--metadata/--fps/--time] [valor]",
         "examples": [

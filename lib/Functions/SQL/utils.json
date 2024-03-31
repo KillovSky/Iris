@@ -500,6 +500,16 @@
                         "firstUser": false,
                         "firstDate": 0
                     },
+                    "spy": {
+                        "enable": false,
+                        "lastValue": 0,
+                        "lastState": false,
+                        "lastUser": "none",
+                        "lastDate": 0,
+                        "firstEdition": false,
+                        "firstUser": false,
+                        "firstDate": 0
+                    },
                     "nsfw": {
                         "enable": false,
                         "lastValue": 0,

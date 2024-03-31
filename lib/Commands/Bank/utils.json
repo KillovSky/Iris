@@ -1,41 +1,27 @@
 {
-    "name": "toggle",
-    "description": "Fazer a ativação de sistemas de segurança, jogos e demais.",
+    "name": "saves",
+    "description": "Realizar operações financeiras como bank, pagamentos e doações.",
     "usage": {
-        "general": "[Prefix][Alias] [On|1|Enable|Off|0|Disable|-add|-rem|-clear|-text|-ban|-set] [remove|change|add|-add|-rem|-clear|Prefix|Texto|Sigla_Idioma|Numero] [Valores]",
+        "general": "[Prefix][Alias] [@user|-time] [-coin/-diamond/-gold/-iron/-rubi/-stone/-wood] [value]",
         "examples": [
-            "/Comando on/off",
-            "/Comando -add <Valor>",
-            "/Comando -text -add <Valor>",
-            "/Comando -text -clear",
-            "/Comando -set <Valor>",
-            "/antispam -ban 10",
-            "/antispam -set 10",
-            "/antilinks -set 1",
-            "/Welcome On|Off",
-            "/Prefix -add ^",
-            "/Welcome -text -add {userm} entrou em {groupm}, leia a {desc}!",
-            "/Goodbye -text -add {userm} saiu de {groupm}!",
-            "/Antifake -add 55",
-            "/Whitelist -add 551199876543210",
-            "/Language -text -add pt",
-            "toggle.execute('kill', 'params')",
-            "toggle.env()",
-            "toggle.reset()",
-            "toggle.env().functions.execute.value('kill', 'params')"
+            "/Doar --help",
+            "/Pay @user -coin 1000 -wood -999",
+            "/Bank -get -coin 1000",
+            "/Save -wood 50",
+            "saves.execute('kill', 'params')",
+            "saves.env()",
+            "saves.reset()",
+            "saves.env().functions.execute.value('kill', 'params')"
         ]
     },
     "license": "MIT",
     "helps": [
-        "Alguns sistemas podem exigir que você insira tanto o '-text' como '-add', siga os exemplos atentamente, eventualmente você pegará o jeito!",
-        "O sistema spy permite saber quem demitiu um administrador ou qual administrador contratou outro administrador, evite sua ativação se planeja fazer demissões ou contratações em massa.",
-        "O antispam deve conter o uso de '-set' para a configuração após ativar, o mesmo ocorre no antilinks.",
-        "Se desejar inserir o nome do grupo, marcar o usuário nas mensagens ou enviar a descrição do grupo, basta inserir váriaveis, como '{userm}', '{groupm}' e '{desc}' nas suas mensagens customizadas.",
-        "Existem diversas outras váriaveis, mas a maioria das funções é ultrasecreta, inútil ou somente o dono <TALVEZ> saberá como as usar, então elas se manterão em segredo, quem sabe você as descobre acidentalmente...",
-        "Para configurar o limite de spam, defina o valor para declarar como spam, como por exemplo: 10 mídias",
-        "Para configurar o modo de operação da URL, defina de 1 a 3 na frente com '-set', sendo que: 1 = Tudo/All | 2 = Invite/Convites | 3 = Porno/Virus/Fakenews/Apostas",
-        "O antifake deve ser configurado com o DDI, ou seja, se quiser banir todos os números +1, apenas digite 1 no uso do comando.",
-        "O antispam deve ser definido com o argumento '-ban' se quiser que a pessoa seja removida, se não for o caso, você pode ignorar o uso do '-ban' e apenas inserir o número com '-set' antes, isso é a quantidade de mídias máximas enviadas de uma vez pela pessoa."
+        "Caso a contagem de tempo se torne negativa, ou seja, você demore muito tempo para usar novamente, o uso do '-time' poderá estar incorreto, sendo que na verdade, seu uso já estará liberado.",
+        "Se você não marcar algúem enquanto estiver usando a função doar, ela será automaticamente transferida para a execução de uma transferência para sua própria conta bancária, tome cuidado.",
+        "Há um limite padrão de 10.000 (ou -10000) de doação, pagamentos ou operações de banco por uso, pois inserir valores maiores (ou menores negativos) pode causar problemas quando você possui valores elevados (ou absurdamente negativos) com você.",
+        "Apenas a primeira pessoa mencionada ganhará os valores doados ou pagos, outras pessoas serão ignoradas se mencionadas.",
+        "Você pode definir multiplos valores para o comando, como coin e wood, assim não precisa usar em um a um.",
+        "Note que ao chegar em determinado valor de level ou XP, você será reinicializado para o começo, pois conseguiu 'completar' o jogo."
     ],
     "exports": {
         "env": "env",
@@ -46,7 +32,7 @@
     },
     "developer": "KillovSky",
     "files": {
-        "index.js": "Sistema de busca, download e envio de vídeos do YouTube.",
+        "index.js": "Sistema que faz a coleta das informações e envio.",
         "utils.json": "Dados de fábrica da envInfo."
     },
     "modules": {
@@ -87,7 +73,7 @@
                     "value": false
                 }
             },
-            "description": "Redireciona a função correta para o arquivo correto.",
+            "description": "Executa o comando representado nesse arquivo.",
             "type": "Boolean / Function",
             "value": false
         },
@@ -153,6 +139,45 @@
             "description": "Armazena a mensagem do último erro recebido.",
             "type": "Boolean / String",
             "value": false
+        },
+        "waitTime": {
+            "description": "Tempo que deve aguardar para poder usar novamente as funções, milissegundos.",
+            "type": "Number",
+            "value": 1800000
+        },
+        "emojiData": {
+            "description": "Define os emojis de cada valor possivel.",
+            "type": "Object",
+            "value": {
+                "coin": "💰",
+                "diamond": "💎",
+                "rubi": "🔴",
+                "stone": "🪨",
+                "gold": "🏆",
+                "iron": "🪙",
+                "wood": "🌲",
+                "xp": "📈",
+                "level": "🎚️",
+                "messages": "📬"
+            }
+        },
+        "payLimit": {
+            "description": "Define o limite de doação ou bank das funções, note que valores muito altos podem levar a 'Infinity' ou 'Heap Out of Memory', cuidado.",
+            "type": "Number",
+            "value": 10000
+        },
+        "payAllowed": {
+            "description": "Define quais keys estão permitidas para doar, é necessário inserir '-' antes, pois isso é diretamente relacionado á variável 'body' no código.",
+            "type": "Array",
+            "value": [
+                "-coin",
+                "-diamond",
+                "-gold",
+                "-iron",
+                "-rubi",
+                "-stone",
+                "-wood"
+            ]
         }
     },
     "results": {
