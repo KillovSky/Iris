@@ -23,8 +23,11 @@ E na fronteira entre terror e renascimento, uma pergunta sempre ecoa:
     <img align="center" src="https://raw.githubusercontent.com/KillovSky/Iris/main/lib/Commands/Default/Cache/Banner.png" width="512" height="320">
 </p>
 <p align="center">
-    <a align="center" href="https://bento.me/jocosta">Banner by Jojo</a>
+    <a align="center" href="https://linktr.ee/killovsky">Banner by KillovSky</a>
 </p>
+<!-- <p align="center">
+    <a align="center" href="https://bento.me/jocosta">Banner by Jojo</a>
+</p> -->
 <p align="center">
     <h1 align="center">Projeto Íris</h1>
     <a href="https://github.com/KillovSky/iris/blob/main/LICENSE"><img alt="GitHub License" src="https://img.shields.io/github/license/KillovSky/Iris?color=blue&label=Licence&style=flat-square"></a>
@@ -40,6 +43,7 @@ E na fronteira entre terror e renascimento, uma pergunta sempre ecoa:
     <a href="https://www.codefactor.io/repository/github/killovsky/iris"><img alt="Codefactor" src="https://www.codefactor.io/repository/github/killovsky/iris/badge"></a>
     <a href="http://isitmaintained.com/project/killovsky/iris"><img alt="Is maintained" src="http://isitmaintained.com/badge/resolution/killovsky/iris.svg"></a>
     <a href="http://isitmaintained.com/project/killovsky/iris"><img alt="Is maintained" src="http://isitmaintained.com/badge/open/killovsky/iris.svg"></a>
+    <a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FKillovSky%2FIris&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=Views+%28Since+01%2F04%2F24%29&edge_flat=false"/></a>
 </p>
 
 ## 📝 Sumário

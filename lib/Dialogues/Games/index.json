@@ -1,7 +1,7 @@
 {
     "pt": {
         "lostSteal": [
-            "🚨 Surpresa total com a denúncia dos vizinhos, a polícia apareceu por todos os cantos! 🕵️‍♂️\n\n🎁 Mas relaxa, você é um ninja na lábia! Os policiais caíram na isca do suborno, e foi só desembolsar {payCops} {paymentCops} para abrir as portas da liberdade e pagar a vitima. 💰\n\nDessa vez, o poder do dinheiro falou mais alto que a lei. Agora, sem algemas, é hora de decidir seu próximo passo! 🔓✨"
+            "🚨 Surpresa total com a denúncia dos vizinhos, a polícia apareceu por todos os cantos! 🕵️‍♂️\n\n🎁 Mas relaxa, você é um ninja na lábia! Os policiais caíram na isca do suborno, e foi só desembolsar {payCops} {paymentCops} a {victim} para abrir as portas da liberdade e pagar a vitima. 💰\n\nDessa vez, o poder do dinheiro falou mais alto que a lei. Agora, sem algemas, é hora de decidir seu próximo passo! 🔓✨"
         ],
         "winSteal": [
             "🕵️‍♂️ Você entrou de fininho na casa de @{sorryPeople}.\n\nSorte sua, ela ou ele estava dormindo ou no banho! 😴\n\n🎁 Rapidinho, encontrou um baú escondido, e voilà, {stealQuantity} {stealMatterie}!\n\nParabéns, gatuno esperto! Saia triunfante e celebre sua vitória! 💰👏"
@@ -64,7 +64,7 @@
     },
     "ar": {
         "lostSteal": [
-            "🚨 مفاجأة تامة مع شكوى الجيران، الشرطة ظهرت في كل مكان! 🕵️‍♂️\n\n🎁 لكن استرخ، أنت نينجا في الكلام! الشرطة وقعوا في فخ الرشوة، وكان مجرد دفع {payCops} {paymentCops} كافيًا لفتح أبواب الحرية وتسديد التعويض للضحية. 💰\n\nهذه المرة، تحدث قوة المال بصوت أعلى من القانون. الآن، بدون قيود، حان الوقت لاتخاذ خطوتك التالية! 🔓✨"
+            "🚨 مفاجأة تامة مع شكوى الجيران، الشرطة ظهرت في كل مكان! 🕵️‍♂️\n\n🎁 لكن استرخ، أنت نينجا في الكلام! الشرطة وقعوا في فخ الرشوة، وكان مجرد دفع {payCops} {paymentCops} a {victim} كافيًا لفتح أبواب الحرية وتسديد التعويض للضحية. 💰\n\nهذه المرة، تحدث قوة المال بصوت أعلى من القانون. الآن، بدون قيود، حان الوقت لاتخاذ خطوتك التالية! 🔓✨"
         ],
         "winSteal": [
             "🕵️‍♂️ دخلت بخفة إلى منزل @{sorryPeople}.\n\nحظك، إنه أو هي كانوا نائمين أو في الاستحمام! 😴\n\n🎁 بسرعة، وجدت صندوقًا مخفيًا، وها هو، {stealQuantity} {stealMatterie}!\n\nتهانينا، لص ذكي! اخرج بنصرك واحتفل بفوزك! 💰👏"
@@ -127,7 +127,7 @@
     },
     "jp": {
         "lostSteal": [
-            "🚨 近所の告発で完全なサプライズ、どこにでも警察が現れました！ 🕵️‍♂️\n\n🎁 でも大丈夫、あなたは会話の忍者です！ 警察は賄賂の罠にかかり、{payCops} {paymentCops} を支払うだけで自由の扉が開き、被害者に支払えました。 💰\n\n今回はお金の力が法よりも強く語りました。 さて、手錠なしで次のステップを決める時です！ 🔓✨"
+            "🚨 近所の告発で完全なサプライズ、どこにでも警察が現れました！ 🕵️‍♂️\n\n🎁 でも大丈夫、あなたは会話の忍者です！ 警察は賄賂の罠にかかり、{payCops} {paymentCops} a {victim} を支払うだけで自由の扉が開き、被害者に支払えました。 💰\n\n今回はお金の力が法よりも強く語りました。 さて、手錠なしで次のステップを決める時です！ 🔓✨"
         ],
         "winSteal": [
             "🕵️‍♂️ あなたは@{sorryPeople}の家にこっそり入りました。\n\nラッキーなことに、彼または彼女は寝ているかシャワーを浴びていました！ 😴\n\n🎁 さっと隠れた宝箱を見つけ、そこには {stealQuantity} {stealMatterie} がありました！\n\nおめでとう、賢い盗賊よ！ 凱旋し、勝利を祝おう！ 💰👏"
@@ -190,7 +190,7 @@
     },
     "en": {
         "lostSteal": [
-            "🚨 Total surprise with the neighbors' report, the police showed up everywhere! 🕵️‍♂️\n\n🎁 But relax, you're a ninja in persuasion! The police fell for the bribery bait, and it was just a matter of paying {payCops} {paymentCops} to open the doors of freedom and compensate the victim. 💰\n\nThis time, the power of money spoke louder than the law. Now, without handcuffs, it's time to decide your next move! 🔓✨"
+            "🚨 Total surprise with the neighbors' report, the police showed up everywhere! 🕵️‍♂️\n\n🎁 But relax, you're a ninja in persuasion! The police fell for the bribery bait, and it was just a matter of paying {payCops} {paymentCops} a {victim} to open the doors of freedom and compensate the victim. 💰\n\nThis time, the power of money spoke louder than the law. Now, without handcuffs, it's time to decide your next move! 🔓✨"
         ],
         "winSteal": [
             "🕵️‍♂️ You snuck into @{sorryPeople}'s house.\n\nLucky you, he or she was asleep or in the bath! 😴\n\n🎁 Quickly, you found a hidden chest, and voilà, {stealQuantity} {stealMatterie}!\n\nCongratulations, clever thief! Go out triumphant and celebrate your victory! 💰👏"
@@ -253,7 +253,7 @@
     },
     "fr": {
         "lostSteal": [
-            "🚨 Surprise totale avec la dénonciation des voisins, la police est apparue de partout ! 🕵️‍♂️\n\n🎁 Mais détendez-vous, vous êtes un ninja de la persuasion ! La police est tombée dans le piège de la corruption, il a suffi de débourser {payCops} {paymentCops} pour ouvrir les portes de la liberté et indemniser la victime. 💰\n\nCette fois-ci, le pouvoir de l'argent a parlé plus fort que la loi. Maintenant, sans menottes, il est temps de décider de votre prochaine étape ! 🔓✨"
+            "🚨 Surprise totale avec la dénonciation des voisins, la police est apparue de partout ! 🕵️‍♂️\n\n🎁 Mais détendez-vous, vous êtes un ninja de la persuasion ! La police est tombée dans le piège de la corruption, il a suffi de débourser {payCops} {paymentCops} a {victim} pour ouvrir les portes de la liberté et indemniser la victime. 💰\n\nCette fois-ci, le pouvoir de l'argent a parlé plus fort que la loi. Maintenant, sans menottes, il est temps de décider de votre prochaine étape ! 🔓✨"
         ],
         "winSteal": [
             "🕵️‍♂️ Vous êtes entré discrètement dans la maison de @{sorryPeople}.\n\nHeureusement pour vous, il ou elle dormait ou était dans le bain ! 😴\n\n🎁 Rapidement, vous avez trouvé un coffre caché, et voilà, {stealQuantity} {stealMatterie} !\n\nFélicitations, voleur intelligent ! Sortez triomphant et célébrez votre victoire ! 💰👏"
@@ -316,7 +316,7 @@
     },
     "es": {
         "lostSteal": [
-            "🚨 Sorpresa total con la denuncia de los vecinos, la policía apareció por todas partes! 🕵️‍♂️\n\n🎁 Pero tranquilo, ¡eres un ninja persuasivo! La policía cayó en la trampa del soborno, y fue cuestión de pagar {payCops} {paymentCops} para abrir las puertas de la libertad y compensar a la víctima. 💰\n\nEsta vez, el poder del dinero habló más fuerte que la ley. Ahora, sin esposas, es el momento de decidir tu próximo paso! 🔓✨"
+            "🚨 Sorpresa total con la denuncia de los vecinos, la policía apareció por todas partes! 🕵️‍♂️\n\n🎁 Pero tranquilo, ¡eres un ninja persuasivo! La policía cayó en la trampa del soborno, y fue cuestión de pagar {payCops} {paymentCops} a {victim} para abrir las puertas de la libertad y compensar a la víctima. 💰\n\nEsta vez, el poder del dinero habló más fuerte que la ley. Ahora, sin esposas, es el momento de decidir tu próximo paso! 🔓✨"
         ],
         "winSteal": [
             "🕵️‍♂️ Entraste sigilosamente en la casa de @{sorryPeople}.\n\n¡Suerte para ti, él o ella estaba durmiendo o en el baño! 😴\n\n🎁 Rápidamente, encontraste un cofre oculto, y voilà, {stealQuantity} {stealMatterie}!\n\n¡Felicidades, astuto ladrón! ¡Sal triunfante y celebra tu victoria! 💰👏"
@@ -379,7 +379,7 @@
     },
     "id": {
         "lostSteal": [
-            "🚨 Kejutan total dengan laporan tetangga, polisi muncul di mana-mana! 🕵️‍♂️\n\n🎁 Tapi tenang, kamu adalah seorang ninja dalam persuasi! Polisi terjebak dalam umpan suap, dan hanya perlu membayar {payCops} {paymentCops} untuk membuka pintu kebebasan dan memberi ganti rugi kepada korban. 💰\n\nKali ini, kekuatan uang berbicara lebih keras dari hukum. Sekarang, tanpa gembok, saatnya memutuskan langkah selanjutnya! 🔓✨"
+            "🚨 Kejutan total dengan laporan tetangga, polisi muncul di mana-mana! 🕵️‍♂️\n\n🎁 Tapi tenang, kamu adalah seorang ninja dalam persuasi! Polisi terjebak dalam umpan suap, dan hanya perlu membayar {payCops} {paymentCops} a {victim} untuk membuka pintu kebebasan dan memberi ganti rugi kepada korban. 💰\n\nKali ini, kekuatan uang berbicara lebih keras dari hukum. Sekarang, tanpa gembok, saatnya memutuskan langkah selanjutnya! 🔓✨"
         ],
         "winSteal": [
             "🕵️‍♂️ Kamu masuk diam-diam ke rumah @{sorryPeople}.\n\nBeruntunglah kamu, dia atau dia sedang tidur atau mandi! 😴\n\n🎁 Dengan cepat, kamu menemukan peti tersembunyi, dan voilà, {stealQuantity} {stealMatterie}!\n\nSelamat, pencuri cerdik! Keluar sebagai pemenang dan rayakan kemenanganmu! 💰👏"
@@ -442,7 +442,7 @@
     },
     "ms": {
         "lostSteal": [
-            "🚨 Kejutan penuh dengan aduan jiran, polis muncul di mana-mana! 🕵️‍♂️\n\n🎁 Tetapi tenang, anda seorang ninja dalam mendayakan! Polis terjebak dengan umpan suapan, dan hanya perlu membayar {payCops} {paymentCops} untuk membuka pintu kebebasan dan memberi ganti rugi kepada mangsa. 💰\n\nKali ini, kuasa wang bercakap lebih kuat daripada undang-undang. Sekarang, tanpa belenggu, masanya untuk membuat keputusan langkah seterusnya! 🔓✨"
+            "🚨 Kejutan penuh dengan aduan jiran, polis muncul di mana-mana! 🕵️‍♂️\n\n🎁 Tetapi tenang, anda seorang ninja dalam mendayakan! Polis terjebak dengan umpan suapan, dan hanya perlu membayar {payCops} {paymentCops} a {victim} untuk membuka pintu kebebasan dan memberi ganti rugi kepada mangsa. 💰\n\nKali ini, kuasa wang bercakap lebih kuat daripada undang-undang. Sekarang, tanpa belenggu, masanya untuk membuat keputusan langkah seterusnya! 🔓✨"
         ],
         "winSteal": [
             "🕵️‍♂️ Anda menyelinap ke rumah @{sorryPeople}.\n\nNasib baik anda, dia atau dia sedang tidur atau mandi! 😴\n\n🎁 Dengan cepat, anda menemui peti tersembunyi, dan voilà, {stealQuantity} {stealMatterie}!\n\nTahniah, pencuri bijak! Keluar sebagai pemenang dan sambut kemenangan anda! 💰👏"
@@ -505,7 +505,7 @@
     },
     "hi": {
         "lostSteal": [
-            "🚨 पड़ोसियों की रिपोर्ट के साथ पूरी आश्चर्य, पुलिस हर जगह दिखाई दी! 🕵️‍♂️\n\n🎁 लेकिन धैर्य रखें, आप प्रेरणा में एक निंजा हैं! पुलिस भ्रष्टाचार की चाल में आ गई, और बस {payCops} {paymentCops} चुकाने का मामला था ताकि स्वतंत्रता और पीड़ित को मुआवजा मिल सके। 💰\n\nइस बार, पैसे की शक्ति ने कानून से ज्यादा बोला। अब, हैंडकफ के बिना, यह समय है अगले कदम का निर्धारण करने का! 🔓✨"
+            "🚨 पड़ोसियों की रिपोर्ट के साथ पूरी आश्चर्य, पुलिस हर जगह दिखाई दी! 🕵️‍♂️\n\n🎁 लेकिन धैर्य रखें, आप प्रेरणा में एक निंजा हैं! पुलिस भ्रष्टाचार की चाल में आ गई, और बस {payCops} {paymentCops} a {victim} चुकाने का मामला था ताकि स्वतंत्रता और पीड़ित को मुआवजा मिल सके। 💰\n\nइस बार, पैसे की शक्ति ने कानून से ज्यादा बोला। अब, हैंडकफ के बिना, यह समय है अगले कदम का निर्धारण करने का! 🔓✨"
         ],
         "winSteal": [
             "🕵️‍♂️ आपने @{sorryPeople} के घर में धीरे से प्रवेश किया।\n\nभाग्यशाली आप, वह या वह सो रहा था या नहा रहा था! 😴\n\n🎁 तेजी से, आपने एक छिपा हुआ संदूर ढ़ूंढा, और वहां, {stealQuantity} {stealMatterie}!\n\nबधाई हो, चतुर चोर! जयवंत बाहर निकलें और अपनी जीत का जश्न मनाएं! 💰👏"
@@ -568,7 +568,7 @@
     },
     "de": {
         "lostSteal": [
-            "🚨 Totale Überraschung mit der Anzeige der Nachbarn, die Polizei tauchte überall auf! 🕵️‍♂️\n\n🎁 Aber keine Sorge, du bist ein Ninja in der Überredung! Die Polizei fiel auf den Bestechungsköder herein, und es war nur eine Frage der Bezahlung von {payCops} {paymentCops}, um die Türen der Freiheit zu öffnen und dem Opfer eine Entschädigung zu zahlen. 💰\n\nDieses Mal sprach die Macht des Geldes lauter als das Gesetz. Jetzt, ohne Handschellen, ist es Zeit, deinen nächsten Schritt zu entscheiden! 🔓✨"
+            "🚨 Totale Überraschung mit der Anzeige der Nachbarn, die Polizei tauchte überall auf! 🕵️‍♂️\n\n🎁 Aber keine Sorge, du bist ein Ninja in der Überredung! Die Polizei fiel auf den Bestechungsköder herein, und es war nur eine Frage der Bezahlung von {payCops} {paymentCops} a {victim}, um die Türen der Freiheit zu öffnen und dem Opfer eine Entschädigung zu zahlen. 💰\n\nDieses Mal sprach die Macht des Geldes lauter als das Gesetz. Jetzt, ohne Handschellen, ist es Zeit, deinen nächsten Schritt zu entscheiden! 🔓✨"
         ],
         "winSteal": [
             "🕵️‍♂️ Du bist leise in das Haus von @{sorryPeople} geschlichen.\n\nGlück für dich, er oder sie schlief oder war im Bad! 😴\n\n🎁 Schnell hast du eine versteckte Truhe gefunden, und voilà, {stealQuantity} {stealMatterie}!\n\nHerzlichen Glückwunsch, cleverer Dieb! Geh triumphierend nach draußen und feiere deinen Sieg! 💰👏"
@@ -631,7 +631,7 @@
     },
     "it": {
         "lostSteal": [
-            "🚨 Sorpresa totale con la denuncia dei vicini, la polizia è comparsa ovunque! 🕵️‍♂️\n\n🎁 Ma tranquillo, sei un ninja persuasivo! La polizia è caduta nella trappola della corruzione, ed è bastato pagare {payCops} {paymentCops} per aprire le porte della libertà e risarcire la vittima. 💰\n\nQuesta volta, il potere del denaro ha parlato più forte della legge. Ora, senza manette, è il momento di decidere il tuo prossimo passo! 🔓✨"
+            "🚨 Sorpresa totale con la denuncia dei vicini, la polizia è comparsa ovunque! 🕵️‍♂️\n\n🎁 Ma tranquillo, sei un ninja persuasivo! La polizia è caduta nella trappola della corruzione, ed è bastato pagare {payCops} {paymentCops} a {victim} per aprire le porte della libertà e risarcire la vittima. 💰\n\nQuesta volta, il potere del denaro ha parlato più forte della legge. Ora, senza manette, è il momento di decidere il tuo prossimo passo! 🔓✨"
         ],
         "winSteal": [
             "🕵️‍♂️ Sei entrato furtivamente nella casa di @{sorryPeople}.\n\nPer fortuna, lui o lei dormiva o era in bagno! 😴\n\n🎁 Rapidamente hai trovato un baule nascosto, e voilà, {stealQuantity} {stealMatterie}!\n\nCongratulazioni, furbo ladro! Esci trionfante e festeggia la tua vittoria! 💰👏"
@@ -694,7 +694,7 @@
     },
     "ru": {
         "lostSteal": [
-            "🚨 Полное удивление с жалобой соседей, полиция появилась повсюду! 🕵️‍♂️\n\n🎁 Но успокойтесь, вы настоящий ниндзя в убеждении! Полиция попала в ловушку подкупа, и было достаточно заплатить {payCops} {paymentCops} чтобы открыть двери свободы и компенсировать потерпевшему. 💰\n\nНа этот раз сила денег заговорила громче закона. Теперь, без наручников, пришло время решить, как поступить дальше! 🔓✨"
+            "🚨 Полное удивление с жалобой соседей, полиция появилась повсюду! 🕵️‍♂️\n\n🎁 Но успокойтесь, вы настоящий ниндзя в убеждении! Полиция попала в ловушку подкупа, и было достаточно заплатить {payCops} {paymentCops} a {victim} чтобы открыть двери свободы и компенсировать потерпевшему. 💰\n\nНа этот раз сила денег заговорила громче закона. Теперь, без наручников, пришло время решить, как поступить дальше! 🔓✨"
         ],
         "winSteal": [
             "🕵️‍♂️ Ты подкрался к дому @{sorryPeople}.\n\nК счастью для тебя, он или она спала или принимала ванну! 😴\n\n🎁 Быстро нашел скрытый сундук, и вуаля, {stealQuantity} {stealMatterie}!\n\nПоздравляю, умный вор! Выходи триумфатором и празднуй свою победу! 💰👏"
@@ -757,7 +757,7 @@
     },
     "lat": {
         "lostSteal": [
-            "🚨 Totale mirum cum querela vicinorum, apparuit ubique polícia! 🕵️‍♂️\n\n🎁 Sed relaxa, es ninja in persuasione! Polícia in dolone corruptionis cecidit, et solvere tantum {payCops} {paymentCops} erat ut aperiretur porta libertatis et victimae compensaretur. 💰\n\nHac vice, potentia pecuniae magis locuta est quam lex. Nunc, sine manicis, est tempus tuum sequentis gradus decernendi! 🔓✨"
+            "🚨 Totale mirum cum querela vicinorum, apparuit ubique polícia! 🕵️‍♂️\n\n🎁 Sed relaxa, es ninja in persuasione! Polícia in dolone corruptionis cecidit, et solvere tantum {payCops} {paymentCops} a {victim} erat ut aperiretur porta libertatis et victimae compensaretur. 💰\n\nHac vice, potentia pecuniae magis locuta est quam lex. Nunc, sine manicis, est tempus tuum sequentis gradus decernendi! 🔓✨"
         ],
         "winSteal": [
             "🕵️‍♂️ Insidiatus es in domum @{sorryPeople}.\n\nFortuna tibi favit, dormiebat aut lavabatur! 😴\n\n🎁 Celeriter repertum est arcae abdita, et voilà, {stealQuantity} {stealMatterie}!\n\nGratulor, fur latro! Exi triumphans et victoriam tuam celebra! 💰👏"
