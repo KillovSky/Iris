@@ -22,12 +22,12 @@ E na fronteira entre terror e renascimento, uma pergunta sempre ecoa:
 <p align="center">
     <img align="center" src="https://raw.githubusercontent.com/KillovSky/Iris/main/lib/Commands/Default/Cache/Banner.png" width="512" height="320">
 </p>
-<p align="center">
-    <a align="center" href="https://linktr.ee/killovsky">Banner by KillovSky</a>
-</p>
 <!-- <p align="center">
-    <a align="center" href="https://bento.me/jocosta">Banner by Jojo</a>
+    <a align="center" href="https://linktr.ee/killovsky">Banner by KillovSky</a>
 </p> -->
+<p align="center">
+    <a align="center" href="https://bento.me/joanderson">Banner by Jojo</a>
+</p>
 <p align="center">
     <h1 align="center">Projeto Íris</h1>
     <a href="https://github.com/KillovSky/iris/blob/main/LICENSE"><img alt="GitHub License" src="https://img.shields.io/github/license/KillovSky/Iris?color=blue&label=Licence&style=flat-square"></a>

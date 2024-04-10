@@ -16,6 +16,7 @@
     },
     "license": "MIT",
     "helps": [
+        "O softban e os comandos que usam funções de adicionar pessoas, não rodarão a menos que meu chefe ative o uso dele nas configurações, se você for meu chefe e quiser usar, ative o sistema de 'allowAddParticipants' no arquivo 'config.json' e reinicie, ou ative temporariamente com '/eval config.allowAddParticipants.value = true;' e teste.",
         "Você pode mudar os parâmetros da exports enviando o valor da Object que deseja editar ao resetar, por exemplo → manager.reset({ name: 'Body'}) ← Isso mudaria o module de manager para Body, o uso então passaria ser: → Body.funcão ← Isso também permite que você edite a função usando o mesmo método.",
         "Você pode mudar o que os códigos rodam, em tempo real, basta usar a 'env', por exemplo → manager.env().name = 'Body' ← Mas este método não atualizará o sistema, somente a Object, os sistemas permanecem intactos.",
         "Você pode configurar o tempo de reset dos resultados ou se eles devem ser resetados usando a env, por exemplo → manager.env().settings.wait = 10000 ← Isso mudaria o tempo de espera para 10 segundos, o tempo deve ser em milissegundos.",

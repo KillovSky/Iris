@@ -35,7 +35,7 @@
     "modules": {
         "fs": "Leitura de diretórios e arquivos.",
         "path": "Para obter o nome da pasta.",
-        "async-g-i-s": "Para puxar as imagens na busca livre.",
+        "@killovsky/gimages": "Para puxar as imagens na busca livre.",
         "../../../index": "Para rodar funções de outros arquivos."
     },
     "functions": {

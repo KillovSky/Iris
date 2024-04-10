@@ -32,11 +32,11 @@ A voz ecoou seu último suspiro.
 ## Sumário de Atualizações
 
 <details>
-  <summary><code>1.1.3 - 31/03/2024 🍓 <strong>[STRAWBERRY RELEASE]</strong></code></summary>
+  <summary><code>1.1.3 - 31/03/2024 + 10/04/2024 🍓 <strong>[STRAWBERRY RELEASE]</strong></code></summary>
 <!-- Em uma fazendinha cheia de moranguinhos, duas garotas chamadas Amano e Nagisa, recentemente formandas da New Sharon College, cultivam um amor tão doce quanto suas geleias, chamadas de Ichigo's. Elas também gostam de cozinhar e tocar músicas sobre uma sociedade de almas, e sobre campos de morangos para sempre, em sua banda que chamam de Wild Strawberries. A banda inclui Ingmar, seu compositor, Saroyan, sua agente de publicidade, Muriel, a motorista, e Bond, seu fiel guarda-costas. Mas a verdade é que Amano, codinome Fields, secretamente é uma cientista que quer criar seres deliciosos, chamados de 'Monster', a partir dos morangos de sua fazenda, além disso, Nagisa é uma famosa artista do submundo que fez um quadro válioso chamado de 'Strawberry Thief', se baseando no misterioso sumiço dos morangos de sua fazenda. -->
 
 ### Mural
-- Atualização parcial, ou seja, haverá uma parte 2.
+- Atualização parcial, ou seja, haverá mais partes.
 - Agora as atualizações da Íris, a menos que sejam imensas, serão postadas em partes, isso é devido a minha falta de tempo e colaboração quanto ao código. Infelizmente, não serei capaz de prover uma atualização completa mensalmente como feito na 1.1.1 e anteriores, mas ei, uma atualização ainda é melhor que nenhuma!
 
 ### Novidades
@@ -71,6 +71,7 @@ A voz ecoou seu último suspiro.
 10. **Banner**
     - Calma, não é do JoJo, mas é minha primeira tentativa de trazer um Banner, espero que eu melhore nisso com as próximas tentativas!
     - Teremos Banners do JoJo ainda, mas tanto ele quanto eu estamos mais e mais ocupados a cada dia!
+    - Update 10/04/24: Novo Banner by JoJo!
 
 11. **Locate**
     - A função de localizar uma Object dentro de outras agora tem um sistema de filtro para ignorar nomes de Keys que você enviar.
@@ -78,6 +79,10 @@ A voz ecoou seu último suspiro.
 
 12. **Tutoriais**
     - Adicionado algumas informações para ajudar a saber sobre os requisitos minímos.
+
+13. **Images [Update 10/04/24]**
+    - Novo sistema de buscar imagens no Google, feito exclusivamente por mim!
+    - https://www.npmjs.com/package/@killovsky/gimages
 
 ### Correções
 1. **Cheats**
@@ -105,6 +110,15 @@ A voz ecoou seu último suspiro.
     - Perdão, mas perdi as notas novamente, não sei se houveram outras melhorias e correções, pois fiz tudo em cima da hora.
     - Não foi por preguiça, o único momento livre que tive para programar foi essa semana ao ficar levemente doente e conseguir um atestado de descanso.
     - Cuidados com a sáude são prioridade, no entanto, sempre que for possivel, estarei programando melhorias e postando no WhatsApp, Discord ou Telegram.
+
+8. **Bank [Update 10/04/24]**
+    - Corrigido erro que fazia poder retirar do banco mesmo sem ter.
+
+9. **Steal [Update 10/04/24]**
+    - Corrigido erro que fazia o usuário nunca ir para a cadeia.
+
+10. **Bash [Update 10/04/24]**
+    - Corrigido erro que fazia a restauração das sessões não ocorrer após atualizar com o Toolbox.
 
 </details>
 
@@ -172,7 +186,7 @@ A voz ecoou seu último suspiro.
 13. **SQL [Update 26/02/24]**
     - Adicionado sistema para puxar o nome de um grupo pela database, evitando requests que poderiam causar danos se usadas demais.
 
-13. **Perfomance [Update 26/02/24]**
+14. **Perfomance [Update 26/02/24]**
     - Foi melhorado a perfomance do sistema, melhorando o ping e demais tarefas.
     - Note que a primeira execução de um comando sempre leva mais tempo para abrir, mas as demais execuções serão rápidas!
 

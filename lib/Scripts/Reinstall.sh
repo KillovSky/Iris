@@ -70,7 +70,7 @@ select choice in "Sim" "Não"; do
                             mv Iris-main "${folderName}"
 
                             # Move as sessões e database de volta
-                            mv "${folderName}/lib/Sessions/*" ./lib/Sessions
+                            find "${folderName}/lib/Sessions" -mindepth 1 -maxdepth 1 -type d -exec mv -t ./lib/Sessions {} +
                             mv "${folderName}/lib/Databases/Informations/users.db" ./lib/Databases/Informations
 
                             # Avisa que atualizou
