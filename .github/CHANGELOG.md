@@ -32,7 +32,7 @@ A voz ecoou seu último suspiro.
 ## Sumário de Atualizações
 
 <details>
-  <summary><code>1.1.3 - 31/03/2024 + 10/04/2024 🍓 <strong>[STRAWBERRY RELEASE]</strong></code></summary>
+  <summary><code>1.1.3 - 31/03/2024 + 10/04/2024 + 05/04/2024 🍓 <strong>[STRAWBERRY RELEASE]</strong></code></summary>
 <!-- Em uma fazendinha cheia de moranguinhos, duas garotas chamadas Amano e Nagisa, recentemente formandas da New Sharon College, cultivam um amor tão doce quanto suas geleias, chamadas de Ichigo's. Elas também gostam de cozinhar e tocar músicas sobre uma sociedade de almas, e sobre campos de morangos para sempre, em sua banda que chamam de Wild Strawberries. A banda inclui Ingmar, seu compositor, Saroyan, sua agente de publicidade, Muriel, a motorista, e Bond, seu fiel guarda-costas. Mas a verdade é que Amano, codinome Fields, secretamente é uma cientista que quer criar seres deliciosos, chamados de 'Monster', a partir dos morangos de sua fazenda, além disso, Nagisa é uma famosa artista do submundo que fez um quadro válioso chamado de 'Strawberry Thief', se baseando no misterioso sumiço dos morangos de sua fazenda. -->
 
 ### Mural
@@ -79,10 +79,37 @@ A voz ecoou seu último suspiro.
 
 12. **Tutoriais**
     - Adicionado algumas informações para ajudar a saber sobre os requisitos minímos.
+    - [Update 04/05/2024]: Documentação de guias ainda não finalizada.
 
 13. **Images [Update 10/04/24]**
     - Novo sistema de buscar imagens no Google, feito exclusivamente por mim!
     - https://www.npmjs.com/package/@killovsky/gimages
+
+14. **Website [Update 04/05/2024]**
+    - Inserido códigos de cheat na página da Íris, coisa que lembra da forma de usar cheats do Grand Theft Auto: San Andreas.
+    - Atualizado a imagem de preview do website e favicon's.
+
+15. **Chat [Update 04/05/24]**
+    - Sistema de bate-papo simples, voz, simsimi, cleverbot e GPT (BETA).
+    - O GPT vem desativado por padrão, só use em PCs ou VPS bem poderosas.
+    - Não há documentação de instalação do GPT ainda, aguarde a próxima atualização ou procure como instalar transformers e pytorch.
+    - IA funcionando via sistema BASH da Íris com script em Python3.
+    - https://www.npmjs.com/package/@killovsky/gtts
+
+16. **Terminal [Update 04/05/2024]**
+    - Inserido sistema de lembrar dos logins efetuados no terminal WEB.
+    - Sem cookies ou demais, totalmente controlado do lado do servidor, o backend.
+
+17. **Toolbox [Update 04/05/2024]**
+    - Inserido caller do Toolbox em: Node, Bash, Batch, Python, PowerShell, Go, Lua, Ruby, Java, C#, VBScript e outros.
+    - Não há mais necessidade de por o Git Bash na PATH, assim não tendo mais problemas com o uso de WSL.
+    - Em breve isso será atualizado na documentação dos guias de instalação.
+    - Atualizado sistema de atualização e instalação de módulos do node para Windows.
+    - Você não precisa baixar ruby e demais para rodar os callers, apenas escolha o melhor para você e use-o, Batch e Powershell são nativos do Windows e Bash do Linux/MacOS.
+
+18. **Outros [Update 04/05/2024]**
+    - Mais correções e melhorias estão disponiveis, mas não lembro de todas, peço desculpas, infelizmente isso nunca mudará.
+    - Sempre esquecerei algumas novidades, pois faço a changelog apenas no dia que estou fazendo a atualização.
 
 ### Correções
 1. **Cheats**
@@ -119,6 +146,17 @@ A voz ecoou seu último suspiro.
 
 10. **Bash [Update 10/04/24]**
     - Corrigido erro que fazia a restauração das sessões não ocorrer após atualizar com o Toolbox.
+    - [Update 04/05/2024]: Corrigido erro no sistema de obter linhas aleatorias de arquivos.
+
+11. **Platform [Update 04/05/2024]**
+    - Corrigido a identificação de plataforma dos usuários.
+
+12. **YouTube [Update 04/05/2024]**
+    - Corrigido erro que impedia de baixar Reels do Instagram.
+
+13. **Outros [Update 04/05/2024]**
+    - Mais correções e melhorias estão disponiveis, mas não lembro de todas, peço desculpas, infelizmente isso nunca mudará.
+    - Sempre esquecerei algumas novidades, pois faço a changelog apenas no dia que estou fazendo a atualização.
 
 </details>
 
@@ -196,33 +234,33 @@ A voz ecoou seu último suspiro.
 
 2. **Leveling**
     - Corrigido problema com as patentes.
-    - Update 26/02/24: Database SQL, leia a 4 abaixo.
+    - Update 26/02/2024: Database SQL, leia a 4 abaixo.
 
 3. **Memes**
     - Corrigido problema com criação de memes especificos (ojjo, jooj, reverse, trash...)
 
 4. **SQL**
     - Removido o sistema Warn antigo da database, agora a sua criação na DB é via JS.
-    - Update 26/02/24: Corrigido erro do ranking da database Leveling.
+    - Update 26/02/2024: Corrigido erro do ranking da database Leveling.
 
 5. **Instalação**
     - Corrigido os erros de instalação devido ao Baileys forçar o uso de uma versão Sharp mais recente.
 
-6. **Convert [Update 26/02/24]**
+6. **Convert [Update 26/02/2024]**
     - Corrigido falta de especificação que fazia stickers de imagem virarem videos.
 
-7. **Everyone [Update 26/02/24]**
+7. **Everyone [Update 26/02/2024]**
     - Corrigido o espaçamento no inicio da mensagem do everyone.
     - Corrigido a ordem de obtenção das mensagens do everyone.
 
-8. **Messages [Update 26/02/24]**
+8. **Messages [Update 26/02/2024]**
     - Corrigido falha que fazia com que mensagens não pudessem ser lidas ou que as primeiras fossem ignoradas ou usadas incorretamente.
     - Mais bugs desses ocorrerão devido a falta de documentação do Baileys quanto aos formatos de mensagem, se der erro, favor documentar e me enviar! Obrigado!
 
-9. **Warn [Update 26/02/24]**
+9. **Warn [Update 26/02/2024]**
     - Não exatamente falha, mas fiz com que o warn, quando marcando a pessoa por mensagem, enviasse a mensagem sem precisar de '|'.
 
-10. **Finder [Update 26/02/24]**
+10. **Finder [Update 26/02/2024]**
     - Novamente, não exatamente uma falha, mas corrigido a forma como a função de busca avançada localiza keys em Objects, assim permitindo automatizar a localização de uma key de array ou demais especifica dentro de uma object.
 
 </details>

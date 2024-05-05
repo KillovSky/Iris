@@ -7,6 +7,10 @@
 		"description": "Enable detection of events, like promoting, demoting or gaming events like MMM (Minecraft Mining Mode).",
 		"value": true
 	},
+    "allowGPT" : {
+        "description": "Activate the LLM (Large Language Model) for GPT-like functionality. This feature is CPU intensive and is best suited for systems with CUDA GPUs. Avoid using it on slow systems. Ensure your machine has a powerful CPU or is equipped with CUDA technology.",
+        "value": false
+    },
 	"botCommands": {
 		"description": "Specifies whether Íris should execute commands from her messages. Note: This feature may have serious bugs and is not 100% tested.",
 		"value": false

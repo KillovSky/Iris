@@ -170,6 +170,11 @@
             "type": "String",
             "value": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
         },
+        "grantTime": {
+            "description": "Define o tempo padrão para permitir a conexão sem senha a um IP que já se conectou anteriormente, milissegundos, padrão de 1 hora.",
+            "type": "Number",
+            "value": 3600000
+        },
         "prankAmount": {
             "description": "Define quantas tentativas alguém precisa fazer para mandar a pessoa para uma página especifica.",
             "type": "Number",

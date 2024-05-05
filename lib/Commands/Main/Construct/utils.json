@@ -141,6 +141,18 @@
             "description": "Local onde o módulo pode ser encontrado.",
             "type": "Object",
             "value": {
+                "Chat": [
+                    "chat",
+                    "speak",
+                    "iris",
+                    "falar",
+                    "responda",
+                    "answer",
+                    "simi",
+                    "gpt",
+                    "ai",
+                    "tts"
+                ],
                 "Bank": [
                     "bank",
                     "doar",

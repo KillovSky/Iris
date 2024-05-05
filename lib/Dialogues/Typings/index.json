@@ -3,6 +3,9 @@
         "Type": [
             "🔎 Opa! Esse comando é para '{reqtype}' e você está usando ele em um '{type}', tente novamente com a mensagem correta."
         ],
+        "noSpeak": [
+            "Não temos conversas ainda, por favor, crie uma usando {prefix}{command}."
+        ],
         "Need": [
             "💭 Você não pode executar esse comando, pois ele requer '{need} {item}', você possui apenas '{have} {item}'. Adicione mais '{amount} {item}' e tente novamente!"
         ],
@@ -25,6 +28,9 @@
     "ar": {
         "Type": [
             "🔎 أوبا! هذا الأمر مخصص لـ '{reqtype}' وأنت تستخدمه في '{type}'، جرب مرة أخرى مع الرسالة الصحيحة."
+        ],
+        "noSpeak": [
+            "ليس لدينا محادثات بعد، يرجى إنشاء واحدة باستخدام {prefix}{command}."
         ],
         "Need": [
             "💭 لا يمكنك تنفيذ هذا الأمر، لأنه يتطلب '{need} {item}' ولديك فقط '{have} {item}'. أضف '{amount} {item}' إضافية وحاول مرة أخرى!"
@@ -49,6 +55,9 @@
         "Type": [
             "🔎 おっと！このコマンドは '{reqtype}' 用ですが、あなたは '{type}' で使用しています。正しいメッセージで再試行してください。"
         ],
+        "noSpeak": [
+            "まだ会話はありません、{prefix}{command}を使って作成してください."
+        ],
         "Need": [
             "💭 このコマンドを実行できません。なぜなら、'{need} {item}' が必要であり、'{have} {item}'しか持っていないからです。さらに '{amount} {item}' を追加して、もう一度お試しください！"
         ],
@@ -71,6 +80,9 @@
     "en": {
         "Type": [
             "🔎 Oops! This command is for '{reqtype}' and you're using it in '{type}', try again with the correct message."
+        ],
+        "noSpeak": [
+            "We don't have any conversations yet, please create one using {prefix}{command}."
         ],
         "Need": [
             "💭 You cannot execute this command as it requires '{need} {item}', but you only have '{have} {item}'. Add more '{amount} {item}' and try again!"
@@ -95,6 +107,9 @@
         "Type": [
             "🔎 Oups ! Cette commande est destinée à '{reqtype}' et vous l'utilisez dans '{type}', réessayez avec le message correct."
         ],
+        "noSpeak": [
+            "Nous n'avons pas encore de conversations, veuillez en créer une en utilisant {prefix}{command}."
+        ],
         "Need": [
             "💭 Vous ne pouvez pas exécuter cette commande car elle nécessite '{need} {item}', mais vous n'avez que '{have} {item}'. Ajoutez plus de '{amount} {item}' et réessayez !"
         ],
@@ -117,6 +132,9 @@
     "es": {
         "Type": [
             "🔎 ¡Ups! Este comando es para '{reqtype}' y lo estás usando en '{type}', inténtalo de nuevo con el mensaje correcto."
+        ],
+        "noSpeak": [
+            "Aún no tenemos conversaciones, por favor, crea una usando {prefix}{command}."
         ],
         "Need": [
             "💭 No puedes ejecutar este comando, ya que requiere '{need} {item}', pero solo tienes '{have} {item}'. ¡Agrega más '{amount} {item}' e inténtalo de nuevo!"
@@ -141,6 +159,9 @@
         "Type": [
             "🔎 Ups! Perintah ini untuk '{reqtype}' dan Anda menggunakannya dalam '{type}', coba lagi dengan pesan yang benar."
         ],
+        "noSpeak": [
+            "Kami belum memiliki percakapan, silakan buat satu menggunakan {prefix}{command}."
+        ],
         "Need": [
             "💭 Anda tidak dapat menjalankan perintah ini karena memerlukan '{need} {item}', tetapi Anda hanya memiliki '{have} {item}'. Tambahkan '{amount} {item}' lagi dan coba lagi!"
         ],
@@ -163,6 +184,9 @@
     "ms": {
         "Type": [
             "🔎 Oop! Perintah ini untuk '{reqtype}' dan anda menggunakannya dalam '{type}', cuba lagi dengan mesej yang betul."
+        ],
+        "noSpeak": [
+            "Kami belum mempunyai perbualan, sila cipta satu menggunakan {prefix}{command}."
         ],
         "Need": [
             "💭 Anda tidak dapat menjalankan arahan ini kerana ia memerlukan '{need} {item}', tetapi anda hanya mempunyai '{have} {item}'. Tambah lagi '{amount} {item}' dan cuba lagi!"
@@ -187,6 +211,9 @@
         "Type": [
             "🔎 ऊप्स! यह कमांड '{reqtype}' के लिए है और आप इसे '{type}' में उपयोग कर रहे हैं, सही संदेश के साथ पुनः प्रयास करें।"
         ],
+        "noSpeak": [
+            "हमें अभी तक कोई बातचीत नहीं है, कृपया {prefix}{command} का उपयोग करके एक बनाएं."
+        ],
         "Need": [
             "💭 आप इस कमांड को नहीं चला सकते क्योंकि इसे '{need} {item}' की आवश्यकता है, लेकिन आपके पास केवल '{have} {item}' हैं। और '{amount} {item}' जोड़ें और पुनः प्रयास करें!"
         ],
@@ -209,6 +236,9 @@
     "de": {
         "Type": [
             "🔎 Oops! Dieser Befehl ist für '{reqtype}' und Sie verwenden ihn in '{type}', versuchen Sie es erneut mit der richtigen Nachricht."
+        ],
+        "noSpeak": [
+            "Wir haben noch keine Gespräche, bitte erstellen Sie eines mit {prefix}{command}."
         ],
         "Need": [
             "💭 Sie können diesen Befehl nicht ausführen, da er '{need} {item}' erfordert, Sie haben jedoch nur '{have} {item}'. Fügen Sie mehr '{amount} {item}' hinzu und versuchen Sie es erneut!"
@@ -233,6 +263,9 @@
         "Type": [
             "🔎 Ops! Questo comando è per '{reqtype}' e lo stai usando in '{type}', riprova con il messaggio corretto."
         ],
+        "noSpeak": [
+            "Non abbiamo ancora conversazioni, per favore creane una usando {prefix}{command}."
+        ],
         "Need": [
             "💭 Non puoi eseguire questo comando perché richiede '{need} {item}', ma possiedi solo '{have} {item}'. Aggiungi più '{amount} {item}' e riprova!"
         ],
@@ -256,6 +289,9 @@
         "Type": [
             "🔎 Упс! Эта команда для '{reqtype}', а вы используете ее в '{type}', попробуйте снова с правильным сообщением."
         ],
+        "noSpeak": [
+            "У нас пока нет разговоров, пожалуйста, создайте один, используя {prefix}{command}."
+        ],
         "Need": [
             "💭 Вы не можете выполнить эту команду, так как она требует '{need} {item}', а у вас есть только '{have} {item}'. Добавьте еще '{amount} {item}' и попробуйте снова!"
         ],
@@ -278,6 +314,9 @@
     "lat": {
         "Type": [
             "🔎 Ecce! Hoc imperium est pro '{reqtype}' et tu uteris eo in '{type}', iterum cum epistula recta conare."
+        ],
+        "noSpeak": [
+            "Conversātiōnēs nōn habēmus, quamplūrēs facēs utendō {prefix}{command}."
         ],
         "Need": [
             "💭 Hunc caussam non potes obsecundare, quod '{need} {item}' desideret, solus '{have} {item}' possides. Adde '{amount} {item}' et iterum conare!"

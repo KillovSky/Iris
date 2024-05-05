@@ -316,6 +316,16 @@
             "preprocessing"
         ]
     },
+    "YouTube": {
+        "place": "./Commands/YouTube/index",
+        "alias": [
+            "youtube",
+            "ios",
+            "fixaudio",
+            "play",
+            "video"
+        ]
+    },
     "ZIP": {
         "place": "./Functions/Works/ZIP/index",
         "alias": [

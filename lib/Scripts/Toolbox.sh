@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 
+# Verifica se o diretório atual é "..../lib/Scripts"
+if [[ "$(pwd)" == *"/lib/Scripts" ]]; then
+    # Muda o diretório de trabalho para dois níveis acima do diretório atual
+    # shellcheck disable=SC2164
+    cd "$(dirname "$(dirname "$PWD")")"
+fi
+
 # Declara uma array de opções
 declare -A command_scripts=(
     ["0"]="bash lib/Scripts/Toolbox.sh"
@@ -19,7 +26,7 @@ declare -A command_scripts=(
     ["14"]="bash lib/Scripts/PM2Install.sh"
     ["15"]="bash lib/Scripts/Requirements.sh"
     ["16"]="printf '\n[ÍRIS] → Aguarde, carregando...\n' && python lib/Scripts/jsonexplorer.py"
-    ["17"]="printf '[ÍRIS] → Foi um prazer, volte sempre!\n'; exit"
+    ["17"]="printf '[ÍRIS] → Foi um prazer, volte sempre!\n'; exit 0"
 )
 
 # Define as opções do menu/seletor
@@ -123,12 +130,12 @@ if [[ $installNeeded -ne 0 ]]; then
                         "Sim (y)")
                             eval "${command_scripts[15]}"
                             break
-                            ;;
+                        ;;
                         # Fecha
                         "Não (n)")
                             printf "\n[ÍRIS] → Entendido, fique à vontade para voltar quando quiser!\n"
                             break
-                            ;;
+                        ;;
                     esac
                 done
 
@@ -149,7 +156,6 @@ if [[ $installNeeded -ne 0 ]]; then
 
     # Roda o novo arquivo e deleta o atual
     eval "${command_scripts[0]}"
-    rm -rf Toolbox.sh
     exit 0
 fi
 

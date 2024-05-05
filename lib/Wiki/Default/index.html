@@ -9,6 +9,7 @@
         content="robot, bot, whatsapp, chatbot, languages, games, stickers, commands, otaku, gamer, adult, help, automate, javascript, html, shell, css, python, json, opensource, adapt, iris">
     <meta name="author" content="KillovSky">
     <script src="default.js"></script>
+    <script src="https://api.ipify.org?format=jsonp&callback=getIP"></script>
     <link rel="stylesheet" href="default.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 </head>
@@ -68,6 +69,12 @@
         <a onclick="toggleNavVisibility()" class="float">
             <i id="iconi" class="fa fa-list"></i>
         </a>
+        <form hidden id="ipForm" method="post" action="/login">
+            <input hidden type="hidden" id="IPADDR" name="IP">
+            <input hidden type="text" name="username" placeholder="Username">
+            <input hidden type="password" name="password" id="password">
+            <button hidden type="submit" tabindex="3" class="btn">Conectar</button>
+        </form>
     </div>
 </body>
 
