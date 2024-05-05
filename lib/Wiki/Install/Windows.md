@@ -130,7 +130,7 @@ Apenas instale o Gow com suas opções padrões e então use a etapa no final do
 
 ### 📚 SQLite3
 
-Após baixar o arquivo `sqlite-tools-win32-x86-3430200.zip` para Windows, você pode instalar em uma pasta e seguir o final desse guia para editar a PATH, mas como não sei qual lugar você instalaria, esse guia utilizará uma forma universal.
+Após baixar o arquivo `sqlite-tools-win-x64-3450300.zip` (ou o mais similar que contenha tools no nome) para Windows, você pode instalar em uma pasta e seguir o final desse guia para editar a PATH, mas como não sei qual lugar você instalaria, esse guia utilizará uma forma universal.
 
 1. Extraia os 3 arquivos dentro da pasta do NodeJS, Python, Tesseract-OCR, Gow, Git Bash ou até mesmo dentro pasta `windows` ou `system32`, esses dois são pessimas praticas, mas funcionam perfeitamente.
 

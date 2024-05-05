@@ -6,7 +6,9 @@
         "examples": [
             "cli.env()",
             "cli.liner('quantity', 'file')",
+            "cli.bash('command', 'stdio')",
             "cli.reset()",
+            "cli.env().functions.bash.value('command', 'stdio')",
             "cli.env().functions.liner.value('quantity', 'file', 'search')",
             "cli.env().functions.dial.value('name', 'language', 'subdialogue', 'function', 'index/boolean')",
             "cli.env().functions.revert.value()"
@@ -20,7 +22,6 @@
         "Alguém lê essas dicas? Se sim, torne-se um programador, ler os tutoriais é de suma importância e poucos desenvolvedores o fazem...",
         "Existem infinitas formas de uso secretas, explore os códigos para descobrir os mistérios dos sistemas!",
         "Todas as funções tem valores padrão, então você não sofrerá erros por esquecer de enviar um parâmetro ou similar.",
-        "O parse de JSON's é feito usando o comando JQ do Linux, graças a esse parse, o JSON nunca será carregado na memoria do NodeJS.",
         "Embora essas funções executem comandos que não são do NodeJS, elas estão armazenadas em arquivos shellscript, para evitar que más usos possam ser ruins e causar danos."
     ],
     "exports": {

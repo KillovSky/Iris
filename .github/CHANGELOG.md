@@ -32,11 +32,10 @@ A voz ecoou seu último suspiro.
 ## Sumário de Atualizações
 
 <details>
-  <summary><code>1.1.3 - 31/03/2024 + 10/04/2024 + 05/04/2024 🍓 <strong>[STRAWBERRY RELEASE]</strong></code></summary>
+  <summary><code>1.1.3 - 31/03/2024 + 10/04/2024 + 04/05/2024 🍓 <strong>[STRAWBERRY RELEASE]</strong></code></summary>
 <!-- Em uma fazendinha cheia de moranguinhos, duas garotas chamadas Amano e Nagisa, recentemente formandas da New Sharon College, cultivam um amor tão doce quanto suas geleias, chamadas de Ichigo's. Elas também gostam de cozinhar e tocar músicas sobre uma sociedade de almas, e sobre campos de morangos para sempre, em sua banda que chamam de Wild Strawberries. A banda inclui Ingmar, seu compositor, Saroyan, sua agente de publicidade, Muriel, a motorista, e Bond, seu fiel guarda-costas. Mas a verdade é que Amano, codinome Fields, secretamente é uma cientista que quer criar seres deliciosos, chamados de 'Monster', a partir dos morangos de sua fazenda, além disso, Nagisa é uma famosa artista do submundo que fez um quadro válioso chamado de 'Strawberry Thief', se baseando no misterioso sumiço dos morangos de sua fazenda. -->
 
 ### Mural
-- Atualização parcial, ou seja, haverá mais partes.
 - Agora as atualizações da Íris, a menos que sejam imensas, serão postadas em partes, isso é devido a minha falta de tempo e colaboração quanto ao código. Infelizmente, não serei capaz de prover uma atualização completa mensalmente como feito na 1.1.1 e anteriores, mas ei, uma atualização ainda é melhor que nenhuma!
 
 ### Novidades
@@ -94,6 +93,7 @@ A voz ecoou seu último suspiro.
     - O GPT vem desativado por padrão, só use em PCs ou VPS bem poderosas.
     - Não há documentação de instalação do GPT ainda, aguarde a próxima atualização ou procure como instalar transformers e pytorch.
     - IA funcionando via sistema BASH da Íris com script em Python3.
+    - Para criar novas respostas, abra o arquivo 'chat.txt' e insira frases lá.
     - https://www.npmjs.com/package/@killovsky/gtts
 
 16. **Terminal [Update 04/05/2024]**
@@ -107,7 +107,11 @@ A voz ecoou seu último suspiro.
     - Atualizado sistema de atualização e instalação de módulos do node para Windows.
     - Você não precisa baixar ruby e demais para rodar os callers, apenas escolha o melhor para você e use-o, Batch e Powershell são nativos do Windows e Bash do Linux/MacOS.
 
-18. **Outros [Update 04/05/2024]**
+18. **Database SQL [Update 05/05/2024]**
+    - Ajustado para usar stdio, assim corrigindo o limite de caracteres no Windows.
+    - Também corrige a falha dos ASCII, finalmente!
+
+19. **Outros [Update 04/05/2024]**
     - Mais correções e melhorias estão disponiveis, mas não lembro de todas, peço desculpas, infelizmente isso nunca mudará.
     - Sempre esquecerei algumas novidades, pois faço a changelog apenas no dia que estou fazendo a atualização.
 
