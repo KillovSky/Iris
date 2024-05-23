@@ -144,6 +144,7 @@ dist
 
 # Definição de mensagens que uso para testes locais e outros
 lib/Databases/Informations/*
+!lib/Databases/Informations/dialogues.db
 lib/Backups/*
 lib/Sessions/*
 !lib/Backups/readme.txt

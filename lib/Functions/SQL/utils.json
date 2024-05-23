@@ -44,6 +44,7 @@
         "remove": "remove",
         "finder": "finder",
         "purge": "purge",
+        "languages": "languages",
         "undo": "undo",
         "messedup": "messedup",
         "reset": "reset",
@@ -90,6 +91,43 @@
             "type": "Boolean / Function",
             "value": false
         },
+        "languages": {
+            "arguments": {
+                "regionPicker": {
+                    "description": "Região do idioma a ser selecionado.",
+                    "type": "String",
+                    "value": "pt"
+                },
+                "folderPicker": {
+                    "description": "Indicador de onde os idiomas estão armazenados.",
+                    "type": "String",
+                    "value": "Default"
+                },
+                "dialogPicker": {
+                    "description": "Diálogo padrão a ser usado.",
+                    "type": "String",
+                    "value": "Default"
+                },
+                "randomOrder": {
+                    "description": "Se os diálogos devem ser selecionados em ordem aleatória.",
+                    "type": "Boolean",
+                    "value": true
+                },
+                "singleText": {
+                    "description": "Se deve retornar apenas um texto.",
+                    "type": "Boolean",
+                    "value": true
+                },
+                "objectReplacer": {
+                    "description": "Objeto com substituições a serem feitas nos diálogos.",
+                    "type": "Object",
+                    "value": {}
+                }
+            },
+            "description": "Obtém os diálogos da database de dados.",
+            "type": "Function",
+            "value": false
+        },        
         "undo": {
             "arguments": {
                 "file": {
@@ -444,7 +482,7 @@
                         "firstDate": 0
                     },
                     "mods": {
-                        "enable": [],
+                        "enable": false,
                         "values": [],
                         "lastValue": 0,
                         "lastState": false,
@@ -491,7 +529,7 @@
                     },
                     "antilinks": {
                         "enable": false,
-                        "checkmode": false,
+                        "type": false,
                         "lastDate": 0,
                         "lastValue": 0,
                         "lastState": false,
@@ -601,6 +639,17 @@
                         "text": "default",
                         "lastValue": 0,
                         "lastDate": 0
+                    },
+                    "dnd": {
+                        "values": [],
+                        "enable": true,
+                        "lastValue": 0,
+                        "lastState": false,
+                        "lastUser": "none",
+                        "lastDate": 0,
+                        "firstEdition": false,
+                        "firstUser": false,
+                        "firstDate": 0
                     }
                 }
             }
