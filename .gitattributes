@@ -1,2 +1,67 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# Define valores para exibição de programações na GitHub
+*.js linguist-detectable=true
+*.js linguist-documentation=false
+*.js linguist-language=JavaScript
+
+*.go linguist-detectable=true
+*.go linguist-documentation=false
+*.go linguist-language=Go
+
+*.sql linguist-detectable=true
+*.sql linguist-documentation=false
+*.sql linguist-language=SQL
+
+*.css linguist-detectable=true
+*.css linguist-documentation=false
+*.css linguist-language=CSS
+
+*.py linguist-detectable=true
+*.py linguist-documentation=false
+*.py linguist-language=Python
+
+*.cs linguist-detectable=true
+*.cs linguist-documentation=false
+*.cs linguist-language=CSharp
+
+*.html linguist-detectable=true
+*.html linguist-documentation=false
+*.html linguist-language=HTML
+
+*.rb linguist-detectable=true
+*.rb linguist-documentation=false
+*.rb linguist-language=Ruby
+
+*.java linguist-detectable=true
+*.java linguist-documentation=false
+*.java linguist-language=Java
+
+*.sh linguist-detectable=true
+*.sh linguist-documentation=false
+*.sh linguist-language=Shell
+
+*.bat linguist-detectable=true
+*.bat linguist-documentation=false
+*.bat linguist-language=Batchfile
+
+*.cmd linguist-detectable=true
+*.cmd linguist-documentation=false
+*.cmd linguist-language=Batchfile
+
+*.ps1 linguist-detectable=true
+*.ps1 linguist-documentation=false
+*.ps1 linguist-language=PowerShell
+
+*.lua linguist-detectable=true
+*.lua linguist-documentation=false
+*.lua linguist-language=Lua
+
+*.xml linguist-detectable=true
+*.xml linguist-documentation=false
+*.xml linguist-language=XML
+
+*.vbs linguist-detectable=true
+*.vbs linguist-documentation=false
+*.vbs linguist-language=VBScript

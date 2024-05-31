@@ -30,20 +30,22 @@ E na fronteira entre terror e renascimento, uma pergunta sempre ecoa:
 </p>
 <p align="center">
     <h1 align="center">Projeto Íris</h1>
-    <a href="https://github.com/KillovSky/iris/blob/main/LICENSE"><img alt="GitHub License" src="https://img.shields.io/github/license/KillovSky/Iris?color=blue&label=Licence&style=flat-square"></a>
-    <a href="https://github.com/KillovSky/iris"><img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/KillovSky/iris?label=Tamanho&style=flat-square"></a>
-    <a href="https://github.com/KillovSky/iris"><img alt="GitHub Languages" src="https://img.shields.io/github/languages/count/KillovSky/Iris?label=Programmings&style=flat-square"></a>
-    <a href="https://github.com/KillovSky/Iris/blob/main/.github/CHANGELOG.md"><img alt="GitHub Version" src="https://img.shields.io/github/package-json/v/KillovSky/Iris?label=Build&style=flat-square"></a>
-    <a href="https://github.com/KillovSky/Iris/blob/main/.github/CHANGELOG.md"><img alt="Project Versioning" src="https://img.shields.io/github/package-json/build_name/KillovSky/Iris?label=Codename"></a>
-    <a href="https://github.com/KillovSky/Iris/blob/main/.github/CHANGELOG.md"><img alt="Last Release" src="https://img.shields.io/github/package-json/build_date/KillovSky/Iris?label=Update"></a>
-    <a href="https://github.com/KillovSky/iris/commits/main"><img alt="GitHub Updates" src="https://img.shields.io/github/commit-activity/y/KillovSky/Iris?label=Updates&style=flat-square"></a>
+    <a href="https://github.com/KillovSky/iris/blob/main/LICENSE"><img alt="GitHub License" src="https://img.shields.io/github/license/KillovSky/Iris?color=blue&label=License&style=flat-square"></a>
+    <a href="https://github.com/KillovSky/iris"><img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/KillovSky/iris?label=Size%20%28With%20.git%20folder%29&style=flat-square"></a>
+    <a href="https://api.github.com/repos/KillovSky/Iris/languages"><img alt="GitHub Languages" src="https://img.shields.io/github/languages/count/KillovSky/Iris?label=Code%20Languages&style=flat-square"></a>
+    <a href="https://github.com/KillovSky/Iris/blob/main/.github/CHANGELOG.md"><img alt="GitHub Version" src="https://img.shields.io/github/package-json/v/KillovSky/Iris?label=Latest%20Version&style=flat-square"></a>
+    <a href="https://github.com/KillovSky/Iris/blob/main/.github/CHANGELOG.md"><img alt="Project Codename" src="https://img.shields.io/github/package-json/build_name/KillovSky/Iris?label=Latest%20Codename"></a>
+    <a href="https://github.com/KillovSky/Iris/blob/main/.github/CHANGELOG.md"><img alt="Last Update" src="https://img.shields.io/github/package-json/build_date/KillovSky/Iris?label=Latest%20Update"></a>
+    <a href="https://github.com/KillovSky/iris/commits/main"><img alt="GitHub Commits" src="https://img.shields.io/github/commit-activity/y/KillovSky/Iris?label=Commits&style=flat-square"></a>
     <a href="https://github.com/KillovSky/iris/stargazers/"><img title="GitHub Stars" src="https://img.shields.io/github/stars/KillovSky/iris?label=Stars&style=flat-square"></a>
     <a href="https://github.com/KillovSky/iris/network/members"><img title="GitHub Forks" src="https://img.shields.io/github/forks/KillovSky/iris?label=Forks&style=flat-square"></a>
-    <a href="https://github.com/KillovSky/iris/watchers"><img title="GitHub Watch" src="https://img.shields.io/github/watchers/KillovSky/iris?label=Watchers&style=flat-square"></a>
-    <a href="https://www.codefactor.io/repository/github/killovsky/iris"><img alt="Codefactor" src="https://www.codefactor.io/repository/github/killovsky/iris/badge"></a>
-    <a href="http://isitmaintained.com/project/killovsky/iris"><img alt="Is maintained" src="http://isitmaintained.com/badge/resolution/killovsky/iris.svg"></a>
-    <a href="http://isitmaintained.com/project/killovsky/iris"><img alt="Is maintained" src="http://isitmaintained.com/badge/open/killovsky/iris.svg"></a>
+    <a href="https://github.com/KillovSky/iris/watchers"><img title="GitHub Watchers" src="https://img.shields.io/github/watchers/KillovSky/iris?label=Watchers&style=flat-square"></a>
+    <a href="https://www.codefactor.io/repository/github/killovsky/iris"><img alt="Code Quality" src="https://www.codefactor.io/repository/github/killovsky/iris/badge"></a>
+    <a href="http://isitmaintained.com/project/killovsky/iris"><img alt="Issue Resolution" src="http://isitmaintained.com/badge/resolution/killovsky/iris.svg"></a>
+    <a href="http://isitmaintained.com/project/killovsky/iris"><img alt="Open Issues" src="http://isitmaintained.com/badge/open/killovsky/iris.svg"></a>
     <a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FKillovSky%2FIris&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=Views+%28Since+01%2F04%2F24%29&edge_flat=false"/></a>
+    <a href="https://github.com/KillovSky/iris/pulls"><img alt="Pull Requests" src="https://img.shields.io/github/issues-pr/KillovSky/Iris?label=Pull%20Requests&style=flat-square"></a>
+    <a href="https://github.com/KillovSky/iris/graphs/contributors"><img alt="Contributors" src="https://img.shields.io/github/contributors/KillovSky/Iris?label=Contribuidores&style=flat-square"></a>
 </p>
 
 ## 📝 Sumário
