@@ -66,7 +66,7 @@ E na fronteira entre terror e renascimento, uma pergunta sempre ecoa:
 
 ## ❓ O que é a Íris?
 
-A Íris é uma base de robô multilíngue para WhatsApp em constante evolução. Embora ainda esteja em desenvolvimento, seu objetivo é oferecer uma ampla gama de funcionalidades, atualizando-se regularmente com novos recursos, correções e aprimoramentos para atender às necessidades dos usuários. O projeto é totalmente aberto, sem fins lucrativos e bem documentado, sendo adaptável e ideal para que novos desenvolvedores criem seus próprios projetos baseados nele.
+A Íris é uma base de BOT versátil para WhatsApp, em constante evolução, que pode ser integrada aos códigos de qualquer bot, aplicativo ou programação através de requests POST e da função interna `Indexer`, permitindo personalização e controle de forma externa sem a necessidade de alterar seu código interno oficial. Ainda em desenvolvimento, seu propósito é oferecer uma ampla gama de funcionalidades, atualizando-se regularmente com novos recursos, correções e melhorias para atender às necessidades dos usuários. O projeto é totalmente aberto, sem fins lucrativos e extremamente documentado, facilitando a adaptação e ideal para novos desenvolvedores criarem seus próprios projetos baseados nele.
 
 ## 📚 Informações Adicionais
 

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conexão com Servidor usando cURL</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      padding: 20px;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+    h2 {
+      color: #333;
+      border-bottom: 2px solid #333;
+      padding-bottom: 5px;
+    }
+    p {
+      margin-bottom: 15px;
+    }
+    pre {
+      background-color: #f4f4f4;
+      padding: 10px;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+    code {
+      font-family: Consolas, monospace;
+      font-size: 0.9em;
+    }
+    a {
+      color: #007bff;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    @media (max-width: 600px) {
+      body {
+        padding: 10px;
+      }
+      h2 {
+        font-size: 1.5em;
+      }
+      pre {
+        font-size: 0.85em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h2>Conectar-se usando cURL</h2>
+  <p>Para interagir com o servidor, você pode utilizar cURL para enviar requests POST.</p>
+  
+  <h3>Exemplo de envio de mensagem com Request POST e cURL</h3>
+  <p>Aqui está um exemplo de como enviar um request POST com cURL, utilizando um payload JSON:</p>
+  <pre>
+curl --insecure -X POST \
+  -H "Content-Type: application/json" \
+  -d '{
+    "username": "seu_username",
+    "password": "sua_senha",
+    "code": "Código JS para executar",
+    "chatId": "id_do_local_para_enviar_mensagem",
+    "quoted": false,
+    "message": {
+      "text": "Oi!"
+    }
+  }' \
+  https://exemplo:8080/send
+  </pre>
+  <p>O parâmetro <code>code</code> será executado apenas se a permissão de execução estiver configurada corretamente no arquivo <code>config.json</code>. Se você não tem certeza do que isso significa ou está em um ambiente inseguro, NÃO ATIVE ESSA CONFIGURAÇÃO, pois é EXTREMAMENTE PERIGOSA.</p>
+  <p>Se o parâmetro <code>code</code> for enviado, os outros campos do JSON serão ignorados e não serão processados.</p>
+  <p>O parâmetro <code>quoted</code> pode conter dados de menção a uma mensagem específica. Se não estiver certo, utilize <code>false</code> ou consulte a estrutura do parâmetro <code>quoted</code> na endpoint <code>messages</code> através da conexão websocket.</p>
+  <p>O uso de <code>--insecure</code> é necessário se estiver conectando via localhost ou um IP de rede privada, pois nestes casos o certificado de conexão é autoassinado e a conexão falhará sem o parâmetro <code>--insecure</code>.</p>
+  <p>Substitua <code>exemplo:8080</code> pela URL e porta corretas, que são fornecidas ao iniciar o serviço. Certifique-se de substituir <code>seu_username</code> e <code>sua_senha</code> pelos valores apropriados do seu arquivo <code>config.json</code>. O parâmetro <code>chatId</code> pode ser obtido olhando a página de logs ou o terminal.</p>
+  <p><a href="https://github.com/KillovSky/Iris/wiki" target="_blank">Documentação oficial no GitHub Wiki</a></p>
+</body>
+</html>

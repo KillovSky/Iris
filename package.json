@@ -1,7 +1,7 @@
 {
   "name": "iris",
   "version": "1.1.5",
-  "build_date": "07-07-2024",
+  "build_date": "08-07-2024",
   "build_name": "Kekik",
   "private": "true",
   "description": "Novo Projeto Íris, uma versão totalmente nova feita com novas APIs, sistemas, 13+ idiomas e muito mais, sendo um projeto novo, aberto e sem nenhum foco lucrativo.",
@@ -22,10 +22,11 @@
     "vbs": "cscript lib/Scripts/Toolbox.vbs",
     "exe": "lib\\Scripts\\Toolbox.exe",
     "fixdb": "node lib/Scripts/FixDatabase.js",
+    "minify": "node lib/Scripts/MinifyIris.js",
     "test": "npm run"
   },
   "author": "KillovSky",
-  "documentation": "https://github.com/KillovSky/Iris/blob/main/lib/Wiki/Tutorial/Guide.md",
+  "documentation": "https://github.com/KillovSky/Iris/wiki",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/KillovSky/Iris.git"
@@ -91,7 +92,7 @@
     },
     {
       "type": "others",
-      "url": "https://github.com/KillovSky#-fundings"
+      "url": "https://linktr.ee/killovsky"
     }
   ],
   "devDependencies": {

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conexão com WebSocat</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      padding: 20px;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+    h2 {
+      color: #333;
+      border-bottom: 2px solid #333;
+      padding-bottom: 5px;
+    }
+    p {
+      margin-bottom: 15px;
+    }
+    pre {
+      background-color: #f4f4f4;
+      padding: 10px;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+    code {
+      font-family: Consolas, monospace;
+      font-size: 0.9em;
+    }
+    a {
+      color: #007bff;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    @media (max-width: 600px) {
+      body {
+        padding: 10px;
+      }
+      h2 {
+        font-size: 1.5em;
+      }
+      pre {
+        font-size: 0.85em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h2>Conectar-se usando WebSocat</h2>
+  <p>Para se conectar a esta URL, utilize um programa de socket como WebSocat. Ele requer os seguintes dados de entrada:</p>
+  <ul>
+    <li><strong>username:</strong> seu nome de usuário no arquivo <code>config.json</code></li>
+    <li><strong>password:</strong> sua senha secreta do mesmo arquivo</li>
+  </ul>
+  <p>Você pode baixar o WebSocat através do link abaixo:</p>
+  <p><a href="https://github.com/vi/websocat/releases" target="_blank">Download do WebSocat</a></p>
+  <h3>Exemplo de Uso com WebSocat</h3>
+  <p>Supondo que você tenha o WebSocat instalado, você pode conectar-se da seguinte maneira:</p>
+  <pre>
+websocat --insecure wss://exemplo:8080/messages --basic-auth seu_username:sua_senha
+  </pre>
+  <p>Substitua <code>exemplo:8080</code> pela URL e porta corretas, elas são a URL e Porta HTTPS que a Íris mostra ao iniciar. Certifique-se de substituir <code>seu_username</code> e <code>sua_senha</code> pelos valores apropriados do seu arquivo <code>config.json</code>.</p>
+  <p>O uso de <code>--insecure</code> deve ser feito se sua conexão é em localhost ou ip de rede privada, pois nesses casos o certificado de conexão é autoassinado e causaria problemas para se conectar sem <code>--insecure</code>.</p>
+  <p><a href="https://github.com/KillovSky/Iris/wiki" target="_blank">Documentação oficial no GitHub Wiki</a></p>
+</body>
+</html>
