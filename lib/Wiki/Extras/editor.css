@@ -1,0 +1,223 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    padding: 20px;
+}
+
+.container {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+.container.dark-mode {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+header .logo img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.options button {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #007bff;
+}
+
+.options button:hover {
+    text-decoration: underline;
+}
+
+.settings {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.settings h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.config-item {
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #f9f9f9;
+}
+
+body.dark-mode .config-item {
+    background-color: #2c2c2c;
+}
+
+.config-item label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.config-item input,
+.config-item textarea {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    resize: vertical;
+    width: calc(100% - 40px);
+    display: inline-block;
+}
+
+body.dark-mode .config-item input,
+body.dark-mode .config-item textarea {
+    background-color: #3a3a3a;
+    color: #e0e0e0;
+}
+
+.reset-button {
+    display: inline-block;
+    cursor: pointer;
+    color: #007bff;
+    font-size: 24px;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+.expand-button {
+    background-color: transparent;
+    border: none;
+    color: #007bff;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.expand-button:hover {
+    text-decoration: underline;
+}
+
+.save {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.save button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.save button:hover {
+    background-color: #0056b3;
+}
+
+.nested {
+    display: none;
+    margin-top: 10px;
+}
+
+.nested.active {
+    display: block;
+}
+
+.reset-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.loading-spinner {
+    display: none;
+    margin-right: 10px;
+}
+
+.loading-spinner.active {
+    display: inline-block;
+}
+
+/* Dropdown menu adjustments */
+.options .dropdown-menu {
+    min-width: 12rem;
+    padding: 0.5rem 0;
+    border-radius: 8px;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.options .dropdown-item {
+    font-size: 16px;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.options .dropdown-item:hover {
+    background-color: #f8f9fa;
+}
+
+.options .dropdown-item i {
+    font-size: 1.2rem;
+}
+
+@media (max-width: 576px) {
+    .options .dropdown-menu {
+        left: auto;
+        right: 0;
+    }
+}
+
+/* Dark Mode Styles */
+body.dark-mode .options .dropdown-menu {
+    background-color: #343a40;
+    /* Dark background */
+    color: #e0e0e0;
+    /* Light text */
+}
+
+body.dark-mode .options .dropdown-item:hover {
+    background-color: #495057;
+    /* Darker hover color */
+}
+
+body.dark-mode .options .dropdown-item {
+    color: #e0e0e0;
+    /* Light text */
+}
+
+body.dark-mode .options .dropdown-toggle {
+    color: #e0e0e0;
+    /* Light text */
+}
+
+body.dark-mode .options button {
+    color: #007bff;
+    /* Blue color for icons */
+}

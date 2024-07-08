@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oficina de JSONs</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="editor.css">
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="editor.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="options dropdown">
+                <button class="btn btn-link" onclick="toggleDarkMode()" title="Toggle Dark Mode">
+                    <i id="modeIcon" class="bi bi-moon" aria-hidden="true"></i><span class="visually-hidden">Entrar no
+                        Modo Noturno (Dark Mode)</span>
+                </button>
+            </div>
+            <div>
+                <h1>Project Íris - Configurations Mode</h1>
+                <h1 id="fileNameDisplay" style="text-align: center;"></h1>
+            </div>
+            <div class="options dropdown">
+                <button style="text-decoration: none;" class="btn btn-link dropdown-toggle" type="button"
+                    id="optionsMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-three-dots" aria-hidden="true"></i><span class="visually-hidden">Opções</span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="optionsMenuButton">
+                    <li><button class="dropdown-item" onclick="openFile()"><i class="bi bi-folder"
+                                aria-hidden="true"></i> Abrir</button></li>
+                    <li><button class="dropdown-item" onclick="onSave()"><i class="bi bi-save" aria-hidden="true"></i>
+                            Salvar</button></li>
+                    <li><button class="dropdown-item" onclick="exportJSON()"><i class="bi bi-file-arrow-up"
+                                aria-hidden="true"></i> Exportar</button></li>
+                    <li><button class="dropdown-item" onclick="resetAllChanges()"><i
+                                class="bi bi-arrow-counterclockwise" aria-hidden="true"></i> Resetar</button></li>
+                </ul>
+            </div>
+        </header>
+        <input type="file" id="fileInput" style="display: none;" accept=".json" onchange="loadFile(event)">
+        <div id="configurations"></div>
+        <div class="save">
+            <div class="loading-spinner" id="loadingSpinner">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

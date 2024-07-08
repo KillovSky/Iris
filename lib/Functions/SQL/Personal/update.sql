@@ -1,5 +1,7 @@
 -- Se não existir, cria a table e modelo de DB
 CREATE TABLE IF NOT EXISTS personal (
+    created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    modified TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     id TEXT NOT NULL PRIMARY KEY,
     data JSONB NOT NULL,
     UNIQUE(id)
@@ -9,7 +11,7 @@ CREATE TABLE IF NOT EXISTS personal (
 INSERT OR IGNORE INTO personal (id, data) VALUES ('{INSERTUSER}', '{INSERTDEFAULT}');
 
 -- Atualiza o JSON
-UPDATE personal SET data = json_patch('{INSERTDEFAULT}', data) WHERE id = '{INSERTUSER}';
+UPDATE personal SET data = json_patch('{INSERTDEFAULT}', data), modified = CURRENT_TIMESTAMP WHERE id = '{INSERTUSER}';
 
 -- Atualiza a coluna 'data' da tabela 'personal' com os valores do JSON recebido
 UPDATE personal SET data = (
@@ -91,6 +93,9 @@ UPDATE personal SET data = (
 
 -- Somente onde a group seja a especificada e se o JSON da table for válido
 WHERE id = '{INSERTUSER}' AND json_valid(data); 
+
+-- Deleta as colunas com modified superior a 30 dias do tempo atual
+DELETE FROM personal WHERE julianday('now') - julianday(modified) > 30;
 
 -- Exibe o json final
 SELECT data FROM personal WHERE id = '{INSERTUSER}';

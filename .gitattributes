@@ -58,10 +58,6 @@
 *.lua linguist-documentation=false
 *.lua linguist-language=Lua
 
-*.xml linguist-detectable=true
-*.xml linguist-documentation=false
-*.xml linguist-language=XML
-
 *.vbs linguist-detectable=true
 *.vbs linguist-documentation=false
 *.vbs linguist-language=VBScript

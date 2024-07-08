@@ -4,7 +4,7 @@
     "usage": {
         "general": "[Prefix][Alias] [-gpt|-tts|-simsimi|-cleverbot] [Text]",
         "examples": [
-            "/simi -simsimi Hola",
+            "/simsimi Hola",
             "/iris -cleverbot Boa noite",
             "/tts Oi, eu sou o Goku.",
             "/ai -gpt I love you.",

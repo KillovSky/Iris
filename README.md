@@ -22,12 +22,12 @@ E na fronteira entre terror e renascimento, uma pergunta sempre ecoa:
 <p align="center">
     <img align="center" src="https://raw.githubusercontent.com/KillovSky/Iris/main/lib/Commands/Default/Cache/Banner.png" width="512" height="320">
 </p>
-<!-- <p align="center">
-    <a align="center" href="https://linktr.ee/killovsky">Banner by KillovSky</a>
-</p> -->
 <p align="center">
-    <a align="center" href="https://bento.me/joanderson">Banner by Jojo</a>
+    <a align="center" href="https://linktr.ee/killovsky">Banner by KillovSky</a>
 </p>
+<!-- <p align="center">
+    <a align="center" href="https://bento.me/joanderson">Banner by Jojo</a>
+</p> -->
 <p align="center">
     <h1 align="center">Projeto Íris</h1>
     <a href="https://github.com/KillovSky/iris/blob/main/LICENSE"><img alt="GitHub License" src="https://img.shields.io/github/license/KillovSky/Iris?color=blue&label=License&style=flat-square"></a>
@@ -48,76 +48,37 @@ E na fronteira entre terror e renascimento, uma pergunta sempre ecoa:
     <a href="https://github.com/KillovSky/iris/graphs/contributors"><img alt="Contributors" src="https://img.shields.io/github/contributors/KillovSky/Iris?label=Contribuidores&style=flat-square"></a>
 </p>
 
+## ⚠️ Mural Urgente
+
+> Este mural é destinado a mensagens extremamente importantes. Por favor, leia com atenção.
+>
+> Se você estiver **ATUALIZANDO** da versão 1.1.4 para 1.1.5 (mantendo seu `users.db`), é crucial executar `npm run fixdb` ou realizar essa ação pela `Toolbox` de sua preferência. Devido a mudanças significativas nos códigos de banco de dados da Íris, normalmente seria necessária uma reinstalação completa. No entanto, o comando mencionado evitará isso. Não executar este comando resultará em vários erros durante a inicialização.
+
 ## 📝 Sumário
 
-1. - [📚 Informações Adicionais](#-informações-adicionais)
-2. - [❓ O que é a Íris?](#-o-que-é-a-íris)
-3. - [🤝 Contribuindo](#-contribuindo)
-4. - [🔐 Segurança](#-segurança)
-5. - [📜 Código de Conduta](#-código-de-conduta)
-6. - [📖 Changelog](#-changelog)
-7. - [🔗 Website](#-website)
-8. - [💲 Doações](#-doações)
-9. - [📢 Considerações](#-considerações)
-10. - [📚 Guias de Instalação](#-guias-de-instalação)
-11. - [🌐 Outros Projetos](#-outros-projetos)
-12. - [📱 Redes Sociais](#-redes-sociais)
-13. - [🖊️ Guia de Modificação](#%EF%B8%8F-guia-de-modificação)
-14. - [🚀 Finalização](#-finalização)
-
-## 📚 Informações Adicionais
-
-Essas informações levam a arquivos focados exclusivamente no assunto em questão.
-
-1. - [🤝 Contribuindo](https://github.com/KillovSky/Iris/blob/main/.github/CONTRIBUTING.md)
-2. - [🔐 Segurança](https://github.com/KillovSky/Iris/blob/main/.github/SECURITY.md)
-3. - [📜 Código de Conduta](https://github.com/KillovSky/Iris/blob/main/.github/CODE_OF_CONDUCT.md)
-4. - [📖 Changelog](https://github.com/KillovSky/Iris/blob/main/.github/CHANGELOG.md)
-5. - [🔗 Website](https://killovsky.github.io/Iris)
-6. - [💲 Doações](https://github.com/killovsky#-fundings)
-7. - [🖊️ Guia de Modificação](https://github.com/KillovSky/Iris/blob/main/lib/Wiki/Tutorial/Guide.md)
+1. [❓ O que é a Íris?](#-o-que-é-a-íris)
+2. [📚 Informações Adicionais](#-informações-adicionais)
+3. [🔗 Website](#-website)
+4. [📢 Considerações](#-considerações)
+5. [🌐 Outros Projetos](#-outros-projetos)
+6. [📱 Redes Sociais](#-redes-sociais)
+7. [🚀 Finalização](#-finalização)
 
 ## ❓ O que é a Íris?
 
-Iris é um base de robô multilíngue para WhatsApp em constante evolução. Embora ainda esteja em fase de desenvolvimento, sua ambição é oferecer uma ampla gama de funcionalidades, atualizando-se quando possível com novos recursos, correções e aprimoramentos para atender às necessidades dos usuários. Ela não possui nenhum foco lucrativo, é totalmente aberta e extrememante documentada em seu código, feita para ser adaptável. Seu objetivo é ajudar novos desenvolvedores a criarem seus próprios projetos baseados nela.
+A Íris é uma base de robô multilíngue para WhatsApp em constante evolução. Embora ainda esteja em desenvolvimento, seu objetivo é oferecer uma ampla gama de funcionalidades, atualizando-se regularmente com novos recursos, correções e aprimoramentos para atender às necessidades dos usuários. O projeto é totalmente aberto, sem fins lucrativos e bem documentado, sendo adaptável e ideal para que novos desenvolvedores criem seus próprios projetos baseados nele.
 
-## 🤝 Contribuindo
+## 📚 Informações Adicionais
 
-Se você gostaria de contribuir para este projeto, por favor, leia nosso [Guia de Contribuição](https://github.com/KillovSky/Iris/blob/main/.github/CONTRIBUTING.md) para obter detalhes sobre como fazer isso. Seja bem-vindo para criar novas funcionalidades, corrigir bugs ou ajudar de outras formas.
-
-## 🔐 Segurança
-
-Mantemos a segurança deste projeto como uma prioridade. Se você encontrar qualquer problema de segurança ou vulnerabilidade, por favor, consulte nosso [Guia de Segurança](https://github.com/KillovSky/Iris/blob/main/.github/SECURITY.md) para saber como relatar de forma segura.
-
-## 📜 Código de Conduta
-
-Este projeto segue um [Código de Conduta](https://github.com/KillovSky/Iris/blob/main/.github/CODE_OF_CONDUCT.md) para criar um ambiente inclusivo e respeitoso para todos os colaboradores. Certifique-se de ler e seguir nossas diretrizes para uma colaboração saudável.
-
-## 📖 Changelog
-
-Para verificar as últimas alterações, melhorias e correções neste projeto, consulte o nosso [Changelog](https://github.com/KillovSky/Iris/blob/main/.github/CHANGELOG.md).
+A partir da versão `1.1.5`, a maioria das informações, guias e tutoriais de edição serão centralizados na [Wiki do Projeto Íris](https://github.com/KillovSky/Iris/wiki).
 
 ## 🔗 Website
 
-Agora temos um website para a Íris! Para acessá-lo, basta [clicar aqui](https://killovsky.github.io/Iris). Lembre-se de que a opção de login está destinada apenas a conexões locais. Tentar utilizá-la neste site levará você a página inicial. Além disso, escondi eastereggs na página e nos arquivos markdown, javascript e demais, talvez usar um pouco de **RAW** ou Nuka-Cola te faça **ver** as coisas de **outro ponto de vista**.
-
-## 💲 Doações
-
-Se você gosta do projeto e deseja contribuir para o seu crescimento contínuo, considere fazer uma doação. Sua contribuição ajuda a manter este projeto open source vivo e em constante evolução, existem infinitas [Formas de Doar](https://github.com/killovsky#-fundings).
+Agora temos um website para a Íris! Para acessá-lo, basta [clicar aqui](https://killovsky.github.io/Iris). Lembre-se de que a opção de login, logs e configuração está destinada apenas a conexões locais. Tentar utilizá-la neste site levará você à página inicial. Além disso, escondi easter eggs na página e nos arquivos markdown, javascript e outros. Talvez usar um pouco de **RAW** ou Nuka-Cola te faça **ver** as coisas de **outro ponto de vista**.
 
 ## 📢 Considerações
 
-Essa versão do Projeto Íris ainda está em desenvolvimento, alguns bugs são esperados, se você encontrar um, pode apontar ele para os desenvolvedores a partir da criação de [Issues](https://github.com/KillovSky/Iris/issues/604).
-
-## 📚 Guias de Instalação
-
-1. [Termux](https://github.com/KillovSky/Iris/blob/main/lib/Wiki/Install/Termux.md)
-2. [Windows](https://github.com/KillovSky/Iris/blob/main/lib/Wiki/Install/Windows.md)
-3. [Linux](https://github.com/KillovSky/Iris/blob/main/lib/Wiki/Install/Linux.md)
-4. [Universal (Instalação Automática)](https://github.com/KillovSky/Iris/blob/main/lib/Wiki/Install/Universal.md)
-
-- Se puder, ajude a melhorar nossos guias adicionando tutoriais, precisamos do seguintes sistemas ainda: MacOS, Solaris, Free/Open BSD, Aix ou qualquer outro guia relativo a um sistema que já não exista, você pode fazer guias para usos de VPS também.
-- Se desejar ajuda com sua instalação em tarefas simples após instalar a Íris, experimente usar `npm run toolbox`, isto é uma ferramenta que automatiza dezenas de tarefas, como atualizar, reinstalar e configurar.
+Essa versão do Projeto Íris ainda está em desenvolvimento, e alguns bugs são esperados. Se encontrar algum, por favor, reporte aos desenvolvedores criando [Issues](https://github.com/KillovSky/Iris/issues/604).
 
 ## 🌐 Outros Projetos
 
@@ -125,18 +86,14 @@ Além da Íris, desenvolvo diversas ferramentas de código aberto que podem ser 
 
 ## 📱 Redes Sociais
 
-Se quiser usar nossas redes sociais para informar erros e ir atrás de suporte, você pode vir nas seguintes:
+Para informar erros ou buscar suporte, utilize nossas redes sociais:
 
 1. [Discord](https://discord.gg/ZtN9UH7XZu)
 2. [Telegram](https://t.me/PROJETOIRIS)
 3. [Issues](https://github.com/KillovSky/Iris/issues/604)
 
-Não estarei utilizando de suporte no WhatsApp, então você possui apenas essas duas redes sociais e a issues para contatar os desenvolvedores.
-
-## 🖊️ Guia de Modificação
-
-Se você tem interesse em desenvolver comandos, contribuir ou explorar a funcionalidade da `envInfo`, recomendamos a leitura do nosso guia de programação de comandos, disponível [clicando aqui](https://github.com/KillovSky/Iris/blob/main/lib/Wiki/Tutorial/Guide.md). Vale ressaltar que, caso você seja iniciante em programação, é aconselhável adquirir conhecimentos básicos por meio de cursos ou guias introdutórios, pois não oferecemos suporte e ajuda para aqueles que ainda não possuem familiaridade com programação, isso é, aqueles que não sabem editar arquivos de configuração ou não sabem informatica básica.
+Não oferecemos suporte via WhatsApp, portanto, utilize apenas essas redes sociais e a seção de issues para contatar os desenvolvedores.
 
 ## 🚀 Finalização
 
-Espero que você aprecie o Projeto Íris. Elaborei-o com dedicação, priorizando a liberdade de acesso e compartilhamento. Minha intenção é oferecer algo útil a todos, sem custos ocultos nem segredos. Seja bem-vindo a um projeto que representa a essência de um código aberto, divirta-se e até a próxima!
+Espero que você aprecie o Projeto Íris. Desenvolvi-o com dedicação, priorizando a liberdade de acesso e compartilhamento. Minha intenção é oferecer algo útil a todos, sem custos ocultos nem segredos. Seja bem-vindo a um projeto que representa a essência do código aberto. Divirta-se e até a próxima!

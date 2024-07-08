@@ -26,7 +26,8 @@ declare -A command_scripts=(
     ["14"]="bash lib/Scripts/PM2Install.sh"
     ["15"]="bash lib/Scripts/Requirements.sh"
     ["16"]="printf '\n[ÍRIS] → Aguarde, carregando...\n' && python lib/Scripts/jsonexplorer.py"
-    ["17"]="printf '[ÍRIS] → Foi um prazer, volte sempre!\n'; exit 0"
+    ["17"]="npm run fixdb"
+    ["18"]="printf '[ÍRIS] → Foi um prazer, volte sempre!\n'; exit 0"
 )
 
 # Define as opções do menu/seletor
@@ -47,7 +48,8 @@ options=(
     "14. Instalar PM2"
     "15. Instalar programas"
     "16. Editor JSON (GUI)"
-    "17. Sair"
+    "17. Corrigir Database SQL"
+    "18. Sair"
 )
 
 # Verifica se o diretório atual é o correto

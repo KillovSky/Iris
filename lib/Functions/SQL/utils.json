@@ -6,6 +6,7 @@
         "examples": [
             "SQL.env()",
             "SQL.reset()",
+            "SQL.fixdb(param1, param2, param3, param3, param4)",
             "SQL.update(file, userId, chatId, key, value)",
             "SQL.get(file, userId, chatId)",
             "SQL.undo(file, userId, chatId, array)",
@@ -15,6 +16,7 @@
             "SQL.remove(file, userId, chatId)",
             "SQL.custom(file, userId, chatId, command)",
             "SQL.purge(file, userId, chatId, key, moreKeys)",
+            "SQL.env().functions.fixdb.value(param1, param2, param3, param3, param4)",
             "SQL.env().functions.update.value(file, userId, chatId, key, value)",
             "SQL.env().functions.undo.value(file, userId, chatId, array)",
             "SQL.env().functions.get.value(file, userId, chatId)",
@@ -28,6 +30,7 @@
     },
     "license": "MIT",
     "helps": [
+        "O fixdb não deve ser usado a menos que haja aviso oficial de necessário.",
         "Você pode mudar os parâmetros da exports enviando o valor da Object que deseja editar ao resetar, por exemplo → SQL.reset({ name: 'Body'}) ← Isso mudaria o module de Tree para Body, o uso então passaria ser: → Body.funcão ← Isso também permite que você edita a função usando o mesmo método.",
         "Você pode mudar o que os códigos rodam, em tempo real, basta usar a 'env', por exemplo → SQL.env().name = 'Body' ← Mas este método não atualizará o sistema, somente a Object, os sistemas permanecem intactos.",
         "Você pode configurar o tempo de reset dos resultados ou se eles devem ser resetados usando a env, por exemplo → SQL.env().settings.wait = 10000 ← Isso mudaria o tempo de espera para 10 segundos, o tempo deve ser em milissegundos.",
@@ -40,6 +43,7 @@
         "ranking": "ranking",
         "get": "get",
         "custom": "custom",
+        "fixdb": "fixdb",
         "fixer": "jsonfixer",
         "remove": "remove",
         "finder": "finder",
@@ -88,6 +92,48 @@
                 }
             },
             "description": "Formata uma string com Objects, Arrays ou JSONs dentro, tornando-a executável.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "fixdb": {
+            "arguments": {
+                "param1": {
+                    "description": "Parametro adicional, se necessário.",
+                    "type": "Any",
+                    "value": false
+                },
+                "param2": {
+                    "description": "Parametro adicional, se necessário.",
+                    "type": "Any",
+                    "value": false
+                },
+                "param3": {
+                    "description": "Parametro adicional, se necessário.",
+                    "type": "Any",
+                    "value": false
+                },
+                "param4": {
+                    "description": "Parametro adicional, se necessário.",
+                    "type": "Any",
+                    "value": false
+                },
+                "param5": {
+                    "description": "Parametro adicional, se necessário.",
+                    "type": "Any",
+                    "value": false
+                },
+                "dbNames": {
+                    "description": "Nomes das DBs a corrigir.",
+                    "type": "Array",
+                    "value": ["groups", "bank", "leveling", "personal"]
+                },
+                "oldDb": {
+                    "description": "Nomes da DBs anterior.",
+                    "type": "String",
+                    "value": "users.db"
+                }
+            },
+            "description": "Recria a database caso haja necessidade em updates novas.",
             "type": "Boolean / Function",
             "value": false
         },
@@ -591,28 +637,6 @@
                         "firstUser": false,
                         "firstDate": 0
                     },
-                    "promote": {
-                        "enable": false,
-                        "text": false,
-                        "lastDate": 0,
-                        "lastValue": 0,
-                        "lastState": false,
-                        "lastUser": "none",
-                        "firstEdition": false,
-                        "firstUser": false,
-                        "firstDate": 0
-                    },
-                    "demote": {
-                        "enable": false,
-                        "text": false,
-                        "lastValue": 0,
-                        "lastState": false,
-                        "lastUser": "none",
-                        "lastDate": 0,
-                        "firstEdition": false,
-                        "firstUser": false,
-                        "firstDate": 0
-                    },
                     "goodbye": {
                         "enable": false,
                         "text": false,
@@ -668,6 +692,11 @@
             "description": "Armazena a mensagem do último erro recebido.",
             "type": "Boolean / String",
             "value": false
+        },
+        "databaseName": {
+            "description": "Nome da database que deve hospedar os dados de usuários e demais informações.",
+            "type": "String",
+            "value": "general.db"
         }
     },
     "results": {

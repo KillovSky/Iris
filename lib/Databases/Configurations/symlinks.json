@@ -97,6 +97,14 @@
             "glens"
         ]
     },
+    "Join": {
+        "place":  "./Functions/Plugins/onJoinRequest/index",
+        "alias": [
+            "join",
+            "approval",
+            "onjoinrequest"
+        ]
+    },
     "Memes": {
         "place": "./Functions/Pictures/Memes/index",
         "alias": [

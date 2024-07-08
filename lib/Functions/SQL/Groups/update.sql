@@ -1,12 +1,14 @@
 -- Se não existir, cria a table e modelo de DB
 CREATE TABLE IF NOT EXISTS groups (
+    created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    modified TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     id TEXT NOT NULL PRIMARY KEY,
     data JSONB NOT NULL,
     UNIQUE(id)
 );
 
 -- Insere os valores ou ignora, caso existam
-INSERT OR IGNORE INTO groups (id, data) VALUES ('{INSERTGROUP}', '{INSERTDEFAULT}');
+INSERT OR IGNORE INTO groups (created, modified, id, data) VALUES (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '{INSERTGROUP}', '{INSERTDEFAULT}');
 
 -- Atualiza o JSON
 UPDATE groups SET data = json_patch('{INSERTDEFAULT}', data) WHERE id = '{INSERTGROUP}';
@@ -87,10 +89,13 @@ UPDATE groups SET data = (
 
     -- Roda o each usando os valores em JSON da data, enviando o JSON recebido também
     FROM json_each(data), my_json
-)
+), modified = CURRENT_TIMESTAMP
 
 -- Somente onde a group seja a especificada e se o JSON da table for válido
 WHERE id = '{INSERTGROUP}' AND json_valid(data); 
+
+-- Deleta as colunas com modified superior a 30 dias do tempo atual
+DELETE FROM groups WHERE julianday('now') - julianday(modified) > 30;
 
 -- Exibe o json final
 SELECT data FROM groups WHERE id = '{INSERTGROUP}';
