@@ -10,7 +10,9 @@
             "SQL.update(file, userId, chatId, key, value)",
             "SQL.get(file, userId, chatId)",
             "SQL.undo(file, userId, chatId, array)",
+            "SQL.keywords(language, name, table, random, command)",
             "SQL.finder(file, userId, chatId, key, mathsymbols?, value)",
+            "SQL.languages(language, type, name, randomize, single, replacer)",
             "SQL.ranking(file, chatId, key, limit)",
             "SQL.locate(file, userId, chatId, key, mathOperator, value)",
             "SQL.remove(file, userId, chatId)",
@@ -46,6 +48,7 @@
         "fixdb": "fixdb",
         "fixer": "jsonfixer",
         "remove": "remove",
+        "keywords": "keywords",
         "finder": "finder",
         "purge": "purge",
         "languages": "languages",
@@ -171,6 +174,38 @@
                 }
             },
             "description": "Obtém os diálogos da database de dados.",
+            "type": "Function",
+            "value": false
+        },
+        "keywords": {
+            "arguments": {
+                "selectLang": {
+                    "description": "Região do idioma a ser selecionado.",
+                    "type": "String",
+                    "value": "pt"
+                },
+                "nameList": {
+                    "description": "Nome da lista onde a palavra pertence.",
+                    "type": "String",
+                    "value": "jobs"
+                },
+                "tableName": {
+                    "description": "Nome da table onde as palavras estão armazenadas.",
+                    "type": "String",
+                    "value": "words"
+                },
+                "randomWord": {
+                    "description": "Se deve retornar um aleatorio, deixar em 'true' fará 'nameList' ser ignorado.",
+                    "type": "Boolean",
+                    "value": true
+                },
+                "fullCommand": {
+                    "description": "Um comando personalizado de SQL.",
+                    "type": "Boolean / String",
+                    "value": false
+                }
+            },
+            "description": "Obtém um valor aleátorio de uma table de palavras ou dados.",
             "type": "Function",
             "value": false
         },        
@@ -702,7 +737,7 @@
     "results": {
         "description": "Resultado final da função.",
         "success": true,
-        "type": "Boolean / String",
+        "type": "Boolean / String / Object",
         "value": false
     }
 }

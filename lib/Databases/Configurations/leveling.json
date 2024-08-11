@@ -6,7 +6,7 @@
     "materials": {
         "description": "The foundation of materials gained per level-up, used to calculate the optimal value to provide.",
         "value": {
-            "multiply": 0.5,
+            "multiply": 1.2,
             "attenuation": 2,
             "wins": {
                 "coin": 3,

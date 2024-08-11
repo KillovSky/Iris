@@ -31,6 +31,7 @@
         "counter": "counter",
         "messedup": "messedup",
         "dataURI": "dataURI",
+        "shuffle": "shuffle",
         "generate": "generate",
         "searching": "searching",
         "upperland": "upperland",
@@ -148,6 +149,18 @@
                 }
             },
             "description": "Converte a primeira letra de uma string em maiúscula.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "shuffle": {
+            "arguments": {
+                "inputString": {
+                    "description": "String que deve ser aleatorizada.",
+                    "type": "Boolean / String",
+                    "value": false
+                }
+            },
+            "description": "Aleatoriza as posições de letras em strings.",
             "type": "Boolean / Function",
             "value": false
         },

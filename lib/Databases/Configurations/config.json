@@ -11,14 +11,38 @@
         "description": "Activate the LLM (Large Language Model) for GPT-like functionality. This feature is CPU intensive and is best suited for systems with CUDA GPUs. Avoid using it on slow systems. Ensure your machine has a powerful CPU or is equipped with CUDA technology.",
         "value": false
     },
+    "answerMode" : {
+        "description": "Define how Iris should respond to prompts.",
+        "value": "short, very friendly, and laid-back way"
+    },
+    "botAge": {
+		"description": "If Íris's age is set to 0, it will reflect her real age.",
+		"value": 0
+	},
 	"botCommands": {
 		"description": "Specifies whether Íris should execute commands from her messages. Note: This feature may have serious bugs and is not 100% tested.",
 		"value": false
 	},
+    "botGender": {
+		"description": "Defines the role of Íris. It can be any recognized gender or role.",
+		"value": "human girl"
+	},
+    "botSexuality": {
+        "description": "Define Íris's sexuality. You can include any sexuality or combination of sexualities that fits her gender, age, and personality.",
+        "value": "asexual and aromantic"
+    },
+    "botPersonality": {
+        "description": "Defines the personality of Íris. It can include any personality traits, such as: angry, cute, patient, caring, intelligent or more.",
+        "value": "charming, charismatic, intelligent, helpful, caring, patient, and adorable"
+    },
 	"botName": {
 		"description": "Defines the name of the BOT.",
 		"value": "Íris"
 	},
+    "chatName": {
+        "description": "Specifies the AI model used for conversations. Possible values are: gpt4all, transformers",
+        "value": "gpt4all"
+    },
 	"codeReload": {
 		"description": "Enables automatic code reloading, eliminating the need for restarts, can cause bugs.",
 		"value": true
@@ -38,6 +62,30 @@
 	"fullError": {
 		"description": "The error log method. When set to 'true,' it prints all information, making it ideal for bug reporting. Alternatively, setting it to 'false' is suitable for experts and those who prefer concise and stylish error messages.",
 		"value": true
+	},
+    "gptModel": {
+        "description": "Specifies the model to use; see available models at https://huggingface.co/models?library=transformers.js (for Transfomers mode) and https://docs.gpt4all.io/gpt4all_python/home.html (for GPT4All mode); examples: rocket-3b.Q4_0.gguf, Xenova/blenderbot_small-90M",
+        "value": "rocket-3b.Q4_0.gguf"
+    },
+    "gptTokens": {
+        "description": "Defines the maximum context window size for sessions. Lower values provide faster responses. Set 0 to automatic calculation.",
+        "value": 0
+    },
+    "gptPromptTemplate": {
+        "description": "Define the USER model template for GPT. Different models use different templates, but the placeholders %1 and %2 are consistent across all models. For specific details, please refer to the model’s webpage on Hugging Face or GPT4All.",
+        "value": "<|im_start|>user\n%1<|im_end|>\n<|im_start|>assistant"
+    },
+    "gptSystemPrompt": {
+        "description": "Define the SYSTEM model template for GPT. Different models use different templates. Please refer to the model's webpage on Hugging Face for specific details.",
+        "value": "<|im_start|>system\nDONT_TOUCH_HERE<|im_end|>\n"
+    },
+    "gptTemperature": {
+        "description": "Defines the creativity of the model's responses. Higher values generate more varied and random answers, while lower values produce more conservative and similar responses. Setting the value to zero will make the model respond in the same way every time. Typically, a value between 0 and 1 is used.",
+        "value": 0.3
+    },
+    "gptWindowSize": {
+		"description": "Define the maximum number of NGL tokens (context window) for GPT4All. The default is 2048.",
+        "value": 2048
 	},
 	"ignoreSecurityChecks": {
 		"description": "When activated, Íris executes tasks without waiting for codes to finish (synchronous execution), potentially leading to security vulnerabilities, lags, and bugs, but it enhances command speed.",
