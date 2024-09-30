@@ -4,11 +4,11 @@ FROM ubuntu:20.04
 # Evita avisos do apt
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Atualiza os repositórios e faz upgrade dos pacotes
-RUN apt-get update && apt-get upgrade -y
+# Atualiza os repositórios e faz upgrade dos pacotes, depois limpa as listas do apt-get
+RUN apt-get update && apt-get upgrade -y && rm -rf /var/lib/apt/lists/*
 
-# Instala os requisitos para o repositório NodeJS 20
-RUN apt-get install -y ca-certificates curl gnupg
+# Instala os requisitos para o repositório NodeJS 20, depois limpa as listas do apt-get
+RUN apt-get update && apt-get install -y ca-certificates curl gnupg && rm -rf /var/lib/apt/lists/*
 
 # Atualizar certificados CA
 RUN update-ca-certificates
@@ -22,11 +22,11 @@ RUN curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg -
 # Adiciona o repositório NodeJS
 RUN echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_20.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list
 
-# Atualiza os repositórios novamente
-RUN apt-get update && apt-get upgrade -y
+# Atualiza os repositórios novamente e faz upgrade dos pacotes, depois limpa as listas do apt-get
+RUN apt-get update && apt-get upgrade -y && rm -rf /var/lib/apt/lists/*
 
-# Instala os pacotes necessários
-RUN apt-get install -y nodejs sqlite build-essential zip unzip python2 python3 git tesseract-ocr nano
+# Instala os pacotes necessários, depois limpa as listas do apt-get
+RUN apt-get update && apt-get install -y nodejs sqlite build-essential zip unzip python2 python3 git tesseract-ocr nano && rm -rf /var/lib/apt/lists/*
 
 # Clona o repositório Iris
 RUN git clone https://github.com/KillovSky/Iris.git
