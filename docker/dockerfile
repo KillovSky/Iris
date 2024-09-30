@@ -1,0 +1,47 @@
+# Usa como base a imagem do ubuntu v20.04
+FROM ubuntu:20.04
+
+# Evita avisos do apt
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Atualiza os repositórios, e faz upgrade dos pacotes
+RUN apt update && apt upgrade -y
+
+# Instala os requisitos para o repositório NodeJS 20
+RUN apt install -y ca-certificates curl gnupg
+
+# Atualizar certificados CA
+RUN update-ca-certificates
+
+# Cria a pasta keyrings para o NodeJS
+RUN mkdir -p /etc/apt/keyrings
+
+# Baixa e adiciona a keyring do NodeJS
+RUN curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
+
+# Adiciona o repositório NodeJS
+RUN echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_20.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list
+
+# Atualize os repositórios novamente
+RUN apt update && apt upgrade -y
+
+# Instalar os pacotes necessários
+RUN apt install -y nodejs sqlite build-essential zip unzip python2 python3 git tesseract-ocr nano
+
+# Clona a Iris
+RUN git clone https://github.com/KillovSky/Iris.git
+
+# Define o diretório de trabalho
+WORKDIR /Iris
+
+# Instala as dependências do projeto
+RUN npm install
+
+# Faz downgrade do sharp para compatibilidade com o canva (se necessário)
+#RUN npm install sharp@0.30.7
+
+# Expõe a porta
+EXPOSE 3000
+
+# Define o comando para iniciar a iris
+CMD ["node", "/Iris/lib/Initialize/checker.js"]

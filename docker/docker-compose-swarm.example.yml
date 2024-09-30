@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+  iris:
+    image: hypegg/iris-project:v1.1.6
+    deploy:
+      replicas: 1 # Mantenha em 1
+      restart_policy:
+        condition: on-failure # Define a política de reinício
+    volumes:
+      - iris_backup:/Iris/lib/Backups # Volume para backups
+      - iris_sessions:/Iris/lib/Sessions # Volume para sessões
+      - iris_databases:/Iris/lib/Databases # Volume para bancos de dados
+      # - iris_commands:/Iris/lib/Commands    # Volume para comandos (Opcional)
+      # - iris_Dialogues:/Iris/lib/Dialogues  # Volume para diálogos (Opcional)
+    networks:
+      - iris_network # Nome da rede
+    ports:
+      - "3000:3000" # Mapeamento da porta 3000
+
+volumes:
+  iris_backup:
+  iris_sessions:
+  iris_databases:
+  # iris_commands:
+  # iris_Dialogues:
+
+networks:
+  iris_network: # Define uma rede que será criada automaticamente
