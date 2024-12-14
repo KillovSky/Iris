@@ -9,23 +9,23 @@ fi
 
 # Declara uma array de opções
 declare -A command_scripts=(
-    ["0"]="bash lib/Scripts/Toolbox.sh"
-    ["1"]="bash lib/Scripts/Stop.sh node"
-    ["2"]="bash lib/Scripts/Start.sh normal"
-    ["3"]="bash lib/Scripts/Start.sh hide"
-    ["4"]="bash lib/Scripts/Start.sh pm2hide"
-    ["5"]="bash lib/Scripts/Start.sh pm2show"
-    ["6"]="bash lib/Scripts/Stop.sh pm2"
-    ["7"]="bash lib/Scripts/Start.sh autoreboot"
-    ["8"]="bash lib/Scripts/Custom.sh"
-    ["9"]="bash lib/Scripts/ModuleUpdate.sh"
-    ["10"]="bash lib/Scripts/ModuleInstall.sh"
-    ["11"]="bash lib/Scripts/Disconnect.sh"
-    ["12"]="bash lib/Scripts/Reinstall.sh"
-    ["13"]="bash lib/Scripts/jsonEditor.sh"
-    ["14"]="bash lib/Scripts/PM2Install.sh"
-    ["15"]="bash lib/Scripts/Requirements.sh"
-    ["16"]="printf '\n[ÍRIS] → Aguarde, carregando...\n' && python lib/Scripts/jsonexplorer.py"
+    ["0"]="bash lib/Scripts/Launcher/Toolbox.sh"
+    ["1"]="bash lib/Scripts/Options/Stop.sh node"
+    ["2"]="bash lib/Scripts/Options/Start.sh normal"
+    ["3"]="bash lib/Scripts/Options/Start.sh hide"
+    ["4"]="bash lib/Scripts/Options/Start.sh pm2hide"
+    ["5"]="bash lib/Scripts/Options/Start.sh pm2show"
+    ["6"]="bash lib/Scripts/Options/Stop.sh pm2"
+    ["7"]="bash lib/Scripts/Options/Start.sh autoreboot"
+    ["8"]="bash lib/Scripts/Options/Custom.sh"
+    ["9"]="bash lib/Scripts/Options/ModuleUpdate.sh"
+    ["10"]="bash lib/Scripts/Options/ModuleInstall.sh"
+    ["11"]="bash lib/Scripts/Options/Disconnect.sh"
+    ["12"]="bash lib/Scripts/Options/Reinstall.sh"
+    ["13"]="bash lib/Scripts/Options/jsonEditor.sh"
+    ["14"]="bash lib/Scripts/Options/PM2Install.sh"
+    ["15"]="bash lib/Scripts/Options/Requirements.sh"
+    ["16"]="printf '\n[ÍRIS] → Aguarde, carregando...\n' && python lib/Scripts/APPs/jsonexplorer.py"
     ["17"]="npm run fixdb"
     ["18"]="printf '[ÍRIS] → Foi um prazer, volte sempre!\n'; exit 0"
 )
@@ -54,7 +54,7 @@ options=(
 
 # Verifica se o diretório atual é o correto
 checkInstall() {
-    if [[ -e package.json && -d lib/Scripts ]]; then
+    if [[ -e package.json && -d lib/Scripts/Launcher ]]; then
         echo 0
     else
         echo 1

@@ -7,7 +7,7 @@ if [ ! -d "lib" ]; then
     read -rp "[ÍRIS] → Parece que você não possui uma cópia da Íris. Deseja realizar a instalação? 1 (y), 2 (n): " opt
     case $opt in
         1)
-            bash ./lib/Scripts/Toolbox.sh 15
+            bash ./lib/Scripts/Launcher/Toolbox.sh 15
             ;;
         2)
             printf "[ÍRIS] → Ok, obrigado por utilizar este programa! <3\n"
@@ -56,7 +56,7 @@ select jsonFile in "APIS" "Config" "Outros" "Nenhum"; do
     # Verifica se o arquivo escolhido existe
     if [ -f "$fileToEdit" ]; then
         # Executa o script Python para edição do JSON
-        python lib/Scripts/jsoneditor.py "$fileToEdit"
+        python lib/Scripts/Options/jsoneditor.py "$fileToEdit"
         break
     else
         printf "[ÍRIS] → O arquivo '%s' não existe. Faça uma reinstalação manual.\n" "$fileToEdit"
@@ -70,7 +70,7 @@ select startOption in "Sim (y)" "Não (n)"; do
     case $startOption in
         # Executa a inicialização
         "Sim (y)")
-            bash ./lib/Scripts/Start.sh normal
+            bash ./lib/Scripts/Options/Start.sh normal
             break
         ;;
 

@@ -59,6 +59,10 @@
 		"description": "Defines what information is logged on the screen. A value of 1 prints all information, 2 for messages only, and 3 for commands only.",
 		"value": 1
 	},
+	"fixEscape": {
+		"description": "Enable this if you encounter errors with commas or symbols in SQLite. Note that this will remove, not escape, special characters. In anycase, still very useful with Íris database errors.",
+		"value": false
+	},
 	"fullError": {
 		"description": "The error log method. When set to 'true,' it prints all information, making it ideal for bug reporting. Alternatively, setting it to 'false' is suitable for experts and those who prefer concise and stylish error messages.",
 		"value": true

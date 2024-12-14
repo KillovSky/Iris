@@ -34,7 +34,8 @@
         "Para configurar o limite de spam, defina o valor para declarar como spam, como por exemplo: 10 mídias",
         "Para configurar o modo de operação da URL, defina de 1 a 3 na frente com '-set', sendo que: 1 = Tudo/All | 2 = Invite/Convites | 3 = Porno/Virus/Fakenews/Apostas",
         "O antifake deve ser configurado com o DDI, ou seja, se quiser banir todos os números +1, apenas digite 1 no uso do comando.",
-        "O antispam deve ser definido com o argumento '-ban' se quiser que a pessoa seja removida, se não for o caso, você pode ignorar o uso do '-ban' e apenas inserir o número com '-set' antes, isso é a quantidade de mídias máximas enviadas de uma vez pela pessoa."
+        "O antispam deve ser definido com o argumento '-ban' se quiser que a pessoa seja removida, se não for o caso, você pode ignorar o uso do '-ban' e apenas inserir o número com '-set' antes, isso é a quantidade de mídias máximas enviadas de uma vez pela pessoa.",
+        "Se houver múltiplas Íris no mesmo grupo, é possivel definir qual Íris será executada usando o parametro '--only' e mencionando a Íris ou digitando seu número na frente."
     ],
     "exports": {
         "env": "env",

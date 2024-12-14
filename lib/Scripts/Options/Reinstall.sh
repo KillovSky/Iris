@@ -94,7 +94,7 @@ select choice in "Sim" "Não"; do
                                             # Verifica se o arquivo não é symlinks.json, pois esse é sensivel
                                             if [ "$fileName" != "symlinks.json" ]; then
                                                 # Executa o comando apenas para arquivos diferentes de symlinks.json
-                                                node lib/Scripts/jsonFixer.js "$configFile" "./lib/Databases/Configurations/$fileName"
+                                                node lib/Scripts/Options/jsonFixer.js "$configFile" "./lib/Databases/Configurations/$fileName"
                                             fi
                                         done
 
@@ -117,7 +117,7 @@ select choice in "Sim" "Não"; do
                                 case $startOption in
                                     # Executa o programa de atualização
                                     "Sim (y)")
-                                        bash ./lib/Scripts/ModuleUpdate.sh
+                                        bash ./lib/Scripts/Options/ModuleUpdate.sh
                                         break
                                     ;;
 
@@ -135,7 +135,7 @@ select choice in "Sim" "Não"; do
                                 case $startOption in
                                     # Executa a inicialização
                                     "Sim (y)")
-                                        bash ./lib/Scripts/Start.sh normal
+                                        bash ./lib/Scripts/Options/Start.sh normal
                                         break
                                     ;;
 

@@ -6,7 +6,7 @@ Function quote(str)
 End Function
 
 ' Define as variáveis
-Dim objShell, GIT_PATH, BASH_PATH, retVal, objFSO, currentDir, scriptPath
+Dim objShell, GIT_PATH, BASH_PATH, retVal, objFSO, currentDir, scriptPath, absoluteScriptPath
 
 ' Inicializa as variáveis do objeto
 Set objFSO = CreateObject("Scripting.FileSystemObject")
@@ -16,16 +16,19 @@ Set objShell = CreateObject("WScript.Shell")
 currentDir = objFSO.GetAbsolutePathName(".")
 
 ' Verifica se o caminho atual contém "/lib/Scripts"
-If InStr(1, objFSO.GetAbsolutePathName("."), "\lib\Scripts", vbTextCompare) > 0 Then
+If InStr(1, objFSO.GetAbsolutePathName("."), "\lib\Scripts\Launcher", vbTextCompare) > 0 Then
     ' Se sim, volta dois caminhos
-    currentDir = objFSO.GetParentFolderName(objFSO.GetParentFolderName(objFSO.GetAbsolutePathName(".")))
+    currentDir = objFSO.GetParentFolderName(objFSO.GetParentFolderName(objFSO.GetParentFolderName(objFSO.GetAbsolutePathName("."))))
 Else
     ' Caso contrário, define o diretório atual
     currentDir = objFSO.GetAbsolutePathName(".")
 End If
 
 ' Define o local do script
-scriptPath = "./lib/Scripts/Toolbox.sh"
+scriptPath = "./lib/Scripts/Launcher/Toolbox.sh"
+
+' Define o local do script como um caminho absoluto
+absoluteScriptPath = objFSO.BuildPath(currentDir, "lib\Scripts\Launcher\Toolbox.sh")
 
 ' Encontra o caminho do git.exe
 GIT_PATH = objShell.Exec("where git.exe").StdOut.ReadAll()
@@ -54,15 +57,13 @@ retVal = objShell.Run("cmd /c " & quote(command), 1, True)
 
 ' Verifica se o modo normal foi bem-sucedido
 If retVal = 0 Then
-    WScript.Echo "Modo normal concluido com sucesso."
     WScript.Quit
 End If
 
 ' Define a forma alternativa
 Sub TryAlternative()
     ' Avisa que o modo original falhou
-    WScript.Echo "Modo normal falhou ou finalizou, usando modo alternativo em 5 segundos..."
-    WScript.Sleep 5000
+    WScript.Echo "Modo normal falhou, tentanto por modo alternativo (Bash Direct Execution)..."
 
     ' Define o comando a ser executado
     Dim command
@@ -73,18 +74,33 @@ Sub TryAlternative()
 
     ' Verifica se o modo alternativo foi bem-sucedido
     If retVal = 0 Then
-        WScript.Echo "Modo alternativo concluido com sucesso."
+        ' Sai do script
         WScript.Quit
-    Else
+    else
         ' Ambos os métodos falharam
-        WScript.Echo "Modo alternativo e normal falharam ou terminaram..."
+        WScript.Echo "Modo alternativo e normal falharam, tentando executar a partir do caminho absoluto (Absolute-Path Bash Execution)..."
+        TryAbsolute
     End If
 
-    ' Pede para sair
-    WScript.Echo "Pressione qualquer tecla para sair..."
-    WScript.StdIn.ReadLine()
+    ' Sai do script
     WScript.Quit
 End Sub
 
-' Tenta o meio alternativo
+' Define a função para tentar executar o script a partir do caminho absoluto
+Sub TryAbsolute()
+    ' Define o comando a ser executado
+    Dim command
+    command = Replace(Replace(Replace(quote("bash.exe") & " -c " & quote(Replace(absoluteScriptPath, "\", "\\")), vbCrLf, ""), vbCr, ""), vbLf, "")
+
+    ' Tenta iniciar o script no modo absoluto
+    retVal = objShell.Run("cmd /c " & quote(Replace(command, "\", "\\")), 1, True)
+
+    ' Verifica se o modo absoluto foi bem-sucedido
+    If retVal <> 0 Then
+        ' Avisa das falhas
+        WScript.Echo "Modo absoluto e alternativo falhou ou finalizou, aperte para sair, se a Toolbox falhou contate o suporte."
+    End If
+End Sub
+
+' Tenta o modo alternativo
 TryAlternative
