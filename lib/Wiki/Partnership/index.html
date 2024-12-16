@@ -2,12 +2,12 @@
 <html lang="pt-BR">
 
 <head>
+    <title>Projeto Íris - Parcerias</title>
     <meta charset="utf-8">
     <meta name="description" content="Conheça as parcerias e colaboradores do Projeto Íris.">
-    <meta name="keywords"
-        content="robot, bot, whatsapp, chatbot, languages, games, stickers, commands, otaku, gamer, adult, help, automate, javascript, html, shell, css, python, json, opensource, adapt, iris">
+    <meta name="keywords" content="robot, bot, whatsapp, chatbot, languages, games, stickers, commands, otaku, gamer, adult, help, automate, javascript, html, shell, css, python, json, opensource, adapt, iris">
     <meta name="author" content="KillovSky">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta property="og:title" content="Partnership Society">
     <meta property="og:description" content="Conheça as parcerias e colaboradores do Projeto Íris.">
     <meta property="og:image" content="https://killovsky.github.io/Iris/lib/Wiki/Homepage/sticker.png">
@@ -18,37 +18,84 @@
     <meta name="twitter:title" content="Partnership Society">
     <meta name="twitter:description" content="Conheça as parcerias e colaboradores do Projeto Íris.">
     <meta name="twitter:image" content="https://killovsky.github.io/Iris/lib/Wiki/Homepage/sticker.png">
-    <title>Partnership Society</title>
-    <link rel="shortcut icon" href="images/favicon.ico">
-    <link rel="sitemap" type="application/xml" title="Sitemap" href="../Homepage/sitemap.xml">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://use.fontawesome.com/releases/v6.0.0/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="partners.css">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="../Homepage/sitemap.xml">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="robots" content="index, follow">
 </head>
 
 <body>
     <header>
-        <h1>Parcerias do Projeto Íris</h1>
-        <a href="../Homepage/index.html" class="btn-home">Página Inicial
-            (WEB)</a>
+        <h2>🍀 PARCERIAS DO PROJETO ÍRIS</h2>
+        <!-- Botão Hamburguer (visível apenas em telas pequenas) -->
+        <button class="btn btn-primary" id="hamburgerMenu" aria-label="Abrir menu">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <!-- Menu com os Botões (visível apenas em telas grandes) -->
+        <nav id="menuList" class="menu-list">
+            <a href="../Homepage/index.html" class="btn btn-primary">
+                <i class="fa-solid fa-house"></i> Página Inicial
+            </a>
+            <a class="btn btn-primary" id="toggleViewBtn">
+                <i class="fa-solid fa-list"></i> Modo Lista
+            </a>
+            <a class="btn btn-primary" id="exportJSON">
+                <i class="fa-solid fa-download"></i> Exportar JSON
+            </a>
+        </nav>
     </header>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3 col-md-6 col-sm-6 mt-4">
-                <div class="card">
-                    <img src="images/slimenews.png" alt="">
-                    <div class="text-center">
-                        <p class="name">SLIME NEWS</p>
-                        <p class="job">Seu portal mágico para notícias e encantos de animes, games, mangás, manhwa e
-                            mais.</p>
-                        <div class="icons">
-                            <a href="https://slimenews.fun/"><i class="fa-solid fa-globe"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
+    <main class="container mt-4">
+        <!-- Visualização em cartões -->
+        <section id="cards" class="row gy-4">
+            <!-- Cartões de parceiros serão preenchidos via JavaScript -->
+        </section>
+
+        <!-- Visualização em lista -->
+        <section id="listView" class="table-responsive" style="display: none;">
+            <table class="table table-dark table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">
+                            #
+                            <button class="btn btn-link sort-icon" data-sort="number">
+                                <i class="fa-solid fa-arrow-down"></i>
+                            </button>
+                        </th>
+                        <th scope="col">Foto</th>
+                        <th scope="col">
+                            Nome
+                            <button class="btn btn-link sort-icon" data-sort="name">
+                                <i class="fa-solid fa-arrow-down"></i>
+                            </button>
+                        </th>
+                        <th scope="col">Descrição</th>
+                        <th scope="col">
+                            Adicionado
+                            <button class="btn btn-link sort-icon" data-sort="date">
+                                <i class="fa-solid fa-arrow-down"></i>
+                            </button>
+                        </th>
+                        <th scope="col">
+                            Tipo
+                            <button class="btn btn-link sort-icon" data-sort="type">
+                                <i class="fa-solid fa-arrow-down"></i>
+                            </button>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="listBody">
+                    <!-- Linhas da lista serão preenchidas via JavaScript -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+    
+    <script src="partners.js"></script>
 </body>
 
 </html>

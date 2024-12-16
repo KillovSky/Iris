@@ -83,6 +83,11 @@
                     "description": "Mensagem recebida para fazer parse.",
                     "type": "Boolean / Object",
                     "value": false
+                },
+                "msgbackup": {
+                    "description": "Mensagem original sem parse.",
+                    "type": "Boolean / Object",
+                    "value": false
                 }
             },
             "description": "Adquire os parâmetros da mensagem e dados adicionais.",
@@ -146,6 +151,7 @@
                     "speak",
                     "iris",
                     "falar",
+                    "simsimi",
                     "responda",
                     "answer",
                     "simi",

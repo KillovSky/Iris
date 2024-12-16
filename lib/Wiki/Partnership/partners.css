@@ -1,94 +1,305 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
-
 body {
-    background-color: #121212;
+    background-color: #0C0705;
     font-family: 'Poppins', sans-serif;
     color: #ffffff;
-    padding-top: 20px;
+    margin: 0;
+    padding: 0;
 }
 
 header {
-    text-align: center;
-    margin-bottom: 40px;
-    color: #ffffff;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 0 20px;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #0d6ea3;
+    border-bottom: 2px solid #06273a;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
-header a {
-    text-decoration: none;
-    color: inherit;
+/* Menu com os Botões, lado a lado em telas grandes */
+.menu-list {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 15px;
 }
 
-.btn-home {
+/* Menu hamburguer */
+#hamburgerMenu {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Exibir o menu hamburguer em dispositivos menores */
+@media (max-width: 768px) {
+    .card {
+        width: 100%; /* 100% da largura em telas pequenas */
+        max-width: 90vw; /* Limita a largura do card para não ultrapassar 90% da largura da tela */
+        height: auto; /* Altura flexível */
+        min-height: 250px; /* Altura mínima para o card */
+        margin: 15px; /* Ajuste a margem */
+    }
+
+    .card img {
+        height: 150px; /* Ajuste para imagens em telas pequenas */
+        object-fit: cover;
+    }
+
+    .card .name {
+        font-size: 1rem;
+    }
+
+    .card .description-text {
+        font-size: 0.8rem;
+    }
+
+    .card .description-text button {
+        font-size: 0.9rem;
+    }
+
+    header h3 {
+        font-size: 1.5rem;
+    }
+
+    header {
+        justify-content: space-between;
+    }
+
+    .menu-list {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+    }
+
+    #hamburgerMenu {
+        display: block;
+    }
+
+    .menu-list.show {
+        display: flex;
+    }
+}
+
+/* Nome da Card */
+.card .name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 8px 0;
+}
+
+/* Tipo (como "Streamer", "Project", etc.) */
+.card .type {
+    font-size: 1rem;
+    color: #e1e3e5;
+    margin: 5px 0;
+}
+
+/* Data de Adição */
+.card .added-date {
+    font-size: 0.9rem;
+    color: #e1e3e5;
+    margin-bottom: 10px;
+}
+
+/* Descrição do Card */
+.card .description-text {
+    font-size: 0.9rem;
+    color: #e1e3e5;
+    margin-bottom: 10px;
+}
+
+/* Botão de descrição */
+.card .description-text button {
+    background: none;
+    border: none;
+    color: #0d6ea3;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.card .description-text button:hover {
+    color: #06273a;
+}
+
+
+/* Botões principais */
+header .btn {
     background-color: #0d6ea3;
     color: #ffffff;
-    padding: 8px 16px;
-    border-radius: 5px;
-    margin-right: 10px;
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 2px solid #06273a;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
+header .btn:hover {
+    background-color: #06273a;
+    border-color: #ffffff;
+}
+
+header .btn i {
+    margin-right: 5px;
+}
+
+.menu-list a {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 15px;
+    border-radius: 8px;
+    background-color: #0d6ea3;
+    color: white;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.menu-list a:hover {
+    background-color: #06273a;
+}
+
+/* Card Principal */
 .card {
+    width: 250px;
+    height: auto;
+    min-height: 300px;
     border: none;
     border-radius: 15px;
     overflow: hidden;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     background-color: #0d6ea3;
     color: #ffffff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
 }
 
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Imagem do Card */
 .card img {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    display: block;
-    margin: 0 auto;
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 15px;
 }
 
+/* Corpo do Card */
+.card-body {
+    padding: 10px;
+    text-align: center;
+    flex-grow: 1;
+}
+
+/* Nome da Card */
 .card .name {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: bold;
-    margin: 10px 0;
+    margin: 8px 0;
 }
 
-.card .job {
+/* Descrição do Card */
+.card .description-text {
     font-size: 0.9rem;
     color: #e1e3e5;
+    margin-bottom: 10px;
 }
 
-.card .icons {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
+/* Botão de descrição */
+.card .description-text button {
+    background: none;
+    border: none;
+    color: #0d6ea3;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
 }
 
-.card .icons a {
+.card .description-text button:hover {
+    color: #06273a;
+}
+
+.table {
+    background-color: #1f1f1f;
+    width: 100%;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.table th, .table td {
+    vertical-align: middle;
+    padding: 15px;
+    text-align: center;
+}
+
+.table th {
+    background-color: #0d6ea3;
     color: #ffffff;
-    font-size: 1.5rem;
-    margin: 0 10px;
+    font-weight: 600;
 }
 
-.card .icons a:hover {
+.table td {
+    background-color: #1f1f1f;
+    color: #e1e3e5;
+    border-bottom: 1px solid #444;
+}
+
+.table .expand-btn {
+    color: #0d6ea3;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+}
+
+.table .expand-btn:hover {
     color: #0d6efd;
 }
 
-.card:hover,
-.btn-home:hover {
-    background-color: #06273a;
-}
-
-@media (min-width: 576px) {
-    .col-sm-6 {
-        flex: 0 0 50%;
-        max-width: 50%;
+/* Responsividade para dispositivos móveis muito pequenos */
+@media (max-width: 480px) {
+    .card {
+        width: 100%;
+        max-width: 90vw; /* A largura do card fica limitada a 90% da tela */
+        height: auto;
+        min-height: 250px;
     }
-}
 
-@media (min-width: 1200px) {
-    .col-lg-3 {
-        flex: 0 0 25%;
-        max-width: 25%;
+    .card img {
+        height: 120px; /* Ajuste a altura da imagem */
+    }
+
+    .card .name {
+        font-size: 1.5rem;
+    }
+
+    .card .description-text {
+        font-size: 1.2rem;
+    }
+
+    .card .description-text button {
+        font-size: 1.5rem;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    header .btn {
+        padding: 8px;
     }
 }

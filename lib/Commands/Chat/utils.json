@@ -2,7 +2,7 @@
     "name": "chat",
     "description": "Realizar conversas entre usuário e maquina.",
     "usage": {
-        "general": "[Prefix][Alias] [-gpt|-tts|-simsimi|-cleverbot] [-reset] [Text]",
+        "general": "[Prefix][Alias] [-lang en|pt|ja....] [-gpt|-tts|-simsimi|-cleverbot] [-reset] [Text]",
         "examples": [
             "/simsimi Hola",
             "/iris -cleverbot Boa noite",
@@ -23,7 +23,8 @@
         "Você pode configurar o tempo de reset dos resultados ou se eles devem ser resetados usando a env, por exemplo → chat.env().settings.wait = 10000 ← Isso mudaria o tempo de espera para 10 segundos, o tempo deve ser em milissegundos.",
         "Alguém lê essas dicas? Se sim, torne-se um programador, ler os tutoriais é de suma importância e poucos desenvolvedores o fazem...",
         "Existem infinitas formas de uso secretas, explore os códigos para descobrir os mistérios dos sistemas!",
-        "Você pode mesclar o '-tts' em outras formas de usar como no '-simsimi', seja criativo!"
+        "Você pode mesclar o '-tts' em outras formas de usar como no '-simsimi', seja criativo!",
+        "Os idiomas que podem ser usados em '-lang' no comando TTS são: af, ar, ca, cs, cy, da, de, el, en, en-au, en-uk, en-us, eo, es, es-es, es-us, fi, fr, hi, hr, ht, hu, hy, id, is, it, ja, ko, la, lv, mk, nl, no, pl, pt, pt-br, ro, ru, sk, sq, sr, sv, sw, ta, th, tr, vi, zh, zh-cn, zh-tw, zh-yue"
     ],
     "exports": {
         "env": "env",
