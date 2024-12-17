@@ -22,12 +22,12 @@ E na fronteira entre terror e renascimento, uma pergunta sempre ecoa:
 <p align="center">
     <img align="center" src="https://raw.githubusercontent.com/KillovSky/Iris/main/lib/Commands/Default/Cache/Banner.png" width="512" height="320">
 </p>
-<p align="center">
-    <a align="center" href="https://linktr.ee/killovsky">Banner by KillovSky</a>
-</p>
 <!-- <p align="center">
-    <a align="center" href="https://bento.me/joanderson">Banner by Jojo</a>
+    <a align="center" href="https://linktr.ee/killovsky">Banner by KillovSky</a>
 </p> -->
+<p align="center">
+    <a align="center" href="https://bento.me/joanderson">Banner by Jojo</a>
+</p>
 <p align="center">
     <h1 align="center">Projeto Íris</h1>
     <a href="https://github.com/KillovSky/iris/blob/main/LICENSE"><img alt="GitHub License" src="https://img.shields.io/github/license/KillovSky/Iris?color=blue&label=License&style=flat-square"></a>
@@ -47,12 +47,6 @@ E na fronteira entre terror e renascimento, uma pergunta sempre ecoa:
     <a href="https://github.com/KillovSky/iris/pulls"><img alt="Pull Requests" src="https://img.shields.io/github/issues-pr/KillovSky/Iris?label=Pull%20Requests&style=flat-square"></a>
     <a href="https://github.com/KillovSky/iris/graphs/contributors"><img alt="Contributors" src="https://img.shields.io/github/contributors/KillovSky/Iris?label=Contribuidores&style=flat-square"></a>
 </p>
-
-## ⚠️ Mural Urgente
-
-> Este mural é destinado a mensagens extremamente importantes. Por favor, leia com atenção.
->
-> Se você estiver **ATUALIZANDO** da versão 1.1.4 para 1.1.5 (mantendo seu `users.db`), é crucial executar `npm run fixdb` ou realizar essa ação pela `Toolbox` de sua preferência. Devido a mudanças significativas nos códigos de banco de dados da Íris, normalmente seria necessária uma reinstalação completa. No entanto, o comando mencionado evitará isso. Não executar este comando resultará em vários erros durante a inicialização.
 
 ## 📝 Sumário
 
