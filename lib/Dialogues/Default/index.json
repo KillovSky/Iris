@@ -1,0 +1,67 @@
+{
+    "pt": {
+        "Default": [
+            "Este código é mantido apenas para retrocompatibilidade. Se não houver planos para utilizá-lo, recomendamos migrar para o sistema de SQL a partir da versão 1.1.4 do projeto."
+        ]
+    },
+    "jp": {
+        "Default": [
+            "このコードは後方互換性のために維持されています。使用する予定がない場合は、プロジェクトのバージョン1.1.4からSQLシステムに移行することをお勧めします。"
+        ]
+    },
+    "ar": {
+        "Default": [
+            "تم الحفاظ على هذا الكود من أجل التوافق العكسي فقط. إذا لم يكن لديك خطط لاستخدامه، يُوصى بالانتقال إلى نظام SQL اعتبارًا من الإصدار 1.1.4 من المشروع."
+        ]
+    },
+    "en": {
+        "Default": [
+            "This code is maintained for retrocompatibility only. If you don't plan to use it, we recommend migrating to the SQL system starting from version 1.1.4 of the project."
+        ]
+    },
+    "fr": {
+        "Default": [
+            "Ce code est maintenu uniquement pour la rétrocompatibilité. Si vous ne prévoyez pas de l'utiliser, nous vous recommandons de migrer vers le système SQL à partir de la version 1.1.4 du projet."
+        ]
+    },
+    "es": {
+        "Default": [
+            "Este código se mantiene solo para retrocompatibilidad. Si no planeas usarlo, recomendamos migrar al sistema SQL a partir de la versión 1.1.4 del proyecto."
+        ]
+    },
+    "id": {
+        "Default": [
+            "Kode ini dipertahankan hanya untuk kompatibilitas mundur. Jika Anda tidak berencana menggunakannya, disarankan untuk bermigrasi ke sistem SQL mulai versi 1.1.4 proyek."
+        ]
+    },
+    "ms": {
+        "Default": [
+            "Kod ini dipelihara hanya untuk keserasian terbalik. Jika anda tidak merancang untuk menggunakannya, disarankan untuk berpindah ke sistem SQL bermula dari versi 1.1.4 projek."
+        ]
+    },
+    "hi": {
+        "Default": [
+            "यह कोड केवल पृष्ठभूमि संगतता के लिए बनाए रखा गया है। यदि आप इसका उपयोग करने की योजना नहीं बना रहे हैं, तो परियोजना के संस्करण 1.1.4 से SQL सिस्टम में माइग्रेट करने की सलाह दी जाती है।"
+        ]
+    },
+    "de": {
+        "Default": [
+            "Dieser Code wird nur für die Rückwärtskompatibilität beibehalten. Wenn Sie ihn nicht verwenden möchten, empfehlen wir, ab Version 1.1.4 des Projekts auf das SQL-System umzusteigen."
+        ]
+    },
+    "it": {
+        "Default": [
+            "Questo codice viene mantenuto solo per la retrocompatibilità. Se non prevedi di utilizzarlo, ti consigliamo di migrare al sistema SQL a partire dalla versione 1.1.4 del progetto."
+        ]
+    },
+    "ru": {
+        "Default": [
+            "Этот код поддерживается только для обратной совместимости. Если вы не планируете его использовать, рекомендуется перейти на систему SQL начиная с версии 1.1.4 проекта."
+        ]
+    },
+    "lat": {
+        "Default": [
+            "Hoc codex tantum ad retrocompatibilitatem conservatur. Si non hoc uti statueris, suadetur migratio ad systema SQL ab versione 1.1.4 propositi."
+        ]
+    }
+}

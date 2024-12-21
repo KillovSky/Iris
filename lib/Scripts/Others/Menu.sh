@@ -1,42 +1,70 @@
 #!/usr/bin/env bash
 
-# Define o que buscar
-search="$1";
+# =============================================================
+# Este script realiza buscas em arquivos e diretórios dentro de
+# uma estrutura definida, retornando resultados formatados com
+# base no tipo de filtragem especificada pelo usuário.
+# =============================================================
 
-# Armazena o resultado do find em uma variável
-result=$(find ./lib/Commands/* -mindepth 1 -maxdepth 1 -type d \( -name 'Main' -o -name 'Default' \) -prune -o -type f -name "*$search*" -exec dirname {} \; | grep -v -E 'Main|Default' | sort -u | sed 's/.\///g' | awk '{print NR ". " $0}' | sed 's/liCommand//g');
+# -----------------------------
+# Funções auxiliares
+# -----------------------------
+# Função para realizar busca em diretórios e formatar resultados
+# @param $1 - Padrão de busca para arquivos
+# shellcheck disable=SC2156
+perform_search() {
+  local pattern="$1"
+  find ./lib/Commands/* -mindepth 1 -maxdepth 1 \
+    -type d \( -name 'Main' -o -name 'Default' \) -prune -o \
+    -type f -name "$pattern" \
+    -exec sh -c '[ ! -e "$(dirname \"{}\")/.hide" ] && dirname "{}"' \; \
+    | grep -v -E 'Main|Default' \
+    | sort -u \
+    | sed 's|\./||g' \
+    | awk '{print NR ". " $0}' \
+    | sed 's/lib\/Commands\///g'
+}
 
-# Verifica se a variável $result está vazia
+# -----------------------------
+# Variáveis de entrada
+# -----------------------------
+search="${1:-}"   # Termo de busca principal (obrigatório)
+menu_template="${2:-}"  # Template do menu base (opcional)
+prefix="${3:-}"   # Prefixo para os resultados (opcional)
+
+# -----------------------------
+# Lógica principal
+# -----------------------------
+# Realiza busca inicial com base no termo fornecido
+result=$(perform_search "*$search*")
+
+# Se nenhum resultado for encontrado, realiza uma busca genérica
 if [ -z "$result" ]; then
-    # Se estiver vazia, execute o comando de busca alternativo
-    result=$(find ./lib/Commands/* -mindepth 1 -maxdepth 1 -type d \( -name 'Main' -o -name 'Default' \) -prune -o -type f -name "*.*" -exec dirname {} \; | grep -v -E 'Main|Default' | sort -u | sed 's/.\///g' | awk '{print NR ". " $0}' | sed 's/liCommand//g');
-
-    # Define o search novo
-    search="General";
+  result=$(perform_search "*.*")
+  search="General"
 fi
 
-# Cases para diversos tipos de filtragem
+# -----------------------------
+# Saída com base no tipo de filtro
+# -----------------------------
 case "$1" in
-    # Caso queira alguns aleatórios ou todos em formato array
-    "array")
-        # Adquire os comandos e aleatoriza sua posição
-        result=$(echo "$result" | sed 's/[0-9]\. //g' | sed 's/^[0-9]//g' | shuf | shuf -n "$(if [[ "$2" =~ ^[0-9]+$ ]]; then echo "$2"; else echo 99999; fi)");
+  "array")
+    # Retorna os resultados formatados como um array JSON
+    result=$(echo "$result" \
+      | sed 's/^[0-9]*\. //g' \
+      | shuf \
+      | head -n "${2:-99999}" \
+      | sed 's/^/"/' \
+      | sed 's/$/"/' \
+      | tr '\n' ',' \
+      | sed 's/,$//')
 
-        # Converte em array
-        result=$(echo "$result" | sed 's/[0-9]\. //g' | sed "s/^/\"/g" | sed "s/$/\"/g" | tr '\n' ',' | sed 's/^,//g' | sed 's/,$//g' | tr '[:upper:]' '[:lower:]');
-
-        # Printa os comandos em array
-        echo -e "[$result]";
+    echo -e "[$result]"
     ;;
 
-    # Padrão, constrói o menu
-    *)
-        # Faz a base do menu
-        menuBase="${2//#search/$search}";
-
-        # Printa o resultado final
-        echo -e "$menuBase\n\n🌟 Prefix: *$3*\n\n$result";
+  *)
+    # Retorna os resultados formatados como um menu
+    menu_output="${menu_template//#search/$search}"
+    echo -e "$menu_output\n\n🌟 Prefix: *$prefix*\n📚 E.g: \`${prefix}Games --help\`\n\n$result"
     ;;
-
-# Aqui é onde se fecha o script, pode ser fechado usando a palavra ao contrario, "case -> esac", "if" -> "fi".
 esac
