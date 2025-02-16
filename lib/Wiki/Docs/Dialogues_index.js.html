@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Dialogues/index.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Dialogues/index.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/* Requires */
+const fs = require('fs');
+const Indexer = require('../index');
+
+/**
+ * Função que seleciona o idioma e o diálogo a ser retornado.
+ *
+ * PARA RETRO-COMPATIBILIDADE APENAS, USE A FUNÇÃO DE SQL PARA NOVOS COMANDOS E FUNÇÕES!!!
+ * @param {string} [regionPicker='pt'] - Idioma a ser selecionado.
+ * @param {string} [folderPicker='Default'] - Pasta de diálogos.
+ * @param {string} [dialogPicker='Default'] - Nome do diálogo a ser selecionado.
+ * @param {boolean} [randomize=true] - Se os diálogos devem ser aleatorizados.
+ * @param {boolean} [extractOnlyOne=true] - Se deve retornar apenas um diálogo.
+ * @param {Object} [objectReplacer={}] - Substituições de chaves nos diálogos.
+ * @returns {Array|string} - Um ou todos os diálogos do idioma selecionado.
+ */
+function dialoguePicker(
+    regionPicker = 'pt',
+    folderPicker = 'Default',
+    dialogPicker = 'Default',
+    randomize = true,
+    extractOnlyOne = true,
+    objectReplacer = {},
+) {
+    /* Try-Catch para casos de erro */
+    try {
+        /* Define se é pra retornar todos os idiomas */
+        if (regionPicker === 'G.A.L') {
+            /* Define o dialogo raiz */
+            const tempLanguages = JSON.parse(fs.readFileSync(`${__dirname}/Default/index.json`));
+
+            /* Retorna todos os idiomas */
+            return Object.keys(tempLanguages);
+        }
+
+        /* Define o idioma, mas antes verifica se é string */
+        let userLang = (typeof regionPicker === 'string' ? regionPicker.toLowerCase() : 'pt');
+
+        /* Redefine a object */
+        const objRepl = objectReplacer;
+
+        /* Redefine a type */
+        const dnamer = dialogPicker;
+
+        /* Redefine o arquivo */
+        const dtype = folderPicker;
+
+        /* Determina os diálogos da pasta */
+        const dialFolder = fs.readdirSync(__dirname);
+
+        /* Define o arquivo, mas antes verifica se é string */
+        let dialType = (typeof dtype === 'string'
+
+            /* Ajusta a primeira letra */
+            ? Indexer('string').upperland(dtype.toLowerCase(), false).value
+
+            /* Senão, padrão */
+            : 'Default'
+        );
+
+        /* Define o diálogo final */
+        let dialName = (typeof dnamer === 'string'
+
+            /* Ajusta a primeira letra */
+            ? Indexer('string').upperland(dnamer.toLowerCase(), false).value
+
+            /* Senão, padrão */
+            : 'Default'
+        );
+
+        /* Define o arquivo de idiomas */
+        if (!dialFolder.includes(dialType)) {
+            /* Ajusta um padrão */
+            dialType = 'Default';
+
+            /* Verifica se a pasta direta existe */
+            if (dialFolder.includes(dtype)) {
+                /* Ajusta o nome original */
+                dialType = dtype;
+            }
+        }
+
+        /* Define temporariamente os diálogos padrões */
+        let allDial = JSON.parse(fs.readFileSync(`${__dirname}/${dialType}/index.json`));
+
+        /* Define os idiomas */
+        let allKeys = Object.keys(allDial);
+
+        /* Define se deve ajustar os diálogos de novo */
+        if (!allKeys.includes(userLang)) {
+            /* Define o padrão */
+            userLang = 'pt';
+        }
+
+        /* Reajusta os diálogos padrões */
+        allDial = allDial[userLang];
+
+        /* Define as keys */
+        allKeys = Object.keys(allDial);
+
+        /* Define se deve ajustar os diálogos de novo */
+        if (!allKeys.includes(dialName)) {
+            /* Verifica se a key direta existe */
+            if (allKeys.includes(dnamer)) {
+                /* Ajusta o nome original */
+                dialName = dnamer;
+
+                /* Se não */
+            } else {
+                /* Define o padrão */
+                allDial = (JSON.parse(fs.readFileSync(`${__dirname}/Default/index.json`)));
+
+                /* Reajusta com o idioma padrão novamente */
+                allDial = allDial[userLang];
+
+                /* Define o dialogo padrão */
+                dialName = 'Default';
+            }
+        }
+
+        /* Ajusta os diálogos padrões finais */
+        allDial = allDial[dialName];
+
+        /* Define se deve aleatorizar */
+        if (randomize === true) {
+            /* Define eles aleatoriamente */
+            allDial = Indexer('array').sort(allDial).value;
+        }
+
+        /* Define se deve retornar somente um */
+        if (extractOnlyOne === true) {
+            /* Retorna o primeiro, use aleatorização para dinamismo */
+            return allDial[0].replace(/\{([^}]*)\}/gi, (match, key) => Indexer('others').repl(objRepl, match, key));
+        }
+
+        /* Se não retorna apenas um, retorna todos */
+        return allDial;
+
+        /* Caso der erro */
+    } catch (error) {
+        /* Avisa que deu erro e usa a PTBR que é estável */
+        console.log('Algum erro ocorreu nos idiomas →', error);
+
+        /* Retorna o padrão */
+        return JSON.parse(fs.readFileSync(`${__dirname}/Default/index.json`)).pt.Default;
+    }
+}
+
+/* Exporta o módulo */
+module.exports = dialoguePicker;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#.onclick">.onclick</a></li><li><a href="global.html#addMessageHandler">addMessageHandler</a></li><li><a href="global.html#ambientDetails">ambientDetails</a></li><li><a href="global.html#blurImage">blurImage</a></li><li><a href="global.html#calculateIdealNctx">calculateIdealNctx</a></li><li><a href="global.html#caseChecker">caseChecker</a></li><li><a href="global.html#caseDefault">caseDefault</a></li><li><a href="global.html#checkGaming">checkGaming</a></li><li><a href="global.html#checker">checker</a></li><li><a href="global.html#chessDogs">chessDogs</a></li><li><a href="global.html#clearHistory">clearHistory</a></li><li><a href="global.html#controlSystem">controlSystem</a></li><li><a href="global.html#createCard">createCard</a></li><li><a href="global.html#createList">createList</a></li><li><a href="global.html#createListRow">createListRow</a></li><li><a href="global.html#createListener">createListener</a></li><li><a href="global.html#currentSort">currentSort</a></li><li><a href="global.html#customCommand">customCommand</a></li><li><a href="global.html#dialoguePicker">dialoguePicker</a></li><li><a href="global.html#echoError">echoError</a></li><li><a href="global.html#envInfoGenerator">envInfoGenerator</a></li><li><a href="global.html#executeSQLCommand">executeSQLCommand</a></li><li><a href="global.html#executeSQLite">executeSQLite</a></li><li><a href="global.html#filterValues">filterValues</a></li><li><a href="global.html#findProperty">findProperty</a></li><li><a href="global.html#fixDatabase">fixDatabase</a></li><li><a href="global.html#genSession">genSession</a></li><li><a href="global.html#generateContent">generateContent</a></li><li><a href="global.html#generateList">generateList</a></li><li><a href="global.html#generateResponse">generateResponse</a></li><li><a href="global.html#generateSessions">generateSessions</a></li><li><a href="global.html#getBuffer">getBuffer</a></li><li><a href="global.html#getKeyword">getKeyword</a></li><li><a href="global.html#getPatent">getPatent</a></li><li><a href="global.html#getRelativePath">getRelativePath</a></li><li><a href="global.html#getValues">getValues</a></li><li><a href="global.html#hasCUDA">hasCUDA</a></li><li><a href="global.html#initializeModel">initializeModel</a></li><li><a href="global.html#irisPlaying">irisPlaying</a></li><li><a href="global.html#isListView">isListView</a></li><li><a href="global.html#isValidDate">isValidDate</a></li><li><a href="global.html#locateFolder">locateFolder</a></li><li><a href="global.html#locateObjectKey">locateObjectKey</a></li><li><a href="global.html#logDebugInfo">logDebugInfo</a></li><li><a href="global.html#minifyFile">minifyFile</a></li><li><a href="global.html#minifyFolder">minifyFolder</a></li><li><a href="global.html#missing">missing</a></li><li><a href="global.html#modelConfigs">modelConfigs</a></li><li><a href="global.html#myFunction">myFunction</a></li><li><a href="global.html#partners">partners</a></li><li><a href="global.html#postResults">postResults</a></li><li><a href="global.html#processMessages">processMessages</a></li><li><a href="global.html#programDownloads">programDownloads</a></li><li><a href="global.html#programExists">programExists</a></li><li><a href="global.html#purgeValues">purgeValues</a></li><li><a href="global.html#rankingValues">rankingValues</a></li><li><a href="global.html#readingMessages">readingMessages</a></li><li><a href="global.html#removeCommentsAndEmptyLines">removeCommentsAndEmptyLines</a></li><li><a href="global.html#removeValues">removeValues</a></li><li><a href="global.html#replaceInAll">replaceInAll</a></li><li><a href="global.html#replaceSystem">replaceSystem</a></li><li><a href="global.html#replaceText">replaceText</a></li><li><a href="global.html#resetAmbient">resetAmbient</a></li><li><a href="global.html#runTasks">runTasks</a></li><li><a href="global.html#sleep">sleep</a></li><li><a href="global.html#sortByColumn">sortByColumn</a></li><li><a href="global.html#sqlDatabase">sqlDatabase</a></li><li><a href="global.html#toggleDescription">toggleDescription</a></li><li><a href="global.html#toggleListView">toggleListView</a></li><li><a href="global.html#undoValues">undoValues</a></li><li><a href="global.html#updateSortIcons">updateSortIcons</a></li><li><a href="global.html#updateValues">updateValues</a></li><li><a href="global.html#urlExists">urlExists</a></li><li><a href="global.html#urlGo">urlGo</a></li><li><a href="global.html#validateJSON">validateJSON</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Sun Feb 16 2025 15:40:51 GMT-0300 (Horário Padrão de Brasília)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

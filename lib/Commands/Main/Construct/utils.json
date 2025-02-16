@@ -369,6 +369,7 @@
                 ],
                 "Handlers": [
                     "antifake",
+                    "autostickers",
                     "handlers",
                     "antilinks",
                     "blacklist",

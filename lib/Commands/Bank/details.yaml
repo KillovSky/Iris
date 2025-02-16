@@ -1,0 +1,15 @@
+name: Bank
+hide: false
+type:
+  - Games
+  - Jogos
+subcommands:
+  - Bank
+  - Doar
+  - Pay
+  - Save
+  - Acc
+  - Donate
+  - Payment
+  - Banking
+  - Account

@@ -129,6 +129,20 @@ INSTALLED_PACKAGES="installed_packages.log"  # Caminho para o arquivo de pacotes
 # Limpa o terminal no inicio
 clear
 
+# Checa dependencias necessárias
+check_dependencies() {
+    local dependencies=("jq" "git")
+    for dep in "${dependencies[@]}"; do
+        if ! command -v "$dep" &> /dev/null; then
+            log_action "Erro: $dep não está instalado. Por favor, instale $dep antes de continuar." "ERROR"
+            exit 1
+        fi
+    done
+}
+
+# Faz o call da função de dependencias
+check_dependencies
+
 # ----------------------------------------------------------------------------
 # Função: log_action
 # Descrição: Registra ações no arquivo de log e exibe no terminal com suporte a cores.

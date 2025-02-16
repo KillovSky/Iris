@@ -1,0 +1,21 @@
+name: Chat
+hide: false
+type:
+  - Chat
+  - IA
+  - AI
+  - Audio
+  - Midia
+  - Text
+subcommands:
+  - Chat
+  - Speak
+  - Iris
+  - Falar
+  - SimSimi
+  - Responda
+  - Answer
+  - Simi
+  - GPT
+  - AI
+  - TTS

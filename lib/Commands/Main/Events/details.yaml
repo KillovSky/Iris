@@ -1,0 +1,14 @@
+name: Events
+hide: true
+type:
+  - Events
+  - Process
+  - Controller
+  - Messages
+  - DANGEROURS
+subcommands:
+  - NOCOMMAND
+  - DONTTOUCH
+  - HIDEHERE
+  - DANGEROUS
+  - RISKOFBAN

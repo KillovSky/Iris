@@ -1,0 +1,9 @@
+name: Ranking
+hide: false
+type:
+  - Games
+  - Jogos
+subcommands:
+  - Score
+  - Rank
+  - Ranking

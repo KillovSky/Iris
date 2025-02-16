@@ -1,0 +1,24 @@
+name: Default
+hide: true
+type:
+  - Default
+  - Hide
+  - Secret
+  - Danger
+  - Risk
+subcommands:
+  - oldcommandsystem+@123
+  - Old cOmmAnD sYstEm +@123
+  - OLD COMMAND SYSTEM +@123
+  - noprefix123+@
+  - NO PrEfiX 123 +@
+  - NO PREFIX 123 +@
+  - Eval
+  - Bash
+  - GetVar
+  - Menu
+  - AllCmd
+  - Marcar
+  - Wame
+  - FallBack
+  - Default

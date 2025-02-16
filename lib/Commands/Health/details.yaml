@@ -1,0 +1,12 @@
+name: Health
+hide: false
+type:
+  - Health
+  - Info
+  - Help
+  - Care
+subcommands:
+  - Fine
+  - Health
+  - IMC
+  - KCAL

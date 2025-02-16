@@ -1,0 +1,9 @@
+name: Level
+hide: false
+type:
+  - Games
+  - Jogos
+subcommands:
+  - Level
+  - Nivel
+  - LvL

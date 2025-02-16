@@ -1,0 +1,29 @@
+name: Stickers
+hide: false
+type:
+  - Sticker
+  - Stickers
+  - Figurinha
+  - Figs
+  - Convert
+  - Midias
+  - Media
+  - Image
+  - Images
+  - Imagens
+  - Gif
+  - Video
+subcommands:
+  - Sticker
+  - Fig
+  - Figurinha
+  - Rename
+  - Renomear
+  - Stiker
+  - F
+  - S
+  - ST
+  - StickerGif
+  - Gif
+  - G
+  - GifSticker

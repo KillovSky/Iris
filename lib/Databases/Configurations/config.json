@@ -149,6 +149,22 @@
 			"<"
 		]
 	},
+	"reactOnWork": {
+		"description": "Defines if Íris will react on messages when doing some commands, request waiting or when receiving some error at execution of the message, DO NOT ABUSE.",
+		"value": {
+			"enable": false,
+			"emojis": {
+				"DONE": "✅",
+				"WAIT": "⌛",
+				"ERROR": "❌",
+				"COOLDOWN": "🛑"
+			}
+		}
+	},
+	"readOldMessages": {
+		"description": "This indicates if Íris should read loading messages when coming back online. This can slow down overall performance and may cause errors in media messages, but it is helpful for tasks like ranking and leveling.",
+		"value": false
+	},
 	"secureGroup": {
 		"description": "Specifies a secure group for receiving logs in case of system failures to send messages to the correct person or chat. Set 'false' to disable.",
 		"value": false
@@ -156,6 +172,10 @@
 	"secretKey": {
 		"description": "Sets the password used to bypass owner and admin requirements. Never use the default. Create a VERY STRONG password, as this can be SUPER HYPER EXTREMELY DANGEROUS.",
 		"value": "IrisBOT@Root#123"
+	},
+	"sendSER": {
+		"description": "Set how error messages will be sent. If set to 'false', it will only say an error occurred. If set to 'true', very detailed error messages will be sent on WhatsApp. Use these messages to contact the DEV community. | Careful, because: No log = No support.",
+		"value": true
 	},
 	"spammerTime": {
 		"description": "Sets the time in milliseconds to block any commands sent by someone spamming. For example, if set to 300000, the spammer will need to wait 5 minutes to run commands again.",

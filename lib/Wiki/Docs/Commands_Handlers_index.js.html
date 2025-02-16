@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Commands/Handlers/index.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Commands/Handlers/index.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/* eslint-disable no-irregular-whitespace */
+/* eslint-disable max-len */
+
+/* Requires */
+const fs = require('fs');
+const Indexer = require('../../index');
+
+/* JSON's | Utilidades */
+let envInfo = JSON.parse(fs.readFileSync(`${__dirname}/utils.json`));
+const translateKeys = JSON.parse(fs.readFileSync(`${__dirname}/translate.json`));
+
+/**
+ * Retorna todos os detalhes do ambiente (`envInfo`).
+ *
+ * @returns {Object} O objeto `envInfo`, que contém os detalhes do ambiente da execução.
+ */
+function ambientDetails() {
+    /* Retorna a envData */
+    return envInfo;
+}
+
+/**
+* Gera uma lista de funções ativadas e desativadas junto com detalhes adicionais.
+ *
+ * @param {Object} data – Os dados que contêm informações da função.
+ * @param {string} lang – O código do idioma para traduções.
+ * @param {string} chatId – A id do chat atualmente.
+ * @returns {string} – Uma string formatada com funções habilitadas e desabilitadas e detalhes adicionais.
+ */
+function generateList(data, chatId, lang = 'pt') {
+    /* Define os textos de cada categoria */
+    const enabledFunctions = [];
+    const disabledFunctions = [];
+    const additionalKeys = [];
+    const translation = translateKeys[lang] || translateKeys.pt;
+
+    /* Faz uma espécie de loop para cada valor da object */
+    Object.entries(data).forEach(([key, value]) => {
+        /* Se for realmente uma Object, não for vazio ou array */
+        if (typeof value === 'object' &amp;&amp; !Array.isArray(value) &amp;&amp; value !== null) {
+            /* Pega o valor de enable e o resto */
+            const { enable, ...rest } = value;
+
+            /* Se enable for diferente de undefined em typeof */
+            if (typeof enable !== 'undefined') {
+                /* Verifica se é algo true */
+                if (enable) {
+                    /* Se sim, adiciona a função na lista de ativadores */
+                    enabledFunctions.push(key);
+
+                    /* Adiciona na lista adicional */
+                    additionalKeys.push(`> *# ${key?.toUpperCase() || 'N/A'}*`);
+                    additionalKeys.push(`- *${translation.enable}:* ${enable ? '✔️' : '❌'}`);
+
+                    /* E formata suas subkeys */
+                    Object.entries(rest).forEach(([subKey, subValue]) => {
+                        /* Traduz a chave, se houver tradução disponível */
+                        const translatedKey = translation[subKey] || subKey;
+                        let valueKey = subValue;
+
+                        /* Se subkey for uma @user */
+                        if (typeof valueKey === 'string' || typeof valueKey === 'number') {
+                            /* E tiver certinho a id com @s... */
+                            if (String(valueKey).includes('@s.whatsapp.net')) {
+                                /* Obtém os valores de nome da DB para não marcar a pessoa */
+                                const userData = Indexer('sql').get('personal', valueKey, chatId).value;
+
+                                /* E usa seu nome no lugar do valor de ID */
+                                valueKey = (userData.name.text === 'default' ? (userData.name?.number?.slice(0, 9) || 'N/A') : `${userData.name.text} [${(userData.name?.number?.slice(0, 9) || 'N/A')}...]`);
+
+                                /* Se caso for números apenas e acima de 0, é pra ser uma data */
+                            } else if (String(valueKey) !== '0' &amp;&amp; typeof valueKey === 'number') {
+                                /* Checa se é data */
+                                const isDate = Indexer('others').date(valueKey);
+
+                                /* Se for válida e identificada como data */
+                                if (isDate?.value?.date === true) {
+                                    /* Insere como data em vez de epoch */
+                                    valueKey = isDate?.value?.toLocaleString;
+                                }
+                            }
+
+                            /* Se for uma boolean */
+                        } else if (typeof valueKey === 'boolean') {
+                            /* Troca os valores por emojis */
+                            valueKey = valueKey ? '✔️' : '❌';
+
+                            /* Se for uma array */
+                        } else if (Array.isArray(valueKey)) {
+                            /* Faz um map com os valores */
+                            valueKey = valueKey.map((usr) => {
+                                /* Da qual se um valor for pessoa */
+                                if (usr.includes('@s.whatsapp.net')) {
+                                    /* Obtém os valores de nome da DB para não marcar a pessoa */
+                                    const userInfo = Indexer('sql').get('personal', usr, chatId).value;
+
+                                    /* E usa seu nome no lugar do valor de ID */
+                                    return (userInfo.name.text === 'default' ? (userInfo.name?.number?.slice(0, 9) || 'N/A') : `${userInfo.name.text} [${(userInfo.name?.number?.slice(0, 9) || 'N/A')}...]`);
+                                }
+
+                                /* Se não, retorna o valor mesmo */
+                                return usr;
+                            });
+
+                            /* Junta tudo */
+                            valueKey = valueKey.join(', ');
+                        }
+
+                        /* Usando 'markdown' */
+                        additionalKeys.push(`- *${translatedKey}:* ${valueKey}`);
+                    });
+
+                    /* Adiciona breakline */
+                    additionalKeys.push('\n');
+
+                    /* Se não, manda pra lista desativada */
+                } else disabledFunctions.push(key);
+            }
+        }
+    });
+
+    /* Define os textos */
+    const enabledList = `\n*Enabled (✅):* (${enabledFunctions.join(', ')})\n`;
+    const disabledList = `*Disabled (❌):* (${disabledFunctions.join(', ')})`;
+    const additionalList = `*Adicionais (➕):*\n\n${additionalKeys.join('\n')}`;
+
+    /* Retorna eles */
+    return `${enabledList}\n${disabledList}\n\n${additionalList}`;
+}
+
+/* Cria a função de comando */
+async function functionsEditor(
+    kill = envInfo.functions.exec.arguments.kill.value,
+    env = envInfo.functions.exec.arguments.env.value,
+) {
+    /* Define um resultado padrão */
+    envInfo.results.value = false;
+
+    /* Define o sucesso */
+    envInfo.results.success = false;
+
+    /* Define os valores para considerar ativar ou desativar */
+    const toDisable = ['off', 'disable'];
+    const toEnable = ['on', 'enable'];
+    const DisEna = [...toDisable, ...toEnable];
+
+    /* Try-Catch para casos de erro */
+    try {
+        /* Se recebeu tudo corretamente, se der ruim, não fará nada */
+        if (typeof kill === 'object' &amp;&amp; typeof env === 'object') {
+            /* Constrói os parâmetros */
+            const {
+                chatId,
+                reply,
+                body,
+                user,
+                isGroupMsg,
+                isGroupAdmins,
+                arks,
+                mentionedJidList,
+                isGroupCreator,
+                personal,
+                args,
+                prefix,
+                isOwner,
+                isAllowed,
+                command,
+                argl,
+            } = env.value;
+            const settingsData = env.value.functions;
+
+            /* Define o alias na envInfo */
+            envInfo.alias = env.value.alias;
+
+            /* Define o tipo avançado de uso */
+            const sqlType = !isGroupMsg ? 'personal' : 'groups';
+
+            /* Define a verdadeira functions */
+            const functions = !isGroupMsg ? personal : settingsData;
+
+            /* Define o filter para nao adicionar o próprio usuário nas listas */
+            let mentionAdd = mentionedJidList.filter((t) => t !== user);
+            mentionAdd = mentionAdd.map((f) => f.replace(/[@|@s.whatsapp.net]/gi, ''));
+
+            /* Define o nome da funcão */
+            const typeBase = command.toLowerCase();
+            let type = Object.keys(functions).filter((s) => s.toLowerCase() === typeBase &amp;&amp; s !== 'error')[0] || 'none';
+            type = typeBase === 'handlers' ? typeBase : type;
+
+            /* Determina quem pode executar */
+            const conditions = (
+                /* Se for administrador */
+                (isGroupMsg &amp;&amp; isGroupAdmins)
+
+                /* Se for o dono do grupo */
+                || (isGroupMsg &amp;&amp; isGroupCreator)
+
+                /* Se for o chefe da Íris */
+                || (isGroupMsg &amp;&amp; isOwner)
+
+                /* Se for um VIP/MOD */
+                || (isGroupMsg &amp;&amp; isAllowed)
+            );
+
+            /* Condições 2 */
+            const conditions2 = (
+                /* Se for language em grupo */
+                (type === 'language' &amp;&amp; argl.some((gl) => Indexer('sql').languages('G.A.L').includes(gl)) &amp;&amp; conditions)
+
+                /* Se for language e no PV, ativador */
+                || (type === 'language' &amp;&amp; argl.some((gl) => DisEna.includes(gl)) &amp;&amp; !isGroupMsg)
+
+                /* Se for language e no PV, definição */
+                || (type === 'language' &amp;&amp; argl.some((gl) => Indexer('sql').languages('G.A.L').includes(gl)) &amp;&amp; !isGroupMsg)
+
+                /* Se for modo DND */
+                || (type === 'dnd' &amp;&amp; argl.some((gl) => DisEna.includes(gl)) &amp;&amp; !Object.keys(functions).some((key) => body.includes(key)))
+            );
+
+            /* Define se roda */
+            if ((conditions &amp;&amp; type !== 'none') || (conditions2 &amp;&amp; type !== 'none')) {
+                /* Define o tipo de valor final */
+                const isHandling = DisEna.some((rs) => body.includes(rs));
+                const enaDis = toEnable.some((rs) => body.includes(rs));
+                let theCode = Indexer('sql').jsonfixer(body);
+
+                /* Se houver um JSON válido */
+                if (theCode !== false) {
+                    /* Tenta fazer um parse */
+                    theCode = JSON.parse(body);
+
+                    /* Se for, define como a body */
+                } else theCode = body.replace(/-add|-rem|-clear/gi, '');
+
+                /* Se quer apenas os exemplos */
+                if (arks.includes('--examples')) {
+                    /* Envia uma mensagem de ajuda com apenas exemplos */
+                    envInfo.results.value = await kill.sendMessage(chatId, { text: '1. *ATIVAR/DESATIVAR/MULTI-ATIVAR &amp; DESATIVAR* ⬇️\n> 🔧 /handlers -antifake -antilinks -blacklist -prefix -nsfw -spy -language -goodbye -whitelist -leveling -welcome -antispam -dnd on/off\n> 🔧 /command on/off\n\n2. *ADICIONAR VALOR/ADICIONAR LISTA* ⬇️\n> ➕ /antifake -add 1\n> ➕ /antifake -add 54|351|99\n> ➕ /whitelist -add 551234|198765|1\n> ➕ /blacklist -add 1|54|351\n> ➕ /vips -add 1|54|351\n> ➕ /mods -add 1|54|351\n> ➕ /prefix -add !|^|&lt;\n\n3. *REMOVER VALOR/REMOVER LISTA* ⬇️\n> ➖ /antifake -rem 1\n> ➖ /antifake -rem 54|351|99\n> ➖ /whitelist -rem 551234|198765|1\n> ➖ /blacklist -rem 1|54|351\n> ➖ /vips -rem 1|54|351\n> ➖ /mods -rem 1|54|351\n> ➖ /prefix -rem !|^|&lt;\n\n4. *RESETAR/LIMPAR FUNÇÃO* ⬇️\n> 🗑️ /antifake -clear\n> 🗑️ /whitelist -clear\n> 🗑️ /blacklist -clear\n> 🗑️ /vips -clear\n> 🗑️ /mods -clear\n> 🗑️ /prefix -clear\n\n5. *USOS CUSTOMIZADOS* ⬇️\n> 🔄 /antilinks -set 1/2/3\n> 🚫 /antispam -ban/-set 10\n\n6. *ADICIONAR TEXTOS CUSTOMIZADOS* ⬇️\n> ✏️ /welcome -text -add {userm} entrou em {groupm}, leia a {desc}!\n> ✏️ /goodbye -text -add {userm} saiu de {groupm}!\n> ✏️ /antifake -text -add {userm} é número fake ou estrangeiro!\n> ✏️ /blacklist -text -add {userm} fez porcaria antes e foi posto na blacklist!\n> ✏️ /language -text -add pt\n\n7. *LIMPAR TEXTOS CUSTOMIZADOS* ⬇️\n> 🗑️ /welcome -text -clear\n> 🗑️ /goodbye -text -clear\n> 🗑️ /antifake -text -clear\n> 🗑️ /blacklist -text -clear\n> 🗑️ /language -text -clear\n\n8. *ANTI-EVERYONE (USER ALLOWED COMMAND)* ⬇️\n> 🔇 /dnd on/off' }, reply);
+
+                    /* Caso para comandos de ajuda normais */
+                } else if (arks.includes('--help') || args.length === 0) {
+                    /* Envia uma mensagem de ajuda comum */
+                    envInfo.results.value = await kill.sendMessage(chatId, { text: Indexer('sql').languages(region, 'Helper', 'User', true, true, envInfo).value }, reply);
+
+                    /* Case para comandos de ajuda de dono */
+                } else if (arks.includes('--help-dev') &amp;&amp; isOwner === true) {
+                    /* Manda a mensagem de ajuda de dev */
+                    envInfo.results.value = await kill.sendMessage(chatId, { text: Indexer('sql').languages(region, 'Helper', 'Developer', true, true, envInfo).value }, reply);
+
+                    /* Outros */
+                } else if (isHandling) {
+                    /* Define todos os ativadores */
+                    let sysFunctions = (body.match(/-\s?\w+/g) || []).map((word) => word.replace(/-| on/gi, '').trim());
+                    sysFunctions.push(command);
+                    sysFunctions = sysFunctions.filter((r) => Object.keys(functions).includes(r));
+
+                    /* Define apenas os que vá realmente ativar */
+                    const validValues = sysFunctions.filter((en) => functions[en]?.enable !== enaDis || en === 'dnd');
+
+                    /* Checa for permitido o uso */
+                    if (validValues.length > 0 || validValues.includes('dnd')) {
+                        /* Cria uma Object para cada item ativado */
+                        const objectActive = {};
+                        validValues.forEach((obj) => {
+                            objectActive[obj] = {
+                                enable: enaDis, lastDate: Date.now(), lastUser: user, lastState: functions[obj]?.enable, firstEdition: functions[obj]?.firstEdition || functions[obj]?.enable, firstUser: functions[obj]?.firstUser || user, firstDate: functions[obj]?.firstDate || Date.now(),
+                            };
+                        });
+
+                        /* Se tiver modo DND ativando, adiciona quem usou */
+                        if (Object.keys(objectActive).includes('dnd') &amp;&amp; enaDis === true) {
+                            /* Define a values do modo DND */
+                            objectActive.dnd.values = [user, ...functions.dnd.values].flat(5);
+
+                            /* Se for modo remoção */
+                        } else if (Object.keys(objectActive).includes('dnd') &amp;&amp; enaDis === false) {
+                            /* Faz um filtro */
+                            objectActive.dnd.values = functions.dnd.values.filter((usr) => usr !== user);
+                        }
+
+                        /* Faz a configuração do enable */
+                        const newValues = Indexer('sql').update(sqlType, user, chatId, false, objectActive);
+
+                        /* Define os valores de informação */
+                        const moreInfo = ` ​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​${generateList(newValues.value, chatId, region)}`;
+
+                        /* Diz que ativou */
+                        envInfo.results.value = await kill.sendMessage(chatId, { text: `${Indexer('sql').languages(region, 'Extras', 'Finished', true, true, env.value).value}\n${moreInfo}` }, reply);
+
+                        /* Se não for o caso */
+                    } else {
+                        /* Retorna o resultado como a mensagem e termina de executar */
+                        envInfo.results.value = await kill.sendMessage(chatId, { text: Indexer('sql').languages(region, 'Extras', 'Defined', true, true, env.value).value }, reply);
+                    }
+
+                    /* Caso seja uma Array */
+                } else if (Array.isArray(theCode) &amp;&amp; isOwner) {
+                    /* Define o dialogo para mandar */
+                    let setDialogue = Indexer('sql').languages(region, 'Extras', 'Finished', true, true, env.value).value;
+
+                    /* Se existir a key que vai usar */
+                    if (functions[type] !== null) {
+                        /* If's para assimilar os valores corretamente de acordo com a necessidade */
+                        if (functions[type].values !== null) {
+                            /* Define se é troca, remover ou adicionar */
+                            let newArraye = [];
+
+                            /* 1 - Adicionar */
+                            if (argl.includes('add')) newArraye = [...functions[type].values, ...theCode];
+
+                            /* 2 - Remover */
+                            else if (argl.includes('remove')) newArraye = functions[type].values.filter((d) => !theCode.includes(d));
+
+                            /* 3 - Trocar */
+                            else if (argl.includes('change')) newArraye = theCode;
+
+                            /* Faz a inserção da nova array */
+                            Indexer('sql').update(sqlType, user, chatId, type, { values: newArraye });
+
+                            /* Se não for, define o dialogo como menu de ajuda */
+                        } else setDialogue = Indexer('sql').languages(region, 'Helper', 'User', true, true, envInfo).value;
+                    } else setDialogue = Indexer('sql').languages(region, 'Helper', 'User', true, true, envInfo).value;
+
+                    /* Manda o dialogo */
+                    envInfo.results.value = await kill.sendMessage(chatId, { text: setDialogue }, reply);
+
+                    /* Se for uma Object */
+                } else if (!Array.isArray(theCode) &amp;&amp; typeof theCode === 'object' &amp;&amp; theCode !== null &amp;&amp; isOwner) {
+                    /* Executa a Object no SQL */
+                    Indexer('sql').update(sqlType, user, chatId, type, theCode);
+
+                    /* Diz que executou */
+                    envInfo.results.value = await kill.sendMessage(chatId, { text: Indexer('sql').languages(region, 'Extras', 'Finished', true, true, env.value).value }, reply);
+
+                    /* Se for String */
+                } else if (typeof theCode === 'string') {
+                    /* Define a nova object no fim */
+                    let newDatas = { value: functions };
+
+                    /* if para definir os diferentes tipos de comando */
+                    /* Este define se é para setar valores na array, como antifake, prefixos, etc */
+                    if (['vips', 'mods', 'blacklist', 'prefix', 'whitelist', 'antifake'].includes(type) &amp;&amp; argl[0] !== '-text' &amp;&amp; !['antilinks', 'level', 'nsfw', 'antispam', 'spy'].includes(type)) {
+                        /* Define o multiadd */
+                        let multipleVal = body.split('|').map((val) => val.replace(/-add|-rem|-clear/gi, '').trim());
+                        multipleVal = multipleVal.filter((d) => d !== '-add' &amp;&amp; d !== '-rem' &amp;&amp; d !== '-clear');
+
+                        /* Define os novos valores */
+                        const standardValues = type === 'prefix' ? [...new Set([multipleVal])] : [...new Set([multipleVal, ...mentionAdd])].flat(5);
+                        let newCodeValues = [...new Set([...functions[type].values, ...standardValues])].flat(5);
+                        newCodeValues = newCodeValues.filter((f) => f != null);
+
+                        /* Determina se deve adicionar */
+                        if (argl[0] === '-add') {
+                            /* Adiciona os usuários ou demais na lista */
+                            newDatas = Indexer('sql').update(sqlType, user, chatId, type, {
+                                values: newCodeValues, lastDate: Date.now(), lastUser: user, lastValue: functions[type]?.values, lastState: functions[type]?.enable, firstEdition: functions[type]?.firstEdition || functions[type]?.values, firstUser: functions[type]?.firstUser || user, firstDate: functions[type]?.firstDate || Date.now(),
+                            });
+
+                            /* Determina se deve remover */
+                        } else if (argl[0] === '-rem') {
+                            /* Remove da lista */
+                            newDatas = Indexer('sql').update(sqlType, user, chatId, type, {
+                                values: functions[type].values.filter((d) => !standardValues.includes(d)), lastDate: Date.now(), lastUser: user, lastValue: functions[type]?.values, lastState: functions[type]?.enable, firstEdition: functions[type]?.firstEdition || functions[type]?.values, firstUser: functions[type]?.firstUser || user, firstDate: functions[type]?.firstDate || Date.now(),
+                            });
+
+                            /* Determina se deve resetar */
+                        } else if (argl[0] === '-clear') {
+                            /* Limpa os users da lista */
+                            newDatas = Indexer('sql').update(sqlType, user, chatId, type, {
+                                values: [], lastDate: Date.now(), lastUser: user, lastValue: functions[type]?.values, lastState: functions[type]?.enable, firstEdition: functions[type]?.firstEdition || functions[type]?.values, firstUser: functions[type]?.firstUser || user, firstDate: functions[type]?.firstDate || Date.now(),
+                            });
+
+                            /* Se nenhum */
+                        } else {
+                            /* Manda ajuda */
+                            envInfo.results.value = await kill.sendMessage(chatId, { text: Indexer('sql').languages(region, 'Helper', 'User', true, true, envInfo).value }, reply);
+                        }
+
+                        /* Sistemas de texto, como mensagens customizadas de ban, welcome e goodbye */
+                    } else if (['goodbye', 'promote', 'demote', 'welcome', 'blacklist', 'antifake', 'language'].includes(type) &amp;&amp; argl[0] === '-text' &amp;&amp; !['antilinks', 'level', 'nsfw', 'antispam', 'spy'].includes(type)) {
+                        /* Define uma RegExp */
+                        const regExpCmd = [new RegExp(command, 'gi'), new RegExp(`${prefix}${command}`, 'gi')];
+
+                        /* Define o novo body, tem suporte a diversas criações com variaveis */
+                        const bodhy = (body
+                            .replace(/-text|-add|-rem|-clear/g, '')
+                            .replace(regExpCmd[0], '')
+                            .replace(regExpCmd[1], '')
+                            .replace(/ {2}/g, '')
+                            .replace(/^ /g, '')
+                        );
+
+                        /* Determina se deve adicionar */
+                        if (argl[1] === '-add') {
+                            /* Verifica se já está no valor */
+                            if (functions[type]?.text === bodhy || functions[type]?.text === argl[2]) {
+                                /* Retorna o resultado como a mensagem e termina de executar */
+                                envInfo.results.value = await kill.sendMessage(chatId, { text: Indexer('sql').languages(region, 'Extras', 'Defined', true, true, env.value).value }, reply);
+
+                                /* Se não for o caso, configura */
+                            } else {
+                                /* Define o que adicionar */
+                                const textAddiction = type === 'language' ? argl[2] : bodhy;
+
+                                /* Adiciona os usuários ou demais na lista */
+                                newDatas = Indexer('sql').update(sqlType, user, chatId, type, {
+                                    text: textAddiction, lastDate: Date.now(), lastUser: user, lastValue: functions[type]?.text, lastState: functions[type]?.enable, firstEdition: functions[type]?.firstEdition || functions[type]?.text, firstUser: functions[type]?.firstUser || user, firstDate: functions[type]?.firstDate || Date.now(),
+                                });
+                            }
+
+                            /* Determina se deve resetar */
+                        } else if (argl[1] === '-clear') {
+                            /* Limpa os users da lista */
+                            newDatas = Indexer('sql').update(sqlType, user, chatId, type, {
+                                text: false, lastDate: Date.now(), lastUser: user, lastValue: functions[type]?.text, lastState: functions[type]?.enable, firstEdition: functions[type]?.firstEdition || functions[type]?.text, firstUser: functions[type]?.firstUser || user, firstDate: functions[type]?.firstDate || Date.now(),
+                            });
+
+                            /* Se nenhum */
+                        } else {
+                            /* Manda ajuda */
+                            envInfo.results.value = await kill.sendMessage(chatId, { text: Indexer('sql').languages(region, 'Helper', 'User', true, true, envInfo).value }, reply);
+                        }
+
+                        /* Define o uso do antispam separadamente */
+                    } else if (type === 'antispam') {
+                        /* Define a Object de update */
+                        const updateSystem = {
+                            ban: argl.includes('-ban'), limit: Number((argl.filter((n) => /[0-9]+/gi.test(n))[0] || 10)), lastDate: Date.now(), lastUser: user, lastValue: functions[type]?.limit, lastState: functions[type]?.enable, firstEdition: functions[type]?.firstEdition || functions[type]?.limit, firstUser: functions[type]?.firstUser || user, firstDate: functions[type]?.firstDate || Date.now(),
+                        };
+
+                        /* Executa a atualização dessa função */
+                        newDatas = Indexer('sql').update('groups', user, chatId, 'antispam', updateSystem);
+
+                        /* Define o uso do antilinks separadamente | 1 = Todos os links, 2 = Convites de Grupo, 3 = Pornograficos, Virus e Demais */
+                    } else if (type === 'antilinks') {
+                        /* Define a Object de update */
+                        const updateSystem = {
+                            type: Number((argl.filter((n) => /[1-3]+/gi.test(n))[0] || 1)), lastDate: Date.now(), lastUser: user, lastValue: functions[type]?.limit, lastState: functions[type]?.enable, firstEdition: functions[type]?.firstEdition || functions[type]?.limit, firstUser: functions[type]?.firstUser || user, firstDate: functions[type]?.firstDate || Date.now(),
+                        };
+
+                        /* Executa a atualização dessa função */
+                        newDatas = Indexer('sql').update('groups', user, chatId, 'antilinks', updateSystem);
+                    }
+
+                    /* Define os valores de informação */
+                    const addInfo = ` ​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​${generateList(newDatas.value, chatId, region)}`;
+
+                    /* Diz que executou */
+                    envInfo.results.value = await kill.sendMessage(chatId, { text: `${Indexer('sql').languages(region, 'Extras', 'Finished', true, true, env.value).value}\n${addInfo}` }, reply);
+
+                    /* Padrão */
+                } else {
+                    /* Manda ajuda */
+                    envInfo.results.value = await kill.sendMessage(chatId, { text: Indexer('sql').languages(region, 'Helper', 'User', true, true, envInfo).value }, reply);
+                }
+
+                /* Se não for grupo */
+            } else if (!isGroupMsg) {
+                /* Manda a mensagem só de grupos */
+                envInfo.results.value = await kill.sendMessage(chatId, { text: Indexer('sql').languages(region, 'Extras', 'OnlyGroups', true, true, envInfo).value }, reply);
+
+                /* Se caso não for permitido */
+            } else {
+                /* Avisa que 'só adm' pode usar */
+                envInfo.results.value = await kill.sendMessage(chatId, { text: Indexer('sql').languages(region, 'Helper', 'Restrict', true, true, env.value).value }, reply);
+            }
+        }
+
+        /* Define o sucesso */
+        envInfo.results.success = true;
+
+        /* Caso de algum erro */
+    } catch (error) {
+        /* Insere tudo na envInfo */
+        logging.echoError(error, envInfo, __dirname);
+
+        /* Avisa que deu erro enviando o comando e data atual pro sistema SER */
+        await kill.sendMessage(env.value.chatId, {
+            text: Indexer('sql').languages(region, 'S.E.R', error, true, true, {
+                command: 'Handler',
+                time: (new Date()).toLocaleString(),
+            }).value,
+        }, env.value.reply);
+    }
+
+    /* Retorna os resultados */
+    return logging.postResults(envInfo);
+}
+
+/* Função que reseta tudo */
+function resetAmbient(
+    changeKey = {},
+) {
+    /* Reseta a Success */
+    envInfo.results.success = false;
+
+    /* Define o valor padrão */
+    let exporting = {
+        reset: resetAmbient,
+    };
+
+    /* Try-Catch para casos de erro */
+    try {
+        /* Define a envInfo padrão */
+        envInfo = JSON.parse(fs.readFileSync(`${__dirname}/utils.json`));
+
+        /* Define se algum valor deve ser salvo */
+        if (Object.keys(changeKey).length !== 0) {
+            /* Faz a listagem de keys */
+            Object.keys(changeKey).forEach((key) => {
+                /* Edita se a key existir */
+                if (Object.keys(envInfo).includes(key) &amp;&amp; key !== 'developer') {
+                    /* Edita a key customizada */
+                    envInfo[key] = changeKey[key];
+                }
+            });
+        }
+
+        /* Insere a postResults na envInfo */
+        envInfo.functions.poswork.value = logging.postResults;
+
+        /* Insere a ambient na envInfo */
+        envInfo.functions.ambient.value = ambientDetails;
+
+        /* Insere a error na envInfo */
+        envInfo.functions.messedup.value = logging.echoError;
+
+        /* Insere a revert na envInfo */
+        envInfo.functions.revert.value = resetAmbient;
+
+        /* Insere a functionsEditor na envInfo */
+        envInfo.functions.exec.value = functionsEditor;
+
+        /* Define o local completo na envInfo para usar o reload novamente */
+        envInfo.parameters.location.value = __filename;
+
+        /* Gera a module exports */
+        module.exports = {
+            [envInfo.name]: {
+                [envInfo.exports.env]: envInfo.functions.ambient.value,
+                [envInfo.exports.messedup]: envInfo.functions.messedup.value,
+                [envInfo.exports.poswork]: envInfo.functions.poswork.value,
+                [envInfo.exports.reset]: envInfo.functions.revert.value,
+                [envInfo.exports.exec]: envInfo.functions.exec.value,
+            },
+            Developer: 'KillovSky',
+            Projects: 'https://github.com/KillovSky',
+        };
+
+        /* Determina sucesso */
+        envInfo.results.success = true;
+
+        /* Define o valor retornado */
+        exporting = module.exports;
+
+        /* Caso de algum erro */
+    } catch (error) {
+        /* Insere tudo na envInfo */
+        logging.echoError(error, envInfo, __dirname);
+    }
+
+    /* Retorna o exports */
+    return exporting;
+}
+
+/* Constrói a envInfo */
+resetAmbient();
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#.onclick">.onclick</a></li><li><a href="global.html#addMessageHandler">addMessageHandler</a></li><li><a href="global.html#ambientDetails">ambientDetails</a></li><li><a href="global.html#blurImage">blurImage</a></li><li><a href="global.html#calculateIdealNctx">calculateIdealNctx</a></li><li><a href="global.html#caseChecker">caseChecker</a></li><li><a href="global.html#caseDefault">caseDefault</a></li><li><a href="global.html#checkGaming">checkGaming</a></li><li><a href="global.html#checker">checker</a></li><li><a href="global.html#chessDogs">chessDogs</a></li><li><a href="global.html#clearHistory">clearHistory</a></li><li><a href="global.html#controlSystem">controlSystem</a></li><li><a href="global.html#createCard">createCard</a></li><li><a href="global.html#createList">createList</a></li><li><a href="global.html#createListRow">createListRow</a></li><li><a href="global.html#createListener">createListener</a></li><li><a href="global.html#currentSort">currentSort</a></li><li><a href="global.html#customCommand">customCommand</a></li><li><a href="global.html#dialoguePicker">dialoguePicker</a></li><li><a href="global.html#echoError">echoError</a></li><li><a href="global.html#envInfoGenerator">envInfoGenerator</a></li><li><a href="global.html#executeSQLCommand">executeSQLCommand</a></li><li><a href="global.html#executeSQLite">executeSQLite</a></li><li><a href="global.html#filterValues">filterValues</a></li><li><a href="global.html#findProperty">findProperty</a></li><li><a href="global.html#fixDatabase">fixDatabase</a></li><li><a href="global.html#genSession">genSession</a></li><li><a href="global.html#generateContent">generateContent</a></li><li><a href="global.html#generateList">generateList</a></li><li><a href="global.html#generateResponse">generateResponse</a></li><li><a href="global.html#generateSessions">generateSessions</a></li><li><a href="global.html#getBuffer">getBuffer</a></li><li><a href="global.html#getKeyword">getKeyword</a></li><li><a href="global.html#getPatent">getPatent</a></li><li><a href="global.html#getRelativePath">getRelativePath</a></li><li><a href="global.html#getValues">getValues</a></li><li><a href="global.html#hasCUDA">hasCUDA</a></li><li><a href="global.html#initializeModel">initializeModel</a></li><li><a href="global.html#irisPlaying">irisPlaying</a></li><li><a href="global.html#isListView">isListView</a></li><li><a href="global.html#isValidDate">isValidDate</a></li><li><a href="global.html#locateFolder">locateFolder</a></li><li><a href="global.html#locateObjectKey">locateObjectKey</a></li><li><a href="global.html#logDebugInfo">logDebugInfo</a></li><li><a href="global.html#minifyFile">minifyFile</a></li><li><a href="global.html#minifyFolder">minifyFolder</a></li><li><a href="global.html#missing">missing</a></li><li><a href="global.html#modelConfigs">modelConfigs</a></li><li><a href="global.html#myFunction">myFunction</a></li><li><a href="global.html#partners">partners</a></li><li><a href="global.html#postResults">postResults</a></li><li><a href="global.html#processMessages">processMessages</a></li><li><a href="global.html#programDownloads">programDownloads</a></li><li><a href="global.html#programExists">programExists</a></li><li><a href="global.html#purgeValues">purgeValues</a></li><li><a href="global.html#rankingValues">rankingValues</a></li><li><a href="global.html#readingMessages">readingMessages</a></li><li><a href="global.html#removeCommentsAndEmptyLines">removeCommentsAndEmptyLines</a></li><li><a href="global.html#removeValues">removeValues</a></li><li><a href="global.html#replaceInAll">replaceInAll</a></li><li><a href="global.html#replaceSystem">replaceSystem</a></li><li><a href="global.html#replaceText">replaceText</a></li><li><a href="global.html#resetAmbient">resetAmbient</a></li><li><a href="global.html#runTasks">runTasks</a></li><li><a href="global.html#sleep">sleep</a></li><li><a href="global.html#sortByColumn">sortByColumn</a></li><li><a href="global.html#sqlDatabase">sqlDatabase</a></li><li><a href="global.html#toggleDescription">toggleDescription</a></li><li><a href="global.html#toggleListView">toggleListView</a></li><li><a href="global.html#undoValues">undoValues</a></li><li><a href="global.html#updateSortIcons">updateSortIcons</a></li><li><a href="global.html#updateValues">updateValues</a></li><li><a href="global.html#urlExists">urlExists</a></li><li><a href="global.html#urlGo">urlGo</a></li><li><a href="global.html#validateJSON">validateJSON</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Sun Feb 16 2025 15:40:51 GMT-0300 (Horário Padrão de Brasília)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

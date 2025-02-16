@@ -1,0 +1,11 @@
+name: Giveaway
+hide: false
+type:
+  - Games
+  - Jogos
+subcommands:
+  - Giveaway
+  - Loteria
+  - Lottery
+  - Ticket
+  - Rifa
