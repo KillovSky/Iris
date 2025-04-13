@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Functions/Numbers/index.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Functions/Numbers/index.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/* eslint-disable max-len */
+
+/* Requires */
+const {
+    prettyNum,
+} = require('pretty-num');
+const fs = require('fs');
+const Indexer = require('../../index');
+
+/* JSONs | Utilidades */
+const envInfo = JSON.parse(fs.readFileSync(`${__dirname}/utils.json`));
+const isNumeric = /^[0-9]+$/;
+
+/**
+ * Retorna todos os detalhes do ambiente (`envInfo`).
+ *
+ * @returns {Object} O objeto `envInfo`, que contém os detalhes do ambiente da execução.
+ */
+function ambientDetails() {
+    /* Retorna a envData */
+    return envInfo;
+}
+
+/* Função que calcula o tempo ligado da Íris/PC e demais */
+function getFormatedTime(upTimer = envInfo.functions.format.arguments.upTimer.value) {
+    /* Define primeiro os milissegundos */
+    const startedTime = {
+        minMS: upTimer % (60 * 1000),
+        hoursMS: upTimer % (60 * 60 * 1000),
+        daysMS: upTimer % (24 * 60 * 60 * 1000),
+    };
+
+    /* Define em formato 'humano' */
+    startedTime.seconds = Math.floor(startedTime.minMS / 1000);
+    startedTime.minutes = Math.floor(startedTime.hoursMS / (60 * 1000));
+    startedTime.hours = Math.floor(startedTime.daysMS / (60 * 60 * 1000));
+    startedTime.days = Math.floor(upTimer / (24 * 60 * 60 * 1000));
+
+    /* Se tudo for zero */
+    if (startedTime.seconds &lt;= 0 &amp;&amp; startedTime.minutes &lt;= 0 &amp;&amp; startedTime.hours &lt;= 0 &amp;&amp; startedTime.days &lt;= 0) {
+        /* Define os valores como zero */
+        startedTime.seconds = 0;
+        startedTime.minutes = 0;
+        startedTime.hours = 0;
+        startedTime.days = 0;
+
+        /* Calcula segundos como milissegundos */
+        startedTime.seconds = Math.abs(startedTime.minMS / 1000);
+
+        /* Verifica se continua em zero */
+        if (startedTime.seconds === 0) {
+            /* Define como abaixo de 0.01, pode ser bem abaixo disso, mas é um valor padrão realístico */
+            startedTime.seconds = -0.01;
+        }
+    }
+
+    /* Define a String */
+    startedTime.overall = Indexer('sql').languages(region, 'Helper', 'Timestamp', true, true, startedTime).value;
+
+    /* Retorna formatado */
+    return startedTime;
+}
+
+/* Converte o tempo dos jogos e sistemas da Íris em formatos 'certos' */
+function getWaitTime(
+    actualTime = envInfo.functions.remain.arguments.actualTime.value,
+    timingRest = envInfo.functions.remain.arguments.timingRest.value,
+) {
+    /* Define um valor padrão */
+    envInfo.results.value = 0;
+
+    /* Define o sucesso */
+    envInfo.results.success = false;
+
+    /* Try-Catch para casos de erro */
+    try {
+        /* Recebe apenas Strings e Números */
+        if (isNumeric.test(actualTime) &amp;&amp; isNumeric.test(timingRest)) {
+            /* Define o tempo inicial */
+            const sTime = (envInfo.parameters.waiter.value * 60000) - (Date.now() - timingRest);
+
+            /* Divide para obter o tempo correto */
+            envInfo.results.value = (Math.abs(sTime) / actualTime).toFixed(2);
+        }
+
+        /* Define o sucesso */
+        envInfo.results.success = true;
+
+        /* Caso de algum erro */
+    } catch (error) {
+        /* Insere tudo na envInfo */
+        logging.echoError(error, envInfo, __dirname);
+    }
+
+    /* Retorna os dados */
+    return logging.postResults(envInfo);
+}
+
+/* Converte unidade por letra */
+function extendNumber(
+    comNumber = envInfo.functions.extend.arguments.comNumber.value,
+    typeExtend = envInfo.functions.extend.arguments.typeExtend.value,
+) {
+    /* Define um valor padrão | Verifica se é um número sem compact */
+    envInfo.results.value = {
+        first: 'UN - Unidade',
+        second: 'UN - Unidade',
+        response: 0,
+        method: 'UN * 1',
+    };
+
+    /* Define o sucesso */
+    envInfo.results.success = false;
+
+    /* Try-Catch para casos de erro */
+    try {
+        /* Recebe apenas Strings e Números */
+        if (typeof comNumber === 'string' || typeof comNumber === 'number') {
+            /* Remove tudo que não é numero */
+            const numerParse = String(comNumber).replace(/\D+/, '');
+
+            /* Faz a conversão do valor */
+            envInfo.results.value = Indexer('metrics').calculate(numerParse, typeExtend);
+        }
+
+        /* Define o sucesso */
+        envInfo.results.success = true;
+
+        /* Caso de algum erro */
+    } catch (error) {
+        /* Insere tudo na envInfo */
+        logging.echoError(error, envInfo, __dirname);
+    }
+
+    /* Retorna os dados */
+    return logging.postResults(envInfo);
+}
+
+/* Converte números em números compactos */
+function compactNumber(
+    numberFull = envInfo.functions.compact.arguments.numberFull.value,
+) {
+    /* Define um valor padrão */
+    envInfo.results.value = '0k';
+
+    /* Define o sucesso */
+    envInfo.results.success = false;
+
+    /* Try-Catch para casos de erro */
+    try {
+        /* Recebe apenas Strings e Números */
+        if (isNumeric.test(numberFull)) {
+            /* Formata como compacto | ES2020 | Baseado na númeração americana compacta */
+            envInfo.results.value = Intl.NumberFormat('en-US', { notation: 'compact' }).format(numberFull);
+        }
+
+        /* Define o sucesso */
+        envInfo.results.success = true;
+
+        /* Caso de algum erro */
+    } catch (error) {
+        /* Insere tudo na envInfo */
+        logging.echoError(error, envInfo, __dirname);
+    }
+
+    /* Retorna os dados */
+    return logging.postResults(envInfo);
+}
+
+/* Verifica se é um número inteiro */
+function isInteger(
+    numerInt = envInfo.functions.isint.arguments.numerInt.value,
+) {
+    /* Define um valor padrão */
+    envInfo.results.value = false;
+
+    /* Define o sucesso */
+    envInfo.results.success = false;
+
+    /* Try-Catch para casos de erro */
+    try {
+        /* Recebe apenas Strings e Números */
+        if (isNumeric.test(numerInt)) {
+            /* Verifica se é um inteiro */
+            envInfo.results.value = Number.isInteger(Number(numerInt));
+        }
+
+        /* Define o sucesso */
+        envInfo.results.success = true;
+
+        /* Caso de algum erro */
+    } catch (error) {
+        /* Insere tudo na envInfo */
+        logging.echoError(error, envInfo, __dirname);
+    }
+
+    /* Retorna os dados */
+    return logging.postResults(envInfo);
+}
+
+/* Escolhe um número aleatório */
+function getRandomNumber(
+    minNumber = envInfo.functions.randnum.arguments.minNumber.value,
+    maxNumber = envInfo.functions.randnum.arguments.maxNumber.value,
+) {
+    /* Define um valor padrão */
+    envInfo.results.value = 0;
+
+    /* Define o sucesso */
+    envInfo.results.success = false;
+
+    /* Try-Catch para casos de erro */
+    try {
+        /* Recebe apenas Strings e Números */
+        if (isNumeric.test(minNumber) &amp;&amp; isNumeric.test(maxNumber)) {
+            /* Gera um número aleatório */
+            envInfo.results.value = Math.floor(
+                /* Gera um valor entre 0 e 1 */
+                Math.random()
+
+                /* Multiplica pela subtração do máximo ao mínimo com mais um */
+                * (maxNumber - minNumber + 1)
+
+                /* Adiciona o valor mínimo no fim */
+                + minNumber,
+            );
+        }
+
+        /* Define o sucesso */
+        envInfo.results.success = true;
+
+        /* Caso de algum erro */
+    } catch (error) {
+        /* Insere tudo na envInfo */
+        logging.echoError(error, envInfo, __dirname);
+    }
+
+    /* Retorna os dados */
+    return logging.postResults(envInfo);
+}
+
+/* Adquire o tempo de processamento */
+function getProcessTime(
+    timeUnix = envInfo.functions.process.arguments.timeUnix.value,
+) {
+    /* Define o tempo agora */
+    const timeNow = Date.now();
+
+    /* Define um valor padrão */
+    envInfo.results.value = 0;
+
+    /* Define o sucesso */
+    envInfo.results.success = false;
+
+    /* Try-Catch para casos de erro */
+    try {
+        /* Recebe apenas Strings e Números */
+        if (isNumeric.test(timeUnix)) {
+            /* Define o tempo para o mesmo tamanho do timeNow */
+            const timedUnix = String(timeUnix).padEnd(String(timeNow).length, '0');
+
+            /* Converte o Timestamp em Segundos */
+            envInfo.results.value = (timeNow - Number(timedUnix)) / 1000;
+        }
+
+        /* Define o sucesso */
+        envInfo.results.success = true;
+
+        /* Caso de algum erro */
+    } catch (error) {
+        /* Insere tudo na envInfo */
+        logging.echoError(error, envInfo, __dirname);
+    }
+
+    /* Retorna os dados */
+    return logging.postResults(envInfo);
+}
+
+/* Converte exponenciais em números inteiros */
+function expandNumber(
+    expoNumber = envInfo.functions.expand.arguments.expoNumber.value,
+    useAccents = envInfo.functions.expand.arguments.useAccents.value,
+    resizeEnd = envInfo.functions.expand.arguments.resizeEnd.value,
+    resizeIndex = envInfo.functions.expand.arguments.resizeIndex.value,
+) {
+    /* Define um valor padrão */
+    envInfo.results.value = 0;
+
+    /* Define o sucesso */
+    envInfo.results.success = false;
+
+    /* Try-Catch para casos de erro */
+    try {
+        /* Recebe apenas Strings e Números */
+        if (isNumeric.test(expoNumber) &amp;&amp; isNumeric.test(resizeIndex)) {
+            /* Opções padrões de parse */
+            const parsing = {
+                precision: 10,
+                precisionSetting: 2,
+            };
+
+            /* Define se deve usar pontuação */
+            if (useAccents !== false) {
+                /* Insere nas opções */
+                parsing.thousandsSeparator = '.';
+            }
+
+            /* Faz a correção do valor e converte em String */
+            let prettyValue = prettyNum(expoNumber, parsing).toString();
+
+            /* Define se deve cortar, afim de não virar trava de zeros */
+            if (resizeEnd !== false) {
+                /* Ajusta os valores separando de acordo com a resizeIndex, unindo por '.' e inserindo um '....' */
+                prettyValue = `${prettyValue.split('.', Number(resizeIndex)).join('.')}....`;
+            }
+
+            /* Define o valor final */
+            envInfo.results.value = prettyValue;
+        }
+
+        /* Define o sucesso */
+        envInfo.results.success = true;
+
+        /* Caso de algum erro */
+    } catch (error) {
+        /* Insere tudo na envInfo */
+        logging.echoError(error, envInfo, __dirname);
+    }
+
+    /* Retorna os dados */
+    return logging.postResults(envInfo);
+}
+
+/**
+ * Restaura o ambiente e atualiza as exportações do módulo com a funcionalidade principal
+ * @param {Object} [changeKey={}] - Chaves personalizadas para atualizar o envInfo
+ * @param {Object} [envFile=envInfo] - Objeto com informações do ambiente
+ * @param {string} [dirname=__dirname] - Caminho do diretório atual
+ * @returns {Object} Exportações do módulo com todas as funções configuradas
+ */
+/* eslint-disable-next-line no-return-assign */
+const resetLocal = (
+    changeKey = {},
+    envFile = envInfo,
+    dirname = __dirname,
+) => module.exports = logging.resetAmbient({
+    functions: {
+        [envInfo.exports.env]: { value: ambientDetails },
+        [envInfo.exports.messedup]: { value: logging.echoError },
+        [envInfo.exports.poswork]: { value: logging.postResults },
+        [envInfo.exports.reset]: { value: resetLocal },
+        [envInfo.exports.remain]: { value: getWaitTime },
+        [envInfo.exports.extend]: { value: extendNumber },
+        [envInfo.exports.compact]: { value: compactNumber },
+        [envInfo.exports.isint]: { value: isInteger },
+        [envInfo.exports.randnum]: { value: getRandomNumber },
+        [envInfo.exports.process]: { value: getProcessTime },
+        [envInfo.exports.expand]: { value: expandNumber },
+        [envInfo.exports.format]: { value: getFormatedTime },
+    },
+    parameters: {
+        location: { value: __filename },
+    },
+}, envFile, changeKey, dirname);
+resetLocal();
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-ConnectionManager.html">ConnectionManager</a></li><li><a href="module-TerminalStarter.html">TerminalStarter</a></li></ul><h3>Global</h3><ul><li><a href="global.html#.onclick">.onclick</a></li><li><a href="global.html#addMessageHandler">addMessageHandler</a></li><li><a href="global.html#ambientDetails">ambientDetails</a></li><li><a href="global.html#blurImage">blurImage</a></li><li><a href="global.html#calculateIdealNctx">calculateIdealNctx</a></li><li><a href="global.html#caseChecker">caseChecker</a></li><li><a href="global.html#caseDefault">caseDefault</a></li><li><a href="global.html#checkGaming">checkGaming</a></li><li><a href="global.html#checker">checker</a></li><li><a href="global.html#chessDogs">chessDogs</a></li><li><a href="global.html#cleanInvalidIPs">cleanInvalidIPs</a></li><li><a href="global.html#clearHistory">clearHistory</a></li><li><a href="global.html#commandCache">commandCache</a></li><li><a href="global.html#controlSystem">controlSystem</a></li><li><a href="global.html#controlSystemAsync">controlSystemAsync</a></li><li><a href="global.html#createCard">createCard</a></li><li><a href="global.html#createList">createList</a></li><li><a href="global.html#createListRow">createListRow</a></li><li><a href="global.html#createListener">createListener</a></li><li><a href="global.html#currentSort">currentSort</a></li><li><a href="global.html#customCommand">customCommand</a></li><li><a href="global.html#deepMerge">deepMerge</a></li><li><a href="global.html#dialoguePicker">dialoguePicker</a></li><li><a href="global.html#echoError">echoError</a></li><li><a href="global.html#envInfoGenerator">envInfoGenerator</a></li><li><a href="global.html#executeSQLCommand">executeSQLCommand</a></li><li><a href="global.html#executeSQLite">executeSQLite</a></li><li><a href="global.html#filterValues">filterValues</a></li><li><a href="global.html#findProperty">findProperty</a></li><li><a href="global.html#finishStartup">finishStartup</a></li><li><a href="global.html#fixDatabase">fixDatabase</a></li><li><a href="global.html#formatBase64">formatBase64</a></li><li><a href="global.html#functionString">functionString</a></li><li><a href="global.html#genSession">genSession</a></li><li><a href="global.html#generateContent">generateContent</a></li><li><a href="global.html#generateList">generateList</a></li><li><a href="global.html#generateResponse">generateResponse</a></li><li><a href="global.html#generateSessions">generateSessions</a></li><li><a href="global.html#getBuffer">getBuffer</a></li><li><a href="global.html#getKeyword">getKeyword</a></li><li><a href="global.html#getPatent">getPatent</a></li><li><a href="global.html#getRelativePath">getRelativePath</a></li><li><a href="global.html#getValues">getValues</a></li><li><a href="global.html#handleConnectionError">handleConnectionError</a></li><li><a href="global.html#handleFailedAttempts">handleFailedAttempts</a></li><li><a href="global.html#handleSystemError">handleSystemError</a></li><li><a href="global.html#handleUnmappedCommand">handleUnmappedCommand</a></li><li><a href="global.html#hasCUDA">hasCUDA</a></li><li><a href="global.html#initSocketConnection">initSocketConnection</a></li><li><a href="global.html#initializeModel">initializeModel</a></li><li><a href="global.html#irisPlaying">irisPlaying</a></li><li><a href="global.html#isListView">isListView</a></li><li><a href="global.html#isValidDate">isValidDate</a></li><li><a href="global.html#loadCommandModule">loadCommandModule</a></li><li><a href="global.html#loadCommandModuleAsync">loadCommandModuleAsync</a></li><li><a href="global.html#loadConfigWithRetry">loadConfigWithRetry</a></li><li><a href="global.html#locateFolder">locateFolder</a></li><li><a href="global.html#locateObjectKey">locateObjectKey</a></li><li><a href="global.html#logDebugInfo">logDebugInfo</a></li><li><a href="global.html#logPerformance">logPerformance</a></li><li><a href="global.html#minifyFile">minifyFile</a></li><li><a href="global.html#minifyFolder">minifyFolder</a></li><li><a href="global.html#missing">missing</a></li><li><a href="global.html#modelConfigs">modelConfigs</a></li><li><a href="global.html#myFunction">myFunction</a></li><li><a href="global.html#partners">partners</a></li><li><a href="global.html#postResults">postResults</a></li><li><a href="global.html#processMessages">processMessages</a></li><li><a href="global.html#programDownloads">programDownloads</a></li><li><a href="global.html#programExists">programExists</a></li><li><a href="global.html#purgeValues">purgeValues</a></li><li><a href="global.html#rankingValues">rankingValues</a></li><li><a href="global.html#readingMessages">readingMessages</a></li><li><a href="global.html#removeCommentsAndEmptyLines">removeCommentsAndEmptyLines</a></li><li><a href="global.html#removeValues">removeValues</a></li><li><a href="global.html#replaceInAll">replaceInAll</a></li><li><a href="global.html#replaceSystem">replaceSystem</a></li><li><a href="global.html#replaceText">replaceText</a></li><li><a href="global.html#resetAmbient">resetAmbient</a></li><li><a href="global.html#resolveCommandPath">resolveCommandPath</a></li><li><a href="global.html#runTasks">runTasks</a></li><li><a href="global.html#safePathJoin">safePathJoin</a></li><li><a href="global.html#sleep">sleep</a></li><li><a href="global.html#sortByColumn">sortByColumn</a></li><li><a href="global.html#sqlDatabase">sqlDatabase</a></li><li><a href="global.html#toggleDescription">toggleDescription</a></li><li><a href="global.html#toggleListView">toggleListView</a></li><li><a href="global.html#undoValues">undoValues</a></li><li><a href="global.html#updateSortIcons">updateSortIcons</a></li><li><a href="global.html#updateSymlinks">updateSymlinks</a></li><li><a href="global.html#updateValues">updateValues</a></li><li><a href="global.html#urlExists">urlExists</a></li><li><a href="global.html#urlGo">urlGo</a></li><li><a href="global.html#validateCommandName">validateCommandName</a></li><li><a href="global.html#validateJSON">validateJSON</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Sun Apr 13 2025 17:34:05 GMT-0300 (Horário Padrão de Brasília)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

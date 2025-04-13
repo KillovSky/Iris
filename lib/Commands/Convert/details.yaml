@@ -1,0 +1,20 @@
+name: Convert
+hide: false
+type:
+  - Sticker
+  - Convert
+  - Midias
+  - Media
+  - Image
+  - Images
+  - Imagens
+  - Gif
+  - Video
+subcommands:
+  - Convert
+  - ToGIF
+  - ToMP4
+  - ToPNG
+  - ToIMG
+  - ToImage
+  - ToVideo

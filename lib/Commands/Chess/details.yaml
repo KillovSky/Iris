@@ -1,0 +1,8 @@
+name: Chess
+hide: false
+type:
+  - Games
+  - Jogos
+subcommands:
+  - Chess
+  - Xadrez

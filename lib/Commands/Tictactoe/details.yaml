@@ -1,0 +1,10 @@
+name: TicTacToe
+hide: false
+type:
+  - Games
+  - Jogos
+subcommands:
+  - TicTacToe
+  - TicTac
+  - JogoDaVelha
+  - TTT

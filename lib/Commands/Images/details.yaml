@@ -1,0 +1,15 @@
+name: Images
+hide: false
+type:
+  - Midias
+  - Media
+  - Image
+  - Images
+  - Imagens
+subcommands:
+  - Images
+  - RandomImage
+  - Loli
+  - QR
+  - Search
+  - GetSticker

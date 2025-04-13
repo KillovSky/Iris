@@ -5,7 +5,9 @@
             "evalpy",
             "goeval",
             "runcode",
-            "evalsh"
+            "evalsh",
+            "evallua",
+            "luainfo"
         ]
     }
 }

@@ -22,12 +22,12 @@ E na fronteira entre terror e renascimento, uma pergunta sempre ecoa:
 <p align="center">
     <img align="center" src="https://raw.githubusercontent.com/KillovSky/Iris/main/lib/Commands/Default/Cache/Banner.png" width="512" height="320">
 </p>
-<!-- <p align="center">
-    <a align="center" href="https://linktr.ee/killovsky">Banner by KillovSky</a>
-</p> -->
 <p align="center">
-    <a align="center" href="https://bento.me/joanderson">Banner by Jojo</a>
+    <a align="center" href="https://linktr.ee/killovsky">Banner by KillovSky</a>
 </p>
+<!-- <p align="center">
+    <a align="center" href="https://bento.me/joanderson">Banner by Jojo</a>
+</p> -->
 <p align="center">
     <h1 align="center">Projeto Íris</h1>
     <a href="https://github.com/KillovSky/iris/blob/main/LICENSE"><img alt="GitHub License" src="https://img.shields.io/github/license/KillovSky/Iris?color=blue&label=License&style=flat-square"></a>
@@ -48,6 +48,12 @@ E na fronteira entre terror e renascimento, uma pergunta sempre ecoa:
     <a href="https://github.com/KillovSky/iris/graphs/contributors"><img alt="Contributors" src="https://img.shields.io/github/contributors/KillovSky/Iris?label=Contribuidores&style=flat-square"></a>
 </p>
 
+## ⚠️ Mural Urgente
+  
+> Este mural é destinado a mensagens extremamente importantes. Por favor, leia com atenção.  
+>  
+> Caso enfrente dificuldades ao instalar a Íris com a versão mais recente do `Node.js` no Windows, não se preocupe! Basta fazer o download da [Versão 20.19.0](https://nodejs.org/en/download), que resolverá o problema. A incompatibilidade está relacionada aos pacotes `Canvas` e `Sharp`. Essa questão não deve impactar usuários de Linux, MacOS, Termux ou demais; porém, se ocorrer, recomenda-se seguir o mesmo procedimento.  
+  
 ## 📝 Sumário
 
 1. [❓ O que é a Íris?](#-o-que-é-a-íris)

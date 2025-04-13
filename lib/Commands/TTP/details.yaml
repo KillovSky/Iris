@@ -1,0 +1,17 @@
+name: TTP
+hide: false
+type:
+  - Sticker
+  - Convert
+  - Image
+  - Images
+  - Imagens
+  - Text
+subcommands:
+  - TTP
+  - Attp
+  - TTI
+  - TTA
+  - TTG
+  - Text2Img
+  - Text2Gif

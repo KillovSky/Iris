@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Commands/Main/Construct/index.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Commands/Main/Construct/index.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/* eslint-disable max-len */
+
+/* Requires */
+const fs = require('fs');
+const removeAccents = require('remove-accents');
+const { extractMetadata } = require('wa-sticker-formatter');
+const issimilar = require('similarity');
+const { downloadMediaMessage, downloadContentFromMessage, getDevice } = require('baileys');
+const Indexer = require('../../../index');
+
+/* JSON's | Utilidades */
+const envInfo = JSON.parse(fs.readFileSync(`${__dirname}/utils.json`));
+const commands = JSON.parse(fs.readFileSync('./lib/Databases/Configurations/definitions.json'));
+const levelSettings = JSON.parse(fs.readFileSync('./lib/Databases/Configurations/leveling.json'));
+let arrayOfCommands = JSON.parse(Indexer('bash').bash(`bash "${irisPath}/lib/Scripts/Others/Menu.sh" "array"`).value);
+const oldLanguage = region;
+let conditions = false;
+
+/* Insere todos os comandos na arrayOfCommands */
+arrayOfCommands = [...arrayOfCommands, Object.values(envInfo.parameters.alias.value).flat(5)].flat(5);
+arrayOfCommands = [...new Set(arrayOfCommands)];
+
+/**
+ * Retorna todos os detalhes do ambiente (`envInfo`).
+ *
+ * @returns {Object} O objeto `envInfo`, que contém os detalhes do ambiente da execução.
+ */
+function ambientDetails() {
+    /* Retorna a envData */
+    return envInfo;
+}
+
+/* Faz a formatação e coleta dos dados */
+async function dataCollect(
+    kill = envInfo.functions.make.arguments.kill.value,
+    message = envInfo.functions.make.arguments.message.value,
+    msgbackup = envInfo.functions.make.arguments.msgbackup.value,
+) {
+    /* Define um resultado padrão */
+    envInfo.results.value = false;
+
+    /* Define o sucesso */
+    envInfo.results.success = false;
+
+    /* Define a Object padrão */
+    let messageData = {
+        actualMoment: Date.now(),
+        readDate: (msgbackup.currentTimeDate / 1000).toFixed(0),
+        levelSettings,
+        allCommands: arrayOfCommands,
+    };
+
+    /* Try-Catch para casos de erro */
+    try {
+        /* Determina se algum parâmetro veio errado */
+        if (typeof kill === 'object' &amp;&amp; typeof message === 'object') {
+            /* Define a mensagem a marcar */
+            messageData.quoteThis = message || {};
+
+            /* Define o Object pronto da mensagem a marcar */
+            messageData.reply = { quoted: messageData.quoteThis };
+
+            /* Define as condições iniciais */
+            conditions = (
+                /* Se a mensagem não for uma Object (possivel evento) */
+                !typeof messageData.quoteThis?.message === 'object'
+
+                /* Se não tiver mensagem (possivel evento) */
+                || messageData.quoteThis?.message == null
+
+                /* Se for um evento e não tiver indicador de mensagem */
+                || (msgbackup.type === 'append' &amp;&amp; Object.keys(messageData.quoteThis.message).every((ms) => !ms.includes('Message')))
+            );
+
+            /* Impede de continuar se a mensagem estiver com problema | Permite se for evento, impede se der problema no começo */
+            if ((conditions &amp;&amp; config.allowEvents.value === false) || messageData.quoteThis == null) return logging.postResults(envInfo);
+
+            /* Define uma Object de mensagem pra não matar o sistema */
+            messageData.quoteThis.message = messageData?.quoteThis?.message || {};
+
+            /* Se tiver ephemeralMessage ou viewOnce */
+            if (Object.keys(messageData?.quoteThis?.message).includes('ephemeralMessage') || Object.keys(messageData?.quoteThis?.message).includes('viewOnce')) {
+                /* Define um backup da mensagem para uso externo */
+                messageData.quoteThis.backupMessage = msgbackup.messages;
+
+                /* Define a mensagem ephemeral na object message */
+                messageData.quoteThis.message = messageData.quoteThis.message?.ephemeralMessage?.message || messageData.quoteThis.message?.viewOnceMessage?.message || messageData.quoteThis.message?.viewOnceMessageV2?.message || messageData.quoteThis.message?.viewOnceMessage?.message || messageData.quoteThis.message?.viewOnceMessageV2 || messageData.quoteThis.message?.ephemeralMessage;
+            }
+
+            /* Define a medição de tempo */
+            messageData.timestamp = messageData.quoteThis.messageTimestamp || Date.now();
+
+            /* Define o Ping avançado */
+            messageData.pingTime = Indexer('number').format(messageData.readDate - messageData.timestamp).overall;
+
+            /* Define o Ping */
+            messageData.procTime = Indexer('number').format(messageData.readDate - messageData.timestamp).seconds;
+
+            /* Define se é editada */
+            messageData.editedMessageObj = Indexer('others').findkey(messageData.quoteThis, ['editedMessage'], ['object'], ['contextInfo', 'quotedMessage']).value;
+            messageData.editedMessage = !!messageData?.editedMessageObj;
+
+            /* Define a key da mensagem */
+            const chatMessage = messageData.quoteThis.key;
+            messageData.messageKey = chatMessage;
+
+            /* Roda o sistema de eventos */
+            const eventRunner = await Indexer('events').execute(kill, messageData.quoteThis);
+
+            /* Define as condições */
+            conditions = (
+                /* Mensagem de si mesmo, mas não permitido pelo dono */
+                (chatMessage?.fromMe &amp;&amp; config.botCommands.value === false)
+
+                /* Mensagens editadas */
+                || messageData.editedMessage
+
+                /* Atualizações de enquetes */
+                || (Object.keys(messageData.quoteThis?.message).includes('pollUpdate') &amp;&amp; config.listenPolls.value === false)
+
+                /* Transmissões */
+                || (messageData.quoteThis.broadcast === true &amp;&amp; config.listenBroadcasts.value === false)
+
+                /* Reações em mensagens */
+                || (Object.keys(messageData.quoteThis?.message).includes('reactionMessage') &amp;&amp; config.listenReactions.value === false)
+
+                /* Se o evento mandar parar */
+                || eventRunner.value === 'STOP'
+            );
+
+            /* Define se deve ignorar o processamento das mensagens da Íris, editadas, broadcast e reações como mensagens normais */
+            if (conditions) {
+                /* Define soft error */
+                envInfo.results.success = 'DONTRUNTHIS';
+                envInfo.results.value = {};
+
+                /* Retorna algo */
+                return envInfo.results;
+            }
+
+            /* Busca avançada de object para localizar a perfeita, faz isso em 4 niveis de busca */
+            const messageKeys = ['audioMessage', 'bcallMessage', 'botInvokeMessage', 'buttonsMessage', 'buttonsResponseMessage', 'contactMessage', 'conversation', 'contactsArrayMessage', 'documentMessage', 'documentWithCaptionMessage', 'editedMessage', 'ephemeralMessage', 'extendedTextMessage', 'groupInviteMessage', 'groupMentionedMessage', 'imageMessage', 'interactiveMessage', 'interactiveResponseMessage', 'invoiceMessage', 'listMessage', 'listResponseMessage', 'liveLocationMessage', 'locationMessage', 'lottieStickerMessage', 'messageHistoryBundle', 'newsletterAdminInviteMessage', 'orderMessage', 'pollCreationMessage', 'pollCreationMessageV2', 'pollCreationMessageV3', 'pollUpdateMessage', 'productMessage', 'protocolMessage', 'ptvMessage', 'reactionMessage', 'requestPaymentMessage', 'scheduledCallCreationMessage', 'scheduledCallEditMessage', 'sendPaymentMessage', 'senderKeyDistributionMessage', 'stickerMessage', 'templateButtonReplyMessage', 'templateMessage', 'videoMessage', 'viewOnceMessage', 'viewOnceMessageV2', 'viewOnceMessageV2Extension'];
+            let recMessage = messageData?.quoteThis;
+            recMessage = Indexer('others').findkey(recMessage, messageKeys, ['object', 'string'], ['contextInfo', 'quotedMessage']).value || recMessage;
+            recMessage = Indexer('others').findkey(recMessage, messageKeys, ['object', 'string'], ['contextInfo', 'quotedMessage']).value || recMessage;
+            recMessage = Indexer('others').findkey(recMessage, messageKeys, ['object', 'string'], ['contextInfo', 'quotedMessage']).value || recMessage;
+            recMessage = Indexer('others').findkey(recMessage, messageKeys, ['object', 'string'], ['contextInfo', 'quotedMessage']).value || recMessage;
+            messageData.recMessage = recMessage;
+
+            /* Define se é ViewOnce */
+            const viewOnceObj = messageData.quoteThis.message?.viewOnceMessageV2 || messageData.quoteThis.message?.viewOnceMessage;
+            const isViewOnce = messageData.quoteThis.message?.viewOnceMessageV2 !== null || messageData.quoteThis.message?.viewOnceMessage !== null || recMessage?.viewOnce || messageData.typeLower === 'viewOnceMessageV2';
+            /* eslint-disable-next-line no-nested-ternary */
+            const viewOnce = (isViewOnce &amp;&amp; viewOnceObj) ? viewOnceObj[Object.keys(viewOnceObj)[0]] : (isViewOnce ? recMessage : false);
+            messageData.viewOnce = viewOnce;
+            messageData.isViewOnce = isViewOnce;
+
+            /* Se for mensagem editada */
+            messageData.quoteThis = messageData.editedMessage ? recMessage : messageData.quoteThis;
+
+            /* Por mais que eu não goste disso, o try-catch aqui é essencial para lidar com mensagens bugadas que o Baileys envia, como a futureProofMessage (???) */
+            try {
+                /* Define o peso se não tiver */
+                recMessage.fileLength = recMessage?.fileLength || { low: 1000, high: 0, unsigned: false };
+
+                /* Se der erro */
+            } catch (err) {
+                /* Printa a mensagem pedindo para criar um report, pois essa informação será de extrema utilidade para correções */
+                console.log('\x1b[31m', 'REPORT THIS TO PROJECT ÍRIS [https://github.com/KillovSky/Iris]!\n', `\x1b[33m${JSON.stringify(message)}`);
+
+                /* Printa o erro */
+                console.error(err);
+
+                /* Define soft error */
+                envInfo.results.success = 'DONTRUNTHIS';
+                envInfo.results.value = {};
+
+                /* Retorna algo */
+                return envInfo.results;
+            }
+
+            /* Define a mensagem na envInfo */
+            messageData.basemessage = message;
+
+            /* Define a mídia criptografada na envInfo */
+            messageData.encryptMedia = recMessage;
+
+            /* Define a marcação de mensagem */
+            messageData.quotedMsg = Indexer('others').findkey(recMessage, ['contextInfo'], ['object'], []).value || {};
+            messageData.isQuotedMsg = Object.keys(messageData.quotedMsg).length > 1;
+
+            /* Define a marcação de mensagem com objeto e se é viewOnce */
+            messageData.quotedMsgObj = messageData.quotedMsg?.quotedMessage ? messageData.quotedMsg?.quotedMessage[Object.keys(messageData.quotedMsg.quotedMessage)[0]] : {};
+            const quotedViewOnce = messageData.quotedMsgObj?.message;
+
+            /* Se for uma mensagem marcada com key Message ainda, reduz novamente */
+            messageData.quotedMsgObj = quotedViewOnce ? quotedViewOnce[Object.keys(quotedViewOnce)[0]] : messageData.quotedMsgObj;
+            messageData.isQuotedViewOnce = messageData.quotedMsgObj?.viewOnce;
+
+            /* Se a quoted object estiver vazia, define como a quotedMessage padrão */
+            messageData.quotedMsgObj = messageData.isQuotedMsg &amp;&amp; messageData.quotedMsgObj == null ? messageData.quotedMsg : messageData.quotedMsgObj;
+
+            /* Determina se é uma mídia */
+            messageData.isMedia = !!recMessage?.mimetype;
+            messageData.decryptFormats = ['ppic', 'product', 'image', 'video', 'sticker', 'audio', 'gif', 'ptt', 'thumbnail-document', 'thumbnail-image', 'thumbnail-link', 'thumbnail-video', 'md-app-state', 'md-msg-hist', 'document', 'product-catalog-image', 'payment-bg-image'];
+
+            /* Determina o tipo de mensagem */
+            messageData.type = Object.keys(messageData.quoteThis.message)[0] || 'conversation';
+            messageData.typeFormatted = messageData.type.replace('Message', '');
+            messageData.typeLower = messageData.typeFormatted.toLowerCase();
+            messageData.typeDecrypt = messageData.typeLower;
+
+            /* Define a hora de agora */
+            messageData.dateOfDay = (new Date()).getHours();
+
+            /* Define o tempo formatado */
+            messageData.time = new Date(messageData.timestamp * 1000).toLocaleString();
+
+            /* Define o tempo de execução de debug */
+            messageData.debugExec = Indexer('number').format((Date.now() / 1000) - messageData.readDate).seconds;
+
+            /* Comando debug */
+            if (recMessage?.caption === '/debugping' || recMessage === '/debugping' || recMessage?.text === '/debugping') return await kill.sendMessage((chatMessage?.remoteJid || chatMessage?.participant), { text: `Debug (Read): ${messageData.procTime}s\nDebug (Exec): ${messageData.debugExec.toFixed(6)}s` }, messageData.reply);
+
+            /* --------------------- Mensagem --------------------------- */
+
+            /* Define o usuário */
+            messageData.sender = chatMessage?.participant || {};
+
+            /* Determina a Chat */
+            messageData.chat = chatMessage?.remoteJid.includes('@g.us') ? await kill.groupMetadata(chatMessage?.remoteJid) : {};
+
+            /* Define o nome do grupo */
+            messageData.originalName = messageData.chat?.subject || '';
+            messageData.name = messageData.originalName;
+
+            /* Define o número de quem enviou */
+            messageData.user = chatMessage?.participant || chatMessage?.remoteJid || '';
+
+            /* Define uma user formatada */
+            messageData.userFormated = messageData.user.replace(/@s.whatsapp.net|@g.us/gi, '');
+
+            /* Define o nome de usuário */
+            messageData.originalPushname = message?.pushName || '"Censored by Government"';
+            messageData.pushname = messageData.originalPushname;
+
+            /* Se ativarem o fixEscape, faz ajuste para o SQLite */
+            if (config.fixEscape.value) {
+                /* Ativa o escape adicional para evitar erros */
+                /* eslint-disable-next-line no-useless-escape */
+                messageData.pushname = messageData.originalPushname.replace(/[`~!@#$%^&amp;*()_|+\-=?;:'",.&lt;>\{\}\[\]\\\/]/gi, '');
+
+                // eslint-disable-next-line no-useless-escape
+                messageData.name = messageData.originalName.replace(/[`~!@#$%^&amp;*()_|+\-=?;:'",.&lt;>\{\}\[\]\\\/]/gi, '');
+            }
+
+            /* Determina a ID do Chat */
+            messageData.chatId = chatMessage?.remoteJid || messageData.user || '';
+            messageData.chatId = messageData.chatId === 'status@broadcast' ? messageData.user : messageData.chatId;
+
+            /* Determina se é um grupo */
+            messageData.isGroup = messageData.chatId.includes('@g.us') || false;
+
+            /* Redefine o nome do grupo se for PV */
+            messageData.name = messageData.isGroup ? messageData.name : 'PV';
+
+            /* Determina se é uma mensagem em grupo */
+            messageData.isGroupMsg = messageData.isGroup;
+
+            /* Define a ID */
+            messageData.id = chatMessage?.id || '';
+
+            /* Cria uma cópia da ID por segurança */
+            messageData.serial = messageData.id;
+
+            /* Define o mimetype */
+            messageData.mimetype = recMessage?.mimetype || '';
+
+            /* Define se é um contato */
+            messageData.isContact = messageData.typeLower === 'contact' || messageData.mimetype?.toLowerCase().includes('contact');
+
+            /* Define se é uma array de contatos */
+            messageData.isContactArray = messageData.typeLower === 'contactsArray';
+
+            /* Define se é uma localização live */
+            messageData.isLiveLocation = messageData.typeLower === 'liveLocation';
+
+            /* Define se é uma localização */
+            messageData.isLocation = messageData.typeLower === 'location';
+
+            /* Define se é uma reação */
+            messageData.isReaction = messageData.typeLower === 'reaction';
+
+            /* Define se é vídeo */
+            messageData.isVideo = messageData.typeLower === 'video' || messageData.mimetype?.toLowerCase().includes('video');
+
+            /* Define se é imagem */
+            messageData.isImage = messageData.typeLower === 'image' || messageData.mimetype?.toLowerCase().includes('image');
+
+            /* Define se é áudio */
+            messageData.isAudio = messageData.typeLower === 'audio' || messageData.mimetype?.toLowerCase().includes('audio');
+
+            /* Define se é um documento */
+            messageData.isDocument = messageData.typeLower === 'document' || messageData.typeLower === 'documentWithCaption' || messageData.mimetype?.toLowerCase().includes('application') || messageData.mimetype?.toLowerCase().includes('document') || messageData.mimetype?.toLowerCase().includes('text');
+
+            /* Define se pode ser feito sticker disso */
+            messageData.canSticker = messageData.isImage || messageData.isVideo || false;
+
+            /* Define o sistema de envio para cada tipo */
+            messageData.sendingKey = messageData.typeLower === 'conversation' ? 'text' : messageData.typeLower;
+            messageData.sendingKey = messageData.isAudio ? 'audio' : messageData.sendingKey;
+            messageData.sendingKey = messageData.isImage ? 'image' : messageData.sendingKey;
+            messageData.sendingKey = messageData.isVideo ? 'video' : messageData.sendingKey;
+            messageData.sendingKey = messageData.isDocument ? 'document' : messageData.sendingKey;
+            messageData.sendingKey = messageData.isLiveLocation ? 'location' : messageData.sendingKey;
+            messageData.sendingKey = messageData.isContact || messageData.isContactArray ? 'contact' : messageData.sendingKey;
+
+            /* Reajusta o tipo de mensagem simplificada para decriptar */
+            messageData.typeDecrypt = messageData.sendingKey;
+
+            /* -------------------- Functions ----------------------- */
+
+            /* Define os JSONs */
+            const stockDefault = Indexer('sql').env().parameters.standard.value;
+            let functions = stockDefault.Groups;
+            let {
+                Leveling,
+                Bank,
+            } = stockDefault;
+
+            /* Dados pessoais */
+            messageData.personal = Indexer('sql').get('personal', messageData.user, messageData.chatId).value;
+
+            /* Se for DB antiga */
+            if (messageData.personal.name.number === '0') {
+                /* Atualiza o número */
+                messageData.personal = Indexer('sql').update('personal', messageData.user, messageData.chatId, 'name', { number: messageData.userFormated }).value;
+            }
+
+            /* Determina o arquivo de dados */
+            if (messageData.isGroup === true &amp;&amp; /@g.us/gi.test(messageData.chatId) &amp;&amp; /@s.whatsapp.net/g.test(messageData.user)) {
+                /* Ajusta a leveling para o valor real */
+                Leveling = Indexer('sql').get('leveling', messageData.user, messageData.chatId).value;
+
+                /* Ajusta a bank para o valor correto */
+                Bank = Indexer('sql').get('bank', messageData.user, messageData.chatId).value;
+
+                /* Adquire as funções de grupo ativas */
+                functions = Indexer('sql').get('groups', messageData.user, messageData.chatId).value;
+
+                /* Adiciona +1 no contador de mensagens, e 10 no XP */
+                Indexer('sql').update('leveling', messageData.user, messageData.chatId, 'messages', 1);
+                Indexer('sql').update('leveling', messageData.user, messageData.chatId, 'xp', Number(levelSettings.messageXP.value));
+            }
+
+            /* Redefine o idioma */
+            region = oldLanguage;
+
+            /* Define a região com base nas condições fornecidas */
+            if (functions.language?.enable &amp;&amp; Indexer('sql').languages('G.A.L').includes(functions.language?.text)) {
+                /* Define como o armazenado nas funções de grupo */
+                region = functions.language?.text;
+            }
+
+            /* Se for PV e tiver ativado a language */
+            if (messageData.personal.language?.enable &amp;&amp; Indexer('sql').languages('G.A.L').includes(messageData.personal.language?.text)) {
+                /* Define com base no valor padrão */
+                region = messageData.personal.language?.text;
+            }
+
+            /* Define o nome da pessoa, caso ainda esteja em default, se um dia não der pra obter o nome, esse nome aqui será usado */
+            if (messageData.personal.name?.text !== 'default' &amp;&amp; messageData?.pushname === '"Censored by Government"') {
+                /* Nome pela database */
+                messageData.pushname = messageData.personal.name?.text;
+
+                /* Se a database estiver desatualizada e o pushname puder ser obtido */
+            } else if ((messageData.personal.name.text === 'default' || messageData.personal.name.text !== messageData.pushname) &amp;&amp; messageData.pushname !== '"Censored by Government"') {
+                /* Atualiza a database com o nome atual */
+                messageData.personal = Indexer('sql').update('personal', messageData.user, messageData.chatId, 'name', {
+                    text: messageData.pushname, lastDate: Date.now(), number: messageData.userFormated, lastValue: messageData.personal.name.text, firstEdition: messageData.personal.name.firstEdition || messageData.personal.name.text, firstDate: messageData.name.firstDate || Date.now(),
+                }).value;
+            }
+
+            /* Define o nome do grupo na DB caso tenha mudado */
+            if (functions.name?.text !== messageData.name &amp;&amp; messageData.isGroup === true) {
+                /* Atualiza a database com o nome atual */
+                functions = Indexer('sql').update('groups', messageData.user, messageData.chatId, 'name', {
+                    text: messageData.name, lastDate: Date.now(), lastValue: functions.name.text,
+                }).value;
+            }
+
+            /* --------------------- Body --------------------------- */
+
+            /* Determina o texto, a array esta organizada de forma a obter na ordem dela, se achar a caption não vai buscar text e outros */
+            const bodyKeys = ['caption', 'conversation', 'text', 'selectedId', 'selectedRowId', 'selectedButtonId', 'matchedText', 'displayName', 'title', 'fileName', 'selectedDisplayText', 'note', 'body', 'description'];
+            messageData.body = Indexer('others').findkey(recMessage, bodyKeys, ['string', 'number'], ['contextInfo', 'quotedMessage']).value || Indexer('others').findkey(messageData.quoteThis, bodyKeys, ['string', 'number'], ['contextInfo', 'quotedMessage']).value || Indexer('others').findkey(message, bodyKeys, ['string', 'number'], ['contextInfo', 'quotedMessage']).value || '';
+            messageData.body = messageData.typeLower === 'sticker' || (messageData.isMedia &amp;&amp; !recMessage?.caption) ? '' : messageData.body;
+            messageData.body = (messageData.isCmd &amp;&amp; messageData.isQuotedMsg) || !messageData.isQuotedMsg || !messageData.isCmd ? messageData.body : '';
+
+            /* Define se teve URLs */
+            messageData.urlData = Indexer('regexp').urls(messageData.body).value;
+
+            /* Define se a mensagem é um convite */
+            messageData.isInvite = Indexer('regexp').invite(messageData.body).value || messageData.type === 'groupInviteMessage' || messageData.body?.includes('chat.whatsapp.net') || messageData.typeLower?.includes('groupInvite') || false;
+
+            /* Cria uma copia da body para eventuais razões */
+            messageData.message = messageData.body;
+
+            /* Define os argumentos */
+            messageData.arguments = messageData.body.split(/ +/);
+
+            /* Define os argumentos sem o comando */
+            messageData.args = messageData.arguments.slice(1);
+
+            /* Junta os argumentos de texto */
+            messageData.arg = messageData.args.join(' ');
+
+            /* Define os argumentos em Lowercase */
+            messageData.argl = messageData.args.map((al) => al.toLowerCase());
+
+            /* Junta os argumentos em Lowercase */
+            messageData.arks = messageData.argl.join(' ');
+
+            /* Define os argumentos em Uppercase */
+            messageData.argc = messageData.args.map((ac) => ac.toUpperCase());
+
+            /* Junta os argumentos em Uppercase */
+            messageData.arqc = messageData.argc.join(' ');
+
+            /* Extrai os emojis do body */
+            messageData.emojis = messageData.body.match(/[\p{Emoji}]/gu) || [];
+
+            /* --------------------- Prefix --------------------------- */
+
+            /* Determina o prefix padrão */
+            let prefixes = config?.prefixes.value.filter((p) => p === messageData.body.slice(0, 1));
+            messageData.prefix = prefixes[0] || '/';
+
+            /* Verifica se é outro prefix */
+            if (messageData.isGroupMsg) {
+                /* Verifica se o prefix atual é parte */
+                if (functions.prefix.enable === true) {
+                    /* Verifica por prefixos */
+                    prefixes = functions.prefix.values.filter((p) => p === messageData.body.slice(0, 1));
+
+                    /* Define o customizado ou um da lista, impossibilitando rodar comandos sem ele */
+                    messageData.prefix = prefixes[0] || functions.prefix.values[0] || '/';
+                }
+            }
+
+            /* --------------------- Commands --------------------------- */
+
+            /* Determina se é um comando */
+            messageData.isCmd = functions?.autostickers?.enable &amp;&amp; messageData.canSticker ? true : messageData.body.startsWith(messageData.prefix);
+
+            /* Define a mensagem decriptada */
+            messageData.decryptedMedia = messageData.isCmd &amp;&amp; messageData.decryptFormats.includes(messageData.typeDecrypt) &amp;&amp; ((recMessage?.fileLength?.low || recMessage?.fileLength?.high || 1000) / 1024) &lt;= config.maxDecryptSize.value ? await downloadMediaMessage(messageData.quoteThis, 'buffer') : '';
+
+            /* Adquire a primeira palavra e converte em lowercase */
+            messageData.command = functions?.autostickers?.enable &amp;&amp; messageData.canSticker ? `${messageData.prefix}sticker` : (messageData.body
+                .trim()
+                .split(/ +/)
+                .shift()
+                .toLowerCase()
+            );
+
+            /* Se for mesmo um comando, tira o prefix dele */
+            messageData.command = (messageData.isCmd === true ? messageData.command.slice(messageData.prefix.length) : messageData.command);
+
+            /* Remove os acentos dela */
+            messageData.command = removeAccents(messageData.command);
+
+            /* Determina a pasta de verificação por case */
+            let commander = Object.keys(envInfo.parameters.alias.value).filter((cm) => envInfo.parameters.alias.value[cm].includes(messageData.command));
+            commander = commander[0] || 'Default';
+
+            /* Se for autosticker cria uma propriedade para ignorar a mensagem de aguarde do script */
+            messageData.autoSticker = functions?.autostickers?.enable &amp;&amp; messageData.canSticker;
+
+            /* --------------------- ADMS/Donos/Membros --------------------------- */
+
+            /* Faz a busca automatica por menções */
+            const mentionFinder = Indexer('others').findkey(recMessage, ['mentionedJid'], ['array', 'object'], []);
+
+            /* Define as menções */
+            messageData.mentionedJidList = Indexer('others').findkey(recMessage, ['mentionedJid'], ['object', 'array'], []).value || [];
+            messageData.mentionedJidList.push(messageData.quotedMsg?.participant || messageData.user);
+
+            /* Insere o autor da mensagem também */
+            messageData.mentionedJidList.push(messageData.user);
+
+            /* Se houve menções */
+            if (typeof mentionFinder.value === 'object') {
+                /* Adiciona elas no inicio de tudo */
+                messageData.mentionedJidList = [...mentionFinder.value, ...messageData.mentionedJidList];
+            }
+
+            /* Define formatada */
+            messageData.mentionedJidListFormated = messageData.mentionedJidList.map((s) => s.replace(/@s.whatsapp.net|@/gi, ''));
+
+            /* Ajusta tirando valores errados */
+            messageData.mentionedJidListFormated = messageData.mentionedJidListFormated.filter((s) => /[0-9]+/gi.test(s));
+            messageData.mentionedJidList = messageData.mentionedJidList.filter((s) => s.includes('@s.whatsapp.net'));
+
+            /* Remove duplicações */
+            messageData.mentionedJidListFormated = [...new Set(messageData.mentionedJidListFormated)];
+            messageData.mentionedJidList = [...new Set(messageData.mentionedJidList)];
+
+            /* Determina os membros padrões do grupo */
+            messageData.groupMembersId = [messageData.user];
+
+            /* Verifica apenas se for grupo */
+            if (messageData.isGroupMsg === true) {
+                /* Filtra os membros sem a função async */
+                messageData.groupMembersId = messageData.chat?.participants?.map((prs) => prs.id) || [];
+            }
+
+            /* Define os IDs dos participantes do grupo, mas formatados */
+            messageData.groupMembersIdFormated = messageData.groupMembersId.map((us) => us.replace(/@g.us|@s.whatsapp.net/gi, ''));
+
+            /* Determina os ADMS padrões */
+            messageData.groupAdmins = [];
+
+            /* Verifica os ADMS apenas em grupo */
+            if (messageData.isGroupMsg === true) {
+                /* Filtra os ADMS sem a função async */
+                messageData.groupAdmins = messageData.chat?.participants?.filter((prs) => prs?.admin === 'admin' || prs?.admin === 'superadmin') || [];
+
+                /* Obtém somente os números */
+                messageData.groupAdmins = messageData.groupAdmins.map((udm) => udm?.id) || [];
+            }
+
+            /* Define uma groupAdmins formatada */
+            messageData.groupAdminsFormated = messageData.groupAdmins.map((ausr) => (ausr || '').replace(/@g.us|@s.whatsapp.net/gi, ''));
+
+            /* Verifica se faz parte dos ADMS */
+            messageData.isGroupAdmins = messageData.groupAdmins?.includes(messageData.user) || false;
+
+            /* Verifica se a Íris é ADM */
+            messageData.isBotGroupAdmins = messageData.groupAdmins?.includes(global.irisNumber) || false;
+
+            /* Define se é o criador do grupo */
+            messageData.groupCreator = messageData.chat?.participants?.filter((prs) => prs?.admin === 'superadmin')[0];
+            messageData.isGroupCreator = messageData.groupCreator === messageData.user;
+
+            /* Define se é o dono */
+            messageData.isOwner = config?.owner?.value?.includes(messageData.user) || messageData.body.includes(config?.secretKey?.value) || false;
+
+            /* Define se é a Íris */
+            messageData.isBot = chatMessage?.fromMe || global.irisNumber === messageData.user || false;
+
+            /* Define a plataforma do usuário */
+            messageData.userPlatform = getDevice(messageData.id);
+
+            /* --------------------- Membros --------------------------- */
+
+            /* Adquire os bloqueados */
+            messageData.blockNumber = await kill.fetchBlocklist();
+
+            /* Define se o usuário está bloqueado */
+            messageData.isBlocked = messageData.blockNumber.includes(messageData.user);
+
+            /* --------------------- Sticker --------------------------- */
+
+            /* Define uma let para não substituir a config */
+            let stckAuth = config.stickerAuthor.value;
+
+            /* Verifica se pode deixar os dados do sticker com nome do grupo */
+            if (config.stickerAuthor.value.includes('DONTEDITUSER')) {
+                /* Se sim, remove os acentos e troca pelo nome */
+                stckAuth = removeAccents(config.stickerAuthor.value.replace(/DONTEDITFROM/g, messageData.name).replace(/DONTEDITUSER/g, messageData.pushname).replace(/DONTEDITBY/g, config.botName.value).replace(/DONTEDITMADEAS/g, new Date().toLocaleString()));
+            }
+
+            /* Define o Pack do Sticker */
+            const stckPack = (removeAccents(config.stickerPack.value) || '🔰 Legião Z [linktr.ee/killovsky] Íris ⚜️');
+
+            /*
+                Metadados do Sticker
+                type = 'default', 'crop', 'full', 'circle, 'rounded'
+                background = {r:0,g:0,b:0,alpha:1}, #ffffff
+            */
+            messageData.stickerConfig = {
+                author: stckAuth,
+                pack: stckPack,
+                type: undefined,
+                categories: messageData.emojis[0] != null ? messageData.emojis : undefined,
+                quality: 100,
+                background: 'transparent',
+                id: config.botName.value,
+            };
+
+            /* --------------------- Outros --------------------------- */
+
+            /* Define se é um VIP */
+            messageData.isVIP = false;
+            messageData.isModerator = false;
+
+            /* Verifica os mods e vips apenas se houver mensagem em grupo */
+            if (messageData.isGroupMsg) {
+                /* Define se é um VIP */
+                messageData.isVIP = functions?.vips?.values?.includes(messageData.user.userFormated) &amp;&amp; functions?.vips?.enable === true;
+
+                /* Define se é um MOD */
+                messageData.isModerator = functions?.mods?.values?.includes(messageData.userFormated) &amp;&amp; functions?.mods?.enable === true;
+            }
+
+            /* Sugere um comando */
+            messageData.suggestCMD = Indexer('array').extract(arrayOfCommands).value;
+
+            /* Verifica se é um comando */
+            if (messageData.isCmd === true) {
+                /* Define a remoção do comando */
+                const removeRegExp = new RegExp(`^${messageData.command}`, 'gi');
+
+                /* Remove o prefix e comando */
+                messageData.body = messageData.body.slice(1).replace(removeRegExp, '');
+            }
+
+            /* Define dois números da sorte */
+            messageData.side = Indexer('numbers').randnum(1, 2).value;
+            messageData.lvpc = Indexer('numbers').randnum(1, 100).value;
+
+            /* Define o tipo de chat para argumento */
+            messageData.typeChat = messageData.isGroupMsg ? 'groups' : 'private';
+
+            /* Se não for a Íris */
+            if (!messageData.isBot) {
+                /* Adiciona 1 no contador de mensagens gerais */
+                global.messagesCount[messageData.typeChat] += 1;
+
+                /* Se for adiciona 1 no contador da Íris */
+            } else global.messagesCount.bot += 1;
+
+            /* Ajusta a contagem final */
+            global.messagesCount.total = global.messagesCount.groups + global.messagesCount.private;
+            global.messagesCount.overall = global.messagesCount.groups + global.messagesCount.bot + global.messagesCount.private;
+
+            /* Define o tipo de nome a usar */
+            messageData.typeName = messageData.isGroupMsg ? messageData.name : messageData.pushname;
+
+            /* Define o tipo de ID sem sufixo a usar */
+            messageData.typeId = (messageData.isGroupMsg ? messageData.chatId : messageData.user).replace(/@s.whatsapp.net|@g.us/gi, '');
+
+            /* Escolhe um membro aleatório */
+            messageData.randomMember = Indexer('arrays').extract(messageData.groupMembersId).value;
+
+            /* Comando com uppercase na 1 letra */
+            messageData.upperCommand = Indexer('string').upperland(messageData.command).value;
+
+            /* Alias dos comandos */
+            messageData.alias = envInfo.parameters.alias.value[commander] || [];
+
+            /* JSONs na messageData */
+            messageData.functions = functions;
+            messageData.leveling = Leveling;
+            messageData.bank = Bank;
+
+            /* Define se é VIP */
+            messageData.isAllowed = (
+                /* VIP */
+                (messageData.isVIP &amp;&amp; commands.vipCommands.includes(messageData.cmd))
+
+                /* MOD */
+                || (messageData.isModerator &amp;&amp; commands.moderatorCommands.includes(messageData.command))
+
+                /* Dono */
+                || messageData.isOwner
+
+                /* Admin */
+                || messageData.isGroupAdmins
+
+                /* None */
+                || false
+            );
+
+            /* Ajusta o administrador */
+            messageData.isGroupAdmins = messageData.isAllowed;
+
+            /* ----------------------- SECURITY ----------------------- */
+
+            /* Definições para os sistemas de segurança, já usadas acima em outras formas */
+            messageData.oldbody = message?.conversation || '';
+            messageData.content = Indexer('others').findkey(recMessage, ['content'], ['string'], ['contextInfo', 'quotedMessage']).value || '';
+            messageData.caption = Indexer('others').findkey(recMessage, ['caption'], ['string'], ['contextInfo', 'quotedMessage']).value || '';
+            messageData.comment = Indexer('others').findkey(recMessage, ['comment'], ['string'], ['contextInfo', 'quotedMessage']).value || '';
+            messageData.filename = Indexer('others').findkey(recMessage, ['filename'], ['string'], ['contextInfo', 'quotedMessage']).value || '';
+            messageData.matchedText = Indexer('others').findkey(recMessage, ['matchedText'], ['string'], ['contextInfo', 'quotedMessage']).value || '';
+            messageData.text = Indexer('others').findkey(recMessage, ['text'], ['string'], ['contextInfo', 'quotedMessage']).value || '';
+            messageData.descriptionT = Indexer('others').findkey(recMessage, ['description'], ['string'], ['contextInfo', 'quotedMessage']).value || '';
+            messageData.titleT = Indexer('others').findkey(recMessage, ['title'], ['string'], ['contextInfo', 'quotedMessage']).value || '';
+            messageData.pollName = messageData.quoteThis.message?.pollCreationMessage?.name;
+            messageData.pollOptions = messageData.quoteThis.message?.pollCreationMessage?.options?.map((all) => all.optionName);
+            messageData.recMessage = recMessage;
+
+            /* Se for uma marcação de mídia */
+            if ((messageData.isCmd &amp;&amp; messageData.quotedMsgObj?.mimetype &amp;&amp; !messageData.isMedia) || (messageData.isCmd &amp;&amp; isViewOnce)) {
+                /* Define o conteúdo como a quotedMessage */
+                let quotMessage = viewOnce || messageData.quotedMsg?.quotedMessage || quotedViewOnce;
+
+                /* Se for uma quoted com ViewOnce */
+                quotMessage = quotedViewOnce || quotMessage;
+
+                /* Define o mimetype da quotedMessage */
+                const myMimetype = quotMessage[Object.keys(quotMessage)[0]]?.mimetype || 'Not valid';
+
+                /* Verifica se é algo válido para descriptografar */
+                if (messageData.decryptFormats.includes(Object.keys(quotMessage)[0].replace('Message', '').toLowerCase())) {
+                    /* Só baixa se não passar do peso limite (16MB padrão) */
+                    if (((recMessage?.fileLength?.low || recMessage?.fileLength?.high || 1000) / 1024) &lt;= config.maxDecryptSize.value) {
+                        /* Baixa a mídia */
+                        const demess = await downloadContentFromMessage(quotMessage[Object.keys(quotMessage)[0]], Object.keys(quotMessage)[0].replace('Message', ''));
+
+                        /* Cria um buffer */
+                        messageData.decryptedMedia = Buffer.from([]);
+
+                        /* Faz um for await para unir os pedaços de buffer */
+                        // eslint-disable-next-line no-restricted-syntax
+                        for await (const chunk of demess) {
+                            /* Adicionando eles como a mídia descriptograda */
+                            messageData.decryptedMedia = Buffer.concat([messageData.decryptedMedia, chunk]);
+                        }
+
+                        /* Redefine variaveis para a mídia marcada */
+                        /* eslint-disable-next-line no-nested-ternary */
+                        messageData.encryptMedia = (isViewOnce &amp;&amp; viewOnceObj) ? viewOnce[Object.keys(viewOnce)[0]] : (isViewOnce ? messageData.recMessage : messageData.quotedMsgObj);
+                        messageData.isMedia = true;
+                        messageData.mimetype = myMimetype || '';
+                        messageData.isVideo = ['video/mp4', 'video', 'video/mpeg', 'video/quicktime', 'video/x-flv', 'video/x-ms-asf', 'video/avi', 'video/3gpp'].includes(myMimetype);
+                        messageData.isImage = ['image', 'image/jpeg', 'image/bmp', 'image/png', 'image/webp'].includes(myMimetype);
+                        messageData.canSticker = messageData.isImage || messageData.isVideo || false;
+                    }
+                }
+
+                /* Define os tipos */
+                messageData.quotedType = messageData.quotedMsg?.quotedMessage ? (Object.keys(messageData.quotedMsg?.quotedMessage)[0] || 'conversation') : 'conversation';
+                messageData.quotedBaseMsg = messageData.quotedMsg?.quotedMessage || {};
+
+                /* Ajusta a type se for ViewOnce marcada */
+                if (quotedViewOnce) {
+                    messageData.quotedType = quotedViewOnce ? (Object.keys(quotedViewOnce)[0] || 'conversation') : 'conversation';
+                    messageData.quotedBaseMsg = quotedViewOnce || {};
+                }
+
+                /* Define o type formatado */
+                messageData.quotedTypeFormated = messageData.quotedType.replace('Message', '');
+                messageData.quotedTypeLower = messageData.quotedTypeFormated.toLowerCase();
+            }
+
+            /* --------------------- Sticker Info -------------------- */
+
+            /* Define se é um sticker */
+            messageData.isSticker = messageData.typeLower === 'sticker';
+
+            /* Define se é um sticker mencionado */
+            messageData.isQuotedSticker = messageData.quotedTypeLower === 'sticker';
+
+            /* Define se é animado */
+            messageData.isAnimated = recMessage?.isAnimated === true;
+
+            /* Define se é um sticker mencionado animado */
+            messageData.isQuotedAnimated = messageData.quotedMsgObj.isAnimated;
+
+            /* Se for um sticker */
+            if ((messageData.isSticker || messageData.isQuotedSticker) &amp;&amp; messageData.decryptedMedia) {
+                /* Extrai a metadata */
+                messageData.stickerMetadata = await extractMetadata(messageData.decryptedMedia).catch(() => {
+                    /* Redefine o stickerMetadata */
+                    messageData.stickerMetadata = {
+                        emojis: [],
+                        'sticker-pack-id': '',
+                        'sticker-pack-name': '',
+                        'sticker-author-name': '',
+                        'sticker-pack-publisher': '',
+                        'android-app-store-link': '',
+                        'ios-app-store-link': '',
+                    };
+                });
+            }
+
+            /* --------------------- Jogos --------------------------- */
+
+            /* Define as patentes pelo idioma */
+            messageData.allPatents = levelSettings.patentes[region];
+
+            /* Adquire a patente do usuário */
+            messageData.patente = Indexer('others').patent(Leveling.level, messageData.allPatents).value;
+
+            /* Define o XP total para upar */
+            messageData.requiredXP = Math.floor((Leveling.level + 1) * (levelSettings.base.value * levelSettings.multiplier.value));
+
+            /* Calcula o novo nível */
+            let newLevel = 0;
+            let fullLevel = Leveling.level;
+
+            /* Verifica se o XP atual é suficiente para avançar para o próximo nível */
+            if (Leveling.xp >= messageData.requiredXP) {
+                /* Calcula o novo nível com base no XP atual | 0.82 é o expoente mais seguro */
+                newLevel = Math.floor(((Leveling.xp - messageData.requiredXP) / (levelSettings.base.value * levelSettings.multiplier.value)) ** 0.82);
+                fullLevel += newLevel;
+
+                /* Atualiza o XP necessário com base no novo nível */
+                messageData.requiredXP = Math.floor((fullLevel + 1) * (levelSettings.base.value * levelSettings.multiplier.value));
+
+                /* Se o XP atual ainda é suficiente */
+                if (Leveling.xp >= messageData.requiredXP) {
+                    /* Aumenta o level em +1 */
+                    newLevel += 1;
+                    fullLevel = Leveling.level + newLevel;
+
+                    /* Ajusta novamente o XP necessário */
+                    messageData.requiredXP = Math.floor((fullLevel + 1) * (levelSettings.base.value * levelSettings.multiplier.value));
+                }
+            }
+
+            /* Define o nivel atual sem considerar o último upado */
+            fullLevel -= 1;
+
+            /* Define a base das imagens */
+            messageData.profilePics = false;
+
+            /* Define a Object de atualizar valores */
+            const gainValues = {
+                level: newLevel,
+            };
+
+            /* Define quanto vai ganhar de cada item */
+            Object.keys(levelSettings.materials.value.wins).forEach((h) => {
+                /* Salva na object o valor */
+                gainValues[h] = (Math.floor(levelSettings.materials.value.wins[h] * (fullLevel * levelSettings.materials.value.multiply) - fullLevel)) || levelSettings.materials.value.wins[h];
+            });
+
+            /* Remove valores inválidos */
+            Object.keys(gainValues).forEach((g) => {
+                /* Como abaixo de zero ou Infinity */
+                if (gainValues[g] &lt; 0 || gainValues[g] === Infinity) {
+                    /* Define o valor como 1 */
+                    gainValues[g] = 1;
+
+                    /* Se for level, ajusta o XP requisitado */
+                    if (g === 'level') {
+                        /* Ajusta novamente o XP necessário */
+                        messageData.requiredXP = Math.floor((gainValues.level + 1) * (levelSettings.base.value * levelSettings.multiplier.value));
+                    }
+                }
+            });
+            messageData.winTaxes = gainValues;
+
+            /* Verifica se foi level up */
+            if (newLevel !== 0 &amp;&amp; functions.leveling.enable) {
+                /* Ganha valores */
+                messageData.leveling = Indexer('sql').update('leveling', messageData.user, messageData.chatId, false, gainValues).value;
+
+                /* Adquire a patente do usuário novamente */
+                messageData.patente = Indexer('others').patent(messageData.leveling.level, messageData.allPatents).value;
+
+                /* Se tiver o card ativo */
+                if (levelSettings.card.value) {
+                    /* Obtém a foto de perfil */
+                    messageData.profilePics = await Indexer('profile').perfil(kill, {
+                        value: {
+                            quotedMsg: messageData.quotedMsg,
+                            decryptedMedia: messageData.decryptedMedia,
+                            mentionedJidList: messageData.mentionedJidList,
+                            groupMembersId: messageData.groupMembersId,
+                            canSticker: messageData.canSticker,
+                            mimetype: messageData.mimetype,
+                        },
+                    }, true);
+                    messageData.profilePics = messageData.profilePics.value;
+
+                    /* Gera um card */
+                    const cardLeveling = await Indexer('cards').up(messageData.profilePics[0], messageData.personal.name.text, Leveling.level, messageData.leveling.level);
+
+                    /* Envia */
+                    await kill.sendMessage(messageData.chatId, { image: cardLeveling.value, caption: `🎉 *LEVEL UP! @${messageData.userFormated}!* 🎉\n\n🎓 Patente: ${messageData.patente}\n📈 XP: ${messageData.leveling.xp}/${messageData.requiredXP}\n🎚️ Level: ${Leveling.level} ➔ ${messageData.leveling.level}\n📬 Messages: ${messageData.leveling.messages}\n💰 Coin: ${messageData.leveling.coin}\n💎 Diamond: ${messageData.leveling.diamond}\n🔴 Rubi: ${messageData.leveling.rubi}\n🪨 Stone: ${messageData.leveling.stone}\n🏆 Gold: ${messageData.leveling.gold}\n🪙 Iron: ${messageData.leveling.iron}\n🌲 Wood: ${messageData.leveling.wood}`, mentions: [messageData.user] });
+                }
+            }
+
+            /* Adiciona a informação de grupo ativo na DB */
+            Indexer('sql').custom('global', messageData.user, messageData.chatId, 'SELECT \'OK\';');
+
+            /* Caso um dos parâmetros enviados não esteja OK */
+        } else {
+            /* Define os dados como a mensagem raiz (ainda causará erros, mas será muito melhor que null, false, etc */
+            let recMessage = messageData.quoteThis.message[Object.keys(messageData.quoteThis.message)[0]];
+            recMessage = recMessage?.message ? recMessage?.message[Object.keys(recMessage?.message)[0]] : recMessage;
+            messageData = {
+                ...messageData,
+                ...recMessage,
+            };
+        }
+
+        /* Define o resultado final */
+        envInfo.results.value = messageData;
+
+        /* Define o sucesso */
+        envInfo.results.success = true;
+
+        /* Caso de algum erro */
+    } catch (error) {
+        /* Insere tudo na envInfo */
+        logging.echoError(error, envInfo, __dirname);
+    }
+
+    /* Retorna a nova Array */
+    return logging.postResults(envInfo);
+}
+
+/* Define a pasta correta */
+function locateFolder(foldername) {
+    /* Define o nome das pastas */
+    let file = fs.readdirSync(envInfo.parameters.baseCMDs.value);
+
+    /* Busca a pasta correta do arquivo SQL */
+    file = file.filter((fd) => fd.toLowerCase() === foldername.toLowerCase())[0] || false;
+
+    /* Retorna o encontrado */
+    return file;
+}
+
+/* Faz a função para obter os comandos, sem envInfo */
+function controlSystem(
+    cmdTimes = envInfo.functions.control.arguments.cmdTimes.value,
+) {
+    /* Determina o resultado */
+    let switcheroo = false;
+
+    /* Define valor padrão */
+    let commandName = locateFolder(cmdTimes) || cmdTimes || 'Default';
+
+    /* Try pra caso o arquivo de função não exista */
+    try {
+        /* Define Default se for main */
+        if (cmdTimes === 'main' || cmdTimes === 'Main') {
+            /* Retorna 'default', indo para os comandos sem prefix */
+            commandName = 'Default';
+        }
+
+        /* Determina a pasta de verificação por case */
+        let commander = Object.keys(envInfo.parameters.alias.value).filter((cm) => envInfo.parameters.alias.value[cm].includes(commandName));
+
+        /* Se ainda for vazio */
+        if (commander.length === 0) {
+            /* Obtém comandos similares */
+            commander = Object.entries(envInfo.parameters.alias.value).reduce((result, [key, words]) => {
+                /* Faz uma verificação de palavra a palavra */
+                const similarWords = words.filter((f) => {
+                    /* Similar -> 0-100 */
+                    const similarity = issimilar(commandName, f) * 100;
+
+                    /* Se ela for maior que x (70% padrão) */
+                    return similarity >= config.minSimilarity.value;
+                });
+
+                /* Se houver palavras similares */
+                if (similarWords.length > 0) {
+                    /* Adiciona ao resultado a pasta do comando */
+                    result.push(key);
+                }
+
+                /* Retorna o resultado */
+                return result;
+            }, []);
+        }
+
+        /* Define o comando */
+        commander = commander[0] || 'Default';
+
+        /* Verifica pelo commandName (Pelo nome da pasta) */
+        if (fs.existsSync(`${envInfo.parameters.baseCMDs.value}${commandName}`)) {
+            /* Define a pasta */
+            switcheroo = `../../${commandName}`;
+
+            /* Só edita se não existir no formato atual */
+            if (envInfo.parameters.alias.value[commandName] == null) {
+                /* Define o arquivo padrão para não enviar dados ruins */
+                const defaultEnvir = JSON.parse(fs.readFileSync(`${__dirname}/utils.json`));
+
+                /* Define a alias atual */
+                const alliesBro = Object.keys(defaultEnvir.parameters.alias.value).filter((d) => d.toLowerCase() === commandName.toLowerCase())[0];
+
+                /* Se existir um valor já, mas a pasta tenha sido só trocado pelo case insensitive */
+                if (defaultEnvir.parameters.alias.value[alliesBro] != null &amp;&amp; alliesBro !== commandName) {
+                    /* Troca o valor */
+                    defaultEnvir.parameters.alias.value[commandName] = defaultEnvir.parameters.alias.value[alliesBro];
+
+                    /* Deleta o antigo */
+                    delete defaultEnvir.parameters.alias.value[alliesBro];
+
+                    /* Se nenhum caso, define automaticamente */
+                } else {
+                    /* Com base no commandName */
+                    defaultEnvir.parameters.alias.value[commandName] = defaultEnvir.parameters.alias.value[commandName] || [commandName.toLowerCase()];
+                }
+
+                /* Salva no arquivo */
+                fs.writeFileSync(`${__dirname}/utils.json`, JSON.stringify(defaultEnvir, null, 4));
+
+                /* Redefine a envInfo */
+                envInfo.functions.revert.value();
+            }
+
+            /* Verifica pelo commander (Alias) */
+        } else if (fs.existsSync(`${envInfo.parameters.baseCMDs.value}${commander}`)) {
+            /* Define a pasta */
+            switcheroo = `../../${commander}`;
+
+            /* Caso não tenha o comando */
+        } else {
+            /* Define como Default (Cases/No Prefix) */
+            switcheroo = '../../Default';
+        }
+
+        /* Faz a exports e retorna ela */
+        /* eslint-disable-next-line global-require, import/no-dynamic-require */
+        const Sys = require(switcheroo);
+        return Sys[Object.keys(Sys)[0]];
+
+        /* Caso de algum erro */
+    } catch (error) {
+        /* Exibe o erro direto, essa parte não é da envInfo, até por que é sensivel */
+        console.log(error);
+    }
+
+    /* Retorna um valor padrão se não funcionar acima */
+    return false;
+}
+
+/**
+ * Restaura o ambiente e atualiza as exportações do módulo com a funcionalidade principal
+ * @param {Object} [changeKey={}] - Chaves personalizadas para atualizar o envInfo
+ * @param {Object} [envFile=envInfo] - Objeto com informações do ambiente
+ * @param {string} [dirname=__dirname] - Caminho do diretório atual
+ * @returns {Object} Exportações do módulo com todas as funções configuradas
+ */
+/* eslint-disable-next-line no-return-assign */
+const resetLocal = (
+    changeKey = {},
+    envFile = envInfo,
+    dirname = __dirname,
+) => module.exports = logging.resetAmbient({
+    functions: {
+        [envInfo.exports.env]: { value: ambientDetails },
+        [envInfo.exports.messedup]: { value: logging.echoError },
+        [envInfo.exports.poswork]: { value: logging.postResults },
+        [envInfo.exports.reset]: { value: resetLocal },
+        [envInfo.exports.make]: { value: dataCollect },
+        [envInfo.exports.control]: { value: controlSystem },
+    },
+    parameters: {
+        location: { value: __filename },
+    },
+}, envFile, changeKey, dirname);
+resetLocal();
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-ConnectionManager.html">ConnectionManager</a></li><li><a href="module-TerminalStarter.html">TerminalStarter</a></li></ul><h3>Global</h3><ul><li><a href="global.html#.onclick">.onclick</a></li><li><a href="global.html#addMessageHandler">addMessageHandler</a></li><li><a href="global.html#ambientDetails">ambientDetails</a></li><li><a href="global.html#blurImage">blurImage</a></li><li><a href="global.html#calculateIdealNctx">calculateIdealNctx</a></li><li><a href="global.html#caseChecker">caseChecker</a></li><li><a href="global.html#caseDefault">caseDefault</a></li><li><a href="global.html#checkGaming">checkGaming</a></li><li><a href="global.html#checker">checker</a></li><li><a href="global.html#chessDogs">chessDogs</a></li><li><a href="global.html#cleanInvalidIPs">cleanInvalidIPs</a></li><li><a href="global.html#clearHistory">clearHistory</a></li><li><a href="global.html#commandCache">commandCache</a></li><li><a href="global.html#controlSystem">controlSystem</a></li><li><a href="global.html#controlSystemAsync">controlSystemAsync</a></li><li><a href="global.html#createCard">createCard</a></li><li><a href="global.html#createList">createList</a></li><li><a href="global.html#createListRow">createListRow</a></li><li><a href="global.html#createListener">createListener</a></li><li><a href="global.html#currentSort">currentSort</a></li><li><a href="global.html#customCommand">customCommand</a></li><li><a href="global.html#deepMerge">deepMerge</a></li><li><a href="global.html#dialoguePicker">dialoguePicker</a></li><li><a href="global.html#echoError">echoError</a></li><li><a href="global.html#envInfoGenerator">envInfoGenerator</a></li><li><a href="global.html#executeSQLCommand">executeSQLCommand</a></li><li><a href="global.html#executeSQLite">executeSQLite</a></li><li><a href="global.html#filterValues">filterValues</a></li><li><a href="global.html#findProperty">findProperty</a></li><li><a href="global.html#finishStartup">finishStartup</a></li><li><a href="global.html#fixDatabase">fixDatabase</a></li><li><a href="global.html#formatBase64">formatBase64</a></li><li><a href="global.html#functionString">functionString</a></li><li><a href="global.html#genSession">genSession</a></li><li><a href="global.html#generateContent">generateContent</a></li><li><a href="global.html#generateList">generateList</a></li><li><a href="global.html#generateResponse">generateResponse</a></li><li><a href="global.html#generateSessions">generateSessions</a></li><li><a href="global.html#getBuffer">getBuffer</a></li><li><a href="global.html#getKeyword">getKeyword</a></li><li><a href="global.html#getPatent">getPatent</a></li><li><a href="global.html#getRelativePath">getRelativePath</a></li><li><a href="global.html#getValues">getValues</a></li><li><a href="global.html#handleConnectionError">handleConnectionError</a></li><li><a href="global.html#handleFailedAttempts">handleFailedAttempts</a></li><li><a href="global.html#handleSystemError">handleSystemError</a></li><li><a href="global.html#handleUnmappedCommand">handleUnmappedCommand</a></li><li><a href="global.html#hasCUDA">hasCUDA</a></li><li><a href="global.html#initSocketConnection">initSocketConnection</a></li><li><a href="global.html#initializeModel">initializeModel</a></li><li><a href="global.html#irisPlaying">irisPlaying</a></li><li><a href="global.html#isListView">isListView</a></li><li><a href="global.html#isValidDate">isValidDate</a></li><li><a href="global.html#loadCommandModule">loadCommandModule</a></li><li><a href="global.html#loadCommandModuleAsync">loadCommandModuleAsync</a></li><li><a href="global.html#loadConfigWithRetry">loadConfigWithRetry</a></li><li><a href="global.html#locateFolder">locateFolder</a></li><li><a href="global.html#locateObjectKey">locateObjectKey</a></li><li><a href="global.html#logDebugInfo">logDebugInfo</a></li><li><a href="global.html#logPerformance">logPerformance</a></li><li><a href="global.html#minifyFile">minifyFile</a></li><li><a href="global.html#minifyFolder">minifyFolder</a></li><li><a href="global.html#missing">missing</a></li><li><a href="global.html#modelConfigs">modelConfigs</a></li><li><a href="global.html#myFunction">myFunction</a></li><li><a href="global.html#partners">partners</a></li><li><a href="global.html#postResults">postResults</a></li><li><a href="global.html#processMessages">processMessages</a></li><li><a href="global.html#programDownloads">programDownloads</a></li><li><a href="global.html#programExists">programExists</a></li><li><a href="global.html#purgeValues">purgeValues</a></li><li><a href="global.html#rankingValues">rankingValues</a></li><li><a href="global.html#readingMessages">readingMessages</a></li><li><a href="global.html#removeCommentsAndEmptyLines">removeCommentsAndEmptyLines</a></li><li><a href="global.html#removeValues">removeValues</a></li><li><a href="global.html#replaceInAll">replaceInAll</a></li><li><a href="global.html#replaceSystem">replaceSystem</a></li><li><a href="global.html#replaceText">replaceText</a></li><li><a href="global.html#resetAmbient">resetAmbient</a></li><li><a href="global.html#resolveCommandPath">resolveCommandPath</a></li><li><a href="global.html#runTasks">runTasks</a></li><li><a href="global.html#safePathJoin">safePathJoin</a></li><li><a href="global.html#sleep">sleep</a></li><li><a href="global.html#sortByColumn">sortByColumn</a></li><li><a href="global.html#sqlDatabase">sqlDatabase</a></li><li><a href="global.html#toggleDescription">toggleDescription</a></li><li><a href="global.html#toggleListView">toggleListView</a></li><li><a href="global.html#undoValues">undoValues</a></li><li><a href="global.html#updateSortIcons">updateSortIcons</a></li><li><a href="global.html#updateSymlinks">updateSymlinks</a></li><li><a href="global.html#updateValues">updateValues</a></li><li><a href="global.html#urlExists">urlExists</a></li><li><a href="global.html#urlGo">urlGo</a></li><li><a href="global.html#validateCommandName">validateCommandName</a></li><li><a href="global.html#validateJSON">validateJSON</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Sun Apr 13 2025 17:34:05 GMT-0300 (Horário Padrão de Brasília)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

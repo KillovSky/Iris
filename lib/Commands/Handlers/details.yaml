@@ -1,0 +1,27 @@
+name: Handlers
+hide: false
+type:
+  - Tasks
+  - Admins
+  - Admin
+  - Info
+  - Help
+  - Group
+subcommands:
+  - AntiFake
+  - AutoStickers
+  - Handlers
+  - AntiLinks
+  - BlackList
+  - Prefix
+  - Nsfw
+  - Spy
+  - Dnd
+  - Vips
+  - Mods
+  - Language
+  - Goodbye
+  - WhiteList
+  - Leveling
+  - Welcome
+  - AntiSpam

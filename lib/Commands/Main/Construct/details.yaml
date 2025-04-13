@@ -1,0 +1,14 @@
+name: Construct
+hide: true
+type:
+  - Constructor
+  - Process
+  - Controller
+  - Messages
+  - DANGEROURS
+subcommands:
+  - NOCOMMAND
+  - DONTTOUCH
+  - HIDEHERE
+  - DANGEROUS
+  - RISKOFBAN

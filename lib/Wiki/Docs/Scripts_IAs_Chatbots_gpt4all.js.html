@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Scripts/IAs/Chatbots/gpt4all.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Scripts/IAs/Chatbots/gpt4all.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/* Importa as funções necessárias */
+const { createCompletion, loadModel } = require('gpt4all');
+const { setMaxTokens } = require('./tokens');
+
+/* Variáveis globais para armazenar o modelo, config e a sessão de chat */
+let model = null;
+let chat = null;
+let calculatedToken = 0;
+global.config = global.config || {};
+global.region = global.region || 'pt';
+let modelFile = global?.config?.gptModel?.value || 'rocket-3b.Q4_0.gguf';
+
+/**
+ * Retorna o estado atual do modelo e da sessão de chat.
+ *
+ * @returns {Object} - Objeto contendo o estado do modelo e da sessão de chat.
+ */
+function modelConfigs() {
+    /* Retorna os dados completos */
+    return {
+        isOnline: model !== null &amp;&amp; chat !== null,
+        model,
+        chat,
+    };
+}
+
+/**
+ * Inicializa o modelo e a sessão de chat.
+ *
+ * @param {string} [modelName='rocket-3b.Q4_0.gguf'] - Nome do modelo a ser carregado.
+ * @param {Object} [moreSettings={}] - Nome do modelo a ser carregado.
+ * @param {boolean} [isCleaning=false] - Nome do modelo a ser carregado.
+ * @returns {Promise&lt;Object|string>} - Uma promise que resolve ao carregar o model, chat ou 'ERROR'.
+ */
+async function initializeModel(modelName = 'rocket-3b.Q4_0.gguf', moreSettings = {}, isCleaning = false) {
+    /* Try para casos onde há erros maiores */
+    try {
+        /* Se não for para fazer a limpeza apenas */
+        if (!isCleaning) {
+            /* Define o modelo */
+            modelFile = modelName;
+
+            /* Calcula o token limite se necessário */
+            calculatedToken = config?.gptTokens?.value || calculatedToken || await setMaxTokens();
+
+            /* Se o modelo estiver aberto, fecha, se não crashará */
+            if (model) model.dispose();
+
+            /* Carrega o modelo com as opções especificadas */
+            model = await loadModel(modelFile, {
+                verbose: false,
+                device: 'gpu',
+                nCtx: config?.gptWindowSize?.value || 2048,
+            });
+        }
+
+        /* Define a idade da Íris */
+        const botAge = config?.botAge?.value || ((new Date().getFullYear()) - 2014);
+
+        /* Define o role */
+        const role = `You are a ${config?.botPersonality?.value || 'charming, charismatic, intelligent, helpful, caring, patient, and adorable'} ${config?.botGender?.value || 'human girl'}. Your sexuality is ${config?.botSexuality?.value || 'asexual and aromantic'}. Your name is ${config?.botName?.value || 'Iris'}, and you are ${botAge} years old. You were raised by ${config?.yourName?.value || 'KillovSky'}. Your communication style is ${config?.answerMode?.value || 'short, very friendly, and laid-back'}.`;
+
+        /* Inicializa uma sessão de chat no modelo */
+        chat = await model.createChatSession({
+            systemPrompt: config?.gptSystemPrompt?.value.replace(/DONT_TOUCH_HERE/gi, role) || `&lt;|im_start|>system\n${role}&lt;|im_end|>\n`,
+            nPredict: moreSettings?.nPredict || calculatedToken || 50,
+            temp: config?.gptTemperature?.value || 0.3,
+            temperature: config?.gptTemperature?.value || 0.3,
+            promptTemplate: config?.gptPromptTemplate?.value || '&lt;|im_start|>user\n%1&lt;|im_end|>\n&lt;|im_start|>assistant',
+            ...moreSettings,
+        });
+
+        /* Retorna o resultado */
+        return chat;
+
+        /* Se der erro */
+    } catch (error) {
+        /* Exibe o erro na stderr */
+        console.error(error);
+
+        /* Retorna ERROR para sinalizar falha */
+        return 'ERROR';
+    }
+}
+
+/**
+ * Limpa o histórico das mensagens feitas na IA.
+ */
+async function clearHistory() {
+    /* Reinicia o histórico de chats */
+    await initializeModel(modelFile, {}, true);
+}
+
+/**
+ * Gera uma resposta para o prompt fornecido.
+ *
+ * @param {string} prompt - O prompt para o qual a resposta deve ser gerada.
+ * @returns {Promise&lt;string>} - Uma promise que resolve com a response, 'INIT_REQUIRED' ou 'ERROR'.
+ */
+async function generateResponse(prompt) {
+    /* Try para casos onde há erros maiores */
+    try {
+        /* Se não iniciou ainda, retorna necessidade de inicio */
+        if (!chat) return 'INIT_REQUIRED';
+
+        /* Se chegou no limite de janela */
+        if (chat?.promptContext?.nPast > config?.gptWindowSize?.value) {
+            /* Reinicia o histórico de chats */
+            await clearHistory();
+        }
+
+        /* Cria uma conclusão usando o prompt fornecido */
+        const response = await createCompletion(chat, prompt);
+
+        /* Acessa e retorna a mensagem da resposta */
+        return response.choices[0].message;
+
+        /* Se der erro */
+    } catch (error) {
+        /* Exibe o erro na stderr */
+        console.error(error);
+
+        /* Retorna ERROR para sinalizar falha */
+        return 'ERROR';
+    }
+}
+
+/* Exporta as funções para serem utilizadas em outros módulos */
+module.exports = {
+    generate: generateResponse,
+    initialize: initializeModel,
+    config: modelConfigs,
+    clear: clearHistory,
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-ConnectionManager.html">ConnectionManager</a></li><li><a href="module-TerminalStarter.html">TerminalStarter</a></li></ul><h3>Global</h3><ul><li><a href="global.html#.onclick">.onclick</a></li><li><a href="global.html#addMessageHandler">addMessageHandler</a></li><li><a href="global.html#ambientDetails">ambientDetails</a></li><li><a href="global.html#blurImage">blurImage</a></li><li><a href="global.html#calculateIdealNctx">calculateIdealNctx</a></li><li><a href="global.html#caseChecker">caseChecker</a></li><li><a href="global.html#caseDefault">caseDefault</a></li><li><a href="global.html#checkGaming">checkGaming</a></li><li><a href="global.html#checker">checker</a></li><li><a href="global.html#chessDogs">chessDogs</a></li><li><a href="global.html#cleanInvalidIPs">cleanInvalidIPs</a></li><li><a href="global.html#clearHistory">clearHistory</a></li><li><a href="global.html#commandCache">commandCache</a></li><li><a href="global.html#controlSystem">controlSystem</a></li><li><a href="global.html#controlSystemAsync">controlSystemAsync</a></li><li><a href="global.html#createCard">createCard</a></li><li><a href="global.html#createList">createList</a></li><li><a href="global.html#createListRow">createListRow</a></li><li><a href="global.html#createListener">createListener</a></li><li><a href="global.html#currentSort">currentSort</a></li><li><a href="global.html#customCommand">customCommand</a></li><li><a href="global.html#deepMerge">deepMerge</a></li><li><a href="global.html#dialoguePicker">dialoguePicker</a></li><li><a href="global.html#echoError">echoError</a></li><li><a href="global.html#envInfoGenerator">envInfoGenerator</a></li><li><a href="global.html#executeSQLCommand">executeSQLCommand</a></li><li><a href="global.html#executeSQLite">executeSQLite</a></li><li><a href="global.html#filterValues">filterValues</a></li><li><a href="global.html#findProperty">findProperty</a></li><li><a href="global.html#finishStartup">finishStartup</a></li><li><a href="global.html#fixDatabase">fixDatabase</a></li><li><a href="global.html#formatBase64">formatBase64</a></li><li><a href="global.html#functionString">functionString</a></li><li><a href="global.html#genSession">genSession</a></li><li><a href="global.html#generateContent">generateContent</a></li><li><a href="global.html#generateList">generateList</a></li><li><a href="global.html#generateResponse">generateResponse</a></li><li><a href="global.html#generateSessions">generateSessions</a></li><li><a href="global.html#getBuffer">getBuffer</a></li><li><a href="global.html#getKeyword">getKeyword</a></li><li><a href="global.html#getPatent">getPatent</a></li><li><a href="global.html#getRelativePath">getRelativePath</a></li><li><a href="global.html#getValues">getValues</a></li><li><a href="global.html#handleConnectionError">handleConnectionError</a></li><li><a href="global.html#handleFailedAttempts">handleFailedAttempts</a></li><li><a href="global.html#handleSystemError">handleSystemError</a></li><li><a href="global.html#handleUnmappedCommand">handleUnmappedCommand</a></li><li><a href="global.html#hasCUDA">hasCUDA</a></li><li><a href="global.html#initSocketConnection">initSocketConnection</a></li><li><a href="global.html#initializeModel">initializeModel</a></li><li><a href="global.html#irisPlaying">irisPlaying</a></li><li><a href="global.html#isListView">isListView</a></li><li><a href="global.html#isValidDate">isValidDate</a></li><li><a href="global.html#loadCommandModule">loadCommandModule</a></li><li><a href="global.html#loadCommandModuleAsync">loadCommandModuleAsync</a></li><li><a href="global.html#loadConfigWithRetry">loadConfigWithRetry</a></li><li><a href="global.html#locateFolder">locateFolder</a></li><li><a href="global.html#locateObjectKey">locateObjectKey</a></li><li><a href="global.html#logDebugInfo">logDebugInfo</a></li><li><a href="global.html#logPerformance">logPerformance</a></li><li><a href="global.html#minifyFile">minifyFile</a></li><li><a href="global.html#minifyFolder">minifyFolder</a></li><li><a href="global.html#missing">missing</a></li><li><a href="global.html#modelConfigs">modelConfigs</a></li><li><a href="global.html#myFunction">myFunction</a></li><li><a href="global.html#partners">partners</a></li><li><a href="global.html#postResults">postResults</a></li><li><a href="global.html#processMessages">processMessages</a></li><li><a href="global.html#programDownloads">programDownloads</a></li><li><a href="global.html#programExists">programExists</a></li><li><a href="global.html#purgeValues">purgeValues</a></li><li><a href="global.html#rankingValues">rankingValues</a></li><li><a href="global.html#readingMessages">readingMessages</a></li><li><a href="global.html#removeCommentsAndEmptyLines">removeCommentsAndEmptyLines</a></li><li><a href="global.html#removeValues">removeValues</a></li><li><a href="global.html#replaceInAll">replaceInAll</a></li><li><a href="global.html#replaceSystem">replaceSystem</a></li><li><a href="global.html#replaceText">replaceText</a></li><li><a href="global.html#resetAmbient">resetAmbient</a></li><li><a href="global.html#resolveCommandPath">resolveCommandPath</a></li><li><a href="global.html#runTasks">runTasks</a></li><li><a href="global.html#safePathJoin">safePathJoin</a></li><li><a href="global.html#sleep">sleep</a></li><li><a href="global.html#sortByColumn">sortByColumn</a></li><li><a href="global.html#sqlDatabase">sqlDatabase</a></li><li><a href="global.html#toggleDescription">toggleDescription</a></li><li><a href="global.html#toggleListView">toggleListView</a></li><li><a href="global.html#undoValues">undoValues</a></li><li><a href="global.html#updateSortIcons">updateSortIcons</a></li><li><a href="global.html#updateSymlinks">updateSymlinks</a></li><li><a href="global.html#updateValues">updateValues</a></li><li><a href="global.html#urlExists">urlExists</a></li><li><a href="global.html#urlGo">urlGo</a></li><li><a href="global.html#validateCommandName">validateCommandName</a></li><li><a href="global.html#validateJSON">validateJSON</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Sun Apr 13 2025 17:34:05 GMT-0300 (Horário Padrão de Brasília)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

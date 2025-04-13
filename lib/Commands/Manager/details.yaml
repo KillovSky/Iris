@@ -1,0 +1,29 @@
+name: Manager
+hide: false
+type:
+  - Tasks
+  - Admins
+  - Admin
+  - Info
+  - Help
+  - Group
+subcommands:
+  - SoADM
+  - OnlyAdms
+  - Censor
+  - UnCensor
+  - Manager
+  - SoftBan
+  - Kick
+  - Remove
+  - Promote
+  - ToADM
+  - Warn
+  - UnWarn
+  - GiveADM
+  - Demote
+  - TirarADM
+  - UndoADM
+  - Add
+  - Unban
+  - UnKick

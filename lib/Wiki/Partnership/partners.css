@@ -18,7 +18,6 @@ header {
     z-index: 1000;
 }
 
-/* Menu com os Botões, lado a lado em telas grandes */
 .menu-list {
     display: flex;
     align-items: center;
@@ -26,7 +25,6 @@ header {
     gap: 15px;
 }
 
-/* Menu hamburguer */
 #hamburgerMenu {
     display: none;
     background: none;
@@ -36,18 +34,17 @@ header {
     cursor: pointer;
 }
 
-/* Exibir o menu hamburguer em dispositivos menores */
 @media (max-width: 768px) {
     .card {
-        width: 100%; /* 100% da largura em telas pequenas */
-        max-width: 90vw; /* Limita a largura do card para não ultrapassar 90% da largura da tela */
-        height: auto; /* Altura flexível */
-        min-height: 250px; /* Altura mínima para o card */
-        margin: 15px; /* Ajuste a margem */
+        width: 100%;
+        max-width: 90vw;
+        height: auto;
+        min-height: 250px;
+        margin: 15px;
     }
 
     .card img {
-        height: 150px; /* Ajuste para imagens em telas pequenas */
+        height: 150px;
         object-fit: cover;
     }
 
@@ -86,50 +83,18 @@ header {
     }
 }
 
-/* Nome da Card */
-.card .name {
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin: 8px 0;
-}
-
-/* Tipo (como "Streamer", "Project", etc.) */
 .card .type {
     font-size: 1rem;
     color: #e1e3e5;
     margin: 5px 0;
 }
 
-/* Data de Adição */
 .card .added-date {
     font-size: 0.9rem;
     color: #e1e3e5;
     margin-bottom: 10px;
 }
 
-/* Descrição do Card */
-.card .description-text {
-    font-size: 0.9rem;
-    color: #e1e3e5;
-    margin-bottom: 10px;
-}
-
-/* Botão de descrição */
-.card .description-text button {
-    background: none;
-    border: none;
-    color: #0d6ea3;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: color 0.3s ease;
-}
-
-.card .description-text button:hover {
-    color: #06273a;
-}
-
-
-/* Botões principais */
 header .btn {
     background-color: #0d6ea3;
     color: #ffffff;
@@ -168,7 +133,6 @@ header .btn i {
     background-color: #06273a;
 }
 
-/* Card Principal */
 .card {
     width: 250px;
     height: auto;
@@ -190,7 +154,7 @@ header .btn i {
     box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* Imagem do Card */
+
 .card img {
     width: 100%;
     height: 180px;
@@ -198,28 +162,26 @@ header .btn i {
     border-radius: 15px;
 }
 
-/* Corpo do Card */
+
 .card-body {
     padding: 10px;
     text-align: center;
     flex-grow: 1;
 }
 
-/* Nome da Card */
+
 .card .name {
     font-size: 1.2rem;
     font-weight: bold;
     margin: 8px 0;
 }
 
-/* Descrição do Card */
 .card .description-text {
     font-size: 0.9rem;
     color: #e1e3e5;
     margin-bottom: 10px;
 }
 
-/* Botão de descrição */
 .card .description-text button {
     background: none;
     border: none;
@@ -240,7 +202,8 @@ header .btn i {
     overflow: hidden;
 }
 
-.table th, .table td {
+.table th,
+.table td {
     vertical-align: middle;
     padding: 15px;
     text-align: center;
@@ -270,17 +233,17 @@ header .btn i {
     color: #0d6efd;
 }
 
-/* Responsividade para dispositivos móveis muito pequenos */
+
 @media (max-width: 480px) {
     .card {
         width: 100%;
-        max-width: 90vw; /* A largura do card fica limitada a 90% da tela */
+        max-width: 90vw;
         height: auto;
         min-height: 250px;
     }
 
     .card img {
-        height: 120px; /* Ajuste a altura da imagem */
+        height: 120px;
     }
 
     .card .name {

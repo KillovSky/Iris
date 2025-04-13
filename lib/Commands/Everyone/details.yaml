@@ -1,0 +1,13 @@
+name: Everyone
+hide: false
+type:
+  - Tasks
+  - Info
+  - Help
+  - Admins
+  - Admin
+  - Group
+subcommands:
+  - Everyone
+  - ToTag
+  - MentionAll

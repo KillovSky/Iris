@@ -25,3 +25,4 @@ globals:
   irisNumber: true
   messagesCount: true
   irisPath: true
+  logging: true

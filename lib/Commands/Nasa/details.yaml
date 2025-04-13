@@ -1,0 +1,15 @@
+name: NASA
+hide: false
+type:
+  - Space
+  - Info
+  - Midias
+  - Media
+  - Image
+  - Images
+  - Imagens
+  - Gov
+subcommands:
+  - Nasa
+  - Apod
+  - Space

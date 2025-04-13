@@ -8,12 +8,16 @@
             "another.list('chatIDs')",
             "another.sleep('milisseconds')",
             "another.buffer('midia url')",
+            "another.merge(object, object2)",
+            "another.date('timestamp')",
             "another.blur('buffer', 'blur level', 'bright level')",
             "another.scale('image data', 'width', 'height', 'topLeftWidth', 'topLeftHeight', 'context canvas', 'type math')",
             "another.reset()",
             "another.env.functions.list.value('chatIDs')",
             "another.env.functions.sleep.value('milisseconds')",
             "another.env.functions.buffer.value('midia url')",
+            "another.env.functions.date.value('timestamp')",
+            "another.env.functions.merge.value(object, object2)",
             "another.env.functions.blur.value('buffer', 'blur level', 'bright level')",
             "another.env.functions.scale.value('image data', 'width', 'height', 'topLeftWidth', 'topLeftHeight', 'context canvas', 'type math')",
             "another.env().functions.revert.value()"
@@ -35,7 +39,9 @@
         "sleep": "sleep",
         "buffer": "buffer",
         "patent": "patent",
+        "date": "date",
         "blur": "blur",
+        "merge": "merge",
         "urlexists": "urlexists",
         "farpc": "farpc",
         "findkey": "findkey",
@@ -71,6 +77,35 @@
                 }
             },
             "description": "Ajusta os valores de erro.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "date": {
+            "arguments": {
+                "timestamp": {
+                    "description": "Data em formato UNIX para checagem.",
+                    "type": "Boolean / Error",
+                    "value": false
+                }
+            },
+            "description": "Verifica e retorna se uma string ou número é uma data.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "merge": {
+            "arguments": {
+                "target": {
+                    "description": "Object base da injeção.",
+                    "type": "Object",
+                    "value": {}
+                },
+                "source": {
+                    "description": "Object para injeção.",
+                    "type": "Object",
+                    "value": {}
+                }
+            },
+            "description": "Faz merge de duas objects diferentes a nivel profundo.",
             "type": "Boolean / Function",
             "value": false
         },

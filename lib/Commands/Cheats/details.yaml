@@ -1,0 +1,13 @@
+name: Cheats
+hide: false
+type:
+  - Games
+  - Owner
+  - Dono
+  - Jogos
+subcommands:
+  - Cheats
+  - Cheat
+  - Give
+  - AddValue
+  - Trapacear

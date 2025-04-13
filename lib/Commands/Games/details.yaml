@@ -1,0 +1,19 @@
+name: Games
+hide: false
+type:
+  - Games
+  - Jogos
+subcommands:
+  - Games
+  - Spin
+  - Cassino
+  - Pedra
+  - Papel
+  - Tesoura
+  - Roleta
+  - Cara
+  - Steal
+  - Roubar
+  - Coroa
+  - Rolette
+  - Roll

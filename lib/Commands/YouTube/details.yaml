@@ -1,0 +1,17 @@
+name: YouTube
+hide: false
+type:
+  - Midias
+  - Media
+  - Video
+  - Videos
+  - Download
+  - Downloads
+  - WebSites
+subcommands:
+  - Play
+  - Youtube
+  - Video
+  - DownVideo
+  - DownAudio
+  - VideoSearch

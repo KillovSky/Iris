@@ -1,0 +1,11 @@
+name: Mix
+hide: false
+type:
+  - Games
+  - Jogos
+subcommands:
+  - Mix
+  - Guess
+  - Advinha
+  - Inverse
+  - Encoded

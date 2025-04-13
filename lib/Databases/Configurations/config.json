@@ -59,6 +59,10 @@
 		"description": "Defines what information is logged on the screen. A value of 1 prints all information, 2 for messages only, and 3 for commands only.",
 		"value": 1
 	},
+	"fixEscape": {
+		"description": "Enable this if you encounter errors with commas or symbols in SQLite. Note that this will remove, not escape, special characters. In anycase, still very useful with Íris database errors.",
+		"value": false
+	},
 	"fullError": {
 		"description": "The error log method. When set to 'true,' it prints all information, making it ideal for bug reporting. Alternatively, setting it to 'false' is suitable for experts and those who prefer concise and stylish error messages.",
 		"value": true
@@ -107,6 +111,10 @@
 		"description": "Specifies if Íris should not ignore reactions. If enabled, it will treat reactions as messages.",
 		"value": false
 	},
+    "logIndexer": {
+		"description": "Defines if Íris should print Indexer operations, like load, sync and more.",
+		"value": false
+	},
 	"maxCommands": {
 		"description": "Sets the maximum number of commands a user can run without triggering the anti-spam feature (cooldown is controlled by 'commandsCooldown').",
 		"value": 3
@@ -145,6 +153,22 @@
 			"<"
 		]
 	},
+	"reactOnWork": {
+		"description": "Defines if Íris will react on messages when doing some commands, request waiting or when receiving some error at execution of the message, DO NOT ABUSE.",
+		"value": {
+			"enable": false,
+			"emojis": {
+				"DONE": "✅",
+				"WAIT": "⌛",
+				"ERROR": "❌",
+				"COOLDOWN": "🛑"
+			}
+		}
+	},
+	"readOldMessages": {
+		"description": "This indicates if Íris should read loading messages when coming back online. This can slow down overall performance and may cause errors in media messages, but it is helpful for tasks like ranking and leveling.",
+		"value": false
+	},
 	"secureGroup": {
 		"description": "Specifies a secure group for receiving logs in case of system failures to send messages to the correct person or chat. Set 'false' to disable.",
 		"value": false
@@ -152,6 +176,10 @@
 	"secretKey": {
 		"description": "Sets the password used to bypass owner and admin requirements. Never use the default. Create a VERY STRONG password, as this can be SUPER HYPER EXTREMELY DANGEROUS.",
 		"value": "IrisBOT@Root#123"
+	},
+	"sendSER": {
+		"description": "Set how error messages will be sent. If set to 'false', it will only say an error occurred. If set to 'true', very detailed error messages will be sent on WhatsApp. Use these messages to contact the DEV community. | Careful, because: No log = No support.",
+		"value": true
 	},
 	"spammerTime": {
 		"description": "Sets the time in milliseconds to block any commands sent by someone spamming. For example, if set to 300000, the spammer will need to wait 5 minutes to run commands again.",

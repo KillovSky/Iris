@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Commands/Nasa/index.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Commands/Nasa/index.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/* eslint-disable max-len */
+
+/* Requires */
+const fs = require('fs');
+const NASA = require('@killovsky/nasa');
+const {
+    translate,
+} = require('@vitalets/google-translate-api');
+const Indexer = require('../../index');
+
+/* JSON's | Utilidades */
+const envInfo = JSON.parse(fs.readFileSync(`${__dirname}/utils.json`));
+
+/**
+ * Retorna todos os detalhes do ambiente (`envInfo`).
+ *
+ * @returns {Object} O objeto `envInfo`, que contém os detalhes do ambiente da execução.
+ */
+function ambientDetails() {
+    /* Retorna a envData */
+    return envInfo;
+}
+
+/* Cria a função de comando */
+async function getInformation(
+    kill = envInfo.functions.exec.arguments.kill.value,
+    env = envInfo.functions.exec.arguments.env.value,
+) {
+    /* Define um resultado padrão */
+    envInfo.results.value = false;
+
+    /* Define o sucesso */
+    envInfo.results.success = false;
+
+    /* Try-Catch para casos de erro */
+    try {
+        /* Se recebeu tudo corretamente, se der ruim, não fará nada */
+        if (typeof kill === 'object' &amp;&amp; typeof env === 'object') {
+            /* Define os dados necessarios */
+            const {
+                reply,
+                chatId,
+                argl,
+                isOwner,
+                arks,
+            } = env.value;
+
+            /* Define o alias na envInfo */
+            envInfo.alias = env.value.alias;
+
+            /* Define o menu de ajuda */
+            if (arks.includes('--help-dev') &amp;&amp; isOwner === true) {
+                /* Manda a mensagem de ajuda de dev */
+                envInfo.results.value = await kill.sendMessage(chatId, { text: Indexer('sql').languages(region, 'Helper', 'Developer', true, true, envInfo).value }, reply);
+
+                /* Menu de ajuda normal */
+            } else if (arks.includes('--help')) {
+                envInfo.results.value = await kill.sendMessage(chatId, { text: Indexer('sql').languages(region, 'Helper', 'User', true, true, envInfo).value }, reply);
+
+                /* Sistema da NASA */
+            } else {
+                /* Avisa para esperar, pois vai usar request e a velocidade depende da internet */
+                if (config.waitMessage.value) await kill.sendMessage(chatId, { text: Indexer('sql').languages(region, 'Extras', 'Wait', true, true, envInfo).value }, reply);
+
+                /* Define a data atual para usar */
+                let theDate = new Date().toISOString().split('T')[0];
+
+                /* Se caso for uma data customizada */
+                if (argl[0] === '-date') {
+                    /* Define a data customizada, o módulo faz o parse sozinho */
+                    [theDate] = [argl[1]];
+                }
+
+                /* Obtém os dados da NASA */
+                const NASA_INFO = await NASA.APOD(Indexer('array').extract(APIs.nasa.key).value, theDate, false, false);
+
+                /* Traduz o texto */
+                const translText = NASA_INFO.nasa.explanation ? await translate(NASA_INFO.nasa.explanation, { to: region }) : 'N/A';
+
+                /* Constroi a object para substituir o dialogo */
+                const objectReplacer = {
+                    title: NASA_INFO.nasa.title || 'N/A',
+                    author: NASA_INFO.nasa.copyright || 'N/A',
+                    date: NASA_INFO.nasa.date || NASA_INFO.date || NASA_INFO.headers.date || 'N/A',
+                    explanation: translText.text,
+                    url: NASA_INFO.nasa.url || NASA_INFO.nasa.hdurl || NASA_INFO.nasa.thumbnail_url || NASA_INFO.best_image || envInfo.parameters.image.value,
+                    type: NASA_INFO.nasa.media_type || 'image',
+                    thumb: NASA_INFO.best_image || envInfo.parameters.image.value,
+                    version: NASA_INFO.nasa.service_version || 'N/A',
+                    usage: NASA_INFO.headers['x-ratelimit-remaining'],
+                    maxUsage: NASA_INFO.headers['x-ratelimit-limit'],
+                    errors: NASA_INFO.error || NASA_INFO.download || NASA_INFO.dev_msg || NASA_INFO.data_msg || NASA_INFO.error_msg || 'N/A',
+                    code: NASA_INFO.code,
+                    codeText: NASA_INFO.explain.code,
+                    why: NASA_INFO.explain.why,
+                };
+
+                /* Envia eles */
+                envInfo.results.value = await kill.sendMessage(chatId, { image: { url: objectReplacer.thumb }, caption: Indexer('sql').languages(region, 'Helper', 'Nasa', true, true, objectReplacer).value }, reply);
+            }
+        }
+
+        /*
+            Define o sucesso, se seu comando der erro isso jamais será chamado
+            Então o success automaticamente será false em falhas
+        */
+        envInfo.results.success = true;
+
+        /* Caso de algum erro */
+    } catch (error) {
+        /* Insere tudo na envInfo */
+        logging.echoError(error, envInfo, __dirname);
+
+        /* Avisa que deu erro, manda o erro e data ao sistema S.E.R (Send/Special Error Report) */
+        /* Insira o name que você definiu na envInfo (name) onde pede abaixo */
+        await kill.sendMessage(env.value.chatId, {
+            text: Indexer('sql').languages(region, 'S.E.R', error, true, true, {
+                command: 'NASA',
+                time: (new Date()).toLocaleString(),
+            }).value,
+        }, env.value.reply);
+    }
+
+    /* Retorna os resultados */
+    return logging.postResults(envInfo);
+}
+
+/**
+ * Restaura o ambiente e atualiza as exportações do módulo com a funcionalidade principal
+ * @param {Object} [changeKey={}] - Chaves personalizadas para atualizar o envInfo
+ * @param {Object} [envFile=envInfo] - Objeto com informações do ambiente
+ * @param {string} [dirname=__dirname] - Caminho do diretório atual
+ * @returns {Object} Exportações do módulo com todas as funções configuradas
+ */
+/* eslint-disable-next-line no-return-assign */
+const resetLocal = (
+    changeKey = {},
+    envFile = envInfo,
+    dirname = __dirname,
+) => module.exports = logging.resetAmbient({
+    functions: {
+        [envInfo.exports.env]: { value: ambientDetails },
+        [envInfo.exports.messedup]: { value: logging.echoError },
+        [envInfo.exports.poswork]: { value: logging.postResults },
+        [envInfo.exports.reset]: { value: resetLocal },
+        [envInfo.exports.exec]: { value: getInformation },
+    },
+    parameters: {
+        location: { value: __filename },
+    },
+}, envFile, changeKey, dirname);
+resetLocal();
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-ConnectionManager.html">ConnectionManager</a></li><li><a href="module-TerminalStarter.html">TerminalStarter</a></li></ul><h3>Global</h3><ul><li><a href="global.html#.onclick">.onclick</a></li><li><a href="global.html#addMessageHandler">addMessageHandler</a></li><li><a href="global.html#ambientDetails">ambientDetails</a></li><li><a href="global.html#blurImage">blurImage</a></li><li><a href="global.html#calculateIdealNctx">calculateIdealNctx</a></li><li><a href="global.html#caseChecker">caseChecker</a></li><li><a href="global.html#caseDefault">caseDefault</a></li><li><a href="global.html#checkGaming">checkGaming</a></li><li><a href="global.html#checker">checker</a></li><li><a href="global.html#chessDogs">chessDogs</a></li><li><a href="global.html#cleanInvalidIPs">cleanInvalidIPs</a></li><li><a href="global.html#clearHistory">clearHistory</a></li><li><a href="global.html#commandCache">commandCache</a></li><li><a href="global.html#controlSystem">controlSystem</a></li><li><a href="global.html#controlSystemAsync">controlSystemAsync</a></li><li><a href="global.html#createCard">createCard</a></li><li><a href="global.html#createList">createList</a></li><li><a href="global.html#createListRow">createListRow</a></li><li><a href="global.html#createListener">createListener</a></li><li><a href="global.html#currentSort">currentSort</a></li><li><a href="global.html#customCommand">customCommand</a></li><li><a href="global.html#deepMerge">deepMerge</a></li><li><a href="global.html#dialoguePicker">dialoguePicker</a></li><li><a href="global.html#echoError">echoError</a></li><li><a href="global.html#envInfoGenerator">envInfoGenerator</a></li><li><a href="global.html#executeSQLCommand">executeSQLCommand</a></li><li><a href="global.html#executeSQLite">executeSQLite</a></li><li><a href="global.html#filterValues">filterValues</a></li><li><a href="global.html#findProperty">findProperty</a></li><li><a href="global.html#finishStartup">finishStartup</a></li><li><a href="global.html#fixDatabase">fixDatabase</a></li><li><a href="global.html#formatBase64">formatBase64</a></li><li><a href="global.html#functionString">functionString</a></li><li><a href="global.html#genSession">genSession</a></li><li><a href="global.html#generateContent">generateContent</a></li><li><a href="global.html#generateList">generateList</a></li><li><a href="global.html#generateResponse">generateResponse</a></li><li><a href="global.html#generateSessions">generateSessions</a></li><li><a href="global.html#getBuffer">getBuffer</a></li><li><a href="global.html#getKeyword">getKeyword</a></li><li><a href="global.html#getPatent">getPatent</a></li><li><a href="global.html#getRelativePath">getRelativePath</a></li><li><a href="global.html#getValues">getValues</a></li><li><a href="global.html#handleConnectionError">handleConnectionError</a></li><li><a href="global.html#handleFailedAttempts">handleFailedAttempts</a></li><li><a href="global.html#handleSystemError">handleSystemError</a></li><li><a href="global.html#handleUnmappedCommand">handleUnmappedCommand</a></li><li><a href="global.html#hasCUDA">hasCUDA</a></li><li><a href="global.html#initSocketConnection">initSocketConnection</a></li><li><a href="global.html#initializeModel">initializeModel</a></li><li><a href="global.html#irisPlaying">irisPlaying</a></li><li><a href="global.html#isListView">isListView</a></li><li><a href="global.html#isValidDate">isValidDate</a></li><li><a href="global.html#loadCommandModule">loadCommandModule</a></li><li><a href="global.html#loadCommandModuleAsync">loadCommandModuleAsync</a></li><li><a href="global.html#loadConfigWithRetry">loadConfigWithRetry</a></li><li><a href="global.html#locateFolder">locateFolder</a></li><li><a href="global.html#locateObjectKey">locateObjectKey</a></li><li><a href="global.html#logDebugInfo">logDebugInfo</a></li><li><a href="global.html#logPerformance">logPerformance</a></li><li><a href="global.html#minifyFile">minifyFile</a></li><li><a href="global.html#minifyFolder">minifyFolder</a></li><li><a href="global.html#missing">missing</a></li><li><a href="global.html#modelConfigs">modelConfigs</a></li><li><a href="global.html#myFunction">myFunction</a></li><li><a href="global.html#partners">partners</a></li><li><a href="global.html#postResults">postResults</a></li><li><a href="global.html#processMessages">processMessages</a></li><li><a href="global.html#programDownloads">programDownloads</a></li><li><a href="global.html#programExists">programExists</a></li><li><a href="global.html#purgeValues">purgeValues</a></li><li><a href="global.html#rankingValues">rankingValues</a></li><li><a href="global.html#readingMessages">readingMessages</a></li><li><a href="global.html#removeCommentsAndEmptyLines">removeCommentsAndEmptyLines</a></li><li><a href="global.html#removeValues">removeValues</a></li><li><a href="global.html#replaceInAll">replaceInAll</a></li><li><a href="global.html#replaceSystem">replaceSystem</a></li><li><a href="global.html#replaceText">replaceText</a></li><li><a href="global.html#resetAmbient">resetAmbient</a></li><li><a href="global.html#resolveCommandPath">resolveCommandPath</a></li><li><a href="global.html#runTasks">runTasks</a></li><li><a href="global.html#safePathJoin">safePathJoin</a></li><li><a href="global.html#sleep">sleep</a></li><li><a href="global.html#sortByColumn">sortByColumn</a></li><li><a href="global.html#sqlDatabase">sqlDatabase</a></li><li><a href="global.html#toggleDescription">toggleDescription</a></li><li><a href="global.html#toggleListView">toggleListView</a></li><li><a href="global.html#undoValues">undoValues</a></li><li><a href="global.html#updateSortIcons">updateSortIcons</a></li><li><a href="global.html#updateSymlinks">updateSymlinks</a></li><li><a href="global.html#updateValues">updateValues</a></li><li><a href="global.html#urlExists">urlExists</a></li><li><a href="global.html#urlGo">urlGo</a></li><li><a href="global.html#validateCommandName">validateCommandName</a></li><li><a href="global.html#validateJSON">validateJSON</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Sun Apr 13 2025 17:34:05 GMT-0300 (Horário Padrão de Brasília)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

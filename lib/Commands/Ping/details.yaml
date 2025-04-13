@@ -1,0 +1,12 @@
+name: Ping
+hide: false
+type:
+  - PC
+  - Server
+  - Info
+  - Speed
+  - Test
+subcommands:
+  - Ping
+  - PcInfo
+  - SessionInfo
