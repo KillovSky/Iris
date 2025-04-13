@@ -39,7 +39,7 @@ const dialogsSQL = path.normalize(`${irisPath}/lib/Databases/Informations/dialog
 const extrasSQL = path.normalize(`${irisPath}/lib/Databases/Utilities/extras.db`);
 
 /* JSON | Utilidades */
-let envInfo = JSON.parse(fs.readFileSync(`${__dirname}/utils.json`));
+const envInfo = JSON.parse(fs.readFileSync(`${__dirname}/utils.json`));
 let allLanguages = [];
 const databaseSQL = path.normalize(`${irisPath}/lib/Databases/Informations/${envInfo?.parameters?.databaseName?.value || 'general.db'}`);
 
@@ -1050,7 +1050,7 @@ function getKeyword(
         };
 
         /* Constrói a query SQLite3 */
-        const query = getLists.command || `SELECT json_object('id', id, 'type', type, 'language', language, 'word', name) FROM ${getLists.table} ${getLists.language === 'any' ? '' : `WHERE language = '${getLists.language}'`} ${getLists.random ? 'ORDER BY RANDOM()' : `AND type = '${getLists.name}'`} LIMIT 1;`;
+        const query = getLists.command || `SELECT json_object('id', id, 'type', type, 'language', language, 'word', name) FROM ${getLists.table} ${getLists.language === 'any' ? '' : `WHERE language = '${getLists.language}'`} ${getLists?.name &amp;&amp; getLists?.language !== 'any' ? `AND type = '${getLists.name}'` : ''} ${getLists.random ? 'ORDER BY RANDOM()' : ''} LIMIT 1;`;
 
         /* Obtém a palavra */
         const wordSelect = extrasDatabase.prepare(query).get();
@@ -1081,128 +1081,42 @@ function getKeyword(
     /* Retorna os valores; caso nada acima seja feito, retorna os padrões */
     return logging.postResults(envInfo);
 }
-/* Função que reseta tudo */
-function resetAmbient(
-    changeKey = {},
-) {
-    /* Reseta a Success */
-    envInfo.results.success = false;
 
-    /* Define o valor padrão */
-    let exporting = {
-        reset: resetAmbient,
-    };
-
-    /* Try-Catch para casos de erro */
-    try {
-        /* Define a envInfo padrão */
-        envInfo = JSON.parse(fs.readFileSync(`${__dirname}/utils.json`));
-
-        /* Define se algum valor deve ser salvo */
-        if (Object.keys(changeKey).length !== 0) {
-            /* Faz a listagem de keys */
-            Object.keys(changeKey).forEach((key) => {
-                /* Edita se a key existir */
-                if (Object.keys(envInfo).includes(key) &amp;&amp; key !== 'developer') {
-                    /* Edita a key customizada */
-                    envInfo[key] = changeKey[key];
-                }
-            });
-        }
-
-        /* Insere a postResults na envInfo */
-        envInfo.functions.poswork.value = logging.postResults;
-
-        /* Insere a ambient na envInfo */
-        envInfo.functions.ambient.value = ambientDetails;
-
-        /* Insere a error na envInfo */
-        envInfo.functions.messedup.value = logging.echoError;
-
-        /* Insere a revert na envInfo */
-        envInfo.functions.revert.value = resetAmbient;
-
-        /* Insere a updateValues na envInfo */
-        envInfo.functions.update.value = updateValues;
-
-        /* Insere a undoValues na envInfo */
-        envInfo.functions.undo.value = undoValues;
-
-        /* Insere a rankingValues na envInfo */
-        envInfo.functions.ranking.value = rankingValues;
-
-        /* Insere a filterValues na envInfo */
-        envInfo.functions.finder.value = filterValues;
-
-        /* Insere a dialoguePicker na envInfo */
-        envInfo.functions.languages.value = dialoguePicker;
-
-        /* Insere a purgeValues na envInfo */
-        envInfo.functions.purge.value = purgeValues;
-
-        /* Insere a fixer na envInfo */
-        envInfo.functions.fixer.value = validateJSON;
-
-        /* Insere a removeValues na envInfo */
-        envInfo.functions.remove.value = removeValues;
-
-        /* Insere a fixDatabase na envInfo */
-        envInfo.functions.fixdb.value = fixDatabase;
-
-        /* Insere a customCommand na envInfo */
-        envInfo.functions.custom.value = customCommand;
-
-        /* Insere a getValues na envInfo */
-        envInfo.functions.get.value = getValues;
-
-        /* Insere a getKeyword na envInfo */
-        envInfo.functions.keywords.value = getKeyword;
-
-        /* Define o local completo na envInfo para usar o reload novamente */
-        envInfo.parameters.location.value = __filename;
-
-        /* Gera a module exports */
-        module.exports = {
-            [envInfo.name]: {
-                [envInfo.exports.messedup]: envInfo.functions.messedup.value,
-                [envInfo.exports.env]: envInfo.functions.ambient.value,
-                [envInfo.exports.reset]: envInfo.functions.revert.value,
-                [envInfo.exports.poswork]: envInfo.functions.poswork.value,
-                [envInfo.exports.update]: envInfo.functions.update.value,
-                [envInfo.exports.finder]: envInfo.functions.finder.value,
-                [envInfo.exports.get]: envInfo.functions.get.value,
-                [envInfo.exports.keywords]: envInfo.functions.keywords.value,
-                [envInfo.exports.remove]: envInfo.functions.remove.value,
-                [envInfo.exports.ranking]: envInfo.functions.ranking.value,
-                [envInfo.exports.fixdb]: envInfo.functions.fixdb.value,
-                [envInfo.exports.custom]: envInfo.functions.custom.value,
-                [envInfo.exports.purge]: envInfo.functions.purge.value,
-                [envInfo.exports.languages]: envInfo.functions.languages.value,
-                [envInfo.exports.undo]: envInfo.functions.undo.value,
-                [envInfo.exports.fixer]: envInfo.functions.fixer.value,
-            },
-            Developer: 'KillovSky',
-            Projects: 'https://github.com/KillovSky',
-        };
-
-        /* Determina sucesso */
-        envInfo.results.success = true;
-
-        /* Define o valor retornado */
-        exporting = module.exports;
-
-        /* Caso de algum erro */
-    } catch (error) {
-        /* Insere tudo na envInfo */
-        logging.echoError(error, envInfo, __dirname);
-    }
-
-    /* Retorna o exports */
-    return exporting;
-}
-
-/* Constrói a envInfo */
-resetAmbient();
+/* Reset profundo para evitar circular */
+/**
+ * Restaura o ambiente e atualiza as exportações do módulo com a funcionalidade principal
+ * @param {Object} [changeKey={}] - Chaves personalizadas para atualizar o envInfo
+ * @param {Object} [envFile=envInfo] - Objeto com informações do ambiente
+ * @param {string} [dirname=__dirname] - Caminho do diretório atual
+ * @returns {Object} Exportações do módulo com todas as funções configuradas
+ */
+/* eslint-disable-next-line no-return-assign */
+const resetLocal = (
+    anotherData = false,
+    envFile = envInfo,
+    dirname = __dirname,
+) => module.exports = logging.resetAmbient({
+    functions: {
+        [envInfo.exports.env]: { value: ambientDetails },
+        [envInfo.exports.reset]: { value: resetLocal },
+        [envInfo.exports.update]: { value: updateValues },
+        [envInfo.exports.undo]: { value: undoValues },
+        [envInfo.exports.ranking]: { value: rankingValues },
+        [envInfo.exports.finder]: { value: filterValues },
+        [envInfo.exports.languages]: { value: dialoguePicker },
+        [envInfo.exports.purge]: { value: purgeValues },
+        [envInfo.exports.fixer]: { value: validateJSON },
+        [envInfo.exports.remove]: { value: removeValues },
+        [envInfo.exports.fixdb]: { value: fixDatabase },
+        [envInfo.exports.custom]: { value: customCommand },
+        [envInfo.exports.get]: { value: getValues },
+        [envInfo.exports.keywords]: { value: getKeyword },
+    },
+    parameters: {
+        location: { value: __filename },
+    },
+}, envFile, anotherData, dirname);
+resetLocal();
 </code></pre>
         </article>
     </section>
@@ -1213,13 +1127,13 @@ resetAmbient();
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#.onclick">.onclick</a></li><li><a href="global.html#addMessageHandler">addMessageHandler</a></li><li><a href="global.html#ambientDetails">ambientDetails</a></li><li><a href="global.html#blurImage">blurImage</a></li><li><a href="global.html#calculateIdealNctx">calculateIdealNctx</a></li><li><a href="global.html#caseChecker">caseChecker</a></li><li><a href="global.html#caseDefault">caseDefault</a></li><li><a href="global.html#checkGaming">checkGaming</a></li><li><a href="global.html#checker">checker</a></li><li><a href="global.html#chessDogs">chessDogs</a></li><li><a href="global.html#clearHistory">clearHistory</a></li><li><a href="global.html#controlSystem">controlSystem</a></li><li><a href="global.html#createCard">createCard</a></li><li><a href="global.html#createList">createList</a></li><li><a href="global.html#createListRow">createListRow</a></li><li><a href="global.html#createListener">createListener</a></li><li><a href="global.html#currentSort">currentSort</a></li><li><a href="global.html#customCommand">customCommand</a></li><li><a href="global.html#dialoguePicker">dialoguePicker</a></li><li><a href="global.html#echoError">echoError</a></li><li><a href="global.html#envInfoGenerator">envInfoGenerator</a></li><li><a href="global.html#executeSQLCommand">executeSQLCommand</a></li><li><a href="global.html#executeSQLite">executeSQLite</a></li><li><a href="global.html#filterValues">filterValues</a></li><li><a href="global.html#findProperty">findProperty</a></li><li><a href="global.html#fixDatabase">fixDatabase</a></li><li><a href="global.html#genSession">genSession</a></li><li><a href="global.html#generateContent">generateContent</a></li><li><a href="global.html#generateList">generateList</a></li><li><a href="global.html#generateResponse">generateResponse</a></li><li><a href="global.html#generateSessions">generateSessions</a></li><li><a href="global.html#getBuffer">getBuffer</a></li><li><a href="global.html#getKeyword">getKeyword</a></li><li><a href="global.html#getPatent">getPatent</a></li><li><a href="global.html#getRelativePath">getRelativePath</a></li><li><a href="global.html#getValues">getValues</a></li><li><a href="global.html#hasCUDA">hasCUDA</a></li><li><a href="global.html#initializeModel">initializeModel</a></li><li><a href="global.html#irisPlaying">irisPlaying</a></li><li><a href="global.html#isListView">isListView</a></li><li><a href="global.html#isValidDate">isValidDate</a></li><li><a href="global.html#locateFolder">locateFolder</a></li><li><a href="global.html#locateObjectKey">locateObjectKey</a></li><li><a href="global.html#logDebugInfo">logDebugInfo</a></li><li><a href="global.html#minifyFile">minifyFile</a></li><li><a href="global.html#minifyFolder">minifyFolder</a></li><li><a href="global.html#missing">missing</a></li><li><a href="global.html#modelConfigs">modelConfigs</a></li><li><a href="global.html#myFunction">myFunction</a></li><li><a href="global.html#partners">partners</a></li><li><a href="global.html#postResults">postResults</a></li><li><a href="global.html#processMessages">processMessages</a></li><li><a href="global.html#programDownloads">programDownloads</a></li><li><a href="global.html#programExists">programExists</a></li><li><a href="global.html#purgeValues">purgeValues</a></li><li><a href="global.html#rankingValues">rankingValues</a></li><li><a href="global.html#readingMessages">readingMessages</a></li><li><a href="global.html#removeCommentsAndEmptyLines">removeCommentsAndEmptyLines</a></li><li><a href="global.html#removeValues">removeValues</a></li><li><a href="global.html#replaceInAll">replaceInAll</a></li><li><a href="global.html#replaceSystem">replaceSystem</a></li><li><a href="global.html#replaceText">replaceText</a></li><li><a href="global.html#resetAmbient">resetAmbient</a></li><li><a href="global.html#runTasks">runTasks</a></li><li><a href="global.html#sleep">sleep</a></li><li><a href="global.html#sortByColumn">sortByColumn</a></li><li><a href="global.html#sqlDatabase">sqlDatabase</a></li><li><a href="global.html#toggleDescription">toggleDescription</a></li><li><a href="global.html#toggleListView">toggleListView</a></li><li><a href="global.html#undoValues">undoValues</a></li><li><a href="global.html#updateSortIcons">updateSortIcons</a></li><li><a href="global.html#updateValues">updateValues</a></li><li><a href="global.html#urlExists">urlExists</a></li><li><a href="global.html#urlGo">urlGo</a></li><li><a href="global.html#validateJSON">validateJSON</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-ConnectionManager.html">ConnectionManager</a></li><li><a href="module-TerminalStarter.html">TerminalStarter</a></li></ul><h3>Global</h3><ul><li><a href="global.html#.onclick">.onclick</a></li><li><a href="global.html#addMessageHandler">addMessageHandler</a></li><li><a href="global.html#ambientDetails">ambientDetails</a></li><li><a href="global.html#blurImage">blurImage</a></li><li><a href="global.html#calculateIdealNctx">calculateIdealNctx</a></li><li><a href="global.html#caseChecker">caseChecker</a></li><li><a href="global.html#caseDefault">caseDefault</a></li><li><a href="global.html#checkGaming">checkGaming</a></li><li><a href="global.html#checker">checker</a></li><li><a href="global.html#chessDogs">chessDogs</a></li><li><a href="global.html#cleanInvalidIPs">cleanInvalidIPs</a></li><li><a href="global.html#clearHistory">clearHistory</a></li><li><a href="global.html#commandCache">commandCache</a></li><li><a href="global.html#controlSystem">controlSystem</a></li><li><a href="global.html#controlSystemAsync">controlSystemAsync</a></li><li><a href="global.html#createCard">createCard</a></li><li><a href="global.html#createList">createList</a></li><li><a href="global.html#createListRow">createListRow</a></li><li><a href="global.html#createListener">createListener</a></li><li><a href="global.html#currentSort">currentSort</a></li><li><a href="global.html#customCommand">customCommand</a></li><li><a href="global.html#deepMerge">deepMerge</a></li><li><a href="global.html#dialoguePicker">dialoguePicker</a></li><li><a href="global.html#echoError">echoError</a></li><li><a href="global.html#envInfoGenerator">envInfoGenerator</a></li><li><a href="global.html#executeSQLCommand">executeSQLCommand</a></li><li><a href="global.html#executeSQLite">executeSQLite</a></li><li><a href="global.html#filterValues">filterValues</a></li><li><a href="global.html#findProperty">findProperty</a></li><li><a href="global.html#finishStartup">finishStartup</a></li><li><a href="global.html#fixDatabase">fixDatabase</a></li><li><a href="global.html#formatBase64">formatBase64</a></li><li><a href="global.html#functionString">functionString</a></li><li><a href="global.html#genSession">genSession</a></li><li><a href="global.html#generateContent">generateContent</a></li><li><a href="global.html#generateList">generateList</a></li><li><a href="global.html#generateResponse">generateResponse</a></li><li><a href="global.html#generateSessions">generateSessions</a></li><li><a href="global.html#getBuffer">getBuffer</a></li><li><a href="global.html#getKeyword">getKeyword</a></li><li><a href="global.html#getPatent">getPatent</a></li><li><a href="global.html#getRelativePath">getRelativePath</a></li><li><a href="global.html#getValues">getValues</a></li><li><a href="global.html#handleConnectionError">handleConnectionError</a></li><li><a href="global.html#handleFailedAttempts">handleFailedAttempts</a></li><li><a href="global.html#handleSystemError">handleSystemError</a></li><li><a href="global.html#handleUnmappedCommand">handleUnmappedCommand</a></li><li><a href="global.html#hasCUDA">hasCUDA</a></li><li><a href="global.html#initSocketConnection">initSocketConnection</a></li><li><a href="global.html#initializeModel">initializeModel</a></li><li><a href="global.html#irisPlaying">irisPlaying</a></li><li><a href="global.html#isListView">isListView</a></li><li><a href="global.html#isValidDate">isValidDate</a></li><li><a href="global.html#loadCommandModule">loadCommandModule</a></li><li><a href="global.html#loadCommandModuleAsync">loadCommandModuleAsync</a></li><li><a href="global.html#loadConfigWithRetry">loadConfigWithRetry</a></li><li><a href="global.html#locateFolder">locateFolder</a></li><li><a href="global.html#locateObjectKey">locateObjectKey</a></li><li><a href="global.html#logDebugInfo">logDebugInfo</a></li><li><a href="global.html#logPerformance">logPerformance</a></li><li><a href="global.html#minifyFile">minifyFile</a></li><li><a href="global.html#minifyFolder">minifyFolder</a></li><li><a href="global.html#missing">missing</a></li><li><a href="global.html#modelConfigs">modelConfigs</a></li><li><a href="global.html#myFunction">myFunction</a></li><li><a href="global.html#partners">partners</a></li><li><a href="global.html#postResults">postResults</a></li><li><a href="global.html#processMessages">processMessages</a></li><li><a href="global.html#programDownloads">programDownloads</a></li><li><a href="global.html#programExists">programExists</a></li><li><a href="global.html#purgeValues">purgeValues</a></li><li><a href="global.html#rankingValues">rankingValues</a></li><li><a href="global.html#readingMessages">readingMessages</a></li><li><a href="global.html#removeCommentsAndEmptyLines">removeCommentsAndEmptyLines</a></li><li><a href="global.html#removeValues">removeValues</a></li><li><a href="global.html#replaceInAll">replaceInAll</a></li><li><a href="global.html#replaceSystem">replaceSystem</a></li><li><a href="global.html#replaceText">replaceText</a></li><li><a href="global.html#resetAmbient">resetAmbient</a></li><li><a href="global.html#resolveCommandPath">resolveCommandPath</a></li><li><a href="global.html#runTasks">runTasks</a></li><li><a href="global.html#safePathJoin">safePathJoin</a></li><li><a href="global.html#sleep">sleep</a></li><li><a href="global.html#sortByColumn">sortByColumn</a></li><li><a href="global.html#sqlDatabase">sqlDatabase</a></li><li><a href="global.html#toggleDescription">toggleDescription</a></li><li><a href="global.html#toggleListView">toggleListView</a></li><li><a href="global.html#undoValues">undoValues</a></li><li><a href="global.html#updateSortIcons">updateSortIcons</a></li><li><a href="global.html#updateSymlinks">updateSymlinks</a></li><li><a href="global.html#updateValues">updateValues</a></li><li><a href="global.html#urlExists">urlExists</a></li><li><a href="global.html#urlGo">urlGo</a></li><li><a href="global.html#validateCommandName">validateCommandName</a></li><li><a href="global.html#validateJSON">validateJSON</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Sun Feb 16 2025 15:40:51 GMT-0300 (Horário Padrão de Brasília)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Sun Apr 13 2025 17:34:05 GMT-0300 (Horário Padrão de Brasília)
 </footer>
 
 <script> prettyPrint(); </script>

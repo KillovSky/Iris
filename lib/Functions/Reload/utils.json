@@ -100,15 +100,15 @@
             "description": "Define os arquivos a ignorar no recarregamento.",
             "type": "Array",
             "value": [
-                "**/node_modules/**/*",
-                "**/.git/**/*",
-                "**/lib/Initialize**",
-                "**/lib/Backups**",
-                "**/lib/Commands/**/Cache",
-                "**/lib/Databases/**",
-                "**/lib/Sessions**",
-                "**/lib/Functions/Reload**",
-                "**/lib/Functions/Listener**"
+                "node_modules/",
+                ".git/",
+                "lib/Initialize",
+                "lib/Backups",
+                "lib/Commands/Cache",
+                "lib/Databases/",
+                "lib/Sessions/",
+                "lib/Functions/Reload",
+                "lib/Functions/Listener"
             ]
         },
         "logconsole": {

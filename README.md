@@ -49,11 +49,11 @@ E na fronteira entre terror e renascimento, uma pergunta sempre ecoa:
 </p>
 
 ## ⚠️ Mural Urgente
-
-> Este mural é destinado a mensagens extremamente importantes. Por favor, leia com atenção.
->
-> Se você estiver **ATUALIZANDO** da versão 1.1.4 para 1.1.5 (mantendo seu `users.db`), é crucial executar `npm run fixdb` ou realizar essa ação pela `Toolbox` de sua preferência. Devido a mudanças significativas nos códigos de banco de dados da Íris, normalmente seria necessária uma reinstalação completa. No entanto, o comando mencionado evitará isso. Não executar este comando resultará em vários erros durante a inicialização.
-
+  
+> Este mural é destinado a mensagens extremamente importantes. Por favor, leia com atenção.  
+>  
+> Caso enfrente dificuldades ao instalar a Íris com a versão mais recente do `Node.js` no Windows, não se preocupe! Basta fazer o download da [Versão 20.19.0](https://nodejs.org/en/download), que resolverá o problema. A incompatibilidade está relacionada aos pacotes `Canvas` e `Sharp`. Essa questão não deve impactar usuários de Linux, MacOS, Termux ou demais; porém, se ocorrer, recomenda-se seguir o mesmo procedimento.  
+  
 ## 📝 Sumário
 
 1. [❓ O que é a Íris?](#-o-que-é-a-íris)

@@ -143,6 +143,28 @@ function getRelativePath(scriptDir) {
 }
 
 /**
+ * Realiza um merge profundo (deep merge) entre duas objects, combinando recursivamente. \
+ * PLACEHOLDER, USE ISSO NO LUGAR: Indexer('others').merge(obj, obj).value;
+ *
+ * @param {Object} target - O objeto destino que receberá as propriedades mescladas.
+ * @param {Object} source - O objeto fonte de onde as propriedades serão copiadas.
+ * @returns {Object} O objeto target modificado com as propriedades mescladas.
+ *
+ */
+function deepMerge(target, source) {
+    return Object.keys(source).reduce((result, key) => {
+        const sourceValue = source[key];
+        const targetValue = result[key];
+        /* eslint-disable-next-line no-param-reassign */
+        result[key] = (sourceValue instanceof Object &amp;&amp; !Array.isArray(sourceValue)
+            &amp;&amp; targetValue instanceof Object &amp;&amp; !Array.isArray(targetValue))
+            ? deepMerge(targetValue, sourceValue)
+            : sourceValue;
+        return result;
+    }, { ...target });
+}
+
+/**
  * Placeholder para geração via nodejs para aqueles que preferem fazer algo assim.
  * Função que gera um objeto de configuração envInfo para um sistema.
  * Aceita um objeto de configuração para sobrescrever os valores padrão.
@@ -173,28 +195,23 @@ function envInfoGenerator(envData = {}) {
         usage: {
             general: customConfig.usage?.general || '[Prefix][Alias] [Argumentos dele] (Valor se houver)',
             examples: customConfig.usage?.examples || [
-                '/SeuComando',
-                '/SeuComando (Valor Se houver)',
-                '/SeuComando --help',
-                "oNameAcima.execute('kill', 'params')",
-                'oNameAcima.env()',
-                'oNameAcima.reset()',
-                "oNameAcima.env().functions.execute.value('kill', 'params')",
+                "NomeDoComando.execute('kill', 'params')",
+                'NomeDoComando.env()',
+                'NomeDoComando.reset()',
+                "NomeDoComando.env().functions.execute.value('kill', 'params')",
             ],
         },
         license: customConfig.license || 'A licença que você quiser, recomendo deixar MIT',
         helps: customConfig.helps || [
-            "Você pode mudar os parâmetros da exports enviando o valor da Object que deseja editar ao resetar, por exemplo → oNameAcima.reset({ name: 'Body'}) ← Isso mudaria o module de oNameAcima para Body, o uso então passaria ser: → Body.funcão ← Isso também permite que você edite a função usando o mesmo método.",
-            "Você pode mudar o que os códigos rodam, em tempo real, basta usar a 'env', por exemplo → oNameAcima.env().name = 'Body' ← Mas este método não atualizará o sistema, somente a Object, os sistemas permanecem intactos.",
-            'Você pode configurar o tempo de reset dos resultados ou se eles devem ser resetados usando a env, por exemplo → oNameAcima.env().settings.wait = 10000 ← Isso mudaria o tempo de espera para 10 segundos, o tempo deve ser em milissegundos.',
+            "Você pode mudar os parâmetros da exports enviando o valor da Object que deseja editar ao resetar, por exemplo → NomeDoComando.reset({ name: 'Body'}) ← Isso mudaria o module de NomeDoComando para Body, o uso então passaria ser: → Body.funcão ← Isso também permite que você edite a função usando o mesmo método.",
+            "Você pode mudar o que os códigos rodam, em tempo real, basta usar a 'env', por exemplo → NomeDoComando.env().name = 'Body' ← Mas este método não atualizará o sistema, somente a Object, os sistemas permanecem intactos.",
+            'Você pode configurar o tempo de reset dos resultados ou se eles devem ser resetados usando a env, por exemplo → NomeDoComando.env().settings.wait = 10000 ← Isso mudaria o tempo de espera para 10 segundos, o tempo deve ser em milissegundos.',
             'Alguém lê essas dicas? Se sim, torne-se um programador, ler os tutoriais é de suma importância e poucos desenvolvedores o fazem...',
             'Existem infinitas formas de uso secretas, explore os códigos para descobrir os mistérios dos sistemas!',
-            'Dica ou conselho adicional aqui, se quiser botar mais é só ir gerando dentro dessa Array',
         ],
         exports: customConfig.exports || {
             env: 'env',
             messedup: 'messedup',
-            exec: 'execute',
             reset: 'reset',
             poswork: 'finish',
         },
@@ -224,23 +241,6 @@ function envInfoGenerator(envData = {}) {
                     },
                 },
                 description: 'Ajusta os valores de erro.',
-                type: 'Boolean / Function',
-                value: false,
-            },
-            exec: {
-                arguments: {
-                    kill: {
-                        description: 'Funções de controle raiz da Íris.',
-                        type: 'Boolean / Object',
-                        value: false,
-                    },
-                    env: {
-                        description: 'Dados da mensagem recebida.',
-                        type: 'Boolean / Object',
-                        value: false,
-                    },
-                },
-                description: 'Executa o comando representado nesse arquivo.',
                 type: 'Boolean / Function',
                 value: false,
             },
@@ -307,11 +307,6 @@ function envInfoGenerator(envData = {}) {
                 type: 'Boolean / String',
                 value: false,
             },
-            nomeDaVariavel: {
-                description: 'Descrição do que ela faz',
-                type: 'Tipo de variavel',
-                value: 'O valor dela, deve ser igual ao tipo dito acima',
-            },
         },
         results: customConfig.results || {
             description: 'Resultado final da função.',
@@ -319,6 +314,96 @@ function envInfoGenerator(envData = {}) {
             type: 'String / Boolean',
             value: false,
         },
+    };
+}
+
+/**
+ * Função para resetar/atualizar configurações de ambiente com base em um arquivo JSON ou objeto.
+ * Permite a edição completa das configurações e inclui tratamento de erros robusto.
+ *
+ * @function resetAmbient
+ * @param {Object} [changeKey={}] - Objeto contendo as chaves e valores a serem atualizados.
+ * Estrutura deve ser similar a da `envData` em `envInfoGenerator`.
+ *                                 Mas deve conter as seguintes chaves essenciais:
+ *                                 - `name`: Nome do ambiente/projeto (string)
+ *                                 - `parameters`: Objeto com parâmetros de configuração
+ *                                 - `functions`: Objeto com funções do ambiente
+ *                                 - `exports`: Objeto com exportações necessárias
+ * @param {Object} jsonData - Objeto com as configs originais exportadas.
+ * @param {Object} moreData - Mais uma object para merge, útil em função circular.
+ * @param {string} dirfolder - Local de onde o sistema está executando a função.
+ * @returns {Object} Retorna um objeto contendo:
+ *                  - Todas as configurações atualizadas
+ *                  - success: boolean indicando sucesso/fracasso
+ *                  - error: null ou objeto de erro (se ocorrer)
+ *
+ * @throws {TypeError} Se os parâmetros não forem do tipo esperado
+ * @throws {Error} Se houver falha ao ler/processar o arquivo de configuração
+ *
+ */
+function resetAmbient(changeKey = {}, jsonData = {}, moreData = {}, dirfolder = false) {
+    /* Define uma envInfo temporariamente */
+    let envInfo = {};
+    let dirStr = '';
+
+    /* Uso com try, caso dê erros */
+    try {
+        /* Define como a envInfo será */
+        if (typeof jsonData === 'object' &amp;&amp; jsonData != null) {
+            /* Se recebeu os dados prontos, usa eles */
+            envInfo = envInfoGenerator(jsonData);
+
+            /* Se for uma string */
+        } else if (typeof dirfolder === 'string') {
+            /* Para evitar crashes, roda em try-catch */
+            try {
+                /* Define o local do arquivo JSON */
+                const filePath = `${dirfolder}/utils.json`;
+
+                /* Se ele existir */
+                if (fs.existsSync(filePath)) {
+                    /* Abre dando parse */
+                    envInfo = JSON.parse(fs.readFileSync(filePath));
+                }
+
+                /* Se falhar */
+            } catch (error) {
+                /* Faz um logging de erro simples e opcional */
+                logging.echoError(error, envInfo, __dirname);
+            }
+        }
+        dirStr = typeof dirfolder === 'string' ? dirfolder : 'SYS';
+
+        /* Aplica as alterações se houver changeKey */
+        envInfo = deepMerge(envInfo, changeKey);
+        envInfo = deepMerge(envInfo, moreData);
+
+        /* Indica sucesso na operação */
+        envInfo.success = true;
+
+        /* Em caso de erro qualquer */
+    } catch (error) {
+        /* Registra no objeto de retorno */
+        envInfo.error = error;
+
+        /* Opcional: loga o erro (comente se não quiser esse comportamento) */
+        logging.echoError(error, envInfo, dirStr);
+    }
+
+    /* Constrói o retorno para módulo */
+    const returnData = {};
+    Object.keys(changeKey?.functions).forEach((data) => {
+        returnData[data] = envInfo?.functions?.[data]?.value;
+    });
+
+    /* Retorna o objeto com os resultados */
+    return {
+        [envInfo?.name || 'Default']: {
+            ...returnData,
+        },
+        Developer: envInfo?.Developer || 'KillovSky',
+        Projects: envInfo?.Projects || 'https://github.com/KillovSky',
+        envInfo,
     };
 }
 
@@ -337,7 +422,7 @@ function postResults(envData) {
         /* setTimeout para poder retornar */
         setTimeout(() => {
             /* Reseta a envData */
-            envData?.functions?.revert?.value();
+            envData?.functions?.reset?.value();
 
             /* Reseta conforme o tempo */
         }, envData?.settings?.wait?.value || 5000);
@@ -401,6 +486,7 @@ function echoError(errorInput, envData, place) {
 
 /* Define globalmente */
 global.logging = {
+    resetAmbient,
     echoError,
     postResults,
     envInfoGenerator,
@@ -409,6 +495,7 @@ global.logging = {
 
 /* Exporta */
 module.exports = {
+    resetAmbient,
     echoError,
     postResults,
     envInfoGenerator,
@@ -424,13 +511,13 @@ module.exports = {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#.onclick">.onclick</a></li><li><a href="global.html#addMessageHandler">addMessageHandler</a></li><li><a href="global.html#ambientDetails">ambientDetails</a></li><li><a href="global.html#blurImage">blurImage</a></li><li><a href="global.html#calculateIdealNctx">calculateIdealNctx</a></li><li><a href="global.html#caseChecker">caseChecker</a></li><li><a href="global.html#caseDefault">caseDefault</a></li><li><a href="global.html#checkGaming">checkGaming</a></li><li><a href="global.html#checker">checker</a></li><li><a href="global.html#chessDogs">chessDogs</a></li><li><a href="global.html#clearHistory">clearHistory</a></li><li><a href="global.html#controlSystem">controlSystem</a></li><li><a href="global.html#createCard">createCard</a></li><li><a href="global.html#createList">createList</a></li><li><a href="global.html#createListRow">createListRow</a></li><li><a href="global.html#createListener">createListener</a></li><li><a href="global.html#currentSort">currentSort</a></li><li><a href="global.html#customCommand">customCommand</a></li><li><a href="global.html#dialoguePicker">dialoguePicker</a></li><li><a href="global.html#echoError">echoError</a></li><li><a href="global.html#envInfoGenerator">envInfoGenerator</a></li><li><a href="global.html#executeSQLCommand">executeSQLCommand</a></li><li><a href="global.html#executeSQLite">executeSQLite</a></li><li><a href="global.html#filterValues">filterValues</a></li><li><a href="global.html#findProperty">findProperty</a></li><li><a href="global.html#fixDatabase">fixDatabase</a></li><li><a href="global.html#genSession">genSession</a></li><li><a href="global.html#generateContent">generateContent</a></li><li><a href="global.html#generateList">generateList</a></li><li><a href="global.html#generateResponse">generateResponse</a></li><li><a href="global.html#generateSessions">generateSessions</a></li><li><a href="global.html#getBuffer">getBuffer</a></li><li><a href="global.html#getKeyword">getKeyword</a></li><li><a href="global.html#getPatent">getPatent</a></li><li><a href="global.html#getRelativePath">getRelativePath</a></li><li><a href="global.html#getValues">getValues</a></li><li><a href="global.html#hasCUDA">hasCUDA</a></li><li><a href="global.html#initializeModel">initializeModel</a></li><li><a href="global.html#irisPlaying">irisPlaying</a></li><li><a href="global.html#isListView">isListView</a></li><li><a href="global.html#isValidDate">isValidDate</a></li><li><a href="global.html#locateFolder">locateFolder</a></li><li><a href="global.html#locateObjectKey">locateObjectKey</a></li><li><a href="global.html#logDebugInfo">logDebugInfo</a></li><li><a href="global.html#minifyFile">minifyFile</a></li><li><a href="global.html#minifyFolder">minifyFolder</a></li><li><a href="global.html#missing">missing</a></li><li><a href="global.html#modelConfigs">modelConfigs</a></li><li><a href="global.html#myFunction">myFunction</a></li><li><a href="global.html#partners">partners</a></li><li><a href="global.html#postResults">postResults</a></li><li><a href="global.html#processMessages">processMessages</a></li><li><a href="global.html#programDownloads">programDownloads</a></li><li><a href="global.html#programExists">programExists</a></li><li><a href="global.html#purgeValues">purgeValues</a></li><li><a href="global.html#rankingValues">rankingValues</a></li><li><a href="global.html#readingMessages">readingMessages</a></li><li><a href="global.html#removeCommentsAndEmptyLines">removeCommentsAndEmptyLines</a></li><li><a href="global.html#removeValues">removeValues</a></li><li><a href="global.html#replaceInAll">replaceInAll</a></li><li><a href="global.html#replaceSystem">replaceSystem</a></li><li><a href="global.html#replaceText">replaceText</a></li><li><a href="global.html#resetAmbient">resetAmbient</a></li><li><a href="global.html#runTasks">runTasks</a></li><li><a href="global.html#sleep">sleep</a></li><li><a href="global.html#sortByColumn">sortByColumn</a></li><li><a href="global.html#sqlDatabase">sqlDatabase</a></li><li><a href="global.html#toggleDescription">toggleDescription</a></li><li><a href="global.html#toggleListView">toggleListView</a></li><li><a href="global.html#undoValues">undoValues</a></li><li><a href="global.html#updateSortIcons">updateSortIcons</a></li><li><a href="global.html#updateValues">updateValues</a></li><li><a href="global.html#urlExists">urlExists</a></li><li><a href="global.html#urlGo">urlGo</a></li><li><a href="global.html#validateJSON">validateJSON</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-ConnectionManager.html">ConnectionManager</a></li><li><a href="module-TerminalStarter.html">TerminalStarter</a></li></ul><h3>Global</h3><ul><li><a href="global.html#.onclick">.onclick</a></li><li><a href="global.html#addMessageHandler">addMessageHandler</a></li><li><a href="global.html#ambientDetails">ambientDetails</a></li><li><a href="global.html#blurImage">blurImage</a></li><li><a href="global.html#calculateIdealNctx">calculateIdealNctx</a></li><li><a href="global.html#caseChecker">caseChecker</a></li><li><a href="global.html#caseDefault">caseDefault</a></li><li><a href="global.html#checkGaming">checkGaming</a></li><li><a href="global.html#checker">checker</a></li><li><a href="global.html#chessDogs">chessDogs</a></li><li><a href="global.html#cleanInvalidIPs">cleanInvalidIPs</a></li><li><a href="global.html#clearHistory">clearHistory</a></li><li><a href="global.html#commandCache">commandCache</a></li><li><a href="global.html#controlSystem">controlSystem</a></li><li><a href="global.html#controlSystemAsync">controlSystemAsync</a></li><li><a href="global.html#createCard">createCard</a></li><li><a href="global.html#createList">createList</a></li><li><a href="global.html#createListRow">createListRow</a></li><li><a href="global.html#createListener">createListener</a></li><li><a href="global.html#currentSort">currentSort</a></li><li><a href="global.html#customCommand">customCommand</a></li><li><a href="global.html#deepMerge">deepMerge</a></li><li><a href="global.html#dialoguePicker">dialoguePicker</a></li><li><a href="global.html#echoError">echoError</a></li><li><a href="global.html#envInfoGenerator">envInfoGenerator</a></li><li><a href="global.html#executeSQLCommand">executeSQLCommand</a></li><li><a href="global.html#executeSQLite">executeSQLite</a></li><li><a href="global.html#filterValues">filterValues</a></li><li><a href="global.html#findProperty">findProperty</a></li><li><a href="global.html#finishStartup">finishStartup</a></li><li><a href="global.html#fixDatabase">fixDatabase</a></li><li><a href="global.html#formatBase64">formatBase64</a></li><li><a href="global.html#functionString">functionString</a></li><li><a href="global.html#genSession">genSession</a></li><li><a href="global.html#generateContent">generateContent</a></li><li><a href="global.html#generateList">generateList</a></li><li><a href="global.html#generateResponse">generateResponse</a></li><li><a href="global.html#generateSessions">generateSessions</a></li><li><a href="global.html#getBuffer">getBuffer</a></li><li><a href="global.html#getKeyword">getKeyword</a></li><li><a href="global.html#getPatent">getPatent</a></li><li><a href="global.html#getRelativePath">getRelativePath</a></li><li><a href="global.html#getValues">getValues</a></li><li><a href="global.html#handleConnectionError">handleConnectionError</a></li><li><a href="global.html#handleFailedAttempts">handleFailedAttempts</a></li><li><a href="global.html#handleSystemError">handleSystemError</a></li><li><a href="global.html#handleUnmappedCommand">handleUnmappedCommand</a></li><li><a href="global.html#hasCUDA">hasCUDA</a></li><li><a href="global.html#initSocketConnection">initSocketConnection</a></li><li><a href="global.html#initializeModel">initializeModel</a></li><li><a href="global.html#irisPlaying">irisPlaying</a></li><li><a href="global.html#isListView">isListView</a></li><li><a href="global.html#isValidDate">isValidDate</a></li><li><a href="global.html#loadCommandModule">loadCommandModule</a></li><li><a href="global.html#loadCommandModuleAsync">loadCommandModuleAsync</a></li><li><a href="global.html#loadConfigWithRetry">loadConfigWithRetry</a></li><li><a href="global.html#locateFolder">locateFolder</a></li><li><a href="global.html#locateObjectKey">locateObjectKey</a></li><li><a href="global.html#logDebugInfo">logDebugInfo</a></li><li><a href="global.html#logPerformance">logPerformance</a></li><li><a href="global.html#minifyFile">minifyFile</a></li><li><a href="global.html#minifyFolder">minifyFolder</a></li><li><a href="global.html#missing">missing</a></li><li><a href="global.html#modelConfigs">modelConfigs</a></li><li><a href="global.html#myFunction">myFunction</a></li><li><a href="global.html#partners">partners</a></li><li><a href="global.html#postResults">postResults</a></li><li><a href="global.html#processMessages">processMessages</a></li><li><a href="global.html#programDownloads">programDownloads</a></li><li><a href="global.html#programExists">programExists</a></li><li><a href="global.html#purgeValues">purgeValues</a></li><li><a href="global.html#rankingValues">rankingValues</a></li><li><a href="global.html#readingMessages">readingMessages</a></li><li><a href="global.html#removeCommentsAndEmptyLines">removeCommentsAndEmptyLines</a></li><li><a href="global.html#removeValues">removeValues</a></li><li><a href="global.html#replaceInAll">replaceInAll</a></li><li><a href="global.html#replaceSystem">replaceSystem</a></li><li><a href="global.html#replaceText">replaceText</a></li><li><a href="global.html#resetAmbient">resetAmbient</a></li><li><a href="global.html#resolveCommandPath">resolveCommandPath</a></li><li><a href="global.html#runTasks">runTasks</a></li><li><a href="global.html#safePathJoin">safePathJoin</a></li><li><a href="global.html#sleep">sleep</a></li><li><a href="global.html#sortByColumn">sortByColumn</a></li><li><a href="global.html#sqlDatabase">sqlDatabase</a></li><li><a href="global.html#toggleDescription">toggleDescription</a></li><li><a href="global.html#toggleListView">toggleListView</a></li><li><a href="global.html#undoValues">undoValues</a></li><li><a href="global.html#updateSortIcons">updateSortIcons</a></li><li><a href="global.html#updateSymlinks">updateSymlinks</a></li><li><a href="global.html#updateValues">updateValues</a></li><li><a href="global.html#urlExists">urlExists</a></li><li><a href="global.html#urlGo">urlGo</a></li><li><a href="global.html#validateCommandName">validateCommandName</a></li><li><a href="global.html#validateJSON">validateJSON</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Sun Feb 16 2025 15:40:51 GMT-0300 (Horário Padrão de Brasília)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Sun Apr 13 2025 17:34:05 GMT-0300 (Horário Padrão de Brasília)
 </footer>
 
 <script> prettyPrint(); </script>

@@ -111,6 +111,10 @@
 		"description": "Specifies if Íris should not ignore reactions. If enabled, it will treat reactions as messages.",
 		"value": false
 	},
+    "logIndexer": {
+		"description": "Defines if Íris should print Indexer operations, like load, sync and more.",
+		"value": false
+	},
 	"maxCommands": {
 		"description": "Sets the maximum number of commands a user can run without triggering the anti-spam feature (cooldown is controlled by 'commandsCooldown').",
 		"value": 3

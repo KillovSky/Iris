@@ -9,11 +9,13 @@
             "text.dataURI('mimetype', 'buffer')",
             "text.generate('size')",
             "text.searching('text', 'word', 'index')",
+            "text.base64('base64 string')",
             "text.upperland('text', 'boolean - use after spaces')",
             "text.reset()",
             "text.env().functions.counter.value('text', 'word')",
             "text.env().functions.dataURI.value('mimetype', 'buffer')",
             "text.env().functions.generate.value('size')",
+            "text.env().functions.base64.value('base64 string')",
             "text.env().functions.searching.value('text', 'word', 'index')",
             "text.env().functions.upperland.value('text', 'boolean - capt. after space?')",
             "text.env().functions.revert.value()"
@@ -33,6 +35,7 @@
         "dataURI": "dataURI",
         "shuffle": "shuffle",
         "generate": "generate",
+        "base64": "base64",
         "searching": "searching",
         "upperland": "upperland",
         "reset": "reset",
@@ -95,6 +98,18 @@
                     "description": "Buffer ou String para converter em base64.",
                     "type": "Boolean / String",
                     "value": false
+                }
+            },
+            "description": "Converte um arquivo em base64.",
+            "type": "Boolean / Function",
+            "value": false
+        },
+        "base64": {
+            "arguments": {
+                "baseValue": {
+                    "description": "A string em base64 para checagem",
+                    "type": "String",
+                    "value": "abc"
                 }
             },
             "description": "Converte um arquivo em base64.",

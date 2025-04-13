@@ -6,10 +6,13 @@
         "examples": [
             "/phcom texto",
             "/ytcom texto --dark",
+            "/tweet texto|username|usertag --light --verified",
+            "/instapost likes|like msg|dd-mm-yy --dark --liked --verified --saved --story",
             "/gay",
             "/pornhub Texto 1|Texto 2",
             "/gay @user",
             "/trash <mensagem>",
+            "/tweet texto|username|usertag --dim",
             "/slap <mensagem> <@user> -sticker",
             "/beautiful <foto>",
             "/memes --help",

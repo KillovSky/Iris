@@ -1,6 +1,6 @@
 {
     "Default": {
-        "place": "./Functions/Default",
+        "place": "./Functions/Default/index.js",
         "alias": [
             "default",
             "metrics",
@@ -9,7 +9,7 @@
         ]
     },
     "Antilinks": {
-        "place": "./Functions/Verifiers/Antilinks/index",
+        "place": "./Functions/Verifiers/Antilinks/index.js",
         "alias": [
             "nourl",
             "checkurl",
@@ -19,14 +19,14 @@
         ]
     },
     "Arrays": {
-        "place": "./Functions/Arrays/index",
+        "place": "./Functions/Arrays/index.js",
         "alias": [
             "arrays",
             "array"
         ]
     },
     "Cards": {
-        "place": "./Functions/Pictures/Cards/index",
+        "place": "./Functions/Pictures/Cards/index.js",
         "alias": [
             "cards",
             "leveling",
@@ -36,7 +36,7 @@
         ]
     },
     "Cases": {
-        "place": "./Commands/Main/index",
+        "place": "./Commands/Main/index.js",
         "alias": [
             "commands",
             "case",
@@ -46,14 +46,14 @@
         ]
     },
     "CMDs": {
-        "place": "./Functions/Works/CMDs/index",
+        "place": "./Functions/Works/CMDs/index.js",
         "alias": [
             "cmds",
             "comandos"
         ]
     },
     "Clear": {
-        "place": "./Functions/Clear/index",
+        "place": "./Functions/Clear/index.js",
         "alias": [
             "destroy",
             "expurge",
@@ -63,7 +63,7 @@
         ]
     },
     "Construct": {
-        "place": "./Commands/Main/Construct/index",
+        "place": "./Commands/Main/Construct/index.js",
         "alias": [
             "construct",
             "message",
@@ -72,7 +72,7 @@
         ]
     },
     "Colors": {
-        "place": "./Functions/Colors/index",
+        "place": "./Functions/Colors/index.js",
         "alias": [
             "hex",
             "rgb",
@@ -82,14 +82,14 @@
         ]
     },
     "Events": {
-        "place": "./Commands/Main/Events/index",
+        "place": "./Commands/Main/Events/index.js",
         "alias": [
             "events",
             "evento"
         ]
     },
     "Images": {
-        "place": "./Functions/Pictures/Images/index",
+        "place": "./Functions/Pictures/Images/index.js",
         "alias": [
             "imageget",
             "search",
@@ -98,7 +98,7 @@
         ]
     },
     "Join": {
-        "place":  "./Functions/Plugins/onJoinRequest/index",
+        "place":  "./Functions/Plugins/onJoinRequest/index.js",
         "alias": [
             "join",
             "approval",
@@ -106,14 +106,14 @@
         ]
     },
     "Memes": {
-        "place": "./Functions/Pictures/Memes/index",
+        "place": "./Functions/Pictures/Memes/index.js",
         "alias": [
             "memes",
             "haha"
         ]
     },
     "Numbers": {
-        "place": "./Functions/Numbers/index",
+        "place": "./Functions/Numbers/index.js",
         "alias": [
             "numbers",
             "number",
@@ -123,7 +123,7 @@
         ]
     },
     "onError": {
-        "place": "./Functions/Plugins/onError/index",
+        "place": "./Functions/Plugins/onError/index.js",
         "alias": [
             "error",
             "onerror",
@@ -133,7 +133,7 @@
         ]
     },
     "onParticipantsChanged": {
-        "place": "./Functions/Plugins/onParticipantsChanged/index",
+        "place": "./Functions/Plugins/onParticipantsChanged/index.js",
         "alias": [
             "onparticipantschanged",
             "welcome",
@@ -160,7 +160,7 @@
         ]
     },
     "onStateChanged": {
-        "place": "./Functions/Plugins/onStateChanged/index",
+        "place": "./Functions/Plugins/onStateChanged/index.js",
         "alias": [
             "states",
             "state",
@@ -168,7 +168,7 @@
         ]
     },
     "Options": {
-        "place": "./Functions/Options/index",
+        "place": "./Functions/Options/index.js",
         "alias": [
             "session",
             "waautomate",
@@ -177,7 +177,7 @@
         ]
     },
     "Others": {
-        "place": "./Functions/Others/index",
+        "place": "./Functions/Others/index.js",
         "alias": [
             "others",
             "outros",
@@ -186,7 +186,7 @@
         ]
     },
     "Owner": {
-        "place": "./Functions/Works/Owner/index",
+        "place": "./Functions/Works/Owner/index.js",
         "alias": [
             "owner",
             "dono",
@@ -195,7 +195,7 @@
         ]
     },
     "Profile": {
-        "place": "./Functions/Profile/index",
+        "place": "./Functions/Profile/index.js",
         "alias": [
             "profile",
             "perfil",
@@ -203,7 +203,7 @@
         ]
     },
     "RegExp": {
-        "place": "./Functions/RegExp/index",
+        "place": "./Functions/RegExp/index.js",
         "alias": [
             "regexp",
             "match",
@@ -212,7 +212,7 @@
         ]
     },
     "Terminal": {
-        "place": "./Functions/Works/Terminal/index",
+        "place": "./Functions/Works/Terminal/index.js",
         "alias": [
             "terminal",
             "ubuntu",
@@ -221,7 +221,7 @@
         ]
     },
     "Transmission": {
-        "place": "./Functions/Works/Transmission/index",
+        "place": "./Functions/Works/Transmission/index.js",
         "alias": [
             "ota",
             "transmission",
@@ -231,7 +231,7 @@
         ]
     },
     "Tree": {
-        "place": "./Functions/Tree/index",
+        "place": "./Functions/Tree/index.js",
         "alias": [
             "tree",
             "folders",
@@ -240,7 +240,7 @@
         ]
     },
     "Recents": {
-        "place": "./Functions/Recents/index",
+        "place": "./Functions/Recents/index.js",
         "alias": [
             "recent",
             "recents",
@@ -249,7 +249,7 @@
         ]
     },
     "Reload": {
-        "place": "./Functions/Reload/index",
+        "place": "./Functions/Reload/index.js",
         "alias": [
             "reload",
             "module",
@@ -257,7 +257,7 @@
         ]
     },
     "Shell": {
-        "place": "./Functions/Shell/index",
+        "place": "./Functions/Shell/index.js",
         "alias": [
             "bash",
             "childprocess",
@@ -267,7 +267,7 @@
         ]
     },
     "Spam": {
-        "place": "./Functions/Verifiers/Spam/index",
+        "place": "./Functions/Verifiers/Spam/index.js",
         "alias": [
             "spam",
             "spammers",
@@ -277,7 +277,7 @@
         ]
     },
     "Strings": {
-        "place": "./Functions/Strings/index",
+        "place": "./Functions/Strings/index.js",
         "alias": [
             "strings",
             "string",
@@ -285,7 +285,7 @@
         ]
     },
     "Starting": {
-        "place": "./Functions/Works/Starting/index",
+        "place": "./Functions/Works/Starting/index.js",
         "alias": [
             "safeboot",
             "booting",
@@ -293,14 +293,14 @@
         ]
     },
     "Status": {
-        "place": "./Functions/Works/Status/index",
+        "place": "./Functions/Works/Status/index.js",
         "alias": [
             "status",
             "recado"
         ]
     },
     "SQL": {
-        "place": "./Functions/SQL/index",
+        "place": "./Functions/SQL/index.js",
         "alias": [
             "sql",
             "sequelize",
@@ -308,7 +308,7 @@
         ]
     },
     "Update": {
-        "place": "./Functions/Works/Update/index",
+        "place": "./Functions/Works/Update/index.js",
         "alias": [
             "update",
             "github",
@@ -316,7 +316,7 @@
         ]
     },
     "Verifier": {
-        "place": "./Functions/Verifiers/index",
+        "place": "./Functions/Verifiers/index.js",
         "alias": [
             "verifier",
             "verifiers",
@@ -325,7 +325,7 @@
         ]
     },
     "YouTube": {
-        "place": "./Commands/YouTube/index",
+        "place": "./Commands/YouTube/index.js",
         "alias": [
             "youtube",
             "ios",
@@ -335,7 +335,7 @@
         ]
     },
     "ZIP": {
-        "place": "./Functions/Works/ZIP/index",
+        "place": "./Functions/Works/ZIP/index.js",
         "alias": [
             "backup",
             "clear",
