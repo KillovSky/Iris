@@ -1,44 +1,55 @@
-# Usa como base a imagem do ubuntu v20.04
-FROM ubuntu:20.04
+# Estágio 1: Ambiente de construção (Builder)
+FROM node:20 AS builder
 
-# Evita avisos do apt
-ENV DEBIAN_FRONTEND=noninteractive
+# Define o diretório de trabalho DENTRO do container de build
+WORKDIR /app
 
-# Atualiza os repositórios e faz upgrade dos pacotes, depois limpa as listas do apt-get
-RUN apt-get update && apt-get upgrade -y && rm -rf /var/lib/apt/lists/*
+# Instala o git E jq para clonar o repositório e modificar um arquivo json
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends git jq && \
+    rm -rf /var/lib/apt/lists/*
 
-# Instala os requisitos para o repositório NodeJS 20, depois limpa as listas do apt-get
-RUN apt-get update && apt-get install -y ca-certificates curl gnupg && rm -rf /var/lib/apt/lists/*
+# Clonamos o repositório no diretório de trabalho (/app)
+RUN git clone https://github.com/KillovSky/Iris.git .
 
-# Atualizar certificados CA
-RUN update-ca-certificates
+# Altera a linha em index.js (Correção de erro 500)
+RUN sed -i 's/messageData.blockNumber = await kill.fetchBlocklist();/messageData.blockNumber = [];/' /app/lib/Commands/Main/Construct/index.js
 
-# Cria a pasta keyrings para o NodeJS
-RUN mkdir -p /etc/apt/keyrings
+# Altera a propriedade "fixEscape" no arquivo "config.json" para true
+RUN jq '.fixEscape.value = true' /app/lib/Databases/Configurations/config.json > /app/lib/Databases/Configurations/config.json.tmp && \
+    mv /app/lib/Databases/Configurations/config.json.tmp /app/lib/Databases/Configurations/config.json
 
-# Baixa e adiciona a keyring do NodeJS
-RUN curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
+# Instala as dependências de produção usando --omit=dev (antiga flag de produção)
+RUN npm install --omit=dev
 
-# Adiciona o repositório NodeJS
-RUN echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_20.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list
+# Força a atualização do pacote youtube-dl-exec (se necessário)
+RUN npm uninstall youtube-dl-exec && npm install youtube-dl-exec@latest --omit=dev
 
-# Atualiza os repositórios novamente e faz upgrade dos pacotes, depois limpa as listas do apt-get
-RUN apt-get update && apt-get upgrade -y && rm -rf /var/lib/apt/lists/*
+# Estágio 2: Ambiente de tempo de execução (Runtime)
+# Usando a imagem slim do Node.js para um tamanho menor
+FROM node:20-slim AS runtime
 
-# Instala os pacotes necessários, depois limpa as listas do apt-get
-RUN apt-get update && apt-get install -y nodejs sqlite build-essential zip unzip python2 python3 git tesseract-ocr nano && rm -rf /var/lib/apt/lists/*
-
-# Clona o repositório Iris
-RUN git clone https://github.com/KillovSky/Iris.git
-
-# Define o diretório de trabalho
+# Define o diretório de trabalho final como /Iris
 WORKDIR /Iris
 
-# Instala as dependências do projeto
-RUN npm install
+# Instala as dependências de runtime necessárias no sistema operacional
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    ca-certificates \
+    curl \
+    sqlite3 \
+    python3 \
+    tesseract-ocr \
+    #tesseract-ocr-por # Adicione pacotes de idioma se necessário
+    zip \
+    unzip \
+    nano \
+    git && \
+    rm -rf /var/lib/apt/lists/*
 
-# Faz downgrade do sharp para compatibilidade com o canva (se necessário)
-#RUN npm install sharp@0.30.7
+# Copia a aplicação construída (do /app no builder) para /Iris no runtime
+# Já com os arquivos modificados
+COPY --from=builder /app /Iris
 
 # Expõe a porta
 EXPOSE 3000
