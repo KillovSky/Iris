@@ -2,8 +2,9 @@ version: "3.8"
 
 services:
   iris:
-    image: hypegg/iris-project:v1.1.6
+    image: hypegg/iris-project:latest
     volumes:
+      - iris_logs:/Iris/logs/ # Volume para logs (Bom para suporte)
       - iris_backup:/Iris/lib/Backups # Volume para backups
       - iris_sessions:/Iris/lib/Sessions # Volume para sessões
       - iris_databases:/Iris/lib/Databases # Volume para bancos de dados
@@ -15,6 +16,7 @@ services:
       - "3000:3000" # Mapeamento da porta 3000
 
 volumes:
+  iris_logs:
   iris_backup:
   iris_sessions:
   iris_databases:
