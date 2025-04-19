@@ -20,7 +20,7 @@ services:
       - "3000:3000" # Mapeamento da porta 3000
 
 volumes:
-  iris_logs
+  iris_logs:
   iris_backup:
   iris_sessions:
   iris_databases:
