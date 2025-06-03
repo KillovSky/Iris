@@ -1,7 +1,7 @@
 {
   "name": "iris",
   "version": "1.1.7",
-  "build_date": "13-04-2024",
+  "build_date": "03-06-2025",
   "build_name": "Egg",
   "private": true,
   "description": "Novo Projeto Íris, uma versão totalmente nova feita com novas APIs, sistemas, 13+ idiomas e muito mais, sendo um projeto novo, aberto e sem nenhum foco lucrativo.",
@@ -113,7 +113,7 @@
     }
   },
   "engines": {
-    "node": ">=20.0.0"
+    "node": ">=20.19.0"
   },
   "directories": {
     "lib": "lib"
