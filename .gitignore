@@ -155,6 +155,7 @@ MessageTypes
 NASA_IMAGES
 package-lock.json
 .vscode
+.vs
 
 # managed
 **.data.json

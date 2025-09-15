@@ -26,16 +26,26 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/* eslint-disable max-len */
-/* eslint-disable global-require */
+            <pre class="prettyprint source linenums"><code>/* eslint-disable import/no-cycle */
+/* eslint-disable max-len */
 /* eslint-disable import/no-dynamic-require */
 
-/* Requires - Importações essenciais para o funcionamento do módulo */
-const fs = require('fs');
-const path = require('path');
-const { performance } = require('perf_hooks');
-const { pathToFileURL } = require('url');
-const { LRUCache } = require('lru-cache');
+/* Imports - Importações essenciais para o funcionamento do módulo */
+import fs from 'fs';
+import path from 'path';
+import { performance } from 'perf_hooks';
+import { pathToFileURL } from 'url';
+import LRUCache from 'lru-cache';
+import { createRequire } from 'module';
+
+/* Faz import do logging se não tiver */
+if (!global.logging) {
+    import('./Initialize/logging.js').then((module) => {
+        global.logging = module.default;
+    }).catch((err) => {
+        console.error('Erro ao importar logging:', err);
+    });
+}
 
 /**
  * Log de performance padronizado
@@ -93,7 +103,11 @@ function loadConfigWithRetry(configPath, retries = 3, delay = 100) {
 const commandCache = new LRUCache({
     max: 100,
     maxSize: 50 * 1024 * 1024,
-    sizeCalculation: (value) => JSON.stringify(value).length,
+    sizeCalculation: (value) => {
+        /* Verifica se o valor é undefined/null */
+        if (value === undefined || value === null) return 1;
+        try { return JSON.stringify(value)?.length || 1; } catch { return 1; }
+    },
     ttl: 1000 * 60 * 15,
 });
 
@@ -104,7 +118,6 @@ const commandPlaces = loadConfigWithRetry('./lib/Databases/Configurations/symlin
 global.config = global.config || loadConfigWithRetry('./lib/Databases/Configurations/config.json');
 global.irisPath = global.irisPath || process.cwd();
 global.region = global.region || 'pt';
-global.logging = global.logging || require('./Initialize/logging');
 
 /**
  * Valida e sanitiza nomes de comandos para prevenir injeção
@@ -233,19 +246,21 @@ function resolveCommandPath(commandFolder) {
     if (!commandPlaces[folder]) { throw new Error(`Configuração não encontrada para: ${folder}`); }
 
     /* Resolve o local do comando e faz um join seguro */
-    const commandPath = path.resolve(__dirname, commandPlaces[folder].place);
-    return safePathJoin(__dirname, path.normalize(commandPath));
+    const commandPath = path.resolve(import.meta.dirname, commandPlaces[folder].place);
+    return safePathJoin(import.meta.dirname, path.normalize(commandPath));
 }
 
 /**
- * Carrega o módulo do comando com cache e circuit breaker
+ * Carrega o módulo do comando com cache de forma síncrona
  * @param {string} commandPath - Caminho do módulo
  * @returns {Object} Módulo carregado
  * @throws {Error} Se o carregamento falhar
  */
-function loadCommandModule(commandPath) {
+function loadCommandModuleSync(commandPath) {
     /* Circuit Breaker: Verifica se o módulo está em estado de falha */
-    if (loadCommandModule.failedModules.has(commandPath)) { throw new Error(`Módulo ${commandPath} está em estado de falha`); }
+    if (loadCommandModuleSync.failedModules.has(commandPath)) {
+        throw new Error(`Módulo ${commandPath} está em estado de falha`);
+    }
 
     /* Tenta com try catch para caso haja falhas adicionais */
     try {
@@ -259,9 +274,10 @@ function loadCommandModule(commandPath) {
         /* Define a contagem de perfomance atual */
         const start = performance.now();
 
-        /* Tenta carregar o módulo e definir seus dados */
-        const Sys = require(commandPath);
-        const module = Sys[Object.keys(Sys)[0]];
+        /* Usa require para carregamento síncrono */
+        const require = createRequire(import.meta.url);
+        const requiredSys = require(commandPath);
+        const module = requiredSys.default[Object.keys(requiredSys.default)[0]];
 
         /* Insere em cache e printa o resultado da perfomance */
         commandCache.set(commandPath, module);
@@ -273,15 +289,15 @@ function loadCommandModule(commandPath) {
         /* Caso dê erro nesse módulo */
     } catch (err) {
         /* Circuit Breaker: Marca módulo como falho */
-        loadCommandModule.failedModules.set(commandPath, Date.now());
+        loadCommandModuleSync.failedModules.set(commandPath, Date.now());
 
         /* Dropa um erro */
         throw err;
     }
 }
 
-/* Cra um cache para os módulos que falharam */
-loadCommandModule.failedModules = new Map();
+/* Cria um cache para os módulos que falharam */
+loadCommandModuleSync.failedModules = new Map();
 
 /**
  * Carrega módulo de forma assíncrona com tratamento moderno
@@ -291,7 +307,7 @@ loadCommandModule.failedModules = new Map();
  */
 async function loadCommandModuleAsync(commandPath) {
     /* Circuit Breaker: Verifica se o módulo está em estado de falha */
-    if (loadCommandModule.failedModules.has(commandPath)) {
+    if (loadCommandModuleSync.failedModules.has(commandPath)) {
         throw new Error(`Módulo ${commandPath} está em estado de falha`);
     }
 
@@ -308,7 +324,7 @@ async function loadCommandModuleAsync(commandPath) {
         const start = performance.now();
 
         /* Tenta carregar o módulo de forma assíncrona e obter seus dados */
-        const { default: Sys } = await import(pathToFileURL(commandPath));
+        const { default: Sys } = await import(pathToFileURL(`${commandPath}`));
         const module = Sys[Object.keys(Sys)[0]];
 
         /* Insere o módulo carregado no cache */
@@ -323,7 +339,7 @@ async function loadCommandModuleAsync(commandPath) {
     /* Se ocorrer qualquer erro ao carregar o módulo */
     } catch (err) {
         /* Circuit Breaker: Marca o módulo como falho */
-        loadCommandModule.failedModules.set(commandPath, Date.now());
+        loadCommandModuleSync.failedModules.set(commandPath, Date.now());
 
         /* Propaga o erro */
         throw err;
@@ -351,12 +367,12 @@ function handleSystemError(error, context = '') {
     /* Se logging global estiver disponível */
     if (global.logging &amp;&amp; global.logging.echoError) {
         /* Envia para analytics */
-        global.logging.echoError(error, false, __dirname);
+        global.logging.echoError(error, false, import.meta.dirname);
     }
 }
 
 /**
- * Controlador principal do sistema
+ * Controlador principal do sistema (SÍNCRONO)
  * @param {string} systemName - Nome do sistema/comando
  * @returns {Object|boolean} Módulo carregado ou false
  */
@@ -380,8 +396,8 @@ function controlSystem(systemName = 'Default') {
         /* Resolve o caminho do comando para carregamento */
         const commandPath = resolveCommandPath(commandFolder);
 
-        /* Carrega o módulo usando o carregador principal */
-        const module = loadCommandModule(commandPath);
+        /* Carrega o módulo usando o carregador síncrono */
+        const module = loadCommandModuleSync(commandPath);
 
         /* Registra a performance do carregamento */
         logPerformance('PERF', systemName, startTime);
@@ -458,7 +474,7 @@ if (global?.config?.logIndexer?.value) {
 }
 
 /* Exporta a API com TypeScript-like types via JSDoc */
-module.exports = Object.assign(
+export default Object.assign(
     (systemName) => controlSystem(systemName),
     {
         controlSystem,
@@ -486,13 +502,13 @@ module.exports = Object.assign(
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-ConnectionManager.html">ConnectionManager</a></li><li><a href="module-TerminalStarter.html">TerminalStarter</a></li></ul><h3>Global</h3><ul><li><a href="global.html#.onclick">.onclick</a></li><li><a href="global.html#addMessageHandler">addMessageHandler</a></li><li><a href="global.html#ambientDetails">ambientDetails</a></li><li><a href="global.html#blurImage">blurImage</a></li><li><a href="global.html#calculateIdealNctx">calculateIdealNctx</a></li><li><a href="global.html#caseChecker">caseChecker</a></li><li><a href="global.html#caseDefault">caseDefault</a></li><li><a href="global.html#checkGaming">checkGaming</a></li><li><a href="global.html#checker">checker</a></li><li><a href="global.html#chessDogs">chessDogs</a></li><li><a href="global.html#cleanInvalidIPs">cleanInvalidIPs</a></li><li><a href="global.html#clearHistory">clearHistory</a></li><li><a href="global.html#commandCache">commandCache</a></li><li><a href="global.html#controlSystem">controlSystem</a></li><li><a href="global.html#controlSystemAsync">controlSystemAsync</a></li><li><a href="global.html#createCard">createCard</a></li><li><a href="global.html#createList">createList</a></li><li><a href="global.html#createListRow">createListRow</a></li><li><a href="global.html#createListener">createListener</a></li><li><a href="global.html#currentSort">currentSort</a></li><li><a href="global.html#customCommand">customCommand</a></li><li><a href="global.html#deepMerge">deepMerge</a></li><li><a href="global.html#dialoguePicker">dialoguePicker</a></li><li><a href="global.html#echoError">echoError</a></li><li><a href="global.html#envInfoGenerator">envInfoGenerator</a></li><li><a href="global.html#executeSQLCommand">executeSQLCommand</a></li><li><a href="global.html#executeSQLite">executeSQLite</a></li><li><a href="global.html#filterValues">filterValues</a></li><li><a href="global.html#findProperty">findProperty</a></li><li><a href="global.html#finishStartup">finishStartup</a></li><li><a href="global.html#fixDatabase">fixDatabase</a></li><li><a href="global.html#formatBase64">formatBase64</a></li><li><a href="global.html#functionString">functionString</a></li><li><a href="global.html#genSession">genSession</a></li><li><a href="global.html#generateContent">generateContent</a></li><li><a href="global.html#generateList">generateList</a></li><li><a href="global.html#generateResponse">generateResponse</a></li><li><a href="global.html#generateSessions">generateSessions</a></li><li><a href="global.html#getBuffer">getBuffer</a></li><li><a href="global.html#getKeyword">getKeyword</a></li><li><a href="global.html#getPatent">getPatent</a></li><li><a href="global.html#getRelativePath">getRelativePath</a></li><li><a href="global.html#getValues">getValues</a></li><li><a href="global.html#handleConnectionError">handleConnectionError</a></li><li><a href="global.html#handleFailedAttempts">handleFailedAttempts</a></li><li><a href="global.html#handleSystemError">handleSystemError</a></li><li><a href="global.html#handleUnmappedCommand">handleUnmappedCommand</a></li><li><a href="global.html#hasCUDA">hasCUDA</a></li><li><a href="global.html#initSocketConnection">initSocketConnection</a></li><li><a href="global.html#initializeModel">initializeModel</a></li><li><a href="global.html#irisPlaying">irisPlaying</a></li><li><a href="global.html#isListView">isListView</a></li><li><a href="global.html#isValidDate">isValidDate</a></li><li><a href="global.html#loadCommandModule">loadCommandModule</a></li><li><a href="global.html#loadCommandModuleAsync">loadCommandModuleAsync</a></li><li><a href="global.html#loadConfigWithRetry">loadConfigWithRetry</a></li><li><a href="global.html#locateFolder">locateFolder</a></li><li><a href="global.html#locateObjectKey">locateObjectKey</a></li><li><a href="global.html#logDebugInfo">logDebugInfo</a></li><li><a href="global.html#logPerformance">logPerformance</a></li><li><a href="global.html#minifyFile">minifyFile</a></li><li><a href="global.html#minifyFolder">minifyFolder</a></li><li><a href="global.html#missing">missing</a></li><li><a href="global.html#modelConfigs">modelConfigs</a></li><li><a href="global.html#myFunction">myFunction</a></li><li><a href="global.html#partners">partners</a></li><li><a href="global.html#postResults">postResults</a></li><li><a href="global.html#processMessages">processMessages</a></li><li><a href="global.html#programDownloads">programDownloads</a></li><li><a href="global.html#programExists">programExists</a></li><li><a href="global.html#purgeValues">purgeValues</a></li><li><a href="global.html#rankingValues">rankingValues</a></li><li><a href="global.html#readingMessages">readingMessages</a></li><li><a href="global.html#removeCommentsAndEmptyLines">removeCommentsAndEmptyLines</a></li><li><a href="global.html#removeValues">removeValues</a></li><li><a href="global.html#replaceInAll">replaceInAll</a></li><li><a href="global.html#replaceSystem">replaceSystem</a></li><li><a href="global.html#replaceText">replaceText</a></li><li><a href="global.html#resetAmbient">resetAmbient</a></li><li><a href="global.html#resolveCommandPath">resolveCommandPath</a></li><li><a href="global.html#runTasks">runTasks</a></li><li><a href="global.html#safePathJoin">safePathJoin</a></li><li><a href="global.html#sleep">sleep</a></li><li><a href="global.html#sortByColumn">sortByColumn</a></li><li><a href="global.html#sqlDatabase">sqlDatabase</a></li><li><a href="global.html#toggleDescription">toggleDescription</a></li><li><a href="global.html#toggleListView">toggleListView</a></li><li><a href="global.html#undoValues">undoValues</a></li><li><a href="global.html#updateSortIcons">updateSortIcons</a></li><li><a href="global.html#updateSymlinks">updateSymlinks</a></li><li><a href="global.html#updateValues">updateValues</a></li><li><a href="global.html#urlExists">urlExists</a></li><li><a href="global.html#urlGo">urlGo</a></li><li><a href="global.html#validateCommandName">validateCommandName</a></li><li><a href="global.html#validateJSON">validateJSON</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-ConnectionManager.html">ConnectionManager</a></li><li><a href="module-TerminalStarter.html">TerminalStarter</a></li></ul><h3>Global</h3><ul><li><a href="global.html#.onclick">.onclick</a></li><li><a href="global.html#addMessageHandler">addMessageHandler</a></li><li><a href="global.html#ambientDetails">ambientDetails</a></li><li><a href="global.html#blurImage">blurImage</a></li><li><a href="global.html#calculateChange">calculateChange</a></li><li><a href="global.html#calculateIdealNctx">calculateIdealNctx</a></li><li><a href="global.html#caseChecker">caseChecker</a></li><li><a href="global.html#caseDefault">caseDefault</a></li><li><a href="global.html#checkGaming">checkGaming</a></li><li><a href="global.html#checker">checker</a></li><li><a href="global.html#chessDogs">chessDogs</a></li><li><a href="global.html#cleanInvalidIPs">cleanInvalidIPs</a></li><li><a href="global.html#clearHistory">clearHistory</a></li><li><a href="global.html#commandCache">commandCache</a></li><li><a href="global.html#controlSystem">controlSystem</a></li><li><a href="global.html#controlSystemAsync">controlSystemAsync</a></li><li><a href="global.html#createCard">createCard</a></li><li><a href="global.html#createList">createList</a></li><li><a href="global.html#createListRow">createListRow</a></li><li><a href="global.html#createListener">createListener</a></li><li><a href="global.html#currentSort">currentSort</a></li><li><a href="global.html#customCommand">customCommand</a></li><li><a href="global.html#deepMerge">deepMerge</a></li><li><a href="global.html#dialoguePicker">dialoguePicker</a></li><li><a href="global.html#echoError">echoError</a></li><li><a href="global.html#envInfoGenerator">envInfoGenerator</a></li><li><a href="global.html#executeSQLCommand">executeSQLCommand</a></li><li><a href="global.html#executeSQLite">executeSQLite</a></li><li><a href="global.html#filterValues">filterValues</a></li><li><a href="global.html#findProperty">findProperty</a></li><li><a href="global.html#finishStartup">finishStartup</a></li><li><a href="global.html#fixDatabase">fixDatabase</a></li><li><a href="global.html#formatBase64">formatBase64</a></li><li><a href="global.html#functionString">functionString</a></li><li><a href="global.html#genSession">genSession</a></li><li><a href="global.html#generateContent">generateContent</a></li><li><a href="global.html#generateList">generateList</a></li><li><a href="global.html#generateResponse">generateResponse</a></li><li><a href="global.html#generateSessions">generateSessions</a></li><li><a href="global.html#getBuffer">getBuffer</a></li><li><a href="global.html#getKeyword">getKeyword</a></li><li><a href="global.html#getPatent">getPatent</a></li><li><a href="global.html#getRelativePath">getRelativePath</a></li><li><a href="global.html#getValues">getValues</a></li><li><a href="global.html#handleConnectionError">handleConnectionError</a></li><li><a href="global.html#handleFailedAttempts">handleFailedAttempts</a></li><li><a href="global.html#handleSystemError">handleSystemError</a></li><li><a href="global.html#handleUnmappedCommand">handleUnmappedCommand</a></li><li><a href="global.html#hasCUDA">hasCUDA</a></li><li><a href="global.html#initSocketConnection">initSocketConnection</a></li><li><a href="global.html#initializeModel">initializeModel</a></li><li><a href="global.html#irisPlaying">irisPlaying</a></li><li><a href="global.html#isListView">isListView</a></li><li><a href="global.html#isValidDate">isValidDate</a></li><li><a href="global.html#loadCommandModuleAsync">loadCommandModuleAsync</a></li><li><a href="global.html#loadCommandModuleSync">loadCommandModuleSync</a></li><li><a href="global.html#loadConfigWithRetry">loadConfigWithRetry</a></li><li><a href="global.html#locateFolder">locateFolder</a></li><li><a href="global.html#locateObjectKey">locateObjectKey</a></li><li><a href="global.html#logDebugInfo">logDebugInfo</a></li><li><a href="global.html#logPerformance">logPerformance</a></li><li><a href="global.html#minifyFile">minifyFile</a></li><li><a href="global.html#minifyFolder">minifyFolder</a></li><li><a href="global.html#missing">missing</a></li><li><a href="global.html#modelConfigs">modelConfigs</a></li><li><a href="global.html#myFunction">myFunction</a></li><li><a href="global.html#partners">partners</a></li><li><a href="global.html#postResults">postResults</a></li><li><a href="global.html#processMessages">processMessages</a></li><li><a href="global.html#programDownloads">programDownloads</a></li><li><a href="global.html#programExists">programExists</a></li><li><a href="global.html#purgeValues">purgeValues</a></li><li><a href="global.html#rankingValues">rankingValues</a></li><li><a href="global.html#readingMessages">readingMessages</a></li><li><a href="global.html#removeCommentsAndEmptyLines">removeCommentsAndEmptyLines</a></li><li><a href="global.html#removeValues">removeValues</a></li><li><a href="global.html#replaceInAll">replaceInAll</a></li><li><a href="global.html#replaceSystem">replaceSystem</a></li><li><a href="global.html#replaceText">replaceText</a></li><li><a href="global.html#resetAmbient">resetAmbient</a></li><li><a href="global.html#resolveCommandPath">resolveCommandPath</a></li><li><a href="global.html#runTasks">runTasks</a></li><li><a href="global.html#safePathJoin">safePathJoin</a></li><li><a href="global.html#shoppeIris">shoppeIris</a></li><li><a href="global.html#sleep">sleep</a></li><li><a href="global.html#sortByColumn">sortByColumn</a></li><li><a href="global.html#sqlDatabase">sqlDatabase</a></li><li><a href="global.html#toggleDescription">toggleDescription</a></li><li><a href="global.html#toggleListView">toggleListView</a></li><li><a href="global.html#undoValues">undoValues</a></li><li><a href="global.html#updateSortIcons">updateSortIcons</a></li><li><a href="global.html#updateSymlinks">updateSymlinks</a></li><li><a href="global.html#updateValues">updateValues</a></li><li><a href="global.html#urlExists">urlExists</a></li><li><a href="global.html#urlGo">urlGo</a></li><li><a href="global.html#validateCommandName">validateCommandName</a></li><li><a href="global.html#validateJSON">validateJSON</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Sun Apr 13 2025 17:34:05 GMT-0300 (Horário Padrão de Brasília)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Mon Sep 08 2025 22:07:25 GMT-0300 (Horário Padrão de Brasília)
 </footer>
 
 <script> prettyPrint(); </script>

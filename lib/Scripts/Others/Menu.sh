@@ -101,22 +101,22 @@ process_yaml() {
 # @param {string} pattern - Padrão de busca
 # @param {string} prefix - Prefixo para os resultados
 perform_search_and_process() {
-    local pattern="$1"
-    local prefix="$2"
-    local counter=1  # Inicializa o contador
-
-    # Busca arquivos YAML ignorando diretórios específicos
-    while IFS= read -r -d '' file; do
-        # Verifica se o arquivo não está oculto e contém o padrão de busca
-        if ! grep -q "^hide: true" "$file" && grep -qi "$pattern" "$file"; then
-            # Processa o arquivo YAML
-            process_yaml "$file" "$prefix" "$counter"
-            # Incrementa o contador
-            counter=$((counter + 1))
-        fi
-    done < <(find ./lib/Commands/* -mindepth 1 -maxdepth 1 \
+    local -r pattern="$1" prefix="$2"
+    local counter=1
+    
+    # Usa Mapfile para acelerar as buscas
+    local -a files=()
+    mapfile -d '' files < <(find ./lib/Commands/* -mindepth 1 -maxdepth 1 \
         -type d \( -name 'Main' -o -name 'Default' \) -prune -o \
-        -type f -name "details.yaml" -print0)
+        -type f -name "details.yaml" -print0 2>/dev/null)
+
+    # Processa arquivo a arquivo em saida
+    for file in "${files[@]}"; do
+        if grep -qi "$pattern" "$file" && ! grep -q "^hide: true" "$file"; then
+            process_yaml "$file" "$prefix" "$counter"
+            ((counter++))
+        fi
+    done
 }
 
 # Exportar a função para o shell

@@ -17,7 +17,7 @@ UPDATE personal SET data = json_patch('{INSERTDEFAULT}', data), modified = CURRE
 UPDATE personal SET data = json_remove(data, '$.{INSERTKEY}{INSERTJSON}') WHERE id = '{INSERTUSER}';
 
 -- Deleta as colunas invalidas
-DELETE FROM personal WHERE id NOT LIKE '%@s.whatsapp.net%';
+DELETE FROM personal WHERE id NOT LIKE '%@s.whatsapp.net%' AND id NOT LIKE '%@lid%';
 
 -- Deleta as colunas com modified superior a 30 dias do tempo atual
 DELETE FROM personal WHERE julianday('now') - julianday(modified) > 30;

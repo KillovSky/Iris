@@ -9,6 +9,7 @@ rules:
   import/no-extraneous-dependencies: 0
   import/no-unresolved: 0
   no-inner-declarations: 0
+  import/extensions: 0
   indent:
     - error
     - 4

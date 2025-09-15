@@ -1,5 +1,6 @@
 # pylint: disable=attribute-defined-outside-init,C0103
 """Programa que faz edições em arquivos JSONs"""
+
 # Importa módulos
 import json
 import webbrowser
@@ -27,6 +28,15 @@ class JSONEditorApp:
         self.deletions = {}
         self.addcodes = {}
 
+        # Autosave
+        self.auto_save_enabled = True
+        self.auto_save_delay = 1500
+        self.save_pending = None
+        self.last_saved_state = None
+        self.change_count = 0
+        self.last_selected_path = None
+        self.current_editor_content = None
+
         # Define as variáveis de cores
         self.isDark = False
         self.lightBG = "#f5f5f5"
@@ -49,6 +59,81 @@ class JSONEditorApp:
 
         # Ativa o dark mode ao iniciar
         self.changeTheme()
+
+    def setup_auto_save(self):
+        """Configura os bindings e handlers para o autosave"""
+        self.textValues.bind("<KeyRelease>", self.on_content_changed)
+
+        # Atualiza o item do menu existente
+        self.update_auto_save_menu_item()
+
+    def toggle_auto_save(self):
+        """Alterna o estado do autosave"""
+        self.auto_save_enabled = not self.auto_save_enabled
+        self.update_status(
+            f"Autosave {'Ativado' if self.auto_save_enabled else 'Desativado'}"
+        )
+
+        # Atualiza o item do menu
+        self.update_auto_save_menu_item()
+
+    def update_auto_save_menu_item(self):
+        """Atualiza o texto e o estado do item do menu de autosave"""
+        # Verifica se o menu já foi criado
+        if hasattr(self, "edit_menu"):
+            # Atualiza o texto e o estado de checked
+            self.edit_menu.entryconfig(
+                1,
+                label=f"Autosave ({'Ativo' if self.auto_save_enabled else 'Inativo'})",
+                variable=self.auto_save_var if hasattr(self, "auto_save_var") else None,
+                onvalue=False,
+                offvalue=True,
+            )
+
+            # Se você estiver usando uma variável de controle (para checkbox)
+            if hasattr(self, "auto_save_var"):
+                self.auto_save_var.set(self.auto_save_enabled)
+
+    def on_content_changed(self, event=None):
+        """Chamado quando o conteúdo é alterado"""
+        # Não aciona autosave se:
+        # 1. Estiver desativado
+        # 2. Estiver em modo RAW
+        # 3. Estiver durante uma operação de reset (quando auto_save_enabled é False)
+        if not self.auto_save_enabled or self.isRawMode and event:
+            return
+
+        self.change_count += 1
+        self.update_status(f"Alterações não salvas: {self.change_count}")
+
+        # Cancela qualquer save pendente
+        if self.save_pending:
+            self.master.after_cancel(self.save_pending)
+
+        # Agenda novo save
+        self.save_pending = self.master.after(
+            self.auto_save_delay, self.trigger_auto_save
+        )
+
+    def trigger_auto_save(self):
+        """Executa o autosave após o delay"""
+        # Verificação extra de segurança
+        if not self.auto_save_enabled or self.save_pending is None:
+            return
+
+        current_content = self.textValues.get("1.0", tk.END)
+        if current_content != self.last_saved_state:
+            success = self.saveData(silent=True)
+            if success:
+                self.last_saved_state = current_content
+                self.change_count = 0
+                self.update_status("Alterações salvas automaticamente")
+        self.save_pending = None
+
+    def update_status(self, message):
+        """Atualiza a barra de status"""
+        if hasattr(self, "status_bar"):
+            self.status_bar.config(text=message)
 
     def addToJsonArray(self):
         """Adiciona um novo valor a uma array no JSON"""
@@ -118,7 +203,6 @@ class JSONEditorApp:
         self.treeview.config(style="TLabel")
         self.textValues.config(bg=self.colorBG, fg=self.colorFG)
         self.defaultValues.config(bg=self.colorBG, fg=self.colorFG)
-        self.memoryValues.config(bg=self.colorBG, fg=self.colorFG)
         self.textValues.config(insertbackground=self.colorFG)
 
     def getPath(self):
@@ -360,27 +444,45 @@ class JSONEditorApp:
         else:
             messagebox.showinfo("Info", "Nenhum arquivo JSON carregado.")
 
-    def saveData(self):
-        """Salva valores editados na memoria e no jsonData"""
+    def saveData(self, silent=False):
+        """Salva valores editados na memoria e no jsonData
+
+        Args:
+            silent (bool): Se True, não mostra mensagens de status
+        """
+        # Verificação extra de segurança
+        if not self.auto_save_enabled and silent:
+            return False
+
         # Se tiver um JSON aberto
         if self.jsonData is not None:
             # Define a path atual
             editPath = self.getPath()
-            editedValue = self.textValues.get("1.0", tk.END)
-            stockValue = self.getValues(editPath, self.backupData)
+            editedValue = self.textValues.get("1.0", tk.END).strip()
+
+            # Ignora se estiver vazio
+            if not editedValue:
+                return
 
             # Tenta validar se o valor inserido é um JSON válido
             try:
                 json.loads(editedValue)
-            except json.JSONDecodeError:
-                # Se não for válido, exibe uma mensagem e não salva
-                messagebox.showerror(
-                    "Erro", "O valor inserido não é válido para JSONs."
-                )
-                return
+            except json.JSONDecodeError as e:
+                if not silent:
+                    messagebox.showerror("Erro", f"JSON inválido: {str(e)}")
+                return False
+
+            # Obtém o valor original para comparação
+            stockValue = self.getValues(editPath, self.backupData)
+
+            # Converte para string para comparação
+            if stockValue is not None:
+                stockValueStr = json.dumps(stockValue, indent=2, ensure_ascii=False)
+            else:
+                stockValueStr = "null"
 
             # Se o valor for diferente
-            if stockValue != editedValue:
+            if stockValueStr != editedValue:
                 # Atualiza o valor na memória
                 self.modifiedValues[editPath] = editedValue
 
@@ -389,6 +491,16 @@ class JSONEditorApp:
 
                 # Recarrega a treeview
                 self.reloadView(self.jsonData)
+
+                # Atualiza o último estado salvo
+                self.last_saved_state = editedValue
+                self.change_count = 0
+
+                if not silent:
+                    self.update_status("Alterações salvas na memória")
+                return True
+
+        return False
 
     def updateJsonData(self, path, value):
         """Atualiza o valor em self.jsonData com base na path fornecida, lida com arrays também"""
@@ -424,17 +536,12 @@ class JSONEditorApp:
 
     def showValues(self, event):
         """Exibe o valor selecionado no Treeview ou mostra JSON completo em raw"""
-        # Se for o modo raw
         if event == "raw":
-            # Define se exibe ou oculta ele
             self.rawShowHide()
-
-        # Se for para exibir uma key
         elif self.jsonData is not None:
-            # Define ela
             showKey = self.getPath()
+            self.last_selected_path = showKey  # Armazena a última path selecionada
 
-            # Verifica se showKey não está vazia
             if showKey:
                 # Inicializa o primeiro valor
                 jsonDisplay = self.getValues(showKey, self.jsonData)
@@ -512,13 +619,50 @@ class JSONEditorApp:
     def createMenu(self):
         """Cria o menu na barra superior"""
         menubar = tk.Menu(self.master)
-        menubar.add_command(label="Carregar", command=self.loadJSON)
-        menubar.add_command(label="Salvar (Arquivo)", command=self.saveChangesToFile)
-        menubar.add_checkbutton(label="RAW", command=self.rawShowHide)
-        menubar.add_checkbutton(label="Reiniciar", command=self.restartEditor)
-        menubar.add_command(label="Sobre", command=self.aboutPopup)
-        menubar.add_command(label="Mudar Tema", command=self.changeTheme)
+
+        # Menu File
+        file_menu = tk.Menu(menubar, tearoff=0)
+        file_menu.add_command(
+            label="Abrir (Ctrl+O)", command=self.loadJSON, accelerator="Ctrl+O"
+        )
+        file_menu.add_command(
+            label="Salvar (Ctrl+S)",
+            command=self.saveChangesToFile,
+            accelerator="Ctrl+S",
+        )
+        file_menu.add_separator()
+        file_menu.add_command(label="Sair", command=self.master.quit)
+        menubar.add_cascade(label="Arquivo", menu=file_menu)
+
+        # Menu Edit
+        self.edit_menu = tk.Menu(menubar, tearoff=0)
+        self.edit_menu.add_checkbutton(
+            label="RAW (Ctrl+R)", command=self.rawShowHide, accelerator="Ctrl+R"
+        )
+        self.edit_menu.add_checkbutton(
+            label="Autosave (Ativo)"
+            if self.auto_save_enabled
+            else "Autosave (Inativo)",
+            command=self.toggle_auto_save,
+        )
+        menubar.add_cascade(label="Editar", menu=self.edit_menu)
+
+        # Menu View
+        view_menu = tk.Menu(menubar, tearoff=0)
+        view_menu.add_command(label="Alternar Tema", command=self.changeTheme)
+        view_menu.add_command(label="Reiniciar", command=self.restartEditor)
+        menubar.add_cascade(label="Visualização", menu=view_menu)
+
+        # Menu Help
+        help_menu = tk.Menu(menubar, tearoff=0)
+        help_menu.add_command(label="Sobre", command=self.aboutPopup)
+        menubar.add_cascade(label="Ajuda", menu=help_menu)
         self.master.config(menu=menubar)
+
+        # Configurar atalhos de teclado
+        self.master.bind("<Control-o>", lambda e: self.loadJSON())
+        self.master.bind("<Control-s>", lambda e: self.saveChangesToFile())
+        self.master.bind("<Control-r>", lambda e: self.rawShowHide())
 
     def restartEditor(self):
         """Reinicia o aplicativo"""
@@ -646,23 +790,92 @@ class JSONEditorApp:
         else:
             messagebox.showinfo("Info", "Nenhuma alteração para salvar.")
 
-    def resetValues(self):
-        """Redefine o valor da key para o valor original"""
-        # Define o path
-        currentPath = self.getPath()
-        stockValue = self.getValues(currentPath, self.backupData)
+    def select_path_in_treeview(self, path):
+        """Seleciona automaticamente um item na treeview com base no path"""
+        if not path:
+            return
 
-        # Se houver
-        if currentPath:
-            # Reseta com base neles
+        try:
+            # Converte o path para uma lista de keys
+            keys = path.split(".")
+            item = ""
+
+            # Navega pela hierarquia da treeview
+            for key in keys:
+                item = self.treeview.focus()
+                children = self.treeview.get_children(item)
+
+                # Procura pelo item com o texto correspondente
+                for child in children:
+                    if self.treeview.item(child, "text") == key:
+                        self.treeview.selection_set(child)
+                        self.treeview.focus(child)
+                        item = child
+                        break
+
+            # Garante que o item está visível
+            if item:
+                self.treeview.see(item)
+        except KeyError as e:
+            print(f"Erro de chave na árvore: {e}")
+        except AttributeError as e:
+            print(f"Erro de atributo na árvore: {e}")
+
+    def resetValues(self):
+        """Redefine o valor da key para o valor original usando a última seleção"""
+        # Usa a última path selecionada se disponível, senão tenta obter a atual
+        currentPath = self.last_selected_path or self.getPath()
+
+        if not currentPath:
+            messagebox.showinfo("Info", "Nenhuma path selecionada para resetar.")
+            return
+
+        # Desativa temporariamente o autosave
+        auto_save_was_enabled = self.auto_save_enabled
+        self.auto_save_enabled = False
+
+        # Cancela qualquer save pendente
+        if self.save_pending:
+            self.master.after_cancel(self.save_pending)
+            self.save_pending = None
+
+        try:
+            stockValue = self.getValues(currentPath, self.backupData)
+            if stockValue is None:
+                messagebox.showinfo("Info", "Não há valor padrão para esta path.")
+                return
+
+            # Seleciona automaticamente o item na treeview
+            self.select_path_in_treeview(currentPath)
+
+            # Armazena o conteúdo atual antes de resetar
+            self.current_editor_content = self.textValues.get("1.0", tk.END)
+
+            # Atualiza o editor
             self.textValues.delete("1.0", tk.END)
             self.textValues.insert(
                 tk.END, json.dumps(stockValue, indent=2, ensure_ascii=False)
             )
 
-        # Se não tiver em uma path
-        else:
-            messagebox.showinfo("Info", "Nenhuma path para resetar foi selecionada.")
+            # Atualiza os dados internos
+            self.last_saved_state = self.textValues.get("1.0", tk.END)
+            if currentPath in self.modifiedValues:
+                del self.modifiedValues[currentPath]
+
+            self.updateJsonData(currentPath, json.dumps(stockValue, ensure_ascii=False))
+            self.update_status(f"Valor de '{currentPath}' resetado para padrão")
+
+        # pylint: disable=W0718
+        except Exception as e:
+            # Restaura o conteúdo anterior em caso de erro
+            if self.current_editor_content:
+                self.textValues.delete("1.0", tk.END)
+                self.textValues.insert(tk.END, self.current_editor_content)
+            messagebox.showerror("Erro", f"Falha ao resetar valor: {str(e)}")
+
+        finally:
+            # Restaura o autosave
+            self.auto_save_enabled = auto_save_was_enabled
 
     def createValueFrame(self):
         """Cria o frame para exibir/editar valores"""
@@ -686,11 +899,39 @@ class JSONEditorApp:
         )
         self.defaultValues.pack(fill=tk.X)
 
-        # Define o botão de armanenar em memoria
-        self.memoryValues = tk.Button(
-            self.valueArea, text="Save (Memory)", command=self.saveData
+        # Adicione tags para syntax highlighting
+        self.textValues.tag_configure("error", foreground="black", background="#ff4444")
+
+        # Adicione verificação em tempo real
+        self.textValues.bind("<KeyRelease>", self.validate_json)
+
+        # Adiciona barra de status
+        self.status_bar = tk.Label(
+            self.valueArea,
+            text="Pronto",
+            bd=1,
+            relief=tk.SUNKEN,
+            anchor=tk.W,
+            bg=self.colorBG,
+            fg=self.colorFG,
         )
-        self.memoryValues.pack(fill=tk.X)
+        self.status_bar.pack(fill=tk.X, side=tk.BOTTOM)
+
+        # Configura o autosave
+        self.setup_auto_save()
+
+    def validate_json(self, event=None):
+        """Valida o JSON em tempo real"""
+        if self.isRawMode and event:
+            text = self.textValues.get("1.0", tk.END)
+            try:
+                json.loads(text)
+                self.textValues.tag_remove("error", "1.0", tk.END)
+            except json.JSONDecodeError as e:
+                self.textValues.tag_remove("valid", "1.0", tk.END)
+                # Destaca a linha com erro
+                error_line = int(str(e).split("line ")[1].split(" ")[0])
+                self.textValues.tag_add("error", f"{error_line}.0", f"{error_line}.end")
 
     def updateTreeView(self, data, parent=""):
         """Preenche o componente Treeview com dados JSON"""

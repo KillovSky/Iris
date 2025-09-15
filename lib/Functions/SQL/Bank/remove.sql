@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS banks (
 DELETE FROM banks WHERE id = '{INSERTUSER}';
 
 -- Deleta as colunas invalidas
-DELETE FROM banks WHERE id NOT LIKE '%@s.whatsapp.net%';
+DELETE FROM banks WHERE id NOT LIKE '%@s.whatsapp.net%' AND id NOT LIKE '%@lid%';
 
 -- Deleta as colunas com modified superior a 30 dias do tempo atual
 DELETE FROM banks WHERE julianday('now') - julianday(modified) > 30;

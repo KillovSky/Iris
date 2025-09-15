@@ -346,6 +346,11 @@
                     "pcinfo",
                     "sessioninfo"
                 ],
+                "Shopping": [
+                    "shop",
+                    "shopping",
+                    "exchange"
+                ],
                 "Stickers": [
                     "sticker",
                     "fig",
@@ -435,6 +440,11 @@
             "description": "Local padrão para buscar comandos.",
             "type": "String",
             "value": "./lib/Commands/"
+        },
+        "idStorage": {
+            "description": "Quantidade de IDs que serão armazenadas antes de resetar.",
+            "type": "Number",
+            "value": 100
         },
         "location": {
             "description": "Local onde o módulo pode ser encontrado.",
