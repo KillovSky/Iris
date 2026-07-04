@@ -70,7 +70,7 @@
     "gifencoder": "^2.0.1",
     "gpt4all": "^4.0.0",
     "ip": "^2.0.1",
-    "link-preview-js": "^3.0.14",
+    "link-preview-js": "^4.0.1",
     "linkify-plugin-ip": "^4.2.0",
     "linkifyjs": "^4.2.0",
     "mumaker": "^2.0.0",
