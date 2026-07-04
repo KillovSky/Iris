@@ -5,14 +5,16 @@ body {
     font-size: 16px;
     margin: 0;
     padding: 0;
+    height: 100vh;
+    overflow: hidden; /* Impede a rolagem da página inteira */
 }
 
 #terminal {
-    height: 95vmin;
+    height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
     padding: 16px;
+    box-sizing: border-box;
 }
 
 #output {
@@ -25,18 +27,51 @@ body {
     color: #FFFFFF;
     font-size: 1.1rem;
     white-space: pre-wrap;
-    overflow-y: auto;
-}
-
-.titlebar:hover {
-    background: #1B2737;
+    overflow-y: auto; /* ROLAGEM APENAS AQUI DENTRO */
+    overflow-x: hidden;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    max-height: calc(100vh - 100px); /* Ajuste conforme necessário */
 }
 
 .titlebar {
     border: 1px solid #80c3ff;
     color: #FFFFFF;
     line-height: 40px;
-    font-weight: 600px;
+    font-weight: 600;
     background-color: #151E29;
     text-align: center;
+    padding: 0 15px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: background 0.3s ease;
+}
+
+.titlebar:hover {
+    background: #1B2737;
+}
+
+/* Responsividade mantida */
+@media (max-width: 768px) {
+    #terminal {
+        padding: 10px;
+    }
+    
+    #output {
+        font-size: 0.95rem;
+        padding: 8px;
+        max-height: calc(100vh - 80px);
+    }
+}
+
+@media (max-width: 480px) {
+    #terminal {
+        padding: 8px;
+    }
+    
+    #output {
+        font-size: 0.9rem;
+        max-height: calc(100vh - 70px);
+    }
 }

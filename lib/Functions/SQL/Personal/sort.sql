@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS personal (
 );
 
 -- Deleta as colunas invalidas
-DELETE FROM personal WHERE id NOT LIKE '%@s.whatsapp.net%';
+DELETE FROM personal WHERE id NOT LIKE '%@s.whatsapp.net%' AND id NOT LIKE '%@lid%';
 
 -- Deleta as colunas com modified superior a 30 dias do tempo atual
 DELETE FROM personal WHERE julianday('now') - julianday(modified) > 30;

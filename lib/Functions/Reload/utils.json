@@ -105,7 +105,8 @@
                 "lib/Initialize",
                 "lib/Backups",
                 "lib/Commands/Cache",
-                "lib/Databases/",
+                "lib/Databases/Utilities",
+                "lib/Databases/Informations",
                 "lib/Sessions/",
                 "lib/Functions/Reload",
                 "lib/Functions/Listener"

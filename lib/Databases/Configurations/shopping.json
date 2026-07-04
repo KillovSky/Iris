@@ -1,0 +1,61 @@
+{
+    "comment": "Taxas de câmbio com valores proporcionais à raridade (1.Diamond > 2.Rubi > 3.Gold > 4.Coin > 5.Iron > 6.Stone > 7.Wood)",
+    "monetary": {
+        "diamond": {
+            "coin": 14,
+            "rubi": 6,
+            "gold": 4,
+            "iron": 10,
+            "stone": 20,
+            "wood": 40
+        },
+        "rubi": {
+            "coin": 2.3333,
+            "diamond": 0.1667,
+            "gold": 0.6667,
+            "iron": 1.6667,
+            "stone": 3.3333,
+            "wood": 6.6667
+        },
+        "gold": {
+            "coin": 3.5,
+            "diamond": 0.25,
+            "rubi": 1.5,
+            "iron": 2.5,
+            "stone": 5,
+            "wood": 10
+        },
+        "coin": {
+            "diamond": 0.0714,
+            "rubi": 0.4286,
+            "gold": 0.2857,
+            "iron": 0.7143,
+            "stone": 1.4286,
+            "wood": 2.8571
+        },
+        "iron": {
+            "coin": 1.4,
+            "diamond": 0.1,
+            "rubi": 0.6,
+            "gold": 0.4,
+            "stone": 2,
+            "wood": 4
+        },
+        "stone": {
+            "coin": 0.7,
+            "diamond": 0.05,
+            "rubi": 0.3,
+            "gold": 0.2,
+            "iron": 0.5,
+            "wood": 2
+        },
+        "wood": {
+            "coin": 0.35,
+            "diamond": 0.025,
+            "rubi": 0.15,
+            "gold": 0.1,
+            "iron": 0.25,
+            "stone": 0.5
+        }
+    }
+}

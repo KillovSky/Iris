@@ -2,6 +2,8 @@
     "commands":{
         "description":"Special commands for Íris sibling codes that bypass the standard 'command not found' error. For more details, visit https://github.com/KillovSky and explore other Íris-related projects.",
         "value":[
+            "rubyinfo",
+            "evalruby",
             "evalpy",
             "goeval",
             "runcode",

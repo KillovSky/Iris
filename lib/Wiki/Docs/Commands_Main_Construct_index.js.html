@@ -28,16 +28,27 @@
         <article>
             <pre class="prettyprint source linenums"><code>/* eslint-disable max-len */
 
-/* Requires */
-const fs = require('fs');
-const removeAccents = require('remove-accents');
-const { extractMetadata } = require('wa-sticker-formatter');
-const issimilar = require('similarity');
-const { downloadMediaMessage, downloadContentFromMessage, getDevice } = require('baileys');
-const Indexer = require('../../../index');
+/* Imports */
+import fs from 'fs';
+import removeAccents from 'remove-accents';
+import { extractMetadata } from 'wa-sticker-formatter';
+import issimilar from 'similarity';
+import { downloadMediaMessage, downloadContentFromMessage, getDevice } from 'baileys';
+import { fileURLToPath } from 'url';
+import { createRequire } from 'module';
+import path from 'path';
+import Indexer from '../../../index.js';
+
+/* Define as funções __dirname e __filename com equivalentes em ESM */
+const thisFile = fileURLToPath(import.meta.url);
+const thisDir = path.dirname(thisFile);
+
+// No topo do arquivo, após as requires
+const databaseGp = {};
+let isOnCool = false;
 
 /* JSON's | Utilidades */
-const envInfo = JSON.parse(fs.readFileSync(`${__dirname}/utils.json`));
+const envInfo = JSON.parse(fs.readFileSync(`${thisDir}/utils.json`));
 const commands = JSON.parse(fs.readFileSync('./lib/Databases/Configurations/definitions.json'));
 const levelSettings = JSON.parse(fs.readFileSync('./lib/Databases/Configurations/leveling.json'));
 let arrayOfCommands = JSON.parse(Indexer('bash').bash(`bash "${irisPath}/lib/Scripts/Others/Menu.sh" "array"`).value);
@@ -188,8 +199,16 @@ async function dataCollect(
 
             /* Por mais que eu não goste disso, o try-catch aqui é essencial para lidar com mensagens bugadas que o Baileys envia, como a futureProofMessage (???) */
             try {
-                /* Define o peso se não tiver */
-                recMessage.fileLength = recMessage?.fileLength || { low: 1000, high: 0, unsigned: false };
+                /* Garante que recMessage seja um objeto antes de manipular */
+                if (typeof recMessage !== 'object' || recMessage === null) {
+                    /* Se for string ou outro tipo, converte para objeto seguro */
+                    recMessage = {
+                        content: recMessage,
+                        fileLength: { low: 1000, high: 0, unsigned: false },
+                    };
+
+                    /* Define o peso se não tiver, garantindo que seja objeto */
+                } else { recMessage.fileLength = recMessage?.fileLength || { low: 1000, high: 0, unsigned: false }; }
 
                 /* Se der erro */
             } catch (err) {
@@ -198,6 +217,12 @@ async function dataCollect(
 
                 /* Printa o erro */
                 console.error(err);
+
+                /* Cria um objeto recMessage seguro para continuar a execução */
+                recMessage = {
+                    content: typeof recMessage === 'string' ? recMessage : 'UNKNOWN_CONTENT',
+                    fileLength: { low: 1000, high: 0, unsigned: false },
+                };
 
                 /* Define soft error */
                 envInfo.results.success = 'DONTRUNTHIS';
@@ -256,7 +281,16 @@ async function dataCollect(
             messageData.sender = chatMessage?.participant || {};
 
             /* Determina a Chat */
-            messageData.chat = chatMessage?.remoteJid.includes('@g.us') ? await kill.groupMetadata(chatMessage?.remoteJid) : {};
+            databaseGp[chatMessage?.remoteJid] = databaseGp[chatMessage?.remoteJid] || (chatMessage?.remoteJid.includes('@g.us') ? await kill.groupMetadata(chatMessage?.remoteJid) : {});
+            messageData.chat = chatMessage?.remoteJid.includes('@g.us') ? databaseGp[chatMessage?.remoteJid] : {};
+
+            /* Configura o reset do cache a cada 10 minutos */
+            if (!isOnCool) {
+                isOnCool = true;
+                setInterval(() => {
+                    Object.keys(databaseGp).forEach((key) => delete databaseGp[key]);
+                }, 600000);
+            }
 
             /* Define o nome do grupo */
             messageData.originalName = messageData.chat?.subject || '';
@@ -266,7 +300,7 @@ async function dataCollect(
             messageData.user = chatMessage?.participant || chatMessage?.remoteJid || '';
 
             /* Define uma user formatada */
-            messageData.userFormated = messageData.user.replace(/@s.whatsapp.net|@g.us/gi, '');
+            messageData.userFormated = messageData.user.replace(/@s.whatsapp.net|@g.us|@lid/gi, '');
 
             /* Define o nome de usuário */
             messageData.originalPushname = message?.pushName || '"Censored by Government"';
@@ -366,7 +400,7 @@ async function dataCollect(
             }
 
             /* Determina o arquivo de dados */
-            if (messageData.isGroup === true &amp;&amp; /@g.us/gi.test(messageData.chatId) &amp;&amp; /@s.whatsapp.net/g.test(messageData.user)) {
+            if (messageData.isGroup === true &amp;&amp; /@g.us/gi.test(messageData.chatId) &amp;&amp; /@s.whatsapp.net|@lid/g.test(messageData.user)) {
                 /* Ajusta a leveling para o valor real */
                 Leveling = Indexer('sql').get('leveling', messageData.user, messageData.chatId).value;
 
@@ -524,11 +558,11 @@ async function dataCollect(
             }
 
             /* Define formatada */
-            messageData.mentionedJidListFormated = messageData.mentionedJidList.map((s) => s.replace(/@s.whatsapp.net|@/gi, ''));
+            messageData.mentionedJidListFormated = messageData.mentionedJidList.map((s) => s.replace(/@s.whatsapp.net|@|@lid/gi, ''));
 
             /* Ajusta tirando valores errados */
             messageData.mentionedJidListFormated = messageData.mentionedJidListFormated.filter((s) => /[0-9]+/gi.test(s));
-            messageData.mentionedJidList = messageData.mentionedJidList.filter((s) => s.includes('@s.whatsapp.net'));
+            messageData.mentionedJidList = messageData.mentionedJidList.filter((s) => s.includes('@s.whatsapp.net') || s.includes('@lid'));
 
             /* Remove duplicações */
             messageData.mentionedJidListFormated = [...new Set(messageData.mentionedJidListFormated)];
@@ -544,7 +578,7 @@ async function dataCollect(
             }
 
             /* Define os IDs dos participantes do grupo, mas formatados */
-            messageData.groupMembersIdFormated = messageData.groupMembersId.map((us) => us.replace(/@g.us|@s.whatsapp.net/gi, ''));
+            messageData.groupMembersIdFormated = messageData.groupMembersId.map((us) => us.replace(/@g.us|@s.whatsapp.net|@lid/gi, ''));
 
             /* Determina os ADMS padrões */
             messageData.groupAdmins = [];
@@ -559,7 +593,7 @@ async function dataCollect(
             }
 
             /* Define uma groupAdmins formatada */
-            messageData.groupAdminsFormated = messageData.groupAdmins.map((ausr) => (ausr || '').replace(/@g.us|@s.whatsapp.net/gi, ''));
+            messageData.groupAdminsFormated = messageData.groupAdmins.map((ausr) => (ausr || '').replace(/@g.us|@s.whatsapp.net|@lid/gi, ''));
 
             /* Verifica se faz parte dos ADMS */
             messageData.isGroupAdmins = messageData.groupAdmins?.includes(messageData.user) || false;
@@ -667,7 +701,7 @@ async function dataCollect(
             messageData.typeName = messageData.isGroupMsg ? messageData.name : messageData.pushname;
 
             /* Define o tipo de ID sem sufixo a usar */
-            messageData.typeId = (messageData.isGroupMsg ? messageData.chatId : messageData.user).replace(/@s.whatsapp.net|@g.us/gi, '');
+            messageData.typeId = (messageData.isGroupMsg ? messageData.chatId : messageData.user).replace(/@s.whatsapp.net|@g.us|@lid/gi, '');
 
             /* Escolhe um membro aleatório */
             messageData.randomMember = Indexer('arrays').extract(messageData.groupMembersId).value;
@@ -927,7 +961,7 @@ async function dataCollect(
         /* Caso de algum erro */
     } catch (error) {
         /* Insere tudo na envInfo */
-        logging.echoError(error, envInfo, __dirname);
+        logging.echoError(error, envInfo, thisDir);
     }
 
     /* Retorna a nova Array */
@@ -951,7 +985,7 @@ function controlSystem(
     cmdTimes = envInfo.functions.control.arguments.cmdTimes.value,
 ) {
     /* Determina o resultado */
-    let switcheroo = false;
+    let commandPath = false;
 
     /* Define valor padrão */
     let commandName = locateFolder(cmdTimes) || cmdTimes || 'Default';
@@ -995,14 +1029,14 @@ function controlSystem(
         commander = commander[0] || 'Default';
 
         /* Verifica pelo commandName (Pelo nome da pasta) */
-        if (fs.existsSync(`${envInfo.parameters.baseCMDs.value}${commandName}`)) {
-            /* Define a pasta */
-            switcheroo = `../../${commandName}`;
+        if (fs.existsSync(`${envInfo.parameters.baseCMDs.value}${commandName}/index.js`)) {
+            /* Define o caminho completo */
+            commandPath = `${envInfo.parameters.baseCMDs.value}${commandName}/index.js`;
 
             /* Só edita se não existir no formato atual */
             if (envInfo.parameters.alias.value[commandName] == null) {
                 /* Define o arquivo padrão para não enviar dados ruins */
-                const defaultEnvir = JSON.parse(fs.readFileSync(`${__dirname}/utils.json`));
+                const defaultEnvir = JSON.parse(fs.readFileSync(`${thisDir}/utils.json`));
 
                 /* Define a alias atual */
                 const alliesBro = Object.keys(defaultEnvir.parameters.alias.value).filter((d) => d.toLowerCase() === commandName.toLowerCase())[0];
@@ -1022,32 +1056,36 @@ function controlSystem(
                 }
 
                 /* Salva no arquivo */
-                fs.writeFileSync(`${__dirname}/utils.json`, JSON.stringify(defaultEnvir, null, 4));
+                fs.writeFileSync(`${thisDir}/utils.json`, JSON.stringify(defaultEnvir, null, 4));
 
                 /* Redefine a envInfo */
                 envInfo.functions.revert.value();
             }
 
             /* Verifica pelo commander (Alias) */
-        } else if (fs.existsSync(`${envInfo.parameters.baseCMDs.value}${commander}`)) {
-            /* Define a pasta */
-            switcheroo = `../../${commander}`;
+        } else if (fs.existsSync(`${envInfo.parameters.baseCMDs.value}${commander}/index.js`)) {
+            /* Define o caminho completo */
+            commandPath = `${envInfo.parameters.baseCMDs.value}${commander}/index.js`;
 
             /* Caso não tenha o comando */
         } else {
             /* Define como Default (Cases/No Prefix) */
-            switcheroo = '../../Default';
+            commandPath = `${irisPath}/lib/Commands/Default/index.js`;
         }
 
-        /* Faz a exports e retorna ela */
-        /* eslint-disable-next-line global-require, import/no-dynamic-require */
-        const Sys = require(switcheroo);
-        return Sys[Object.keys(Sys)[0]];
+        /* Faz absolute */
+        commandPath = path.join(irisPath, commandPath);
+
+        /* Faz a require e retorna o módulo */
+        const require = createRequire(import.meta.url);
+        /* eslint-disable-next-line import/no-dynamic-require */
+        const requiredSys = require(commandPath);
+        return requiredSys.default[Object.keys(requiredSys.default)[0]];
 
         /* Caso de algum erro */
     } catch (error) {
         /* Exibe o erro direto, essa parte não é da envInfo, até por que é sensivel */
-        console.log(error);
+        console.error('Erro no controlSystem:', error);
     }
 
     /* Retorna um valor padrão se não funcionar acima */
@@ -1058,15 +1096,15 @@ function controlSystem(
  * Restaura o ambiente e atualiza as exportações do módulo com a funcionalidade principal
  * @param {Object} [changeKey={}] - Chaves personalizadas para atualizar o envInfo
  * @param {Object} [envFile=envInfo] - Objeto com informações do ambiente
- * @param {string} [dirname=__dirname] - Caminho do diretório atual
+ * @param {string} [dirname=thisDir] - Caminho do diretório atual
  * @returns {Object} Exportações do módulo com todas as funções configuradas
  */
 /* eslint-disable-next-line no-return-assign */
 const resetLocal = (
     changeKey = {},
     envFile = envInfo,
-    dirname = __dirname,
-) => module.exports = logging.resetAmbient({
+    dirname = thisDir,
+) => logging.resetAmbient({
     functions: {
         [envInfo.exports.env]: { value: ambientDetails },
         [envInfo.exports.messedup]: { value: logging.echoError },
@@ -1076,10 +1114,12 @@ const resetLocal = (
         [envInfo.exports.control]: { value: controlSystem },
     },
     parameters: {
-        location: { value: __filename },
+        location: { value: thisFile },
     },
 }, envFile, changeKey, dirname);
-resetLocal();
+
+/* Exporta todas as funções */
+export default resetLocal();
 </code></pre>
         </article>
     </section>
@@ -1090,13 +1130,13 @@ resetLocal();
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-ConnectionManager.html">ConnectionManager</a></li><li><a href="module-TerminalStarter.html">TerminalStarter</a></li></ul><h3>Global</h3><ul><li><a href="global.html#.onclick">.onclick</a></li><li><a href="global.html#addMessageHandler">addMessageHandler</a></li><li><a href="global.html#ambientDetails">ambientDetails</a></li><li><a href="global.html#blurImage">blurImage</a></li><li><a href="global.html#calculateIdealNctx">calculateIdealNctx</a></li><li><a href="global.html#caseChecker">caseChecker</a></li><li><a href="global.html#caseDefault">caseDefault</a></li><li><a href="global.html#checkGaming">checkGaming</a></li><li><a href="global.html#checker">checker</a></li><li><a href="global.html#chessDogs">chessDogs</a></li><li><a href="global.html#cleanInvalidIPs">cleanInvalidIPs</a></li><li><a href="global.html#clearHistory">clearHistory</a></li><li><a href="global.html#commandCache">commandCache</a></li><li><a href="global.html#controlSystem">controlSystem</a></li><li><a href="global.html#controlSystemAsync">controlSystemAsync</a></li><li><a href="global.html#createCard">createCard</a></li><li><a href="global.html#createList">createList</a></li><li><a href="global.html#createListRow">createListRow</a></li><li><a href="global.html#createListener">createListener</a></li><li><a href="global.html#currentSort">currentSort</a></li><li><a href="global.html#customCommand">customCommand</a></li><li><a href="global.html#deepMerge">deepMerge</a></li><li><a href="global.html#dialoguePicker">dialoguePicker</a></li><li><a href="global.html#echoError">echoError</a></li><li><a href="global.html#envInfoGenerator">envInfoGenerator</a></li><li><a href="global.html#executeSQLCommand">executeSQLCommand</a></li><li><a href="global.html#executeSQLite">executeSQLite</a></li><li><a href="global.html#filterValues">filterValues</a></li><li><a href="global.html#findProperty">findProperty</a></li><li><a href="global.html#finishStartup">finishStartup</a></li><li><a href="global.html#fixDatabase">fixDatabase</a></li><li><a href="global.html#formatBase64">formatBase64</a></li><li><a href="global.html#functionString">functionString</a></li><li><a href="global.html#genSession">genSession</a></li><li><a href="global.html#generateContent">generateContent</a></li><li><a href="global.html#generateList">generateList</a></li><li><a href="global.html#generateResponse">generateResponse</a></li><li><a href="global.html#generateSessions">generateSessions</a></li><li><a href="global.html#getBuffer">getBuffer</a></li><li><a href="global.html#getKeyword">getKeyword</a></li><li><a href="global.html#getPatent">getPatent</a></li><li><a href="global.html#getRelativePath">getRelativePath</a></li><li><a href="global.html#getValues">getValues</a></li><li><a href="global.html#handleConnectionError">handleConnectionError</a></li><li><a href="global.html#handleFailedAttempts">handleFailedAttempts</a></li><li><a href="global.html#handleSystemError">handleSystemError</a></li><li><a href="global.html#handleUnmappedCommand">handleUnmappedCommand</a></li><li><a href="global.html#hasCUDA">hasCUDA</a></li><li><a href="global.html#initSocketConnection">initSocketConnection</a></li><li><a href="global.html#initializeModel">initializeModel</a></li><li><a href="global.html#irisPlaying">irisPlaying</a></li><li><a href="global.html#isListView">isListView</a></li><li><a href="global.html#isValidDate">isValidDate</a></li><li><a href="global.html#loadCommandModule">loadCommandModule</a></li><li><a href="global.html#loadCommandModuleAsync">loadCommandModuleAsync</a></li><li><a href="global.html#loadConfigWithRetry">loadConfigWithRetry</a></li><li><a href="global.html#locateFolder">locateFolder</a></li><li><a href="global.html#locateObjectKey">locateObjectKey</a></li><li><a href="global.html#logDebugInfo">logDebugInfo</a></li><li><a href="global.html#logPerformance">logPerformance</a></li><li><a href="global.html#minifyFile">minifyFile</a></li><li><a href="global.html#minifyFolder">minifyFolder</a></li><li><a href="global.html#missing">missing</a></li><li><a href="global.html#modelConfigs">modelConfigs</a></li><li><a href="global.html#myFunction">myFunction</a></li><li><a href="global.html#partners">partners</a></li><li><a href="global.html#postResults">postResults</a></li><li><a href="global.html#processMessages">processMessages</a></li><li><a href="global.html#programDownloads">programDownloads</a></li><li><a href="global.html#programExists">programExists</a></li><li><a href="global.html#purgeValues">purgeValues</a></li><li><a href="global.html#rankingValues">rankingValues</a></li><li><a href="global.html#readingMessages">readingMessages</a></li><li><a href="global.html#removeCommentsAndEmptyLines">removeCommentsAndEmptyLines</a></li><li><a href="global.html#removeValues">removeValues</a></li><li><a href="global.html#replaceInAll">replaceInAll</a></li><li><a href="global.html#replaceSystem">replaceSystem</a></li><li><a href="global.html#replaceText">replaceText</a></li><li><a href="global.html#resetAmbient">resetAmbient</a></li><li><a href="global.html#resolveCommandPath">resolveCommandPath</a></li><li><a href="global.html#runTasks">runTasks</a></li><li><a href="global.html#safePathJoin">safePathJoin</a></li><li><a href="global.html#sleep">sleep</a></li><li><a href="global.html#sortByColumn">sortByColumn</a></li><li><a href="global.html#sqlDatabase">sqlDatabase</a></li><li><a href="global.html#toggleDescription">toggleDescription</a></li><li><a href="global.html#toggleListView">toggleListView</a></li><li><a href="global.html#undoValues">undoValues</a></li><li><a href="global.html#updateSortIcons">updateSortIcons</a></li><li><a href="global.html#updateSymlinks">updateSymlinks</a></li><li><a href="global.html#updateValues">updateValues</a></li><li><a href="global.html#urlExists">urlExists</a></li><li><a href="global.html#urlGo">urlGo</a></li><li><a href="global.html#validateCommandName">validateCommandName</a></li><li><a href="global.html#validateJSON">validateJSON</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-ConnectionManager.html">ConnectionManager</a></li><li><a href="module-TerminalStarter.html">TerminalStarter</a></li></ul><h3>Global</h3><ul><li><a href="global.html#.onclick">.onclick</a></li><li><a href="global.html#addMessageHandler">addMessageHandler</a></li><li><a href="global.html#ambientDetails">ambientDetails</a></li><li><a href="global.html#blurImage">blurImage</a></li><li><a href="global.html#calculateChange">calculateChange</a></li><li><a href="global.html#calculateIdealNctx">calculateIdealNctx</a></li><li><a href="global.html#caseChecker">caseChecker</a></li><li><a href="global.html#caseDefault">caseDefault</a></li><li><a href="global.html#checkGaming">checkGaming</a></li><li><a href="global.html#checker">checker</a></li><li><a href="global.html#chessDogs">chessDogs</a></li><li><a href="global.html#cleanInvalidIPs">cleanInvalidIPs</a></li><li><a href="global.html#clearHistory">clearHistory</a></li><li><a href="global.html#commandCache">commandCache</a></li><li><a href="global.html#controlSystem">controlSystem</a></li><li><a href="global.html#controlSystemAsync">controlSystemAsync</a></li><li><a href="global.html#createCard">createCard</a></li><li><a href="global.html#createList">createList</a></li><li><a href="global.html#createListRow">createListRow</a></li><li><a href="global.html#createListener">createListener</a></li><li><a href="global.html#currentSort">currentSort</a></li><li><a href="global.html#customCommand">customCommand</a></li><li><a href="global.html#deepMerge">deepMerge</a></li><li><a href="global.html#dialoguePicker">dialoguePicker</a></li><li><a href="global.html#echoError">echoError</a></li><li><a href="global.html#envInfoGenerator">envInfoGenerator</a></li><li><a href="global.html#executeSQLCommand">executeSQLCommand</a></li><li><a href="global.html#executeSQLite">executeSQLite</a></li><li><a href="global.html#filterValues">filterValues</a></li><li><a href="global.html#findProperty">findProperty</a></li><li><a href="global.html#finishStartup">finishStartup</a></li><li><a href="global.html#fixDatabase">fixDatabase</a></li><li><a href="global.html#formatBase64">formatBase64</a></li><li><a href="global.html#functionString">functionString</a></li><li><a href="global.html#genSession">genSession</a></li><li><a href="global.html#generateContent">generateContent</a></li><li><a href="global.html#generateList">generateList</a></li><li><a href="global.html#generateResponse">generateResponse</a></li><li><a href="global.html#generateSessions">generateSessions</a></li><li><a href="global.html#getBuffer">getBuffer</a></li><li><a href="global.html#getKeyword">getKeyword</a></li><li><a href="global.html#getPatent">getPatent</a></li><li><a href="global.html#getRelativePath">getRelativePath</a></li><li><a href="global.html#getValues">getValues</a></li><li><a href="global.html#handleConnectionError">handleConnectionError</a></li><li><a href="global.html#handleFailedAttempts">handleFailedAttempts</a></li><li><a href="global.html#handleSystemError">handleSystemError</a></li><li><a href="global.html#handleUnmappedCommand">handleUnmappedCommand</a></li><li><a href="global.html#hasCUDA">hasCUDA</a></li><li><a href="global.html#initSocketConnection">initSocketConnection</a></li><li><a href="global.html#initializeModel">initializeModel</a></li><li><a href="global.html#irisPlaying">irisPlaying</a></li><li><a href="global.html#isListView">isListView</a></li><li><a href="global.html#isValidDate">isValidDate</a></li><li><a href="global.html#loadCommandModuleAsync">loadCommandModuleAsync</a></li><li><a href="global.html#loadCommandModuleSync">loadCommandModuleSync</a></li><li><a href="global.html#loadConfigWithRetry">loadConfigWithRetry</a></li><li><a href="global.html#locateFolder">locateFolder</a></li><li><a href="global.html#locateObjectKey">locateObjectKey</a></li><li><a href="global.html#logDebugInfo">logDebugInfo</a></li><li><a href="global.html#logPerformance">logPerformance</a></li><li><a href="global.html#minifyFile">minifyFile</a></li><li><a href="global.html#minifyFolder">minifyFolder</a></li><li><a href="global.html#missing">missing</a></li><li><a href="global.html#modelConfigs">modelConfigs</a></li><li><a href="global.html#myFunction">myFunction</a></li><li><a href="global.html#partners">partners</a></li><li><a href="global.html#postResults">postResults</a></li><li><a href="global.html#processMessages">processMessages</a></li><li><a href="global.html#programDownloads">programDownloads</a></li><li><a href="global.html#programExists">programExists</a></li><li><a href="global.html#purgeValues">purgeValues</a></li><li><a href="global.html#rankingValues">rankingValues</a></li><li><a href="global.html#readingMessages">readingMessages</a></li><li><a href="global.html#removeCommentsAndEmptyLines">removeCommentsAndEmptyLines</a></li><li><a href="global.html#removeValues">removeValues</a></li><li><a href="global.html#replaceInAll">replaceInAll</a></li><li><a href="global.html#replaceSystem">replaceSystem</a></li><li><a href="global.html#replaceText">replaceText</a></li><li><a href="global.html#resetAmbient">resetAmbient</a></li><li><a href="global.html#resolveCommandPath">resolveCommandPath</a></li><li><a href="global.html#runTasks">runTasks</a></li><li><a href="global.html#safePathJoin">safePathJoin</a></li><li><a href="global.html#shoppeIris">shoppeIris</a></li><li><a href="global.html#sleep">sleep</a></li><li><a href="global.html#sortByColumn">sortByColumn</a></li><li><a href="global.html#sqlDatabase">sqlDatabase</a></li><li><a href="global.html#toggleDescription">toggleDescription</a></li><li><a href="global.html#toggleListView">toggleListView</a></li><li><a href="global.html#undoValues">undoValues</a></li><li><a href="global.html#updateSortIcons">updateSortIcons</a></li><li><a href="global.html#updateSymlinks">updateSymlinks</a></li><li><a href="global.html#updateValues">updateValues</a></li><li><a href="global.html#urlExists">urlExists</a></li><li><a href="global.html#urlGo">urlGo</a></li><li><a href="global.html#validateCommandName">validateCommandName</a></li><li><a href="global.html#validateJSON">validateJSON</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Sun Apr 13 2025 17:34:05 GMT-0300 (Horário Padrão de Brasília)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Mon Sep 08 2025 22:07:25 GMT-0300 (Horário Padrão de Brasília)
 </footer>
 
 <script> prettyPrint(); </script>

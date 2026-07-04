@@ -31,7 +31,7 @@ UPDATE leveling SET data = (
 WHERE user = '{INSERTUSER}' AND chat = '{INSERTGROUP}' AND json_valid(data); 
 
 -- Deleta as colunas invalidas
-DELETE FROM leveling WHERE user NOT LIKE '%@s.whatsapp.net%' OR chat NOT LIKE '%@g.us%';
+DELETE FROM leveling WHERE (user NOT LIKE '%@s.whatsapp.net%' AND user NOT LIKE '%@lid%') OR chat NOT LIKE '%@g.us%';
 
 -- Deleta as colunas com modified superior a 30 dias do tempo atual
 DELETE FROM leveling WHERE julianday('now') - julianday(modified) > 30;

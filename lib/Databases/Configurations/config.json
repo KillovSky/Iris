@@ -133,7 +133,7 @@
 	},
 	"owner": {
 		"description": "An array of users authorized to run any command.",
-		"value": ["MyNumber@s.whatsapp.net"]
+		"value": ["MyNumber@s.whatsapp.net", "MyId@lid"]
 	},
 	"pairingCode": { "value": false, "description": "Defines if the connection should use pairing code instead of qrcode, minified to help termux edition by sed." },
 	"prefixes": {
@@ -214,7 +214,7 @@
 		"value": false
 	},
     "useBanner": {
-		"description": "This controls if Íris should use a banner inside the menu or just send the text, the default banner as made by JoJo.",
+		"description": "This controls if Íris should use a banner inside the menu or just send the text, the default banner as made by JoJo or KillovSky.",
 		"value": true
 	},
 	"waitMessage": {

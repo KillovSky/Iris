@@ -17,7 +17,7 @@ UPDATE banks SET data = json_patch('{INSERTDEFAULT}', data), modified = CURRENT_
 UPDATE banks SET data = json_remove(data, '$.{INSERTKEY}{INSERTJSON}'), modified = CURRENT_TIMESTAMP WHERE id = '{INSERTUSER}';
 
 -- Deleta as colunas invalidas
-DELETE FROM banks WHERE id NOT LIKE '%@s.whatsapp.net%';
+DELETE FROM banks WHERE id NOT LIKE '%@s.whatsapp.net%' AND id NOT LIKE '%@lid%';
 
 -- Deleta as colunas com modified superior a 30 dias do tempo atual
 DELETE FROM banks WHERE julianday('now') - julianday(modified) > 30;

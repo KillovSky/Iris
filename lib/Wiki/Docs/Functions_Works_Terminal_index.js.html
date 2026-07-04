@@ -30,20 +30,25 @@
 /* eslint-disable max-len */
 
 /* Requires */
-const express = require('express');
-const bodyParser = require('body-parser');
-const fs = require('fs');
-const http = require('http');
-const https = require('https');
-const IP = require('ip');
-const path = require('path');
-const util = require('util');
-const socketIo = require('socket.io');
-const WebSocket = require('ws');
-const Indexer = require('../../../index');
+import express from 'express';
+import bodyParser from 'body-parser';
+import fs from 'fs';
+import http from 'http';
+import https from 'https';
+import IP from 'ip';
+import path from 'path';
+import util from 'util';
+import { Server as SocketIo } from 'socket.io';
+import { WebSocket, WebSocketServer } from 'ws';
+import { fileURLToPath } from 'url';
+import Indexer from '../../../index.js';
+
+/* Define as funções thisDir e thisFile com equivalentes em ESM */
+const thisFile = fileURLToPath(import.meta.url);
+const thisDir = path.dirname(thisFile);
 
 /* JSON's | Utilidades */
-let envInfo = JSON.parse(fs.readFileSync(`${__dirname}/utils.json`));
+let envInfo = JSON.parse(fs.readFileSync(`${thisDir}/utils.json`));
 let terminalInit = false;
 let portsRunning = [];
 const grantedIPs = {};
@@ -54,7 +59,7 @@ let clients = [];
 /* Certificado TLS Autoassinado com melhor segurança */
 const httpsOptions = (() => {
     /* Local dos certificados */
-    const certPath = `${__dirname}/Security/Server`;
+    const certPath = `${thisDir}/Security/Server`;
 
     /* Tenta construir um certificado melhor */
     try {
@@ -77,7 +82,7 @@ const httpsOptions = (() => {
         /* Se der qualquer erro */
     } catch (error) {
         /* Registra o erro na envInfo */
-        logging.echoError(error, envInfo, __dirname);
+        logging.echoError(error, envInfo, thisDir);
     }
 
     /* Retorno padrão */
@@ -395,7 +400,7 @@ function isValidMessage(jsonData) {
 
         /* Verificação de estrutura de mensagem padrão */
         const isValidMessageStructure = (
-            (jsonData?.chatId?.includes('@g.us') || jsonData?.chatId?.includes('@s.whatsapp.net'))
+            (jsonData?.chatId?.includes('@g.us') || jsonData?.chatId?.includes('@lid') || jsonData?.chatId?.includes('@s.whatsapp.net'))
             &amp;&amp; typeof jsonData?.message === 'object'
             &amp;&amp; (typeof jsonData?.quoted === 'object' || jsonData?.quoted === false)
         );
@@ -438,7 +443,7 @@ function createServers(app, httpApp) {
     const httpsServer = https.createServer(httpsOptions, app);
 
     /* Inicializa Socket.IO no servidor HTTPS */
-    socketConn = socketIo(httpsServer);
+    socketConn = new SocketIo(httpsServer);
 
     /* Cria servidor HTTP básico */
     const httpServer = http.createServer(httpApp);
@@ -524,7 +529,7 @@ function handleWebSocketConnection(ws) {
  */
 function configureWebSocket(httpsServer) {
     /* Cria instância do WebSocket Server */
-    const wss = new WebSocket.Server({ noServer: true });
+    const wss = new WebSocketServer({ noServer: true });
 
     /* Configura evento de upgrade para WebSocket */
     httpsServer.on('upgrade', (request, socket, head) => {
@@ -547,7 +552,7 @@ function handleEditorRoute(httpsServer) {
         res.sendFile(path.resolve('./lib/Wiki/Editor/index.html'));
 
         /* Garante que socketConn está definido */
-        socketConn = socketConn || socketIo(httpsServer);
+        socketConn = socketConn || SocketIo(httpsServer);
 
         /* Configura eventos Socket.IO para editor */
         socketConn.on('connection', (socket) => {
@@ -858,7 +863,7 @@ function refStarter(
             envInfo.results.success = true;
         } catch (error) {
             /* Registra erros no sistema de log */
-            logging.echoError(error, envInfo, __dirname);
+            logging.echoError(error, envInfo, thisDir);
         }
 
         /* Resolve a Promise com resultados da inicialização */
@@ -911,11 +916,36 @@ function startConsole(kill) {
         /* No console padrão */
         originalConsoles[method](...args);
 
-        /* No HTML */
-        socketConn.emit('log', args.join(' '));
+        /* Converte os argumentos para string de forma segura */
+        const safeArgs = args.map((arg) => {
+            /* Tudo dentro de um try para melhor contenção */
+            try {
+                /* Se caso for um Object, mas não null */
+                if (typeof arg === 'object' &amp;&amp; arg !== null) {
+                    /* Usa JSON.stringify com tratamento de erro */
+                    return JSON.stringify(arg, (key, value) => {
+                        /* Remove circular references e funções */
+                        if (typeof value === 'function') { return `[Function: ${value.name || 'anonymous'}]`; }
 
-        /* No terminal web */
-        return util.format(args);
+                        /* Se for um error */
+                        if (value instanceof Error) { return { message: value.message, stack: value.stack, name: value.name }; }
+
+                        /* Se nenhum, retorna direto */
+                        return value;
+                    }, 2);
+                }
+                /* Para outros tipos, converte normalmente */
+                return String(arg);
+
+                /* Fallback seguro se der erro na conversão */
+            } catch (error) { return `[Unserializable: ${typeof arg}]`; }
+        });
+
+        /* No HTML */
+        socketConn.emit('log', safeArgs.join(' '));
+
+        /* No terminal web - retorna formatado seguro */
+        return util.format(...safeArgs);
     };
 });
 
@@ -946,7 +976,7 @@ function resetAmbient(
     /* Try-Catch para casos de erro */
     try {
         /* Define a envInfo padrão */
-        envInfo = JSON.parse(fs.readFileSync(`${__dirname}/utils.json`));
+        envInfo = JSON.parse(fs.readFileSync(`${thisDir}/utils.json`));
 
         /* Define se algum valor deve ser salvo */
         if (Object.keys(changeKey).length !== 0) {
@@ -991,13 +1021,13 @@ function resetAmbient(
         envInfo.functions.baseinit.value = refStarter;
 
         /* Define o local completo na envInfo para usar o reload novamente */
-        envInfo.parameters.location.value = __filename;
+        envInfo.parameters.location.value = thisFile;
 
         /* Define o portsRunning novamente */
         envInfo.results.value = portsRunning;
 
         /* Gera a module exports */
-        module.exports = {
+        exporting = {
             [envInfo.name]: {
                 [envInfo.exports.env]: envInfo.functions.ambient.value,
                 [envInfo.exports.messedup]: envInfo.functions.messedup.value,
@@ -1017,13 +1047,10 @@ function resetAmbient(
         /* Determina sucesso */
         envInfo.results.success = true;
 
-        /* Define o valor retornado */
-        exporting = module.exports;
-
         /* Caso de algum erro */
     } catch (error) {
         /* Insere tudo na envInfo */
-        logging.echoError(error, envInfo, __dirname);
+        logging.echoError(error, envInfo, thisDir);
     }
 
     /* Retorna o exports */
@@ -1031,7 +1058,7 @@ function resetAmbient(
 }
 
 /* Constrói a envInfo */
-resetAmbient();
+export default resetAmbient();
 </code></pre>
         </article>
     </section>
@@ -1042,13 +1069,13 @@ resetAmbient();
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-ConnectionManager.html">ConnectionManager</a></li><li><a href="module-TerminalStarter.html">TerminalStarter</a></li></ul><h3>Global</h3><ul><li><a href="global.html#.onclick">.onclick</a></li><li><a href="global.html#addMessageHandler">addMessageHandler</a></li><li><a href="global.html#ambientDetails">ambientDetails</a></li><li><a href="global.html#blurImage">blurImage</a></li><li><a href="global.html#calculateIdealNctx">calculateIdealNctx</a></li><li><a href="global.html#caseChecker">caseChecker</a></li><li><a href="global.html#caseDefault">caseDefault</a></li><li><a href="global.html#checkGaming">checkGaming</a></li><li><a href="global.html#checker">checker</a></li><li><a href="global.html#chessDogs">chessDogs</a></li><li><a href="global.html#cleanInvalidIPs">cleanInvalidIPs</a></li><li><a href="global.html#clearHistory">clearHistory</a></li><li><a href="global.html#commandCache">commandCache</a></li><li><a href="global.html#controlSystem">controlSystem</a></li><li><a href="global.html#controlSystemAsync">controlSystemAsync</a></li><li><a href="global.html#createCard">createCard</a></li><li><a href="global.html#createList">createList</a></li><li><a href="global.html#createListRow">createListRow</a></li><li><a href="global.html#createListener">createListener</a></li><li><a href="global.html#currentSort">currentSort</a></li><li><a href="global.html#customCommand">customCommand</a></li><li><a href="global.html#deepMerge">deepMerge</a></li><li><a href="global.html#dialoguePicker">dialoguePicker</a></li><li><a href="global.html#echoError">echoError</a></li><li><a href="global.html#envInfoGenerator">envInfoGenerator</a></li><li><a href="global.html#executeSQLCommand">executeSQLCommand</a></li><li><a href="global.html#executeSQLite">executeSQLite</a></li><li><a href="global.html#filterValues">filterValues</a></li><li><a href="global.html#findProperty">findProperty</a></li><li><a href="global.html#finishStartup">finishStartup</a></li><li><a href="global.html#fixDatabase">fixDatabase</a></li><li><a href="global.html#formatBase64">formatBase64</a></li><li><a href="global.html#functionString">functionString</a></li><li><a href="global.html#genSession">genSession</a></li><li><a href="global.html#generateContent">generateContent</a></li><li><a href="global.html#generateList">generateList</a></li><li><a href="global.html#generateResponse">generateResponse</a></li><li><a href="global.html#generateSessions">generateSessions</a></li><li><a href="global.html#getBuffer">getBuffer</a></li><li><a href="global.html#getKeyword">getKeyword</a></li><li><a href="global.html#getPatent">getPatent</a></li><li><a href="global.html#getRelativePath">getRelativePath</a></li><li><a href="global.html#getValues">getValues</a></li><li><a href="global.html#handleConnectionError">handleConnectionError</a></li><li><a href="global.html#handleFailedAttempts">handleFailedAttempts</a></li><li><a href="global.html#handleSystemError">handleSystemError</a></li><li><a href="global.html#handleUnmappedCommand">handleUnmappedCommand</a></li><li><a href="global.html#hasCUDA">hasCUDA</a></li><li><a href="global.html#initSocketConnection">initSocketConnection</a></li><li><a href="global.html#initializeModel">initializeModel</a></li><li><a href="global.html#irisPlaying">irisPlaying</a></li><li><a href="global.html#isListView">isListView</a></li><li><a href="global.html#isValidDate">isValidDate</a></li><li><a href="global.html#loadCommandModule">loadCommandModule</a></li><li><a href="global.html#loadCommandModuleAsync">loadCommandModuleAsync</a></li><li><a href="global.html#loadConfigWithRetry">loadConfigWithRetry</a></li><li><a href="global.html#locateFolder">locateFolder</a></li><li><a href="global.html#locateObjectKey">locateObjectKey</a></li><li><a href="global.html#logDebugInfo">logDebugInfo</a></li><li><a href="global.html#logPerformance">logPerformance</a></li><li><a href="global.html#minifyFile">minifyFile</a></li><li><a href="global.html#minifyFolder">minifyFolder</a></li><li><a href="global.html#missing">missing</a></li><li><a href="global.html#modelConfigs">modelConfigs</a></li><li><a href="global.html#myFunction">myFunction</a></li><li><a href="global.html#partners">partners</a></li><li><a href="global.html#postResults">postResults</a></li><li><a href="global.html#processMessages">processMessages</a></li><li><a href="global.html#programDownloads">programDownloads</a></li><li><a href="global.html#programExists">programExists</a></li><li><a href="global.html#purgeValues">purgeValues</a></li><li><a href="global.html#rankingValues">rankingValues</a></li><li><a href="global.html#readingMessages">readingMessages</a></li><li><a href="global.html#removeCommentsAndEmptyLines">removeCommentsAndEmptyLines</a></li><li><a href="global.html#removeValues">removeValues</a></li><li><a href="global.html#replaceInAll">replaceInAll</a></li><li><a href="global.html#replaceSystem">replaceSystem</a></li><li><a href="global.html#replaceText">replaceText</a></li><li><a href="global.html#resetAmbient">resetAmbient</a></li><li><a href="global.html#resolveCommandPath">resolveCommandPath</a></li><li><a href="global.html#runTasks">runTasks</a></li><li><a href="global.html#safePathJoin">safePathJoin</a></li><li><a href="global.html#sleep">sleep</a></li><li><a href="global.html#sortByColumn">sortByColumn</a></li><li><a href="global.html#sqlDatabase">sqlDatabase</a></li><li><a href="global.html#toggleDescription">toggleDescription</a></li><li><a href="global.html#toggleListView">toggleListView</a></li><li><a href="global.html#undoValues">undoValues</a></li><li><a href="global.html#updateSortIcons">updateSortIcons</a></li><li><a href="global.html#updateSymlinks">updateSymlinks</a></li><li><a href="global.html#updateValues">updateValues</a></li><li><a href="global.html#urlExists">urlExists</a></li><li><a href="global.html#urlGo">urlGo</a></li><li><a href="global.html#validateCommandName">validateCommandName</a></li><li><a href="global.html#validateJSON">validateJSON</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-ConnectionManager.html">ConnectionManager</a></li><li><a href="module-TerminalStarter.html">TerminalStarter</a></li></ul><h3>Global</h3><ul><li><a href="global.html#.onclick">.onclick</a></li><li><a href="global.html#addMessageHandler">addMessageHandler</a></li><li><a href="global.html#ambientDetails">ambientDetails</a></li><li><a href="global.html#blurImage">blurImage</a></li><li><a href="global.html#calculateChange">calculateChange</a></li><li><a href="global.html#calculateIdealNctx">calculateIdealNctx</a></li><li><a href="global.html#caseChecker">caseChecker</a></li><li><a href="global.html#caseDefault">caseDefault</a></li><li><a href="global.html#checkGaming">checkGaming</a></li><li><a href="global.html#checker">checker</a></li><li><a href="global.html#chessDogs">chessDogs</a></li><li><a href="global.html#cleanInvalidIPs">cleanInvalidIPs</a></li><li><a href="global.html#clearHistory">clearHistory</a></li><li><a href="global.html#commandCache">commandCache</a></li><li><a href="global.html#controlSystem">controlSystem</a></li><li><a href="global.html#controlSystemAsync">controlSystemAsync</a></li><li><a href="global.html#createCard">createCard</a></li><li><a href="global.html#createList">createList</a></li><li><a href="global.html#createListRow">createListRow</a></li><li><a href="global.html#createListener">createListener</a></li><li><a href="global.html#currentSort">currentSort</a></li><li><a href="global.html#customCommand">customCommand</a></li><li><a href="global.html#deepMerge">deepMerge</a></li><li><a href="global.html#dialoguePicker">dialoguePicker</a></li><li><a href="global.html#echoError">echoError</a></li><li><a href="global.html#envInfoGenerator">envInfoGenerator</a></li><li><a href="global.html#executeSQLCommand">executeSQLCommand</a></li><li><a href="global.html#executeSQLite">executeSQLite</a></li><li><a href="global.html#filterValues">filterValues</a></li><li><a href="global.html#findProperty">findProperty</a></li><li><a href="global.html#finishStartup">finishStartup</a></li><li><a href="global.html#fixDatabase">fixDatabase</a></li><li><a href="global.html#formatBase64">formatBase64</a></li><li><a href="global.html#functionString">functionString</a></li><li><a href="global.html#genSession">genSession</a></li><li><a href="global.html#generateContent">generateContent</a></li><li><a href="global.html#generateList">generateList</a></li><li><a href="global.html#generateResponse">generateResponse</a></li><li><a href="global.html#generateSessions">generateSessions</a></li><li><a href="global.html#getBuffer">getBuffer</a></li><li><a href="global.html#getKeyword">getKeyword</a></li><li><a href="global.html#getPatent">getPatent</a></li><li><a href="global.html#getRelativePath">getRelativePath</a></li><li><a href="global.html#getValues">getValues</a></li><li><a href="global.html#handleConnectionError">handleConnectionError</a></li><li><a href="global.html#handleFailedAttempts">handleFailedAttempts</a></li><li><a href="global.html#handleSystemError">handleSystemError</a></li><li><a href="global.html#handleUnmappedCommand">handleUnmappedCommand</a></li><li><a href="global.html#hasCUDA">hasCUDA</a></li><li><a href="global.html#initSocketConnection">initSocketConnection</a></li><li><a href="global.html#initializeModel">initializeModel</a></li><li><a href="global.html#irisPlaying">irisPlaying</a></li><li><a href="global.html#isListView">isListView</a></li><li><a href="global.html#isValidDate">isValidDate</a></li><li><a href="global.html#loadCommandModuleAsync">loadCommandModuleAsync</a></li><li><a href="global.html#loadCommandModuleSync">loadCommandModuleSync</a></li><li><a href="global.html#loadConfigWithRetry">loadConfigWithRetry</a></li><li><a href="global.html#locateFolder">locateFolder</a></li><li><a href="global.html#locateObjectKey">locateObjectKey</a></li><li><a href="global.html#logDebugInfo">logDebugInfo</a></li><li><a href="global.html#logPerformance">logPerformance</a></li><li><a href="global.html#minifyFile">minifyFile</a></li><li><a href="global.html#minifyFolder">minifyFolder</a></li><li><a href="global.html#missing">missing</a></li><li><a href="global.html#modelConfigs">modelConfigs</a></li><li><a href="global.html#myFunction">myFunction</a></li><li><a href="global.html#partners">partners</a></li><li><a href="global.html#postResults">postResults</a></li><li><a href="global.html#processMessages">processMessages</a></li><li><a href="global.html#programDownloads">programDownloads</a></li><li><a href="global.html#programExists">programExists</a></li><li><a href="global.html#purgeValues">purgeValues</a></li><li><a href="global.html#rankingValues">rankingValues</a></li><li><a href="global.html#readingMessages">readingMessages</a></li><li><a href="global.html#removeCommentsAndEmptyLines">removeCommentsAndEmptyLines</a></li><li><a href="global.html#removeValues">removeValues</a></li><li><a href="global.html#replaceInAll">replaceInAll</a></li><li><a href="global.html#replaceSystem">replaceSystem</a></li><li><a href="global.html#replaceText">replaceText</a></li><li><a href="global.html#resetAmbient">resetAmbient</a></li><li><a href="global.html#resolveCommandPath">resolveCommandPath</a></li><li><a href="global.html#runTasks">runTasks</a></li><li><a href="global.html#safePathJoin">safePathJoin</a></li><li><a href="global.html#shoppeIris">shoppeIris</a></li><li><a href="global.html#sleep">sleep</a></li><li><a href="global.html#sortByColumn">sortByColumn</a></li><li><a href="global.html#sqlDatabase">sqlDatabase</a></li><li><a href="global.html#toggleDescription">toggleDescription</a></li><li><a href="global.html#toggleListView">toggleListView</a></li><li><a href="global.html#undoValues">undoValues</a></li><li><a href="global.html#updateSortIcons">updateSortIcons</a></li><li><a href="global.html#updateSymlinks">updateSymlinks</a></li><li><a href="global.html#updateValues">updateValues</a></li><li><a href="global.html#urlExists">urlExists</a></li><li><a href="global.html#urlGo">urlGo</a></li><li><a href="global.html#validateCommandName">validateCommandName</a></li><li><a href="global.html#validateJSON">validateJSON</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Sun Apr 13 2025 17:34:05 GMT-0300 (Horário Padrão de Brasília)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Mon Sep 08 2025 22:07:25 GMT-0300 (Horário Padrão de Brasília)
 </footer>
 
 <script> prettyPrint(); </script>
